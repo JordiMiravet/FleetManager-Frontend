@@ -1,14 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MapComponent } from './map';
+
 import { VehicleService } from '../../features/vehicle/services/vehicle-service/vehicle-service';
 import { VehicleModalService } from '../../features/vehicle/services/vehicle-modal-service/vehicle-modal-service';
-
-import { VehicleInterface } from '../../features/vehicle/interfaces/vehicle';
-import { GeolocationService } from '../../shared/services/geolocation/geolocation-service';
-import { HttpClientModule } from '@angular/common/http';
 import { VehicleModalState } from '../../features/vehicle/enum/vehicle-modal-state.enum';
+import { VehicleInterface } from '../../features/vehicle/interfaces/vehicle';
+
+import { GeolocationService } from '../../shared/services/geolocation/geolocation-service';
 
 const vehicleServiceMock = {
   vehicles: signal<VehicleInterface[]>([]),
