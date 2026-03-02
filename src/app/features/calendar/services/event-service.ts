@@ -43,7 +43,16 @@ export class EventService {
   }
 
   updateEvent(updatedEvent: EventInterface): void {
-    this.http.put<EventInterface>(`${this.apiUrl}/${updatedEvent._id}`, updatedEvent)
+    const eventData = {
+      title: updatedEvent.title,
+      date: updatedEvent.date,
+      hourStart: updatedEvent.hourStart,
+      hourEnd: updatedEvent.hourEnd,
+      vehicleId: updatedEvent.vehicleId,
+      comment: updatedEvent.comment || ''
+    };
+
+    this.http.put<EventInterface>(`${this.apiUrl}/${updatedEvent._id}`, eventData)
       .subscribe(event => {
         this._allEvents.update(events =>
           events.map(e => e._id === event._id 
