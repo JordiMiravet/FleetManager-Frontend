@@ -1,5 +1,6 @@
 export enum VehicleModalState {
   Closed = 'closed',
   VehicleForm = 'vehicleForm',
-  ConfirmDelete = 'confirmDelete'
+  ConfirmDelete = 'confirmDelete',
+  UserManagement = 'userManagement'
 }

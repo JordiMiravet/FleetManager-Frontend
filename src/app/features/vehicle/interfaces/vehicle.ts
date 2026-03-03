@@ -7,5 +7,5 @@ export interface VehicleInterface {
         lat: number;
         lng: number;
     },
-    events?: []
+    users?: string[]
 }

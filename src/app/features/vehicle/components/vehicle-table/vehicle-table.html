@@ -27,10 +27,13 @@
                             class="vehicle-table__action-button"
                             role="button"
                             tabindex="0"
-                            aria-label="Assign driver to {{ vehicle.name }}"
+                            (click)="addUserToVehicle.emit(vehicle)"
+                            (keydown.enter)="addUserToVehicle.emit(vehicle)"
+                            [attr.aria-label]="'Assign driver to ' + vehicle.name"
                         >
-                            <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+                            <i class="fa-solid fa-user" aria-hidden="true"></i>
                         </div>
+                        <!-- TODO: Pasar el boton de addUser a un componente a parte -->
                         <app-edit-button 
                             (edit)="vehicleModal().openEdit(vehicle)"
                             aria-label="Edit {{ vehicle.name }}"

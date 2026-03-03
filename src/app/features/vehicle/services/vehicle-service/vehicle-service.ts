@@ -1,6 +1,7 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { VehicleInterface } from '../../interfaces/vehicle';
 import { HttpClient } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -69,6 +70,23 @@ export class VehicleService {
           list.filter(v => v._id !== vehicle._id)
         );
       });
+  }
+
+  addUserToVehicle(vehicleId: string, email: string): Observable<{ userId: string; email: string }> {
+    return this.http.post<{ userId: string; email: string }>(
+      `${this.apiUrl}/${vehicleId}/users`,
+      { email }
+    ).pipe(
+      tap(response => {
+        this.vehicles.update(list =>
+          list.map(v =>
+            v._id === vehicleId
+              ? { ...v, users: [...(v.users ?? []), response.userId] }
+              : v
+          )
+        );
+      })
+    );
   }
 
 }

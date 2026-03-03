@@ -15,6 +15,7 @@
             [vehicles]="vehicleList()"
             [vehicleModal]="modalState"
             (deleteVehicle)="modalState.openConfirmDelete($event)"
+            (addUserToVehicle)="openAddUserModal($event)"
         />
     } @else {
         <app-vehicle-empty-state 
@@ -37,6 +38,13 @@
         [title]="messages.deleteConfirmation.title"
         [message]="messages.deleteConfirmation.message"
         (confirm)="confirmDeleteVehicle()"
+        (cancel)="modalState.close()"
+    />
+}
+
+@if (modalState.activeModal() === VehicleModalState.UserManagement) {
+    <app-manage-vehicle-users-modal
+        (submit)="addUserToVehicle($event)"
         (cancel)="modalState.close()"
     />
 }

@@ -1,0 +1,112 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-modal-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border-left: 0.5rem solid var(--color-blue-light);
+    max-width: 50rem;
+    width: 95%;
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
+}
+
+.modal__title {
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--gray-300);
+    color: var(--color-blue-dark);
+    font-size: clamp(1.755rem, 1vw, 1.5rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.modal__content {
+    margin-bottom: 1.5rem;
+}
+
+.modal__label {
+    display: block;
+    font-weight: 700;
+    font-size: clamp(1.35rem, 1vw, 1.5rem);
+    color: var(--color-blue-dark);
+    margin-bottom: 0.5rem;
+}
+
+.modal__input {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    background-color: var(--gray-100);
+    font-size: clamp(1.35rem, 1vw, 1.5rem);
+    transition: border-color 0.2s ease;
+}
+
+.modal__input:focus {
+    outline: none;
+    border-color: var(--color-blue-light);
+}
+
+.modal__error {
+    color: var(--color-red-light);
+    font-size: clamp(1.35rem, 1vw, 1.5rem);
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.modal__actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.modal__button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: clamp(1.35rem, 1vw, 1.5rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal__button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.modal__button--submit {
+    background-color: var(--color-blue-light);
+    color: var(--color-white);
+}
+
+.modal__button--submit:hover:not(:disabled) {
+    background-color: var(--color-blue-dark);
+}
+
+.modal__button--cancel {
+    background-color: var(--gray-200);
+    color: var(--color-text-dark);
+}
+
+.modal__button--cancel:hover:not(:disabled) {
+    background-color: var(--gray-300);
+}

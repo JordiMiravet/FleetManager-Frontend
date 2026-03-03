@@ -129,12 +129,12 @@
 @media (min-width: 576px) {
     .vehicle-table__header th:nth-child(1),
     .vehicle-table__body td:nth-child(1) {
-        width: 50%;
+        width: 55%;
     }
     .vehicle-table__header th:nth-child(2),
     .vehicle-table__body td:nth-child(2) {
         display: table-cell;
-        width: 30%;
+        width: 25%;
     }
     .vehicle-table__header th:nth-child(3),
     .vehicle-table__body td:nth-child(3) {
