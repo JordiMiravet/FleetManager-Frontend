@@ -28,6 +28,7 @@ export class MapService {
     zoom: number
   ): L.Map {
     this.map = L.map(containerId).setView(center, zoom);
+
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
 
     return this.map

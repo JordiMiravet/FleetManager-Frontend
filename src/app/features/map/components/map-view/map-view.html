@@ -1,18 +1,19 @@
-
-<section class="map-actions__container">
-    <app-user-location-button
-        (click)="onUserLocationClick()"
-    />
+<section class="map-view">
     <app-vehicle-selector
         [vehicles]="vehicles()"
         (vehicleSelected)="showVehicle($event)"
+        class="map-view__selector"
     />
-</section>
-
-<section class="map-view__container">
+    @if(selectedVehicle()){
+        <app-vehicle-card-button
+            (click)="onUserLocationClick()"
+            [vehicle]="selectedVehicle()"
+            class="map-view__button--location"
+        />
+    }
     <div 
         id="map" 
-        class="map" 
+        class="map-view__map" 
         [aria-label]="messages.mapView.ariaLabel"
     ></div>
 </section>

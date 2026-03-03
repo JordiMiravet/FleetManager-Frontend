@@ -1,0 +1,15 @@
+<div class="vehicle-button" role="region" aria-labelledby="vehicle-button-title">
+    <div class="vehicle-button__info">
+        <h2 id="vehicle-button-title" class="vehicle-button__name">{{ vehicle()?.name }}</h2>
+        <h3 class="vehicle-button__plate" id="vehicle-plate">{{ vehicle()?.plate }}</h3>
+    </div>
+    <button 
+        class="map__button" 
+        (click)="click.emit()" 
+        aria-label="Center map on my current vehicle location"
+        title="Click to center the map on the vehicle's location"
+    >
+        <i class="pi pi-compass" aria-hidden="true"></i>
+        Center on Me
+    </button>
+</div>

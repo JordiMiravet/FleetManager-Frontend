@@ -8,14 +8,14 @@ import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicl
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
 
 import { VehicleSelectorComponent } from '../../../vehicle/components/vehicle-selector/vehicle-selector';
-import { UserLocationButtonComponent } from '../buttons/user-location-button/user-location-button';
+import { VehicleCardButtonComponent } from '../buttons/vehicle-card-button/vehicle-card-button';
 import { ConfirmModalComponent } from "../../../../shared/components/modals/confirm-modal/confirm-modal";
   
 @Component({
   selector: 'app-map-view',
   standalone: true,
   imports: [
-    UserLocationButtonComponent,
+    VehicleCardButtonComponent,
     ConfirmModalComponent,
     VehicleSelectorComponent, 
   ],
