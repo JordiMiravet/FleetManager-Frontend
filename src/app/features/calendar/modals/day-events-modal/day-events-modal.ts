@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 
 import { EventInterface } from '../../interfaces/event';
 import { EditButtonComponent } from '../../../../shared/components/buttons/edit-button/edit-button';
 import { DeleteButtonComponent } from '../../../../shared/components/buttons/delete-button/delete-button';
 import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
+import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 
 @Component({
   selector: 'app-day-events-modal',
@@ -20,6 +21,8 @@ import { CreateButtonComponent } from "../../../../shared/components/buttons/cre
 })
 
 export class DayEventsModalComponent {
+
+  private vehicleService = inject(VehicleService);
 
   date = input<string>('');
   events = input<EventInterface[]>([]);
@@ -53,6 +56,11 @@ export class DayEventsModalComponent {
 
   handleClose() {
     this.closeModal.emit();
+  }
+
+  getVehicleName(vehicleId: string): string {
+    const vehicle = this.vehicleService.vehicles().find(v => v._id === vehicleId);
+    return vehicle?.name || 'Unknown Vehicle';
   }
 
 }

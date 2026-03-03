@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { VehicleInterface } from '../../../../vehicle/interfaces/vehicle';
+import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
 
 @Component({
   selector: 'app-vehicle-card-button',
