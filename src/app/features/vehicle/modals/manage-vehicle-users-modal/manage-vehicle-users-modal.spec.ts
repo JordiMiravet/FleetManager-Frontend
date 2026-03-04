@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManageVehicleUsersModal } from './manage-vehicle-users-modal';
+import { ManageVehicleUsersModalComponent } from './manage-vehicle-users-modal';
 
-describe('ManageVehicleUsersModal', () => {
-  let component: ManageVehicleUsersModal;
-  let fixture: ComponentFixture<ManageVehicleUsersModal>;
+describe('ManageVehicleUsersModalComponent', () => {
+  let component: ManageVehicleUsersModalComponent;
+  let fixture: ComponentFixture<ManageVehicleUsersModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ManageVehicleUsersModal]
+      imports: [ManageVehicleUsersModalComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ManageVehicleUsersModal);
+    fixture = TestBed.createComponent(ManageVehicleUsersModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

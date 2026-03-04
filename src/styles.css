@@ -30,7 +30,6 @@
     --color-red-light: #c1121f;
     --color-red-dark: #780000;
 
-    --color-bg: #ffffff;
     --color-modal-overlay: rgba(0, 0, 0, 0.5);
 
     /* Typography */
@@ -64,7 +63,7 @@
 
 }
 
-/* Generals */
+/* Generales */
 
 html {
     box-sizing: border-box;

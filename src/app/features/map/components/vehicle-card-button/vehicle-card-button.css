@@ -1,11 +1,7 @@
 .vehicle-button {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 0;
     padding: 1rem;
-    width: 95%;
-    max-width: 35rem;
+    width: 100%;
     background-color: var(--gray-100);
     border-radius: 1.25rem;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
@@ -14,7 +10,6 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    z-index: 100;
     transition: background-color 0.25s ease;
 }
 
@@ -33,14 +28,14 @@
 .vehicle-button__name {
     font-size: var(--font-size-xl);
     font-weight: 700;
-    color: var(--gray-800);
+    color: var(--color-blue-dark);
     margin: 1rem 0 0.5rem 0;
 }
 
 .vehicle-button__plate {
     font-size: var(--font-size-sm);
     font-weight: 500;
-    color: var(--gray-800);
+    color: var(--color-blue-dark);
     margin: 0 0 0.5rem 0;
 }
 

@@ -71,8 +71,8 @@ describe('VehicleCardButtonComponent', () => {
       const icon: HTMLElement = fixture.nativeElement.querySelector('i');
 
       expect(button.classList.contains('map__button')).toBeTrue();
-      expect(icon.classList.contains('fa-solid')).toBeTrue();
-      expect(icon.classList.contains('fa-street-view')).toBeTrue();
+      expect(icon.classList.contains('pi')).toBeTrue();
+      expect(icon.classList.contains('pi-compass')).toBeTrue();
     });
 
     it('should have aria-hidden true on icon', () => {

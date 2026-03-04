@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DayEventsModalComponent } from './day-events-modal';
 
 import { EventInterface } from '../../interfaces/event';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('DayEventsModalComponent', () => {
   let component: DayEventsModalComponent;
@@ -9,7 +10,7 @@ describe('DayEventsModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DayEventsModalComponent]
+      imports: [DayEventsModalComponent, HttpClientModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DayEventsModalComponent);
