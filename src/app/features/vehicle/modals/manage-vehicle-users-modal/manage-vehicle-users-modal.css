@@ -11,10 +11,12 @@
     z-index: 1000;
 }
 
+/* Modal */
+
 .modal {
     background: var(--color-white);
     padding: 2rem;
-    border-radius: 0.5rem;
+    border-radius: 0 0.5rem 0.5rem 0;
     border-left: 0.5rem solid var(--color-blue-light);
     max-width: 50rem;
     width: 95%;
@@ -33,16 +35,63 @@
     gap: 1rem;
 }
 
-.modal__content {
-    margin-bottom: 1.5rem;
+.modal__section {
+    margin-bottom: 2rem;
 }
 
+.modal__section:last-of-type {
+    margin-bottom: 0;
+}
+
+.modal__section-title,
 .modal__label {
     display: block;
     font-weight: 700;
-    font-size: clamp(1.35rem, 1vw, 1.5rem);
+    font-size: var(--font-size-sm);
     color: var(--color-blue-dark);
+    margin: 0 0 0.5rem 0;
+}
+
+.modal__user-list {
+    margin: 0;
+    padding-inline-start: 0.5rem;
+}
+
+.modal__user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-left: 3px solid var(--color-blue-light);
+    border-radius: 0;
+    padding: 0.5rem 1rem;
     margin-bottom: 0.5rem;
+    background-color: var(--gray-100);
+    width: auto;
+    transition: all 0.125s ease-in-out;
+}
+.modal__user:hover {
+    background-color: var(--gray-200);
+    transform: translateX(0.5rem);
+}
+
+.modal__user-email {
+    margin: 0;
+    padding: 0.5rem;
+    font-size: var(--font-size-sm);
+    color: var(--gray-900);
+}
+
+.modal__empty {
+    width: 100%;
+    text-align: start;
+    font-size: var(--font-size-sm);
+    margin: 0;
+}
+
+/* Form */
+
+.modal__form {
+    margin-bottom: 1.5rem;
 }
 
 .modal__input {
@@ -59,6 +108,7 @@
     outline: none;
     border-color: var(--color-blue-light);
 }
+
 .modal__input--error {
     border: 2px solid var(--color-red-light);
 }
@@ -71,6 +121,8 @@
     align-items: center;
     gap: 0.25rem;
 }
+
+/* Actions & Buttons */
 
 .modal__actions {
     display: flex;
@@ -91,11 +143,6 @@
     gap: 0.5rem;
 }
 
-.modal__button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
 .modal__button--submit {
     background-color: var(--color-blue-light);
     color: var(--color-white);
@@ -112,4 +159,13 @@
 
 .modal__button--cancel:hover:not(:disabled) {
     background-color: var(--gray-300);
+}
+
+/* Note */
+
+.modal__note {
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    color: var(--color-blue-dark);
 }

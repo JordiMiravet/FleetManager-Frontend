@@ -81,7 +81,32 @@ export class VehicleService {
         this.vehicles.update(list =>
           list.map(v =>
             v._id === vehicleId
-              ? { ...v, users: [...(v.users ?? []), response.userId] }
+              ? { 
+                  ...v, 
+                  users: [
+                    ...(v.users ?? []), 
+                    { userId: response.userId, email: response.email }
+                  ] 
+                }
+              : v
+          )
+        );
+      })
+    );
+  }
+
+  removeUserFromVehicle(vehicleId: string, userId: string): Observable<void> {
+    return this.http.delete<void>(
+      `${this.apiUrl}/${vehicleId}/users/${userId}`
+    ).pipe(
+      tap(() => {
+        this.vehicles.update(list =>
+          list.map(v =>
+            v._id === vehicleId
+              ? { 
+                  ...v, 
+                  users: (v.users ?? []).filter(user => user.userId !== userId) 
+                }
               : v
           )
         );

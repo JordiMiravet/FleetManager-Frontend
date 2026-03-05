@@ -33,18 +33,20 @@
     />
 }
 
+@if (modalState.activeModal() === VehicleModalState.UserManagement) {
+    <app-manage-vehicle-users-modal
+        [vehicle]="selectedVehicle()"
+        (submit)="addUserToVehicle($event)"
+        (removeUser)="removeUserFromVehicle($event)"
+        (cancel)="modalState.close()"
+    />
+}
+
 @if (modalState.activeModal() === VehicleModalState.ConfirmDelete) {
     <app-confirm-modal
         [title]="messages.deleteConfirmation.title"
         [message]="messages.deleteConfirmation.message"
         (confirm)="confirmDeleteVehicle()"
-        (cancel)="modalState.close()"
-    />
-}
-
-@if (modalState.activeModal() === VehicleModalState.UserManagement) {
-    <app-manage-vehicle-users-modal
-        (submit)="addUserToVehicle($event)"
         (cancel)="modalState.close()"
     />
 }

@@ -4,11 +4,11 @@ import { GeolocationService } from '../../../../shared/services/geolocation/geol
 import { VehicleService } from '../../services/vehicle-service/vehicle-service';
 import { VehicleInterface } from '../../interfaces/vehicle';
 import { VehicleModalState } from '../../enum/vehicle-modal-state.enum';
+import { VehicleModalService} from '../../services/vehicle-modal-service/vehicle-modal-service';
 import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
 import { VehicleTableComponent } from "../vehicle-table/vehicle-table";
 import { VehicleEmptyStateComponent } from "../vehicle-empty-state/vehicle-empty-state";
 import { VehicleFormModalComponent } from "../../modals/vehicle-form-modal/vehicle-form-modal";
-import { VehicleModalService} from '../../services/vehicle-modal-service/vehicle-modal-service';
 import { ConfirmModalComponent } from "../../../../shared/components/modals/confirm-modal/confirm-modal";
 import { ManageVehicleUsersModalComponent } from '../../modals/manage-vehicle-users-modal/manage-vehicle-users-modal';
 
@@ -26,16 +26,9 @@ import { ManageVehicleUsersModalComponent } from '../../modals/manage-vehicle-us
   templateUrl: './vehicle-view.html',
   styleUrl: './vehicle-view.css',
 })
+
 export class VehicleViewComponent {
   
-  /*
-    // En boton añadir usuario al vehiculo primero traer los posibles usuarios, una vez que se selecciona el usuario
-    // tienes que hacer un update del vehiculo mandandole el id del vehiculo y el id del usuario
-    // antes de hacer el update tengo que hacer el if de si no está, si no está se añade, si está que se envie un mensaje como que ya está
-    // abres un vehiculo y te tiene que aparecer la lista de usuarios inscritos en ese vehiculo
-    // y a cada usuario le puedes poner un iconito para eliminar, y cuando se aprete recoje ese id y lo deletea
-  */
-
   @ViewChild(ManageVehicleUsersModalComponent) userModal?: ManageVehicleUsersModalComponent;
 
   private geo = inject(GeolocationService);
@@ -52,14 +45,13 @@ export class VehicleViewComponent {
       title: 'Delete vehicle?',
       message: 'Are you sure you want to delete this vehicle? This action cannot be undone.'
     }
-  }
+  };
 
   ngOnInit(): void {
     this.vehicleService.loadVehicles();
   }
 
   async saveVehicle(vehicleData: VehicleInterface): Promise<void> {
-    
     if (this.modalState.formMode() === 'create') {
       let location = vehicleData.location;
 
@@ -90,12 +82,12 @@ export class VehicleViewComponent {
     this.modalState.close();
   }
 
-  openAddUserModal(vehicle: VehicleInterface) {
+  openAddUserModal(vehicle: VehicleInterface): void {
     this.selectedVehicle.set(vehicle);
     this.modalState.activeModal.set(VehicleModalState.UserManagement);
   }
 
-  addUserToVehicle(email: string) {
+  addUserToVehicle(email: string): void {
     const vehicle = this.selectedVehicle();
     if (!vehicle?._id) return;
 
@@ -107,6 +99,23 @@ export class VehicleViewComponent {
       error: (err) => {
         const message = err.error?.message || 'Error adding user';
         this.userModal?.setError(message);
+      }
+    });
+  }
+
+  removeUserFromVehicle(userId: string): void {
+    const vehicle = this.selectedVehicle();
+    if (!vehicle?._id) return;
+
+    this.vehicleService.removeUserFromVehicle(vehicle._id, userId).subscribe({
+      next: () => {
+        const updatedVehicle = this.vehicleList().find(v => v._id === vehicle._id);
+        if (updatedVehicle) {
+          this.selectedVehicle.set(updatedVehicle);
+        }
+      },
+      error: (err) => {
+        console.error('Error:', err);
       }
     });
   }

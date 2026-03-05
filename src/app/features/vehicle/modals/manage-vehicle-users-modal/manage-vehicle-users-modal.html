@@ -4,57 +4,105 @@
     role="dialog"
     aria-modal="true"
     aria-labelledby="addUserTitle"
+    aria-describedby="modalDescription"
+    tabindex="-1"
 >
-    <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal" role="document" (click)="$event.stopPropagation()" #modalContainer>
         <h2 id="addUserTitle" class="modal__title">
-            Add User to Vehicle
-            <i class="pi pi-user" aria-hidden="true"></i>
+            Users
+            <i class="pi pi-users" aria-hidden="true"></i>
         </h2>
-        
-        <div class="modal__content">
-            <label for="userEmail" class="modal__label">User Email *</label>
-            <input 
-                id="userEmail"
-                type="email" 
-                [(ngModel)]="email"
-                name="'email"
-                placeholder="user@example.com"
-                class="modal__input"
-                [class.modal__input--error]="error()"
-                [disabled]="loading()"
-                (keydown.enter)="onSubmit()"
-                aria-describedby="emailError"
-            />
+
+        <p id="modalDescription" class="sr-only">
+            Manage users assigned to this vehicle. You can remove existing users or add a new one by email.
+        </p>
+
+        <div class="modal__section" aria-live="polite">
+            <h3 class="modal__section-title">Current Users</h3>
             
-            @if (error()) {
-                <p id="emailError" class="modal__error" role="alert">
-                    <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-                    {{ error() }}
+            @if(vehicle()?.users?.length) {
+                <ul class="modal__user-list">
+                    @for(user of vehicle()!.users; track user.userId){
+                        <li class="modal__user">
+                            <span class="modal__user-email">{{ user.email }}</span>
+                            @if(canRemove(user.userId)) {
+                                <app-delete-button
+                                    (delete)="onRemoveUser(user.userId)"
+                                    [attr.aria-label]="'Remove user ' + user.email"
+                                ></app-delete-button>
+                            }
+                        </li>
+                    }
+                </ul>
+            } @else {
+                <p class="modal__empty" role="status">
+                    No users assigned
                 </p>
             }
+
         </div>
+        @if(isOwner()) {
+            <div class="modal__section">
+                <div class="modal__form">
+                    <label for="userEmail" class="modal__label">Add User *</label>
+                    <input 
+                        id="userEmail"
+                        type="email" 
+                        [(ngModel)]="email"
+                        name="email"
+                        placeholder="user@example.com"
+                        class="modal__input"
+                        [class.modal__input--error]="error()"
+                        [disabled]="loading()"
+                        (keydown.enter)="onSubmit()"
+                        aria-describedby="emailError"
+                        aria-required="true"
+                        [attr.aria-invalid]="error() ? 'true' : 'false'"
+                    />
+                    
+                    @if (error()) {
+                        <p id="emailError" class="modal__error" role="alert">
+                            <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+                            {{ error() }}
+                        </p>
+                    }
+                </div>
+
+                <div class="modal__actions">
+                    <button 
+                        type="button"
+                        class="modal__button modal__button--submit"
+                        (click)="onSubmit()"
+                        [disabled]="loading()"
+                        [attr.aria-busy]="loading()"
+                    >
+                        @if (loading()) {
+                            <span role="status">
+                                <i class="pi pi-spin pi-spinner" aria-hidden="true"></i>
+                                Adding...
+                            </span>
+                        } @else {
+                            <i class="pi pi-check" aria-hidden="true"></i>
+                            Add User
+                        }
+                    </button>
+
+                    <button 
+                        type="button"
+                        class="modal__button modal__button--cancel"
+                        (click)="onCancel()"
+                        [disabled]="loading()"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </div>
+
+            <p class="modal__note">
+                <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+                Fields marked with * are required
+            </p>
+        }
         
-        <div class="modal__actions">
-            <button 
-                class="modal__button modal__button--submit"
-                (click)="onSubmit()"
-                [disabled]="loading()"
-            >
-                @if (loading()) {
-                    <i class="pi pi-spin pi-spinner" aria-hidden="true"></i>
-                    Adding...
-                } @else {
-                    <i class="pi pi-check" aria-hidden="true"></i>
-                    Add User
-                }
-            </button>
-            <button 
-                class="modal__button modal__button--cancel"
-                (click)="onCancel()"
-                [disabled]="loading()"
-            >
-                Cancel
-            </button>
-        </div>
     </div>
 </div>
