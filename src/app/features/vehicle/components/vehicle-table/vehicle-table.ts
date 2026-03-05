@@ -1,8 +1,10 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { EditButtonComponent } from '../../../../shared/components/buttons/edit-button/edit-button';
 import { DeleteButtonComponent } from '../../../../shared/components/buttons/delete-button/delete-button';
 import { CommonModule } from '@angular/common';
 import { VehicleInterface } from '../../interfaces/vehicle';
+import { PermissionService } from '../../../../shared/services/permission/permission';
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-vehicle-table',
@@ -17,10 +19,16 @@ import { VehicleInterface } from '../../interfaces/vehicle';
 })
 export class VehicleTableComponent {
 
+  private permission = inject(PermissionService);
+
   vehicles = input<VehicleInterface[]>([]);
   vehicleModal = input<any>();
 
   deleteVehicle = output<VehicleInterface>();
   addUserToVehicle = output<VehicleInterface>();
+
+  isOwner(vehicle: VehicleInterface): boolean {
+    return this.permission.isOwner(vehicle);
+  }
 
 }

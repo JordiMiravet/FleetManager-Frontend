@@ -34,14 +34,17 @@
                             <i class="fa-solid fa-user" aria-hidden="true"></i>
                         </div>
                         <!-- TODO: Pasar el boton de addUser a un componente a parte -->
-                        <app-edit-button 
-                            (edit)="vehicleModal().openEdit(vehicle)"
-                            aria-label="Edit {{ vehicle.name }}"
-                        />
-                        <app-delete-button 
-                            (delete)="deleteVehicle.emit(vehicle)"
-                            aria-label="Delete {{ vehicle.name }}"    
-                        />
+                         @if(isOwner(vehicle)) {
+                            <app-edit-button 
+                                (edit)="vehicleModal().openEdit(vehicle)"
+                                aria-label="Edit {{ vehicle.name }}"
+                            />
+                            <app-delete-button 
+                                (delete)="deleteVehicle.emit(vehicle)"
+                                aria-label="Delete {{ vehicle.name }}"    
+                            />
+                         }
+                        
                     </div>
                 </td>
             </tr>

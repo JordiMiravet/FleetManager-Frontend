@@ -5,6 +5,7 @@ import { Auth } from '@angular/fire/auth';
 
 import { VehicleInterface } from '../../interfaces/vehicle';
 import { DeleteButtonComponent } from "../../../../shared/components/buttons/delete-button/delete-button";
+import { PermissionService } from '../../../../shared/services/permission/permission';
 
 @Component({
   selector: 'app-manage-vehicle-users-modal',
@@ -15,6 +16,8 @@ import { DeleteButtonComponent } from "../../../../shared/components/buttons/del
 export class ManageVehicleUsersModalComponent {
 
   private auth = inject(Auth);
+  private permission = inject(PermissionService)
+
 
   vehicle = input.required<VehicleInterface | null>();
 
@@ -27,21 +30,11 @@ export class ManageVehicleUsersModalComponent {
   cancel = output<void>();
 
   isOwner(): boolean {
-    const currentUid = this.auth.currentUser?.uid;
-    const vehicle = this.vehicle();
-    
-    return vehicle?.userId === currentUid;
+    return this.permission.isOwner(this.vehicle());
   }
 
   canRemove(userId: string): boolean {
-    const currentUid = this.auth.currentUser?.uid;
-    const vehicle = this.vehicle();
-    if (!vehicle || !currentUid) return false;
-
-    if (vehicle.userId === currentUid) return true;
-    if (userId === currentUid) return true;
-
-    return false;
+    return this.permission.canRemove(this.vehicle(), userId);
   }
 
   onSubmit(): void {
