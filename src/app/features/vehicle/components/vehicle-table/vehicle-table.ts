@@ -4,7 +4,6 @@ import { DeleteButtonComponent } from '../../../../shared/components/buttons/del
 import { CommonModule } from '@angular/common';
 import { VehicleInterface } from '../../interfaces/vehicle';
 import { PermissionService } from '../../../../shared/services/permission/permission';
-import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-vehicle-table',

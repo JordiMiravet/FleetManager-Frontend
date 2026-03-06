@@ -1,53 +1,81 @@
-<table class="vehicle-table__container" aria-label="Vehicles list">
+<table class="vehicle-table" aria-label="Vehicles list">
+    <caption class="sr-only" >
+        Vehicles list
+    </caption>
+
     <thead class="vehicle-table__header">
-        <tr>
+        <tr class="vehicle-table__row">
+            <th scope="col">Img</th>
             <th scope="col">Vehicle Name</th>
             <th scope="col">License Plate</th>
             <th scope="col" class="vehicle-table__actions-header">Actions</th>
         </tr>
     </thead>
+
     <tbody class="vehicle-table__body">
         @for(vehicle of vehicles(); track vehicle.plate) {
-            <tr>
-                <td data-label="Vehicle Name" class="vehicle-table__cell vehicle-table__cell--name">
+            <tr class="vehicle-table__row">
+
+                <td class="vehicle-table__cell vehicle-table__cell--img">
+                    <img
+                        class="vehicle-table__image"
+                        src="https://placehold.co/48x48?text=vehicle"
+                        
+                    >
+                    <!-- en img falta el [attr.alt]="'Image of ' + vehicle.name" -->
+                </td>
+
+                <td class="vehicle-table__cell vehicle-table__cell--name">
                     <div class="vehicle-table__cell-content">
-                        <span class="vehicle-table__cell-name">{{ vehicle.name }}</span>
-                        <span class="vehicle-table__cell-model">{{ vehicle.model }}</span>
+                        <span class="vehicle-table__name">
+                            {{ vehicle.name }}
+                        </span>
+                        <span class="vehicle-table__model">
+                            {{ vehicle.model }}
+                        </span>
+                        <span class="vehicle-table__plate">
+                            {{ vehicle.plate }}
+                        </span>
                     </div>
                 </td>
-                <td data-label="License Plate" class="vehicle-table__cell vehicle-table__cell--plate">
+
+                <td class="vehicle-table__cell vehicle-table__cell--plate">
                     <div class="vehicle-table__cell-content">
-                        <span class="vehicle-table__cell-plate">{{ vehicle.plate }}</span>
+                        <span class="vehicle-table__plate">
+                            {{ vehicle.plate }}
+                        </span>
                     </div>
                 </td>
-                <td data-label="Actions" class="vehicle-table__cell vehicle-table__cell--actions">
-                    <div class="vehicle-table__cell-content">
-                        <!-- TODO: Pasar el boton de addUser a un componente a parte -->
-                        <div 
+
+                <td class="vehicle-table__cell vehicle-table__cell--actions">
+                    <div class="vehicle-table__actions">
+
+                        <button
                             class="vehicle-table__action-button"
-                            role="button"
-                            tabindex="0"
                             (click)="addUserToVehicle.emit(vehicle)"
-                            (keydown.enter)="addUserToVehicle.emit(vehicle)"
                             [attr.aria-label]="'Assign driver to ' + vehicle.name"
+                            type="button"
                         >
                             <i class="fa-solid fa-user" aria-hidden="true"></i>
-                        </div>
-                        <!-- TODO: Pasar el boton de addUser a un componente a parte -->
-                         @if(isOwner(vehicle)) {
+                        </button>
+
+                        @if(isOwner(vehicle)) {
                             <app-edit-button 
                                 (edit)="vehicleModal().openEdit(vehicle)"
                                 aria-label="Edit {{ vehicle.name }}"
                             />
+
                             <app-delete-button 
                                 (delete)="deleteVehicle.emit(vehicle)"
                                 aria-label="Delete {{ vehicle.name }}"    
                             />
-                         }
-                        
+                        }
+
                     </div>
                 </td>
+
             </tr>
         }
     </tbody>
+
 </table>
