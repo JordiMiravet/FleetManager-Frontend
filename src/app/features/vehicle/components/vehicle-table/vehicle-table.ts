@@ -4,21 +4,25 @@ import { DeleteButtonComponent } from '../../../../shared/components/buttons/del
 import { CommonModule } from '@angular/common';
 import { VehicleInterface } from '../../interfaces/vehicle';
 import { PermissionService } from '../../../../shared/services/permission/permission';
+import { UserButtonComponent } from "../../../../shared/components/buttons/user-button/user-button";
 
 @Component({
   selector: 'app-vehicle-table',
   standalone: true,
-  imports: [ 
-    EditButtonComponent, 
-    DeleteButtonComponent, 
-    CommonModule 
-  ],
+  imports: [
+    EditButtonComponent,
+    DeleteButtonComponent,
+    CommonModule,
+    UserButtonComponent
+],
   templateUrl: './vehicle-table.html',
   styleUrl: './vehicle-table.css',
 })
 export class VehicleTableComponent {
 
   private permission = inject(PermissionService);
+
+  public vehicleImage = 'https://placehold.co/48x48?text=vehicle'
 
   vehicles = input<VehicleInterface[]>([]);
   vehicleModal = input<any>();

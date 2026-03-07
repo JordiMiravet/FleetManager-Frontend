@@ -5,10 +5,10 @@
 
     <thead class="vehicle-table__header">
         <tr class="vehicle-table__row">
-            <th scope="col">Img</th>
-            <th scope="col">Vehicle Name</th>
-            <th scope="col">License Plate</th>
-            <th scope="col" class="vehicle-table__actions-header">Actions</th>
+            <th scope="col" class="vehicle-table__header-image">Img</th>
+            <th scope="col" class="vehicle-table__header-name">Vehicle Name</th>
+            <th scope="col" class="vehicle-table__header-plate">License Plate</th>
+            <th scope="col" class="vehicle-table__header-actions">Actions</th>
         </tr>
     </thead>
 
@@ -19,10 +19,9 @@
                 <td class="vehicle-table__cell vehicle-table__cell--img">
                     <img
                         class="vehicle-table__image"
-                        src="https://placehold.co/48x48?text=vehicle"
-                        
+                        [src]="vehicleImage"
+                        [attr.alt]="'Image of ' + vehicle.name"
                     >
-                    <!-- en img falta el [attr.alt]="'Image of ' + vehicle.name" -->
                 </td>
 
                 <td class="vehicle-table__cell vehicle-table__cell--name">
@@ -50,14 +49,10 @@
                 <td class="vehicle-table__cell vehicle-table__cell--actions">
                     <div class="vehicle-table__actions">
 
-                        <button
-                            class="vehicle-table__action-button"
-                            (click)="addUserToVehicle.emit(vehicle)"
+                        <app-user-button
+                            (user)="addUserToVehicle.emit(vehicle)"
                             [attr.aria-label]="'Assign driver to ' + vehicle.name"
-                            type="button"
-                        >
-                            <i class="fa-solid fa-user" aria-hidden="true"></i>
-                        </button>
+                        />
 
                         @if(isOwner(vehicle)) {
                             <app-edit-button 

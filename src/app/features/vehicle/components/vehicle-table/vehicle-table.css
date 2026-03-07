@@ -1,9 +1,6 @@
 :host {
     margin: 0 auto;
     width: 100%;
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
 }
 
 /* Block */
@@ -51,15 +48,24 @@
     color: var(--gray-700);
     letter-spacing: 0.05rem;
 }
-
-.vehicle-table__actions-header {
+.vehicle-table__header th.vehicle-table__header-image {
+  text-align: center;
+}
+.vehicle-table__header th.vehicle-table__header-name {
+  text-align: start;
+}
+.vehicle-table__header th.vehicle-table__header-plate {
+  text-align: start;
+  font-size: var(--font-size-xs);
+}
+.vehicle-table__header th.vehicle-table__header-actions {
     text-align: end;
 }
 
 /* Cells */
 
-.vehicle-table__body td {
-    padding: 1.25rem 1.5rem;
+.vehicle-table__cell {
+    padding: 1rem 1.5rem;
     font-size: var(--font-size-sm);
     font-weight: 500;
     color: var(--gray-800);
@@ -70,10 +76,18 @@
     align-items: center;
     justify-content: center;
 }
-
+.vehicle-table__actions > * {
+    margin: 0;
+    padding: 0;
+}
 .vehicle-table__cell--img {
     text-align: center;
     vertical-align: middle;
+}
+
+.vehicle-table__cell--img .vehicle-table__image {
+    margin: 0 auto;
+    display: block;
 }
 
 .vehicle-table__cell--name .vehicle-table__cell-content {
@@ -92,6 +106,7 @@
     justify-content: flex-end;
     gap: 0.5rem;
 }
+
 @media (min-width: 576px) {
     .vehicle-table__cell--name .vehicle-table__cell-content {
         gap: 0rem;
@@ -114,16 +129,6 @@
     padding: 0;
 }
 
-.vehicle-table__name,
-.vehicle-table__model {
-    width: 100%;
-    display: block;
-    padding: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .vehicle-table__name {
     font-weight: 500;
     font-size: var(--font-size-md);
@@ -132,6 +137,16 @@
 
 .vehicle-table__model {
     font-size: var(--font-size-xs);
+}
+
+.vehicle-table__name,
+.vehicle-table__model {
+    width: 100%;
+    display: block;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .vehicle-table__plate {
@@ -154,77 +169,40 @@
     }
 }
 
-/* Buttons */
-
-.vehicle-table__action-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--color-blue-light);
-    background-color: transparent;
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 2rem;
-    border: none;
-    transition: color 0.25s ease-in-out;
-    cursor: pointer;
-}
-
-.vehicle-table__action-button:hover {
-    color: var(--color-blue-dark);
-}
-
-.vehicle-table__action-button:focus-visible {
-    outline: 2px solid var(--color-blue-light);
-    outline-offset: 2px;
-}
-
 /* Column widths */
 
-.vehicle-table__header th:nth-child(1),
-.vehicle-table__body td:nth-child(1) {
-    width: 10%;
+.vehicle-table__header-image,
+.vehicle-table__cell--img {
+    width: 12%;
 }
 
-.vehicle-table__header th:nth-child(2),
-.vehicle-table__body td:nth-child(2) {
-    width: 45%;
+.vehicle-table__header-name,
+.vehicle-table__cell--name {
+    width: 44%;
 }
 
-.vehicle-table__header th:nth-child(3),
-.vehicle-table__body td:nth-child(3) {
+.vehicle-table__header-plate,
+.vehicle-table__cell--plate {
     display: none;
 }
 
-.vehicle-table__header th:nth-child(4),
-.vehicle-table__body td:nth-child(4) {
-    text-align: end;
-    width: 45%;
+.vehicle-table__header-actions,
+.vehicle-table__cell--actions {
+    width: 44%;
 }
 
 @media (min-width: 576px) {
 
-    .vehicle-table__header th:nth-child(1),
-    .vehicle-table__body td:nth-child(1) {
-        width: 10%;
-    }
+    .vehicle-table__header-image,
+    .vehicle-table__cell--img    { width: 7.5%; }
 
-    .vehicle-table__header th:nth-child(2),
-    .vehicle-table__body td:nth-child(2) {
-        width: 55%;
-    }
+    .vehicle-table__header-name,
+    .vehicle-table__cell--name   { width: 50%; }
 
-    .vehicle-table__header th:nth-child(3),
-    .vehicle-table__body td:nth-child(3) {
-        display: table-cell;
-        width: 25%;
-    }
+    .vehicle-table__header-plate,
+    .vehicle-table__cell--plate  { display: table-cell; width: 22.5%; }
 
-    .vehicle-table__header th:nth-child(4),
-    .vehicle-table__body td:nth-child(4) {
-        width: 20%;
-    }
+    .vehicle-table__header-actions,
+    .vehicle-table__cell--actions { width: 22.5%; }
 
-
-    
 }

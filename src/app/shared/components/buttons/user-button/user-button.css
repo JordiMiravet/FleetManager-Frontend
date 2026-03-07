@@ -1,5 +1,5 @@
 
-.delete-button {
+.user-button {
     background: transparent;
     border: none;
     padding: 0;
@@ -8,24 +8,22 @@
     justify-content: center;
     cursor: pointer;
 }
-
-.delete-button:focus-visible {
-    outline: 2px solid var(--color-red-light);
+.user-button:focus-visible {
+    outline: 2px solid var(--color-blue-light);
     outline-offset: 2px;
     transition: outline 0.25s ease;
 }
 
-.delete-button i {
+.user-button i {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 2.5rem;
     height: 2.5rem;
     font-size: 2rem;
-    color: var(--color-red-light);
+    color: var(--color-blue-light);
     transition: color 0.25s;
 }
-
-.delete-button i:hover {
-    color: var(--color-red-dark);
+.user-button i:hover {
+    color: var(--color-blue-dark);
 }
