@@ -1,19 +1,31 @@
-<table class="vehicle-table" aria-label="Vehicles list">
-    <caption class="sr-only" >
+<table class="vehicle-table">
+    <caption class="sr-only">
         Vehicles list
     </caption>
 
     <thead class="vehicle-table__header">
         <tr class="vehicle-table__row">
-            <th scope="col" class="vehicle-table__header-image">Img</th>
-            <th scope="col" class="vehicle-table__header-name">Vehicle Name</th>
-            <th scope="col" class="vehicle-table__header-plate">License Plate</th>
-            <th scope="col" class="vehicle-table__header-actions">Actions</th>
+            <th scope="col" class="vehicle-table__header-image">
+                Img
+            </th>
+
+            <th scope="col" class="vehicle-table__header-name">
+                Vehicle Name
+            </th>
+
+            <th scope="col" class="vehicle-table__header-plate">
+                License Plate
+            </th>
+
+            <th scope="col" class="vehicle-table__header-actions">
+                Actions
+            </th>
         </tr>
     </thead>
 
     <tbody class="vehicle-table__body">
         @for(vehicle of vehicles(); track vehicle.plate) {
+
             <tr class="vehicle-table__row">
 
                 <td class="vehicle-table__cell vehicle-table__cell--img">
@@ -21,10 +33,11 @@
                         class="vehicle-table__image"
                         [src]="vehicleImage"
                         [attr.alt]="'Image of ' + vehicle.name"
+                        loading="lazy"
                     >
                 </td>
 
-                <td class="vehicle-table__cell vehicle-table__cell--name">
+                <th scope="row" class="vehicle-table__cell vehicle-table__cell--name">
                     <div class="vehicle-table__cell-content">
                         <span class="vehicle-table__name">
                             {{ vehicle.name }}
@@ -32,11 +45,11 @@
                         <span class="vehicle-table__model">
                             {{ vehicle.model }}
                         </span>
-                        <span class="vehicle-table__plate">
+                        <span class="vehicle-table__plate" aria-hidden="true">
                             {{ vehicle.plate }}
                         </span>
                     </div>
-                </td>
+                </th>
 
                 <td class="vehicle-table__cell vehicle-table__cell--plate">
                     <div class="vehicle-table__cell-content">
@@ -55,21 +68,24 @@
                         />
 
                         @if(isOwner(vehicle)) {
-                            <app-edit-button 
+
+                            <app-edit-button
                                 (edit)="vehicleModal().openEdit(vehicle)"
-                                aria-label="Edit {{ vehicle.name }}"
+                                [attr.aria-label]="'Edit ' + vehicle.name"
                             />
 
-                            <app-delete-button 
+                            <app-delete-button
                                 (delete)="deleteVehicle.emit(vehicle)"
-                                aria-label="Delete {{ vehicle.name }}"    
+                                [attr.aria-label]="'Delete ' + vehicle.name"
                             />
+
                         }
 
                     </div>
                 </td>
 
             </tr>
+
         }
     </tbody>
 
