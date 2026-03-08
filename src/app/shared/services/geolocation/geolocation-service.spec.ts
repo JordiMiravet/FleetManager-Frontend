@@ -10,16 +10,13 @@ describe('GeolocationService', () => {
   });
 
   describe('Service creation', () => {
-
     it('should be created', () => {
       expect(service).toBeTruthy();
     });
-
   });
 
-  describe('Successful geolocation', () => {
-
-    it('should resolve with latitude and longitude when geolocation is available', async () => {
+  describe('Successful GPS geolocation', () => {
+    it('should resolve with latitude and longitude when GPS works', async () => {
       const mockPosition = {
         coords: {
           latitude: 40.4168,
@@ -36,50 +33,41 @@ describe('GeolocationService', () => {
 
       expect(result).toEqual([40.4168, -3.7038]);
     });
-
   });
 
-  describe('Geolocation not supported', () => {
-
-    it('should reject when geolocation is not supported', async () => {
-      const originalGeolocation = navigator.geolocation;
-
-      Object.defineProperty(navigator, 'geolocation', {
-        value: undefined,
-        configurable: true,
-      });
-
-      try {
-        await service.getCurrentLocation();
-        fail('Promise should have been rejected');
-      } catch (error) {
-        expect(error).toBe('Geolocation not supported');
-      }
-
-      Object.defineProperty(navigator, 'geolocation', {
-        value: originalGeolocation,
-        configurable: true,
-      });
-    });
-
-  });
-
-  describe('Geolocation error', () => {
-
-    it('should reject when geolocation returns an error', async () => {
+  describe('Fallback to IP location', () => {
+    it('should use IP location when GPS fails', async () => {
       spyOn(navigator.geolocation, 'getCurrentPosition')
         .and.callFake((_: any, error: any) => {
           error();
         });
 
-      try {
-        await service.getCurrentLocation();
-        fail('Promise should have been rejected');
-      } catch (error) {
-        expect(error).toBe('Location error');
-      }
-    });
+      spyOn(window, 'fetch').and.resolveTo(
+        new Response(JSON.stringify({
+          latitude: 41.3874,
+          longitude: 2.1686
+        }))
+      );
 
+      const result = await service.getCurrentLocation();
+
+      expect(result).toEqual([41.3874, 2.1686]);
+    });
+  });
+
+  describe('Fallback to default coordinates', () => {
+    it('should return default coordinates when GPS and IP fail', async () => {
+      spyOn(navigator.geolocation, 'getCurrentPosition')
+        .and.callFake((_: any, error: any) => {
+          error();
+        });
+
+      spyOn(window, 'fetch').and.rejectWith('IP error');
+
+      const result = await service.getCurrentLocation();
+
+      expect(result).toEqual([41.3851, 2.1734]);
+    });
   });
 
 });
