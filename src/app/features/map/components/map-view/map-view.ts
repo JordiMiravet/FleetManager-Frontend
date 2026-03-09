@@ -1,16 +1,14 @@
-import { Component, effect, inject, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import * as L from 'leaflet';
 
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
 import { MapService } from '../../services/map-service';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
-
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
-
 import { VehicleSelectorComponent } from '../../../vehicle/components/vehicle-selector/vehicle-selector';
 import { ConfirmModalComponent } from "../../../../shared/components/modals/confirm-modal/confirm-modal";
 import { VehicleCardButtonComponent } from '../vehicle-card-button/vehicle-card-button';
-  
+
 @Component({
   selector: 'app-map-view',
   standalone: true,
@@ -22,7 +20,7 @@ import { VehicleCardButtonComponent } from '../vehicle-card-button/vehicle-card-
   templateUrl: './map-view.html',
   styleUrls: ['./map-view.css'],
 })
-export class MapViewComponent implements OnInit {
+export class MapViewComponent implements OnInit, OnDestroy {
 
   private readonly mapService = inject(MapService);
   private readonly geo = inject(GeolocationService);
@@ -34,13 +32,17 @@ export class MapViewComponent implements OnInit {
   private allVehicleMarkers: L.Marker[] = [];
   private selectedVehicleMarker?: L.Marker;
 
-  public selectedVehicle = signal<VehicleInterface | null>(null);
-  public newPosition = signal<L.LatLng | null>(null);
-  public showConfirmModal = signal(false);
+  public readonly selectedVehicle = signal<VehicleInterface | null>(null);
+  public readonly newPosition = signal<L.LatLng | null>(null);
+  public readonly showConfirmModal = signal(false);
 
-  public messages = {
+  private readonly DEFAULT_CENTER: [number, number] = [41.478, 2.310];
+  private readonly DEFAULT_ZOOM = 10;
+  private readonly SELECTED_ZOOM = 19;
+
+  public readonly messages = {
     mapView: {
-      ariaLabel : 'Interactive map showing vehicle positions. Visual only, drag points to move vehicles with mouse or touch'
+      ariaLabel: 'Interactive map showing vehicle positions. Visual only, drag points to move vehicles with mouse or touch'
     },
     confirmModal: {
       title: 'Change vehicle position',
@@ -58,8 +60,13 @@ export class MapViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.map = this.mapService.initMap('map', [41.478, 2.310], 10);
+    this.map = this.mapService.initMap('map', this.DEFAULT_CENTER, this.DEFAULT_ZOOM);
     this.vehicleService.loadVehicles();
+  }
+
+  ngOnDestroy(): void {
+    this.clearAllMarkers();
+    this.clearSelectedMarker();
   }
 
   private showAllVehicles(): void {
@@ -72,7 +79,7 @@ export class MapViewComponent implements OnInit {
       if (!vehicle.location) return;
 
       const coords: [number, number] = [vehicle.location.lat, vehicle.location.lng];
-      const marker = this.mapService.createMarker(coords, vehicle.name, false);
+      const marker = this.mapService.createMarker(coords, false);
 
       this.allVehicleMarkers.push(marker);
       bounds.extend(coords);
@@ -104,9 +111,9 @@ export class MapViewComponent implements OnInit {
 
     try {
       const coords = await this.geo.getCurrentLocation();
-      this.placeSelectedVehicleMarker(coords, vehicle.name);
       const position = L.latLng(coords);
 
+      this.placeSelectedVehicleMarker(coords, vehicle.name);
       this.vehicleService.updateVehicleLocation(vehicle, position);
 
       this.selectedVehicle.set({
@@ -115,28 +122,25 @@ export class MapViewComponent implements OnInit {
       });
 
     } catch (error) {
-      console.error(error);
+      console.error('Error getting location:', error);
     }
   }
 
   private placeSelectedVehicleMarker(coords: [number, number] | L.LatLng, vehicleName: string): void {
     this.clearSelectedMarker();
-    this.selectedVehicleMarker = this.mapService.createMarker(coords, vehicleName, true);
+    this.selectedVehicleMarker = this.mapService.createMarker(coords, true);
 
     this.selectedVehicleMarker.on('dragend', () => {
       const position = this.selectedVehicleMarker!.getLatLng();
       this.newPosition.set(position);
-
       this.showConfirmModal.set(true);
     });
 
-    this.mapService.setView(coords, 19);
+    this.mapService.setView(coords, this.SELECTED_ZOOM);
   }
 
   private clearAllMarkers(): void {
-    this.allVehicleMarkers.forEach(
-      marker => this.mapService.removeLayer(marker)
-    );
+    this.allVehicleMarkers.forEach(marker => this.mapService.removeLayer(marker));
     this.allVehicleMarkers = [];
   }
 
@@ -159,7 +163,7 @@ export class MapViewComponent implements OnInit {
       location: { lat: position.lat, lng: position.lng }
     });
 
-    this.mapService.setView(position, 19);
+    this.mapService.setView(position, this.SELECTED_ZOOM);
     this.showConfirmModal.set(false);
   }
 
@@ -173,7 +177,7 @@ export class MapViewComponent implements OnInit {
     ];
 
     this.selectedVehicleMarker.setLatLng(originalCoords);
-    this.mapService.setView(originalCoords, 19);
+    this.mapService.setView(originalCoords, this.SELECTED_ZOOM);
 
     this.showConfirmModal.set(false);
   }
