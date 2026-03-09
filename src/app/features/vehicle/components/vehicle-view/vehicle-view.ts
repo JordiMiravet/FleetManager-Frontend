@@ -11,6 +11,7 @@ import { VehicleEmptyStateComponent } from "../vehicle-empty-state/vehicle-empty
 import { VehicleFormModalComponent } from "../../modals/vehicle-form-modal/vehicle-form-modal";
 import { ConfirmModalComponent } from "../../../../shared/components/modals/confirm-modal/confirm-modal";
 import { ManageVehicleUsersModalComponent } from '../../modals/manage-vehicle-users-modal/manage-vehicle-users-modal';
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-vehicle-view',
@@ -31,6 +32,7 @@ export class VehicleViewComponent {
   
   @ViewChild(ManageVehicleUsersModalComponent) userModal?: ManageVehicleUsersModalComponent;
 
+  private auth = inject(Auth);
   private geo = inject(GeolocationService);
   private vehicleService = inject(VehicleService);
   
@@ -109,9 +111,15 @@ export class VehicleViewComponent {
 
     this.vehicleService.removeUserFromVehicle(vehicle._id, userId).subscribe({
       next: () => {
-        const updatedVehicle = this.vehicleList().find(v => v._id === vehicle._id);
-        if (updatedVehicle) {
-          this.selectedVehicle.set(updatedVehicle);
+        const currentUserId = this.auth.currentUser?.uid;
+        
+        if (currentUserId === userId) {
+          this.modalState.close();
+        } else {
+          const updatedVehicle = this.vehicleList().find(v => v._id === vehicle._id);
+          if (updatedVehicle) {
+            this.selectedVehicle.set(updatedVehicle);
+          }
         }
       },
       error: (err) => {

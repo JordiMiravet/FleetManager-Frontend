@@ -2,10 +2,10 @@ import { inject, Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { VehicleInterface } from '../../../features/vehicle/interfaces/vehicle';
 
-
 @Injectable({
   providedIn: 'root',
 })
+
 export class PermissionService {
   private auth = inject(Auth);
 

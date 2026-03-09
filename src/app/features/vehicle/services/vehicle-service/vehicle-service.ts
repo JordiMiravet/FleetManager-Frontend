@@ -1,15 +1,18 @@
+// vehicle.service.ts
+
 import { Injectable, signal, inject } from '@angular/core';
 import { VehicleInterface } from '../../interfaces/vehicle';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { Auth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class VehicleService {
   
   private http = inject(HttpClient);
+  private auth = inject(Auth);
   private apiUrl = 'http://localhost:3000/vehicles';
 
   public vehicles = signal<VehicleInterface[]>([]);
@@ -47,7 +50,6 @@ export class VehicleService {
     vehicle: VehicleInterface,
     location: { lat: number; lng: number }
   ): void {
-
     const updatedLocation = { location }
 
     this.http.put<VehicleInterface>(
@@ -100,16 +102,24 @@ export class VehicleService {
       `${this.apiUrl}/${vehicleId}/users/${userId}`
     ).pipe(
       tap(() => {
-        this.vehicles.update(list =>
-          list.map(v =>
-            v._id === vehicleId
-              ? { 
-                  ...v, 
-                  users: (v.users ?? []).filter(user => user.userId !== userId) 
-                }
-              : v
-          )
-        );
+        const currentUserId = this.auth.currentUser?.uid;
+        
+        if (currentUserId === userId) {
+          this.vehicles.update(list =>
+            list.filter(v => v._id !== vehicleId)
+          );
+        } else {
+          this.vehicles.update(list =>
+            list.map(v =>
+              v._id === vehicleId
+                ? { 
+                    ...v, 
+                    users: (v.users ?? []).filter(user => user.userId !== userId) 
+                  }
+                : v
+            )
+          );
+        }
       })
     );
   }
