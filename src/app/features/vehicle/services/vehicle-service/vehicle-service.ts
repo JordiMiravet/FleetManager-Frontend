@@ -1,5 +1,3 @@
-// vehicle.service.ts
-
 import { Injectable, signal, inject } from '@angular/core';
 import { VehicleInterface } from '../../interfaces/vehicle';
 import { HttpClient } from '@angular/common/http';

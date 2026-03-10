@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VehicleInterface } from '../../interfaces/vehicle';
+import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
 
 @Component({
   selector: 'app-vehicle-form-modal',
@@ -10,8 +11,13 @@ import { VehicleInterface } from '../../interfaces/vehicle';
   templateUrl: './vehicle-form-modal.html',
   styleUrls: ['./vehicle-form-modal.css'],
 })
-
 export class VehicleFormModalComponent {
+
+  private msg = inject(VehicleMessagesService);
+  
+  public readonly formMsg = this.msg.form;
+  public readonly errorMsg = this.msg.errors;
+  public readonly ariaMsg = this.msg.aria.form;
 
   mode = input<'create' | 'edit'>('create');
   vehicle = input<VehicleInterface | null>(null);
@@ -59,7 +65,7 @@ export class VehicleFormModalComponent {
   onSubmit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      return
+      return;
     }
     this.submit.emit({ ...this.form.value });
   }
@@ -69,17 +75,19 @@ export class VehicleFormModalComponent {
   }
 
   getFieldError(field: string): string | null {
-    /* 
-      TODO: Tengo que pasar los mensajes a un service que solo recoja los mensajes de error
-    */
     const control = this.form.get(field);
     if (!control || !control.touched || control.valid) return null;
 
-    if (control.errors?.['required']) return `${field} is required`;
-    if (control.errors?.['minlength']) return `${field} must be at least ${control.errors['minlength'].requiredLength} characters`;
-    if (control.errors?.['maxlength']) return `${field} cannot exceed ${control.errors['maxlength'].requiredLength} characters`;
+    const fieldName = this.capitalize(field);
+
+    if (control.errors?.['required']) return this.errorMsg.required(fieldName);
+    if (control.errors?.['minlength']) return this.errorMsg.minLength(fieldName, control.errors['minlength'].requiredLength);
+    if (control.errors?.['maxlength']) return this.errorMsg.maxLength(fieldName, control.errors['maxlength'].requiredLength);
 
     return null;
   }
 
+  private capitalize(text: string): string {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  }
 }

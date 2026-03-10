@@ -14,10 +14,11 @@ import { UserButtonComponent } from "../../../../shared/components/buttons/user-
     DeleteButtonComponent,
     CommonModule,
     UserButtonComponent
-],
+  ],
   templateUrl: './vehicle-table.html',
   styleUrl: './vehicle-table.css',
 })
+
 export class VehicleTableComponent {
 
   private permission = inject(PermissionService);

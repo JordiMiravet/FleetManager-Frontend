@@ -1,4 +1,4 @@
-<div 
+<dialog 
     class="modal" 
     role="dialog"
     aria-modal="true" 
@@ -16,19 +16,20 @@
                 
             <legend id="modal-title" class="modal__legend">
                 <i class="pi pi-car" aria-hidden="true"></i>
-                {{ mode() === 'create' ? 'Create Vehicle' : 'Edit Vehicle' }}
+                {{ mode() === 'create' ? formMsg.title.create : formMsg.title.edit }}
             </legend>
 
             <div class="modal__form-section">
-                <label for="createVehicleName" class="modal__label">Name *</label>
+                <label for="createVehicleName" class="modal__label">{{ formMsg.fields.name.label }}</label>
                 <input 
                     type="text" 
                     id="createVehicleName" 
                     formControlName="name" 
                     class="modal__input" 
-                    placeholder="Vehicle Name"
+                    [placeholder]="formMsg.fields.name.placeholder"
                     [ngClass]="{'modal__input--error': form.controls['name'].invalid && form.controls['name'].touched}"
                     [attr.aria-invalid]="form.controls['name'].invalid && form.controls['name'].touched"
+                    [attr.aria-label]="ariaMsg.nameInput"
                     aria-describedby="createVehicleName-error"
                 />
                 
@@ -44,15 +45,16 @@
             </div>
 
             <div class="modal__form-section">
-                <label for="createVehicleModel" class="modal__label">Model *</label>
+                <label for="createVehicleModel" class="modal__label">{{ formMsg.fields.model.label }}</label>
                 <input 
                     type="text" 
                     id="createVehicleModel" 
                     formControlName="model" 
                     class="modal__input"
-                    placeholder="Vehicle Model"
+                    [placeholder]="formMsg.fields.model.placeholder"
                     [ngClass]="{'modal__input--error': form.controls['model'].invalid && form.controls['model'].touched}"
                     [attr.aria-invalid]="form.controls['model'].invalid && form.controls['model'].touched"
+                    [attr.aria-label]="ariaMsg.modelInput"
                     aria-describedby="createVehicleModel-error"
                 />
                 
@@ -68,15 +70,16 @@
             </div>
 
             <div class="modal__form-section">
-                <label for="createVehiclePlate" class="modal__label">Plate *</label>
+                <label for="createVehiclePlate" class="modal__label">{{ formMsg.fields.plate.label }}</label>
                 <input 
                     type="text" 
                     id="createVehiclePlate" 
                     formControlName="plate" 
                     class="modal__input" 
-                    placeholder="Vehicle Plate"
+                    [placeholder]="formMsg.fields.plate.placeholder"
                     [ngClass]="{'modal__input--error': form.controls['plate'].invalid && form.controls['plate'].touched}"
                     [attr.aria-invalid]="form.controls['plate'].invalid && form.controls['plate'].touched"
+                    [attr.aria-label]="ariaMsg.plateInput"
                     aria-describedby="createVehiclePlate-error"
                 />
                 
@@ -97,21 +100,27 @@
             <button 
                 type="button" 
                 class="modal__button modal__button--save" 
-                (click)="onSubmit()" 
+                (click)="onSubmit()"
+                [attr.aria-label]="mode() === 'create' ? ariaMsg.createButton : ariaMsg.updateButton"
             >
                 <i class="pi pi-save" aria-hidden="true"></i>
-                {{ mode() === 'create' ? 'Create' : 'Update' }}
+                {{ mode() === 'create' ? formMsg.buttons.create : formMsg.buttons.update }}
             </button>
             
-            <button type="button" class="modal__button modal__button--cancel" (click)="onCancel()">
-                Cancel
+            <button 
+                type="button" 
+                class="modal__button modal__button--cancel" 
+                (click)="onCancel()"
+                [attr.aria-label]="ariaMsg.cancelButton"
+            >
+                {{ formMsg.buttons.cancel }}
             </button>
         </div>
 
         <p class="modal__note">
             <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-            Fields marked with * are required
+            {{ formMsg.note }}
         </p>
     </form>
 
-</div>
+</dialog>

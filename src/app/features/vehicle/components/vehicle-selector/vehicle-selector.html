@@ -1,14 +1,14 @@
 <label for="vehicle-select" class="sr-only">Select Vehicle</label>
 <select 
     id="vehicle-select"
-    class="map__vehicle-select" 
+    class="vehicle-select" 
     (change)="onVehicleChange($event)" 
     aria-required="true"
 >
-    <option class="map__vehicle-option" value="" selected>-- All Vehicles --</option>
+    <option class="vehicle-option" value="" selected>-- All Vehicles --</option>
     @for (vehicle of vehicles(); track vehicle.plate) {
         <option 
-            class="map__vehicle-option" 
+            class="vehicle-option" 
             [value]="vehicle.plate" 
             [selected]="vehicle.plate === selectedPlate()"
         >

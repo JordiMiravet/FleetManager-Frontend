@@ -3,8 +3,9 @@ import { Component, inject, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { VehicleInterface } from '../../interfaces/vehicle';
-import { DeleteButtonComponent } from "../../../../shared/components/buttons/delete-button/delete-button";
 import { PermissionService } from '../../../../shared/services/permission/permission';
+import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
+import { DeleteButtonComponent } from "../../../../shared/components/buttons/delete-button/delete-button";
 
 @Component({
   selector: 'app-manage-vehicle-users-modal',
@@ -18,7 +19,12 @@ import { PermissionService } from '../../../../shared/services/permission/permis
 })
 export class ManageVehicleUsersModalComponent {
 
-  private permission = inject(PermissionService)
+  private permission = inject(PermissionService);
+  private msg = inject(VehicleMessagesService);
+  
+  public usersMsg = this.msg.users;
+  public errorMsg = this.msg.errors;
+  public ariaMsg = this.msg.aria.users;
 
   vehicle = input.required<VehicleInterface | null>();
 
@@ -41,8 +47,8 @@ export class ManageVehicleUsersModalComponent {
   onSubmit(): void {
     const emailValue = this.email().trim();
 
-    if (!emailValue) return this.error.set('Email is required');
-    if (!this.isValidEmail(emailValue)) return this.error.set('Please enter a valid email');
+    if (!emailValue) return this.error.set(this.errorMsg.emailRequired);
+    if (!this.isValidEmail(emailValue)) return this.error.set(this.errorMsg.invalidEmail);
 
     this.error.set('');
     this.loading.set(true);

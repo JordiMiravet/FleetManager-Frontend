@@ -5,7 +5,7 @@
     padding: 0;
 }
 
-.map__vehicle-select {
+.vehicle-select {
     width: 100%;
     margin: 0;
     min-width: 20rem;
@@ -23,7 +23,7 @@
 }
 
 @media (min-width: 768px) {
-    .map__vehicle-select {
+    .vehicle-select {
         max-width: 30rem;
     }
 }

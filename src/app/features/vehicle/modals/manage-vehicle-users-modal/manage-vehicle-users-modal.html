@@ -8,16 +8,16 @@
 >
     <div class="modal" role="document" (click)="$event.stopPropagation()" #modalContainer>
         <h2 id="addUserTitle" class="modal__title">
-            Users
+            {{ usersMsg.title }}
             <i class="pi pi-users" aria-hidden="true"></i>
         </h2>
 
         <p id="modalDescription" class="sr-only">
-            Manage users assigned to this vehicle. You can remove existing users or add a new one by email.
+            {{ usersMsg.description }}
         </p>
 
         <div class="modal__section" aria-live="polite">
-            <h3 class="modal__section-title">Current Users</h3>
+            <h3 class="modal__section-title">{{ usersMsg.status.currentUsers }}</h3>
             
             @if(vehicle()?.users?.length) {
                 <ul class="modal__user-list">
@@ -27,7 +27,7 @@
                             @if(canRemove(user.userId)) {
                                 <app-delete-button
                                     (delete)="onRemoveUser(user.userId)"
-                                    [attr.aria-label]="'Remove user ' + user.email"
+                                    [attr.aria-label]="ariaMsg.removeUser(user.email)"
                                 ></app-delete-button>
                             }
                         </li>
@@ -35,7 +35,7 @@
                 </ul>
             } @else {
                 <p class="modal__empty" role="status">
-                    No users assigned
+                    {{ usersMsg.status.noUsers }}
                 </p>
             }
 
@@ -43,13 +43,13 @@
         @if(isOwner()) {
             <div class="modal__section">
                 <div class="modal__form">
-                    <label for="userEmail" class="modal__label">Add User *</label>
+                    <label for="userEmail" class="modal__label">{{ usersMsg.fields.addUser.label }}</label>
                     <input 
                         id="userEmail"
                         type="email" 
                         [(ngModel)]="email"
                         name="email"
-                        placeholder="user@example.com"
+                        [placeholder]="usersMsg.fields.addUser.placeholder"
                         class="modal__input"
                         [class.modal__input--error]="error()"
                         [disabled]="loading()"
@@ -74,15 +74,16 @@
                         (click)="onSubmit()"
                         [disabled]="loading()"
                         [attr.aria-busy]="loading()"
+                        [attr.aria-label]="ariaMsg.addUserButton"
                     >
                         @if (loading()) {
                             <span role="status">
                                 <i class="pi pi-spin pi-spinner" aria-hidden="true"></i>
-                                Adding...
+                                {{ usersMsg.buttons.adding }}
                             </span>
                         } @else {
                             <i class="pi pi-check" aria-hidden="true"></i>
-                            Add User
+                            {{ usersMsg.buttons.addUser }}
                         }
                     </button>
 
@@ -91,15 +92,16 @@
                         class="modal__button modal__button--cancel"
                         (click)="onCancel()"
                         [disabled]="loading()"
+                        [attr.aria-label]="ariaMsg.cancelButton"
                     >
-                        Cancel
+                        {{ usersMsg.buttons.cancel }}
                     </button>
                 </div>
             </div>
 
             <p class="modal__note">
                 <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-                Fields marked with * are required
+                {{ usersMsg.note }}
             </p>
         }
         
