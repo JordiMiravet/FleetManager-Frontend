@@ -20,6 +20,7 @@ import { VehicleCardButtonComponent } from '../vehicle-card-button/vehicle-card-
   templateUrl: './map-view.html',
   styleUrls: ['./map-view.css'],
 })
+
 export class MapViewComponent implements OnInit, OnDestroy {
 
   private readonly mapService = inject(MapService);
@@ -42,7 +43,8 @@ export class MapViewComponent implements OnInit, OnDestroy {
 
   public readonly messages = {
     mapView: {
-      ariaLabel: 'Interactive map showing vehicle positions. Visual only, drag points to move vehicles with mouse or touch'
+      ariaLabel: 'Interactive map showing vehicle positions. Visual only, drag points to move vehicles with mouse or touch',
+      ariaDescribedby: 'This map displays all vehicle positions. Users can select a vehicle from the selector or use the center button on each vehicle card to focus on its location.'
     },
     confirmModal: {
       title: 'Change vehicle position',

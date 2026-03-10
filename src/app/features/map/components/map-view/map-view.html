@@ -1,9 +1,11 @@
 <section class="map-view">
+
     <app-vehicle-selector
         [vehicles]="vehicles()"
         (vehicleSelected)="showVehicle($event)"
         class="map-view__selector"
     />
+
     @if(selectedVehicle()){
         <app-vehicle-card-button
             (click)="onUserLocationClick()"
@@ -11,11 +13,18 @@
             class="map-view__button--location"
         />
     }
+
     <div 
         id="map" 
         class="map-view__map" 
-        [aria-label]="messages.mapView.ariaLabel"
+        role="region"
+        [attr.aria-label]="messages.mapView.ariaLabel"
+        aria-describedby="map-description"
     ></div>
+    <p id="map-description" class="sr-only">
+        {{ messages.mapView.ariaDescribedby }}
+    </p>
+
 </section>
 
 @if(showConfirmModal()){
