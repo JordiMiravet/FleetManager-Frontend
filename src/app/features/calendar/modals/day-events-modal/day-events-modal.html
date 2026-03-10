@@ -1,33 +1,39 @@
-<div 
-  class="modal-overlay" 
-  (click)="handleClose()"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="dayEventsTitle"
+<dialog 
+    class="modal-overlay" 
+    (click)="handleClose()"
+    aria-modal="true"
+    role="dialog"
+    aria-labelledby="dayEventsTitle"
+    aria-describedby="eventsListDesc"
 >
     <section class="modal" (click)="$event.stopPropagation()">
 
         <header class="modal__header">
-            <h2 id="dayEventsTitle" class="modal__title" [attr.aria-label]="'Events of the Day' + date()">
+            <h2 
+                id="dayEventsTitle" 
+                class="modal__title" 
+                [attr.aria-label]="'Events of the Day ' + date()"
+            >
                 <i class="pi pi-calendar" aria-hidden="true"></i>
                 Events of the Day: <span>{{ date() }}</span>
             </h2>
             <app-create-button 
                 (click)="onCreate()"
                 [createText]="'Event'"
-                [attr.aria-label]="'Create a new event for' + date()"
+                [attr.aria-label]="'Create a new event for ' + date()"
             />
         </header>
 
-        @if( events().length > 0) {
-            <ul class="events-list">
+        @if(events().length > 0) {
+            <ul class="events-list" id="eventsListDesc" role="list">
                 @for (event of events(); track $index) {
-                    <li>
+                    <li role="listitem">
                         <details class="event-card" [attr.id]="'eventDetails' + $index">
                             <summary
                                 class="event-card__summary"
                                 (click)="openDetails($index)"
                                 [attr.aria-controls]="'eventDetails' + $index"
+                                aria-expanded="false"
                             >
                                 <div class="event-card__info">
                                     <span class="event-card__vehicle">{{ getVehicleName(event.vehicleId!) }}</span>
@@ -48,7 +54,7 @@
                                 <p class="event-card__comment">{{ event.comment }}</p>
                             }
 
-                            <div class="event-card__actions">
+                            <div class="event-card__actions" role="group" aria-label="Actions for {{ event.title }}">
                                 <app-edit-button 
                                     (edit)="onEdit(event._id)"
                                     [attr.aria-label]="'Edit ' + event.title"
@@ -63,14 +69,10 @@
                 }   
             </ul>
         } @else {
-            <button 
-                class="modal__empty" 
-                (click)="onCreate()"
-                [attr.aria-label]="'Create a new event for ' + date()"
-            >
+            <p class="modal__empty" role="status" aria-live="polite">
                 There are no events for the selected day
-            </button>
+            </p>
         }
 
     </section>
-</div>
+</dialog>
