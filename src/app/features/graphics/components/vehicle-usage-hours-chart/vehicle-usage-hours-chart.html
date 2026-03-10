@@ -1,3 +1,17 @@
-<div class="chart-wrapper" role="img" aria-label="Vehicle usage hours chart">
-    <canvas #vehicleUsageHours></canvas>
-</div>
+<figure 
+    class="chart-wrapper" 
+    role="img" 
+    aria-labelledby="vehicle-usage-hours-title"
+    aria-describedby="vehicle-usage-hours-desc"
+>
+    <canvas #vehicleUsageHours aria-hidden="true"></canvas>
+    
+    <figcaption id="vehicle-usage-hours-title" class="sr-only">
+        Vehicle usage hours distribution chart
+    </figcaption>
+    
+    <p id="vehicle-usage-hours-desc" class="sr-only">
+        A doughnut chart showing the distribution of vehicle usage hours for the selected period. 
+        Visual representation only. Hover over chart segments to see individual vehicle data.
+    </p>
+</figure>
