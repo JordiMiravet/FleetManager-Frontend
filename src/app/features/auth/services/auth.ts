@@ -15,13 +15,24 @@ export class AuthService {
   readonly user = this.userSignal.asReadonly();
   readonly isLogged = computed(() => !!this.userSignal());
 
-  public errorMessages = {
-    invalidEmail : 'Please enter a valid email',
-    invalidPassword : 'Please enter a password that contains at least 6 characters',
-    invalidCredentials : 'This email or password is invalid',
-    emailAlreadyExists: 'This email already exists'
-  }
-
+  public readonly authMessages = {
+    authType: {
+      login: 'Login',
+      register: 'Register'
+    },
+    fieldLabels: {
+      email: 'Email *',
+      password: 'Password *'
+    },
+    errorMessages: {
+      invalidEmail: 'Please enter a valid email',
+      invalidPassword: 'Please enter a password that contains at least 6 characters',
+      invalidCredentials: 'This email or password is invalid',
+      emailAlreadyExists: 'This email already exists'
+    },
+    note: 'Fields marked with * are required'
+  };
+  
   constructor() {
     onAuthStateChanged(this.auth, (user: User | null) => {
       this.userSignal.set(user)

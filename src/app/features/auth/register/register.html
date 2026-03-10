@@ -1,12 +1,12 @@
 <form [formGroup]="formReg" (ngSubmit)="onSubmit()" class="form">
   <fieldset class="form__fieldset">
     <legend class="form__legend">
-      Register
+      {{ authMessage.authType.register }}
       <i class="fa-regular fa-address-card" aria-hidden="true"></i>
     </legend>
     
     <div class="form__group">
-      <label for="emailRegister">Email *</label>
+      <label for="emailRegister">{{ authMessage.fieldLabels.email }}</label>
       <input 
         type="email" 
         id="emailRegister" 
@@ -24,12 +24,12 @@
         [hidden]="formReg.controls['email'].valid || !formReg.controls['email'].touched"
       >
         <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-        {{ authMessage.invalidEmail }}
+        {{ authMessage.errorMessages.invalidEmail }}
       </h4>
     </div>
 
     <div class="form__group">
-      <label for="passwordRegister">Password *</label>
+      <label for="passwordRegister">{{ authMessage.fieldLabels.password }}</label>
       <input 
         type="password" 
         id="passwordRegister" 
@@ -47,11 +47,11 @@
         [hidden]="formReg.controls['password'].valid || !formReg.controls['password'].touched"
       >
         <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-        {{ authMessage.invalidPassword }}
+        {{ authMessage.errorMessages.invalidPassword }}
       </h4>
     </div>
 
-    <button type="submit" class="btn__auth">Register</button>
+    <button type="submit" class="btn__auth">{{ authMessage.authType.register }}</button>
 
     @if(errorSubmit){ 
       <h4 class="form__error-submit" role="alert">
@@ -62,5 +62,5 @@
 
   </fieldset>
 
-  <p class="form__note">Fields marked with * are required</p>
+  <p class="form__note">{{ authMessage.note }}</p>
 </form>

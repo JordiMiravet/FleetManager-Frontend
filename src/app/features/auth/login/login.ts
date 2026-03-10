@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth';
 import { Router } from '@angular/router';
@@ -10,16 +10,17 @@ import { Router } from '@angular/router';
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-export class LoginComponent implements OnInit {
+
+export class LoginComponent {
   
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  public authMessage = this.authService.errorMessages;
+  public authMessages = this.authService.authMessages;
   public errorSubmit: string = '';
 
   formLogin: FormGroup;
-  
+
   constructor() {
     this.formLogin = new FormGroup({
       email: new FormControl('', [
@@ -34,8 +35,6 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {}
-
   onSubmit() {
     if(this.formLogin.invalid) {
       this.formLogin.markAllAsTouched(); 
@@ -47,8 +46,9 @@ export class LoginComponent implements OnInit {
       this.router.navigate([''])
     })
     .catch(error => {
-      this.errorSubmit = this.authMessage.invalidCredentials
+      this.errorSubmit = this.authMessages.errorMessages.invalidCredentials
       console.error('Error:', error)
     });
   }
+
 }

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth';
 import { Router } from '@angular/router';
@@ -11,12 +11,12 @@ import { Router } from '@angular/router';
   styleUrl: './register.css',
 })
 
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  public authMessage = this.authService.errorMessages;
+  public authMessage = this.authService.authMessages;
   public errorSubmit: string = '';
 
   formReg: FormGroup;
@@ -35,8 +35,6 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {}
-
   onSubmit() {
     if (this.formReg.invalid) {
       this.formReg.markAllAsTouched();
@@ -48,8 +46,9 @@ export class RegisterComponent implements OnInit {
       this.router.navigate([''])
     })
     .catch(error => {
-      this.errorSubmit = this.authMessage.emailAlreadyExists
+      this.errorSubmit = this.authMessage.errorMessages.emailAlreadyExists
       console.error('Error:', error)
     });
   }
+
 }
