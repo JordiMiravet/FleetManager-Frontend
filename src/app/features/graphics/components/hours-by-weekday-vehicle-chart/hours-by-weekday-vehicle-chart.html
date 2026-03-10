@@ -1,3 +1,17 @@
-<div class="chart-wrapper" role="img" aria-label="Hours per days & vehicle chart">
-    <canvas #hoursByWeekday></canvas>
-</div>
+<figure 
+    class="chart-wrapper" 
+    role="img" 
+    aria-labelledby="hours-by-weekday-title"
+    aria-describedby="hours-by-weekday-desc"
+>
+    <canvas #hoursByWeekday aria-hidden="true"></canvas>
+    
+    <figcaption id="hours-by-weekday-title" class="sr-only">
+        Vehicle usage by day of week chart
+    </figcaption>
+    
+    <p id="hours-by-weekday-desc" class="sr-only">
+        A line chart showing the number of hours each vehicle was used on each day of the week 
+        for the selected period. Visual representation only.
+    </p>
+</figure>

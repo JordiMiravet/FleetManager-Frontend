@@ -6,7 +6,6 @@ import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsServices } from '../../services/graphics-services';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 
-
 @Component({
   selector: 'app-hours-by-weekday-vehicle-chart',
   standalone: true,
