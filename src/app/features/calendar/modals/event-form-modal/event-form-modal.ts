@@ -33,6 +33,14 @@ export class EventFormModalComponent implements OnInit {
 
   public formEvent: FormGroup;
 
+  public readonly message = {
+    error: {
+      inputRequired: "This field is required",
+      invalidRange: "Are you going back to the future, McFly? End time must be after start time",
+      overlap: "This vehicle is already booked at this time"
+    }
+  }
+
   constructor(){
     this.formEvent = new FormGroup({
       title: new FormControl('', [ Validators.required ]),
