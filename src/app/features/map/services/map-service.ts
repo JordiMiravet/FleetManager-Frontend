@@ -38,7 +38,6 @@ export class MapService {
     return this.map;
   }
   
-  
   createMarker(
     coords: L.LatLngExpression,
     draggable: boolean = true

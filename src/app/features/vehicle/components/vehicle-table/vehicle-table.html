@@ -1,31 +1,17 @@
 <table class="vehicle-table">
-    <caption class="sr-only">
-        Vehicles list
-    </caption>
+    <caption class="sr-only">Vehicles list</caption>
 
     <thead class="vehicle-table__header">
         <tr class="vehicle-table__row">
-            <th scope="col" class="vehicle-table__header-image">
-                Img
-            </th>
-
-            <th scope="col" class="vehicle-table__header-name">
-                Vehicle Name
-            </th>
-
-            <th scope="col" class="vehicle-table__header-plate">
-                License Plate
-            </th>
-
-            <th scope="col" class="vehicle-table__header-actions">
-                Actions
-            </th>
+            <th scope="col" class="vehicle-table__header-image">Img</th>
+            <th scope="col" class="vehicle-table__header-name">Vehicle Name</th>
+            <th scope="col" class="vehicle-table__header-plate">License Plate</th>
+            <th scope="col" class="vehicle-table__header-actions">Actions</th>
         </tr>
     </thead>
 
     <tbody class="vehicle-table__body">
         @for(vehicle of vehicles(); track vehicle.plate) {
-
             <tr class="vehicle-table__row">
 
                 <td class="vehicle-table__cell vehicle-table__cell--img">
@@ -39,23 +25,15 @@
 
                 <th scope="row" class="vehicle-table__cell vehicle-table__cell--name">
                     <div class="vehicle-table__cell-content">
-                        <span class="vehicle-table__name">
-                            {{ vehicle.name }}
-                        </span>
-                        <span class="vehicle-table__model">
-                            {{ vehicle.model }}
-                        </span>
-                        <span class="vehicle-table__plate" aria-hidden="true">
-                            {{ vehicle.plate }}
-                        </span>
+                        <span class="vehicle-table__name">{{ vehicle.name }}</span>
+                        <span class="vehicle-table__model">{{ vehicle.model }}</span>
+                        <span class="vehicle-table__plate" aria-hidden="true">{{ vehicle.plate }}</span>
                     </div>
                 </th>
 
                 <td class="vehicle-table__cell vehicle-table__cell--plate">
                     <div class="vehicle-table__cell-content">
-                        <span class="vehicle-table__plate">
-                            {{ vehicle.plate }}
-                        </span>
+                        <span class="vehicle-table__plate">{{ vehicle.plate }}</span>
                     </div>
                 </td>
 
@@ -68,7 +46,6 @@
                         />
 
                         @if(isOwner(vehicle)) {
-
                             <app-edit-button
                                 (edit)="vehicleModal().openEdit(vehicle)"
                                 [attr.aria-label]="'Edit ' + vehicle.name"
@@ -78,14 +55,12 @@
                                 (delete)="deleteVehicle.emit(vehicle)"
                                 [attr.aria-label]="'Delete ' + vehicle.name"
                             />
-
                         }
 
                     </div>
                 </td>
 
             </tr>
-
         }
     </tbody>
 

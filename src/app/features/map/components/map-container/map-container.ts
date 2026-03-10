@@ -18,6 +18,7 @@ import { VehicleEmptyStateComponent } from "../../../vehicle/components/vehicle-
   templateUrl: './map-container.html',
   styleUrl: './map-container.css',
 })
+
 export class MapContainerComponent implements OnInit {
 
   private readonly geo = inject(GeolocationService);
