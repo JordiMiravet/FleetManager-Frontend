@@ -1,3 +1,17 @@
-<div class="chart-wrapper" role="img" aria-label="Most used vehicle chart">
-    <canvas #mostUsedVehicle></canvas>
-</div>
+<figure 
+    class="chart-wrapper" 
+    role="img" 
+    aria-labelledby="most-used-vehicle-title"
+    aria-describedby="most-used-vehicle-desc"
+>
+    <canvas #mostUsedVehicle aria-hidden="true"></canvas>
+    
+    <figcaption id="most-used-vehicle-title" class="sr-only">
+        Top 3 most used vehicles chart
+    </figcaption>
+    
+    <p id="most-used-vehicle-desc" class="sr-only">
+        A bar chart showing the top three vehicles by total hours of usage for the selected period. 
+        Visual representation only.
+    </p>
+</figure>
