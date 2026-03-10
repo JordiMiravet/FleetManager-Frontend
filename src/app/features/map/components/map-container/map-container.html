@@ -8,7 +8,7 @@
     } 
 </section>
 
-@if (vehicleModal.activeModal() === VehicleModalState.VehicleForm) {
+@if (isModalOpen()) {
     <app-vehicle-form-modal
         [mode]="vehicleModal.formMode()"
         [vehicle]="vehicleModal.selectedVehicle()"

@@ -1,3 +1,4 @@
+
 import { Component, signal, computed, ViewChild, ViewEncapsulation, inject, AfterViewInit, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -17,6 +18,13 @@ import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
 import { EventInterface } from '../../interfaces/event';
 import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
 
+export enum CalendarModalState {
+  Closed = 'closed',
+  DayEvents = 'dayEvents',
+  EventForm = 'eventForm',
+  Confirm = 'confirm'
+}
+
 @Component({
   selector: 'app-calendar-view',
   standalone: true,
@@ -33,7 +41,6 @@ import { CreateButtonComponent } from "../../../../shared/components/buttons/cre
   styleUrl: './calendar-view.css',
   encapsulation: ViewEncapsulation.None,
 })
-
 export class CalendarViewComponent implements AfterViewInit {
 
   @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
@@ -44,31 +51,24 @@ export class CalendarViewComponent implements AfterViewInit {
   public selectedDate = signal<string>('');
   private selectedEventId = signal<string | null>(null);
 
-  // TODO: Pasar el formMode a enums
   public formMode = signal<'create' | 'edit'>('create');
   public selectedEvent = signal<EventInterface | null>(null);
 
-  // TODO: Pasar el activeModal a enums
-  public activeModal = signal<'dayEvents' | 'eventForm' | 'confirm' | null>(null);
+  public CalendarModalState = CalendarModalState;
+  public activeModal = signal<CalendarModalState>(CalendarModalState.Closed);
 
   public confirmModalMsg = signal({
     title: 'Delete this event',
     message: 'Are you sure you want to delete this event? This action cannot be undone'
-  })
+  });
 
   selectedDayEvents = computed(() => this.eventService.getEventsByDate(this.selectedDate()));
-
 
   calendarOptions = {
     plugins: [ dayGridPlugin, interactionPlugin, timeGridPlugin ],
 
     initialView: 'dayGridMonth',
-    headerToolbar: {
-      left: 'prev,next',
-      center: 'title',
-      right: 'today',
-    },
-
+    headerToolbar: { left: 'prev,next', center: 'title', right: 'today' },
     showNonCurrentDates: true,
     fixedWeekCount: false,
     weekends: true,
@@ -111,46 +111,37 @@ export class CalendarViewComponent implements AfterViewInit {
     this.refreshCalendar(); 
   }
 
-  // Eventos click 
-
   onDateClick(arg: DateClickArg): void {
     this.selectedDate.set(arg.dateStr);
-    this.activeModal.set('dayEvents');
+    this.activeModal.set(CalendarModalState.DayEvents);
   }
 
   onEventClick(info: EventClickArg): void {
     this.selectedDate.set(info.event.startStr.split('T')[0]);
-    this.activeModal.set('dayEvents');
+    this.activeModal.set(CalendarModalState.DayEvents);
   }
 
-  // Logica del Create
-
   handleCreateEvent() {
-    // TODO: Tengo que añadirle la logica del modal de isconfirmModal 
     const today = new Date().toISOString().split('T')[0];
     this.selectedDate.set(this.selectedDate() || today);
 
     this.formMode.set('create');
     this.selectedEvent.set(null);
 
-    this.activeModal.set('eventForm');
+    this.activeModal.set(CalendarModalState.EventForm);
   }
-  
-  // Logica del Edit
 
   handleEditEvent(id: string): void { 
     this.eventService.getEventById(id).subscribe(event => {
       this.formMode.set('edit');
       this.selectedEvent.set(event);
-      this.activeModal.set('eventForm');
+      this.activeModal.set(CalendarModalState.EventForm);
     });
   }
 
-  // Logica del Delete 
-
   handleDeleteEvent(id: string): void {
     this.selectedEventId.set(id);
-    this.activeModal.set('confirm');
+    this.activeModal.set(CalendarModalState.Confirm);
   }
 
   confirmDeleteEvent(): void {
@@ -160,15 +151,13 @@ export class CalendarViewComponent implements AfterViewInit {
     this.eventService.deleteEvent(id);
 
     this.selectedEventId.set(null);
-    this.activeModal.set('dayEvents');
+    this.activeModal.set(CalendarModalState.DayEvents);
   }
 
   cancelDeleteEvent(): void {
     this.selectedEventId.set(null);
-    this.activeModal.set('dayEvents');
+    this.activeModal.set(CalendarModalState.DayEvents);
   }
-
-  // Refresh de los eventos
 
   public refreshCalendar(): void {
     const calendarApi = this.calendarComponent.getApi();
@@ -176,8 +165,6 @@ export class CalendarViewComponent implements AfterViewInit {
     calendarApi.removeAllEvents();
     calendarApi.addEventSource(this.getCalendarEvents());
   }
-
-  // Eventos
 
   private getCalendarEvents(): EventInput[] {
     return this.eventService.calendarEvents().map((event) => ({
@@ -192,8 +179,6 @@ export class CalendarViewComponent implements AfterViewInit {
     }));
   }
 
-  // Vehiculo
-
   handleVehicleSelected(vehicle: VehicleInterface): void {
     if (!vehicle) {
       this.eventService.selectedVehicleId.set(null);
@@ -201,5 +186,5 @@ export class CalendarViewComponent implements AfterViewInit {
       this.eventService.selectedVehicleId.set(vehicle._id!);
     }
   }
-  
+
 }

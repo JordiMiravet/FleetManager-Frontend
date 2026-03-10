@@ -1,42 +1,44 @@
-<section class="calendar__actions">
+<section class="calendar__actions" aria-label="Calendar actions">
     <app-create-button
         (click)="handleCreateEvent()"
         [createText]="'Event'"
     ></app-create-button>
+
     <app-vehicle-selector
         [vehicles]="vehicleService.vehicles()"
         (vehicleSelected)="handleVehicleSelected($event)"
     ></app-vehicle-selector>
 </section>
 
-<section class="calendar__container">
+<section class="calendar__container" aria-label="Vehicle events calendar">
     <full-calendar
         #calendar
         [options]="calendarOptions"
+        aria-label="Vehicle events calendar"
     ></full-calendar>
 </section>
 
-@if (activeModal() === 'dayEvents') {
+@if (activeModal() === CalendarModalState.DayEvents) {
     <app-day-events-modal
         [events]="selectedDayEvents()"
         [date]="selectedDate()"
         (createEvent)="handleCreateEvent()"
         (editEvent)="handleEditEvent($event)"
         (deleteEvent)="handleDeleteEvent($event)"
-        (closeModal)="activeModal.set(null)"
+        (closeModal)="activeModal.set(CalendarModalState.Closed)"
     ></app-day-events-modal>
 }
 
-@if (activeModal() === 'eventForm') {
+@if (activeModal() === CalendarModalState.EventForm) {
     <app-event-form-modal
         [preselectedDate]="selectedDate()"
         [mode]="formMode()"
         [event]="selectedEvent()"
-        (close)="activeModal.set(null)"
+        (close)="activeModal.set(CalendarModalState.Closed)"
     ></app-event-form-modal>
 }
 
-@if (activeModal() === 'confirm') {
+@if (activeModal() === CalendarModalState.Confirm) {
     <app-confirm-modal
         [title]="confirmModalMsg().title"
         [message]="confirmModalMsg().message"

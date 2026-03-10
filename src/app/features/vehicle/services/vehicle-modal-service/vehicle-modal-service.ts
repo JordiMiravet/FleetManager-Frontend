@@ -31,6 +31,7 @@ export class VehicleModalService {
   close(): void {
     this.activeModal.set(VehicleModalState.Closed);
     this.selectedVehicle.set(null);
+    this.formMode.set('create');
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 import { VehicleModalService } from '../../../vehicle/services/vehicle-modal-service/vehicle-modal-service';
@@ -27,7 +27,9 @@ export class MapContainerComponent implements OnInit {
   public readonly vehicleList = this.vehicleService.vehicles;
   public readonly VehicleModalState = VehicleModalState;
 
-  private readonly DEFAULT_LOCATION = { lat: 41.478, lng: 2.310 };
+  public readonly isModalOpen = computed(
+    () => this.vehicleModal.activeModal() === VehicleModalState.VehicleForm
+  );
 
   ngOnInit(): void {
     this.vehicleService.loadVehicles();

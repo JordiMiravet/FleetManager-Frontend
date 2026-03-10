@@ -13,8 +13,9 @@
         formControlName="email" 
         placeholder="Enter your email"
         autocomplete="email"
-        [attr.aria-invalid]="formReg.controls['email'].invalid && formReg.controls['email'].touched"
-        aria-describedby="register-email-error"
+        required
+        [attr.aria-invalid]="formReg.controls['email'].invalid && formReg.controls['email'].touched ? 'true' : 'false'"
+        [attr.aria-describedby]="formReg.controls['email'].invalid && formReg.controls['email'].touched ? 'register-email-error' : null"
       />
       <h4 
         id="register-email-error"
@@ -35,8 +36,9 @@
         formControlName="password" 
         placeholder="Enter your password"
         autocomplete="new-password"
-        [attr.aria-invalid]="formReg.controls['password'].invalid && formReg.controls['password'].touched"
-        aria-describedby="register-password-error"
+        required
+        [attr.aria-invalid]="formReg.controls['password'].invalid && formReg.controls['password'].touched ? 'true' : 'false'"
+        [attr.aria-describedby]="formReg.controls['password'].invalid && formReg.controls['password'].touched ? 'register-password-error' : null"
       />
       <h4 
         id="register-password-error"
@@ -50,14 +52,15 @@
     </div>
 
     <button type="submit" class="btn__auth">Register</button>
+
     @if(errorSubmit){ 
       <h4 class="form__error-submit" role="alert">
         <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
         {{ errorSubmit }}
       </h4>
     }
+
   </fieldset>
 
   <p class="form__note">Fields marked with * are required</p>
 </form>
-
