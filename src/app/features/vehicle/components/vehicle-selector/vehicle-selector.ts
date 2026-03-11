@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { VehicleInterface } from '../../interfaces/vehicle';
+import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
 
 @Component({
   selector: 'app-vehicle-selector',
@@ -10,6 +11,9 @@ import { VehicleInterface } from '../../interfaces/vehicle';
   styleUrl: './vehicle-selector.css',
 })
 export class VehicleSelectorComponent {
+
+  private readonly messagesService = inject(VehicleMessagesService);
+  public readonly selectorMsg = this.messagesService.selectors.vehicle;
 
   vehicles = input<VehicleInterface[]>([]);
   selectedPlate = input<string | null>(null);

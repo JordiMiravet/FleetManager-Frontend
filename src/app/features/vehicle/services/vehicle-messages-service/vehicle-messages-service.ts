@@ -74,4 +74,10 @@ export class VehicleMessagesService {
       actionsText: 'Actions'
     }
   }
+  readonly selectors = {
+    vehicle: {
+      label: 'Select Vehicle',
+      allVehiclesOption: '-- All Vehicles --'
+    }
+  };
 }

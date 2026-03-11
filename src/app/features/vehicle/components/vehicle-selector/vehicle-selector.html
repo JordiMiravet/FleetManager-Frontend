@@ -1,18 +1,18 @@
-<label for="vehicle-select" class="sr-only">Select Vehicle</label>
-<select 
-    id="vehicle-select"
-    class="vehicle-select" 
-    (change)="onVehicleChange($event)" 
-    aria-required="true"
+<label for="vehicle-select" class="sr-only">{{ selectorMsg.label }}</label>
+<select
+  id="vehicle-select"
+  class="vehicle-select"
+  (change)="onVehicleChange($event)"
+  aria-required="true"
 >
-    <option class="vehicle-option" value="" selected>-- All Vehicles --</option>
-    @for (vehicle of vehicles(); track vehicle.plate) {
-        <option 
-            class="vehicle-option" 
-            [value]="vehicle.plate" 
-            [selected]="vehicle.plate === selectedPlate()"
-        >
-            {{ vehicle.name }}
-        </option>
-    }
+  <option class="vehicle-option" value="" selected>{{ selectorMsg.allVehiclesOption }}</option>
+  @for (vehicle of vehicles(); track vehicle.plate) {
+    <option
+      class="vehicle-option"
+      [value]="vehicle.plate"
+      [selected]="vehicle.plate === selectedPlate()"
+    >
+      {{ vehicle.name }}
+    </option>
+  }
 </select>
