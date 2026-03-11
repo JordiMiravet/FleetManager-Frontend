@@ -1,25 +1,35 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { Auth } from '@angular/fire/auth';
+
 import { DayEventsModalComponent } from './day-events-modal';
 
 import { EventInterface } from '../../interfaces/event';
-import { HttpClientModule } from '@angular/common/http';
 
 describe('DayEventsModalComponent', () => {
   let component: DayEventsModalComponent;
   let fixture: ComponentFixture<DayEventsModalComponent>;
 
+  const mockAuth = {
+    currentUser: { uid: 'test-user-id' }
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DayEventsModalComponent, HttpClientModule]
+      imports: [DayEventsModalComponent],
+      providers: [
+        provideHttpClient(),
+        { provide: Auth, useValue: mockAuth }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DayEventsModalComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy()
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
   });
 
   describe('inputs', () => {
@@ -113,7 +123,7 @@ describe('DayEventsModalComponent', () => {
       fixture.componentRef.setInput('events', eventsMock);
       fixture.detectChanges();
 
-      const title = fixture.nativeElement.querySelectorAll('.day-events__event-title');
+      const title = fixture.nativeElement.querySelectorAll('.event-card__title');
       expect(title.length).toBe(eventsMock.length);
       expect(title[0].textContent).toContain(eventsMock[0].title);
     });
@@ -122,50 +132,48 @@ describe('DayEventsModalComponent', () => {
       fixture.componentRef.setInput('events', eventsMock);
       fixture.detectChanges();
 
-      const time = fixture.nativeElement.querySelectorAll('.day-events__time-value')
+      const time = fixture.nativeElement.querySelectorAll('.event-card__time-value');
       expect(time.length).toBe(eventsMock.length);
-      expect(time[0].textContent).toContain(`${eventsMock[0].hourStart} - ${eventsMock[0].hourEnd}`)
+      expect(time[0].textContent).toContain(`${eventsMock[0].hourStart} - ${eventsMock[0].hourEnd}`);
     });
 
     it('should render comment when comment exists', () => {
       fixture.componentRef.setInput('events', eventsMock);
       fixture.detectChanges();
 
-      const comment = fixture.nativeElement.querySelectorAll('.day-events__comment');
-      expect(comment.length).toBeGreaterThan(0);;
-      expect(comment[0].textContent).toContain('Revisión general y cambio de filtro')
+      const comment = fixture.nativeElement.querySelectorAll('.event-card__comment');
+      expect(comment.length).toBeGreaterThan(0);
+      expect(comment[0].textContent).toContain('Revisión general y cambio de filtro');
     });
 
     it('should not render comment when comment is empty', () => {
       fixture.componentRef.setInput('events', eventsMock);
       fixture.detectChanges();
 
-      const comments = fixture.nativeElement.querySelectorAll('.day-events__comment');
-
+      const comments = fixture.nativeElement.querySelectorAll('.event-card__comment');
       expect(comments.length).toBe(1);
       expect(comments[0].textContent).toContain(eventsMock[0].comment);
     });
 
   });
 
-
   describe('template rendering without events', () => {
 
     const eventsMock: EventInterface[] = [];
 
-    it('should render empty state button', () => {
+    it('should render empty state message', () => {
       fixture.componentRef.setInput('events', eventsMock);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('.day-events__empty');
-      expect(button).toBeTruthy();
+      const message = fixture.nativeElement.querySelector('.modal__empty');
+      expect(message).toBeTruthy();
     });
 
     it('should not render events list when no events exist', () => {
       fixture.componentRef.setInput('events', eventsMock);
       fixture.detectChanges();
 
-      const list = fixture.nativeElement.querySelector('.day-events__list')
+      const list = fixture.nativeElement.querySelector('.events-list');
       expect(list).toBeFalsy();
     });
 
@@ -191,7 +199,7 @@ describe('DayEventsModalComponent', () => {
       const deleteElement = spyOn(component.deleteEvent, 'emit');
       component.onDelete('123456');
 
-      expect(deleteElement).toHaveBeenCalledWith('123456')
+      expect(deleteElement).toHaveBeenCalledWith('123456');
     });
 
     it('should emit closeModal when handleClose is called', () => {
@@ -200,15 +208,15 @@ describe('DayEventsModalComponent', () => {
 
       expect(spy).toHaveBeenCalled();
     });
-
   });
 
   describe('template interactions', () => {
-
     it('should emit createEvent when create button is clicked', () => {
-      const createEvent = spyOn(component.createEvent, 'emit');
+      fixture.componentRef.setInput('events', []);
+      fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('.day-events__header app-create-button');
+      const createEvent = spyOn(component.createEvent, 'emit');
+      const button = fixture.nativeElement.querySelector('.modal__header app-create-button');
       button.click();
       fixture.detectChanges();
 
@@ -229,12 +237,10 @@ describe('DayEventsModalComponent', () => {
           vehicleId: '123'
         }
       ];
-
       fixture.componentRef.setInput('events', eventsMock);
       fixture.detectChanges();
 
       component.onEdit('001');
-
       expect(editEvent).toHaveBeenCalledWith('001');
     });
 
@@ -257,11 +263,13 @@ describe('DayEventsModalComponent', () => {
       fixture.detectChanges();
 
       component.onDelete('001');
-
       expect(deleteEvent).toHaveBeenCalledWith('001');
     });
 
     it('should emit closeModal when clicking on overlay', () => {
+      fixture.componentRef.setInput('events', []);
+      fixture.detectChanges();
+
       const closeModal = spyOn(component.closeModal, 'emit');
       component.handleClose();
 
@@ -269,15 +277,16 @@ describe('DayEventsModalComponent', () => {
     });
 
     it('should not close modal when clicking inside modal content', () => {
-      const closeModal = spyOn(component.closeModal, 'emit');
+      fixture.componentRef.setInput('events', []);
+      fixture.detectChanges();
 
-      const section = fixture.nativeElement.querySelector('.day-events');
+      const closeModal = spyOn(component.closeModal, 'emit');
+      const section = fixture.nativeElement.querySelector('.modal');
       section.click();
       fixture.detectChanges();
 
       expect(closeModal).not.toHaveBeenCalled();
     });
-
   });
 
   describe('openDetails', () => {
@@ -307,9 +316,10 @@ describe('DayEventsModalComponent', () => {
       fixture.componentRef.setInput('events', eventsMock);
       fixture.detectChanges();
 
-      const details = fixture.nativeElement.querySelectorAll('.day-events__details');
+      const details = fixture.nativeElement.querySelectorAll('.event-card');
       details[0].open = true;
       details[1].open = true;
+
       component.openDetails(1);
       fixture.detectChanges();
 
@@ -317,12 +327,11 @@ describe('DayEventsModalComponent', () => {
       expect(details[1].open).toBe(true);
     });
 
-
     it('should not close the selected detail', () => {
       fixture.componentRef.setInput('events', eventsMock);
       fixture.detectChanges();
 
-      const details = fixture.nativeElement.querySelectorAll('.day-events__details');
+      const details = fixture.nativeElement.querySelectorAll('.event-card');
       details[1].open = true;
       component.openDetails(1);
       fixture.detectChanges();
@@ -332,25 +341,31 @@ describe('DayEventsModalComponent', () => {
 
   });
 
-
   describe('accessibility attributes', () => {
 
     it('should have role="dialog" in overlay', () => {
-      const container = fixture.nativeElement.querySelector('.modal-overlay');
+      fixture.componentRef.setInput('events', []);
+      fixture.detectChanges();
 
+      const container = fixture.nativeElement.querySelector('.modal-overlay');
       expect(container.getAttribute('role')).toBe('dialog');
     });
 
     it('should bind aria-labelledby correctly', () => {
+      fixture.componentRef.setInput('events', []);
+      fixture.detectChanges();
+
       const container = fixture.nativeElement.querySelector('.modal-overlay');
       const title = fixture.nativeElement.querySelector('#dayEventsTitle');
-
-      expect(container.getAttribute('aria-labelledby')).toBe(title.getAttribute('id'))
+      expect(container.getAttribute('aria-labelledby')).toBe(title.getAttribute('id'));
     });
 
     it('should generate aria-labels dynamically', () => {
-      const title = fixture.nativeElement.querySelector('.day-events__title');
+      fixture.componentRef.setInput('date', '2026-02-13');
+      fixture.componentRef.setInput('events', []);
+      fixture.detectChanges();
 
+      const title = fixture.nativeElement.querySelector('.modal__title');
       expect(title.getAttribute('aria-label')).toContain(component.date());
     });
 

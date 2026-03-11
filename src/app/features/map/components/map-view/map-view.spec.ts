@@ -83,7 +83,7 @@ describe('MapViewComponent', () => {
 
       component.showVehicle(mockVehicle);
 
-      expect(mapService.createMarker).toHaveBeenCalledWith([41, 2], mockVehicle.name, true);
+      expect(mapService.createMarker).toHaveBeenCalledWith([41, 2], true);
       expect(mockMarker.on).toHaveBeenCalledWith('dragend', jasmine.any(Function));
     });
 
@@ -327,7 +327,7 @@ describe('MapViewComponent', () => {
 
       (component as any).placeSelectedVehicleMarker([41, 2], 'Ferrari');
 
-      expect(mapService.createMarker).toHaveBeenCalledWith([41, 2], 'Ferrari', true);
+      expect(mapService.createMarker).toHaveBeenCalledWith([41, 2], true);
       expect(mockMarker.on).toHaveBeenCalledWith('dragend', jasmine.any(Function));
       expect(setViewSpy).toHaveBeenCalledOnceWith([41, 2], 19);
     });

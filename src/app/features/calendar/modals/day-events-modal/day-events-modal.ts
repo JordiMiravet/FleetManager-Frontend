@@ -46,7 +46,7 @@ export class DayEventsModalComponent {
   }
 
   openDetails(index: number) {
-    const list = document.querySelectorAll<HTMLDetailsElement>('.day-events__details');
+    const list = document.querySelectorAll<HTMLDetailsElement>('.event-card');
     list.forEach((detail, i) => {
       if(i !== index) {
         detail.open = false;

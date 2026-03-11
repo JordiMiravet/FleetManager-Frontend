@@ -11,8 +11,8 @@ import { VehicleEmptyStateComponent } from "../../../vehicle/components/vehicle-
 @Component({
   selector: 'app-map-container',
   imports: [
-    MapViewComponent, 
-    VehicleEmptyStateComponent, 
+    MapViewComponent,
+    VehicleEmptyStateComponent,
     VehicleFormModalComponent
   ],
   templateUrl: './map-container.html',
@@ -23,7 +23,7 @@ export class MapContainerComponent implements OnInit {
 
   private readonly geo = inject(GeolocationService);
   private readonly vehicleService = inject(VehicleService);
-  
+
   public readonly vehicleModal = inject(VehicleModalService);
   public readonly vehicleList = this.vehicleService.vehicles;
   public readonly VehicleModalState = VehicleModalState;
@@ -35,7 +35,7 @@ export class MapContainerComponent implements OnInit {
   ngOnInit(): void {
     this.vehicleService.loadVehicles();
   }
-  
+
   async saveVehicle(vehicleData: VehicleInterface): Promise<void> {
     const location = await this.getVehicleLocation(vehicleData.location);
     const vehicle: VehicleInterface = { ...vehicleData, location };
@@ -48,7 +48,7 @@ export class MapContainerComponent implements OnInit {
         this.vehicleService.updateVehicle(selectedVehicle, vehicle);
       }
     }
-    
+
     this.vehicleModal.close();
   }
 
@@ -59,8 +59,12 @@ export class MapContainerComponent implements OnInit {
       return existingLocation;
     }
 
-    const [lat, lng] = await this.geo.getCurrentLocation();
-    return { lat, lng };
+    try {
+      const [lat, lng] = await this.geo.getCurrentLocation();
+      return { lat, lng };
+    } catch {
+      return { lat: 41.478, lng: 2.310 };
+    }
   }
 
 }

@@ -115,7 +115,7 @@ describe('RegisterComponent', () => {
       expect(emailControl?.invalid).toBeTrue();
       expect(emailControl?.touched).toBeTrue();
       expect(errorMessageElement.hidden).toBeFalse();
-      expect(errorMessageElement.textContent).toContain(component.authMessage.invalidEmail);
+      expect(errorMessageElement.textContent).toContain(component.authMessage.errorMessages.invalidEmail);
     });
 
     it('should show password error message when password is invalid and touched', () => {
@@ -129,7 +129,7 @@ describe('RegisterComponent', () => {
       expect(passwordControl?.invalid).toBeTrue();
       expect(passwordControl?.touched).toBeTrue();
       expect(errorMessageElement.hidden).toBeFalse();
-      expect(errorMessageElement.textContent).toContain(component.authMessage.invalidPassword);
+      expect(errorMessageElement.textContent).toContain(component.authMessage.errorMessages.invalidPassword);
     });
 
     it('should not show error messages when inputs are valid', () => {

@@ -128,7 +128,7 @@ describe('CalendarViewComponent', () => {
     });
 
     it('should open form modal and close day events modal', () => {
-      component.activeModal.set('dayEvents');
+      component.activeModal.set(component.CalendarModalState.DayEvents);
       component.handleCreateEvent();
 
       expect(component.activeModal()).toBe('eventForm');

@@ -137,7 +137,9 @@ describe('MapContainerComponent', () => {
       };
 
       VehicleModalServiceMock.formMode.set('create');
-      geolocationServiceMock.getCurrentLocation.and.rejectWith( new Error('geolocation failed'));
+      geolocationServiceMock.getCurrentLocation.and.returnValue(
+        Promise.reject(new Error('geolocation failed'))
+      );
       vehicleServiceMock.addVehicles.calls.reset();
 
       await component.saveVehicle(vehicle as any);

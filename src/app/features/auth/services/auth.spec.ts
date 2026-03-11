@@ -37,7 +37,7 @@ describe('AuthService', () => {
     });
 
     it('should have the correct error messages', () => {
-      const msg = service.errorMessages;
+      const msg = service.authMessages.errorMessages;
 
       expect(msg.invalidEmail).toBe('Please enter a valid email');
       expect(msg.invalidPassword).toBe('Please enter a password that contains at least 6 characters');
