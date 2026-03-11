@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { VehicleInterface } from '../../interfaces/vehicle';
 import { PermissionService } from '../../../../shared/services/permission/permission';
 import { UserButtonComponent } from "../../../../shared/components/buttons/user-button/user-button";
+import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
 
 @Component({
   selector: 'app-vehicle-table',
@@ -22,6 +23,9 @@ import { UserButtonComponent } from "../../../../shared/components/buttons/user-
 export class VehicleTableComponent {
 
   private permission = inject(PermissionService);
+  private messagesService = inject(VehicleMessagesService);
+
+  public readonly tableMsg = this.messagesService.table;
 
   public vehicleImage = 'https://placehold.co/48x48?text=vehicle'
 

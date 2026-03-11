@@ -64,4 +64,14 @@ export class VehicleMessagesService {
       cancelButton: 'Cancel and close modal'
     }
   };
+
+  readonly table = {
+    captionText: 'Vehicles list',
+    headerText: {
+      imgText: 'Img',
+      nameText: 'Vehicle Name',
+      plateText: 'License Plate',
+      actionsText: 'Actions'
+    }
+  }
 }

@@ -22,9 +22,9 @@ export class ManageVehicleUsersModalComponent {
   private permission = inject(PermissionService);
   private msg = inject(VehicleMessagesService);
   
-  public usersMsg = this.msg.users;
-  public errorMsg = this.msg.errors;
-  public ariaMsg = this.msg.aria.users;
+  public readonly usersMsg = this.msg.users;
+  public readonly errorMsg = this.msg.errors;
+  public readonly ariaMsg = this.msg.aria.users;
 
   vehicle = input.required<VehicleInterface | null>();
 
