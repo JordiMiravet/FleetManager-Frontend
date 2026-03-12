@@ -11,7 +11,7 @@ describe('VehicleFormModalComponent', () => {
 
   const authMock = {
     currentUser: {
-      uid: 'JordiUid',
+      uid: 'JordiTheBest',
       getIdToken: () => Promise.resolve('MyToken')
     }
   };

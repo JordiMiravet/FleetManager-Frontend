@@ -5,7 +5,7 @@ import { PermissionService } from './permission';
 
 export const authMock = {
   currentUser: {
-    uid: 'MyUid',
+    uid: 'JordiTheBest',
     getIdToken: () => Promise.resolve('MyToken')
   }
 };

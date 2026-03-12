@@ -11,8 +11,8 @@ describe('VehicleTableComponent', () => {
 
   const authMock = {
     currentUser: {
-      uid: 'test-uid',
-      getIdToken: () => Promise.resolve('test-token')
+      uid: 'JordiTheBest',
+      getIdToken: () => Promise.resolve('MyToken')
     }
   };
 

@@ -11,7 +11,7 @@ describe('DayEventsModalComponent', () => {
   let fixture: ComponentFixture<DayEventsModalComponent>;
 
   const mockAuth = {
-    currentUser: { uid: 'test-user-id' }
+    currentUser: { uid: 'JordiTheBest' }
   };
 
   beforeEach(async () => {

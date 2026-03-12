@@ -10,8 +10,8 @@ describe('HomeComponent', () => {
 
   const authMock = {
     currentUser: {
-      uid: 'test-user',
-      getIdToken: () => Promise.resolve('fake-token')
+      uid: 'JordiTheBest',
+      getIdToken: () => Promise.resolve('MyToken')
     }
   };
 

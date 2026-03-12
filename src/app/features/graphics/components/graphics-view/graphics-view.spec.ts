@@ -11,7 +11,7 @@ import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
 
 export const authMock = {
   currentUser: {
-    uid: 'MyUid',
+    uid: 'JordiTheBest',
     getIdToken: () => Promise.resolve('MyToken')
   }
 };

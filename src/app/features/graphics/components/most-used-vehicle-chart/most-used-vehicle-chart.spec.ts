@@ -9,8 +9,8 @@ import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicl
 
 export const authMock = {
   currentUser: {
-    uid: 'test-user',
-    getIdToken: () => Promise.resolve('fake-token')
+    uid: 'JordiTheBest',
+    getIdToken: () => Promise.resolve('Mytoken')
   }
 };
 

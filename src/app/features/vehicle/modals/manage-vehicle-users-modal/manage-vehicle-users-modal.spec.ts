@@ -9,7 +9,7 @@ describe('ManageVehicleUsersModalComponent', () => {
 
   const authMock = {
     currentUser: {
-      uid: 'UserUid',
+      uid: 'JordiTheBest',
       getIdToken: () => Promise.resolve('Mytoken')
     }
   };
