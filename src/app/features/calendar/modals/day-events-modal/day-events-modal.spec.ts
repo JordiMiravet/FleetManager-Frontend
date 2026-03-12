@@ -208,9 +208,11 @@ describe('DayEventsModalComponent', () => {
 
       expect(spy).toHaveBeenCalled();
     });
+    
   });
 
   describe('template interactions', () => {
+
     it('should emit createEvent when create button is clicked', () => {
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
@@ -287,6 +289,7 @@ describe('DayEventsModalComponent', () => {
 
       expect(closeModal).not.toHaveBeenCalled();
     });
+
   });
 
   describe('openDetails', () => {

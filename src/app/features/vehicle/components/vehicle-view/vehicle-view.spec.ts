@@ -1,12 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
-import { VehicleInterface } from '../../interfaces/vehicle';
+import { Auth } from '@angular/fire/auth';
+
 import { VehicleViewComponent } from './vehicle-view';
+
 import { VehicleService } from '../../services/vehicle-service/vehicle-service';
 import { VehicleModalService } from '../../services/vehicle-modal-service/vehicle-modal-service';
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
 import { VehicleModalState } from '../../enum/vehicle-modal-state.enum';
+import { VehicleInterface } from '../../interfaces/vehicle';
 
+
+const authMock = {
+  isLoggedIn: jasmine.createSpy('isLoggedIn').and.returnValue(true),
+  getUser: jasmine.createSpy('getUser').and.returnValue({ name: 'JordiTheBest', role: 'admin' })
+};
 
 const vehicleServiceMock = {
   vehicles: signal<VehicleInterface[]>([]),
@@ -52,6 +60,7 @@ describe('VehicleViewComponent', () => {
     await TestBed.configureTestingModule({
       imports: [VehicleViewComponent],
       providers: [
+        { provide: Auth, useValue: authMock } ,
         { provide: VehicleService, useValue: vehicleServiceMock },
         { provide: VehicleModalService, useValue: VehicleModalServiceMock },
         { provide: GeolocationService, useValue: geolocationServiceMock },

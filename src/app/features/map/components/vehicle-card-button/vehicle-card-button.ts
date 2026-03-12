@@ -17,7 +17,7 @@ export class VehicleCardButtonComponent  {
   public readonly message = {
     mapCard: {
       accessibility: {
-        ariaLabel: "Center map on vehicle location",
+        ariaLabel: "Center map on current location",
         title: "Click to center the map on the vehicle's location"
       }
     }

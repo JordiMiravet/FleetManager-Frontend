@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
+import { signal } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 
 import * as L from 'leaflet';
 
@@ -10,18 +12,42 @@ import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicl
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
 
+
+export const authMock = {
+  currentUser: {
+    uid: 'MyUid',
+    getIdToken: () => Promise.resolve('MyToken')
+  }
+};
+
 describe('MapViewComponent', () => {
   let component: MapViewComponent;
   let fixture: ComponentFixture<MapViewComponent>;
+  let vehicleService: any;
 
   beforeEach(async () => {
+    const vehicleServiceMock = {
+      vehicles: signal<VehicleInterface[]>([]),
+      loadVehicles: jasmine.createSpy('loadVehicles'),
+      addVehicles: jasmine.createSpy('addVehicles'),
+      updateVehicle: jasmine.createSpy('updateVehicle'),
+      deleteVehicle: jasmine.createSpy('deleteVehicle'),
+      updateVehicleLocation: jasmine.createSpy('updateVehicleLocation')
+    };
+
     await TestBed.configureTestingModule({
       imports: [MapViewComponent],
-      providers: [provideHttpClient()]
+      providers: [
+        { provide: Auth, useValue: authMock },
+        { provide: VehicleService, useValue: vehicleServiceMock },
+        provideHttpClient()
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MapViewComponent);
     component = fixture.componentInstance;
+    vehicleService = TestBed.inject(VehicleService);
+
     fixture.detectChanges();
   });
 
@@ -60,7 +86,7 @@ describe('MapViewComponent', () => {
 
     it('should set selectedVehicle when showVehicle is called', () => {
       component.showVehicle(mockVehicle);
-      expect(component.selectedVehicle()).toBe(mockVehicle)
+      expect(component.selectedVehicle()).toBe(mockVehicle);
     });
 
     it('should remove previous vehicle marker if it exists', () => {
@@ -111,6 +137,7 @@ describe('MapViewComponent', () => {
 
       expect(createMarkerSpy).not.toHaveBeenCalled();
     });
+
   });
 
   describe('vehicle marker drag behaviour', () => {
@@ -126,7 +153,7 @@ describe('MapViewComponent', () => {
     it('should set newPosition when marker drag ends', () => {
       const fakePosition = { lat: 50, lng: 8 } as any;
       (component as any).selectedVehicleMarker = { getLatLng: () => fakePosition };
-      component.newPosition.set( (component as any).selectedVehicleMarker.getLatLng() );
+      component.newPosition.set((component as any).selectedVehicleMarker.getLatLng());
 
       expect(component.newPosition()).toBe(fakePosition);
     });
@@ -153,9 +180,6 @@ describe('MapViewComponent', () => {
     };
 
     it('should not update if there is no selected vehicle', () => {
-      const vehicleService = TestBed.inject(VehicleService);
-      spyOn(vehicleService, 'updateVehicleLocation').and.returnValue(undefined);
-
       component.selectedVehicle.set(null);
       component.onConfirmLocationChange();
 
@@ -163,9 +187,6 @@ describe('MapViewComponent', () => {
     });
 
     it('should not update if there is no new position', () => {
-      const vehicleService = TestBed.inject(VehicleService);
-      spyOn(vehicleService, 'updateVehicleLocation').and.returnValue(undefined);
-
       component.selectedVehicle.set(mockVehicle);
       component.newPosition.set(null);
       component.onConfirmLocationChange();
@@ -174,9 +195,6 @@ describe('MapViewComponent', () => {
     });
 
     it('should update vehicle location when confirmed', () => {
-      const vehicleService = TestBed.inject(VehicleService);
-      spyOn(vehicleService, 'updateVehicleLocation').and.returnValue(undefined);
-
       const newPos = { lat: 50, lng: 8 } as any;
 
       component.selectedVehicle.set(mockVehicle);
@@ -187,9 +205,6 @@ describe('MapViewComponent', () => {
     });
 
     it('should update selectedVehicle with the new location', () => {
-      const vehicleService = TestBed.inject(VehicleService);
-      spyOn(vehicleService, 'updateVehicleLocation').and.returnValue(undefined);
-
       const newPos = { lat: 50, lng: 8 } as any;
 
       component.selectedVehicle.set(mockVehicle);
@@ -201,9 +216,6 @@ describe('MapViewComponent', () => {
     });
 
     it('should hide confirmation modal after confirming', () => {
-      const vehicleService = TestBed.inject(VehicleService);
-      spyOn(vehicleService, 'updateVehicleLocation').and.returnValue(undefined);
-
       const newPos = { lat: 50, lng: 8 } as any;
 
       component.selectedVehicle.set(mockVehicle);
@@ -229,7 +241,7 @@ describe('MapViewComponent', () => {
 
     it('should reset marker position to original vehicle location', () => {
       const mockMarker: any = { setLatLng: jasmine.createSpy('setLatLng') };
-      
+
       component.selectedVehicle.set(mockVehicle);
       (component as any).selectedVehicleMarker = mockMarker;
 
@@ -285,11 +297,9 @@ describe('MapViewComponent', () => {
 
     it('should update vehicle location after getting user position', async () => {
       const geo = TestBed.inject(GeolocationService);
-      const vehicleService = TestBed.inject(VehicleService);
       const mapService = TestBed.inject(MapService);
 
       spyOn(geo, 'getCurrentLocation').and.returnValue(Promise.resolve([50, 8]));
-      spyOn(vehicleService, 'updateVehicleLocation');
       spyOn(mapService, 'createMarker').and.returnValue({
         on: jasmine.createSpy('on')
       } as any);
@@ -346,8 +356,18 @@ describe('MapViewComponent', () => {
       expect(vehicleSelectorComponent).toBeTruthy();
     });
 
-    it('should render user location button', () => {
-      const userLocationButtonComponent = fixture.nativeElement.querySelector('app-user-location-button');
+    it('should render user location button when vehicle is selected', () => {
+      component.selectedVehicle.set({
+        _id: '123',
+        name: 'Ferrari',
+        model: 'F8',
+        plate: 'F123',
+        location: { lat: 41, lng: 2 }
+      });
+  
+      fixture.detectChanges();
+
+      const userLocationButtonComponent = fixture.nativeElement.querySelector('app-vehicle-card-button');
       expect(userLocationButtonComponent).toBeTruthy();
     });
 

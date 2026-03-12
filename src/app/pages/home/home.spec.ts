@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { Auth } from '@angular/fire/auth';
 
 import { HomeComponent } from './home';
 
@@ -7,10 +8,19 @@ describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
+  const authMock = {
+    currentUser: {
+      uid: 'test-user',
+      getIdToken: () => Promise.resolve('fake-token')
+    }
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ HomeComponent, HttpClientModule],
-      providers: []
+      imports: [HomeComponent, HttpClientModule],
+      providers: [
+        { provide: Auth, useValue: authMock }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);
@@ -24,10 +34,10 @@ describe('HomeComponent', () => {
     });
   });
 
- describe('Template rendering', () => {
+  describe('Template rendering', () => {
     it('should render vehicle view component', () => {
-      const vehicleViewComponent = fixture.nativeElement.querySelector('app-vehicle-view'); 
-      expect(vehicleViewComponent).toBeTruthy()
+      const vehicleViewComponent = fixture.nativeElement.querySelector('app-vehicle-view');
+      expect(vehicleViewComponent).toBeTruthy();
     });
   });
 

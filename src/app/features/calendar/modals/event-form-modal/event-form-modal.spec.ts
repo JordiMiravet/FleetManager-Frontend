@@ -1,10 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { EventFormModalComponent } from './event-form-modal';
+import { Auth } from '@angular/fire/auth';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+
+import { EventFormModalComponent } from './event-form-modal';
+
 import { EventInterface } from '../../interfaces/event';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
+
+
+const authMock = {
+  currentUser: {
+    uid: 'UserUid',
+    getIdToken: () => Promise.resolve('Mytoken')
+  }
+};
 
 describe('EventFormModalComponent', () => {
   let component: EventFormModalComponent;
@@ -14,6 +24,7 @@ describe('EventFormModalComponent', () => {
     await TestBed.configureTestingModule({
       imports: [EventFormModalComponent],
       providers: [
+        { provide: Auth, useValue: authMock },
         provideHttpClient(),
         provideHttpClientTesting()
       ]
