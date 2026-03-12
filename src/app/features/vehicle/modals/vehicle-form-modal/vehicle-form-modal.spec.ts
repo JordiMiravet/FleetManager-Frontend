@@ -1,15 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { signal } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
+
 import { VehicleFormModalComponent } from './vehicle-form-modal';
 import { VehicleInterface } from '../../interfaces/vehicle';
-import { signal } from '@angular/core';
 
 describe('VehicleFormModalComponent', () => {
   let component: VehicleFormModalComponent;
   let fixture: ComponentFixture<VehicleFormModalComponent>;
 
+  const authMock = {
+    currentUser: {
+      uid: 'JordiUid',
+      getIdToken: () => Promise.resolve('MyToken')
+    }
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleFormModalComponent]
+      imports: [VehicleFormModalComponent],
+      providers: [
+        { provide: Auth, useValue: authMock }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(VehicleFormModalComponent);
@@ -22,6 +34,7 @@ describe('VehicleFormModalComponent', () => {
   });
 
   describe('form initialization', () => {
+
     it('should create the form with correct controls', () => {
       const formControl = component.form.controls;
 
@@ -55,9 +68,11 @@ describe('VehicleFormModalComponent', () => {
       expect(component.form.get('model')?.value).toBeNull();
       expect(component.form.get('plate')?.value).toBeNull();
     });
+
   });
 
   describe('form validation', () => {
+
     it('should return null error when field is valid', () => {
       component.form.get('name')?.setValue('Valid Name');
       component.form.get('name')?.markAsTouched();
@@ -69,14 +84,14 @@ describe('VehicleFormModalComponent', () => {
       component.form.get('name')?.setValue('');
       component.form.get('name')?.markAsTouched();
 
-      expect(component.getFieldError('name')).toBe('name is required');
+      expect(component.getFieldError('name')).toBe('Name is required');
     });
 
     it('should return minlength error when value is too short', () => {
       component.form.get('name')?.setValue('AB');
       component.form.get('name')?.markAsTouched();
 
-      expect(component.getFieldError('name')).toBe('name must be at least 3 characters');
+      expect(component.getFieldError('name')).toBe('Name must be at least 3 characters');
     });
 
     it('should return maxlength error when value is too long', () => {
@@ -85,11 +100,13 @@ describe('VehicleFormModalComponent', () => {
       component.form.get('name')?.setValue(longName);
       component.form.get('name')?.markAsTouched();
 
-      expect(component.getFieldError('name')).toBe('name cannot exceed 30 characters');
+      expect(component.getFieldError('name')).toBe('Name cannot exceed 30 characters');
     });
+
   });
 
   describe('submit behavior', () => {
+
     it('should emit submit event when form is valid', () => {
       spyOn(component.submit, 'emit');
 
@@ -107,9 +124,11 @@ describe('VehicleFormModalComponent', () => {
 
       expect(component.submit.emit).not.toHaveBeenCalled();
     });
+
   });
 
   describe('cancel behavior', () => {
+
     it('should emit cancel event on onCancel()', () => {
       spyOn(component.cancel, 'emit');
 
@@ -118,9 +137,11 @@ describe('VehicleFormModalComponent', () => {
 
       expect(component.cancel.emit).toHaveBeenCalled();
     });
+
   });
 
   describe('template interaction', () => {
+
     it('should call onSubmit on Enter key press', () => {
       spyOn(component, 'onSubmit');
 
@@ -156,5 +177,7 @@ describe('VehicleFormModalComponent', () => {
       
       expect(component.onCancel).toHaveBeenCalled();
     });
+
   });
+
 });
