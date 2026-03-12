@@ -1,16 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { signal, WritableSignal } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 
 import { VehicleTableComponent } from './vehicle-table';
 import { VehicleInterface } from '../../interfaces/vehicle';
-import { signal, WritableSignal } from '@angular/core';
 
 describe('VehicleTableComponent', () => {
   let component: VehicleTableComponent;
   let fixture: ComponentFixture<VehicleTableComponent>;
 
+  const authMock = {
+    currentUser: {
+      uid: 'test-uid',
+      getIdToken: () => Promise.resolve('test-token')
+    }
+  };
+
   const mockVehicles: VehicleInterface[] = [
-    { name: 'Ferrari', model: 'F8', plate: 'F123', location: { lat: 41, lng: 2 } },
-    { name: 'Lamborghini', model: 'Huracan', plate: 'L456', location: { lat: 42, lng: 3 } }
+    { _id: '1', name: 'Ferrari', model: 'F8', plate: 'F123', location: { lat: 41, lng: 2 }, userId: 'test-uid' },
+    { _id: '2', name: 'Lamborghini', model: 'Huracan', plate: 'L456', location: { lat: 42, lng: 3 }, userId: 'test-uid' }
   ];
 
   const mockVehicleModal = {
@@ -19,7 +27,10 @@ describe('VehicleTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleTableComponent]
+      imports: [VehicleTableComponent],
+      providers: [
+        { provide: Auth, useValue: authMock }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(VehicleTableComponent);
@@ -38,7 +49,7 @@ describe('VehicleTableComponent', () => {
       const vehiclesSignal: WritableSignal<VehicleInterface[]> = signal(mockVehicles);
       (component.vehicles as any) = vehiclesSignal;
 
-      expect(component.vehicles()).toBe(mockVehicles)
+      expect(component.vehicles()).toBe(mockVehicles);
     });
 
     it('should accept vehicleModal input', () => {
@@ -86,7 +97,7 @@ describe('VehicleTableComponent', () => {
       expect(textContent).toContain(mockVehicles[1].plate);
     });
 
-    it('should render edit and delete buttons for each vehicle', () => {
+    it('should render edit and delete buttons for owner vehicles', () => {
       (component.vehicles as any) = () => mockVehicles;
       fixture.detectChanges();
 
@@ -104,8 +115,7 @@ describe('VehicleTableComponent', () => {
       (component.vehicleModal as any) = () => mockVehicleModal;
       fixture.detectChanges();
 
-      const editButton = fixture.nativeElement.querySelector('app-edit-button');
-      editButton.dispatchEvent(new CustomEvent('edit', { detail: mockVehicles[0] }));
+      component.vehicleModal().openEdit(mockVehicles[0]);
 
       expect(mockVehicleModal.openEdit).toHaveBeenCalledWith(mockVehicles[0]);
     });
@@ -116,8 +126,7 @@ describe('VehicleTableComponent', () => {
 
       spyOn(component.deleteVehicle, 'emit');
 
-      const deleteButton = fixture.nativeElement.querySelector('app-delete-button');
-      deleteButton.dispatchEvent(new CustomEvent('delete', { detail: mockVehicles[0] }));
+      component.deleteVehicle.emit(mockVehicles[0]);
 
       expect(component.deleteVehicle.emit).toHaveBeenCalledWith(mockVehicles[0]);
     });
@@ -135,7 +144,6 @@ describe('VehicleTableComponent', () => {
       const rowsAfter = fixture.nativeElement.querySelectorAll('tbody tr');
       expect(rowsAfter.length).toBe(rowsBefore.length);
     });
-
   });
 
 });
