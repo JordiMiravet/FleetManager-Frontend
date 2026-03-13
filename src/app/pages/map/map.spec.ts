@@ -1,7 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { Auth } from '@angular/fire/auth';
 
 import { MapComponent } from './map';
+
+export const authMock = {
+  currentUser: {
+    uid: 'JordiTheBest',
+    getIdToken: () => Promise.resolve('MyToken')
+  }
+}
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -12,6 +20,9 @@ describe('MapComponent', () => {
       imports: [
         MapComponent, 
         HttpClientModule
+      ],
+      providers: [
+        { provide: Auth, useValue: authMock },
       ]
     }).compileComponents();
 

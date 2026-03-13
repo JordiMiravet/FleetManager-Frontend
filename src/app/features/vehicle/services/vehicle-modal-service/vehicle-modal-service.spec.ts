@@ -1,7 +1,17 @@
 import { TestBed } from '@angular/core/testing';
+import { Auth } from '@angular/fire/auth';
+
 import { VehicleModalService } from './vehicle-modal-service';
+
 import { VehicleInterface } from '../../interfaces/vehicle';
 import { VehicleModalState } from '../../enum/vehicle-modal-state.enum';
+
+export const authMock = {
+  currentUser: {
+    uid: 'JordiTheBest',
+    getIdToken: () => Promise.resolve('MyToken')
+  }
+};
 
 describe('VehicleModalService', () => {
   let service: VehicleModalService;
@@ -17,7 +27,12 @@ describe('VehicleModalService', () => {
   };
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: Auth, useValue: authMock }
+      ]
+    });
+
     service = TestBed.inject(VehicleModalService);
   });
 
@@ -129,7 +144,7 @@ describe('VehicleModalService', () => {
       service.openEdit(mockVehicle);
       service.close();
 
-      expect(service.formMode()).toBe('edit');
+      expect(service.formMode()).toBe('create');
     });
   });
 

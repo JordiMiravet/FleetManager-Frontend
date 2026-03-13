@@ -2,6 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GraphicsComponent } from './graphics';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Auth } from '@angular/fire/auth';
+
+export const authMock = {
+  currentUser: {
+    userUid: 'JordiTheBest',
+    getIdToken: () => Promise.resolve('MyToken')
+  }
+}
 
 describe('GraphicsComponent', () => {
   let component: GraphicsComponent;
@@ -12,6 +20,9 @@ describe('GraphicsComponent', () => {
       imports: [
         GraphicsComponent,
         HttpClientTestingModule
+      ],
+      providers: [
+        { provide: Auth, useValue: authMock },
       ]
     })
     .compileComponents();
@@ -23,5 +34,14 @@ describe('GraphicsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('child components rendering', () => {
+
+    it('should render graphics-view component', () => {
+      const graphicsComponent = fixture.nativeElement.querySelector('app-graphics-view');
+      expect(graphicsComponent).toBeTruthy();
+    });
+
   });
 });

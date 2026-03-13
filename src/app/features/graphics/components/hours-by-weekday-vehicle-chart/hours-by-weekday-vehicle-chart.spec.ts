@@ -4,6 +4,14 @@ import { HoursByWeekdayVehicleChartComponent } from './hours-by-weekday-vehicle-
 import { HttpClientModule } from '@angular/common/http';
 import { GraphicsServices } from '../../services/graphics-services';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
+import { Auth } from '@angular/fire/auth';
+
+export const authMock = {
+  currentUser : {
+    userUid: 'JordiTheBest',
+    getIdToken: () => Promise.resolve('MyToken')
+  }
+}
 
 describe('HoursByWeekdayVehicleChartComponent', () => {
   let component: HoursByWeekdayVehicleChartComponent;
@@ -16,6 +24,7 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
         HttpClientModule
       ],
       providers: [
+        { provide: Auth, useValue: authMock },
         GraphicsServices,
         VehicleService
       ]

@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
-
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Auth } from '@angular/fire/auth';
 

@@ -3,7 +3,9 @@ import { signal, WritableSignal } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 
 import { VehicleTableComponent } from './vehicle-table';
+
 import { VehicleInterface } from '../../interfaces/vehicle';
+import { PermissionService } from '../../../../shared/services/permission/permission';
 
 describe('VehicleTableComponent', () => {
   let component: VehicleTableComponent;
@@ -16,9 +18,13 @@ describe('VehicleTableComponent', () => {
     }
   };
 
+  const permissionServiceMock = {
+    isOwner: jasmine.createSpy('isOwner').and.returnValue(true)
+  };
+
   const mockVehicles: VehicleInterface[] = [
-    { _id: '1', name: 'Ferrari', model: 'F8', plate: 'F123', location: { lat: 41, lng: 2 }, userId: 'test-uid' },
-    { _id: '2', name: 'Lamborghini', model: 'Huracan', plate: 'L456', location: { lat: 42, lng: 3 }, userId: 'test-uid' }
+    { _id: '1', name: 'Ferrari', model: 'F8', plate: 'F123', location: { lat: 41, lng: 2 }, userId: 'JordiTheBest' },
+    { _id: '2', name: 'Lamborghini', model: 'Huracan', plate: 'L456', location: { lat: 42, lng: 3 }, userId: 'JordiTheBest' }
   ];
 
   const mockVehicleModal = {
@@ -29,7 +35,8 @@ describe('VehicleTableComponent', () => {
     await TestBed.configureTestingModule({
       imports: [VehicleTableComponent],
       providers: [
-        { provide: Auth, useValue: authMock }
+        { provide: Auth, useValue: authMock },
+        { provide: PermissionService, useValue: permissionServiceMock }
       ]
     }).compileComponents();
 

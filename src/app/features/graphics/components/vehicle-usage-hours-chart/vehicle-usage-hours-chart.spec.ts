@@ -1,9 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { Auth } from '@angular/fire/auth';
 
 import { VehicleUsageHoursChartComponent } from './vehicle-usage-hours-chart';
-import { HttpClientModule } from '@angular/common/http';
+
 import { GraphicsServices } from '../../services/graphics-services';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
+
+export const authMock = {
+  currentUser: {
+    uid: 'JordiTheBest',
+    getIdToken: () => Promise.resolve('MyToken')
+  }
+};
 
 describe('VehicleUsageHoursChartComponent', () => {
   let component: VehicleUsageHoursChartComponent;
@@ -17,7 +26,8 @@ describe('VehicleUsageHoursChartComponent', () => {
       ],
       providers: [
         GraphicsServices,
-        VehicleService
+        VehicleService,
+        { provide: Auth, useValue: authMock },
       ]
     })
     .compileComponents();

@@ -1,8 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CalendarComponent } from './calendar';
+
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { Auth } from '@angular/fire/auth';
+
+export const authMock = {
+  currentUser: {
+    userUid: 'JordiTheBest',
+    getIdToken: () => Promise.resolve('MyToken')
+  }
+}
 
 describe('CalendarComponent', () => {
   let component: CalendarComponent;
@@ -14,6 +23,7 @@ describe('CalendarComponent', () => {
         CalendarComponent
       ],
       providers: [
+        { provide: Auth, useValue: authMock },
         provideHttpClient(),
         provideHttpClientTesting()
       ]
