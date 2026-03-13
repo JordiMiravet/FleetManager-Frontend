@@ -17,10 +17,11 @@
                 <td class="vehicle-table__cell vehicle-table__cell--img">
                     <img
                         class="vehicle-table__image"
-                        [src]="vehicleImage"
+                        [src]="vehicle.imageUrl || vehicleImage"
                         [attr.alt]="'Image of ' + vehicle.name"
                         loading="lazy"
-                    >
+                        (error)="$event.target.src = vehicleImage"
+                    />
                 </td>
 
                 <th scope="row" class="vehicle-table__cell vehicle-table__cell--name">

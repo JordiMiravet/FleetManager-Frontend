@@ -1,11 +1,14 @@
 import { Component, inject, input, output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { PermissionService } from '../../../../shared/services/permission/permission';
+import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
+
+import { VehicleInterface } from '../../interfaces/vehicle';
+
 import { EditButtonComponent } from '../../../../shared/components/buttons/edit-button/edit-button';
 import { DeleteButtonComponent } from '../../../../shared/components/buttons/delete-button/delete-button';
-import { CommonModule } from '@angular/common';
-import { VehicleInterface } from '../../interfaces/vehicle';
-import { PermissionService } from '../../../../shared/services/permission/permission';
 import { UserButtonComponent } from "../../../../shared/components/buttons/user-button/user-button";
-import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
 
 @Component({
   selector: 'app-vehicle-table',

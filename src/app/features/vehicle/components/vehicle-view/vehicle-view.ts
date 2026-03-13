@@ -66,13 +66,15 @@ export class VehicleViewComponent {
         }
       }
 
-      this.vehicleService.addVehicles({ ...vehicleData, location });
+      const vehicleToSend = { ...vehicleData, location };
+      this.vehicleService.addVehicles(vehicleToSend);
 
     } else if (this.modalState.formMode() === 'edit') {
       const originalVehicle = this.modalState.selectedVehicle();
       if (!originalVehicle) return;
       
-      this.vehicleService.updateVehicle(originalVehicle, { ...vehicleData, location: originalVehicle.location });
+      const vehicleToUpdate = { ...vehicleData, location: originalVehicle.location };
+      this.vehicleService.updateVehicle(originalVehicle, vehicleToUpdate);
     }
 
     this.modalState.close();

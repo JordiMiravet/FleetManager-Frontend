@@ -44,6 +44,9 @@ export class VehicleFormModalComponent {
         Validators.minLength(5), 
         Validators.maxLength(10)
       ]],
+      imageUrl: ['', [
+        Validators.pattern(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?(\?.*)?$/i)
+      ]]
     });
   }
 
@@ -55,7 +58,8 @@ export class VehicleFormModalComponent {
       this.form.patchValue({
         name: vehicle.name,
         model: vehicle.model,
-        plate: vehicle.plate
+        plate: vehicle.plate,
+        imageUrl: vehicle.imageUrl || '',
       });
     } else {
       this.form.reset();
@@ -83,6 +87,7 @@ export class VehicleFormModalComponent {
     if (control.errors?.['required']) return this.errorMsg.required(fieldName);
     if (control.errors?.['minlength']) return this.errorMsg.minLength(fieldName, control.errors['minlength'].requiredLength);
     if (control.errors?.['maxlength']) return this.errorMsg.maxLength(fieldName, control.errors['maxlength'].requiredLength);
+    if (control.errors?.['pattern']) return this.errorMsg.invalidUrl; 
 
     return null;
   }

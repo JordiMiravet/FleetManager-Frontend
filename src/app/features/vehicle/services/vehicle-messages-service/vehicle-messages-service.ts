@@ -13,7 +13,8 @@ export class VehicleMessagesService {
     fields: {
       name: { label: 'Name *', placeholder: 'Vehicle Name' },
       model: { label: 'Model *', placeholder: 'Vehicle Model' },
-      plate: { label: 'Plate *', placeholder: 'Vehicle Plate' }
+      plate: { label: 'Plate *', placeholder: 'Vehicle Plate' },
+      imageUrl: { label: 'Image URL', placeholder: 'https://example.com/car.jpg' }
     },
     buttons: {
       create: 'Create',
@@ -46,7 +47,8 @@ export class VehicleMessagesService {
     minLength: (field: string, length: number) => `${field} must be at least ${length} characters`,
     maxLength: (field: string, length: number) => `${field} cannot exceed ${length} characters`,
     emailRequired: 'Email is required',
-    invalidEmail: 'Please enter a valid email'
+    invalidEmail: 'Please enter a valid email',
+    invalidUrl: 'Please enter a valid URL'
   };
 
   readonly aria = {
@@ -54,6 +56,7 @@ export class VehicleMessagesService {
       nameInput: 'Vehicle Name input field',
       modelInput: 'Vehicle Model input field',
       plateInput: 'Vehicle Plate input field',
+      imageUrlInput: 'Vehicle Image URL input field',
       createButton: 'Create vehicle',
       updateButton: 'Update vehicle',
       cancelButton: 'Cancel and close modal'

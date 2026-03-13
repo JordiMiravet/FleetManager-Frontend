@@ -12,6 +12,7 @@ export interface VehicleInterface {
         lat: number;
         lng: number;
     };
+    imageUrl?: string;
     userId?: string;
     users?: VehicleUser[];
 }

@@ -41,7 +41,7 @@
 /* Header */
 
 .vehicle-table__header th {
-    padding: 1.5rem 1.5rem;
+    padding: 1.5rem 1rem;
     text-align: start;
     text-transform: uppercase;
     font-size: var(--font-size-xs);
@@ -50,23 +50,24 @@
     letter-spacing: 0.05rem;
 }
 .vehicle-table__header th.vehicle-table__header-image {
-  text-align: center;
+    text-align: center;
 }
 .vehicle-table__header th.vehicle-table__header-name {
-  text-align: start;
+    text-align: start;
 }
 .vehicle-table__header th.vehicle-table__header-plate {
-  text-align: start;
-  font-size: var(--font-size-xs);
+    text-align: start;
+    font-size: var(--font-size-xs);
 }
 .vehicle-table__header th.vehicle-table__header-actions {
     text-align: end;
+    padding: 1.5rem 1.5rem;
 }
 
 /* Cells */
 
 .vehicle-table__cell {
-    padding: 1rem 1.5rem;
+    padding: 1rem 1rem;
     font-size: var(--font-size-sm);
     font-weight: 500;
     color: var(--gray-800);
@@ -81,14 +82,24 @@
     margin: 0;
     padding: 0;
 }
+
 .vehicle-table__cell--img {
+    padding: 1rem 0;
     text-align: center;
     vertical-align: middle;
 }
 
 .vehicle-table__cell--img .vehicle-table__image {
+    width: 100%;
+    min-width: 3rem;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid var(--gray-300);
     margin: 0 auto;
-    display: block;
+    box-sizing: border-box;
 }
 
 .vehicle-table__cell--name .vehicle-table__cell-content {
@@ -119,16 +130,6 @@
 }
 
 /* Vehicle info */
-
-.vehicle-table__image{
-    width: 3rem;
-    height: 3rem;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 1px solid var(--gray-300);
-    margin: 0;
-    padding: 0;
-}
 
 .vehicle-table__name {
     font-weight: 500;
@@ -175,12 +176,15 @@
 
 .vehicle-table__header-image,
 .vehicle-table__cell--img {
-    width: 12%;
+    padding: 0 0.75rem;
+    margin: 0;
+    width: 12.5%;
+    min-width: 3rem;
 }
 
 .vehicle-table__header-name,
 .vehicle-table__cell--name {
-    width: 44%;
+    width: calc(100% - 12.5% - 1.5rem);
 }
 
 .vehicle-table__header-plate,
@@ -190,19 +194,19 @@
 
 .vehicle-table__header-actions,
 .vehicle-table__cell--actions {
-    width: 44%;
+    width: auto;
 }
 
 @media (min-width: 576px) {
 
     .vehicle-table__header-image,
-    .vehicle-table__cell--img    { width: 7.5%; }
+    .vehicle-table__cell--img { width: 7.5%; }
 
     .vehicle-table__header-name,
-    .vehicle-table__cell--name   { width: 50%; }
+    .vehicle-table__cell--name { width: 50%; }
 
     .vehicle-table__header-plate,
-    .vehicle-table__cell--plate  { display: table-cell; width: 22.5%; }
+    .vehicle-table__cell--plate { display: table-cell; width: 22.5%; }
 
     .vehicle-table__header-actions,
     .vehicle-table__cell--actions { width: 22.5%; }

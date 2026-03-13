@@ -94,6 +94,31 @@
                 </p>
             </div>
 
+            <div class="modal__form-section">
+                <label for="createVehicleImageUrl" class="modal__label">{{ formMsg.fields.imageUrl.label }}</label>
+                <input 
+                    type="url" 
+                    id="createVehicleImageUrl" 
+                    formControlName="imageUrl" 
+                    class="modal__input" 
+                    [placeholder]="formMsg.fields.imageUrl.placeholder"
+                    [ngClass]="{'modal__input--error': form.controls['imageUrl'].invalid && form.controls['imageUrl'].touched}"
+                    [attr.aria-invalid]="form.controls['imageUrl'].invalid && form.controls['imageUrl'].touched"
+                    [attr.aria-label]="ariaMsg.imageUrlInput"
+                    aria-describedby="createVehicleImageUrl-error"
+                />
+                
+                <p 
+                    id="createVehicleImageUrl-error" 
+                    class="modal__error-text" 
+                    role="alert"
+                    [hidden]="form.controls['imageUrl'].valid || !form.controls['imageUrl'].touched"
+                >
+                    <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+                    {{ getFieldError('imageUrl') }}
+                </p>
+            </div>
+
         </fieldset>
 
         <div class="modal__actions">
