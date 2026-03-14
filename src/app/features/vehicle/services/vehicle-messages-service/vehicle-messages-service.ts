@@ -83,4 +83,11 @@ export class VehicleMessagesService {
       allVehiclesOption: '-- All Vehicles --'
     }
   };
+
+  readonly confirm = {
+    deleteVehicle: {
+      title: 'Delete vehicle?',
+      message: 'Are you sure you want to delete this vehicle? This action cannot be undone.'
+    }
+  };
 }

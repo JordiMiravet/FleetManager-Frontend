@@ -1,17 +1,22 @@
 import { Component, inject, signal, ViewChild } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
 import { VehicleService } from '../../services/vehicle-service/vehicle-service';
+import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
+
 import { VehicleInterface } from '../../interfaces/vehicle';
+
 import { VehicleModalState } from '../../enum/vehicle-modal-state.enum';
 import { VehicleModalService} from '../../services/vehicle-modal-service/vehicle-modal-service';
-import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
-import { VehicleTableComponent } from "../vehicle-table/vehicle-table";
-import { VehicleEmptyStateComponent } from "../vehicle-empty-state/vehicle-empty-state";
-import { VehicleFormModalComponent } from "../../modals/vehicle-form-modal/vehicle-form-modal";
 import { ConfirmModalComponent } from "../../../../shared/components/modals/confirm-modal/confirm-modal";
+import { VehicleFormModalComponent } from "../../modals/vehicle-form-modal/vehicle-form-modal";
 import { ManageVehicleUsersModalComponent } from '../../modals/manage-vehicle-users-modal/manage-vehicle-users-modal';
-import { Auth } from '@angular/fire/auth';
+
+import { VehicleTableComponent } from "../vehicle-table/vehicle-table";
+import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
+import { VehicleEmptyStateComponent } from "../vehicle-empty-state/vehicle-empty-state";
+
 
 @Component({
   selector: 'app-vehicle-view',
@@ -35,19 +40,14 @@ export class VehicleViewComponent {
   private auth = inject(Auth);
   private geo = inject(GeolocationService);
   private vehicleService = inject(VehicleService);
-  
+  private messagesService = inject(VehicleMessagesService);
+  public modalState = inject(VehicleModalService);
+
   public vehicleList = this.vehicleService.vehicles;
   public selectedVehicle = signal<VehicleInterface | null>(null);
-  public modalState = inject(VehicleModalService);
-  
   public VehicleModalState = VehicleModalState;
 
-  public messages = {
-    deleteConfirmation: {
-      title: 'Delete vehicle?',
-      message: 'Are you sure you want to delete this vehicle? This action cannot be undone.'
-    }
-  };
+  public readonly confirmMsg = this.messagesService.confirm;
 
   ngOnInit(): void {
     this.vehicleService.loadVehicles();

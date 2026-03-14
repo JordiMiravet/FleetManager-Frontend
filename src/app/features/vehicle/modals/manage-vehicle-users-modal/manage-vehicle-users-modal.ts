@@ -20,11 +20,11 @@ import { DeleteButtonComponent } from "../../../../shared/components/buttons/del
 export class ManageVehicleUsersModalComponent {
 
   private permission = inject(PermissionService);
-  private msg = inject(VehicleMessagesService);
+  private messagesService = inject(VehicleMessagesService);
   
-  public readonly usersMsg = this.msg.users;
-  public readonly errorMsg = this.msg.errors;
-  public readonly ariaMsg = this.msg.aria.users;
+  public readonly usersMsg = this.messagesService.users;
+  public readonly errorMsg = this.messagesService.errors;
+  public readonly ariaMsg = this.messagesService.aria.users;
 
   vehicle = input.required<VehicleInterface | null>();
 
