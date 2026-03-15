@@ -92,8 +92,8 @@ describe('VehicleViewComponent', () => {
     });
 
     it('should have delete confirmation messages', () => {
-      expect(component.messages.deleteConfirmation.title).toBe('Delete vehicle?');
-      expect(component.messages.deleteConfirmation.message).toBe('Are you sure you want to delete this vehicle? This action cannot be undone.');
+      expect(component.confirmMsg.deleteVehicle.title).toBe('Delete vehicle?');
+      expect(component.confirmMsg.deleteVehicle.message).toBe('Are you sure you want to delete this vehicle? This action cannot be undone.');
     });
   });
 
