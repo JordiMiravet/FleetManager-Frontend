@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
 
 import { ManageVehicleUsersModalComponent } from './manage-vehicle-users-modal';
+
 import { PermissionService } from '../../../../shared/services/permission/permission';
 import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
 import { VehicleInterface } from '../../interfaces/vehicle';
