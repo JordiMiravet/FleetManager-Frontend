@@ -7,7 +7,7 @@ import { PermissionService } from '../../../../shared/services/permission/permis
 import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
 import { VehicleInterface } from '../../interfaces/vehicle';
 
-fdescribe('ManageVehicleUsersModalComponent', () => {
+describe('ManageVehicleUsersModalComponent', () => {
 
   let component: ManageVehicleUsersModalComponent;
   let fixture: ComponentFixture<ManageVehicleUsersModalComponent>;
@@ -78,31 +78,15 @@ fdescribe('ManageVehicleUsersModalComponent', () => {
   describe('submit logic', () => {
 
     it('should show required error when email is empty', () => {
-
-      // Poner email signal vacío
-      // Llamar onSubmit()
-      // Verificar que error() contiene mensaje emailRequired
-
+      // "debería mostrar error requerido cuando el email está vacío"
     });
 
     it('should show invalid email error when email format is incorrect', () => {
-
-      // Poner email inválido (ej: "abc")
-      // Llamar onSubmit()
-      // Verificar que error() contiene mensaje invalidEmail
-
+      // "debería mostrar error de email inválido cuando el formato del email es incorrecto"
     });
 
     it('should emit submit event when email is valid', () => {
-
-      // Spy a submit.emit
-      // Poner email válido en signal
-      // Llamar onSubmit()
-      // Comprobar que:
-      // - error queda vacío
-      // - loading pasa a true
-      // - emit se llama con el email
-
+      // "debería emitir evento submit cuando el email es válido"
     });
 
   });
@@ -110,11 +94,7 @@ fdescribe('ManageVehicleUsersModalComponent', () => {
   describe('remove user behavior', () => {
 
     it('should emit removeUser event when removing user', () => {
-
-      // Spy a removeUser.emit
-      // Llamar onRemoveUser con un userId
-      // Verificar que emit se ejecuta con ese userId
-
+      // "debería emitir evento removeUser al eliminar un usuario"
     });
 
   });
@@ -122,13 +102,7 @@ fdescribe('ManageVehicleUsersModalComponent', () => {
   describe('error handling', () => {
 
     it('should set error message and stop loading when setError is called', () => {
-
-      // Poner loading en true
-      // Llamar setError con un mensaje
-      // Comprobar que:
-      // error() tiene el mensaje
-      // loading() pasa a false
-
+      // "debería establecer mensaje de error y detener loading cuando se llama a setError"
     });
 
   });
@@ -136,17 +110,7 @@ fdescribe('ManageVehicleUsersModalComponent', () => {
   describe('modal reset behavior', () => {
 
     it('should reset modal state', () => {
-
-      // Poner valores en:
-      // email
-      // loading
-      // error
-      // Llamar resetModal()
-      // Comprobar que:
-      // email queda ''
-      // error queda ''
-      // loading queda false
-
+      // "debería reiniciar el estado del modal"
     });
 
   });
@@ -154,13 +118,7 @@ fdescribe('ManageVehicleUsersModalComponent', () => {
   describe('cancel behavior', () => {
 
     it('should emit cancel and reset modal', () => {
-
-      // Spy cancel.emit
-      // Spy resetModal
-      // Llamar onCancel()
-      // Verificar que cancel.emit se llama
-      // Verificar que resetModal también se ejecuta
-
+      // "debería emitir cancel y reiniciar el modal"
     });
 
   });
@@ -168,21 +126,11 @@ fdescribe('ManageVehicleUsersModalComponent', () => {
   describe('template rendering', () => {
 
     it('should show empty users message when vehicle has no users', () => {
-
-      // Crear vehicle sin users
-      // Pasarlo al input
-      // DetectChanges
-      // Verificar que aparece mensaje "No users assigned"
-
+      // "debería mostrar mensaje de usuarios vacíos cuando el vehículo no tiene usuarios"
     });
 
     it('should render users list when vehicle has users', () => {
-
-      // Crear vehicle con array users
-      // Pasarlo al input
-      // DetectChanges
-      // Verificar que se renderiza la lista de usuarios
-
+      // "debería renderizar la lista de usuarios cuando el vehículo tiene usuarios"
     });
 
   });
@@ -190,30 +138,15 @@ fdescribe('ManageVehicleUsersModalComponent', () => {
   describe('template interactions', () => {
 
     it('should call onSubmit when pressing Enter on email input', () => {
-
-      // Spy component.onSubmit
-      // Buscar input email
-      // Simular keydown.enter
-      // Verificar que onSubmit se llama
-
+      // "debería llamar a onSubmit al presionar Enter en el input de email"
     });
 
     it('should call onCancel when clicking overlay', () => {
-
-      // Spy component.onCancel
-      // Buscar elemento modal-overlay
-      // Simular click
-      // Verificar que onCancel se llama
-
+      // "debería llamar a onCancel al hacer click en el overlay"
     });
 
     it('should not call onCancel when clicking inside modal container', () => {
-
-      // Spy component.onCancel
-      // Buscar div.modal
-      // Simular click
-      // Verificar que onCancel NO se ejecuta
-
+      // "no debería llamar a onCancel al hacer click dentro del contenedor del modal"
     });
 
   });
@@ -221,14 +154,7 @@ fdescribe('ManageVehicleUsersModalComponent', () => {
   describe('delete button interaction', () => {
 
     it('should call onRemoveUser when delete button emits event', () => {
-
-      // Crear vehicle con users
-      // Mockear permission.canRemove para devolver true
-      // DetectChanges
-      // Buscar app-delete-button
-      // Emitir evento delete
-      // Verificar que onRemoveUser se llama
-
+      // "debería llamar a onRemoveUser cuando el botón de eliminar emite un evento"
     });
 
   });
