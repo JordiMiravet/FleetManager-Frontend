@@ -78,15 +78,30 @@ describe('ManageVehicleUsersModalComponent', () => {
   describe('submit logic', () => {
 
     it('should show required error when email is empty', () => {
-      // "debería mostrar error requerido cuando el email está vacío"
+      component.email.set('');
+      component.onSubmit();
+
+      expect(component.error()).toBe(component.errorMsg.emailRequired);
+      expect(component.loading()).toBeFalse();
     });
 
     it('should show invalid email error when email format is incorrect', () => {
-      // "debería mostrar error de email inválido cuando el formato del email es incorrecto"
+      component.email.set('invalid-email');
+      component.onSubmit();
+
+      expect(component.error()).toBe(component.errorMsg.invalidEmail);
+      expect(component.loading()).toBeFalse();
     });
 
     it('should emit submit event when email is valid', () => {
-      // "debería emitir evento submit cuando el email es válido"
+      const emitSpy = spyOn(component.submit, 'emit');
+
+      component.email.set('test@example.com');
+      component.onSubmit();
+
+      expect(component.error()).toBe('');
+      expect(component.loading()).toBeTrue();
+      expect(emitSpy).toHaveBeenCalledWith('test@example.com');
     });
 
   });
