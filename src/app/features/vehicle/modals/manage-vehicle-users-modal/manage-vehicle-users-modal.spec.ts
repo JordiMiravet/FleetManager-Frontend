@@ -62,7 +62,7 @@ describe('ManageVehicleUsersModalComponent', () => {
         model: 'Skyline',
         plate: '123-ABC',
         users: [
-          { userId: 'JordiTheBest', email: 'jordithebest@test.com' }
+          { userId: 'JordiTheBest', email: 'jordithebest@gmail.com' }
         ]
       };
 
@@ -96,12 +96,12 @@ describe('ManageVehicleUsersModalComponent', () => {
     it('should emit submit event when email is valid', () => {
       const emitSpy = spyOn(component.submit, 'emit');
 
-      component.email.set('test@example.com');
+      component.email.set('jordithebest@gmail.com');
       component.onSubmit();
 
       expect(component.error()).toBe('');
       expect(component.loading()).toBeTrue();
-      expect(emitSpy).toHaveBeenCalledWith('test@example.com');
+      expect(emitSpy).toHaveBeenCalledWith('jordithebest@gmail.com');
     });
 
   });
@@ -109,7 +109,11 @@ describe('ManageVehicleUsersModalComponent', () => {
   describe('remove user behavior', () => {
 
     it('should emit removeUser event when removing user', () => {
-      // "debería emitir evento removeUser al eliminar un usuario"
+      const emitSpy = spyOn(component.removeUser, 'emit');
+
+      component.onRemoveUser('jordiElGuapo');
+
+      expect(emitSpy).toHaveBeenCalledWith('jordiElGuapo');
     });
 
   });
@@ -117,7 +121,12 @@ describe('ManageVehicleUsersModalComponent', () => {
   describe('error handling', () => {
 
     it('should set error message and stop loading when setError is called', () => {
-      // "debería establecer mensaje de error y detener loading cuando se llama a setError"
+      component.loading.set(true);
+
+      component.setError('Error');
+
+      expect(component.error()).toBe('Error');
+      expect(component.loading()).toBeFalse();
     });
 
   });
@@ -125,7 +134,15 @@ describe('ManageVehicleUsersModalComponent', () => {
   describe('modal reset behavior', () => {
 
     it('should reset modal state', () => {
-      // "debería reiniciar el estado del modal"
+      component.loading.set(true);
+      component.error.set('Error');
+      component.email.set('JordiTheBest@gmail.com');
+
+      component.resetModal();
+
+      expect(component.loading()).toBeFalse();
+      expect(component.error()).toBe('');
+      expect(component.email()).toBe('');
     });
 
   });
@@ -133,7 +150,13 @@ describe('ManageVehicleUsersModalComponent', () => {
   describe('cancel behavior', () => {
 
     it('should emit cancel and reset modal', () => {
-      // "debería emitir cancel y reiniciar el modal"
+      const emitSpy = spyOn(component.cancel, 'emit');
+      const resetSpy = spyOn(component, 'resetModal');
+
+      component.onCancel();
+
+      expect(emitSpy).toHaveBeenCalled();
+      expect(resetSpy).toHaveBeenCalled();
     });
 
   });
@@ -141,11 +164,43 @@ describe('ManageVehicleUsersModalComponent', () => {
   describe('template rendering', () => {
 
     it('should show empty users message when vehicle has no users', () => {
-      // "debería mostrar mensaje de usuarios vacíos cuando el vehículo no tiene usuarios"
+      const vehicleMock: VehicleInterface = {
+        _id: '1',
+        name: 'Pagani',
+        model: 'Huayra',
+        plate: 'ABC123',
+        users: []
+      };
+
+      fixture.componentRef.setInput('vehicle', vehicleMock);
+      fixture.detectChanges();
+
+      const compiled = fixture.nativeElement as HTMLElement;
+      const emptyMessage = compiled.querySelector('.modal__empty');
+
+      expect(emptyMessage).toBeTruthy();
+      expect(emptyMessage?.textContent).toContain(component.usersMsg.status.noUsers);
     });
 
     it('should render users list when vehicle has users', () => {
-      // "debería renderizar la lista de usuarios cuando el vehículo tiene usuarios"
+      const vehicleMock: VehicleInterface = {
+        _id: '1',
+        name: 'Pagani',
+        model: 'Huayra',
+        plate: 'ABC123',
+        users: [
+          { userId: '1', email: 'JordiTheBest@gmail.com' }
+        ]
+      };
+
+      fixture.componentRef.setInput('vehicle', vehicleMock);
+      fixture.detectChanges();
+
+      const compiled = fixture.nativeElement as HTMLElement;
+      const users = compiled.querySelectorAll('.modal__user');
+
+      expect(users.length).toBe(1);
+      expect(users[0].textContent).toContain('JordiTheBest@gmail.com');
     });
 
   });
