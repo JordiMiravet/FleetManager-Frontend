@@ -110,16 +110,16 @@ describe('VehicleFormModalComponent', () => {
     it('should emit submit event when form is valid', () => {
       spyOn(component.submit, 'emit');
 
-      component.form.setValue({ name: 'R34', model: 'GT-R', plate: '12345' });
+      component.form.setValue({ name: 'R34', model: 'GT-R', plate: '12345', imageUrl: 'Skyline-001.jpg' });
       component.onSubmit();
 
-      expect(component.submit.emit).toHaveBeenCalledWith({ name: 'R34', model: 'GT-R', plate: '12345' });
+      expect(component.submit.emit).toHaveBeenCalledWith({ name: 'R34', model: 'GT-R', plate: '12345', imageUrl: 'Skyline-001.jpg' });
     });
 
     it('should not emit submit when form is invalid', () => {
       spyOn(component.submit, 'emit');
 
-      component.form.setValue({ name: '', model: '', plate: '' });
+      component.form.setValue({ name: '', model: '', plate: '', imageUrl: '' });
       component.onSubmit();
 
       expect(component.submit.emit).not.toHaveBeenCalled();

@@ -6,6 +6,7 @@ import { ManageVehicleUsersModalComponent } from './manage-vehicle-users-modal';
 import { PermissionService } from '../../../../shared/services/permission/permission';
 import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
 import { VehicleInterface } from '../../interfaces/vehicle';
+import { By } from '@angular/platform-browser';
 
 describe('ManageVehicleUsersModalComponent', () => {
 
@@ -208,15 +209,44 @@ describe('ManageVehicleUsersModalComponent', () => {
   describe('template interactions', () => {
 
     it('should call onSubmit when pressing Enter on email input', () => {
-      // "debería llamar a onSubmit al presionar Enter en el input de email"
+      permissionMock.isOwner.and.returnValue(true);
+
+      fixture.detectChanges();
+
+      const submitSpy = spyOn(component, 'onSubmit');
+
+      const input: HTMLInputElement = fixture.nativeElement.querySelector('#userEmail');
+
+      const event = new KeyboardEvent('keydown', {
+        key: 'Enter'
+      });
+
+      input.dispatchEvent(event);
+      fixture.detectChanges();
+
+      expect(submitSpy).toHaveBeenCalled();
     });
 
     it('should call onCancel when clicking overlay', () => {
-      // "debería llamar a onCancel al hacer click en el overlay"
+      const cancelSpy = spyOn(component, 'onCancel');
+
+      const overlay: HTMLElement = fixture.nativeElement.querySelector('dialog');
+
+      overlay.click();
+      fixture.detectChanges();
+
+      expect(cancelSpy).toHaveBeenCalled();
     });
 
     it('should not call onCancel when clicking inside modal container', () => {
-      // "no debería llamar a onCancel al hacer click dentro del contenedor del modal"
+      const cancelSpy = spyOn(component, 'onCancel');
+
+      const modal: HTMLElement = fixture.nativeElement.querySelector('.modal');
+
+      modal.click();
+      fixture.detectChanges();
+
+      expect(cancelSpy).not.toHaveBeenCalled();
     });
 
   });
@@ -224,7 +254,29 @@ describe('ManageVehicleUsersModalComponent', () => {
   describe('delete button interaction', () => {
 
     it('should call onRemoveUser when delete button emits event', () => {
-      // "debería llamar a onRemoveUser cuando el botón de eliminar emite un evento"
+      permissionMock.isOwner.and.returnValue(true);
+      permissionMock.canRemove.and.returnValue(true);
+
+      const vehicleMock: VehicleInterface = {
+        _id: '1',
+        name: 'Pagani',
+        model: 'Huayra',
+        plate: 'ABC123',
+        users: [
+          { userId: '1', email: 'test@gmail.com' }
+        ]
+      };
+
+      fixture.componentRef.setInput('vehicle', vehicleMock);
+      fixture.detectChanges();
+
+      const spy = spyOn(component, 'onRemoveUser');
+
+      const deleteBtn = fixture.debugElement.query(By.css('app-delete-button'));
+
+      deleteBtn.triggerEventHandler('delete');
+
+      expect(spy).toHaveBeenCalledWith('1');
     });
 
   });
