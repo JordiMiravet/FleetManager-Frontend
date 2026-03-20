@@ -1,10 +1,10 @@
-.vehicle-button {
+.map-card {
     margin: 0;
-    padding: 1rem;
+    padding: 1.5rem 1rem 2rem 1rem;
     width: 100%;
     background-color: var(--gray-100);
-    border-radius: 1.25rem;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 2rem 2rem 0 0 ;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.70);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,28 +13,29 @@
     transition: background-color 0.25s ease;
 }
 
-.vehicle-button:hover {
+.map-card:hover {
     background-color: var(--gray-200);
 }
 
-.vehicle-button__info {
+.map-card__info {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: .5rem;
     align-items: center;
     margin: 0 0 0.5rem 0;
 }
 
-.vehicle-button__name {
+.map-card__name {
     font-size: var(--font-size-xl);
     font-weight: 700;
     color: var(--color-blue-dark);
     margin: 1rem 0 0.5rem 0;
 }
 
-.vehicle-button__plate {
+.map-card__plate {
     font-size: var(--font-size-sm);
     font-weight: 500;
+    letter-spacing: 0.1rem;
     color: var(--color-blue-dark);
     margin: 0 0 0.5rem 0;
 }
@@ -66,7 +67,13 @@
 }
 
 @media (min-width: 576px) {
-    .vehicle-button {
+    .map-card {
         width: 35rem;
+        padding: 2rem 1.5rem;
+        border-radius: var(--radius-lg);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+    .map-card__info {
+        gap: 0.25rem;
     }
 }

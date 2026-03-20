@@ -2,14 +2,12 @@ import { Component, input, output } from '@angular/core';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
 
 @Component({
-  selector: 'app-vehicle-card-button',
-  standalone: true,
+  selector: 'app-details-panel',
   imports: [],
-  templateUrl: './vehicle-card-button.html',
-  styleUrls: ['./vehicle-card-button.css'],
+  templateUrl: './details-panel.html',
+  styleUrl: './details-panel.css',
 })
-
-export class VehicleCardButtonComponent  {
+export class DetailsPanelComponent {
 
   public click = output<void>();
   public vehicle = input<VehicleInterface | null>(null);

@@ -367,7 +367,7 @@ describe('MapViewComponent', () => {
   
       fixture.detectChanges();
 
-      const userLocationButtonComponent = fixture.nativeElement.querySelector('app-vehicle-card-button');
+      const userLocationButtonComponent = fixture.nativeElement.querySelector('app-details-panel');
       expect(userLocationButtonComponent).toBeTruthy();
     });
 

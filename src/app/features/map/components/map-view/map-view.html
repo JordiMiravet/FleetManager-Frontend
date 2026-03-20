@@ -6,14 +6,6 @@
         class="map-view__selector"
     />
 
-    @if(selectedVehicle()){
-        <app-vehicle-card-button
-            (click)="onUserLocationClick()"
-            [vehicle]="selectedVehicle()"
-            class="map-view__button--location"
-        />
-    }
-
     <div 
         id="map" 
         class="map-view__map" 
@@ -24,6 +16,14 @@
     <p id="map-description" class="sr-only">
         {{ messages.mapView.ariaDescribedby }}
     </p>
+
+    @if(selectedVehicle()){
+        <app-details-panel
+            (click)="onUserLocationClick()"
+            [vehicle]="selectedVehicle()"
+            class="map-view__button--location"
+        />
+    }
 
 </section>
 
