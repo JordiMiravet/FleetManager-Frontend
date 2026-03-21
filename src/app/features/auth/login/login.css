@@ -129,10 +129,22 @@
     color: var(--gray-900);
 }
 
+/* Form Switch */
+
+.form__switch {
+    font-size: var(--font-size-xs);
+    color: var(--color-blue-dark);
+    font-weight: 500;
+}
+.form__switch a {
+    color: var(--color-blue-dark);
+    font-weight: 700;
+}
+
 /* Form Note */
 
 .form__note {
-    margin: 1rem 0 0 0 ;
+    margin: 1rem 0 0 0;
     padding: 0;
     text-align: end;
     font-weight: 700;

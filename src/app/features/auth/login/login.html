@@ -1,73 +1,86 @@
 <form [formGroup]="formLogin" (ngSubmit)="onSubmit()" class="form">
-  
+
   <fieldset class="form__fieldset">
     <legend class="form__legend">
-      {{ authMessages.authType.login }}
+      {{ formMsg.title.login }}
       <i class="fa-solid fa-address-card" aria-hidden="true"></i>
     </legend>
-    
+
     <div class="form__group">
-      <label for="emailRegister">{{ authMessages.fieldLabels.email }}</label>
-      <input 
-        type="email" 
-        id="emailRegister" 
-        formControlName="email" 
-        placeholder="Enter your email"
+      <label for="emailLogin">{{ formMsg.fields.email.label }}</label>
+      <input
+        type="email"
+        id="emailLogin"
+        formControlName="email"
+        [placeholder]="formMsg.fields.email.placeholder"
         autocomplete="email"
         required
-        [attr.aria-invalid]="formLogin.controls['email'].invalid && formLogin.controls['email'].touched ? 'true' : 'false'"
-        [attr.aria-describedby]="formLogin.controls['email'].invalid && formLogin.controls['email'].touched ? 'login-email-error' : null"
+        [attr.aria-invalid]="formControls.email.invalid && formControls.email.touched ? 'true' : 'false'"
+        [attr.aria-describedby]="formControls.email.invalid && formControls.email.touched ? 'login-email-error' : null"
       />
-      <h4 
+      <p
         id="login-email-error"
         class="form__error-text"
-        role="alert" 
-        [hidden]="formLogin.controls['email'].valid || !formLogin.controls['email'].touched"
+        role="alert"
+        [hidden]="formControls.email.valid || !formControls.email.touched"
+        [attr.aria-hidden]="formControls.email.valid || !formControls.email.touched ? 'true' : 'false'"
       >
-        <i class="pi pi-exclamation-circle" aria-hidden="true"></i> 
-        {{ authMessages.errorMessages.invalidEmail }}
-      </h4>
+        <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+        {{ errorMsg.invalidEmail }}
+      </p>
     </div>
 
     <div class="form__group">
-      <label for="passwordRegister">{{ authMessages.fieldLabels.password }}</label>
-      <input 
-        type="password" 
-        id="passwordRegister" 
-        formControlName="password" 
-        placeholder="Enter your password"
+      <label for="passwordLogin">{{ formMsg.fields.password.label }}</label>
+      <input
+        type="password"
+        id="passwordLogin"
+        formControlName="password"
+        [placeholder]="formMsg.fields.password.placeholder"
         autocomplete="current-password"
         required
-        [attr.aria-invalid]="formLogin.controls['password'].invalid && formLogin.controls['password'].touched ? 'true' : 'false'"
-        [attr.aria-describedby]="formLogin.controls['password'].invalid && formLogin.controls['password'].touched ? 'login-password-error' : null"
+        [attr.aria-invalid]="formControls.password.invalid && formControls.password.touched ? 'true' : 'false'"
+        [attr.aria-describedby]="formControls.password.invalid && formControls.password.touched ? 'login-password-error' : null"
       />
-      <h4 
+      <p
         id="login-password-error"
         class="form__error-text"
-        role="alert" 
-        [hidden]="formLogin.controls['password'].valid || !formLogin.controls['password'].touched"
+        role="alert"
+        [hidden]="formControls.password.valid || !formControls.password.touched"
+        [attr.aria-hidden]="formControls.password.valid || !formControls.password.touched ? 'true' : 'false'"
       >
-        <i class="pi pi-exclamation-circle" aria-hidden="true"></i> 
-        {{ authMessages.errorMessages.invalidPassword }}
-      </h4>
+        <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+        {{ errorMsg.invalidPassword(passwordMinLength) }}
+      </p>
     </div>
 
-    <button 
-      type="submit" 
-      class="btn__auth" 
-      aria-label="Login with email and password"
+    <button
+      type="submit"
+      class="btn__auth"
+      [aria-label]="ariaMsg.buttons.login"
     >
-      {{ authMessages.authType.login }}
+      {{ formMsg.buttons.login }}
     </button>
-    
+
     @if(errorSubmit){ 
-      <h4 class="form__error-submit" role="alert">
+      <p class="form__error-submit" role="alert">
         <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
         {{ errorSubmit }}
-      </h4>
+      </p>
     }
-  </fieldset>
   
-  <p class="form__note">{{ authMessages.note }}</p>
-</form>
+  </fieldset>
 
+  <p class="form__switch">
+    {{ formMsg.switch.toRegister.prompt }}
+    <a 
+      routerLink="/register"
+      [attr.aria-label]="ariaMsg.switch.toRegister"
+    >
+      {{ formMsg.switch.toRegister.action }}
+    </a>
+  </p>
+
+  <p class="form__note">{{ formMsg.note }}</p>
+
+</form>

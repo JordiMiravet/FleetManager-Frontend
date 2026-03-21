@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LoginComponent } from './login';
-import { AuthService } from '../services/auth';
 import { Auth, UserCredential } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { LoginComponent } from './login';
+import { AuthService } from '../services/auth-service/auth-service';
 
 const mockAuth = {
   signInWithEmailAndPassword: jasmine.createSpy('signInWithEmailAndPassword').and.returnValue(Promise.resolve('usuario logueado')),
@@ -17,7 +19,10 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoginComponent],
+      imports: [
+        LoginComponent,
+        RouterTestingModule
+      ],
       providers: [
         AuthService,
         { provide: Auth, useValue: mockAuth }
@@ -115,7 +120,7 @@ describe('LoginComponent', () => {
       expect(emailControl?.invalid).toBeTrue();
       expect(emailControl?.touched).toBeTrue();
       expect(errorMessageElement.hidden).toBeFalse();
-      expect(errorMessageElement.textContent).toContain(component.authMessages.errorMessages.invalidEmail);
+      expect(errorMessageElement.textContent).toContain(component.errorMsg.invalidEmail);
     });
 
     it('should show password error message when password is invalid and touched', () => {
@@ -129,7 +134,7 @@ describe('LoginComponent', () => {
       expect(passwordControl?.invalid).toBeTrue();
       expect(passwordControl?.touched).toBeTrue();
       expect(errorMessageElement.hidden).toBeFalse();
-      expect(errorMessageElement.textContent).toContain(component.authMessages.errorMessages.invalidPassword);
+      expect(errorMessageElement.textContent).toContain(component.errorMsg.invalidPassword(component.passwordMinLength));
     });
 
     it('should not show error messages when inputs are valid', () => {

@@ -1,6 +1,7 @@
 import { Component, inject, Signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from "@angular/router";
-import { AuthService } from '../../../features/auth/services/auth';
+
+import { AuthService } from '../../../features/auth/services/auth-service/auth-service';
 
 @Component({
   selector: 'app-navigation',

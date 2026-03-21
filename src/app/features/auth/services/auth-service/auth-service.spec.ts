@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Auth } from '@angular/fire/auth';
-import { AuthService } from './auth';
+import { AuthService } from './auth-service';
+
 
 const mockAuth = { onAuthStateChanged: () => {}};
 
@@ -34,15 +35,6 @@ describe('AuthService', () => {
   describe('Initial state', () => {
     it('should initialize isLogged signal as false', () => {
       expect(service.isLogged()).toBe(false);
-    });
-
-    it('should have the correct error messages', () => {
-      const msg = service.authMessages.errorMessages;
-
-      expect(msg.invalidEmail).toBe('Please enter a valid email');
-      expect(msg.invalidPassword).toBe('Please enter a password that contains at least 6 characters');
-      expect(msg.invalidCredentials).toBe('This email or password is invalid');
-      expect(msg.emailAlreadyExists).toBe('This email already exists');
     });
 
     it('user should be readonly', () => {

@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AuthActionsComponent } from './auth-actions';
 import { RouterTestingHarness, RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '../../../features/auth/services/auth';
 import { Component, signal } from '@angular/core';
 import { provideRouter, Router } from '@angular/router';
+
+import { AuthActionsComponent } from './auth-actions';
+import { AuthService } from '../../../features/auth/services/auth-service/auth-service';
 
 class MockAuthService {
   isLogged = signal(false);

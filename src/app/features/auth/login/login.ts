@@ -1,12 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+
+import { AuthService } from '../services/auth-service/auth-service';
+import { AuthMessagesService } from '../services/auth-messages-service/auth-messages-service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ ReactiveFormsModule ],
+  imports: [ 
+    ReactiveFormsModule, 
+    RouterModule 
+  ],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -15,8 +20,14 @@ export class LoginComponent {
   
   private authService = inject(AuthService);
   private router = inject(Router);
+  private messagesService = inject(AuthMessagesService);
 
-  public authMessages = this.authService.authMessages;
+  readonly formMsg = this.messagesService.form;
+  readonly errorMsg = this.messagesService.errors;
+  readonly ariaMsg = this.messagesService.aria;
+
+  readonly passwordMinLength = 6;
+  
   public errorSubmit: string = '';
 
   formLogin: FormGroup;
@@ -29,7 +40,7 @@ export class LoginComponent {
         Validators.pattern(/^[a-zA-Z0-9._-]+([a-zA-Z0-9_-]+)*@[a-zA-Z]{3,}\.[a-zA-Z]{2,}$/)
       ]),
       password: new FormControl('',[
-        Validators.minLength(6),
+        Validators.minLength(this.passwordMinLength),
         Validators.required
       ])
     })
@@ -46,9 +57,12 @@ export class LoginComponent {
       this.router.navigate([''])
     })
     .catch(error => {
-      this.errorSubmit = this.authMessages.errorMessages.invalidCredentials
+      this.errorSubmit = this.errorMsg.invalidCredentials
       console.error('Error:', error)
     });
   }
 
+  get formControls(): { email: FormControl; password: FormControl } {
+    return this.formLogin.controls as { email: FormControl; password: FormControl };
+  }
 }

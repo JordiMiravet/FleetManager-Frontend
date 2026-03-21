@@ -2,7 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavigationComponent } from './navigation';
 import { isSignal, signal } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '../../../features/auth/services/auth';
+
+import { AuthService } from '../../../features/auth/services/auth-service/auth-service';
 
 class MockAuthService {
   isLogged = signal(false);
