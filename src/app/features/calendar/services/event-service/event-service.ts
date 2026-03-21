@@ -1,5 +1,5 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
-import { EventInterface } from '../interfaces/event';
+import { EventInterface } from '../../interfaces/event';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 

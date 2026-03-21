@@ -2,10 +2,12 @@ import { Component, inject, input, OnInit, output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { EventService } from '../../services/event-service';
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
-import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
+import { EventService } from '../../services/event-service/event-service';
 import { EventInterface } from '../../interfaces/event';
+import { EventMessagesService } from '../../services/event-messages-service/event-messages-service';
+
+import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
+import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
 
 @Component({
   selector: 'app-event-form-modal',
@@ -20,8 +22,13 @@ import { EventInterface } from '../../interfaces/event';
 
 export class EventFormModalComponent implements OnInit {
 
-  public eventService = inject(EventService);
-  public vehicleService = inject(VehicleService);
+  private eventService = inject(EventService);
+  private vehicleService = inject(VehicleService);
+  private messagesService = inject(EventMessagesService);
+
+  readonly formMsg = this.messagesService.form;
+  readonly errorMsg = this.messagesService.errors;
+  readonly ariaMsg = this.messagesService.aria;
 
   public vehicles = this.vehicleService.vehicles;
 
@@ -32,14 +39,6 @@ export class EventFormModalComponent implements OnInit {
   public close = output<void>();
 
   public formEvent: FormGroup;
-
-  public readonly message = {
-    error: {
-      inputRequired: "This field is required",
-      invalidRange: "Are you going back to the future, McFly? End time must be after start time",
-      overlap: "This vehicle is already booked at this time"
-    }
-  }
 
   constructor(){
     this.formEvent = new FormGroup({

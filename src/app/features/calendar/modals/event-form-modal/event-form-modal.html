@@ -16,17 +16,17 @@
         <fieldset class="event-form__fieldset">
             <legend id="eventFormTitle" class="event-form__legend">
                 <i class="pi pi-calendar" aria-hidden="true"></i> 
-                Add new Event
+                {{ mode() === 'create' ? formMsg.title.create : formMsg.title.edit }}
             </legend>
 
             <div class="event-form__group">
-                <label class="event-form__label" for="inputEventTitle">Title *</label>
+                <label class="event-form__label" for="inputEventTitle">{{ formMsg.fields.title.label }}</label>
                 <input 
                     class="event-form__input" 
                     type="text" 
                     formControlName="title" 
                     id="inputEventTitle" 
-                    placeholder="Event Name*"
+                    [placeholder]="formMsg.fields.title.placeholder"
                     [ngClass]="{'event-form__input-error': formEvent.get('title')?.invalid && formEvent.get('title')?.touched}"
                     [attr.aria-invalid]="formEvent.get('title')?.invalid && formEvent.get('title')?.touched"
                     aria-describedby="titleError"
@@ -40,12 +40,12 @@
                     [hidden]="formEvent.get('title')?.valid || !formEvent.get('title')?.touched"
                 >
                     <i class="pi pi-exclamation-circle" aria-hidden="true"></i> 
-                    {{ message.error.inputRequired }}
+                    {{ errorMsg.required }}
                 </p>
             </div>
 
             <div class="event-form__group">
-                <label class="event-form__label" for="inputEventDate">Date *</label>
+                <label class="event-form__label" for="inputEventDate">{{ formMsg.fields.date.label }}</label>
                 <input 
                     class="event-form__input" 
                     type="date" 
@@ -64,13 +64,13 @@
                     [hidden]="formEvent.get('date')?.valid || !formEvent.get('date')?.touched"
                 >
                     <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-                    {{ message.error.inputRequired }}
+                    {{ errorMsg.required }}
                 </p>
             </div>
 
             <div class="event-form__time-group">
                 <div class="event-form__group">
-                    <label class="event-form__label" for="inputEventHourStart">Start Time *</label>
+                    <label class="event-form__label" for="inputEventHourStart">{{ formMsg.fields.hourStart.label }}</label>
                     <input 
                         class="event-form__input" 
                         type="time" 
@@ -88,12 +88,12 @@
                         [hidden]="formEvent.get('hourStart')?.valid || !formEvent.get('hourStart')?.touched"
                     >
                         <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-                        {{ message.error.inputRequired }}
+                        {{ errorMsg.required }}
                     </p>
                 </div>
 
                 <div class="event-form__group">
-                    <label class="event-form__label" for="inputEventHourEnd">End Time *</label>
+                    <label class="event-form__label" for="inputEventHourEnd">{{ formMsg.fields.hourEnd.label }}</label>
                     <input 
                         class="event-form__input" 
                         type="time" 
@@ -111,7 +111,7 @@
                         [hidden]="formEvent.get('hourEnd')?.valid || !formEvent.get('hourEnd')?.touched"
                     >
                         <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-                        {{ message.error.inputRequired }}
+                        {{ errorMsg.required }}
                     </p>
                 </div>
 
@@ -122,7 +122,7 @@
                     [hidden]="!formEvent.hasError('invalidTimeRange') || !formEvent.get('hourStart')?.touched || !formEvent.get('hourEnd')?.touched"
                 >
                     <i class="pi pi-exclamation-circle" aria-hidden="true"></i> 
-                    {{ message.error.invalidRange  }}
+                    {{ errorMsg.invalidRange  }}
                 </p>
 
                 <p 
@@ -132,12 +132,12 @@
                     [hidden]="!formEvent.hasError('timeOverlap') || formEvent.hasError('invalidTimeRange')"
                 >
                     <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-                    {{ message.error.overlap }}
+                    {{ errorMsg.overlap }}
                 </p>
             </div>
             
             <div class="event-form__group">
-                <label class="event-form__label" for="vehicleSelect">Vehicle *</label>
+                <label class="event-form__label" for="vehicleSelect">{{ formMsg.fields.vehicle.label }}</label>
                 <select
                     id="vehicleSelect"
                     class="event-form__input"
@@ -147,7 +147,7 @@
                     aria-describedby="vehicleError"
                     aria-required="true"
                 >
-                    <option value="" hidden>Select vehicle*</option>
+                    <option value="" hidden>{{ formMsg.fields.vehicle.placeholder }}</option>
                     @for (vehicle of vehicles(); track vehicle._id) {
                         <option [value]="vehicle._id">
                             {{ vehicle.name }}
@@ -162,17 +162,17 @@
                     [hidden]="formEvent.get('vehicleId')?.valid || !formEvent.get('vehicleId')?.touched"
                 >
                     <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-                    Please select a vehicle
+                    {{ formMsg.fields.vehicle.error }}
                 </p>
             </div>
 
             <div class="event-form__group">
-                <label class="event-form__label" for="inputEventComment">Comment</label>
+                <label class="event-form__label" for="inputEventComment">{{ formMsg.fields.comment.label }}</label>
                 <textarea 
                     formControlName="comment" 
                     id="inputEventComment" 
                     class="event-form__textarea"
-                    placeholder="Type the note here..."
+                    [placeholder]="formMsg.fields.comment.placeholder"
                     rows="4"
                 ></textarea>
             </div>
@@ -182,25 +182,25 @@
                     class="event-form__button event-form__button--Cancel" 
                     type="button" 
                     (click)="handleClose()" 
-                    aria-label="Cancel adding event"
+                    [aria-label]="ariaMsg.form.cancel"
                 >
-                    Cancel
+                    {{ formMsg.buttons.cancel }}
                 </button>
 
                 <button 
                     class="event-form__button event-form__button--Save" 
                     type="submit" 
-                    aria-label="Save event"
+                    [aria-label]="ariaMsg.form.save"
                 >
                     <i class="pi pi-save" aria-hidden="true"></i>
-                    Save
+                    {{ formMsg.buttons.save }}
                 </button>
             </div>
         </fieldset>
 
         <p class="event-form__note">
             <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-            Fields marked with * are required
+            {{ formMsg.note }}
         </p>
 
     </form>

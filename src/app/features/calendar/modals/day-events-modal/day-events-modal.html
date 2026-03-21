@@ -12,15 +12,16 @@
             <h2 
                 id="dayEventsTitle" 
                 class="modal__title" 
-                [attr.aria-label]="'Events of the Day ' + date()"
+                [attr.aria-label]="dayEventsMsg.title(date())"
             >
                 <i class="pi pi-calendar" aria-hidden="true"></i>
-                Events of the Day: <span>{{ date() }}</span>
+                {{ dayEventsMsg.title(date()) }}
             </h2>
+
             <app-create-button 
                 (click)="onCreate()"
-                [createText]="'Event'"
-                [attr.aria-label]="'Create a new event for ' + date()"
+                [createText]="dayEventsMsg.actions.create"
+                [attr.aria-label]="dayEventsMsg.actions.create"
             />
         </header>
 
@@ -54,14 +55,18 @@
                                 <p class="event-card__comment">{{ event.comment }}</p>
                             }
 
-                            <div class="event-card__actions" role="group" aria-label="Actions for {{ event.title }}">
+                            <div 
+                                class="event-card__actions" 
+                                role="group" 
+                                [attr.aria-label]="'Actions for ' + event.title"
+                            >
                                 <app-edit-button 
                                     (edit)="onEdit(event._id)"
-                                    [attr.aria-label]="'Edit ' + event.title"
+                                    [attr.aria-label]="dayEventsMsg.actions.edit"
                                 ></app-edit-button>
                                 <app-delete-button 
                                     (delete)="onDelete(event._id)"
-                                    [attr.aria-label]="'Delete ' + event.title"
+                                    [attr.aria-label]="dayEventsMsg.actions.delete"
                                 ></app-delete-button>
                             </div>
                         </details>
@@ -70,7 +75,7 @@
             </ul>
         } @else {
             <p class="modal__empty" role="status" aria-live="polite">
-                There are no events for the selected day
+                {{ dayEventsMsg.empty }}
             </p>
         }
 

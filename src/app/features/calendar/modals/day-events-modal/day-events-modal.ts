@@ -2,10 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
 
 import { EventInterface } from '../../interfaces/event';
+import { EventMessagesService } from '../../services/event-messages-service/event-messages-service';
+
+import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
+
 import { EditButtonComponent } from '../../../../shared/components/buttons/edit-button/edit-button';
 import { DeleteButtonComponent } from '../../../../shared/components/buttons/delete-button/delete-button';
 import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
-import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 
 @Component({
   selector: 'app-day-events-modal',
@@ -23,6 +26,7 @@ import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicl
 export class DayEventsModalComponent {
 
   private vehicleService = inject(VehicleService);
+  private messagesService = inject(EventMessagesService)
 
   date = input<string>('');
   events = input<EventInterface[]>([]);
@@ -32,6 +36,9 @@ export class DayEventsModalComponent {
   deleteEvent = output<string>();
   
   closeModal = output<void>();
+
+  readonly dayEventsMsg = this.messagesService.dayEvents;
+  readonly ariaMsg = this.messagesService.aria.dayEvents;
   
   onCreate() {
     this.createEvent.emit();
@@ -60,7 +67,7 @@ export class DayEventsModalComponent {
 
   getVehicleName(vehicleId: string): string {
     const vehicle = this.vehicleService.vehicles().find(v => v._id === vehicleId);
-    return vehicle?.name || 'Unknown Vehicle';
+    return vehicle?.name || this.dayEventsMsg.vehicleFallback;
   }
 
 }

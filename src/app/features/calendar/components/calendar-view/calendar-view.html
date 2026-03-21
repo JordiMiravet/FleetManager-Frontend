@@ -1,7 +1,7 @@
-<section class="calendar__actions" aria-label="Calendar actions">
+<section class="calendar__actions" [aria-label]="ariaMsg.actions">
     <app-create-button
         (click)="handleCreateEvent()"
-        [createText]="'Event'"
+        [createText]="calendarMsg.actions.createEvent"
     ></app-create-button>
 
     <app-vehicle-selector
@@ -10,11 +10,11 @@
     ></app-vehicle-selector>
 </section>
 
-<section class="calendar__container" aria-label="Vehicle events calendar">
+<section class="calendar__container" [aria-label]="calendarMsg.aria.calendar">
     <full-calendar
         #calendar
         [options]="calendarOptions"
-        aria-label="Vehicle events calendar"
+        [aria-label]="calendarMsg.aria.calendar"
     ></full-calendar>
 </section>
 
@@ -22,7 +22,7 @@
     <app-day-events-modal
         [events]="selectedDayEvents()"
         [date]="selectedDate()"
-        (createEvent)="handleCreateEvent()"
+        (createEvent)="handleCreateEventFromDay()"
         (editEvent)="handleEditEvent($event)"
         (deleteEvent)="handleDeleteEvent($event)"
         (closeModal)="activeModal.set(CalendarModalState.Closed)"
@@ -40,8 +40,8 @@
 
 @if (activeModal() === CalendarModalState.Confirm) {
     <app-confirm-modal
-        [title]="confirmModalMsg().title"
-        [message]="confirmModalMsg().message"
+        [title]="confirmMsg.deleteEvent.title"
+        [message]="confirmMsg.deleteEvent.message"
         (confirm)="confirmDeleteEvent()"
         (cancel)="cancelDeleteEvent()"
     ></app-confirm-modal>
