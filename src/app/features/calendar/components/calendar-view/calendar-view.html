@@ -5,7 +5,7 @@
     ></app-create-button>
 
     <app-vehicle-selector
-        [vehicles]="vehicleService.vehicles()"
+        [vehicles]="vehicles()"
         (vehicleSelected)="handleVehicleSelected($event)"
     ></app-vehicle-selector>
 </section>

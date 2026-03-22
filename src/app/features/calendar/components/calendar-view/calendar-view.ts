@@ -50,13 +50,14 @@ export class CalendarViewComponent implements AfterViewInit {
   @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
 
   private eventService = inject(EventService);
-  public vehicleService = inject(VehicleService);
+  private vehicleService = inject(VehicleService);
   private messagesService = inject(EventMessagesService)
 
   readonly calendarMsg = this.messagesService.calendar;
   readonly confirmMsg = this.messagesService.confirmModal;
   readonly ariaMsg = this.messagesService.aria;
 
+  readonly vehicles = this.vehicleService.vehicles;
   public selectedDate = signal<string>('');
   private selectedEventId = signal<string | null>(null);
 
@@ -90,12 +91,13 @@ export class CalendarViewComponent implements AfterViewInit {
 
     events: [],
 
-    dayMaxEvents: 2,
+    dayMaxEvents: 10,
     dayMaxEventRows: false,
     moreLinkContent: (arg: any) => `+ ${arg.num}`,
-    eventDidMount: (info: any) => (info.el.title = info.event.title),
 
-    eventDisplay: 'list-item',
+    eventDisplay: 'block',
+    eventContent: () => ({ html: '<span class="fc-dot-indicator"></span>' }),
+    
     editable: false,
     timeZone: 'local',
   };
