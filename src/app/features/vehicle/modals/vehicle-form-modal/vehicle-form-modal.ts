@@ -13,11 +13,9 @@ import { VehicleMessagesService } from '../../services/vehicle-messages-service/
 })
 export class VehicleFormModalComponent {
 
-  private msg = inject(VehicleMessagesService);
-  
-  public readonly formMsg = this.msg.form;
-  public readonly errorMsg = this.msg.errors;
-  public readonly ariaMsg = this.msg.aria.form;
+  private messagesService = inject(VehicleMessagesService);
+
+  public readonly formMsg = this.messagesService.form;
 
   mode = input<'create' | 'edit'>('create');
   vehicle = input<VehicleInterface | null>(null);
@@ -84,10 +82,10 @@ export class VehicleFormModalComponent {
 
     const fieldName = this.capitalize(field);
 
-    if (control.errors?.['required']) return this.errorMsg.required(fieldName);
-    if (control.errors?.['minlength']) return this.errorMsg.minLength(fieldName, control.errors['minlength'].requiredLength);
-    if (control.errors?.['maxlength']) return this.errorMsg.maxLength(fieldName, control.errors['maxlength'].requiredLength);
-    if (control.errors?.['pattern']) return this.errorMsg.invalidUrl; 
+    if (control.errors?.['required']) return this.formMsg.errors.required(fieldName);
+    if (control.errors?.['minlength']) return this.formMsg.errors.minLength(fieldName, control.errors['minlength'].requiredLength);
+    if (control.errors?.['maxlength']) return this.formMsg.errors.maxLength(fieldName, control.errors['maxlength'].requiredLength);
+    if (control.errors?.['pattern']) return this.formMsg.errors.invalidUrl; 
 
     return null;
   }

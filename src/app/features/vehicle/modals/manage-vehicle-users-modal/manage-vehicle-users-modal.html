@@ -27,7 +27,7 @@
                             @if(canRemove(user.userId)) {
                                 <app-delete-button
                                     (delete)="onRemoveUser(user.userId)"
-                                    [attr.aria-label]="ariaMsg.removeUser(user.email)"
+                                    [attr.aria-label]="usersMsg.aria.removeUser(user.email)"
                                 ></app-delete-button>
                             }
                         </li>
@@ -74,7 +74,7 @@
                         (click)="onSubmit()"
                         [disabled]="loading()"
                         [attr.aria-busy]="loading()"
-                        [attr.aria-label]="ariaMsg.addUserButton"
+                        [attr.aria-label]="usersMsg.aria.addUserButton"
                     >
                         @if (loading()) {
                             <span role="status">
@@ -92,7 +92,7 @@
                         class="modal__button modal__button--cancel"
                         (click)="onCancel()"
                         [disabled]="loading()"
-                        [attr.aria-label]="ariaMsg.cancelButton"
+                        [attr.aria-label]="usersMsg.aria.cancelButton"
                     >
                         {{ usersMsg.buttons.cancel }}
                     </button>

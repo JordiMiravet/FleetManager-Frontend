@@ -1,9 +1,12 @@
-<section class="vehicle-empty__container">
+<section 
+  class="vehicle-empty__container" 
+  [attr.aria-label]="emptyStateMsg.aria.section"
+>
   <p class="vehicle-empty__text">
-    There are no registered vehicles
+    {{ emptyStateMsg.text }}
   </p>
   <app-create-button
     (click)="onClick()" 
-    [createText]="'Your First Vehicle'"
+    [createText]="emptyStateMsg.button"
   ></app-create-button>
 </section>

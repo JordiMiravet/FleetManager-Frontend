@@ -23,8 +23,6 @@ export class ManageVehicleUsersModalComponent {
   private messagesService = inject(VehicleMessagesService);
   
   public readonly usersMsg = this.messagesService.users;
-  public readonly errorMsg = this.messagesService.errors;
-  public readonly ariaMsg = this.messagesService.aria.users;
 
   vehicle = input.required<VehicleInterface | null>();
 
@@ -47,8 +45,8 @@ export class ManageVehicleUsersModalComponent {
   onSubmit(): void {
     const emailValue = this.email().trim();
 
-    if (!emailValue) return this.error.set(this.errorMsg.emailRequired);
-    if (!this.isValidEmail(emailValue)) return this.error.set(this.errorMsg.invalidEmail);
+    if (!emailValue) return this.error.set(this.usersMsg.errors.emailRequired);
+    if (!this.isValidEmail(emailValue)) return this.error.set(this.usersMsg.errors.invalidEmail);
 
     this.error.set('');
     this.loading.set(true);

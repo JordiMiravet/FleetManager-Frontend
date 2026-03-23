@@ -29,7 +29,7 @@
                     [placeholder]="formMsg.fields.name.placeholder"
                     [ngClass]="{'modal__input--error': form.controls['name'].invalid && form.controls['name'].touched}"
                     [attr.aria-invalid]="form.controls['name'].invalid && form.controls['name'].touched"
-                    [attr.aria-label]="ariaMsg.nameInput"
+                    [attr.aria-label]="formMsg.aria.nameInput"
                     aria-describedby="createVehicleName-error"
                 />
                 
@@ -54,7 +54,7 @@
                     [placeholder]="formMsg.fields.model.placeholder"
                     [ngClass]="{'modal__input--error': form.controls['model'].invalid && form.controls['model'].touched}"
                     [attr.aria-invalid]="form.controls['model'].invalid && form.controls['model'].touched"
-                    [attr.aria-label]="ariaMsg.modelInput"
+                    [attr.aria-label]="formMsg.aria.modelInput"
                     aria-describedby="createVehicleModel-error"
                 />
                 
@@ -79,7 +79,7 @@
                     [placeholder]="formMsg.fields.plate.placeholder"
                     [ngClass]="{'modal__input--error': form.controls['plate'].invalid && form.controls['plate'].touched}"
                     [attr.aria-invalid]="form.controls['plate'].invalid && form.controls['plate'].touched"
-                    [attr.aria-label]="ariaMsg.plateInput"
+                    [attr.aria-label]="formMsg.aria.plateInput"
                     aria-describedby="createVehiclePlate-error"
                 />
                 
@@ -104,7 +104,7 @@
                     [placeholder]="formMsg.fields.imageUrl.placeholder"
                     [ngClass]="{'modal__input--error': form.controls['imageUrl'].invalid && form.controls['imageUrl'].touched}"
                     [attr.aria-invalid]="form.controls['imageUrl'].invalid && form.controls['imageUrl'].touched"
-                    [attr.aria-label]="ariaMsg.imageUrlInput"
+                    [attr.aria-label]="formMsg.aria.imageUrlInput"
                     aria-describedby="createVehicleImageUrl-error"
                 />
                 
@@ -126,7 +126,7 @@
                 type="button" 
                 class="modal__button modal__button--save" 
                 (click)="onSubmit()"
-                [attr.aria-label]="mode() === 'create' ? ariaMsg.createButton : ariaMsg.updateButton"
+                [attr.aria-label]="mode() === 'create' ? formMsg.aria.createButton : formMsg.aria.updateButton"
             >
                 <i class="pi pi-save" aria-hidden="true"></i>
                 {{ mode() === 'create' ? formMsg.buttons.create : formMsg.buttons.update }}
@@ -136,7 +136,7 @@
                 type="button" 
                 class="modal__button modal__button--cancel" 
                 (click)="onCancel()"
-                [attr.aria-label]="ariaMsg.cancelButton"
+                [attr.aria-label]="formMsg.aria.cancelButton"
             >
                 {{ formMsg.buttons.cancel }}
             </button>

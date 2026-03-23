@@ -21,7 +21,22 @@ export class VehicleMessagesService {
       update: 'Update',
       cancel: 'Cancel'
     },
-    note: 'Fields marked with * are required'
+    note: 'Fields marked with * are required',
+    errors: {
+      required: (field: string) => `${field} is required`,
+      minLength: (field: string, length: number) => `${field} must be at least ${length} characters`,
+      maxLength: (field: string, length: number) => `${field} cannot exceed ${length} characters`,
+      invalidUrl: 'Please enter a valid URL'
+    },
+    aria: {
+      nameInput: 'Vehicle Name input field',
+      modelInput: 'Vehicle Model input field',
+      plateInput: 'Vehicle Plate input field',
+      imageUrlInput: 'Vehicle Image URL input field',
+      createButton: 'Create vehicle',
+      updateButton: 'Update vehicle',
+      cancelButton: 'Cancel and close modal'
+    }
   };
 
   readonly users = {
@@ -39,29 +54,12 @@ export class VehicleMessagesService {
       noUsers: 'No users assigned',
       currentUsers: 'Current Users'
     },
-    note: 'Fields marked with * are required'
-  };
-
-  readonly errors = {
-    required: (field: string) => `${field} is required`,
-    minLength: (field: string, length: number) => `${field} must be at least ${length} characters`,
-    maxLength: (field: string, length: number) => `${field} cannot exceed ${length} characters`,
-    emailRequired: 'Email is required',
-    invalidEmail: 'Please enter a valid email',
-    invalidUrl: 'Please enter a valid URL'
-  };
-
-  readonly aria = {
-    form: {
-      nameInput: 'Vehicle Name input field',
-      modelInput: 'Vehicle Model input field',
-      plateInput: 'Vehicle Plate input field',
-      imageUrlInput: 'Vehicle Image URL input field',
-      createButton: 'Create vehicle',
-      updateButton: 'Update vehicle',
-      cancelButton: 'Cancel and close modal'
+    note: 'Fields marked with * are required',
+    errors: {
+      emailRequired: 'Email is required',
+      invalidEmail: 'Please enter a valid email'
     },
-    users: {
+    aria: {
       addUserButton: 'Add user to vehicle',
       removeUser: (email: string) => `Remove user ${email}`,
       cancelButton: 'Cancel and close modal'
@@ -76,7 +74,8 @@ export class VehicleMessagesService {
       plateText: 'License Plate',
       actionsText: 'Actions'
     }
-  }
+  };
+
   readonly selectors = {
     vehicle: {
       label: 'Select Vehicle',
@@ -88,6 +87,14 @@ export class VehicleMessagesService {
     deleteVehicle: {
       title: 'Delete vehicle?',
       message: 'Are you sure you want to delete this vehicle? This action cannot be undone.'
+    }
+  };
+
+  readonly emptyState = {
+    text: 'There are no registered vehicles',
+    button: 'Your First Vehicle',
+    aria: {
+      section: 'No vehicles registered'
     }
   };
 }
