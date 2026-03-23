@@ -23,11 +23,8 @@ export class RegisterComponent {
   private messagesService = inject(AuthMessagesService);
 
   readonly formMsg = this.messagesService.form;
-  readonly errorMsg = this.messagesService.errors;
-  readonly ariaMsg = this.messagesService.aria;
 
   readonly passwordMinLength = 6;
-
   public errorSubmit: string = '';
 
   formReg: FormGroup;
@@ -58,9 +55,9 @@ export class RegisterComponent {
     })
     .catch(error => {
       if (error.code === 'auth/email-already-in-use') {
-        this.errorSubmit = this.errorMsg.emailAlreadyExists;
+        this.errorSubmit = this.formMsg.errors.emailAlreadyExists;
       } else {
-        this.errorSubmit = this.errorMsg.invalidCredentials;
+        this.errorSubmit = this.formMsg.errors.invalidCredentials;
       }
       console.error('Error:', error);
     });

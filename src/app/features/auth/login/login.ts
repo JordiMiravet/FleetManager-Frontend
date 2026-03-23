@@ -23,11 +23,8 @@ export class LoginComponent {
   private messagesService = inject(AuthMessagesService);
 
   readonly formMsg = this.messagesService.form;
-  readonly errorMsg = this.messagesService.errors;
-  readonly ariaMsg = this.messagesService.aria;
 
   readonly passwordMinLength = 6;
-  
   public errorSubmit: string = '';
 
   formLogin: FormGroup;
@@ -57,7 +54,7 @@ export class LoginComponent {
       this.router.navigate([''])
     })
     .catch(error => {
-      this.errorSubmit = this.errorMsg.invalidCredentials
+      this.errorSubmit = this.formMsg.errors.invalidCredentials
       console.error('Error:', error)
     });
   }

@@ -26,7 +26,7 @@
         [attr.aria-hidden]="formControls.email.valid || !formControls.email.touched ? 'true' : 'false'"
       >
         <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-        {{ errorMsg.invalidEmail }}
+        {{ formMsg.errors.invalidEmail }}
       </p>
     </div>
 
@@ -50,14 +50,14 @@
         [attr.aria-hidden]="formControls.password.valid || !formControls.password.touched ? 'true' : 'false'"
       >
         <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-        {{ errorMsg.invalidPassword(passwordMinLength) }}
+        {{ formMsg.errors.invalidPassword(passwordMinLength) }}
       </p>
     </div>
 
     <button
       type="submit"
       class="btn__auth"
-      [aria-label]="ariaMsg.buttons.login"
+      [aria-label]="formMsg.aria.buttons.login"
     >
       {{ formMsg.buttons.login }}
     </button>
@@ -75,7 +75,7 @@
     {{ formMsg.switch.toRegister.prompt }}
     <a 
       routerLink="/register"
-      [attr.aria-label]="ariaMsg.switch.toRegister"
+      [attr.aria-label]="formMsg.aria.switch.toRegister"
     >
       {{ formMsg.switch.toRegister.action }}
     </a>
