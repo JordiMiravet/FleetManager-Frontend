@@ -1,4 +1,4 @@
-<section class="calendar__actions" [aria-label]="ariaMsg.actions">
+<section class="calendar__actions" [aria-label]="calendarMsg.aria.actions">
     <app-create-button
         (click)="handleCreateEvent()"
         [createText]="calendarMsg.actions.createEvent"
@@ -10,11 +10,11 @@
     ></app-vehicle-selector>
 </section>
 
-<section class="calendar__container" [aria-label]="calendarMsg.aria.calendar">
+<section class="calendar__container" [aria-label]="calendarMsg.aria.section">
     <full-calendar
         #calendar
         [options]="calendarOptions"
-        [aria-label]="calendarMsg.aria.calendar"
+        [aria-label]="calendarMsg.aria.section"
     ></full-calendar>
 </section>
 

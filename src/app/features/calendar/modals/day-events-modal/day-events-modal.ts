@@ -38,7 +38,6 @@ export class DayEventsModalComponent {
   closeModal = output<void>();
 
   readonly dayEventsMsg = this.messagesService.dayEvents;
-  readonly ariaMsg = this.messagesService.aria.dayEvents;
   
   onCreate() {
     this.createEvent.emit();

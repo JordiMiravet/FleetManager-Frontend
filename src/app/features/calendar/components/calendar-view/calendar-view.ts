@@ -20,14 +20,7 @@ import { VehicleSelectorComponent } from "../../../vehicle/components/vehicle-se
 
 import { ConfirmModalComponent } from '../../../../shared/components/modals/confirm-modal/confirm-modal';
 import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
-
-
-export enum CalendarModalState {
-  Closed = 'closed',
-  DayEvents = 'dayEvents',
-  EventForm = 'eventForm',
-  Confirm = 'confirm'
-}
+import { CalendarModalState } from '../../enum/calendar-modal-state.enum';
 
 @Component({
   selector: 'app-calendar-view',
@@ -55,7 +48,6 @@ export class CalendarViewComponent implements AfterViewInit {
 
   readonly calendarMsg = this.messagesService.calendar;
   readonly confirmMsg = this.messagesService.confirmModal;
-  readonly ariaMsg = this.messagesService.aria;
 
   readonly vehicles = this.vehicleService.vehicles;
   public selectedDate = signal<string>('');

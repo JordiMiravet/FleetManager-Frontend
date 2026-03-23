@@ -12,7 +12,7 @@
             <h2 
                 id="dayEventsTitle" 
                 class="modal__title" 
-                [attr.aria-label]="dayEventsMsg.title(date())"
+                [attr.aria-label]="dayEventsMsg.aria.title(date())"
             >
                 <i class="pi pi-calendar" aria-hidden="true"></i>
                 {{ dayEventsMsg.title(date()) }}
@@ -34,7 +34,6 @@
                                 class="event-card__summary"
                                 (click)="openDetails($index)"
                                 [attr.aria-controls]="'eventDetails' + $index"
-                                aria-expanded="false"
                             >
                                 <div class="event-card__info">
                                     <span class="event-card__vehicle">{{ getVehicleName(event.vehicleId!) }}</span>

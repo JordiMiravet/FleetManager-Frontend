@@ -7,7 +7,6 @@ import { EventInterface } from '../../interfaces/event';
 import { EventMessagesService } from '../../services/event-messages-service/event-messages-service';
 
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
 
 @Component({
   selector: 'app-event-form-modal',
@@ -27,8 +26,6 @@ export class EventFormModalComponent implements OnInit {
   private messagesService = inject(EventMessagesService);
 
   readonly formMsg = this.messagesService.form;
-  readonly errorMsg = this.messagesService.errors;
-  readonly ariaMsg = this.messagesService.aria;
 
   public vehicles = this.vehicleService.vehicles;
 
@@ -95,16 +92,6 @@ export class EventFormModalComponent implements OnInit {
       hourEnd?.markAsTouched();
     });
   }
-
-
-  public onVehicleSelected(vehicle: VehicleInterface | null): void {
-    if (!vehicle) {
-      this.formEvent.patchValue({ vehicleId: '' });
-      return;
-    }
-    this.formEvent.patchValue({ vehicleId: vehicle._id });
-  }
-
 
   private timeRangeValidator(control: AbstractControl): ValidationErrors | null {
     const { hourStart, hourEnd } = control.value;

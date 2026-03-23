@@ -40,7 +40,7 @@
                     [hidden]="formEvent.get('title')?.valid || !formEvent.get('title')?.touched"
                 >
                     <i class="pi pi-exclamation-circle" aria-hidden="true"></i> 
-                    {{ errorMsg.required }}
+                    {{ formMsg.errors.required }}
                 </p>
             </div>
 
@@ -64,7 +64,7 @@
                     [hidden]="formEvent.get('date')?.valid || !formEvent.get('date')?.touched"
                 >
                     <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-                    {{ errorMsg.required }}
+                    {{ formMsg.errors.required }}
                 </p>
             </div>
 
@@ -88,7 +88,7 @@
                         [hidden]="formEvent.get('hourStart')?.valid || !formEvent.get('hourStart')?.touched"
                     >
                         <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-                        {{ errorMsg.required }}
+                        {{ formMsg.errors.required }}
                     </p>
                 </div>
 
@@ -111,7 +111,7 @@
                         [hidden]="formEvent.get('hourEnd')?.valid || !formEvent.get('hourEnd')?.touched"
                     >
                         <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-                        {{ errorMsg.required }}
+                        {{ formMsg.errors.required }}
                     </p>
                 </div>
 
@@ -122,7 +122,7 @@
                     [hidden]="!formEvent.hasError('invalidTimeRange') || !formEvent.get('hourStart')?.touched || !formEvent.get('hourEnd')?.touched"
                 >
                     <i class="pi pi-exclamation-circle" aria-hidden="true"></i> 
-                    {{ errorMsg.invalidRange  }}
+                    {{ formMsg.errors.invalidRange }}
                 </p>
 
                 <p 
@@ -132,7 +132,7 @@
                     [hidden]="!formEvent.hasError('timeOverlap') || formEvent.hasError('invalidTimeRange')"
                 >
                     <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-                    {{ errorMsg.overlap }}
+                    {{ formMsg.errors.overlap }}
                 </p>
             </div>
             
@@ -182,7 +182,7 @@
                     class="event-form__button event-form__button--Cancel" 
                     type="button" 
                     (click)="handleClose()" 
-                    [aria-label]="ariaMsg.form.cancel"
+                    [aria-label]="formMsg.buttons.cancel"
                 >
                     {{ formMsg.buttons.cancel }}
                 </button>
@@ -190,7 +190,7 @@
                 <button 
                     class="event-form__button event-form__button--Save" 
                     type="submit" 
-                    [aria-label]="ariaMsg.form.save"
+                    [aria-label]="formMsg.buttons.save"
                 >
                     <i class="pi pi-save" aria-hidden="true"></i>
                     {{ formMsg.buttons.save }}

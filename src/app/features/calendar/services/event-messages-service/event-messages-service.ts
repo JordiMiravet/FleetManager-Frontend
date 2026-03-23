@@ -10,8 +10,8 @@ export class EventMessagesService {
       createEvent: 'Event'
     },
     aria: {
-      actions: 'Calendar actions',
-      calendar: 'Vehicle events calendar'
+      section: 'Vehicle events calendar',
+      actions: 'Calendar actions'
     }
   };
 
@@ -30,7 +30,12 @@ export class EventMessagesService {
       edit: 'Update Event',
       delete: 'Delete Event'
     },
-    vehicleFallback: 'Unknown Vehicle'
+    vehicleFallback: 'Unknown Vehicle',
+    aria: {
+      title: (date: string) => `Events of the Day ${date}`,
+      list: 'Events list',
+      empty: 'There are no events for the selected day'
+    }
   };
 
   readonly form = {
@@ -66,26 +71,15 @@ export class EventMessagesService {
       cancel: 'Cancel',
       save: 'Save'
     },
-    note: 'Fields marked with * are required'
-  };
-
-  readonly errors = {
-    required: 'This field is required',
-    invalidRange: 'Are you going back to the future, McFly? End time must be after start time',
-    overlap: 'This vehicle is already booked at this time'
-  };
-
-  readonly aria = {
-    calendar: 'Vehicle events calendar',
-    actions: 'Calendar actions',
-    dayEvents: {
-      title: (date: string) => `Events of the Day ${date}`,
-      list: 'Events list',
-      empty: 'There are no events for the selected day'
-    },
-    form: {
+    note: 'Fields marked with * are required',
+    aria: {
       cancel: 'Cancel adding event',
       save: 'Save event'
+    },
+    errors: {
+      required: 'This field is required',
+      invalidRange: 'Are you going back to the future, McFly? End time must be after start time',
+      overlap: 'This vehicle is already booked at this time'
     }
   };
 
