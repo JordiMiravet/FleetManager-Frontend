@@ -2,12 +2,13 @@ import { Component, effect, inject, OnDestroy, OnInit, signal } from '@angular/c
 import * as L from 'leaflet';
 
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
-import { MapService } from '../../services/map-service';
+import { MapService } from '../../services/map-service/map-service';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
 import { VehicleSelectorComponent } from '../../../vehicle/components/vehicle-selector/vehicle-selector';
 import { ConfirmModalComponent } from "../../../../shared/components/modals/confirm-modal/confirm-modal";
 import { DetailsPanelComponent } from "../details-panel/details-panel";
+import { MapMessagesService } from '../../services/map-messages-service/map-messages-service';
 
 @Component({
   selector: 'app-map-view',
@@ -26,6 +27,7 @@ export class MapViewComponent implements OnInit, OnDestroy {
   private readonly mapService = inject(MapService);
   private readonly geo = inject(GeolocationService);
   private readonly vehicleService = inject(VehicleService);
+  private readonly messagesService = inject(MapMessagesService)
 
   public readonly vehicles = this.vehicleService.vehicles;
 
@@ -37,20 +39,11 @@ export class MapViewComponent implements OnInit, OnDestroy {
   public readonly newPosition = signal<L.LatLng | null>(null);
   public readonly showConfirmModal = signal(false);
 
+  public readonly mapViewMsg = this.messagesService.mapView;
+
   private readonly DEFAULT_CENTER: [number, number] = [41.478, 2.310];
   private readonly DEFAULT_ZOOM = 10;
   private readonly SELECTED_ZOOM = 19;
-
-  public readonly messages = {
-    mapView: {
-      ariaLabel: 'Interactive map showing vehicle positions. Visual only, drag points to move vehicles with mouse or touch',
-      ariaDescribedby: 'This map displays all vehicle positions. Users can select a vehicle from the selector or use the center button on each vehicle card to focus on its location.'
-    },
-    confirmModal: {
-      title: 'Change vehicle position',
-      message: 'Are you sure about changing the position of the vehicle?'
-    },
-  };
 
   constructor() {
     effect(() => {

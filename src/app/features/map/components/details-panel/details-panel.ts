@@ -1,5 +1,6 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
+import { MapMessagesService } from '../../services/map-messages-service/map-messages-service';
 
 @Component({
   selector: 'app-details-panel',
@@ -9,16 +10,10 @@ import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
 })
 export class DetailsPanelComponent {
 
+  private readonly messagesService = inject(MapMessagesService);
+  public readonly detailsPanelMsg = this.messagesService.detailsPanel;
+
   public click = output<void>();
   public vehicle = input<VehicleInterface | null>(null);
-
-  public readonly message = {
-    mapCard: {
-      accessibility: {
-        ariaLabel: "Center map on current location",
-        title: "Click to center the map on the vehicle's location"
-      }
-    }
-  }
 
 }

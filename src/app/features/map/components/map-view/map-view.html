@@ -10,11 +10,11 @@
         id="map" 
         class="map-view__map" 
         role="region"
-        [attr.aria-label]="messages.mapView.ariaLabel"
+        [attr.aria-label]="mapViewMsg.aria.mapRegion"
         aria-describedby="map-description"
     ></div>
     <p id="map-description" class="sr-only">
-        {{ messages.mapView.ariaDescribedby }}
+        {{ mapViewMsg.aria.mapDescription }}
     </p>
 
     @if(selectedVehicle()){
@@ -29,8 +29,8 @@
 
 @if(showConfirmModal()){
     <app-confirm-modal
-        [title]="messages.confirmModal.title"
-        [message]="messages.confirmModal.message"
+        [title]="mapViewMsg.confirmModal.title"
+        [message]="mapViewMsg.confirmModal.message"
         (confirm)="onConfirmLocationChange()"
         (cancel)="onCancelLocationChange()"
     />

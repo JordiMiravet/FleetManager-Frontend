@@ -1,4 +1,4 @@
-<article class="map-card" role="region" aria-labelledby="map-card-title">
+<article class="map-card" role="region" [attr.aria-label]="detailsPanelMsg.aria.region">
     <div class="map-card__info">
         <h2 id="map-card-title" class="map-card__name">{{ vehicle()?.name }}</h2>
         <h3 class="map-card__plate" id="vehicle-plate">{{ vehicle()?.plate }}</h3>
@@ -6,10 +6,10 @@
     <button 
         class="map__button" 
         (click)="click.emit()" 
-        [aria-label]="message.mapCard.accessibility.ariaLabel"
-        [title]="message.mapCard.accessibility.title"
+        [aria-label]="detailsPanelMsg.aria.button" 
+        [title]="detailsPanelMsg.aria.buttonTitle" 
     >
         <i class="pi pi-compass" aria-hidden="true"></i>
-        Center on Me
+        {{ detailsPanelMsg.button }}
     </button>
 </article>
