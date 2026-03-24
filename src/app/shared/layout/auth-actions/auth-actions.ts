@@ -2,6 +2,7 @@ import { Component, inject, Signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 import { AuthService } from '../../../features/auth/services/auth-service/auth-service';
+import { LayoutMessagesService } from '../services/layout-messages-service';
 
 @Component({
   selector: 'app-auth-actions',
@@ -15,6 +16,9 @@ export class AuthActionsComponent {
   
   private auth = inject(AuthService);
   private router =  inject(Router);
+  private messagesService = inject(LayoutMessagesService)
+
+  public readonly authActionsMsg = this.messagesService.authActions;
 
   public isLogged : Signal<boolean> = this.auth.isLogged;
 

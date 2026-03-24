@@ -1,4 +1,9 @@
-<article class="map-card" role="region" [attr.aria-label]="detailsPanelMsg.aria.region">
+<article 
+    class="map-card" 
+    role="region" 
+    aria-labelledby="map-card-title" 
+    [attr.aria-label]="detailsPanelMsg.aria.region"
+>
     <div class="map-card__info">
         <h2 id="map-card-title" class="map-card__name">{{ vehicle()?.name }}</h2>
         <h3 class="map-card__plate" id="vehicle-plate">{{ vehicle()?.plate }}</h3>

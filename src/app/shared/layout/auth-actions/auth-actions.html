@@ -1,11 +1,31 @@
 <div class="navbar__auth" >
     @if(this.isLogged()){
-        <button data-test="logoutButton" routerLinkActive="active" (click)="onLogout()">
+        <button 
+            data-test="logoutButton" 
+            routerLinkActive="active" 
+            (click)="onLogout()"
+            [attr.aria-label]="authActionsMsg.aria.logout"
+        >
             <i class="pi pi-sign-out" aria-hidden="true"></i>
-            <span class="navbar__auth-label">Logout</span>
+            <span class="navbar__auth-label">{{ authActionsMsg.buttons.logout }}</span>
         </button>
-    } @else if (!this.isLogged()) {
-        <button data-test="registerButton" [routerLink]="['/register']" routerLinkActive="active">Register</button>
-        <button data-test="loginButton" [routerLink]="['/login']" routerLinkActive="active">Login</button>
+    } @else {
+        <button 
+            data-test="registerButton" 
+            [routerLink]="['/register']" 
+            routerLinkActive="active"
+            [attr.aria-label]="authActionsMsg.aria.register"
+        >
+            {{ authActionsMsg.buttons.register }}
+        </button>
+        <button 
+            data-test="loginButton" 
+            [routerLink]="['/login']" 
+            routerLinkActive="active"
+            [attr.aria-label]="authActionsMsg.aria.login"
+        >
+            {{ authActionsMsg.buttons.login }}
+
+        </button>
     }   
 </div>
