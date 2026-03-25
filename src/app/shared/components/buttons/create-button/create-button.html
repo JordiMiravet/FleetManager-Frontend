@@ -2,9 +2,9 @@
   type="button"
   class="create-button"
   (click)="onClick()"
-  [attr.aria-label]="'Add ' + createText()"
+  [attr.aria-label]="createText()"
 >
     <span class="create-button__text">
-      Add {{ createText() }}
+      {{ createText() }}
     </span>
 </button>

@@ -7,7 +7,7 @@ export class EventMessagesService {
 
   readonly calendar = {
     actions: {
-      createEvent: 'Event'
+      createEvent: 'Add Event'
     },
     aria: {
       section: 'Vehicle events calendar',
@@ -26,7 +26,7 @@ export class EventMessagesService {
     title: (date: string) => `Events of the Day: ${date}`,
     empty: 'There are no events for the selected day',
     actions: {
-      create: 'Event',
+      create: 'Add Event',
       edit: 'Update Event',
       delete: 'Delete Event'
     },

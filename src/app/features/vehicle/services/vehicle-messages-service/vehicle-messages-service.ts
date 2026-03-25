@@ -92,9 +92,16 @@ export class VehicleMessagesService {
 
   readonly emptyState = {
     text: 'There are no registered vehicles',
-    button: 'Your First Vehicle',
+    button: 'Add Your First Vehicle',
     aria: {
       section: 'No vehicles registered'
     }
   };
+
+  readonly actions = {
+    vehicle: {
+      add: 'Add vehicle',
+    }
+  };
+
 }
