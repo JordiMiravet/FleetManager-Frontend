@@ -5,6 +5,19 @@ import { Injectable } from '@angular/core';
 })
 export class VehicleMessagesService {
   
+  readonly header = {
+    title: 'My Garage',
+    actions: {
+      create: 'Add Vehicle'
+    }
+  }
+
+  readonly actions = {
+    vehicle: {
+      add: 'Add vehicle',
+    }
+  };
+
   readonly form = {
     title: {
       create: 'Create Vehicle',
@@ -98,10 +111,6 @@ export class VehicleMessagesService {
     }
   };
 
-  readonly actions = {
-    vehicle: {
-      add: 'Add vehicle',
-    }
-  };
+
 
 }

@@ -47,7 +47,7 @@ export class VehicleViewComponent {
   public selectedVehicle = signal<VehicleInterface | null>(null);
   public VehicleModalState = VehicleModalState;
 
-  public readonly vehicleMsg = this.messagesService.actions;
+  public readonly headerMsg = this.messagesService.header;
   public readonly confirmMsg = this.messagesService.confirm;
 
   ngOnInit(): void {

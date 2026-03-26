@@ -1,11 +1,11 @@
 <section class="home__header">
     <h2 class="home__title">
         <i class="pi pi-car" aria-hidden="true"></i>
-        My Garage
+        {{ headerMsg.title }}
     </h2>
     <app-create-button 
         (create)="modalState.openCreate()"
-        [createText]="vehicleMsg.vehicle.add"
+        [createText]="headerMsg.actions.create"
     />
 </section>
 
