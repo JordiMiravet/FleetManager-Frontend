@@ -4,7 +4,7 @@ import * as L from 'leaflet';
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
 import { MapService } from '../../services/map-service/map-service';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
+import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 import { VehicleSelectorComponent } from '../../../vehicle/components/vehicle-selector/vehicle-selector';
 import { ConfirmModalComponent } from "../../../../shared/components/modals/confirm-modal/confirm-modal";
 import { DetailsPanelComponent } from "../details-panel/details-panel";

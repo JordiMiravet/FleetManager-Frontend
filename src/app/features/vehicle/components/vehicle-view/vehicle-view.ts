@@ -1,11 +1,11 @@
-import { Component, inject, signal, ViewChild } from '@angular/core';
+import { Component, computed, inject, signal, ViewChild } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
 import { VehicleService } from '../../services/vehicle-service/vehicle-service';
 import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
 
-import { VehicleInterface } from '../../interfaces/vehicle';
+import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
 import { VehicleModalState } from '../../enum/vehicle-modal-state.enum';
 import { VehicleModalService} from '../../services/vehicle-modal-service/vehicle-modal-service';
@@ -16,16 +16,18 @@ import { ManageVehicleUsersModalComponent } from '../../modals/manage-vehicle-us
 import { VehicleTableComponent } from "../vehicle-table/vehicle-table";
 import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
 import { VehicleEmptyStateComponent } from "../vehicle-empty-state/vehicle-empty-state";
-
+import { VehicleTableActionsComponent } from '../vehicle-table-actions/vehicle-table-actions';
+import { VehicleFilterState } from '../../interfaces/vehicle-filter-state/vehicle-filter-state';
 
 @Component({
   selector: 'app-vehicle-view',
   standalone: true,
   imports: [
-    CreateButtonComponent,
     VehicleTableComponent,
+    VehicleTableActionsComponent,
     VehicleEmptyStateComponent,
     VehicleFormModalComponent,
+    CreateButtonComponent,
     ConfirmModalComponent,
     ManageVehicleUsersModalComponent
   ],
@@ -41,17 +43,53 @@ export class VehicleViewComponent {
   private geo = inject(GeolocationService);
   private vehicleService = inject(VehicleService);
   private messagesService = inject(VehicleMessagesService);
+
   public modalState = inject(VehicleModalService);
 
   public vehicleList = this.vehicleService.vehicles;
   public selectedVehicle = signal<VehicleInterface | null>(null);
   public VehicleModalState = VehicleModalState;
 
+  public filterState = signal<VehicleFilterState>({
+    query: '',
+    sortField: 'name',
+    sortDir: 'asc'
+  });
+
+
+  public filteredVehicles = computed(() => {
+    const { query, sortField, sortDir } = this.filterState();
+    let list = [...this.vehicleService.vehicles()];
+
+    if (query.trim()) {
+      const searchText = query.toLowerCase();
+      list = list.filter(v =>
+        v.name.toLowerCase().includes(searchText) ||
+        v.model.toLowerCase().includes(searchText) ||
+        v.plate.toLowerCase().includes(searchText)
+      );
+    }
+
+    list.sort((a, b) => {
+      const valueA = (a[sortField] ?? '').toLowerCase();
+      const valueB = (b[sortField] ?? '').toLowerCase();
+      return sortDir === 'asc'
+        ? valueA.localeCompare(valueB)
+        : valueB.localeCompare(valueA);
+    });
+
+    return list;
+  });
+
   public readonly headerMsg = this.messagesService.header;
   public readonly confirmMsg = this.messagesService.confirm;
 
   ngOnInit(): void {
     this.vehicleService.loadVehicles();
+  }
+
+  onFilterChange(state: VehicleFilterState): void {
+    this.filterState.set(state);
   }
 
   async saveVehicle(vehicleData: VehicleInterface): Promise<void> {
@@ -130,4 +168,6 @@ export class VehicleViewComponent {
       }
     });
   }
+
+
 }

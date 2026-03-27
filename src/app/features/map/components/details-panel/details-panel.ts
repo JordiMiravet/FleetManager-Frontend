@@ -1,5 +1,5 @@
 import { Component, inject, input, output } from '@angular/core';
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
+import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 import { MapMessagesService } from '../../services/map-messages-service/map-messages-service';
 
 @Component({

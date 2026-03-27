@@ -23,15 +23,13 @@
 
 .table__container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    margin: 0 auto;
+    align-items: stretch;
+    margin: 1rem auto 2rem auto;
     width: 95%;
 }
 
-.table__container app-vehicle-table {
-    margin: 1rem auto 2rem auto;
-}
 .table__container app-vehicle-empty-state {
     width: 100%;
     margin: 30vh auto;

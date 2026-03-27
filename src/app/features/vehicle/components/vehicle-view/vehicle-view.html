@@ -11,8 +11,11 @@
 
 <section class="table__container">
     @if (vehicleList().length) {
+        <app-vehicle-table-actions
+            (filterChange)="onFilterChange($event)"
+        ></app-vehicle-table-actions>
         <app-vehicle-table
-            [vehicles]="vehicleList()"
+            [vehicles]="filteredVehicles()"
             [vehicleModal]="modalState"
             (deleteVehicle)="modalState.openConfirmDelete($event)"
             (addUserToVehicle)="openAddUserModal($event)"

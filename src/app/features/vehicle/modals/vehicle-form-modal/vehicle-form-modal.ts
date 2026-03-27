@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { VehicleInterface } from '../../interfaces/vehicle';
+import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Injectable, signal, inject } from '@angular/core';
-import { VehicleInterface } from '../../interfaces/vehicle';
+import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Auth } from '@angular/fire/auth';

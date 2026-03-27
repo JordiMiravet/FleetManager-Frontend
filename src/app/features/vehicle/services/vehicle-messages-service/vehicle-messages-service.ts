@@ -79,6 +79,25 @@ export class VehicleMessagesService {
     }
   };
 
+  readonly tableActions = {
+    searchPlaceholder: 'Search by name, model or plate',
+    sortLabel: 'Sort by',
+    sortOptions: {
+      name: 'Vehicle Name',
+      plate: 'License Plate',
+      model: 'Model'
+    },
+    sortDir: {
+      asc: 'Ascending',
+      desc: 'Descending'
+    },
+    aria: {
+      searchInput: 'Search vehicles',
+      sortFieldSelect: 'Sort vehicles by field',
+      sortDirButton: 'Toggle sort direction'
+    }
+  };
+
   readonly table = {
     captionText: 'Vehicles list',
     headerText: {

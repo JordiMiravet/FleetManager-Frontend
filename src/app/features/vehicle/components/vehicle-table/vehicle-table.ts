@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PermissionService } from '../../../../shared/services/permission/permission';
 import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
 
-import { VehicleInterface } from '../../interfaces/vehicle';
+import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
 import { EditButtonComponent } from '../../../../shared/components/buttons/edit-button/edit-button';
 import { DeleteButtonComponent } from '../../../../shared/components/buttons/delete-button/delete-button';

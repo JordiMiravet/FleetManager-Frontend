@@ -1,0 +1,41 @@
+<section class="vehicle-actions">
+
+  <div class="vehicle-actions__search">
+    <i class="pi pi-search vehicle-actions__icon" aria-hidden="true"></i>
+    <input
+      type="text"
+      class="vehicle-actions__input"
+      [placeholder]="actionsMsg.searchPlaceholder"
+      [attr.aria-label]="actionsMsg.aria.searchInput"
+      (input)="onQueryChange($event)"
+    />
+  </div>
+
+  <div class="vehicle-actions__sort">
+
+    <select
+      class="vehicle-actions__select"
+      [attr.aria-label]="actionsMsg.aria.sortFieldSelect"
+      (change)="onSortFieldChange($event)"
+    >
+      <option value="name">{{ actionsMsg.sortOptions.name }}</option>
+      <option value="plate">{{ actionsMsg.sortOptions.plate }}</option>
+      <option value="model">{{ actionsMsg.sortOptions.model }}</option>
+    </select>
+
+    <button
+      class="vehicle-actions__button"
+      [attr.aria-label]="actionsMsg.aria.sortDirButton"
+      [class.vehicle-actions__button--active]="sortDir() === 'desc'"
+      (click)="toggleSortDir()"
+    >
+      <i
+        class="pi"
+        [class.pi-sort-amount-down]="sortDir() === 'asc'"
+        [class.pi-sort-amount-up]="sortDir() === 'desc'"
+      ></i>
+    </button>
+
+  </div>
+
+</section>

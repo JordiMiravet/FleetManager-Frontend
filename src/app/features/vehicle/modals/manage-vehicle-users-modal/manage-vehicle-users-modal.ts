@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { VehicleInterface } from '../../interfaces/vehicle';
+import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 import { PermissionService } from '../../../../shared/services/permission/permission';
 import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
 import { DeleteButtonComponent } from "../../../../shared/components/buttons/delete-button/delete-button";
