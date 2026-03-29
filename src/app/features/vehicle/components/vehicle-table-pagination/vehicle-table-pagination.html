@@ -1,1 +1,26 @@
-<p>vehicle-table-pagination works!</p>
+<div class="vehicle-pagination" role="navigation" aria-label="Vehicle table pagination">
+    <div class="vehicle-pagination__info">
+        <p class="vehicle-pagination__text">
+            Showing 
+            <span class="vehicle-pagination__value" aria-live="polite">X</span>
+            of 
+            <span class="vehicle-pagination__value" aria-live="polite">Y</span>
+            results
+        </p>
+    </div>
+
+    <div class="vehicle-pagination__controls">
+        <button 
+            class="vehicle-pagination__button"
+            aria-label="Previous page"
+        >
+            <i class="pi pi-angle-left" aria-hidden="true"></i>
+        </button>
+        <button 
+            class="vehicle-pagination__button"
+            aria-label="Next page"
+        >
+            <i class="pi pi-angle-right" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>

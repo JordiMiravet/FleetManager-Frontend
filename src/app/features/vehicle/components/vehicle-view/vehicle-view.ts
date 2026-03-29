@@ -18,6 +18,7 @@ import { CreateButtonComponent } from "../../../../shared/components/buttons/cre
 import { VehicleEmptyStateComponent } from "../vehicle-empty-state/vehicle-empty-state";
 import { VehicleTableActionsComponent } from '../vehicle-table-actions/vehicle-table-actions';
 import { VehicleFilterState } from '../../interfaces/vehicle-filter-state/vehicle-filter-state';
+import { VehicleTablePagination } from "../vehicle-table-pagination/vehicle-table-pagination";
 
 @Component({
   selector: 'app-vehicle-view',
@@ -29,8 +30,9 @@ import { VehicleFilterState } from '../../interfaces/vehicle-filter-state/vehicl
     VehicleFormModalComponent,
     CreateButtonComponent,
     ConfirmModalComponent,
-    ManageVehicleUsersModalComponent
-  ],
+    ManageVehicleUsersModalComponent,
+    VehicleTablePagination
+],
   templateUrl: './vehicle-view.html',
   styleUrl: './vehicle-view.css',
 })
