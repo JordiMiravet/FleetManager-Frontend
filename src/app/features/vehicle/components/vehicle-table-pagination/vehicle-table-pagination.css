@@ -8,7 +8,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    padding: 1.5rem 1.25rem;
+    padding: 0.75rem 1rem;
     border: 1px solid var(--gray-300);
     border-top: none;
     border-radius: 0 0 0.5rem 0.5rem;
@@ -39,7 +39,7 @@
 }
 
 .vehicle-pagination__button {
-    padding: 0.5rem;
+    padding: 1rem;
     border: 1px solid var(--gray-300);
     border-radius: 0.5rem;
     cursor: pointer;
@@ -61,4 +61,21 @@
     opacity: 0.5;
     cursor: not-allowed;
     border-color: var(--gray-300);
+}
+
+/* Desktop */
+
+@media(min-width: 576px) {
+
+    /* Pagination Container */
+
+    .vehicle-pagination {
+        padding: 1.25rem 1.25rem;
+    }
+
+    /* Pagination Controls */
+    
+    .vehicle-pagination__button {
+        padding: 0.5rem;
+    }
 }

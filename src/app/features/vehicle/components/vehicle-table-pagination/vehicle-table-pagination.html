@@ -1,24 +1,24 @@
-<div class="vehicle-pagination" role="navigation" aria-label="Vehicle table pagination">
+<div class="vehicle-pagination" role="navigation" [aria-label]="paginationMsg.aria.navigation">
     <div class="vehicle-pagination__info">
         <p class="vehicle-pagination__text">
-            Showing 
-            <span class="vehicle-pagination__value" aria-live="polite">X</span>
-            of 
-            <span class="vehicle-pagination__value" aria-live="polite">Y</span>
-            results
+            {{ paginationMsg.showingLabel }}
+            <span class="vehicle-pagination__value" aria-live="polite">{{ vehicles().length }}</span>
+            {{ paginationMsg.ofLabel }}
+            <span class="vehicle-pagination__value" aria-live="polite">{{ vehicles().length }}</span>
+            {{ paginationMsg.vehiclesLabel }}
         </p>
     </div>
 
     <div class="vehicle-pagination__controls">
         <button 
             class="vehicle-pagination__button"
-            aria-label="Previous page"
+            [aria-label]="paginationMsg.aria.previousPage"
         >
             <i class="pi pi-angle-left" aria-hidden="true"></i>
         </button>
         <button 
             class="vehicle-pagination__button"
-            aria-label="Next page"
+            [aria-label]="paginationMsg.aria.nextPage"
         >
             <i class="pi pi-angle-right" aria-hidden="true"></i>
         </button>

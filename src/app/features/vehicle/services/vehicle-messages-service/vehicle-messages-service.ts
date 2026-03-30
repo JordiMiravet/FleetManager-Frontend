@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class VehicleMessagesService {
   
+  /* Vehicle-view */
+
   readonly header = {
     title: 'My Garage',
     actions: {
@@ -17,6 +19,8 @@ export class VehicleMessagesService {
       add: 'Add vehicle',
     }
   };
+
+  /* Vehicle-form-modal */
 
   readonly form = {
     title: {
@@ -52,6 +56,8 @@ export class VehicleMessagesService {
     }
   };
 
+  /* manage-vehicle-users-modal */
+
   readonly users = {
     title: 'Manage Vehicle Users',
     description: 'Manage users assigned to this vehicle. You can remove existing users or add a new one by email.',
@@ -79,6 +85,8 @@ export class VehicleMessagesService {
     }
   };
 
+  /* vehicle-table-actions */
+
   readonly tableActions = {
     searchPlaceholder: 'Search by name, model or plate',
     sortLabel: 'Sort by',
@@ -98,6 +106,8 @@ export class VehicleMessagesService {
     }
   };
 
+  /* vehicle-table */
+
   readonly table = {
     captionText: 'Vehicles list',
     headerText: {
@@ -108,12 +118,29 @@ export class VehicleMessagesService {
     }
   };
 
+  /* vehicle-table-pagination */
+
+  readonly pagination = {
+    showingLabel: 'Showing',
+    ofLabel: 'of',
+    vehiclesLabel: 'vehicles',
+    aria: {
+      navigation: 'Vehicle table pagination',
+      previousPage: 'Previous page',
+      nextPage: 'Next page'
+    }
+  };
+
+  /* vehicle-selector */
+
   readonly selectors = {
     vehicle: {
       label: 'Select Vehicle',
       allVehiclesOption: '-- All Vehicles --'
     }
   };
+
+  /* confirm-modal */
 
   readonly confirm = {
     deleteVehicle: {
@@ -122,6 +149,8 @@ export class VehicleMessagesService {
     }
   };
 
+  /* vehicle-empty-state */
+
   readonly emptyState = {
     text: 'There are no registered vehicles',
     button: 'Add Your First Vehicle',
@@ -129,7 +158,5 @@ export class VehicleMessagesService {
       section: 'No vehicles registered'
     }
   };
-
-
 
 }
