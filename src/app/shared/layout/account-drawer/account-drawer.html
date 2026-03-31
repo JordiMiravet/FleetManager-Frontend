@@ -1,0 +1,34 @@
+<div 
+    class="drawer__backdrop" 
+    (click)="onClose()"
+    [attr.aria-hidden]="true"
+></div>
+
+<aside 
+    class="drawer" 
+    role="dialog" 
+    [attr.aria-label]="drawerMsg.aria.drawer"
+>
+
+    <div class="drawer__header">
+        <span class="drawer__title">{{ drawerMsg.title }}</span>
+        <button 
+            class="drawer__close"
+            (click)="onClose()"
+            [attr.aria-label]="drawerMsg.aria.closeButton"
+        >
+            <i class="pi pi-times" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <div class="drawer__body">
+        <button 
+            class="drawer__item drawer__item--danger"
+            (click)="onLogout()"
+        >
+            <i class="pi pi-sign-out" aria-hidden="true"></i>
+            {{ drawerMsg.buttons.logout }}
+        </button>
+    </div>
+
+</aside>

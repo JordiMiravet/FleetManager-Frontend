@@ -1,30 +1,38 @@
-<div class="navbar__auth" >
-    @if(this.isLogged()){
-        <button 
-            data-test="logoutButton" 
-            routerLinkActive="active" 
-            (click)="onLogout()"
-            [attr.aria-label]="authActionsMsg.aria.logout"
+<div class="navbar__auth">
+    @if (isLogged()) {
+        <button
+            class="navbar__auth-button"
+            (click)="openDrawer()"
+            [attr.aria-label]="drawerMsg.aria.openButton"
         >
-            <i class="pi pi-sign-out" aria-hidden="true"></i>
-            <span class="navbar__auth-label">{{ authActionsMsg.buttons.logout }}</span>
+            <i class="pi pi-cog" aria-hidden="true"></i>
         </button>
+
+        @if (isDrawerOpen()) {
+            <app-account-drawer
+                (close)="closeDrawer()"
+                (logout)="onLogout()"
+            />
+        }
+
     } @else {
-        <button 
-            data-test="registerButton" 
-            [routerLink]="['/register']" 
+        <button
+            class="navbar__auth-button"
+            data-test="registerButton"
+            [routerLink]="['/register']"
             routerLinkActive="active"
             [attr.aria-label]="authActionsMsg.aria.register"
         >
             {{ authActionsMsg.buttons.register }}
         </button>
-        <button 
-            data-test="loginButton" 
-            [routerLink]="['/login']" 
+        <button
+            class="navbar__auth-button"
+            data-test="loginButton"
+            [routerLink]="['/login']"
             routerLinkActive="active"
             [attr.aria-label]="authActionsMsg.aria.login"
         >
             {{ authActionsMsg.buttons.login }}
         </button>
-    }   
+    }
 </div>

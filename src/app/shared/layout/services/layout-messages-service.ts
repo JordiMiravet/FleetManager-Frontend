@@ -30,4 +30,16 @@ export class LayoutMessagesService {
     }
   };
 
+  readonly drawer = {
+    title: 'My Account',
+    buttons: {
+      logout: 'Log out'
+    },
+    aria: {
+      openButton: 'Open account menu',
+      closeButton: 'Close account menu',
+      drawer: 'Account menu'
+    }
+  };
+
 }
