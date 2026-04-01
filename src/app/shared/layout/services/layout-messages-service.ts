@@ -35,6 +35,12 @@ export class LayoutMessagesService {
     buttons: {
       logout: 'Log out'
     },
+    items: {
+      editProfile: 'Edit Profile',
+      settings: 'Settings',
+      language: 'Language',
+      darkMode: 'Dark Mode',
+    },
     aria: {
       openButton: 'Open account menu',
       closeButton: 'Close account menu',

@@ -26,4 +26,5 @@ export class AccountDrawerComponent {
   onClose(): void {
     this.close.emit();
   }
+
 }

@@ -22,13 +22,40 @@
     </div>
 
     <div class="drawer__body">
-        <button 
-            class="drawer__item drawer__item--danger"
-            (click)="onLogout()"
-        >
-            <i class="pi pi-sign-out" aria-hidden="true"></i>
-            {{ drawerMsg.buttons.logout }}
-        </button>
+
+        <section class="drawer__section">
+            <button class="drawer__item" disabled>
+                <i class="pi pi-user" aria-hidden="true"></i>
+                {{ drawerMsg.items.editProfile }}
+            </button>
+
+            <button class="drawer__item" disabled>
+                <i class="pi pi-sliders-h" aria-hidden="true"></i>
+                {{ drawerMsg.items.settings }}
+            </button>
+
+            <button class="drawer__item" disabled>
+                <i class="pi pi-globe" aria-hidden="true"></i>
+                {{ drawerMsg.items.language }}
+            </button>
+
+            <button class="drawer__item" disabled>
+                <i class="pi pi-moon" aria-hidden="true"></i>
+                {{ drawerMsg.items.darkMode }}
+            </button>
+        </section>
+        
+        <section class="drawer__section">
+            <div class="drawer__divider"></div>
+            <button 
+                class="drawer__item drawer__item--danger"
+                (click)="onLogout()"
+            >
+                <i class="pi pi-sign-out" aria-hidden="true"></i>
+                {{ drawerMsg.buttons.logout }}
+            </button>
+        </section>
+        
     </div>
 
 </aside>
