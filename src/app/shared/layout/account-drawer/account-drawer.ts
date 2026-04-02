@@ -9,6 +9,7 @@ import { LayoutMessagesService } from '../services/layout-messages-service';
   templateUrl: './account-drawer.html',
   styleUrl: './account-drawer.css',
 })
+
 export class AccountDrawerComponent {
 
   private messagesService = inject(LayoutMessagesService);

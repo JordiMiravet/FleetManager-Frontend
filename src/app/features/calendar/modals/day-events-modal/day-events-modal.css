@@ -1,15 +1,29 @@
-.modal-overlay {
+/* Backdrop */
+
+.modal__backdrop {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--color-modal-overlay);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+
+    border: none;
+    outline: none;
+
+    background-color: var(--overlay-start);
+    animation: fadeIn 0.2s ease forwards;
 }
+
+@keyframes fadeIn {
+    from { background-color: var(--overlay-start); }
+    to { background-color: var(--overlay-end); }
+}
+
+/* Modal */
 
 .modal {
     position: relative;

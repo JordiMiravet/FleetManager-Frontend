@@ -31,7 +31,8 @@
     --color-red-light: #c1121f;
     --color-red-dark: #780000;
 
-    --color-modal-overlay: rgba(0, 0, 0, 0.5);
+    --overlay-start: rgba(0, 0, 0, 0);
+    --overlay-end: rgba(0, 0, 0, 0.5);
 
     /* Typography */
 

@@ -35,5 +35,9 @@
 }
 
 .navbar__auth-button.active {
-    background-color: var(--color-modal-overlay);
+    background-color: var(--color-blue-dark);
+}
+
+.navbar__auth-button.active:hover {
+    color: var(--color-white);
 }

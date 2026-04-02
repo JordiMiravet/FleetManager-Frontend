@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountDrawer } from './account-drawer';
+import { AccountDrawerComponent } from './account-drawer';
 
-describe('AccountDrawer', () => {
-  let component: AccountDrawer;
-  let fixture: ComponentFixture<AccountDrawer>;
+describe('AccountDrawerComponent', () => {
+  let component: AccountDrawerComponent;
+  let fixture: ComponentFixture<AccountDrawerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AccountDrawer]
+      imports: [AccountDrawerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AccountDrawer);
+    fixture = TestBed.createComponent(AccountDrawerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

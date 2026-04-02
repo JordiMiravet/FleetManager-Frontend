@@ -1,15 +1,25 @@
-.modal__overlay {
+/* Backdrop */
+
+.modal__backdrop {
     position: fixed;
     z-index: 9999;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: var(--color-modal-overlay);
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--overlay-start);
+    animation: fadeIn 0.2s ease forwards;
 }
+
+@keyframes fadeIn {
+    from { background-color: var(--overlay-start); }
+    to { background-color: var(--overlay-end); }
+}
+
+/* Form */
 
 .modal__form {
     background-color: var(--gray-100);
