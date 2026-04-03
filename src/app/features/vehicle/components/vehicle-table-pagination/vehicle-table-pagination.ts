@@ -4,6 +4,7 @@ import { VehicleMessagesService } from '../../services/vehicle-messages-service/
 
 @Component({
   selector: 'app-vehicle-table-pagination',
+  standalone: true,
   imports: [],
   templateUrl: './vehicle-table-pagination.html',
   styleUrl: './vehicle-table-pagination.css',

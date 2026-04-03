@@ -4,6 +4,7 @@ import { SortDir, SortField, VehicleFilterState } from '../../interfaces/vehicle
 
 @Component({
   selector: 'app-vehicle-table-actions',
+  standalone: true,
   imports: [],
   templateUrl: './vehicle-table-actions.html',
   styleUrl: './vehicle-table-actions.css',

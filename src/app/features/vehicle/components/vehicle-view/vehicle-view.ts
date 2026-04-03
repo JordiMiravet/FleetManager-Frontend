@@ -14,11 +14,11 @@ import { VehicleFormModalComponent } from "../../modals/vehicle-form-modal/vehic
 import { ManageVehicleUsersModalComponent } from '../../modals/manage-vehicle-users-modal/manage-vehicle-users-modal';
 
 import { VehicleTableComponent } from "../vehicle-table/vehicle-table";
-import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
 import { VehicleEmptyStateComponent } from "../vehicle-empty-state/vehicle-empty-state";
 import { VehicleTableActionsComponent } from '../vehicle-table-actions/vehicle-table-actions';
 import { VehicleFilterState } from '../../interfaces/vehicle-filter-state/vehicle-filter-state';
 import { VehicleTablePaginationComponent } from "../vehicle-table-pagination/vehicle-table-pagination";
+import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
 
 @Component({
   selector: 'app-vehicle-view',
@@ -58,7 +58,6 @@ export class VehicleViewComponent {
     sortDir: 'asc'
   });
 
-
   public filteredVehicles = computed(() => {
     const { query, sortField, sortDir } = this.filterState();
     let list = [...this.vehicleService.vehicles()];
@@ -75,6 +74,7 @@ export class VehicleViewComponent {
     list.sort((a, b) => {
       const valueA = (a[sortField] ?? '').toLowerCase();
       const valueB = (b[sortField] ?? '').toLowerCase();
+
       return sortDir === 'asc'
         ? valueA.localeCompare(valueB)
         : valueB.localeCompare(valueA);
@@ -96,34 +96,54 @@ export class VehicleViewComponent {
 
   async saveVehicle(vehicleData: VehicleInterface): Promise<void> {
     if (this.modalState.formMode() === 'create') {
-      let location = vehicleData.location;
-
-      if (!location) {
-        try {
-          const [lat, lng] = await this.geo.getCurrentLocation();
-          location = { lat, lng };
-        } catch {
-          location = { lat: 41.402, lng: 2.194 };
-        }
-      }
-
-      const vehicleToSend = { ...vehicleData, location };
-      this.vehicleService.addVehicles(vehicleToSend);
-
+      await this.createVehicle(vehicleData);
     } else if (this.modalState.formMode() === 'edit') {
-      const originalVehicle = this.modalState.selectedVehicle();
-      if (!originalVehicle) return;
-      
-      const vehicleToUpdate = { ...vehicleData, location: originalVehicle.location };
-      this.vehicleService.updateVehicle(originalVehicle, vehicleToUpdate);
+      this.updateVehicle(vehicleData);
     }
 
     this.modalState.close();
   }
 
+  private async createVehicle(vehicleData: VehicleInterface): Promise<void> {
+    const location = await this.resolveLocation(vehicleData.location);
+
+    const vehicleToSend = {
+      ...vehicleData,
+      location
+    };
+
+    this.vehicleService.addVehicles(vehicleToSend);
+  }
+
+  private updateVehicle(vehicleData: VehicleInterface): void {
+    const originalVehicle = this.modalState.selectedVehicle();
+    if (!originalVehicle) return;
+
+    const vehicleToUpdate = {
+      ...vehicleData,
+      location: originalVehicle.location
+    };
+
+    this.vehicleService.updateVehicle(originalVehicle, vehicleToUpdate);
+  }
+
+  private async resolveLocation(
+    location?: { lat: number; lng: number }
+  ): Promise<{ lat: number; lng: number }> {
+    if (location) return location;
+
+    try {
+      const [lat, lng] = await this.geo.getCurrentLocation();
+      return { lat, lng };
+    } catch {
+      return { lat: 41.402, lng: 2.194 };
+    }
+  }
+
   confirmDeleteVehicle(): void {
     const vehicle = this.modalState.selectedVehicle();
     if (vehicle) this.vehicleService.deleteVehicle(vehicle);
+  
     this.modalState.close();
   }
 
@@ -155,7 +175,7 @@ export class VehicleViewComponent {
     this.vehicleService.removeUserFromVehicle(vehicle._id, userId).subscribe({
       next: () => {
         const currentUserId = this.auth.currentUser?.uid;
-        
+
         if (currentUserId === userId) {
           this.modalState.close();
         } else {
@@ -170,6 +190,5 @@ export class VehicleViewComponent {
       }
     });
   }
-
 
 }
