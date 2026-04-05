@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VehicleTablePagination } from './vehicle-table-pagination';
+import { VehicleTablePaginationComponent } from './vehicle-table-pagination';
 
-describe('VehicleTablePagination', () => {
-  let component: VehicleTablePagination;
-  let fixture: ComponentFixture<VehicleTablePagination>;
+describe('VehicleTablePaginationComponent', () => {
+  let component: VehicleTablePaginationComponent;
+  let fixture: ComponentFixture<VehicleTablePaginationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleTablePagination]
+      imports: [VehicleTablePaginationComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(VehicleTablePagination);
+    fixture = TestBed.createComponent(VehicleTablePaginationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

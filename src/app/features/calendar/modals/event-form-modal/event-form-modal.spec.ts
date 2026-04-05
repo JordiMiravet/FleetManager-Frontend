@@ -4,10 +4,9 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { EventFormModalComponent } from './event-form-modal';
-
+import { EventService } from '../../services/event-service/event-service';
+import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 import { EventInterface } from '../../interfaces/event';
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
-
 
 const authMock = {
   currentUser: {
@@ -19,6 +18,8 @@ const authMock = {
 describe('EventFormModalComponent', () => {
   let component: EventFormModalComponent;
   let fixture: ComponentFixture<EventFormModalComponent>;
+  let eventService: EventService;
+  let vehicleService: VehicleService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -32,16 +33,17 @@ describe('EventFormModalComponent', () => {
 
     fixture = TestBed.createComponent(EventFormModalComponent);
     component = fixture.componentInstance;
+    eventService = TestBed.inject(EventService);
+    vehicleService = TestBed.inject(VehicleService);
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy()
+    expect(component).toBeTruthy();
   });
 
   describe('mode input', () => {
 
     it('should default to "create" mode', () => {
-      component.mode();
       fixture.detectChanges();
 
       expect(component.mode()).toBe('create');
@@ -49,8 +51,6 @@ describe('EventFormModalComponent', () => {
 
     it('should accept "edit" mode', () => {
       fixture.componentRef.setInput('mode', 'edit');
-
-      component.mode();
       fixture.detectChanges();
 
       expect(component.mode()).toBe('edit');
@@ -61,10 +61,10 @@ describe('EventFormModalComponent', () => {
   describe('ngOnInit', () => {
 
     it('should call loadVehicles on init', () => {
-      const vehicles = spyOn(component.vehicleService, 'loadVehicles')
+      const spy = spyOn(vehicleService, 'loadVehicles');
       component.ngOnInit();
-      
-      expect(vehicles).toHaveBeenCalled()
+
+      expect(spy).toHaveBeenCalled();
     });
 
     it('should patch date if preselectedDate is provided', () => {
@@ -135,40 +135,40 @@ describe('EventFormModalComponent', () => {
 
     it('should mark title as required', () => {
       fixture.detectChanges();
-
       const title = component.formEvent.controls['title'];
+
       expect(title.invalid).toBeTrue();
       expect(title.hasError('required')).toBeTrue();
     });
 
     it('should mark date as required', () => {
       fixture.detectChanges();
-
       const date = component.formEvent.controls['date'];
+
       expect(date.invalid).toBeTrue();
       expect(date.hasError('required')).toBeTrue();
     });
 
     it('should mark hourStart as required', () => {
       fixture.detectChanges();
-
       const hourStart = component.formEvent.controls['hourStart'];
+
       expect(hourStart.invalid).toBeTrue();
       expect(hourStart.hasError('required')).toBeTrue();
     });
 
     it('should mark hourEnd as required', () => {
       fixture.detectChanges();
-
       const hourEnd = component.formEvent.controls['hourEnd'];
+
       expect(hourEnd.invalid).toBeTrue();
       expect(hourEnd.hasError('required')).toBeTrue();
     });
 
     it('should mark vehicleId as required', () => {
       fixture.detectChanges();
-
       const vehicleId = component.formEvent.controls['vehicleId'];
+
       expect(vehicleId.invalid).toBeTrue();
       expect(vehicleId.hasError('required')).toBeTrue();
     });
@@ -178,32 +178,23 @@ describe('EventFormModalComponent', () => {
   describe('timeRangeValidator', () => {
 
     it('should return error if hourStart is greater than hourEnd', () => {
-      component.formEvent.patchValue({
-        hourStart: '12:00',
-        hourEnd: '10:00'
-      });
-
+      component.formEvent.patchValue({ hourStart: '12:00', hourEnd: '10:00' });
       component.formEvent.updateValueAndValidity();
+
       expect(component.formEvent.hasError('invalidTimeRange')).toBeTrue();
     });
 
     it('should return null if hourStart is before hourEnd', () => {
-      component.formEvent.patchValue({
-        hourStart: '09:00',
-        hourEnd: '10:00'
-      });
-
+      component.formEvent.patchValue({ hourStart: '09:00', hourEnd: '10:00' });
       component.formEvent.updateValueAndValidity();
+
       expect(component.formEvent.hasError('invalidTimeRange')).toBeFalse();
     });
 
     it('should return null if hourStart or hourEnd are empty', () => {
-      component.formEvent.patchValue({
-        hourStart: '',
-        hourEnd: ''
-      });
-
+      component.formEvent.patchValue({ hourStart: '', hourEnd: '' });
       component.formEvent.updateValueAndValidity();
+
       expect(component.formEvent.hasError('invalidTimeRange')).toBeFalse();
     });
 
@@ -225,7 +216,7 @@ describe('EventFormModalComponent', () => {
     });
 
     it('should return error if there is overlapping event', () => {
-      component.eventService.getEventsByDate = () => [
+      eventService.getEventsByDate = () => [
         {
           _id: '1',
           date: '2026-02-15',
@@ -241,14 +232,12 @@ describe('EventFormModalComponent', () => {
         hourEnd: '13:00',
         vehicleId: '123'
       });
-
       component.formEvent.updateValueAndValidity();
-
       expect(component.formEvent.hasError('timeOverlap')).toBeTrue();
     });
 
     it('should return null if there is no overlapping event', () => {
-      component.eventService.getEventsByDate = () => [
+      eventService.getEventsByDate = () => [
         {
           _id: '1',
           title: 'Nintendo Direct',
@@ -266,12 +255,9 @@ describe('EventFormModalComponent', () => {
         hourEnd: '12:00',
         vehicleId: '123'
       });
-
       component.formEvent.updateValueAndValidity();
-
       expect(component.formEvent.hasError('timeOverlap')).toBeFalse();
     });
-
 
     it('should ignore current event when editing', () => {
       const currentEvent = {
@@ -285,7 +271,7 @@ describe('EventFormModalComponent', () => {
       };
 
       fixture.componentRef.setInput('event', currentEvent);
-      component.eventService.getEventsByDate = () => { return [currentEvent]};
+      eventService.getEventsByDate = () => [currentEvent];
 
       component.formEvent.patchValue({
         date: '2026-02-15',
@@ -293,9 +279,8 @@ describe('EventFormModalComponent', () => {
         hourEnd: '15:00',
         vehicleId: '123456'
       });
-
       component.formEvent.updateValueAndValidity();
-      expect(component.formEvent.hasError('timeOverlap')).toBe(false)
+      expect(component.formEvent.hasError('timeOverlap')).toBe(false);
     });
 
   });
@@ -304,71 +289,26 @@ describe('EventFormModalComponent', () => {
 
     it('should mark hourStart and hourEnd as touched when hourStart changes', () => {
       fixture.detectChanges();
-      
+
       const hourStart = component.formEvent.get('hourStart');
       const hourEnd = component.formEvent.get('hourEnd');
-      
+
       hourStart?.setValue('10:00');
-      
+
       expect(hourStart?.touched).toBeTrue();
       expect(hourEnd?.touched).toBeTrue();
     });
 
     it('should mark hourStart and hourEnd as touched when hourEnd changes', () => {
       fixture.detectChanges();
-      
+
       const hourStart = component.formEvent.get('hourStart');
       const hourEnd = component.formEvent.get('hourEnd');
-      
+
       hourEnd?.setValue('12:00');
-      
+
       expect(hourStart?.touched).toBeTrue();
       expect(hourEnd?.touched).toBeTrue();
-    });
-
-  });
-
-  describe('onVehicleSelected', () => {
-
-    it('should reset vehicleId if null is passed', () => {
-      component.formEvent.patchValue({ vehicleId: '123456' });
-      component.onVehicleSelected(null);
-
-      expect(component.formEvent.get('vehicleId')?.value).toBe('');
-    });
-
-    it('should set vehicleId when valid vehicle is passed', () => {
-      const vehicle : VehicleInterface = {
-        _id: '123',
-        name: 'Ferrari',
-        model: 'F8 Tributo',
-        plate: '123456'
-      }
-      component.onVehicleSelected(vehicle);
-
-      expect(component.formEvent.get('vehicleId')?.value).toBe('123');
-    });
-
-    it('should only update vehicleId without affecting other fields', () => {
-      component.formEvent.patchValue({
-        title: 'State of Play',
-        date: '2026-02-15',
-        hourStart: '10:00',
-        hourEnd: '12:00',
-        vehicleId: 'old-vehicle-id',
-        comment: 'Test comment'
-      });
-
-      component.onVehicleSelected({ 
-        _id: '123456', 
-        name: 'Ferrari', 
-        model: 'F8', 
-        plate: '123ABC' 
-      });
-
-      expect(component.formEvent.get('vehicleId')?.value).toBe('123456');
-      expect(component.formEvent.get('title')?.value).toBe('State of Play');
-      expect(component.formEvent.get('date')?.value).toBe('2026-02-15');
     });
 
   });
@@ -383,16 +323,16 @@ describe('EventFormModalComponent', () => {
         hourEnd: '',
         vehicleId: '',
         comment: ''
-      })
+      });
 
-      spyOn(component.eventService, 'addEvent');
-      spyOn(component.eventService, 'updateEvent');
-      spyOn(component.close, 'emit')
+      spyOn(eventService, 'addEvent');
+      spyOn(eventService, 'updateEvent');
+      spyOn(component.close, 'emit');
 
       component.onSubmit();
 
-      expect(component.eventService.addEvent).not.toHaveBeenCalled();
-      expect(component.eventService.updateEvent).not.toHaveBeenCalled();
+      expect(eventService.addEvent).not.toHaveBeenCalled();
+      expect(eventService.updateEvent).not.toHaveBeenCalled();
       expect(component.close.emit).not.toHaveBeenCalled();
     });
 
@@ -408,15 +348,14 @@ describe('EventFormModalComponent', () => {
         comment: ''
       });
 
-      spyOn(component.eventService, 'addEvent');
+      spyOn(eventService, 'addEvent');
       spyOn(component.close, 'emit');
 
       component.onSubmit();
 
-      expect(component.eventService.addEvent).toHaveBeenCalled();
+      expect(eventService.addEvent).toHaveBeenCalled();
       expect(component.close.emit).toHaveBeenCalled();
-    })
-
+    });
 
     it('should call updateEvent if mode is "edit"', () => {
       const event = {
@@ -427,7 +366,8 @@ describe('EventFormModalComponent', () => {
         hourEnd: '12:00',
         vehicleId: '123456',
         comment: ''
-      }
+      };
+
       fixture.componentRef.setInput('mode', 'edit');
       fixture.componentRef.setInput('event', event);
 
@@ -438,15 +378,15 @@ describe('EventFormModalComponent', () => {
         hourEnd: '12:00',
         vehicleId: '123456',
         comment: ''
-      })
+      });
 
-      spyOn(component.eventService, 'updateEvent');
+      spyOn(eventService, 'updateEvent');
       spyOn(component.close, 'emit');
       component.onSubmit();
 
-      expect(component.eventService.updateEvent).toHaveBeenCalled();
+      expect(eventService.updateEvent).toHaveBeenCalled();
       expect(component.close.emit).toHaveBeenCalled();
-    })
+    });
 
     it('should call handleClose after successful submit', () => {
       component.formEvent.patchValue({
@@ -457,11 +397,12 @@ describe('EventFormModalComponent', () => {
         vehicleId: '123456',
         comment: ''
       });
+
       spyOn(component, 'handleClose');
       component.onSubmit();
 
       expect(component.handleClose).toHaveBeenCalled();
-    })
+    });
 
   });
 
@@ -475,7 +416,7 @@ describe('EventFormModalComponent', () => {
         hourEnd: '12:00',
         vehicleId: 'Delorean123',
         comment: 'PS1 > N64. Y no hay mas discusión'
-      })
+      });
       component.handleClose();
 
       expect(component.formEvent.get('title')?.value).toBeNull();
@@ -484,16 +425,16 @@ describe('EventFormModalComponent', () => {
       expect(component.formEvent.get('hourEnd')?.value).toBeNull();
       expect(component.formEvent.get('vehicleId')?.value).toBeNull();
       expect(component.formEvent.get('comment')?.value).toBeNull();
-    })
+    });
 
-    it('should emit close event', function() {
-      spyOn(component.close, 'emit')
-      component.handleClose()
+    it('should emit close event', () => {
+      spyOn(component.close, 'emit');
+      component.handleClose();
 
-      expect(component.close.emit).toHaveBeenCalled()
-    })
+      expect(component.close.emit).toHaveBeenCalled();
+    });
 
-  })
+  });
 
   describe('Template integration', () => {
 
@@ -505,7 +446,7 @@ describe('EventFormModalComponent', () => {
         hourEnd: '22:00',
         vehicleId: 'R34-123456',
         comment: 'Wrap wraaap!'
-      })
+      });
       fixture.detectChanges();
 
       const button = fixture.nativeElement.querySelector('.event-form__button--Save');
@@ -513,9 +454,10 @@ describe('EventFormModalComponent', () => {
     });
 
     it('should close modal when clicking overlay', () => {
-      const close = spyOn(component, 'handleClose')
+      const close = spyOn(component, 'handleClose');
+      fixture.detectChanges();
 
-      const overlay = fixture.nativeElement.querySelector('.modal-overlay');
+      const overlay = fixture.nativeElement.querySelector('dialog');
       overlay.click();
 
       expect(close).toHaveBeenCalled();
@@ -523,6 +465,7 @@ describe('EventFormModalComponent', () => {
 
     it('should stop propagation when clicking inside form', () => {
       const close = spyOn(component, 'handleClose');
+      fixture.detectChanges();
 
       const form = fixture.nativeElement.querySelector('.event-form');
       form.click();

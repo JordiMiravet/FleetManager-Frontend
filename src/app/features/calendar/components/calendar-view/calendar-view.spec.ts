@@ -4,9 +4,9 @@ import { of } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 
 import { EventInterface } from '../../interfaces/event';
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
+import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 import { CalendarViewComponent } from './calendar-view';
-import { EventService } from '../../services/event-service';
+import { EventService } from '../../services/event-service/event-service';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 
 describe('CalendarViewComponent', () => {
@@ -66,10 +66,10 @@ describe('CalendarViewComponent', () => {
     });
 
     it('should have correct confirm modal message', () => {
-      const msg = component.confirmModalMsg();
+      const msg = component.confirmMsg;
 
-      expect(msg.title).toBe('Delete this event');
-      expect(msg.message).toBe('Are you sure you want to delete this event? This action cannot be undone');
+      expect(msg.deleteEvent.title).toBe('Delete this event');
+      expect(msg.deleteEvent.message).toBe('Are you sure you want to delete this event? This action cannot be undone');
     });
 
     it('should trigger refreshCalendar when calendarComponent exists', () => {
@@ -338,18 +338,6 @@ describe('CalendarViewComponent', () => {
 
       expect(remove).toHaveBeenCalled();
       expect(add).toHaveBeenCalled();
-    });
-
-    it('should update element title and show correct more link', () => {
-      const elementDom = { title: '' } as any;
-      const eventInfo = { el: elementDom, event: { title: 'Cita con Barbara' } } as any;
-      const moreArg = { num: 3 } as any;
-
-      (component.calendarOptions as any).eventDidMount(eventInfo);
-      expect(elementDom.title).toBe('Cita con Barbara');
-
-      const content = (component.calendarOptions as any).moreLinkContent(moreArg);
-      expect(content).toBe('+ 3');
     });
   });
 

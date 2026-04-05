@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VehicleTableActions } from './vehicle-table-actions';
+import { VehicleTableActionsComponent } from './vehicle-table-actions';
 
-describe('VehicleTableActions', () => {
-  let component: VehicleTableActions;
-  let fixture: ComponentFixture<VehicleTableActions>;
+describe('VehicleTableActionsComponent', () => {
+  let component: VehicleTableActionsComponent;
+  let fixture: ComponentFixture<VehicleTableActionsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleTableActions]
+      imports: [VehicleTableActionsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(VehicleTableActions);
+    fixture = TestBed.createComponent(VehicleTableActionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

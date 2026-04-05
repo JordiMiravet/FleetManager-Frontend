@@ -1,12 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
-import { VehicleModalState } from '../../../vehicle/enum/vehicle-modal-state.enum';
+
 import { MapContainerComponent } from './map-container';
+
+import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
+
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 import { VehicleModalService } from '../../../vehicle/services/vehicle-modal-service/vehicle-modal-service';
-import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
+import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleModalState } from '../../../vehicle/enum/vehicle-modal-state.enum';
 
 const vehicleServiceMock = {
   vehicles: signal<VehicleInterface[]>([]),
@@ -104,7 +107,6 @@ describe('MapContainerComponent', () => {
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
     });
 
-
     it('should request geolocation when vehicle has no location', async () => {
       const vehicle = {
         name: 'Mercedes GLC Coupe',
@@ -127,7 +129,6 @@ describe('MapContainerComponent', () => {
       expect(addedVehicle.location).toEqual({ lat: 41.4, lng: 2.1 });
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
     });
-
 
     it('should use fallback location when geolocation fails', async () => {
       const vehicle = {
@@ -152,7 +153,6 @@ describe('MapContainerComponent', () => {
       expect(addedVehicle.location).toEqual({ lat: 41.478, lng: 2.310 });
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
     });
-
 
     it('should add vehicle when modal mode is create', async () => {
       const vehicle = {

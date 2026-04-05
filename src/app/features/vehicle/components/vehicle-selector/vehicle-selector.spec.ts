@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { signal, WritableSignal } from '@angular/core';
 
 import { VehicleSelectorComponent } from './vehicle-selector';
-import { VehicleInterface } from '../../interfaces/vehicle';
-import { signal, WritableSignal } from '@angular/core';
+import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
 describe('VehicleSelectorComponent', () => {
   let component: VehicleSelectorComponent;

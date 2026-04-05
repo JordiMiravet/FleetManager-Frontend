@@ -1,12 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { signal } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 import { ManageVehicleUsersModalComponent } from './manage-vehicle-users-modal';
 
 import { PermissionService } from '../../../../shared/services/permission/permission';
 import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
-import { VehicleInterface } from '../../interfaces/vehicle';
-import { By } from '@angular/platform-browser';
+import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
 describe('ManageVehicleUsersModalComponent', () => {
 
@@ -82,7 +81,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       component.email.set('');
       component.onSubmit();
 
-      expect(component.error()).toBe(component.errorMsg.emailRequired);
+      expect(component.error()).toBe(component.usersMsg.errors.emailRequired);
       expect(component.loading()).toBeFalse();
     });
 
@@ -90,7 +89,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       component.email.set('invalid-email');
       component.onSubmit();
 
-      expect(component.error()).toBe(component.errorMsg.invalidEmail);
+      expect(component.error()).toBe(component.usersMsg.errors.invalidEmail);
       expect(component.loading()).toBeFalse();
     });
 

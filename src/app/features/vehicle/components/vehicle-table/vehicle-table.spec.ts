@@ -4,8 +4,8 @@ import { Auth } from '@angular/fire/auth';
 
 import { VehicleTableComponent } from './vehicle-table';
 
-import { VehicleInterface } from '../../interfaces/vehicle';
 import { PermissionService } from '../../../../shared/services/permission/permission';
+import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
 describe('VehicleTableComponent', () => {
   let component: VehicleTableComponent;

@@ -3,7 +3,7 @@ import { signal } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 
 import { VehicleFormModalComponent } from './vehicle-form-modal';
-import { VehicleInterface } from '../../interfaces/vehicle';
+import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
 describe('VehicleFormModalComponent', () => {
   let component: VehicleFormModalComponent;
@@ -103,6 +103,17 @@ describe('VehicleFormModalComponent', () => {
       expect(component.getFieldError('name')).toBe('Name cannot exceed 30 characters');
     });
 
+    it('should return invalidUrl error when imageUrl has invalid format', () => {
+      component.form.get('imageUrl')?.setValue('not-a-valid-url!!!');
+      component.form.get('imageUrl')?.markAsTouched();
+
+      expect(component.getFieldError('imageUrl')).toBeTruthy();
+    });
+
+    it('should return null when field does not exist', () => {
+      expect(component.getFieldError('nonExistentField')).toBeNull();
+    });
+
   });
 
   describe('submit behavior', () => {
@@ -123,6 +134,15 @@ describe('VehicleFormModalComponent', () => {
       component.onSubmit();
 
       expect(component.submit.emit).not.toHaveBeenCalled();
+    });
+
+    it('should mark all fields as touched when form is invalid on submit', () => {
+      component.form.setValue({ name: '', model: '', plate: '', imageUrl: '' });
+      component.onSubmit();
+
+      expect(component.form.get('name')?.touched).toBeTrue();
+      expect(component.form.get('model')?.touched).toBeTrue();
+      expect(component.form.get('plate')?.touched).toBeTrue();
     });
 
   });
@@ -169,12 +189,12 @@ describe('VehicleFormModalComponent', () => {
     it('should call onCancel when clicking outside form', () => {
       spyOn(component, 'onCancel');
 
-      const modalEl = fixture.nativeElement.querySelector('.modal');
+      const dialogEl = fixture.nativeElement.querySelector('dialog');
       const clickEvent = new MouseEvent('click', { bubbles: true });
 
-      modalEl.dispatchEvent(clickEvent);
+      dialogEl.dispatchEvent(clickEvent);
       fixture.detectChanges();
-      
+
       expect(component.onCancel).toHaveBeenCalled();
     });
 

@@ -4,7 +4,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { Auth } from '@angular/fire/auth';
 
 import { VehicleService } from './vehicle-service';
-import { VehicleInterface } from '../../interfaces/vehicle';
+import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
 describe('VehicleService', () => {
   let service: VehicleService;

@@ -6,7 +6,7 @@ import { Auth } from '@angular/fire/auth';
 import { GraphicsViewComponent } from './graphics-view';
 
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle';
+import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 
 export const authMock = {
   currentUser: {
