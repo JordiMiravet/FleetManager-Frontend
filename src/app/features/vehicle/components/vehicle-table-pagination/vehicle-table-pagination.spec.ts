@@ -1,14 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VehicleTablePaginationComponent } from './vehicle-table-pagination';
+import { HttpClientModule } from '@angular/common/http';
+import { Auth, AuthModule } from '@angular/fire/auth';
 
 describe('VehicleTablePaginationComponent', () => {
   let component: VehicleTablePaginationComponent;
   let fixture: ComponentFixture<VehicleTablePaginationComponent>;
 
+  const authMock = {
+    currentUser: {
+      uid: 'JordiTheBest',
+      getIdToken: () => Promise.resolve('MyToken')
+    }
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleTablePaginationComponent]
+      imports: [
+        VehicleTablePaginationComponent,
+        HttpClientModule,
+      ],
+      providers: [
+        { provide: Auth, useValue: authMock },
+      ]
     })
     .compileComponents();
 

@@ -143,7 +143,7 @@ describe('CalendarViewComponent', () => {
 
     it('should not override selectedDate if already set', () => {
       component.selectedDate.set('2026-02-10');
-      component.handleCreateEvent();
+      component.handleCreateEventFromDay();
 
       expect(component.selectedDate()).toBe('2026-02-10');
     });

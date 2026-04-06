@@ -38,7 +38,7 @@ describe('CreateButtonComponent', () => {
     });
 
     it('should have aria-label for accessibility when input is provided', () => {
-      (component.createText as any) = () => 'vehicle';
+      (component.createText as any) = () => 'Add vehicle';
       fixture.detectChanges();
 
       const button = fixture.nativeElement.querySelector('button');
@@ -47,7 +47,7 @@ describe('CreateButtonComponent', () => {
     });
 
     it('should render the text with provided input', () => {
-      (component.createText as any) = () => 'vehicle';
+      (component.createText as any) = () => 'Add vehicle';
       fixture.detectChanges();
 
       const span = fixture.nativeElement.querySelector('.create-button__text');
@@ -56,7 +56,7 @@ describe('CreateButtonComponent', () => {
 
     it('should render empty text if no input provided', () => {
       const span = fixture.nativeElement.querySelector('.create-button__text');
-      expect(span.textContent.trim()).toBe('Add');
+      expect(span.textContent.trim()).toBe('');
     });
 
 

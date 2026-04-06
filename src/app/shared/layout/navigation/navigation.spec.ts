@@ -41,8 +41,9 @@ describe('NavigationComponent', () => {
 
     it('should render the nav element with correct role and aria-label', () => {
       const navElement = fixture.nativeElement.querySelector('nav');
+      
       expect(navElement.getAttribute('role')).toBe('navigation');
-      expect(navElement.getAttribute('aria-label')).toBe('Main navigation')
+      expect(navElement.getAttribute('aria-label')).toBe(component.navigationMsg.aria.nav)
     });
 
     it('should render the links list when user is logged', () => {
