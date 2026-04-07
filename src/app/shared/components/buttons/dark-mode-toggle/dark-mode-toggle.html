@@ -1,0 +1,15 @@
+<div 
+    class="toggle"
+    [class.toggle--active]="isDark()"
+    (click)="toggle($event)"
+    role="switch"
+    [attr.aria-checked]="isDark()"
+    aria-label="Dark mode toggle"
+>
+    <div class="toggle__thumb">
+        <i 
+            class="pi toggle__icon-inner"
+            [ngClass]="isDark() ? 'pi-moon' : 'pi-sun'"
+        ></i>
+    </div>
+</div>

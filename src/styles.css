@@ -31,6 +31,10 @@
     --color-red-light: #c1121f;
     --color-red-dark: #780000;
 
+    --color-yellow-light: #FFF3B0;
+    --color-yellow-medium: #FFC107;
+    --color-yellow-dark: #E6A700;
+
     --overlay-start: rgba(0, 0, 0, 0);
     --overlay-end: rgba(0, 0, 0, 0.5);
 

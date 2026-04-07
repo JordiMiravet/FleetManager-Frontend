@@ -1,0 +1,50 @@
+/* Toggle Container*/
+
+.toggle {
+    margin: 0;
+    width: 5rem;
+    height: 2.5rem;
+    background: var(--color-yellow-medium);
+    border-radius: 10rem;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    transition: background 0.25s ease;
+}
+
+/* Toggle Thumb & Icon */
+
+.toggle__thumb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    background: var(--color-white);
+    border-radius: 50%;
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    transition: transform 0.25s ease;
+}
+
+.toggle__icon-inner {
+    color: var(--color-yellow-medium);
+    transition: color 0.25s ease;
+}
+
+/* IsDark State */
+
+.toggle--active {
+    background-color: var(--color-blue-light);
+    color: var(--color-blue-light);
+}
+
+.toggle--active .toggle__thumb {
+    transform: translateX(2.5rem);
+}
+
+.toggle--active .toggle__icon-inner {
+    color: var(--color-blue-light);
+}

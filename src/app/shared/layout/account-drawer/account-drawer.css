@@ -20,8 +20,7 @@
     top: 0;
     right: 0;
     height: 100dvh;
-    width: 75vw;
-    max-width: 65vw;
+    width: min(25rem, 65vw);
     background-color: var(--color-white);
     z-index: 101;
     display: flex;
@@ -36,7 +35,7 @@
 
 @media (min-width: 576px) {
     .drawer {
-        max-width: 20rem;
+        max-width: 25rem;
     }
 }
 
@@ -96,7 +95,8 @@
 .drawer__item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    justify-content: space-between;
+    gap: 1rem;
     width: 100%;
     padding: 1rem;
     border: none;
@@ -127,6 +127,13 @@
 .drawer__item--danger:hover {
     background-color: var(--color-red-lighter);
     color: var(--color-white);
+}
+
+.drawer__item-content {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 1rem;
 }
 
 /* Divider */

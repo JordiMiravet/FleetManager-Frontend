@@ -1,11 +1,14 @@
 import { Component, inject, output } from '@angular/core';
 
 import { LayoutMessagesService } from '../services/layout-messages-service';
+import { DarkModeToggleComponent } from "../../components/buttons/dark-mode-toggle/dark-mode-toggle";
 
 @Component({
   selector: 'app-account-drawer',
   standalone: true,
-  imports: [],
+  imports: [ 
+    DarkModeToggleComponent 
+  ],
   templateUrl: './account-drawer.html',
   styleUrl: './account-drawer.css',
 })

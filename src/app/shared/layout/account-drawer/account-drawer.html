@@ -25,24 +25,41 @@
 
         <section class="drawer__section">
             <button class="drawer__item" disabled>
-                <i class="pi pi-user" aria-hidden="true"></i>
-                {{ drawerMsg.items.editProfile }}
+                <div class="drawer__item-content">
+                    <i class="pi pi-user" aria-hidden="true"></i>
+                    {{ drawerMsg.items.editProfile }}
+                </div>
+
             </button>
 
             <button class="drawer__item" disabled>
-                <i class="pi pi-sliders-h" aria-hidden="true"></i>
-                {{ drawerMsg.items.settings }}
+                <div class="drawer__item-content">
+                    <i class="pi pi-sliders-h" aria-hidden="true"></i>
+                    {{ drawerMsg.items.settings }}
+                </div>
+                
             </button>
 
             <button class="drawer__item" disabled>
-                <i class="pi pi-globe" aria-hidden="true"></i>
-                {{ drawerMsg.items.language }}
+                <div class="drawer__item-content">
+                    <i class="pi pi-globe" aria-hidden="true"></i>
+                    {{ drawerMsg.items.language }}
+                </div>
             </button>
 
-            <button class="drawer__item" disabled>
-                <i class="pi pi-moon" aria-hidden="true"></i>
-                {{ drawerMsg.items.darkMode }}
+            <button class="drawer__item">
+                <div class="drawer__item-content">
+                    <i class="pi pi-moon"></i>
+
+                    <span class="drawer__label">
+                        {{ drawerMsg.items.darkMode }}
+                    </span>
+                </div>
+
+                <app-dark-mode-toggle
+                ></app-dark-mode-toggle>
             </button>
+
         </section>
         
         <section class="drawer__section">
