@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ThemeService } from '../../../services/ThemeService/theme-service';
 
 @Component({
   selector: 'app-dark-mode-toggle',
@@ -12,18 +13,9 @@ import { Component, signal } from '@angular/core';
 })
 
 export class DarkModeToggleComponent {
-  isDark = signal(true);
+  theme = inject(ThemeService);
 
-  constructor() {
-    this.isDark.set(localStorage.getItem('darkMode') === 'true');
-  }
-
-  toggle(event: MouseEvent) {
-    event.stopPropagation();
-
-    this.isDark.update(toggleButton => !toggleButton);
-
-    localStorage.setItem('darkMode', String(this.isDark()));
-    document.body.classList.toggle('dark-mode', this.isDark());
+  toggle() {
+    this.theme.toggle();
   }
 }

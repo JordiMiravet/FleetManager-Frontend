@@ -1,15 +1,15 @@
 <div 
-    class="toggle"
-    [class.toggle--active]="isDark()"
-    (click)="toggle($event)"
-    role="switch"
-    [attr.aria-checked]="isDark()"
-    aria-label="Dark mode toggle"
+  class="toggle"
+  [class.toggle--active]="theme.isDark()"
+  (click)="toggle()"
+  role="switch"
+  [attr.aria-checked]="theme.isDark()"
+  [attr.aria-label]="theme.isDark() ? 'Disable dark mode' : 'Enable dark mode'"
 >
-    <div class="toggle__thumb">
-        <i 
-            class="pi toggle__icon-inner"
-            [ngClass]="isDark() ? 'pi-moon' : 'pi-sun'"
-        ></i>
-    </div>
+  <div class="toggle__thumb">
+    <i 
+      class="pi toggle__icon-inner"
+      [ngClass]="theme.isDark() ? 'pi-moon' : 'pi-sun'"
+    ></i>
+  </div>
 </div>

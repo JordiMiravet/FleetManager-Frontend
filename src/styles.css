@@ -7,6 +7,21 @@
 
 :root {
 
+
+    --color-neutral-0:   #ffffff;
+    --color-neutral-50:  #f8f9fa;    
+    --color-neutral-100: #e9ecef;
+    --color-neutral-200: #dee2e6;
+    --color-neutral-300: #ced4da;
+    --color-neutral-400: #adb5bd;
+    --color-neutral-500: #6c757d;
+    --color-neutral-600: #495057;
+    --color-neutral-700: #343a40;
+    --color-neutral-800: #212529;
+    --color-neutral-900: #000000;
+
+    /* TODO: Migrar la escala de grises a la nueva nomenclatura, porque este metodo era poco escalable a darkMode
+    */
     /* Colors */
 
     --color-white: #fff;
@@ -67,6 +82,23 @@
     --radius-md: 1rem;
     --radius-lg: 1.25rem;
 
+}
+
+body.dark-mode {
+
+    /* Colors */
+
+    --color-neutral-0:   #ffffff;
+    --color-neutral-50:  #f8f9fa;    
+    --color-neutral-100: #e9ecef;
+    --color-neutral-200: #dee2e6;
+    --color-neutral-300: #ced4da;
+    --color-neutral-400: #adb5bd;
+    --color-neutral-500: #6c757d;
+    --color-neutral-600: #495057;
+    --color-neutral-700: #343a40;
+    --color-neutral-800: #212529;
+    --color-neutral-900: #000000;
 }
 
 /* Generales */
