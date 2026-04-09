@@ -21,7 +21,7 @@
     right: 0;
     height: 100dvh;
     width: min(25rem, 65vw);
-    background-color: var(--color-white);
+    background-color: var(--color-neutral-50);
     z-index: 101;
     display: flex;
     flex-direction: column;
@@ -46,13 +46,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 1rem;
-    border-bottom: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--color-neutral-200);
 }
 
 .drawer__title {
     font-size: var(--font-size-md);
     font-weight: 600;
-    color: var(--color-blue-dark);
+    color: var(--color-neutral-800);
 }
 
 .drawer__close {
@@ -61,7 +61,7 @@
     justify-content: center;
     background: transparent;
     border: none;
-    color: var(--gray-600);
+    color: var(--color-neutral-600);
     font-size: var(--font-size-md);
     cursor: pointer;
     padding: 0.5rem;
@@ -70,7 +70,7 @@
 }
 
 .drawer__close:hover {
-    background-color: var(--gray-100);
+    background-color: var(--color-neutral-100);
 }
 
 /* Body */
@@ -105,13 +105,13 @@
     font-size: var(--font-size-sm);
     font-weight: 500;
     text-align: start;
-    color: var(--gray-800);
+    color: var(--color-neutral-800);
     cursor: pointer;
     transition: background-color 0.15s ease;
 }
 
 .drawer__item:hover {
-    background-color: var(--gray-100);
+    background-color: var(--color-neutral-100);
 }
 
 .drawer__item:disabled {
@@ -120,13 +120,14 @@
 }
 
 .drawer__item--danger {
-    color: var(--color-red-dark);
+
+    background-color: var(--color-red-light);
+    color: var(--color-neutral-50);
     transition: all 0.15s ease-in;
 }
 
 .drawer__item--danger:hover {
-    background-color: var(--color-red-lighter);
-    color: var(--color-white);
+    background-color: var(--color-red-dark);
 }
 
 .drawer__item-content {
@@ -140,6 +141,6 @@
 
 .drawer__divider {
     height: 1px;
-    background-color: var(--gray-200);
+    background-color: var(--color-neutral-200);
     margin: 0;
 }

@@ -5,7 +5,7 @@
     margin: 0 auto;
     border-radius: 0.5rem;
     padding: 1rem;
-    background: var(--color-white);
+    background: var(--color-neutral-0);
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 

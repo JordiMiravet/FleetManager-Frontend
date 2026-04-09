@@ -10,9 +10,9 @@
 .form {
     padding: 2rem;
     border-radius: 0 0.5rem 0.5rem 0;
-    border-left: 0.5rem solid var(--color-blue-light);
+    border-left: 0.5rem solid var(--color-primary-500);
     width: 100%;
-    background-color: var(--gray-50);
+    background-color: var(--bg-surface-0);
     box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.5);
 }
 
@@ -30,8 +30,8 @@
     width: 100%;
     padding: 1rem;
     margin-bottom: 2.5rem;
-    border-bottom: 2px solid var(--gray-300);
-    color: var(--color-blue-dark);
+    border-bottom: 2px solid var(--bg-surface-100);
+    color: var(--text-secondary);
     font-weight: 700;
     font-size: var(--font-size-xl);
     text-align: left;
@@ -55,33 +55,33 @@
     margin: 0 auto 0.5rem 0.5rem;
     font-weight: 700;
     font-size: clamp(1.75rem, 2vw, 2rem);
-    color: var(--color-blue-dark);
+    color: var(--color-primary-700);
 }
 
 /* Inputs */
 
 .form__group input {
-    background-color: var(--gray-200);
-    color: var(--gray-900);
+    background-color: var(--bg-surface-200);
     width: 100%;
     padding: var(--space-ms);
     border: none;
     border-radius: var(--radius-sm);
     outline: none;
+    color: var(--text-secondary);
     font-size: clamp(1.5rem, 1.75vw, 1.75rem);
 }
 
 .form__group input::placeholder {
-    color: var(--gray-500);
+    color: var(--text-muted);
 }
 .form__group input.ng-invalid.ng-touched {
-    box-shadow: 0 0 0 2px var(--color-red-light);
+    box-shadow: 0 0 0 2px var(--input-border-error);
 }
 
 /* Error text */
 
 .form__error-text {
-    color: var(--color-red-light);
+    color: var(--text-warning);
     margin: 0;
     padding: var(--space-xs);
     font-size: var(--font-size-sm);
@@ -94,8 +94,8 @@
     justify-content: flex-start;
     align-items: center;
     gap: 0.5rem;
-    background-color: var(--color-red-light);
-    color: var(--color-white);
+    background-color: var(--btn-warning-bg);
+    color: var(--text-inverse);
     padding: var(--space-xs);
     margin: 1rem 0 0 0;
     opacity: 0.9;
@@ -110,8 +110,8 @@
     padding: var(--space-md);
     border: none;
     border-radius: var(--radius-sm);
-    background-color: var(--color-blue-light);
-    color: var(--color-white);
+    background-color: var(--btn-primary-bg);
+    color: var(--text-inverse);
     font-weight: 700;
     font-size: var(--font-size-lg);
     cursor: pointer;
@@ -119,25 +119,25 @@
 }
 
 .btn__auth:hover {
-    background-color: var(--color-blue-dark);
+    background-color: var(--btn-primary-bg-hover);
 }
 
 .btn__auth[disabled] {
-    pointer-events: none;
+    cursor: not-allowed;
     opacity: 0.9;
-    background-color: var(--gray-200);
-    color: var(--gray-900);
+    background-color: var(--btn-primary-bg-disabled);
+    color: var(--text-primary);
 }
 
 /* Form Switch */
 
 .form__switch {
     font-size: var(--font-size-xs);
-    color: var(--color-blue-dark);
+    color: var(--color-primary-700);
     font-weight: 500;
 }
 .form__switch a {
-    color: var(--color-blue-dark);
+    color: var(--color-primary-700);
     font-weight: 700;
 }
 
@@ -148,5 +148,5 @@
     padding: 0;
     text-align: end;
     font-weight: 700;
-    color: var(--color-blue-dark);
+    color: var(--color-primary-700);
 }

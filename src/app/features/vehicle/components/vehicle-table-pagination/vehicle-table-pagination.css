@@ -3,13 +3,13 @@
 .vehicle-pagination {
     width: 100%;
     min-width: 20rem;
-    background-color: var(--gray-100);
+    background-color: var(--color-neutral-100);
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
     padding: 0.75rem 1rem;
-    border: 1px solid var(--gray-300);
+    border: 1px solid var(--color-neutral-300);
     border-top: none;
     border-radius: 0 0 0.5rem 0.5rem;
 }
@@ -22,13 +22,13 @@
 
 .vehicle-pagination__text {
     font-size: var(--font-size-sm);
-    color: var(--gray-700);
+    color: var(--color-neutral-700);
     margin: 0;
 }
 
 .vehicle-pagination__value {
     font-weight: 700;
-    color: var(--gray-800);
+    color: var(--color-neutral-800);
 }
 
 /* Pagination Controls */
@@ -40,27 +40,27 @@
 
 .vehicle-pagination__button {
     padding: 1rem;
-    border: 1px solid var(--gray-300);
+    border: 1px solid var(--color-neutral-300);
     border-radius: 0.5rem;
     cursor: pointer;
     transition: all 0.15s ease;
 } 
 .vehicle-pagination__button:hover {
-    border: 1px solid var(--gray-400);
+    border: 1px solid var(--color-neutral-400);
 }
 .vehicle-pagination__button:active {
-    background-color: var(--gray-200);
+    background-color: var(--color-neutral-200);
     transform: scale(0.95);
 }
 .vehicle-pagination__button:focus-visible {
-    outline: 2px solid var(--gray-400);
+    outline: 2px solid var(--color-neutral-400);
     outline-offset: 2px;
 }
 
 .vehicle-pagination__button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    border-color: var(--gray-300);
+    border-color: var(--color-neutral-300);
 }
 
 /* Desktop */

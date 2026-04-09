@@ -11,10 +11,10 @@
         <p class="modal__message" id="confirm-modal__modal-message">{{ message() }}</p>
 
         <div class="modal__actions">
-        <button type="button" id="confirm-modal__button-confirm" class="modal__button modal__button--delete" (click)="onConfirm()" aria-label="Confirm action">
+        <button type="button" id="confirm-modal__button-confirm" class="modal__button modal__button--confirm" (click)="onConfirm()" aria-label="Confirm action">
             Confirm
         </button>
-        <button type="button" id="confirm-modal__button-cancel" class="modal__button" (click)="onCancel()" aria-label="Cancel action">
+        <button type="button" id="confirm-modal__button-cancel" class="modal__button modal__button--cancel" (click)="onCancel()" aria-label="Cancel action">
             Cancel
         </button>
         </div>

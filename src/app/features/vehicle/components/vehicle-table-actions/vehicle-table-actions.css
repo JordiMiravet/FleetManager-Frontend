@@ -2,13 +2,13 @@
 .vehicle-actions {
     width: 100%;
     min-width: 20rem;
-    background-color: var(--gray-50);
+    background-color: var(--color-neutral-50);
     padding: 1.25rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    border: 1px solid var(--gray-300);
+    border: 1px solid var(--color-neutral-300);
     border-radius: 0.5rem 0.5rem 0 0;
 }
 
@@ -19,9 +19,9 @@
 .vehicle-actions__button {
     padding: 0.75rem;
     border-radius: 0.5rem;
-    border: 1px solid var(--gray-400);
+    border: 1px solid var(--color-neutral-400);
     font-size: var(--font-size-sm);
-    color: var(--gray-700);
+    color: var(--color-neutral-700);
     transition: border 0.15s ease;
 }
 
@@ -40,7 +40,7 @@
 }
 .vehicle-actions__input:focus {
     outline: none;
-    border-color: var(--gray-500);
+    border-color: var(--color-neutral-500);
 }
 
 .vehicle-actions__icon {
@@ -48,7 +48,7 @@
     left: 0.75rem;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--gray-400);
+    color: var(--color-neutral-400);
     font-size: var(--font-size-sm);
     pointer-events: none;
 }
@@ -63,7 +63,7 @@
 
 .vehicle-actions__select,
 .vehicle-actions__button {
-    background-color: var(--gray-100);
+    background-color: var(--color-neutral-100);
     cursor: pointer;
     transition: all 0.05s ease-in-out;
 }
@@ -71,10 +71,10 @@
 .vehicle-actions__select:focus,
 .vehicle-actions__button:focus {
     outline: none;
-    background-color: var(--gray-200);
+    background-color: var(--color-neutral-200);
 }
 
 .vehicle-actions__select:hover,
 .vehicle-actions__button:hover {
-    background-color: var(--gray-200);
+    background-color: var(--color-neutral-200);
 }

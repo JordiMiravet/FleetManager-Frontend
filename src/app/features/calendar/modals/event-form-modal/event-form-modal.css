@@ -34,7 +34,7 @@
     margin: 0;
     border-radius: 0 0.5rem 0.5rem 0;
     border-left: 0.5rem solid var(--color-blue-light);
-    background-color: var(--color-white);
+    background-color: var(--color-neutral-50);
     box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.5);
     overflow-y: auto;
 }
@@ -52,7 +52,7 @@
     width: 100%;
     padding: 1rem 0;
     margin-bottom: 2rem;
-    border-bottom: 2px solid var(--gray-300);
+    border-bottom: 2px solid var(--color-neutral-300);
 }
 
 .event-form__group {
@@ -103,7 +103,7 @@
     padding: 1rem;
     border: none;
     border-radius: var(--radius-sm);
-    background-color: var(--gray-100);
+    background-color: var(--color-neutral-100);
 }
 
 .event-form__input[type="date"]:hover,
@@ -151,7 +151,7 @@
     border: none;
     border-radius: var(--radius-sm);
     font-size: clamp(1.35rem, 1vw, 1.5rem);
-    color: var(--color-white);
+    color: var(--color-neutral-0);
 }
 
 .event-form__button--Cancel {
@@ -164,8 +164,8 @@
 }
 
 .event-form__button--Save {
-    background-color: var(--gray-300);
-    color: var(--color-white);
+    background-color: var(--color-neutral-300);
+    color: var(--color-neutral-0);
     transition: background-color 0.25s ease-in-out;
 }
 

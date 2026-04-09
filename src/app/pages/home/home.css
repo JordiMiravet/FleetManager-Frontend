@@ -6,7 +6,7 @@
     align-items: center;
     padding: 1rem 2rem;
     margin-bottom: 0;
-    background-color: var(--gray-50);
+    background-color: var(--color-neutral-50);
 }
 .home__title {
     display: flex;

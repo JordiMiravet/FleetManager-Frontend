@@ -2,7 +2,7 @@
     margin: 0;
     padding: 1.5rem 1rem 2rem 1rem;
     width: 100%;
-    background-color: var(--gray-100);
+    background-color: var(--color-neutral-100);
     border-radius: 2rem 2rem 0 0 ;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.70);
     display: flex;
@@ -14,7 +14,7 @@
 }
 
 .map-card:hover {
-    background-color: var(--gray-200);
+    background-color: var(--color-neutral-200);
 }
 
 .map-card__info {
@@ -52,14 +52,14 @@
     border-radius: 5rem;
     font-size: clamp(1.755rem, 1vw, 1.5rem);
     background-color: var(--color-blue-light);
-    color: var(--gray-100);
+    color: var(--color-neutral-100);
     transition: background-color 0.25s ease, color 0.25s ease-in-out;
     cursor: pointer;
 }
 
 .map__button:hover {
     background-color: var(--color-blue-dark);
-    color: var(--gray-200);
+    color: var(--color-neutral-200);
 }
 
 .map__button i {

@@ -26,7 +26,7 @@
 /* Modal */
 
 .modal {
-    background: var(--color-white);
+    background: var(--color-neutral-0);
     padding: 2rem;
     border-radius: 0 0.5rem 0.5rem 0;
     border-left: 0.5rem solid var(--color-blue-light);
@@ -38,7 +38,7 @@
 .modal__title {
     margin: 0 0 1rem 0;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--gray-300);
+    border-bottom: 1px solid var(--color-neutral-300);
     color: var(--color-blue-dark);
     font-size: clamp(1.755rem, 1vw, 1.5rem);
     display: flex;
@@ -77,12 +77,12 @@
     border-radius: 0;
     padding: 0.5rem 1rem;
     margin-bottom: 0.5rem;
-    background-color: var(--gray-100);
+    background-color: var(--color-neutral-100);
     width: auto;
     transition: all 0.125s ease-in-out;
 }
 .modal__user:hover {
-    background-color: var(--gray-200);
+    background-color: var(--color-neutral-200);
     transform: translateX(0.5rem);
 }
 
@@ -90,7 +90,7 @@
     margin: 0;
     padding: 0.5rem;
     font-size: var(--font-size-sm);
-    color: var(--gray-900);
+    color: var(--color-neutral-900);
 }
 
 .modal__empty {
@@ -111,7 +111,7 @@
     padding: 1rem;
     border: 2px solid transparent;
     border-radius: var(--radius-sm);
-    background-color: var(--gray-100);
+    background-color: var(--color-neutral-100);
     font-size: clamp(1.35rem, 1vw, 1.5rem);
     transition: border-color 0.2s ease;
 }
@@ -157,7 +157,7 @@
 
 .modal__button--submit {
     background-color: var(--color-blue-light);
-    color: var(--color-white);
+    color: var(--color-neutral-0);
 }
 
 .modal__button--submit:hover:not(:disabled) {
@@ -165,12 +165,12 @@
 }
 
 .modal__button--cancel {
-    background-color: var(--gray-200);
+    background-color: var(--color-neutral-200);
     color: var(--color-text-dark);
 }
 
 .modal__button--cancel:hover:not(:disabled) {
-    background-color: var(--gray-300);
+    background-color: var(--color-neutral-300);
 }
 
 /* Note */

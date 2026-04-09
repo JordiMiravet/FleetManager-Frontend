@@ -18,26 +18,26 @@
 .vehicle-table__header { 
     padding: 0;
     margin: 0;
-    background-color: var(--gray-100);
+    background-color: var(--color-neutral-100);
 }
 
 .vehicle-table__header .vehicle-table__row {
     border-top: none;
-    border-left: 1px solid var(--gray-300);
-    border-right: 1px solid var(--gray-300);
+    border-left: 1px solid var(--color-neutral-300);
+    border-right: 1px solid var(--color-neutral-300);
 }
 
 .vehicle-table__body {
-    background-color: var(--color-white);
-    border: 1px solid var(--gray-300);
+    background-color: var(--color-neutral-50);
+    border: 1px solid var(--color-neutral-300);
 }
 
 .vehicle-table__body .vehicle-table__row {
-    border: 1px solid var(--gray-300);
+    border: 1px solid var(--color-neutral-300);
 }
 
 .vehicle-table__body .vehicle-table__row:hover {
-    background-color: var(--gray-50);
+    background-color: var(--color-neutral-50);
 }
 
 /* Header */
@@ -48,7 +48,7 @@
     text-transform: uppercase;
     font-size: var(--font-size-xs);
     font-weight: 700;
-    color: var(--gray-700);
+    color: var(--color-neutral-700);
     letter-spacing: 0.05rem;
 }
 .vehicle-table__header th.vehicle-table__header-image {
@@ -99,7 +99,7 @@
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 50%;
-    border: 1px solid var(--gray-300);
+    border: 1px solid var(--color-neutral-300);
     margin: 0 auto;
     box-sizing: border-box;
 }
@@ -136,11 +136,12 @@
 .vehicle-table__name {
     font-weight: 500;
     font-size: var(--font-size-md);
-    color: var(--gray-900);
+    color: var(--color-neutral-900);
 }
 
 .vehicle-table__model {
     font-size: var(--font-size-xs);
+    color: var(--color-neutral-900);
 }
 
 .vehicle-table__name,
@@ -155,7 +156,7 @@
 }
 
 .vehicle-table__plate {
-    color: var(--gray-700);
+    color: var(--color-neutral-700);
     font-weight: 500;
     font-size: var(--font-size-xs);
     letter-spacing: 0.05rem;
@@ -163,13 +164,13 @@
 
 @media (min-width: 576px) {
     .vehicle-table__plate {
-        background-color: var(--gray-200);
-        color: var(--gray-700);
+        background-color: var(--color-neutral-200);
+        color: var(--color-neutral-700);
         font-weight: 500;
         font-size: var(--font-size-xs);
         letter-spacing: 0.05rem;
         padding: 0.5rem 1rem;
-        border: 1px solid var(--gray-300);
+        border: 1px solid var(--color-neutral-300);
         border-radius: 0.5rem;
     }
 }

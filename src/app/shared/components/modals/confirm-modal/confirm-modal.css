@@ -22,7 +22,7 @@
 /* Form */
 
 .modal__form {
-    background-color: var(--gray-100);
+    background-color: var(--color-neutral-100);
     border-radius: var(--radius-sm);
     padding: 2rem;
     max-width: 40rem;
@@ -50,7 +50,8 @@
 }
 
 .modal__button {
-    background-color: var(--gray-300);
+    background-color: var(--btn-primary-bg);
+    color: var(--color-neutral-50);
     padding: 1.5rem 1.5rem;
     border: none;
     border-radius: var(--radius-sm);
@@ -60,17 +61,17 @@
     transition: background-color 0.25s ease;
 }
 
-.modal__button--delete {
-    background-color: var(--color-red-light);
-    color: var(--color-white);
+.modal__button--confirm {
+    background-color: var(--btn-warning-bg);
+    color: var(--color-neutral-0);
+}
+.modal__button--confirm:hover:not(:disabled) {
+    background-color: var(--btn-warning-bg-hover);
 }
 
-.modal__button:hover:not(:disabled) {
-    background-color: var(--color-blue-light);
+.modal__button--cancel {
+    background-color: var(--btn-danger-bg);
 }
-
-.modal__button--delete:hover:not(:disabled) {
-    background-color: var(--color-red-dark);
+.modal__button--cancel:hover:not(:disabled) {
+    background-color: var(--btn-danger-bg-hover);
 }
-
-

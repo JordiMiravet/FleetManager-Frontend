@@ -19,7 +19,7 @@
     margin: 0;
 
     background-color: transparent;
-    color: var(--color-white);
+    color: var(--color-neutral-0);
     font-size: var(--font-size-base);
     font-weight: 500;
 
@@ -31,7 +31,7 @@
 
 .navbar__auth-button:hover {
     color: var(--color-blue-light);
-    background-color: var(--color-white);
+    background-color: var(--color-neutral-50);
 }
 
 .navbar__auth-button.active {
@@ -39,5 +39,5 @@
 }
 
 .navbar__auth-button.active:hover {
-    color: var(--color-white);
+    color: var(--color-neutral-0);
 }

@@ -19,11 +19,11 @@
 }
 
 .nav-item i {
-    color: var(--color-white);
+    color: var(--color-neutral-0);
 }
 
 .nav-item a {
-    color: var(--color-white);
+    color: var(--color-neutral-0);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,12 +35,12 @@
 }
 .nav-item a:hover {
     background-color: rgba(0, 0, 0, 0.25);
-    border: 2px solid var(--color-white);
+    border: 2px solid var(--color-neutral-0);
 }
 .nav-item a.active {
     border: 2px solid transparent;
     color: var(--color-blue-light);
-    background-color: var(--color-white);
+    background-color: var(--color-neutral-50);
 }
 .nav-item a.active i {
     color: var(--color-blue-light);

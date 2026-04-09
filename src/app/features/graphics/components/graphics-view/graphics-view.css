@@ -1,6 +1,6 @@
 
 .graphics-actions {
-    background-color: var(--color-white);
+    background-color: var(--color-neutral-50);
     margin: 0;
     padding: 0.5rem 1rem;
     display: flex;
@@ -25,9 +25,9 @@
 }
 .graphics-actions__period-button {
     padding: 0.5rem 1rem;
-    border: 2px solid var(--color-white);
+    border: 2px solid var(--color-neutral-0);
     border-radius: var(--radius-sm);
-    background: var(--color-white);
+    background: var(--color-neutral-0);
     color: var(--color-blue-dark);
     font-size: var(--font-size-xs);
     font-weight: 500;
@@ -41,12 +41,12 @@
 .graphics-actions__period-button--active {
     background: var(--color-blue-light);
     border-color: var(--color-blue-light);
-    color: var(--color-white);
+    color: var(--color-neutral-0);
 }
 .graphics-actions__period-button--active:hover {
     background: var(--color-blue-light);
     border-color: var(--color-blue-light);
-    color: var(--color-white);
+    color: var(--color-neutral-0);
 }
 
 .graphics {
