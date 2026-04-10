@@ -10,13 +10,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--overlay-start);
+    background-color: var(--overlay-backdrop-transparent);
     animation: fadeIn 0.2s ease forwards;
 }
 
 @keyframes fadeIn {
-    from { background-color: var(--overlay-start); }
-    to { background-color: var(--overlay-end); }
+    from { background-color: var(--overlay-backdrop-transparent); }
+    to { background-color: var(--overlay-backdrop); }
 }
 
 /* Form */
@@ -32,7 +32,7 @@
 
 .modal__title {
     font-size: var(--font-size-lg);
-    color: var(--color-blue-dark);
+    color: var(--text-secondary);
     font-weight: 700;
     margin-bottom: 1rem;
 }
@@ -51,7 +51,7 @@
 
 .modal__button {
     background-color: var(--btn-primary-bg);
-    color: var(--color-neutral-50);
+    color: var(--btn-primary-text-inverse);
     padding: 1.5rem 1.5rem;
     border: none;
     border-radius: var(--radius-sm);
@@ -63,7 +63,7 @@
 
 .modal__button--confirm {
     background-color: var(--btn-warning-bg);
-    color: var(--color-neutral-0);
+    color: var(--btn-primary-text-inverse);
 }
 .modal__button--confirm:hover:not(:disabled) {
     background-color: var(--btn-warning-bg-hover);

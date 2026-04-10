@@ -6,7 +6,7 @@
     gap: 1rem;
     text-align: center;
     padding: 1rem;
-    border-left: 0.5rem solid var(--color-blue-light);
+    border-left: 0.5rem solid var(--bg-primary-500);
     border-radius: 0 0.5rem 0.5rem 0;
     background-color: var(--color-neutral-50);
     box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.25);
@@ -16,7 +16,7 @@
     font-size: var(--font-size-md);
     font-weight: 00;
     font-style: italic;
-    color: var(--color-blue-dark);
+    color: var(--text-primary);
     opacity: 0.75;
     padding: 0.75rem;
     margin: 0;

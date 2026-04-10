@@ -1,6 +1,5 @@
-
 .navbar {
-    background-color: var(--color-blue-light);
+    background-color: var(--bg-primary-500);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,39 +17,52 @@
     gap: 1rem; 
 }
 
-.nav-item i {
-    color: var(--color-neutral-0);
-}
-
 .nav-item a {
-    color: var(--color-neutral-0);
+    color: var(--btn-primary-bg-inverse);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0;
     padding: 0.75rem;
     border-radius: var(--radius-md);
     border: 2px solid transparent;
-    transition: background-color 0.25s ease;
+    transition: 
+        background-color 0.25s ease, 
+        border-color 0.25s ease,
 }
+
 .nav-item a:hover {
-    background-color: rgba(0, 0, 0, 0.25);
-    border: 2px solid var(--color-neutral-0);
+    border: 2px solid var(--btn-primary-bg-inverse);
 }
+
 .nav-item a.active {
-    border: 2px solid transparent;
-    color: var(--color-blue-light);
-    background-color: var(--color-neutral-50);
+    border: 2px solid var(--btn-primary-bg-transparent);
+    color: var(--btn-primary-bg-active);
+    background-color: var(--btn-primary-bg-inverse);
+    transform: scale(0.96);
+    gap: 0.5rem;
 }
-.nav-item a.active i {
-    color: var(--color-blue-light);
+
+.nav-item__icon {
+    color: var(--btn-primary-bg-inverse);
 }
-.nav-item a.active .nav-label {
-    display: inline-block;
-    
+
+.nav-item a.active .nav-item__icon {
+    color: var(--btn-primary-bg-active);
+    transform: scale(0.9);
 }
+
 .nav-label {
-    display: none;
+    display: inline-block;
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.nav-item a.active .nav-label {
+    max-width: 10rem;
+    opacity: 1;
 }
 
 @media(min-width: 576px) {
@@ -58,12 +70,10 @@
         padding: 0.5rem;
     }
     .nav-label {
-        display: inline-block;
         font-weight: 500;
         font-size: var(--font-size-md);
-        text-decoration: none;
     }
     .nav-label.active {
-        color: var(--color-blue-light);
+        color: var(--btn-primary-bg-active);
     }
 }

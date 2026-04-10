@@ -8,7 +8,7 @@
     cursor: pointer;
 }
 .user-button:focus-visible {
-    outline: 2px solid var(--color-blue-light);
+    outline: 2px solid var(--btn-primary-text);
     outline-offset: 2px;
     transition: outline 0.25s ease;
 }
@@ -20,9 +20,9 @@
     width: 2.5rem;
     height: 2.5rem;
     font-size: 2rem;
-    color: var(--color-blue-light);
+    color: var(--btn-primary-text);
     transition: color 0.25s;
 }
 .user-button i:hover {
-    color: var(--color-blue-dark);
+    color: var(--btn-primary-text-hover);
 }

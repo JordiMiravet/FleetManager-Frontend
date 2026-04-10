@@ -15,13 +15,13 @@
     border: none;
     outline: none;
 
-    background-color: var(--overlay-start);
+    background-color: var(--overlay-backdrop-transparent);
     animation: fadeIn 0.2s ease forwards;
 }
 
 @keyframes fadeIn {
-    from { background-color: var(--overlay-start); }
-    to { background-color: var(--overlay-end); }
+    from { background-color: var(--overlay-backdrop-transparent); }
+    to { background-color: var(--overlay-backdrop); }
 }
 
 /* Form */
@@ -34,7 +34,7 @@
     padding: 2rem;
     margin: 0;
     border-radius: 0 0.5rem 0.5rem 0;
-    border-left: 0.5rem solid var(--color-blue-light);
+    border-left: 0.5rem solid var(--bg-primary-500);
     background-color: var(--color-neutral-50);
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
     overflow-y: auto;
@@ -50,7 +50,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--color-blue-dark);
+    color: var(--text-primary);
     font-weight: 700;
     font-size: clamp(1.85rem, 2vw, 2rem);
     width: 100%;
@@ -73,7 +73,7 @@
 }
 
 .modal__label {
-    color: var(--color-blue-dark);
+    color: var(--text-secondary);
     font-size: clamp(1.35rem, 1vw, 1.5rem);
     font-weight: 600;
     text-align: left;
@@ -91,7 +91,7 @@
 }
 
 .modal__input--error {
-    border: 0.2rem solid var(--color-red-light);
+    border: 0.2rem solid var(--input-border-error);
     outline: none;
 }
 
@@ -101,7 +101,7 @@
     width: 100%;
     font-weight: 500;
     font-size: clamp(1.35rem, 1vw, 1.5rem);
-    color: var(--color-red-light);
+    color: var(--text-warning);
     min-height: 2rem;
     line-height: 2rem;
 }
@@ -131,11 +131,11 @@
 }
 
 .modal__button--save:not(:disabled) {
-    background-color: var(--color-blue-light);
+    background-color: var(--btn-primary-bg);
 }
 
 .modal__button--save:not(:disabled):hover {
-    background-color: var(--color-blue-dark);
+    background-color: var(--btn-primary-bg-hover);
 }
 
 .modal__button:disabled {
@@ -144,10 +144,10 @@
     cursor: not-allowed;
 }
 .modal__button--cancel {
-    background-color: var(--color-red-light);
+    background-color: var(--btn-warning-bg);
 }
 .modal__button--cancel:hover {
-    background-color: var(--color-red-dark);
+    background-color: var(--btn-warning-bg-hover);
 }
 
 @media(min-width: 576px) {
@@ -167,5 +167,5 @@
     padding: 0;
 
     font-weight: 700;
-    color: var(--color-blue-dark);
+    color: var(--text-secondary);
 }

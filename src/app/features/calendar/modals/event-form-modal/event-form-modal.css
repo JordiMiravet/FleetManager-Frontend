@@ -14,13 +14,13 @@
     border: none;
     outline: none;
 
-    background-color: var(--overlay-start);
+    background-color: var(--overlay-backdrop-transparent);
     animation: fadeIn 0.2s ease forwards;
 }
 
 @keyframes fadeIn {
-    from { background-color: var(--overlay-start); }
-    to { background-color: var(--overlay-end); }
+    from { background-color: var(--overlay-backdrop-transparent); }
+    to { background-color: var(--overlay-backdrop); }
 }
 
 /* Event Form */
@@ -33,7 +33,7 @@
     padding: 2rem;
     margin: 0;
     border-radius: 0 0.5rem 0.5rem 0;
-    border-left: 0.5rem solid var(--color-blue-light);
+    border-left: 0.5rem solid var(--bg-primary-500);
     background-color: var(--color-neutral-50);
     box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.5);
     overflow-y: auto;
@@ -46,7 +46,7 @@
 }
 
 .event-form__legend {
-    color: var(--color-blue-dark);
+    color: var(--text-secondary);
     font-weight: 700;
     font-size: clamp(1.85rem, 2vw, 2rem);
     width: 100%;
@@ -88,7 +88,7 @@
 }
 
 .event-form__label {
-    color: var(--color-blue-dark);
+    color: var(--text-secondary);
     font-size: clamp(1.35rem, 1vw, 1.5rem);
     font-weight: 600;
     text-align: left;
@@ -119,7 +119,7 @@
 /* Events error */
 
 .event-form__input-error {
-    border: 2px solid var(--color-red-light);
+    border: 2px solid var(--input-border-error);
     outline: none;
 }
 
@@ -128,7 +128,7 @@
     padding: 0 0.5rem;
     width: 100%;
     font-size: clamp(1.35rem, 1vw, 1.5rem);
-    color: var(--color-red-light);
+    color: var(--text-warning);
     min-height: 2rem;
     line-height: 2rem;
 }
@@ -155,12 +155,12 @@
 }
 
 .event-form__button--Cancel {
-    background-color: var(--color-red-light);
+    background-color: var(--btn-warning-bg);
     transition: background-color 0.25s ease-in-out;
 }
 
 .event-form__button--Cancel:hover {
-    background-color: var(--color-red-dark);
+    background-color: var(--btn-warning-bg-hover);
 }
 
 .event-form__button--Save {
@@ -170,12 +170,12 @@
 }
 
 .event-form__button--Save:not(:disabled) {
-    background-color: var(--color-blue-light);
+    background-color: var(--btn-primary-bg);
     cursor: pointer;
 }
 
 .event-form__button--Save:not(:disabled):hover {
-    background-color: var(--color-blue-dark);
+    background-color: var(--btn-primary-bg-hover);
 }
 
 @media(min-width: 576px) {
@@ -195,5 +195,5 @@
     padding: 0;
 
     font-weight: 700;
-    color: var(--color-blue-dark);
+    color: var(--text-secondary);
 }

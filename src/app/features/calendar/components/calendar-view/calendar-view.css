@@ -43,7 +43,7 @@
 
 .calendar__container .fc-toolbar-title {
     font-size: var(--font-size-xl);
-    color: var(--color-blue-light);
+    color: var(--text-secondary);
     font-weight: 600;
 }
 
@@ -54,7 +54,7 @@
 }
 
 .calendar__container .fc-button.fc-button-primary {
-    background-color: var(--color-blue-light);
+    background-color: var(--btn-primary-bg);
     border: none;
     color: var(--text-inverse);
     padding: 0.5rem 1rem;
@@ -63,7 +63,7 @@
 }
 
 .calendar__container .fc-button.fc-button-primary:hover {
-    background-color: var(--color-blue-dark);
+    background-color: var(--btn-primary-bg-hover);
 }
 
 .calendar__container .fc-button.fc-button-primary:disabled {
@@ -74,7 +74,7 @@
 /* Calendar: Weekly Header */
 
 .calendar__container .fc-col-header-cell {
-    background-color: var(--color-blue-light);
+    background-color: var(--bg-surface-700);
     font-weight: 700;
     padding: 1rem;
     text-transform: uppercase;
@@ -151,7 +151,7 @@
 }
 
 .calendar__container .fc-event.fc-daygrid-event:hover .fc-dot-indicator {
-    background-color: var(--color-blue-dark);
+    background-color: var(--color-primary-700);
 }
 
 .fc-dot-indicator {
@@ -159,7 +159,7 @@
     width: 0.75rem;
     height: 0.75rem;   
     border-radius: 50%;
-    background-color: var(--color-blue-light);
+    background-color: var(--color-primary-700);
 }
 
 @media(min-width: 768px) {
@@ -176,7 +176,7 @@
 
 .calendar__container .fc-daygrid-more-link {
     font-size: var(--font-size-xs);
-    color: var(--color-blue-dark);
+    color: var(--text-secondary);
     background-color: transparent;
     padding: 0;
     width: auto;
@@ -185,7 +185,7 @@
 .calendar__container .fc-daygrid-more-link:hover {
     background-color: transparent;
     text-decoration: underline;
-    color: var(--color-blue-dark);
+    color: var(--text-primary);
 }
 
 /* Calendar: Empty Events */

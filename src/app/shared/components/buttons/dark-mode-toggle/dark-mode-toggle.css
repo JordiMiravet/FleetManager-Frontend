@@ -1,10 +1,10 @@
-/* Toggle Container*/
+/* Toggle Container */
 
 .toggle {
     margin: 0;
     width: 5rem;
     height: 2.5rem;
-    background: var(--color-yellow-500);
+    background: var(--toggle-bg);
     border-radius: 10rem;
     position: relative;
     cursor: pointer;
@@ -20,7 +20,7 @@
     align-items: center;
     width: 2rem;
     height: 2rem;
-    background: var(--color-neutral-0);
+    background: var(--toggle-thumb-bg);
     border-radius: 50%;
     position: absolute;
     top: 0.25rem;
@@ -30,15 +30,14 @@
 }
 
 .toggle__icon-inner {
-    color: var(--color-yellow-500);
+    color: var(--toggle-icon);
     transition: color 0.25s ease;
 }
 
 /* IsDark State */
 
 .toggle--active {
-    background-color: var(--color-blue-light);
-    color: var(--color-blue-light);
+    background-color: var(--toggle-bg-active);
 }
 
 .toggle--active .toggle__thumb {
@@ -46,6 +45,6 @@
 }
 
 .toggle--active .toggle__icon-inner {
-    color: var(--color-blue-light);
+    color: var(--toggle-icon-active);
     transition-delay: 0.05s;
 }

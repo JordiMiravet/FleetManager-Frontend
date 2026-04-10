@@ -36,20 +36,27 @@
 
     /* Semantic Colors */
 
-    /** Color Background **/
-
-    --bg-base: var(--color-neutral-50);
-    --bg-surface-0: var(--color-neutral-0);
-    --bg-surface-100: var(--color-neutral-100);
-    --bg-surface-200: var(--color-neutral-200);
-
-    /** Colors **/
+    /** Color: **/
 
     --color-primary-300: var(--color-blue-300);
     --color-primary-500: var(--color-blue-500);
     --color-primary-700: var(--color-blue-700);
 
-    /** Color Text **/
+    /** Color: Background **/
+
+    --bg-base: var(--color-neutral-50);
+
+    --bg-primary-300: var(--color-blue-300);
+    --bg-primary-500: var(--color-blue-500);
+    --bg-primary-700: var(--color-blue-700);
+
+    --bg-surface-0: var(--color-neutral-0);
+    --bg-surface-100: var(--color-neutral-100);
+    --bg-surface-200: var(--color-neutral-200);
+    --bg-surface-500: var(--color-neutral-500);
+    --bg-surface-700: var(--color-neutral-700);
+
+    /** Color: Text **/
 
     --text-primary: var(--color-neutral-900);
     --text-secondary: var(--color-neutral-700);
@@ -62,21 +69,24 @@
 
     --input-border-error: var(--color-red-500);
 
-    /** Color Button **/
+    /** Color: Button **/
 
     --btn-primary-bg: var(--color-blue-500);
     --btn-primary-bg-hover: var(--color-blue-700);
+    --btn-primary-bg-active: var(--color-blue-700);
     --btn-primary-bg-disabled: var(--color-neutral-300);
+    --btn-primary-bg-inverse: var(--text-inverse);
+    --btn-primary-bg-transparent: rgba(0, 0, 0, 0);
 
     --btn-primary-text: var(--color-blue-500);
     --btn-primary-text-hover: var(--color-blue-700);
     --btn-primary-text-inverse: var(--text-inverse);
 
-
+   /* TODO: Tengo que elegir un color para el Danger, que por ahora es neutral */
     --btn-danger-bg: var(--color-neutral-500);
     --btn-danger-bg-hover: var(--color-neutral-700);
     --btn-danger-bg-disabled: var(--color-neutral-300);
-
+    
     --btn-danger-text: var(--color-neutral-700);
     --btn-danger-text-hover: var(--color-neutral-900);
     --btn-danger-text-inverse: var(--text-inverse);
@@ -90,27 +100,20 @@
     --btn-warning-text-hover: var(--color-red-700);
     --btn-warning-text-inverse: var(--text-inverse);
 
+    /* Color: Theme Switch */
 
-    /* TODO: Migrar los textos y colores a la nueva nomenclatura, porque este metodo era poco escalable a darkMode */
-    /* Recuerda  control + shift + f para buscador por nombre*/
-    
-    --color-blue-lighter: #94B4C1;
-    --color-blue-light: #547792;
-    --color-blue-dark: #213448;
+    --toggle-bg: var(--color-yellow-500);
+    --toggle-bg-active: var(--color-blue-500);
 
-    --color-red-lighter: #d96a73;
-    --color-red-light: #c1121f;
-    --color-red-dark: #780000;
+    --toggle-thumb-bg: var(--color-neutral-0);
 
-    --overlay-start: rgba(0, 0, 0, 0);
-    --overlay-end: rgba(0, 0, 0, 0.5);
+    --toggle-icon: var(--color-yellow-500);
+    --toggle-icon-active: var(--color-blue-500);
 
+    /* Color: Overlay Backdrop */
 
-
-
-
-
-
+    --overlay-backdrop: rgba(0, 0, 0, 0.5);
+    --overlay-backdrop-transparent: rgba(0, 0, 0, 0);
 
 
     /* Typography */

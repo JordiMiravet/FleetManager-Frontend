@@ -15,7 +15,7 @@
     gap: 0.5rem;
     font-size: var(--font-size-md);
     font-weight: 600;
-    color: var(--color-blue-dark);
+    color: var(--text-primary);
     margin: 0;
 }
 

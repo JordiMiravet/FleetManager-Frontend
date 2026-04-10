@@ -4,13 +4,13 @@
     position: fixed;
     inset: 0;
     z-index: 100;
-    background-color: var(--overlay-start);
+    background-color: var(--overlay-backdrop-transparent);
     animation: fadeIn 0.2s ease forwards;
 }
 
 @keyframes fadeIn {
-    from { background-color: var(--overlay-start); }
-    to { background-color: var(--overlay-end); }
+    from { background-color: var(--overlay-backdrop-transparent); }
+    to { background-color: var(--overlay-backdrop); }
 }
 
 /* Drawer */
@@ -120,14 +120,13 @@
 }
 
 .drawer__item--danger {
-
-    background-color: var(--color-red-light);
+    background-color: var(--btn-warning-bg);
     color: var(--color-neutral-50);
     transition: all 0.15s ease-in;
 }
 
 .drawer__item--danger:hover {
-    background-color: var(--color-red-dark);
+    background-color: var(--btn-warning-bg-hover);
 }
 
 .drawer__item-content {

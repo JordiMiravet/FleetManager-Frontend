@@ -14,13 +14,13 @@
     border: none;
     outline: none;
 
-    background-color: var(--overlay-start);
+    background-color: var(--overlay-backdrop-transparent);
     animation: fadeIn 0.2s ease forwards;
 }
 
 @keyframes fadeIn {
-    from { background-color: var(--overlay-start); }
-    to { background-color: var(--overlay-end); }
+    from { background-color: var(--overlay-backdrop-transparent); }
+    to { background-color: var(--overlay-backdrop); }
 }
 
 /* Modal */
@@ -29,7 +29,7 @@
     background: var(--color-neutral-0);
     padding: 2rem;
     border-radius: 0 0.5rem 0.5rem 0;
-    border-left: 0.5rem solid var(--color-blue-light);
+    border-left: 0.5rem solid var(--bg-primary-500);
     max-width: 50rem;
     width: 95%;
     box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
@@ -39,7 +39,7 @@
     margin: 0 0 1rem 0;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--color-neutral-300);
-    color: var(--color-blue-dark);
+    color: var(--text-primary);
     font-size: clamp(1.755rem, 1vw, 1.5rem);
     display: flex;
     align-items: center;
@@ -60,7 +60,7 @@
     display: block;
     font-weight: 700;
     font-size: var(--font-size-sm);
-    color: var(--color-blue-dark);
+    color: var(--text-secondary);
     margin: 0 0 0.5rem 0;
 }
 
@@ -73,7 +73,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-left: 3px solid var(--color-blue-light);
+    border-left: 3px solid var(--bg-primary-500);
     border-radius: 0;
     padding: 0.5rem 1rem;
     margin-bottom: 0.5rem;
@@ -118,15 +118,17 @@
 
 .modal__input:focus {
     outline: none;
-    border-color: var(--color-blue-light);
+    border-color: 2px solid var(--btn-primary-bg);
 }
+
+/* Error Message */
 
 .modal__input--error {
-    border: 2px solid var(--color-red-light);
+    border: 2px solid var(--input-border-error);
 }
 
-.modal__error {
-    color: var(--color-red-light);
+.modal__error-text {
+    color: var(--text-warning);
     font-size: clamp(1.35rem, 1vw, 1.5rem);
     margin-top: 0.5rem;
     display: flex;
@@ -156,17 +158,17 @@
 }
 
 .modal__button--submit {
-    background-color: var(--color-blue-light);
+    background-color: var(--btn-primary-bg);
     color: var(--color-neutral-0);
 }
 
 .modal__button--submit:hover:not(:disabled) {
-    background-color: var(--color-blue-dark);
+    background-color: var(--btn-primary-bg-hover);
 }
 
 .modal__button--cancel {
     background-color: var(--color-neutral-200);
-    color: var(--color-text-dark);
+    color: var(--text-secondary);
 }
 
 .modal__button--cancel:hover:not(:disabled) {
@@ -179,5 +181,5 @@
     margin: 0;
     padding: 0;
     font-weight: 700;
-    color: var(--color-blue-dark);
+    color: var(--text-secondary);
 }
