@@ -3,7 +3,7 @@
     height: 40rem;
     width: 100%;
     margin: 0 auto;
-    border-radius: 0.5rem;
+    border-radius: var(--space-0-50);
     padding: 1rem;
     background: var(--color-neutral-0);
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);

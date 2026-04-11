@@ -7,7 +7,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-1-00);
     border: 1px solid var(--color-neutral-300);
     border-radius: 0.5rem 0.5rem 0 0;
 }
@@ -18,7 +18,7 @@
 .vehicle-actions__select,
 .vehicle-actions__button {
     padding: 0.75rem;
-    border-radius: 0.5rem;
+    border-radius: var(--space-0-50);
     border: 1px solid var(--color-neutral-400);
     font-size: var(--font-size-sm);
     color: var(--color-neutral-700);
@@ -58,7 +58,7 @@
 .vehicle-actions__sort {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-0-50);
 }
 
 .vehicle-actions__select,

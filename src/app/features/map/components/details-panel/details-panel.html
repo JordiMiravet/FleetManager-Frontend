@@ -9,12 +9,12 @@
         <h3 class="map-card__plate" id="vehicle-plate">{{ vehicle()?.plate }}</h3>
     </div>
     <button 
-        class="map__button" 
+        class="map-card__button" 
         (click)="click.emit()" 
         [aria-label]="detailsPanelMsg.aria.button" 
         [title]="detailsPanelMsg.aria.buttonTitle" 
     >
-        <i class="pi pi-compass" aria-hidden="true"></i>
+        <i class="map-card__button-icon pi pi-compass" aria-hidden="true"></i>
         {{ detailsPanelMsg.button }}
     </button>
 </article>

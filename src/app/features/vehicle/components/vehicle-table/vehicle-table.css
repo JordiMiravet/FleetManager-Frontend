@@ -93,7 +93,7 @@
 
 .vehicle-table__cell--img .vehicle-table__image {
     width: 100%;
-    min-width: 3rem;
+    min-width: var(--space-3-00);
     max-width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
@@ -118,7 +118,7 @@
 
 .vehicle-table__cell--actions .vehicle-table__actions {
     justify-content: flex-end;
-    gap: 0.5rem;
+    gap: var(--space-0-50);
 }
 
 @media (min-width: 576px) {
@@ -171,7 +171,7 @@
         letter-spacing: 0.05rem;
         padding: 0.5rem 1rem;
         border: 1px solid var(--color-neutral-300);
-        border-radius: 0.5rem;
+        border-radius: var(--space-0-50);
     }
 }
 
@@ -182,7 +182,7 @@
     padding: 0 0.75rem;
     margin: 0;
     width: 12.5%;
-    min-width: 3rem;
+    min-width: var(--space-3-00);
 }
 
 .vehicle-table__header-name,

@@ -87,7 +87,7 @@
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    gap: 1rem;
+    gap: var(--space-1-00);
 }
 
 /* Body Items */
@@ -96,7 +96,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: var(--space-1-00);
     width: 100%;
     padding: 1rem;
     border: none;
@@ -120,20 +120,20 @@
 }
 
 .drawer__item--danger {
-    background-color: var(--btn-warning-bg);
+    background-color: var(--btn-danger-bg);
     color: var(--color-neutral-50);
     transition: all 0.15s ease-in;
 }
 
 .drawer__item--danger:hover {
-    background-color: var(--btn-warning-bg-hover);
+    background-color: var(--btn-danger-bg-hover);
 }
 
 .drawer__item-content {
     display: flex;
     justify-content: center;
     align-items: start;
-    gap: 1rem;
+    gap: var(--space-1-00);
 }
 
 /* Divider */

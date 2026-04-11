@@ -11,7 +11,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-1-00);
     margin: 0;
     padding: 1rem;
     font-size: var(--font-size-lg);
@@ -21,7 +21,7 @@
 
 .graphics-actions__period {
     display: flex;
-    gap: 0.5rem;
+    gap: var(--space-0-50);
 }
 .graphics-actions__period-button {
     padding: 0.5rem 1rem;
@@ -52,7 +52,7 @@
 .graphics {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--space-1-00);
     width: 100%;
     padding: 1rem;
 }
@@ -66,7 +66,7 @@
     .graphics {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: var(--space-1-00);
     }
     
     .graphics-view__container:first-child,

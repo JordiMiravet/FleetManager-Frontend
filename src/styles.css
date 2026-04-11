@@ -82,22 +82,35 @@
     --btn-primary-text-hover: var(--color-blue-700);
     --btn-primary-text-inverse: var(--text-inverse);
 
-   /* TODO: Tengo que elegir un color para el Danger, que por ahora es neutral */
-    --btn-danger-bg: var(--color-neutral-500);
-    --btn-danger-bg-hover: var(--color-neutral-700);
-    --btn-danger-bg-disabled: var(--color-neutral-300);
-    
-    --btn-danger-text: var(--color-neutral-700);
-    --btn-danger-text-hover: var(--color-neutral-900);
+
+    --btn-secondary-bg: var(--color-neutral-500);
+    --btn-secondary-bg-hover: var(--color-neutral-700);
+    --btn-secondary-bg-active: var(--color-neutral-700);
+    --btn-secondary-bg-disabled: var(--color-neutral-300);
+    --btn-secondary-bg-inverse: var(--text-inverse);
+    --btn-secondary-bg-transparent: rgba(0, 0, 0, 0);
+
+    --btn-secondary-text: var(--color-neutral-500);
+    --btn-secondary-text-hover: var(--color-neutral-700);
+    --btn-secondary-text-inverse: var(--text-inverse);
+
+
+    --btn-danger-bg: var(--color-red-500);
+    --btn-danger-bg-hover: var(--color-red-700);
+    --btn-danger-bg-disabled: var(--color-red-300);
+    --btn-danger-bg-transparent: rgba(0, 0, 0, 0);
+
+    --btn-danger-text: var(--color-red-500);
+    --btn-danger-text-hover: var(--color-red-700);
     --btn-danger-text-inverse: var(--text-inverse);
 
 
-    --btn-warning-bg: var(--color-red-500);
-    --btn-warning-bg-hover: var(--color-red-700);
-    --btn-warning-bg-disabled: var(--color-red-300);
+    --btn-warning-bg: var(--color-yellow-500);
+    --btn-warning-bg-hover: var(--color-yellow-700);
+    --btn-warning-bg-disabled: var(--color-yellow-300);
 
-    --btn-warning-text: var(--color-red-500);
-    --btn-warning-text-hover: var(--color-red-700);
+    --btn-warning-text: var(--color-yellow-700);
+    --btn-warning-text-hover: var(--color-yellow-700);
     --btn-warning-text-inverse: var(--text-inverse);
 
     /* Color: Theme Switch */
@@ -120,24 +133,27 @@
 
     --font-family-base: Arial, Helvetica, sans-serif;
 
-    --font-size-xs: clamp(1rem, 1vw + 0.5rem, 1.25rem);
-    --font-size-sm: clamp(1.25rem, 1.5vw + 0.5rem, 1.5rem);
-    --font-size-base: clamp(1.5rem, 2vw + 0.5rem, 1.75rem);
-    --font-size-lg: clamp(1.75rem, 2.5vw + 0.5rem, 2rem);
-    --font-size-xl: clamp(2rem, 3vw + 0.5rem, 2.5rem);
+    --font-size-xs: clamp(1rem, 0.8vw + 1rem, 1.25rem);
+    --font-size-sm: clamp(1.25rem, 0.9vw + 1rem, 1.5rem);
+    --font-size-base: clamp(1.5rem, 1vw + 1rem, 1.75rem);
+    --font-size-lg: clamp(1.75rem, 1.2vw + 1rem, 2.25rem);
+    --font-size-xl: clamp(2.25rem, 1.5vw + 1rem, 3rem);
 
     /* Spacing */
 
-    --space-xs: 0.5rem;
-    --space-sm: 0.75rem;
-    --space-sd: 1rem;
-    --space-ms: 1.25rem;
-    --space-md: 1.5rem;
-    --space-ml: 1.75rem;
-    --space-ls: 2rem;
-    --space-lm: 2.25rem;
-    --space-lg: 2.5rem;
-    --space-xl: 3.25rem;
+    --space-0-25: 0.25rem;
+    --space-0-50: 0.5rem;
+    --space-0-75: 0.75rem;
+    --space-1-00: 1rem;
+    --space-1-25: 1.25rem;
+    --space-1-50: 1.5rem;
+    --space-1-75: 1.75rem;
+    --space-2-00: 2rem;
+    --space-2-25: 2.25rem;
+    --space-2-50: 2.5rem;
+    --space-2-75: 2.75rem; 
+    --space-3-00: 3rem;  
+    --space-3-25: 3.25rem;
 
     /* Radius */
 
@@ -165,7 +181,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--font-family-base);
-    font-size: var(--space-ml);
+    font-size: var(--font-size-base);
     -ms-overflow-style: none;
 }
 body::-webkit-scrollbar {

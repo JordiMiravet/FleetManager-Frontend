@@ -48,7 +48,7 @@
 .event-form__legend {
     color: var(--text-secondary);
     font-weight: 700;
-    font-size: clamp(1.85rem, 2vw, 2rem);
+    font-size: var(--font-size-lg);
     width: 100%;
     padding: 1rem 0;
     margin-bottom: 2rem;
@@ -60,7 +60,7 @@
     justify-content: center;
     align-items: start;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-0-25);
     margin-bottom: 1.25rem;
     min-height: auto; 
 }
@@ -70,7 +70,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: var(--space-1-00);
     width: 100%;
     min-height: 7.5rem;
     margin-bottom: 1rem;
@@ -89,7 +89,7 @@
 
 .event-form__label {
     color: var(--text-secondary);
-    font-size: clamp(1.35rem, 1vw, 1.5rem);
+    font-size: var(--font-size-sm);
     font-weight: 600;
     text-align: left;
     width: 100%;
@@ -98,7 +98,7 @@
 
 .event-form__input,
 .event-form__textarea {
-    font-size: clamp(1.35rem, 1vw, 1.5rem);
+    font-size: var(--font-size-sm);
     width: 100%;
     padding: 1rem;
     border: none;
@@ -127,7 +127,7 @@
     margin: 0;
     padding: 0 0.5rem;
     width: 100%;
-    font-size: clamp(1.35rem, 1vw, 1.5rem);
+    font-size: var(--font-size-xs);
     color: var(--text-warning);
     min-height: 2rem;
     line-height: 2rem;
@@ -140,7 +140,7 @@
     justify-content: flex-end;
     align-items: center;
     flex-direction: column-reverse;
-    gap: 1rem;
+    gap: var(--space-1-00);
     padding: 1rem 0;
     width: 100%;
 }
@@ -150,17 +150,17 @@
     width: 100%;
     border: none;
     border-radius: var(--radius-sm);
-    font-size: clamp(1.35rem, 1vw, 1.5rem);
+    font-size: var(--font-size-sm);
     color: var(--color-neutral-0);
 }
 
 .event-form__button--Cancel {
-    background-color: var(--btn-warning-bg);
+    background-color: var(--btn-danger-bg);
     transition: background-color 0.25s ease-in-out;
 }
 
 .event-form__button--Cancel:hover {
-    background-color: var(--btn-warning-bg-hover);
+    background-color: var(--btn-danger-bg-hover);
 }
 
 .event-form__button--Save {

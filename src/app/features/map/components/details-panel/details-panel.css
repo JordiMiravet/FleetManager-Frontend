@@ -9,7 +9,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: var(--space-0-50);
     transition: background-color 0.25s ease;
 }
 
@@ -40,30 +40,30 @@
     margin: 0 0 0.5rem 0;
 }
 
-.map__button {
+.map-card__button {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-1-00);
     margin: 0;
     padding: 1.25rem;
     width: 100%;
     border: none;
     border-radius: 5rem;
-    font-size: clamp(1.755rem, 1vw, 1.5rem);
+    font-size: var(--font-size-lg);
     background-color: var(--btn-primary-bg);
     color: var(--color-neutral-100);
     transition: background-color 0.25s ease, color 0.25s ease-in-out;
     cursor: pointer;
 }
 
-.map__button:hover {
+.map-card__button:hover {
     background-color: var(--btn-primary-bg-hover);
     color: var(--color-neutral-200);
 }
 
-.map__button i {
-    font-size: 2.5rem;
+.map-card__button-icon {
+    font-size: var(--space-2-50);
 }
 
 @media (min-width: 576px) {
@@ -74,6 +74,6 @@
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     }
     .map-card__info {
-        gap: 0.25rem;
+        gap: var(--space-0-25);
     }
 }

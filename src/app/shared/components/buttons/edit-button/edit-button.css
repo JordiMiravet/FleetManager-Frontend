@@ -1,30 +1,45 @@
+/* Button */
 
 .edit-button {
-    background: transparent;
-    border: none;
-    padding: 0;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    width: var(--space-3-25);
+    height: var(--space-3-25);
+    border: none;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    padding: 0;
     cursor: pointer;
 }
+
 .edit-button:focus-visible {
-    outline: 2px solid var(--btn-primary-bg);
-    outline-offset: 2px;
-    transition: outline 0.25s ease;
+    outline: none;
+    box-shadow: inset 0 0 0 2px var(--btn-primary-text);
 }
 
-.edit-button i {
+/* Icon */
+
+.edit-button__icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 2rem;
+    width: var(--space-2-50);
+    height: var(--space-2-50);
+    font-size: var(--space-2-00);
+    line-height: 1;
     color: var(--btn-primary-text);
-    transition: color 0.25s ease;
+    transition: 
+        color 0.25s ease,
+        transform 0.25s ease;
 }
-.edit-button i:hover {
+.edit-button:hover .edit-button__icon {
     color: var(--btn-primary-text-hover);
+    transform: scale(1.05);
 }
-
+.edit-button:focus-visible .edit-button__icon {
+    transform: scale(1.05);
+}
+.edit-button:active .edit-button__icon {
+    transform: scale(0.95);
+}

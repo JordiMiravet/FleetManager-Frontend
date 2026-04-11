@@ -20,13 +20,13 @@
 
 .map-view__selector {
     position: absolute;
-    top: 1rem;
+    top: var(--space-1-00);
     left: 5rem;
-    right: 1rem;
+    right: var(--space-1-00);
     z-index: 100;
     width: auto;
     box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-    border-radius: 0.5rem;
+    border-radius: var(--space-0-50);
 }
 
 .map-view__button--location {

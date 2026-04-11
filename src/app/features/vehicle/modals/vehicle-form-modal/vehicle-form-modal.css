@@ -49,10 +49,10 @@
 .modal__legend {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-0-50);
     color: var(--text-primary);
     font-weight: 700;
-    font-size: clamp(1.85rem, 2vw, 2rem);
+    font-size: var(--font-size-lg);
     width: 100%;
     padding: 1rem 0;
     margin-bottom: 2rem;
@@ -64,7 +64,7 @@
     justify-content: center;
     align-items: start;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-0-25);
     margin-bottom: 1rem;
     min-height: 7.5rem;
 }
@@ -74,15 +74,15 @@
 
 .modal__label {
     color: var(--text-secondary);
-    font-size: clamp(1.35rem, 1vw, 1.5rem);
+    font-size: var(--font-size-sm);
     font-weight: 600;
     text-align: left;
     width: 100%;
-    padding-left: 0.5rem;
+    padding-left: var(--space-0-50);
 }
 
 .modal__input {
-    font-size: clamp(1.35rem, 1vw, 1.5rem);
+    font-size: var(--font-size-sm);
     width: 100%;
     padding: 1rem;
     border: none;
@@ -100,7 +100,7 @@
     padding: 0 0.5rem;
     width: 100%;
     font-weight: 500;
-    font-size: clamp(1.35rem, 1vw, 1.5rem);
+    font-size: var(--font-size-xs);
     color: var(--text-warning);
     min-height: 2rem;
     line-height: 2rem;
@@ -113,7 +113,7 @@
     justify-content: flex-end;
     align-items: center;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--space-1-00);
     padding: 1rem 0;
     width: 100%;
 }
@@ -123,7 +123,7 @@
     width: 100%;
     border: none;
     border-radius: var(--radius-sm);
-    font-size: clamp(1.35rem, 1vw, 1.5rem);
+    font-size: var(--font-size-sm);
     color: var(--color-neutral-0);
     background-color: var(--color-neutral-300);
     cursor: pointer;
@@ -144,10 +144,10 @@
     cursor: not-allowed;
 }
 .modal__button--cancel {
-    background-color: var(--btn-warning-bg);
+    background-color: var(--btn-danger-bg);
 }
 .modal__button--cancel:hover {
-    background-color: var(--btn-warning-bg-hover);
+    background-color: var(--btn-danger-bg-hover);
 }
 
 @media(min-width: 576px) {

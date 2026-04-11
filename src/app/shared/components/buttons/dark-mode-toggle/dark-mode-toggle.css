@@ -3,7 +3,7 @@
 .toggle {
     margin: 0;
     width: 5rem;
-    height: 2.5rem;
+    height: var(--space-2-50);
     background: var(--toggle-bg);
     border-radius: 10rem;
     position: relative;
@@ -18,13 +18,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2rem;
-    height: 2rem;
+    width: var(--space-2-00);
+    height: var(--space-2-00);
     background: var(--toggle-thumb-bg);
     border-radius: 50%;
     position: absolute;
-    top: 0.25rem;
-    left: 0.25rem;
+    top: var(--space-0-25);
+    left: var(--space-0-25);
     box-shadow: 0 1px 3px rgba(0,0,0,0.25);
     transition: transform 0.25s ease;
 }

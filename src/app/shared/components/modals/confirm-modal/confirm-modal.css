@@ -46,7 +46,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    gap: 1rem;
+    gap: var(--space-1-00);
 }
 
 .modal__button {
@@ -62,16 +62,24 @@
 }
 
 .modal__button--confirm {
-    background-color: var(--btn-warning-bg);
-    color: var(--btn-primary-text-inverse);
+    background-color: var(--btn-danger-bg);
 }
 .modal__button--confirm:hover:not(:disabled) {
-    background-color: var(--btn-warning-bg-hover);
+    background-color: var(--btn-danger-bg-hover);
+}
+.modal__button--confirm:disabled {
+    background-color: var(--btn-danger-bg-disabled);
+    cursor: not-allowed;
 }
 
 .modal__button--cancel {
-    background-color: var(--btn-danger-bg);
+    background-color: var(--btn-secondary-bg);
 }
 .modal__button--cancel:hover:not(:disabled) {
-    background-color: var(--btn-danger-bg-hover);
+    background-color: var(--btn-secondary-bg-hover);
 }
+.modal__button--cancel:disabled {
+    background-color: var(--btn-secondary-bg-disabled);
+    cursor: not-allowed;
+}
+

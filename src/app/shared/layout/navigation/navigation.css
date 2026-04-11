@@ -14,7 +14,7 @@
     align-items: center;
     margin: 0;
     padding: 0;
-    gap: 1rem; 
+    gap: var(--space-1-00); 
 }
 
 .nav-item a {
@@ -40,7 +40,7 @@
     color: var(--btn-primary-bg-active);
     background-color: var(--btn-primary-bg-inverse);
     transform: scale(0.96);
-    gap: 0.5rem;
+    gap: var(--space-0-50);
 }
 
 .nav-item__icon {
