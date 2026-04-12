@@ -2,7 +2,7 @@
 
 .vehicle-pagination {
     width: 100%;
-    min-width: 20rem;
+    min-width: 35rem;
     background-color: var(--color-neutral-100);
     display: flex;
     justify-content: space-between;
@@ -63,18 +63,14 @@
     border-color: var(--color-neutral-300);
 }
 
-/* Desktop */
+/* Desktop Width */
 
 @media(min-width: 576px) {
-
-    /* Pagination Container */
 
     .vehicle-pagination {
         padding: 1.25rem 1.25rem;
     }
-
-    /* Pagination Controls */
-    
+ 
     .vehicle-pagination__button {
         padding: 0.5rem;
     }

@@ -1,9 +1,9 @@
+/* Table */
+
 :host {
     margin: 0 auto;
     width: 100%;
 }
-
-/* Block */
 
 .vehicle-table {
     border-collapse: collapse;
@@ -21,6 +21,10 @@
     background-color: var(--color-neutral-100);
 }
 
+.vehicle-table__row {
+    height: 100%;
+}
+
 .vehicle-table__header .vehicle-table__row {
     border-top: none;
     border-left: 1px solid var(--color-neutral-300);
@@ -31,13 +35,11 @@
     background-color: var(--color-neutral-50);
     border: 1px solid var(--color-neutral-300);
 }
-
 .vehicle-table__body .vehicle-table__row {
     border: 1px solid var(--color-neutral-300);
 }
-
 .vehicle-table__body .vehicle-table__row:hover {
-    background-color: var(--color-neutral-50);
+    background-color: var(--color-neutral-100);
 }
 
 /* Header */
@@ -51,16 +53,21 @@
     color: var(--color-neutral-700);
     letter-spacing: 0.05rem;
 }
+
 .vehicle-table__header th.vehicle-table__header-image {
     text-align: center;
+    width: 7rem;
 }
+
 .vehicle-table__header th.vehicle-table__header-name {
     text-align: start;
 }
+
 .vehicle-table__header th.vehicle-table__header-plate {
     text-align: start;
     font-size: var(--font-size-xs);
 }
+
 .vehicle-table__header th.vehicle-table__header-actions {
     text-align: end;
     padding: 1.5rem 1.5rem;
@@ -75,34 +82,27 @@
     color: var(--gray-800);
 }
 
-.vehicle-table__actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.vehicle-table__actions > * {
-    margin: 0;
-    padding: 0;
-}
+/** IMG Cell **/
 
-.vehicle-table__cell--img {
-    padding: 1rem 0;
+.vehicle-table__cell .vehicle-table__cell--img {
+    padding: 0.75rem;
     text-align: center;
     vertical-align: middle;
 }
 
 .vehicle-table__cell--img .vehicle-table__image {
+    display: block;
     width: 100%;
-    min-width: var(--space-3-00);
-    max-width: 100%;
-    height: auto;
+    height: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 50%;
-    border: 1px solid var(--color-neutral-300);
-    margin: 0 auto;
     box-sizing: border-box;
+    border-radius: 50%;
+    border: 2px solid var(--bg-surface-200);
+    margin: 0 auto;
 }
+
+/** Name Cell **/
 
 .vehicle-table__cell--name .vehicle-table__cell-content {
     display: flex;
@@ -112,8 +112,21 @@
     gap: 0.125rem;
 }
 
+/** Actions Cell **/
+
 .vehicle-table__cell--actions {
     min-width: 8rem;
+}
+
+.vehicle-table__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vehicle-table__actions > * {
+    margin: 0;
+    padding: 0;
 }
 
 .vehicle-table__cell--actions .vehicle-table__actions {
@@ -121,28 +134,7 @@
     gap: var(--space-0-50);
 }
 
-@media (min-width: 576px) {
-    .vehicle-table__cell--name .vehicle-table__cell-content {
-        gap: 0rem;
-    }
-    .vehicle-table__cell--name .vehicle-table__cell-content 
-    .vehicle-table__plate {
-        display: none;
-    }
-}
-
-/* Vehicle info */
-
-.vehicle-table__name {
-    font-weight: 500;
-    font-size: var(--font-size-md);
-    color: var(--color-neutral-900);
-}
-
-.vehicle-table__model {
-    font-size: var(--font-size-xs);
-    color: var(--color-neutral-900);
-}
+/* Vehicle Info */
 
 .vehicle-table__name,
 .vehicle-table__model {
@@ -155,6 +147,17 @@
     text-overflow: ellipsis;
 }
 
+.vehicle-table__name {
+    font-weight: 500;
+    font-size: var(--font-size-md);
+    color: var(--color-neutral-900);
+}
+
+.vehicle-table__model {
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral-900);
+}
+
 .vehicle-table__plate {
     color: var(--color-neutral-700);
     font-weight: 500;
@@ -162,32 +165,19 @@
     letter-spacing: 0.05rem;
 }
 
-@media (min-width: 576px) {
-    .vehicle-table__plate {
-        background-color: var(--color-neutral-200);
-        color: var(--color-neutral-700);
-        font-weight: 500;
-        font-size: var(--font-size-xs);
-        letter-spacing: 0.05rem;
-        padding: 0.5rem 1rem;
-        border: 1px solid var(--color-neutral-300);
-        border-radius: var(--space-0-50);
-    }
-}
-
-/* Column widths */
+/* Column Widths */
 
 .vehicle-table__header-image,
 .vehicle-table__cell--img {
-    padding: 0 0.75rem;
+    padding: 0.75rem 0.75rem;
     margin: 0;
-    width: 12.5%;
+    width: 15%;
     min-width: var(--space-3-00);
 }
 
 .vehicle-table__header-name,
 .vehicle-table__cell--name {
-    width: calc(100% - 12.5% - 1.5rem);
+    width: calc(100% - 15% - 1.5rem);
 }
 
 .vehicle-table__header-plate,
@@ -202,16 +192,45 @@
 
 @media (min-width: 576px) {
 
+    .vehicle-table__cell--name .vehicle-table__cell-content {
+        gap: 0rem;
+    }
+
+    .vehicle-table__cell--name .vehicle-table__cell-content 
+    .vehicle-table__plate {
+        display: none;
+    }
+
+    .vehicle-table__plate {
+        background-color: var(--color-neutral-200);
+        color: var(--color-neutral-700);
+        font-weight: 500;
+        font-size: var(--font-size-xs);
+        letter-spacing: 0.05rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--color-neutral-300);
+        border-radius: var(--space-0-50);
+    }
+
     .vehicle-table__header-image,
-    .vehicle-table__cell--img { width: 7.5%; }
+    .vehicle-table__cell--img { 
+        width: 7.5%; 
+    }
 
     .vehicle-table__header-name,
-    .vehicle-table__cell--name { width: 50%; }
+    .vehicle-table__cell--name { 
+        width: 50%; 
+    }
 
     .vehicle-table__header-plate,
-    .vehicle-table__cell--plate { display: table-cell; width: 22.5%; }
+    .vehicle-table__cell--plate { 
+        display: table-cell; 
+        width: 22.5%; 
+    }
 
     .vehicle-table__header-actions,
-    .vehicle-table__cell--actions { width: 22.5%; }
+    .vehicle-table__cell--actions { 
+        width: 22.5%; 
+    }
 
 }
