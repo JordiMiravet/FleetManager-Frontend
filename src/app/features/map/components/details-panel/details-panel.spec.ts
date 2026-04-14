@@ -70,7 +70,7 @@ describe('DetailsPanelComponent', () => {
       const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
       const icon: HTMLElement = fixture.nativeElement.querySelector('i');
 
-      expect(button.classList.contains('map__button')).toBeTrue();
+      expect(button.classList.contains('map-card__button')).toBeTrue();
       expect(icon.classList.contains('pi')).toBeTrue();
       expect(icon.classList.contains('pi-compass')).toBeTrue();
     });
