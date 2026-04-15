@@ -22,22 +22,33 @@ describe('CreateButtonComponent', () => {
 
   describe('Template rendering', () => {
 
-    it('should render a button element', () => {
+    it('should render a button element with correct attributes', () => {
       const button = fixture.nativeElement.querySelector('button');
+
       expect(button).toBeTruthy();
-    });
-
-    it('should have type="button"', () => {
-      const button = fixture.nativeElement.querySelector('button');
       expect(button.getAttribute('type')).toBe('button');
-    });
-
-    it('should have the "create-button" css class', () => {
-      const button = fixture.nativeElement.querySelector('button');
       expect(button.classList.contains('create-button')).toBeTrue();
     });
 
-    it('should have aria-label for accessibility when input is provided', () => {
+    it('should render text when input is provided', () => {
+      (component.createText as any) = () => 'Add vehicle';
+      fixture.detectChanges();
+
+      const span = fixture.nativeElement.querySelector('.create-button__text');
+
+      expect(span.textContent.trim()).toBe('Add vehicle');
+    });
+
+    it('should render empty text when input is null', () => {
+      (component.createText as any) = () => null;
+      fixture.detectChanges();
+
+      const span = fixture.nativeElement.querySelector('.create-button__text');
+
+      expect(span.textContent.trim()).toBe('');
+    });
+
+    it('should set aria-label from input', () => {
       (component.createText as any) = () => 'Add vehicle';
       fixture.detectChanges();
 
@@ -46,26 +57,11 @@ describe('CreateButtonComponent', () => {
       expect(button.getAttribute('aria-label')).toBe('Add vehicle');
     });
 
-    it('should render the text with provided input', () => {
-      (component.createText as any) = () => 'Add vehicle';
-      fixture.detectChanges();
-
-      const span = fixture.nativeElement.querySelector('.create-button__text');
-      expect(span.textContent.trim()).toBe('Add vehicle');
-    });
-
-    it('should render empty text if no input provided', () => {
-      const span = fixture.nativeElement.querySelector('.create-button__text');
-      expect(span.textContent.trim()).toBe('');
-    });
-
-
     it('should call onClick when button is clicked', () => {
       spyOn(component, 'onClick');
 
       const button = fixture.nativeElement.querySelector('button');
       button.click();
-      fixture.detectChanges();
 
       expect(component.onClick).toHaveBeenCalled();
     });
@@ -74,51 +70,33 @@ describe('CreateButtonComponent', () => {
 
   describe('Output: create', () => {
 
-    it('should have a create output', () => {
-      expect(component.create).toBeTruthy();
-    });
-
-    it('should emit create event when onClick is called', () => {
+    it('should emit create when onClick is called', () => {
       spyOn(component.create, 'emit');
+
       component.onClick();
 
       expect(component.create.emit).toHaveBeenCalled();
     });
 
-    it('should emit create event when button is clicked', () => {
+    it('should emit create when button is clicked', () => {
       spyOn(component.create, 'emit');
 
       const button = fixture.nativeElement.querySelector('button');
       button.click();
-      fixture.detectChanges();
 
       expect(component.create.emit).toHaveBeenCalled();
-    });
-
-    it('should expose a create output', () => {
-      const create = component.create;
-      expect(create).toBeTruthy();
-    });
-
-    it('should emit when the button is clicked', () => {
-      spyOn(component, 'onClick');
-
-      const button = fixture.nativeElement.querySelector('button');
-      button.click();
-      fixture.detectChanges();
-
-      expect(component.onClick).toHaveBeenCalled();
     });
 
   });
 
   describe('onClick method', () => {
 
-    it('should call create.emit()', () => {
-      spyOn(component.create, 'emit');
+    it('should trigger create.emit()', () => {
+      const emitSpy = spyOn(component.create, 'emit');
+
       component.onClick();
 
-      expect(component.create.emit).toHaveBeenCalled();
+      expect(emitSpy).toHaveBeenCalled();
     });
 
   });

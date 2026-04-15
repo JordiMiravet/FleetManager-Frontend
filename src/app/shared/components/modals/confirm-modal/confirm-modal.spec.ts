@@ -19,6 +19,17 @@ describe('ConfirmModalComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  describe('Default inputs', () => {
+
+    it('should have default title and message', () => {
+      expect(component.title()).toBe('Are you sure?');
+      expect(component.message()).toBe(
+        'Do you really want to proceed? This action cannot be undone'
+      );
+    });
+
+  });
+
   describe('Template rendering', () => {
 
     it('should render the title input in the modal', () => {

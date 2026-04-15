@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DarkModeToggleComponent } from './dark-mode-toggle';
 import { ThemeService } from '../../../services/themeService/theme-service';
 
-fdescribe('DarkModeToggleComponent', () => {
+describe('DarkModeToggleComponent', () => {
   let component: DarkModeToggleComponent;
   let fixture: ComponentFixture<DarkModeToggleComponent>;
   let mockThemeService: jasmine.SpyObj<ThemeService>;
