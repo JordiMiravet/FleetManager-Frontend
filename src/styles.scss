@@ -1,4 +1,8 @@
-/* PrimeNg Icons */
+@use 'styles/abstracts/variables';
+@use 'styles/abstracts/mixins';
+@use 'styles/base/base';
+@use 'styles/base/typography';
+@use 'styles/utilities/helpers';
 
 @import "primeicons/primeicons.css";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -199,7 +203,7 @@ ul {
 
 a {
     text-decoration: none;
-    color: #000;
+    color: var(--text-secondary);
 }
 
 /* Accessible hidden elements for screen readers */
