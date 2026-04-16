@@ -1,0 +1,22 @@
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    scrollbar-width: none;
+}
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    -ms-overflow-style: none;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body.dark-mode {
+
+}

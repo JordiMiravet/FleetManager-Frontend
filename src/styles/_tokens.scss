@@ -1,0 +1,156 @@
+:root {
+
+    /* Base Colors */
+
+    --color-neutral-0:   #ffffff;
+    --color-neutral-50:  #f8f9fa;
+    --color-neutral-100: #e9ecef;
+    --color-neutral-200: #dee2e6;
+    --color-neutral-300: #ced4da;
+    --color-neutral-400: #adb5bd;
+    --color-neutral-500: #6c757d;
+    --color-neutral-600: #495057;
+    --color-neutral-700: #343a40;
+    --color-neutral-800: #212529;
+    --color-neutral-900: #000000;
+
+    --color-blue-300: #94B4C1;
+    --color-blue-500: #547792;
+    --color-blue-700: #213448;
+
+    --color-red-300: #d96a73;
+    --color-red-500: #c1121f;
+    --color-red-700: #780000;
+
+    --color-yellow-300: #FFF3B0;
+    --color-yellow-500: #FFC107;
+    --color-yellow-700: #E6A700;
+
+    --color-transparent: transparent;
+
+    /* Semantic Colors */
+
+    /** Color: **/
+
+    --color-primary-300: var(--color-blue-300);
+    --color-primary-500: var(--color-blue-500);
+    --color-primary-700: var(--color-blue-700);
+
+    /** Color: Background **/
+
+    --bg-base: var(--color-neutral-50);
+
+    --bg-primary-300: var(--color-blue-300);
+    --bg-primary-500: var(--color-blue-500);
+    --bg-primary-700: var(--color-blue-700);
+
+    --bg-surface-0: var(--color-neutral-0);
+    --bg-surface-100: var(--color-neutral-100);
+    --bg-surface-200: var(--color-neutral-200);
+    --bg-surface-500: var(--color-neutral-500);
+    --bg-surface-700: var(--color-neutral-700);
+
+    /** Color: Text **/
+
+    --text-primary: var(--color-neutral-900);
+    --text-secondary: var(--color-neutral-700);
+    --text-muted: var(--color-neutral-500);
+    --text-disabled: var(--color-neutral-400);
+    --text-inverse: var(--color-neutral-50);
+
+    --text-warning: var(--color-red-500);
+    --text-warning-hover: var(--color-red-700);
+
+    --input-border-error: var(--color-red-500);
+
+    /** Color: Button **/
+
+    --btn-primary-bg: var(--color-blue-500);
+    --btn-primary-bg-hover: var(--color-blue-700);
+    --btn-primary-bg-active: var(--color-blue-700);
+    --btn-primary-bg-disabled: var(--color-neutral-300);
+    --btn-primary-bg-inverse: var(--text-inverse);
+    --btn-primary-bg-transparent: var(--color-transparent);
+    --btn-primary-text: var(--color-blue-500);
+    --btn-primary-text-hover: var(--color-blue-700);
+    --btn-primary-text-inverse: var(--text-inverse);
+
+
+    --btn-secondary-bg: var(--color-neutral-500);
+    --btn-secondary-bg-hover: var(--color-neutral-700);
+    --btn-secondary-bg-active: var(--color-neutral-700);
+    --btn-secondary-bg-disabled: var(--color-neutral-300);
+    --btn-secondary-bg-inverse: var(--text-inverse);
+    --btn-secondary-bg-transparent: var(--color-transparent);
+    --btn-secondary-text: var(--color-neutral-500);
+    --btn-secondary-text-hover: var(--color-neutral-700);
+    --btn-secondary-text-inverse: var(--text-inverse);
+
+
+    --btn-danger-bg: var(--color-red-500);
+    --btn-danger-bg-hover: var(--color-red-700);
+    --btn-danger-bg-disabled: var(--color-red-300);
+    --btn-danger-bg-transparent: var(--color-transparent);
+    --btn-danger-text: var(--color-red-500);
+    --btn-danger-text-hover: var(--color-red-700);
+    --btn-danger-text-inverse: var(--text-inverse);
+
+
+    --btn-warning-bg: var(--color-yellow-500);
+    --btn-warning-bg-hover: var(--color-yellow-700);
+    --btn-warning-bg-disabled: var(--color-yellow-300);
+    --btn-warning-text: var(--color-yellow-700);
+    --btn-warning-text-hover: var(--color-yellow-700);
+    --btn-warning-text-inverse: var(--text-inverse);
+
+    /* Color: Theme Switch */
+
+    --toggle-bg: var(--color-yellow-500);
+    --toggle-bg-active: var(--color-blue-500);
+
+    --toggle-thumb-bg: var(--color-neutral-0);
+
+    --toggle-icon: var(--color-yellow-500);
+    --toggle-icon-active: var(--color-blue-500);
+
+    /* Color: Overlay Backdrop */
+
+    --overlay-backdrop: rgba(0, 0, 0, 0.5);
+    --overlay-backdrop-transparent: rgba(0, 0, 0, 0);
+
+
+    /* Typography */
+
+    --font-family-base: Arial, Helvetica, sans-serif;
+
+    --font-size-xs: clamp(1rem, 0.8vw + 1rem, 1.25rem);
+    --font-size-sm: clamp(1.25rem, 0.9vw + 1rem, 1.5rem);
+    --font-size-base: clamp(1.5rem, 1vw + 1rem, 1.75rem);
+    --font-size-lg: clamp(1.75rem, 1.2vw + 1rem, 2.25rem);
+    --font-size-xl: clamp(2.25rem, 1.5vw + 1rem, 3rem);
+
+    /* Spacing */
+
+    --space-0-25: 0.25rem;
+    --space-0-50: 0.5rem;
+    --space-0-75: 0.75rem;
+    --space-1-00: 1rem;
+    --space-1-25: 1.25rem;
+    --space-1-50: 1.5rem;
+    --space-1-75: 1.75rem;
+    --space-2-00: 2rem;
+    --space-2-25: 2.25rem;
+    --space-2-50: 2.5rem;
+    --space-2-75: 2.75rem; 
+    --space-3-00: 3rem;  
+    --space-3-25: 3.25rem;
+
+    /* Radius */
+
+    --radius-xs: 0.25rem;
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+    --radius-xl: 2rem;
+
+}
