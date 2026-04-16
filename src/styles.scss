@@ -1,21 +1,12 @@
+@use 'styles/tokens' as *;
+
 @use 'styles/abstracts/variables';
 @use 'styles/abstracts/mixins';
+
 @use 'styles/base/base';
 @use 'styles/base/typography';
-@use 'styles/utilities/helpers';
 
-@use 'styles/tokens';
+@use 'styles/utilities/helpers';
 
 @import "primeicons/primeicons.css";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
-
-/* Variables */
-
-
-
-
-/* Generales */
-
-
-
-/* Accessible hidden elements for screen readers */
