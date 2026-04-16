@@ -28,24 +28,24 @@
     border: 2px solid var(--color-neutral-0);
     border-radius: var(--radius-sm);
     background: var(--color-neutral-0);
-    color: var(--btn-primary-text);
+    color: var(--btn-primary-outline-text);
     font-size: var(--font-size-xs);
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
 }
 .graphics-actions__period-button:hover {
-    border-color: var(--btn-primary-bg-hover);
-    color: var(--btn-primary-text-hover);
+    border-color: var(--btn-primary-filled-bg-hover);
+    color: var(--btn-primary-outline-text-hover);
 }
 .graphics-actions__period-button--active {
-    background-color: var(--btn-primary-bg);
-    border-color: var(--btn-primary-bg);
+    background-color: var(--btn-primary-filled-bg);
+    border-color: var(--btn-primary-filled-bg);
     color: var(--color-neutral-0);
 }
 .graphics-actions__period-button--active:hover {
-    background: var(--btn-primary-bg-hover);
-    border-color: var(--btn-primary-bg-hover);
+    background: var(--btn-primary-filled-bg-hover);
+    border-color: var(--btn-primary-filled-bg-hover);
     color: var(--color-neutral-0);
 }
 

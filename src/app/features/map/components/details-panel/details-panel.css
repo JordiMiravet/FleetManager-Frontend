@@ -51,14 +51,14 @@
     border: none;
     border-radius: 5rem;
     font-size: var(--font-size-lg);
-    background-color: var(--btn-primary-bg);
+    background-color: var(--btn-primary-filled-bg);
     color: var(--color-neutral-100);
     transition: background-color 0.25s ease, color 0.25s ease-in-out;
     cursor: pointer;
 }
 
 .map-card__button:hover {
-    background-color: var(--btn-primary-bg-hover);
+    background-color: var(--btn-primary-filled-bg-hover);
     color: var(--color-neutral-200);
 }
 

@@ -81,7 +81,7 @@
 /* Error text */
 
 .form__error-text {
-    color: var(--text-warning);
+    color: var(--text-error);
     margin: 0;
     padding: 0.5rem;
     font-size: var(--font-size-sm);
@@ -110,7 +110,7 @@
     padding: var(--space-1-50);
     border: none;
     border-radius: var(--radius-sm);
-    background-color: var(--btn-primary-bg);
+    background-color: var(--btn-primary-filled-bg);
     color: var(--text-inverse);
     font-weight: 700;
     font-size: var(--font-size-lg);
@@ -119,13 +119,13 @@
 }
 
 .btn__auth:hover {
-    background-color: var(--btn-primary-bg-hover);
+    background-color: var(--btn-primary-filled-bg-hover);
 }
 
 .btn__auth[disabled] {
     cursor: not-allowed;
     opacity: 0.9;
-    background-color: var(--btn-primary-bg-disabled);
+    background-color: var(--btn-primary-filled-bg-disabled);
     color: var(--text-primary);
 }
 

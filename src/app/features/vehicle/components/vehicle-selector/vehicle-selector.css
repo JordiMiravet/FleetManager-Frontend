@@ -17,7 +17,7 @@
 
     border: none;
     border-radius: var(--radius-sm);
-    background-color: var(--btn-primary-bg);
+    background-color: var(--btn-primary-filled-bg);
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }

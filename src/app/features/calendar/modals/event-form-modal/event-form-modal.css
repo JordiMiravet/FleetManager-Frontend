@@ -128,7 +128,7 @@
     padding: 0 0.5rem;
     width: 100%;
     font-size: var(--font-size-xs);
-    color: var(--text-warning);
+    color: var(--text-error);
     min-height: 2rem;
     line-height: 2rem;
 }
@@ -170,12 +170,12 @@
 }
 
 .event-form__button--Save:not(:disabled) {
-    background-color: var(--btn-primary-bg);
+    background-color: var(--btn-primary-filled-bg);
     cursor: pointer;
 }
 
 .event-form__button--Save:not(:disabled):hover {
-    background-color: var(--btn-primary-bg-hover);
+    background-color: var(--btn-primary-filled-bg-hover);
 }
 
 @media(min-width: 576px) {

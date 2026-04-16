@@ -1,5 +1,5 @@
 .create-button {
-    background-color: var(--btn-primary-bg);
+    background-color: var(--btn-primary-filled-bg);
     color: var(--color-neutral-0);
 
     width: 100%;
@@ -12,11 +12,11 @@
 }
 
 .create-button:hover {
-    background-color: var(--btn-primary-bg-hover);
+    background-color: var(--btn-primary-filled-bg-hover);
 }
 
 .create-button:focus-visible {
-    outline: 2px solid var(--btn-primary-bg);
+    outline: 2px solid var(--btn-primary-filled-bg);
     outline-offset: 2px;
 }
 

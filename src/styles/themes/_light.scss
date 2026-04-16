@@ -1,0 +1,109 @@
+:root {
+
+    /** Base Colors **/
+
+    --color-primary-300: var(--color-blue-300);
+    --color-primary-500: var(--color-blue-500);
+    --color-primary-700: var(--color-blue-700);
+
+    --color-danger-300: var(--color-red-300);
+    --color-danger-500: var(--color-red-500);
+    --color-danger-700: var(--color-red-700);
+
+    --color-error-300: var(--color-red-300);
+    --color-error-500: var(--color-red-500);
+    --color-error-700: var(--color-red-700);
+
+    /** Color: Background **/
+
+    --bg-base: var(--color-neutral-50);
+
+    --bg-primary-300: var(--color-primary-300);
+    --bg-primary-500: var(--color-primary-500);
+    --bg-primary-700: var(--color-primary-700);
+
+    --bg-surface-0: var(--color-neutral-0);
+    --bg-surface-100: var(--color-neutral-100);
+    --bg-surface-200: var(--color-neutral-200);
+    --bg-surface-500: var(--color-neutral-500);
+    --bg-surface-700: var(--color-neutral-700);
+
+    /** Color: Text **/
+
+    --text-primary: var(--color-neutral-900);
+    --text-secondary: var(--color-neutral-700);
+    --text-muted: var(--color-neutral-500);
+    --text-disabled: var(--color-neutral-400);
+    --text-inverse: var(--color-neutral-50);
+
+    --text-error: var(--color-error-500);
+    --text-error-hover: var(--color-error-700);
+
+    --input-border-error: var(--color-error-500);
+
+    /** Color: Button **/
+
+    --btn-primary-filled-bg: var(--color-primary-500);
+    --btn-primary-filled-bg-hover: var(--color-primary-700);
+    --btn-primary-filled-bg-active: var(--color-primary-700);
+    --btn-primary-filled-bg-disabled: var(--color-neutral-300);
+    --btn-primary-filled-text: var(--text-inverse);
+    
+
+    --btn-primary-outline-bg: var(--text-inverse);
+    --btn-primary-outline-bg-transparent: var(--color-transparent);
+    --btn-primary-outline-text: var(--color-primary-500);
+    --btn-primary-outline-text-hover: var(--color-primary-700);
+    --btn-primary-outline-text-inverse: var(--text-inverse);
+
+
+    // -------------------------
+
+
+    --btn-secondary-bg: var(--color-neutral-500);
+    --btn-secondary-bg-hover: var(--color-neutral-700);
+    --btn-secondary-bg-active: var(--color-neutral-700);
+    --btn-secondary-bg-disabled: var(--color-neutral-300);
+    --btn-secondary-bg-inverse: var(--text-inverse);
+    --btn-secondary-bg-transparent: var(--color-transparent);
+
+    --btn-secondary-text: var(--color-neutral-500);
+    --btn-secondary-text-hover: var(--color-neutral-700);
+    --btn-secondary-text-inverse: var(--text-inverse);
+
+    // -------------------------
+
+    --btn-danger-bg: var(--color-danger-500);
+    --btn-danger-bg-hover: var(--color-danger-700);
+    --btn-danger-bg-disabled: var(--color-danger-300);
+    --btn-danger-bg-transparent: var(--color-transparent);
+
+    --btn-danger-text: var(--color-danger-500);
+    --btn-danger-text-hover: var(--color-danger-700);
+    --btn-danger-text-inverse: var(--text-inverse);
+
+    // -------------------------
+
+    --btn-warning-bg: var(--color-yellow-500);
+    --btn-warning-bg-hover: var(--color-yellow-700);
+    --btn-warning-bg-disabled: var(--color-yellow-300);
+
+    --btn-warning-text: var(--color-yellow-700);
+    --btn-warning-text-hover: var(--color-yellow-700);
+    --btn-warning-text-inverse: var(--text-inverse);
+
+    /* Color: Theme Switch */
+
+    --toggle-bg: var(--color-yellow-500);
+    --toggle-bg-active: var(--color-primary-500);
+
+    --toggle-thumb-bg: var(--color-neutral-0);
+
+    --toggle-icon: var(--color-yellow-500);
+    --toggle-icon-active: var(--color-primary-500);
+
+    /* Color: Overlay Backdrop */
+
+    --overlay-backdrop: rgba(0, 0, 0, 0.5);
+    --overlay-backdrop-transparent: rgba(0, 0, 0, 0);
+}

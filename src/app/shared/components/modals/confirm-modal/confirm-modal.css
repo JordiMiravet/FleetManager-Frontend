@@ -50,8 +50,8 @@
 }
 
 .modal__button {
-    background-color: var(--btn-primary-bg);
-    color: var(--btn-primary-text-inverse);
+    background-color: var(--btn-primary-filled-bg);
+    color: var(--btn-primary-filled-text);
     padding: 1.5rem 1.5rem;
     border: none;
     border-radius: var(--radius-sm);

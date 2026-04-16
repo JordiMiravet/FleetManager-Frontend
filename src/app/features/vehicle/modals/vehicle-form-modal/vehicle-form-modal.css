@@ -101,7 +101,7 @@
     width: 100%;
     font-weight: 500;
     font-size: var(--font-size-xs);
-    color: var(--text-warning);
+    color: var(--text-error);
     min-height: 2rem;
     line-height: 2rem;
 }
@@ -131,11 +131,11 @@
 }
 
 .modal__button--save:not(:disabled) {
-    background-color: var(--btn-primary-bg);
+    background-color: var(--btn-primary-filled-bg);
 }
 
 .modal__button--save:not(:disabled):hover {
-    background-color: var(--btn-primary-bg-hover);
+    background-color: var(--btn-primary-filled-bg-hover);
 }
 
 .modal__button:disabled {

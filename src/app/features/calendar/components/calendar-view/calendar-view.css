@@ -54,7 +54,7 @@
 }
 
 .calendar__container .fc-button.fc-button-primary {
-    background-color: var(--btn-primary-bg);
+    background-color: var(--btn-primary-filled-bg);
     border: none;
     color: var(--text-inverse);
     padding: 0.5rem 1rem;
@@ -63,7 +63,7 @@
 }
 
 .calendar__container .fc-button.fc-button-primary:hover {
-    background-color: var(--btn-primary-bg-hover);
+    background-color: var(--btn-primary-filled-bg-hover);
 }
 
 .calendar__container .fc-button.fc-button-primary:disabled {
