@@ -1,6 +1,8 @@
 :root {
 
-    /** Base Colors **/
+    // --------------------------------------------------
+    // BASE COLORS
+    // --------------------------------------------------
 
     --color-primary-300: var(--color-blue-300);
     --color-primary-500: var(--color-blue-500);
@@ -14,9 +16,15 @@
     --color-error-500: var(--color-red-500);
     --color-error-700: var(--color-red-700);
 
-    /** Color: Background **/
+    --color-toggle-day: var(--color-yellow-500);
+    --color-toggle-night: var(--color-blue-500);
+
+    // -------------------------
+    // Color: Background
+    // -------------------------
 
     --bg-base: var(--color-neutral-50);
+    --bg-transparent: var(--color-transparent);
 
     --bg-primary-300: var(--color-primary-300);
     --bg-primary-500: var(--color-primary-500);
@@ -28,7 +36,9 @@
     --bg-surface-500: var(--color-neutral-500);
     --bg-surface-700: var(--color-neutral-700);
 
-    /** Color: Text **/
+    // -------------------------
+    // Color: Text
+    // -------------------------
 
     --text-primary: var(--color-neutral-900);
     --text-secondary: var(--color-neutral-700);
@@ -41,7 +51,9 @@
 
     --input-border-error: var(--color-error-500);
 
-    /** Color: Button **/
+    // -------------------------
+    // Color: Button
+    // -------------------------
 
     --btn-primary-filled-bg: var(--color-primary-500);
     --btn-primary-filled-bg-hover: var(--color-primary-700);
@@ -49,16 +61,13 @@
     --btn-primary-filled-bg-disabled: var(--color-neutral-300);
     --btn-primary-filled-text: var(--text-inverse);
     
-
     --btn-primary-outline-bg: var(--text-inverse);
     --btn-primary-outline-bg-transparent: var(--color-transparent);
     --btn-primary-outline-text: var(--color-primary-500);
     --btn-primary-outline-text-hover: var(--color-primary-700);
     --btn-primary-outline-text-inverse: var(--text-inverse);
 
-
     // -------------------------
-
 
     --btn-secondary-bg: var(--color-neutral-500);
     --btn-secondary-bg-hover: var(--color-neutral-700);
@@ -92,18 +101,23 @@
     --btn-warning-text-hover: var(--color-yellow-700);
     --btn-warning-text-inverse: var(--text-inverse);
 
-    /* Color: Theme Switch */
+    // -------------------------
+    // Color: Theme Switch
+    // -------------------------
 
-    --toggle-bg: var(--color-yellow-500);
-    --toggle-bg-active: var(--color-primary-500);
+    --toggle-bg: var(--color-toggle-day);
+    --toggle-bg-active: var(--color-toggle-night);
+    
+    --toggle-thumb-bg: var(--color-neutral-50);
 
-    --toggle-thumb-bg: var(--color-neutral-0);
+    --toggle-icon: var(--color-toggle-day);
+    --toggle-icon-active: var(--color-toggle-night);
 
-    --toggle-icon: var(--color-yellow-500);
-    --toggle-icon-active: var(--color-primary-500);
-
-    /* Color: Overlay Backdrop */
+    // -------------------------
+    // Color: Overlay Backdrop
+    // -------------------------
 
     --overlay-backdrop: rgba(0, 0, 0, 0.5);
     --overlay-backdrop-transparent: rgba(0, 0, 0, 0);
+
 }
