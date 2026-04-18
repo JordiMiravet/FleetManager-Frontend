@@ -2,13 +2,13 @@
 .vehicle-actions {
     width: 100%;
     min-width: 35rem;
-    background-color: var(--color-neutral-50);
+    background-color: var(--bg-base);
     padding: 1.25rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: var(--space-1-00);
-    border: 1px solid var(--color-neutral-300);
+    border: 1px solid var(--border-color-default);
     border-radius: 0.5rem 0.5rem 0 0;
 }
 
@@ -19,9 +19,9 @@
 .vehicle-actions__button {
     padding: 0.75rem;
     border-radius: var(--space-0-50);
-    border: 1px solid var(--color-neutral-400);
+    border: 1px solid var(--border-color-default);
     font-size: var(--font-size-sm);
-    color: var(--color-neutral-700);
+    color: var(--text-secondary);
     transition: border 0.15s ease;
 }
 
@@ -40,7 +40,7 @@
 }
 .vehicle-actions__input:focus {
     outline: none;
-    border-color: var(--color-neutral-500);
+    border-color: var(--border-color-focus);
 }
 
 .vehicle-actions__icon {
@@ -48,7 +48,7 @@
     left: 0.75rem;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--color-neutral-400);
+    color: var(--text-muted);
     font-size: var(--font-size-sm);
     pointer-events: none;
 }
@@ -63,18 +63,19 @@
 
 .vehicle-actions__select,
 .vehicle-actions__button {
-    background-color: var(--color-neutral-100);
+    background-color: var(--btn-secondary-muted-bg);
     cursor: pointer;
     transition: all 0.05s ease-in-out;
 }
 
 .vehicle-actions__select:focus,
 .vehicle-actions__button:focus {
-    outline: none;
-    background-color: var(--color-neutral-200);
+    outline: 2px solid var(--border-color-focus);
+    outline-offset: 1px;
+    background-color: var(--btn-secondary-muted-bg-focus);
 }
 
 .vehicle-actions__select:hover,
 .vehicle-actions__button:hover {
-    background-color: var(--color-neutral-200);
+    background-color: var(--btn-secondary-muted-bg-hover);
 }

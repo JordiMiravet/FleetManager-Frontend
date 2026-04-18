@@ -22,7 +22,7 @@
 /* Form */
 
 .modal__form {
-    background-color: var(--color-neutral-100);
+    background-color: var(--bg-surface-100);
     border-radius: var(--radius-sm);
     padding: 2rem;
     max-width: 40rem;
@@ -50,8 +50,7 @@
 }
 
 .modal__button {
-    background-color: var(--btn-primary-filled-bg);
-    color: var(--btn-primary-filled-text);
+    color: var(--btn-primary-text);
     padding: 1.5rem 1.5rem;
     border: none;
     border-radius: var(--radius-sm);

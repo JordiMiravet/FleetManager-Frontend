@@ -2,7 +2,7 @@
     margin: 0;
     padding: 1.5rem 1rem 2rem 1rem;
     width: 100%;
-    background-color: var(--color-neutral-100);
+    background-color: var(--bg-surface-100);
     border-radius: 2rem 2rem 0 0 ;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.70);
     display: flex;
@@ -14,7 +14,7 @@
 }
 
 .map-card:hover {
-    background-color: var(--color-neutral-200);
+    background-color: var(--bg-surface-200);
 }
 
 .map-card__info {
@@ -51,15 +51,14 @@
     border: none;
     border-radius: 5rem;
     font-size: var(--font-size-lg);
-    background-color: var(--btn-primary-filled-bg);
-    color: var(--color-neutral-100);
-    transition: background-color 0.25s ease, color 0.25s ease-in-out;
+    background-color: var(--btn-primary-bg);
+    color: var( --btn-primary-text);
+    transition: background-color 0.25s ease;
     cursor: pointer;
 }
 
 .map-card__button:hover {
-    background-color: var(--btn-primary-filled-bg-hover);
-    color: var(--color-neutral-200);
+    background-color: var(--btn-primary-bg-hover);
 }
 
 .map-card__button-icon {

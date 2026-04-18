@@ -1,5 +1,5 @@
 .navbar {
-    background-color: var(--bg-transparent);
+    background-color: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,7 +18,7 @@
 }
 
 .nav-item a {
-    color: var(--btn-primary-filled-text);
+    color: var(--btn-primary-text);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,7 +48,7 @@
 }
 
 .nav-item a.active .nav-item__icon {
-    color: var(--btn-primary-filled-bg-hover);
+    color: var(--btn-primary-bg-hover);
     transform: scale(0.9);
 }
 
@@ -74,6 +74,6 @@
         font-size: var(--font-size-md);
     }
     .nav-label.active {
-        color: var(--btn-primary-filled-bg-active);
+        color: var(--btn-primary-bg-active);
     }
 }

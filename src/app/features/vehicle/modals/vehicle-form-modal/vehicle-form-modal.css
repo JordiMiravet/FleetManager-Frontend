@@ -34,8 +34,8 @@
     padding: 2rem;
     margin: 0;
     border-radius: 0 0.5rem 0.5rem 0;
-    border-left: 0.5rem solid var(--bg-primary-500);
-    background-color: var(--color-neutral-50);
+    border-left: 0.5rem solid var(--accent-default);
+    background-color: var(--bg-surface-0);
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
     overflow-y: auto;
 }
@@ -56,7 +56,7 @@
     width: 100%;
     padding: 1rem 0;
     margin-bottom: 2rem;
-    border-bottom: 2px solid var(--color-neutral-300);
+    border-bottom: 2px solid var(--border-color-default);
 }
 
 .modal__form-section {
@@ -87,11 +87,11 @@
     padding: 1rem;
     border: none;
     border-radius: var(--radius-sm);
-    background-color: var(--color-neutral-100);
+    background-color: var(--bg-surface-100);
 }
 
 .modal__input--error {
-    border: 0.2rem solid var(--input-border-error);
+    border: 0.2rem solid var(--border-color-error);
     outline: none;
 }
 
@@ -124,30 +124,33 @@
     border: none;
     border-radius: var(--radius-sm);
     font-size: var(--font-size-sm);
-    color: var(--color-neutral-0);
-    background-color: var(--color-neutral-300);
+    color: var(--btn-primary-text);
     cursor: pointer;
     transition: background-color 0.25s ease-in-out;
 }
+.modal__button:disabled {
+    background-color: var(--btn-primary-bg-disabled);
+    color: var(--text-disabled);
+    cursor: not-allowed;
+}
 
-.modal__button--save:not(:disabled) {
-    background-color: var(--btn-primary-filled-bg);
+.modal__button--save {
+    background-color: var(--btn-primary-bg);
 }
 
 .modal__button--save:not(:disabled):hover {
-    background-color: var(--btn-primary-filled-bg-hover);
+    background-color: var(--btn-primary-bg-hover);
 }
 
-.modal__button:disabled {
-    background-color: var(--color-neutral-300);
-    color: var(--color-neutral-600);
-    cursor: not-allowed;
-}
 .modal__button--cancel {
     background-color: var(--btn-danger-bg);
 }
-.modal__button--cancel:hover {
+.modal__button--cancel:not(:disabled):hover {
     background-color: var(--btn-danger-bg-hover);
+}
+.modal__button--cancel:disabled {
+    color: var(--btn-danger-text);
+    background-color: var(--btn-danger-bg-disabled);
 }
 
 @media(min-width: 576px) {

@@ -10,7 +10,7 @@
 .form {
     padding: 2rem;
     border-radius: 0 0.5rem 0.5rem 0;
-    border-left: 0.5rem solid var(--color-primary-500);
+    border-left: 0.5rem solid var(--accent-default);
     width: 100%;
     background-color: var(--bg-surface-0);
     box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.5);
@@ -55,7 +55,7 @@
     margin: 0 auto 0.5rem 0.5rem;
     font-weight: 700;
     font-size: var(--font-size-lg);
-    color: var(--color-primary-700);
+    color: var(--text-secondary);
 }
 
 /* Inputs */
@@ -75,7 +75,7 @@
     color: var(--text-muted);
 }
 .form__group input.ng-invalid.ng-touched {
-    box-shadow: 0 0 0 2px var(--input-border-error);
+    box-shadow: 0 0 0 2px var(--border-color-error);
 }
 
 /* Error text */
@@ -110,7 +110,7 @@
     padding: var(--space-1-50);
     border: none;
     border-radius: var(--radius-sm);
-    background-color: var(--btn-primary-filled-bg);
+    background-color: var(--btn-primary-bg);
     color: var(--text-inverse);
     font-weight: 700;
     font-size: var(--font-size-lg);
@@ -119,13 +119,13 @@
 }
 
 .btn__auth:hover {
-    background-color: var(--btn-primary-filled-bg-hover);
+    background-color: var(--btn-primary-bg-hover);
 }
 
 .btn__auth[disabled] {
     cursor: not-allowed;
     opacity: 0.9;
-    background-color: var(--btn-primary-filled-bg-disabled);
+    background-color: var(--btn-primary-bg-disabled);
     color: var(--text-primary);
 }
 
@@ -133,11 +133,11 @@
 
 .form__switch {
     font-size: var(--font-size-xs);
-    color: var(--color-primary-700);
+    color: var(--text-secondary);
     font-weight: 500;
 }
 .form__switch a {
-    color: var(--color-primary-700);
+    color: var(--text-secondary);
     font-weight: 700;
 }
 
@@ -148,5 +148,5 @@
     padding: 0;
     text-align: end;
     font-weight: 700;
-    color: var(--color-primary-700);
+    color: var(--text-secondary);
 }

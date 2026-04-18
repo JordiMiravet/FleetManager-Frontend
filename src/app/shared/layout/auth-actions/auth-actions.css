@@ -15,28 +15,26 @@
     gap: var(--space-0-50);
     margin: 0;
     padding: 0.75rem 1rem;
-    border: none;
-    border: 2px solid var(--btn-primary-outline-bg-transparent);
+    border: 2px solid transparent;
     border-radius: var(--radius-sm);
   
     background-color: transparent;
-    color: var(--btn-primary-outline-text-inverse);
+    color: var(--btn-primary-text);
     font-size: var(--font-size-base);
     font-weight: 500;
 
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: border-color 0.25s ease;
 }
 
-/* States */
+/* Button States */
 
 .navbar__auth-button:hover {
-    color: var(--btn-primary-outline-text-hover);
-    background-color: var(--btn-primary-outline-bg);
+    border-color: var(--btn-primary-outline-bg);
 }
 
 .navbar__auth-button.active {
     color: var(--btn-primary-outline-text-hover);
     background-color: var(--btn-primary-outline-bg);
-    border: 2px solid var(--btn-primary-outline-bg);
+    border-color: var(--btn-primary-outline-bg);
 }

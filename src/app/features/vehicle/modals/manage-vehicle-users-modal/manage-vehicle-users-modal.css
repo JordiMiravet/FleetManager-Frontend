@@ -26,10 +26,10 @@
 /* Modal */
 
 .modal {
-    background: var(--color-neutral-0);
+    background: var(--bg-surface-0);
     padding: 2rem;
     border-radius: 0 0.5rem 0.5rem 0;
-    border-left: 0.5rem solid var(--bg-primary-500);
+    border-left: 0.5rem solid var(--accent-default);
     max-width: 50rem;
     width: 95%;
     box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
@@ -38,7 +38,7 @@
 .modal__title {
     margin: 0 0 1rem 0;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--color-neutral-300);
+    border-bottom: 2px solid var(--border-color-default);
     color: var(--text-primary);
     font-size: var(--font-size-lg);
     display: flex;
@@ -73,16 +73,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-left: 3px solid var(--bg-primary-500);
+    border-left: 3px solid var(--accent-default);
     border-radius: 0;
     padding: 0.5rem 1rem;
     margin-bottom: 0.5rem;
-    background-color: var(--color-neutral-100);
+    background-color: var(--bg-surface-100);
     width: auto;
     transition: all 0.125s ease-in-out;
 }
 .modal__user:hover {
-    background-color: var(--color-neutral-200);
+    background-color: var(--bg-surface-200);
     transform: translateX(0.5rem);
 }
 
@@ -90,7 +90,7 @@
     margin: 0;
     padding: 0.5rem;
     font-size: var(--font-size-sm);
-    color: var(--color-neutral-900);
+    color: var(--text-primary);
 }
 
 .modal__empty {
@@ -111,20 +111,20 @@
     padding: 1rem;
     border: 2px solid transparent;
     border-radius: var(--radius-sm);
-    background-color: var(--color-neutral-100);
+    background-color: var(--bg-surface-100);
     font-size: var(--font-size-sm);
     transition: border-color 0.2s ease;
 }
 
 .modal__input:focus {
     outline: none;
-    border-color: 2px solid var(--btn-primary-filled-bg);
+    border-color: 2px solid var(--btn-primary-bg);
 }
 
 /* Error Message */
 
 .modal__input--error {
-    border: 2px solid var(--input-border-error);
+    border: 2px solid var(--border-color-error);
 }
 
 .modal__error-text {
@@ -157,22 +157,22 @@
     gap: var(--space-0-50);
 }
 
-.modal__button--submit {
-    background-color: var(--btn-primary-filled-bg);
-    color: var(--color-neutral-0);
+.modal__button--submit:not(:disabled) {
+    background-color: var(--btn-primary-bg);
+    color: var(--bg-surface-0);
 }
 
 .modal__button--submit:hover:not(:disabled) {
-    background-color: var(--btn-primary-filled-bg-hover);
+    background-color: var(--btn-primary-bg-hover);
 }
 
-.modal__button--cancel {
-    background-color: var(--color-neutral-200);
-    color: var(--text-secondary);
+.modal__button--cancel:not(:disabled) {
+    background-color: var(--btn-secondary-muted-bg);
+    color: var(--btn-secondary-muted-text);
 }
 
 .modal__button--cancel:hover:not(:disabled) {
-    background-color: var(--color-neutral-300);
+    background-color: var(--btn-secondary-muted-bg-hover);
 }
 
 /* Note */

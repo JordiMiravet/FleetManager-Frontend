@@ -31,8 +31,8 @@
     max-width: 60rem;
     padding: 1.5rem;
     margin: 0;
-    background-color: var(--color-neutral-50);
-    border-left: 0.5rem solid var(--bg-primary-500);
+    background-color: var(--bg-base);
+    border-left: 0.5rem solid var(--accent-default);
     border-radius: 0 0.5rem 0.5rem 0;
     max-height: 75vh;
     box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.5);
@@ -53,7 +53,7 @@
     gap: var(--space-1-00);
     padding: 0;
     margin: 0 0 1rem 0;
-    border-bottom: 2px solid var(--color-neutral-300);
+    border-bottom: 2px solid var(--border-color-default);
 }
 
 .modal__title {
@@ -75,15 +75,15 @@
 .event-card {
     padding: 0;
     margin-bottom: 0.75rem;
-    background-color: var(--color-neutral-100);
-    border-left: 3px solid var(--bg-primary-500);
+    background-color: var(--bg-surface-100);
+    border-left: 3px solid var(--accent-default);
     border-radius: 0 0.5rem 0.5rem 0;
     transition: all 0.2s ease-in-out;
 }
 
 .event-card:hover,
 .event-card[open] {
-    border-left-color: var(--bg-primary-700);
+    border-left-color: var(--accent-hover);
 }
 
 .event-card[open] {
@@ -149,7 +149,7 @@
 
 .modal__empty {
     border: none;
-    border-left: 0.5rem solid var(--bg-primary-500);
+    border-left: 0.5rem solid var(--accent-default);
     border-radius: 0 0.5rem 0.5rem 0;
     padding: 1rem;
     margin: 0;
@@ -157,6 +157,6 @@
     text-align: center;
     font-style: italic;
     font-size: var(--font-size-sm);
-    color: var(--color-neutral-500);
-    background-color: var(--color-neutral-100);
+    color: var(--text-muted);
+    background-color: var(--bg-surface-100);
 }
