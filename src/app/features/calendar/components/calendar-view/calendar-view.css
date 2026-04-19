@@ -54,7 +54,7 @@
 }
 
 .calendar__container .fc-button.fc-button-primary {
-    background-color: var(--btn-primary-bg);
+    background-color: var(--btn-secondary-bg);
     border: none;
     color: var(--text-inverse);
     padding: 0.5rem 1rem;
@@ -63,7 +63,7 @@
 }
 
 .calendar__container .fc-button.fc-button-primary:hover {
-    background-color: var(--btn-primary-bg-hover);
+    background-color: var(--btn-secondary-bg-hover);
 }
 
 .calendar__container .fc-button.fc-button-primary:disabled {
@@ -71,10 +71,19 @@
     cursor: not-allowed;
 }
 
+.calendar__container .fc-today-button.fc-button.fc-button-primary {
+    background-color: var(--btn-secondary-bg);
+}
+.calendar__container .fc-today-button.fc-button.fc-button-primary:hover {
+    background-color: var(--btn-secondary-bg-hover);
+}
+.calendar__container .fc-today-button.fc-button.fc-button-primary:disabled {
+    background-color: var(--btn-secondary-bg-disabled);
+}
 /* Calendar: Weekly Header */
 
 .calendar__container .fc-col-header-cell {
-    background-color: var(--bg-surface-700);
+    background-color: var(--bg-surface-600);
     font-weight: 700;
     padding: 1rem;
     text-transform: uppercase;
@@ -155,11 +164,11 @@
     width: var(--space-0-75);
     height: var(--space-0-75);   
     border-radius: 50%;
-    background-color: var(--text-secondary);
+    background-color: var(--bg-surface-600);
 }
 
 .calendar__container .fc-event.fc-daygrid-event:hover .fc-dot-indicator {
-    background-color: var(--text-secondary);
+    background-color: var(--text-muted);
 }
 
 @media(min-width: 768px) {
