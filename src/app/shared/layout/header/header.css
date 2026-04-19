@@ -1,7 +1,7 @@
 :host {
     height: 7.5vh;
     display: block;
-    background-color: var(--bg-surface-700);
+    background-color: var(--bg-surface-600);
 }
 .header {
     width: 95%;
