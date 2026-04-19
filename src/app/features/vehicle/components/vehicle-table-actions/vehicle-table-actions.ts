@@ -10,7 +10,7 @@ import { SortDir, SortField, VehicleFilterState } from '../../interfaces/vehicle
   styleUrl: './vehicle-table-actions.css',
 })
 export class VehicleTableActionsComponent {
-  private messagesService = inject(VehicleMessagesService);
+  private readonly messagesService = inject(VehicleMessagesService);
   public readonly actionsMsg = this.messagesService.tableActions;
 
   public query = signal<string>('');
