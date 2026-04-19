@@ -130,7 +130,7 @@
 }
 .modal__button:disabled {
     background-color: var(--btn-primary-bg-disabled);
-    color: var(--text-disabled);
+    color: var(--btn-primary-text);
     cursor: not-allowed;
 }
 
