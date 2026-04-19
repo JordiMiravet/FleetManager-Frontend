@@ -28,8 +28,7 @@
     --bg-surface-0: var(--color-neutral-0);
     --bg-surface-100: var(--color-neutral-100);
     --bg-surface-200: var(--color-neutral-200);
-    --bg-surface-500: var(--color-neutral-500);
-    --bg-surface-700: var(--color-neutral-700);
+    --bg-surface-600: var(--color-neutral-600);
 
     // -------------------------
     // TEXT
@@ -38,7 +37,7 @@
     --text-primary: var(--color-neutral-800);
     --text-secondary: var(--color-neutral-700);
     --text-muted: var(--color-neutral-500);
-    --text-disabled: var(--color-neutral-600);
+    --text-disabled: var(--color-neutral-400);
     --text-inverse: var(--color-neutral-50);
     --text-error: var(--color-danger-500);
 
@@ -57,7 +56,7 @@
 
     --accent-default: var(--color-primary-500);
     --accent-hover: var(--color-primary-700);
-    
+
     // -------------------------
     // BUTTONS
     // -------------------------
@@ -67,7 +66,7 @@
     --btn-primary-bg: var(--color-primary-500);
     --btn-primary-bg-hover: var(--color-primary-700);
     --btn-primary-bg-active: var(--color-primary-700);
-    --btn-primary-bg-disabled: var(--color-neutral-300);
+    --btn-primary-bg-disabled: var(--color-neutral-400);
     --btn-primary-text: var(--text-inverse);
     
     --btn-primary-outline-bg: var(--color-neutral-50);
@@ -79,7 +78,7 @@
     --btn-secondary-bg: var(--color-neutral-500);
     --btn-secondary-bg-hover: var(--color-neutral-700);
     --btn-secondary-bg-active: var(--color-neutral-700);
-    --btn-secondary-bg-disabled: var(--color-neutral-300);
+    --btn-secondary-bg-disabled: var(--color-neutral-400);
     --btn-secondary-text: var(--text-inverse);
 
     --btn-secondary-muted-bg: var(--color-neutral-100);
