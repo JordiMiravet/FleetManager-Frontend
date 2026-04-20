@@ -5,7 +5,7 @@ import { Component, input, output } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './create-button.html',
-  styleUrl: './create-button.css',
+  styleUrl: './create-button.scss',
 })
 
 export class CreateButtonComponent {
