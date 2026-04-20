@@ -13,13 +13,25 @@
 
     font-size: var(--font-size-sm);
     text-align: center;
-    color: var(--btn-primary-text);
+    color: var(--btn-secondary-muted-text);
 
-    border: none;
+    border: 1px solid var(--border-color-default);
     border-radius: var(--radius-sm);
-    background-color: var(--btn-primary-bg);
+    background-color: var(--btn-secondary-muted-bg);
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+    transition: 
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        outline 0.25s ease
+        ;
+}
+.vehicle-select:hover {
+    background-color: var(--btn-secondary-muted-bg-hover);
+    
+}
+.vehicle-select:focus-visible {
+    outline: 2px solid var(--border-color-focus);
+    outline-offset: 2px;
 }
 
 @media (min-width: 768px) {
