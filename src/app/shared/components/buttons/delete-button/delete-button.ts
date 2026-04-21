@@ -5,7 +5,7 @@ import { Component, output } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './delete-button.html',
-  styleUrl: './delete-button.css',
+  styleUrl: './delete-button.scss',
 })
 export class DeleteButtonComponent {
 
