@@ -1,22 +1,22 @@
 
-.delete-button {
+.edit-button {
     display: flex;
     justify-content: center;
     align-items: center;
 
     width: var(--space-3-25);
     height: var(--space-3-25);
-    padding: 0;
 
     border: none;
     border-radius: var(--radius-sm);
+    padding: 0;
 
     background: transparent;
     cursor: pointer;
 
     &:focus-visible {
         outline: none;
-        box-shadow: inset 0 0 0 2px var(--btn-danger-outline-text);
+        box-shadow: inset 0 0 0 2px var(--btn-primary-outline-text);
     }
 
     &__icon {
@@ -29,22 +29,22 @@
 
         font-size: var(--space-2-00);
         line-height: 1;
-        color: var(--btn-danger-outline-text);
+        color: var(--btn-primary-outline-text);
 
         transition: 
             color 0.25s ease,
             transform 0.25s ease;
-        
-        .delete-button:hover & {
-            color: var(--btn-danger-outline-text-hover);
+
+        .edit-button:hover & {
+            color: var(--btn-primary-outline-text-hover);
             transform: scale(1.05);
         }
 
-        .delete-button:focus-visible & {
+        .edit-button:focus-visible & {
             transform: scale(1.05);
         }
 
-        .delete-button:active & {
+        .edit-button:active & {
             transform: scale(0.95);
         }
     }
