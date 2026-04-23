@@ -4,7 +4,7 @@ import { Component, output } from '@angular/core';
   selector: 'app-user-button',
   imports: [],
   templateUrl: './user-button.html',
-  styleUrl: './user-button.css',
+  styleUrl: './user-button.scss',
 })
 export class UserButtonComponent {
 
