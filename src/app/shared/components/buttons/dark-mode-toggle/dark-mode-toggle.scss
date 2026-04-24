@@ -1,0 +1,57 @@
+
+.toggle {
+    position: relative;
+
+    margin: 0;
+    width: var(--space-5-00);
+    height: var(--space-2-50);
+    border: none;
+    border-radius: 10rem;
+
+    background: var(--toggle-bg);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    
+    cursor: pointer;
+    
+    transition: background-color 0.25s ease, color 0.25s ease;
+
+    &__thumb {
+        position: absolute;
+        top: var(--space-0-25);
+        left: var(--space-0-25);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: var(--space-2-00);
+        height: var(--space-2-00);
+        border-radius: 50%;
+
+        background: var(--toggle-thumb-bg);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+
+        transition: transform 0.25s ease;
+    }
+
+    &__icon-inner {
+        color: var(--toggle-icon);
+        transition: color 0.25s ease;
+    }
+
+    &--active {
+        background-color: var(--toggle-bg-active);
+
+        .toggle__thumb {
+            transform: translateX(2.5rem);
+        }
+
+        .toggle__icon-inner {
+            color: var(--toggle-icon-active);
+            transition-delay: 0.05s;
+        }
+
+    }
+
+}
+

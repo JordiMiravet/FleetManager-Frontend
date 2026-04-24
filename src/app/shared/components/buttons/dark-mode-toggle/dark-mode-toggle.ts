@@ -9,7 +9,7 @@ import { ThemeService } from '../../../services/themeService/theme-service';
     CommonModule 
   ],
   templateUrl: './dark-mode-toggle.html',
-  styleUrl: './dark-mode-toggle.css',
+  styleUrl: './dark-mode-toggle.scss',
 })
 
 export class DarkModeToggleComponent {
