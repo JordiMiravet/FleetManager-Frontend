@@ -1,0 +1,86 @@
+
+.modal {
+    &__backdrop {
+        position: fixed;
+        z-index: 9999;
+
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        border: none;
+        padding: 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: var(--overlay-backdrop-transparent);
+
+        animation: modal-fadeIn 0.2s ease forwards;
+    }
+
+    &__form {
+        background-color: var(--bg-surface-100);
+
+        width: 90%;
+        max-width: 40rem;
+        padding: 2rem;
+        border-radius: var(--radius-sm);
+
+        text-align: center;
+    }
+
+    &__title {
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+        font-size: var(--font-size-lg);
+        font-weight: 700;
+    }
+
+    &__message {
+        margin-bottom: 2rem;
+        font-size: var(--font-size-base);
+    }
+
+    &__actions {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap: var(--space-1-00);
+    }
+
+    &__button {
+        padding: 1.5rem 1.5rem;
+        border: none;
+        border-radius: var(--radius-sm);
+
+        font-weight: 700;
+        font-size: var(--font-size-base);
+        color: var(--btn-primary-text);
+
+        cursor: pointer;
+        transition: background-color 0.25s ease;
+
+        &--confirm {
+            background-color: var(--btn-danger-bg);
+
+            &:hover {
+                background-color: var(--btn-danger-bg-hover);
+            }
+        }
+        
+        &--cancel {
+            background-color: var(--btn-secondary-bg);
+
+            &:hover {
+                background-color: var(--btn-secondary-bg-hover);
+            }
+        }
+    }
+}
+
+@keyframes modal-fadeIn {
+    from { background-color: var(--overlay-backdrop-transparent); }
+    to { background-color: var(--overlay-backdrop); }
+}

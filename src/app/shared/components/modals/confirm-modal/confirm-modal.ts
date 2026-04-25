@@ -6,7 +6,7 @@ import { Component, input, output } from '@angular/core';
   standalone: true,
   imports: [ CommonModule ],
   templateUrl: './confirm-modal.html',
-  styleUrl: './confirm-modal.css',
+  styleUrl: './confirm-modal.scss',
 })
 export class ConfirmModalComponent {
 
