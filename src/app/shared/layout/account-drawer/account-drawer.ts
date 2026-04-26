@@ -10,7 +10,7 @@ import { DarkModeToggleComponent } from "../../components/buttons/dark-mode-togg
     DarkModeToggleComponent 
   ],
   templateUrl: './account-drawer.html',
-  styleUrl: './account-drawer.css',
+  styleUrl: './account-drawer.scss',
 })
 
 export class AccountDrawerComponent {
