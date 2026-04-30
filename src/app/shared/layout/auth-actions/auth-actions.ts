@@ -14,13 +14,13 @@ import { AccountDrawerComponent } from '../account-drawer/account-drawer';
     AccountDrawerComponent 
   ],
   templateUrl: './auth-actions.html',
-  styleUrls: ['./auth-actions.css'],
+  styleUrls: ['./auth-actions.scss'],
 })
 export class AuthActionsComponent {
 
-  private auth = inject(AuthService);
-  private router = inject(Router);
-  private messagesService = inject(LayoutMessagesService);
+  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
+  private readonly messagesService = inject(LayoutMessagesService);
 
   public readonly authActionsMsg = this.messagesService.authActions;
   public readonly drawerMsg = this.messagesService.drawer;
