@@ -5,9 +5,12 @@ import { AuthActionsComponent } from "../auth-actions/auth-actions";
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NavigationComponent, AuthActionsComponent],
+  imports: [
+    NavigationComponent, 
+    AuthActionsComponent
+  ],
   templateUrl: './header.html',
-  styleUrls: ['./header.css'],
+  styleUrl: './header.scss',
 })
 export class HeaderComponent {
   
