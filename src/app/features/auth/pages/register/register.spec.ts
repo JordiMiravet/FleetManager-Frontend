@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { RegisterComponent } from './register';
-import { AuthService } from '../services/auth-service/auth-service';
+import { AuthService } from '../../data-access/auth-service';
+
 
 const mockAuth = {
   signInWithEmailAndPassword: jasmine.createSpy('signInWithEmailAndPassword').and.returnValue(Promise.resolve('usuario logueado')),

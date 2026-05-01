@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { Auth } from '@angular/fire/auth';
 import { AuthService } from './auth-service';
 
-
 const mockAuth = { onAuthStateChanged: () => {}};
 
 const mockCreateUser = jasmine.createSpy('createUserWithEmailAndPassword').and.returnValue(Promise.resolve('usuario creado'));

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CreateButtonComponent } from './create-button';
 
-fdescribe('CreateButtonComponent', () => {
+describe('CreateButtonComponent', () => {
   let component: CreateButtonComponent;
   let fixture: ComponentFixture<CreateButtonComponent>;
 

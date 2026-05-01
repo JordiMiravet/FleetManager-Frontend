@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { AuthMessagesService } from './auth-messages-service';
 
 describe('AuthMessagesService', () => {
