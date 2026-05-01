@@ -5,53 +5,57 @@
 >
     @if (this.isLogged()) {
         <ul class="navbar__links">
-        
-            <li class="nav-item">
+
+            <li class="navbar__item">
                 <a 
+                    class="navbar__link"
                     routerLink="" 
                     routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: true }"
                     #rlaHome="routerLinkActive"
                     [attr.aria-current]="rlaHome.isActive ? 'page' : null"
                 >
-                    <i class="pi pi-home nav-item__icon" aria-hidden="true"></i>
-                    <span class="nav-label">{{ navigationMsg.links.home }}</span>
+                    <i class="pi pi-home navbar__icon" aria-hidden="true"></i>
+                    <span class="navbar__label">{{ navigationMsg.links.home }}</span>
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="navbar__item">
                 <a 
+                    class="navbar__link"
                     routerLink="/map" 
                     routerLinkActive="active"
                     #rlaMap="routerLinkActive"
                     [attr.aria-current]="rlaMap.isActive ? 'page' : null"
                 >
-                    <i class="pi pi-map nav-item__icon" aria-hidden="true"></i>
-                    <span class="nav-label">{{ navigationMsg.links.map }}</span>
+                    <i class="pi pi-map navbar__icon" aria-hidden="true"></i>
+                    <span class="navbar__label">{{ navigationMsg.links.map }}</span>
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="navbar__item">
                 <a 
+                    class="navbar__link"
                     routerLink="/calendar" 
                     routerLinkActive="active"
                     #rlaCalendar="routerLinkActive"
                     [attr.aria-current]="rlaCalendar.isActive ? 'page' : null"
                 >
-                    <i class="pi pi-calendar nav-item__icon" aria-hidden="true"></i>
-                    <span class="nav-label">{{ navigationMsg.links.calendar }}</span>
+                    <i class="pi pi-calendar navbar__icon" aria-hidden="true"></i>
+                    <span class="navbar__label">{{ navigationMsg.links.calendar }}</span>
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="navbar__item">
                 <a 
+                    class="navbar__link"
                     routerLink="/graphics" 
                     routerLinkActive="active"
                     #rlaGraphics="routerLinkActive"
                     [attr.aria-current]="rlaGraphics.isActive ? 'page' : null"
                 >
-                    <i class="pi pi-chart-bar nav-item__icon" aria-hidden="true"></i>
-                    <span class="nav-label">{{ navigationMsg.links.graphics }}</span>
+                    <i class="pi pi-chart-bar navbar__icon" aria-hidden="true"></i>
+                    <span class="navbar__label">{{ navigationMsg.links.graphics }}</span>
                 </a>
             </li>
 

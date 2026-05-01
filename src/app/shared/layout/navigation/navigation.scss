@@ -1,0 +1,100 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    height: 7.5vh;
+    padding: 2rem 0;
+
+    background-color: transparent;
+
+    /* LAYOUT */
+
+    &__links {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: var(--space-1-00);
+
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item {
+        list-style: none;
+    }
+
+    &__link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+
+        padding: 0.75rem;
+        border-radius: var(--radius-md);
+        border: 2px solid transparent;
+
+        color: var(--btn-primary-text);
+
+        transition: 
+            background-color 0.25s ease, 
+            border-color 0.25s ease, 
+            transform 0.25s ease;
+        
+    }
+
+    &__icon {
+        color: var(--btn-primary-outline-bg);
+        transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    &__label {
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+
+        max-width: 0;
+        opacity: 0;
+        
+        transition: all 0.25s ease;
+    }
+
+    /* STATES */
+    
+    &__link.active {
+        gap: var(--space-0-50);
+
+        background-color: var(--btn-primary-outline-bg);
+        border-color: var(--btn-primary-outline-bg);
+        color: var(--btn-primary-outline-text-hover);
+        
+        transform: scale(0.96);
+        
+        .navbar__icon {
+            color: var(--btn-primary-bg-hover);
+            transform: scale(0.9);
+        }
+
+        .navbar__label {
+            max-width: 10rem;
+            opacity: 1;
+        }
+    }
+
+    &__link:hover {
+        border-color: var(--btn-primary-outline-bg);
+    }
+
+    /* RESPONSIVE */
+
+    @media (min-width: 576px) {
+        &__link {
+            padding: 0.5rem;
+        }
+
+        &__label {
+            font-weight: 500;
+            font-size: var(--font-size-md);
+        }
+    }
+}
