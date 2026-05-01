@@ -4,7 +4,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { EventFormModalComponent } from './event-form-modal';
-import { EventService } from '../../services/event-service/event-service';
+
+import { EventService } from '../../data-access/event-service';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 import { EventInterface } from '../../interfaces/event';
 

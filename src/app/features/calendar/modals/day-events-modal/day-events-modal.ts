@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
 
 import { EventInterface } from '../../interfaces/event';
-import { EventMessagesService } from '../../services/event-messages-service/event-messages-service';
+import { EventMessagesService } from '../../i18n/event-messages';
 
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 
@@ -25,8 +25,8 @@ import { CreateButtonComponent } from "../../../../shared/components/buttons/cre
 
 export class DayEventsModalComponent {
 
-  private vehicleService = inject(VehicleService);
-  private messagesService = inject(EventMessagesService)
+  private readonly vehicleService = inject(VehicleService);
+  private readonly messagesService = inject(EventMessagesService)
 
   date = input<string>('');
   events = input<EventInterface[]>([]);

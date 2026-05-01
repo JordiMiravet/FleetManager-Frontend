@@ -31,7 +31,7 @@ export const routes: Routes = [
       {
         path: 'calendar',
         loadComponent: () =>
-          import('./pages/calendar/calendar').then(m => m.CalendarComponent)
+          import('./features/calendar/pages/calendar/calendar').then(m => m.CalendarComponent)
       },
       {
         path: 'graphics',

@@ -3,11 +3,12 @@ import { signal } from '@angular/core';
 import { of } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 
+import { CalendarViewComponent } from './calendar-view';
+
+import { EventService } from '../../data-access/event-service';
+import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 import { EventInterface } from '../../interfaces/event';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
-import { CalendarViewComponent } from './calendar-view';
-import { EventService } from '../../services/event-service/event-service';
-import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 
 describe('CalendarViewComponent', () => {
   let component: CalendarViewComponent;

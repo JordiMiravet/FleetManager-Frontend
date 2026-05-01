@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { AuthMessagesService } from './auth-messages';
 
-import { EventMessagesService } from './event-messages-service';
-
-describe('EventMessagesService', () => {
-  let service: EventMessagesService;
+describe('AuthMessagesService', () => {
+  let service: AuthMessagesService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(EventMessagesService);
+    service = TestBed.inject(AuthMessagesService);
   });
 
   it('should be created', () => {
