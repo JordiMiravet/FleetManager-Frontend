@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
-import { AuthService } from '../services/auth-service/auth-service';
-import { AuthMessagesService } from '../services/auth-messages-service/auth-messages-service';
+import { AuthService } from '../../data-access/auth-service';
+import { AuthMessagesService } from '../../i18n/auth-messages-service';
 
 @Component({
   selector: 'app-register',
@@ -18,9 +18,9 @@ import { AuthMessagesService } from '../services/auth-messages-service/auth-mess
 
 export class RegisterComponent {
 
-  private authService = inject(AuthService);
-  private router = inject(Router);
-  private messagesService = inject(AuthMessagesService);
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+  private readonly messagesService = inject(AuthMessagesService);
 
   readonly formMsg = this.messagesService.form;
 

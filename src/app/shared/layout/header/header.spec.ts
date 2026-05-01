@@ -3,7 +3,7 @@ import { HeaderComponent } from '../header/header';
 import { RouterTestingModule } from '@angular/router/testing';
 import { signal } from '@angular/core';
 
-import { AuthService } from '../../../features/auth/services/auth-service/auth-service';
+import { AuthService } from '../../../features/auth/data-access/auth-service';
 
 class MockAuthService {
   isLogged = signal(false);

@@ -1,7 +1,7 @@
 import { Component, inject, Signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
-import { AuthService } from '../../../features/auth/services/auth-service/auth-service';
+import { AuthService } from '../../../features/auth/data-access/auth-service';
 import { LayoutMessagesService } from '../services/layout-messages-service';
 
 @Component({

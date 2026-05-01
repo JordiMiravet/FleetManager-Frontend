@@ -1,16 +1,14 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
 
-
 @Injectable({
   providedIn: 'root',
 })
-
 export class AuthService {
 
-  private auth = inject(Auth);
+  private readonly auth = inject(Auth);
 
-  private userSignal = signal<User | null>(null);
+  private readonly userSignal = signal<User | null>(null);
 
   readonly user = this.userSignal.asReadonly();
   readonly isLogged = computed(() => !!this.userSignal());

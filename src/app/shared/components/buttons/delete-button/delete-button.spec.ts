@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DeleteButtonComponent } from './delete-button';
 
-fdescribe('DeleteButtonComponent', () => {
+describe('DeleteButtonComponent', () => {
   let component: DeleteButtonComponent;
   let fixture: ComponentFixture<DeleteButtonComponent>;
 

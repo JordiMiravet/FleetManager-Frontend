@@ -4,7 +4,7 @@ import { Component, signal } from '@angular/core';
 import { provideRouter, Router } from '@angular/router';
 
 import { AuthActionsComponent } from './auth-actions';
-import { AuthService } from '../../../features/auth/services/auth-service/auth-service';
+import { AuthService } from '../../../features/auth/data-access/auth-service';
 import { LayoutMessagesService } from '../services/layout-messages-service';
 
 class MockAuthService {
