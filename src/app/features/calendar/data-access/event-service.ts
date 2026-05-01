@@ -1,15 +1,16 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
-import { EventInterface } from '../../interfaces/event';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+import { EventInterface } from '../interfaces/event';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventService {
   
-  private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/events';
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = 'http://localhost:3000/events';
 
   private _allEvents = signal<EventInterface[]>([]);
   public selectedVehicleId = signal<string | null>(null);

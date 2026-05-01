@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { EventService } from './event-service';
-import { HttpClientModule } from '@angular/common/http';
 
 describe('EventService', () => {
   let service: EventService;

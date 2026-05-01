@@ -8,9 +8,9 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
-import { EventService } from '../../services/event-service/event-service';
+import { EventService } from '../../data-access/event-service';
 import { EventInterface } from '../../interfaces/event';
-import { EventMessagesService } from '../../services/event-messages-service/event-messages-service';
+import { EventMessagesService } from '../../i18n/event-messages';
 import { DayEventsModalComponent } from '../../modals/day-events-modal/day-events-modal';
 import { EventFormModalComponent } from "../../modals/event-form-modal/event-form-modal";
 
@@ -20,7 +20,7 @@ import { VehicleSelectorComponent } from "../../../vehicle/components/vehicle-se
 
 import { ConfirmModalComponent } from '../../../../shared/components/modals/confirm-modal/confirm-modal';
 import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
-import { CalendarModalState } from '../../enum/calendar-modal-state.enum';
+import { CalendarModalState } from '../../enums/calendar-modal-state.enum';
 
 @Component({
   selector: 'app-calendar-view',
@@ -42,16 +42,16 @@ export class CalendarViewComponent implements AfterViewInit {
 
   @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
 
-  private eventService = inject(EventService);
-  private vehicleService = inject(VehicleService);
-  private messagesService = inject(EventMessagesService)
+  private readonly eventService = inject(EventService);
+  private readonly vehicleService = inject(VehicleService);
+  private readonly messagesService = inject(EventMessagesService)
 
   readonly calendarMsg = this.messagesService.calendar;
   readonly confirmMsg = this.messagesService.confirmModal;
 
   readonly vehicles = this.vehicleService.vehicles;
   public selectedDate = signal<string>('');
-  private selectedEventId = signal<string | null>(null);
+  private readonly selectedEventId = signal<string | null>(null);
 
   public formMode = signal<'create' | 'edit'>('create');
   public selectedEvent = signal<EventInterface | null>(null);

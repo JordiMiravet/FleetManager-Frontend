@@ -2,11 +2,11 @@ import { Component, inject, input, OnInit, output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { EventService } from '../../services/event-service/event-service';
 import { EventInterface } from '../../interfaces/event';
-import { EventMessagesService } from '../../services/event-messages-service/event-messages-service';
+import { EventMessagesService } from '../../i18n/event-messages';
 
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
+import { EventService } from '../../data-access/event-service';
 
 @Component({
   selector: 'app-event-form-modal',
@@ -21,9 +21,9 @@ import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicl
 
 export class EventFormModalComponent implements OnInit {
 
-  private eventService = inject(EventService);
-  private vehicleService = inject(VehicleService);
-  private messagesService = inject(EventMessagesService);
+  private readonly eventService = inject(EventService);
+  private readonly vehicleService = inject(VehicleService);
+  private readonly messagesService = inject(EventMessagesService);
 
   readonly formMsg = this.messagesService.form;
 
