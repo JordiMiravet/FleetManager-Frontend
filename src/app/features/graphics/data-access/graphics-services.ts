@@ -11,8 +11,8 @@ import { VehicleService } from '../../vehicle/services/vehicle-service/vehicle-s
 })
 export class GraphicsServices {
 
-  private eventService = inject(EventService);
-  private vehicleService = inject(VehicleService);
+  private readonly eventService = inject(EventService);
+  private readonly vehicleService = inject(VehicleService);
 
   public getVehicleUsageHours(period: TimePeriod = TimePeriod.Month): VehicleMetrics[] {
 

@@ -1,9 +1,8 @@
 import { Component, effect, ElementRef, inject, input, OnDestroy, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
-
 import { TimePeriod } from '../../enums/time-period.enum';
 
-import { GraphicsServices } from '../../services/graphics-services';
+import { GraphicsServices } from '../../data-access/graphics-services';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 
 @Component({
@@ -20,8 +19,8 @@ export class HoursByWeekdayVehicleChartComponent implements OnDestroy {
 
   public period = input<TimePeriod>(TimePeriod.Month);
   
-  private graphicsService = inject(GraphicsServices);
-  private vehicleService = inject(VehicleService);
+  private readonly graphicsService = inject(GraphicsServices);
+  private readonly vehicleService = inject(VehicleService);
   
   private chart!: Chart;
 

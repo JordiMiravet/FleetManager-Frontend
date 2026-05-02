@@ -4,7 +4,7 @@ import { Auth } from '@angular/fire/auth';
 
 import { MostUsedVehicleChartComponent } from './most-used-vehicle-chart';
 
-import { GraphicsServices } from '../../services/graphics-services';
+import { GraphicsServices } from '../../data-access/graphics-services';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 
 export const authMock = {
