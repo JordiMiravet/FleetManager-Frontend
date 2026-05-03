@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MapMessagesService } from './map-messages-service';
+import { MapMessagesService } from './map-messages';
 
 describe('MapMessagesService', () => {
   let service: MapMessagesService;

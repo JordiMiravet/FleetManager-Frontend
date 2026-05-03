@@ -1,6 +1,6 @@
 import { Component, inject, input, output } from '@angular/core';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
-import { MapMessagesService } from '../../services/map-messages-service/map-messages-service';
+import { MapMessagesService } from '../../i18n/map-messages';
 
 @Component({
   selector: 'app-details-panel',

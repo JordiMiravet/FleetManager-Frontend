@@ -26,7 +26,7 @@ export const routes: Routes = [
       {
         path: 'map',
         loadComponent: () =>
-          import('./pages/map/map').then(m => m.MapComponent)
+          import('./features/map/pages/map/map').then(m => m.MapComponent)
       },
       {
         path: 'calendar',

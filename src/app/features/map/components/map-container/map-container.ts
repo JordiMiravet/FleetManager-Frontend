@@ -1,11 +1,12 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
+
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 import { VehicleModalService } from '../../../vehicle/services/vehicle-modal-service/vehicle-modal-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
-import { VehicleModalState } from '../../../vehicle/enum/vehicle-modal-state.enum';
 import { MapViewComponent } from "../map-view/map-view";
 import { VehicleFormModalComponent } from "../../../vehicle/modals/vehicle-form-modal/vehicle-form-modal";
+import { VehicleModalState } from '../../../vehicle/enum/vehicle-modal-state.enum';
 import { VehicleEmptyStateComponent } from "../../../vehicle/components/vehicle-empty-state/vehicle-empty-state";
 
 @Component({
@@ -63,7 +64,7 @@ export class MapContainerComponent implements OnInit {
       const [lat, lng] = await this.geo.getCurrentLocation();
       return { lat, lng };
     } catch {
-      return { lat: 41.478, lng: 2.310 };
+      return { lat: 41.478, lng: 2.31 };
     }
   }
 
