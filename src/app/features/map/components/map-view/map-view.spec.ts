@@ -67,7 +67,7 @@ describe('MapViewComponent', () => {
 
       component.ngOnInit();
 
-      expect(initMapSpy).toHaveBeenCalledOnceWith('map', [41.478, 2.310], 10);
+      expect(initMapSpy).toHaveBeenCalledOnceWith('map', [41.478, 2.31], 10);
     });
 
   });
@@ -79,7 +79,7 @@ describe('MapViewComponent', () => {
       name: 'Ferrari',
       model: 'F8',
       plate: 'F123',
-      location: { lat: 41.0, lng: 2.0 }
+      location: { lat: 41, lng: 2 }
     };
 
     it('should set selectedVehicle when showVehicle is called', () => {

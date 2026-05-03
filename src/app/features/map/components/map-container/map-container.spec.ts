@@ -148,7 +148,7 @@ describe('MapContainerComponent', () => {
 
       const addedVehicle = vehicleServiceMock.addVehicles.calls.mostRecent().args[0];
 
-      expect(addedVehicle.location).toEqual({ lat: 41.478, lng: 2.310 });
+      expect(addedVehicle.location).toEqual({ lat: 41.478, lng: 2.31 });
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
     });
 
