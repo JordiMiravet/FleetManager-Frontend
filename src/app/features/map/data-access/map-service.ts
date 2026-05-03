@@ -4,7 +4,6 @@ import * as L from 'leaflet';
 @Injectable({
   providedIn: 'root',
 })
-
 export class MapService {
 
   private map!: L.Map;

@@ -1,14 +1,14 @@
 import { Component, effect, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import * as L from 'leaflet';
 
+import { MapService } from '../../data-access/map-service';
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
-import { MapService } from '../../services/map-service/map-service';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 import { VehicleSelectorComponent } from '../../../vehicle/components/vehicle-selector/vehicle-selector';
-import { ConfirmModalComponent } from "../../../../shared/components/modals/confirm-modal/confirm-modal";
 import { DetailsPanelComponent } from "../details-panel/details-panel";
-import { MapMessagesService } from '../../services/map-messages-service/map-messages-service';
+import { ConfirmModalComponent } from "../../../../shared/components/modals/confirm-modal/confirm-modal";
+import { MapMessagesService } from '../../i18n/map-messages';
 
 @Component({
   selector: 'app-map-view',
@@ -21,7 +21,6 @@ import { MapMessagesService } from '../../services/map-messages-service/map-mess
   templateUrl: './map-view.html',
   styleUrls: ['./map-view.css'],
 })
-
 export class MapViewComponent implements OnInit, OnDestroy {
 
   private readonly mapService = inject(MapService);
@@ -41,7 +40,7 @@ export class MapViewComponent implements OnInit, OnDestroy {
 
   public readonly mapViewMsg = this.messagesService.mapView;
 
-  private readonly DEFAULT_CENTER: [number, number] = [41.478, 2.310];
+  private readonly DEFAULT_CENTER: [number, number] = [41.478, 2.31];
   private readonly DEFAULT_ZOOM = 10;
   private readonly SELECTED_ZOOM = 19;
 

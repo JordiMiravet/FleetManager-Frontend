@@ -6,11 +6,10 @@ import { Auth } from '@angular/fire/auth';
 import * as L from 'leaflet';
 
 import { MapViewComponent } from './map-view';
-
-import { MapService } from '../../services/map-service/map-service';
+import { MapService } from '../../data-access/map-service';
+import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
-import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
 
 export const authMock = {
   currentUser: {

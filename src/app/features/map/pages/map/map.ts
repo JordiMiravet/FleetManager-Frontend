@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MapContainerComponent } from "../../features/map/components/map-container/map-container";
+import { MapContainerComponent } from '../../components/map-container/map-container';
 
 @Component({
   selector: 'app-map',

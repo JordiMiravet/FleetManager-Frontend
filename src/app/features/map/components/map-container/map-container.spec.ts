@@ -3,9 +3,7 @@ import { signal } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MapContainerComponent } from './map-container';
-
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
-
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
 import { VehicleModalService } from '../../../vehicle/services/vehicle-modal-service/vehicle-modal-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
