@@ -23,9 +23,9 @@ describe('CalendarComponent', () => {
         CalendarComponent
       ],
       providers: [
-        { provide: Auth, useValue: authMock },
         provideHttpClient(),
-        provideHttpClientTesting()
+        provideHttpClientTesting(),
+        { provide: Auth, useValue: authMock },
       ]
     })
     .compileComponents();

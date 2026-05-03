@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { Auth } from '@angular/fire/auth';
 
 import { MostUsedVehicleChartComponent } from './most-used-vehicle-chart';
@@ -22,9 +22,9 @@ describe('MostUsedVehicleChartComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         MostUsedVehicleChartComponent,
-        HttpClientModule
       ],
       providers: [
+        provideHttpClient(),
         { provide: Auth, useValue: authMock },
         GraphicsServices,
         VehicleService

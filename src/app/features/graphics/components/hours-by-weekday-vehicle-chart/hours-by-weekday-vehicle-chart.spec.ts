@@ -1,12 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { Auth } from '@angular/fire/auth';
 
 import { HoursByWeekdayVehicleChartComponent } from './hours-by-weekday-vehicle-chart';
 
 import { GraphicsServices } from '../../data-access/graphics-services';
 import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
-
 
 export const authMock = {
   currentUser : {
@@ -23,9 +22,9 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HoursByWeekdayVehicleChartComponent,
-        HttpClientModule
       ],
       providers: [
+        provideHttpClient(),
         { provide: Auth, useValue: authMock },
         GraphicsServices,
         VehicleService

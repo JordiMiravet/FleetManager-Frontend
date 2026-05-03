@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 
 import { MapContainerComponent } from './map-container';
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
@@ -47,12 +47,12 @@ describe('MapContainerComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         MapContainerComponent, 
-        HttpClientModule
       ],
       providers: [
         { provide: VehicleService, useValue: vehicleServiceMock },
         { provide: VehicleModalService, useValue: VehicleModalServiceMock },
         { provide: GeolocationService, useValue: geolocationServiceMock },
+        provideHttpClient()
       ],
     }).compileComponents();
 

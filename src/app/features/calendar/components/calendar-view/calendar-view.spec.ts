@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
 import { of } from 'rxjs';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 
 import { CalendarViewComponent } from './calendar-view';
 
@@ -32,11 +32,11 @@ describe('CalendarViewComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         CalendarViewComponent, 
-        HttpClientModule
       ],
       providers: [
+        provideHttpClient(),
         { provide: EventService, useValue: mockEventService },
-        { provide: VehicleService, useValue: mockVehicleService }
+        { provide: VehicleService, useValue: mockVehicleService },
       ]
     }).compileComponents();
 

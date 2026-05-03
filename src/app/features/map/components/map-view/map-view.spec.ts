@@ -140,14 +140,6 @@ describe('MapViewComponent', () => {
 
   describe('vehicle marker drag behaviour', () => {
 
-    const mockVehicle: VehicleInterface = {
-      _id: '123',
-      name: 'Ferrari',
-      model: 'F8',
-      plate: 'F123',
-      location: { lat: 41, lng: 2 }
-    };
-
     it('should set newPosition when marker drag ends', () => {
       const fakePosition = { lat: 50, lng: 8 } as any;
       (component as any).selectedVehicleMarker = { getLatLng: () => fakePosition };
