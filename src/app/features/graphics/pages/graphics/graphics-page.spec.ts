@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GraphicsComponent } from './graphics';
+import { GraphicsComponent } from './graphics-page';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Auth } from '@angular/fire/auth';
 

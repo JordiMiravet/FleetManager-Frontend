@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
-import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
+import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
+
 
 @Component({
   selector: 'app-vehicle-form-modal',
@@ -13,7 +14,7 @@ import { VehicleMessagesService } from '../../services/vehicle-messages-service/
 })
 export class VehicleFormModalComponent {
 
-  private messagesService = inject(VehicleMessagesService);
+  private readonly messagesService = inject(VehicleMessagesService);
 
   public readonly formMsg = this.messagesService.form;
 
@@ -25,7 +26,7 @@ export class VehicleFormModalComponent {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private readonly fb: FormBuilder) {
     this.form = this.fb.group({
       name: ['', [
         Validators.required, 

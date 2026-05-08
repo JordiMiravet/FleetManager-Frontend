@@ -6,7 +6,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { CalendarViewComponent } from './calendar-view';
 
 import { EventService } from '../../data-access/event-service';
-import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
+import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { EventInterface } from '../../interfaces/event';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 

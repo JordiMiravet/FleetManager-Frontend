@@ -5,8 +5,7 @@ import { CalendarViewComponent } from '../../components/calendar-view/calendar-v
   selector: 'app-calendar',
   standalone: true,
   imports: [ CalendarViewComponent ],
-  templateUrl: './calendar.html',
-  styleUrl: './calendar.css',
+  templateUrl: './calendar-page.html',
+  styleUrl: './calendar-page.css',
 })
-
 export class CalendarComponent {}

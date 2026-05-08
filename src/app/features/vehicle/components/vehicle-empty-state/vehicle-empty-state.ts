@@ -1,6 +1,6 @@
 import { Component, inject, output } from '@angular/core';
 import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
-import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
+import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 
 @Component({
   selector: 'app-vehicle-empty-state',

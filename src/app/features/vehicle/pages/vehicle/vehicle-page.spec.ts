@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { Auth } from '@angular/fire/auth';
 
-import { HomeComponent } from './home';
+import { HomeComponent } from './vehicle-page';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;

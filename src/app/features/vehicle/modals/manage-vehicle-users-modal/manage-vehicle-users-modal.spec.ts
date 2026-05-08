@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { ManageVehicleUsersModalComponent } from './manage-vehicle-users-modal';
 
 import { PermissionService } from '../../../../shared/services/permission/permission';
-import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
+import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
 describe('ManageVehicleUsersModalComponent', () => {

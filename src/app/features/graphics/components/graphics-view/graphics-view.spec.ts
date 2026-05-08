@@ -5,7 +5,7 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { GraphicsViewComponent } from './graphics-view';
 
-import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
+import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 
 export const authMock = {

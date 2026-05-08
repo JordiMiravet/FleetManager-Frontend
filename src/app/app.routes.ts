@@ -21,22 +21,22 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./pages/home/home').then(m => m.HomeComponent)
+          import('./features/vehicle/pages/vehicle/vehicle-page').then(m => m.HomeComponent)
       },
       {
         path: 'map',
         loadComponent: () =>
-          import('./features/map/pages/map/map').then(m => m.MapComponent)
+          import('./features/map/pages/map/map-page').then(m => m.MapComponent)
       },
       {
         path: 'calendar',
         loadComponent: () =>
-          import('./features/calendar/pages/calendar/calendar').then(m => m.CalendarComponent)
+          import('./features/calendar/pages/calendar/calendar-page').then(m => m.CalendarComponent)
       },
       {
         path: 'graphics',
         loadComponent: () =>
-          import('./features/graphics/pages/graphics/graphics').then(m => m.GraphicsComponent)
+          import('./features/graphics/pages/graphics/graphics-page').then(m => m.GraphicsComponent)
       }
     ]
   },

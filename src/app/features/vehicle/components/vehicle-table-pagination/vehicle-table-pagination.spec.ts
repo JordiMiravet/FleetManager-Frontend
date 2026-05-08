@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { Auth} from '@angular/fire/auth';
 
 import { VehicleTablePaginationComponent } from './vehicle-table-pagination';
-import { HttpClientModule } from '@angular/common/http';
-import { Auth, AuthModule } from '@angular/fire/auth';
 
 describe('VehicleTablePaginationComponent', () => {
   let component: VehicleTablePaginationComponent;

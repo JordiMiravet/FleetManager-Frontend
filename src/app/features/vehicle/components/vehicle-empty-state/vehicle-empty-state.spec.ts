@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { VehicleEmptyStateComponent } from './vehicle-empty-state';
 import { By } from '@angular/platform-browser';
+
+import { VehicleEmptyStateComponent } from './vehicle-empty-state';
 
 describe('VehicleEmptyStateComponent', () => {
   let component: VehicleEmptyStateComponent;

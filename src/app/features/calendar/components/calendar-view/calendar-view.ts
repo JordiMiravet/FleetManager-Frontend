@@ -14,7 +14,7 @@ import { EventMessagesService } from '../../i18n/event-messages';
 import { DayEventsModalComponent } from '../../modals/day-events-modal/day-events-modal';
 import { EventFormModalComponent } from "../../modals/event-form-modal/event-form-modal";
 
-import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
+import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 import { VehicleSelectorComponent } from "../../../vehicle/components/vehicle-selector/vehicle-selector";
 

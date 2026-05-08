@@ -1,14 +1,13 @@
-import { Component, computed, inject, signal, ViewChild } from '@angular/core';
+import { Component, computed, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 
-import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
-import { VehicleService } from '../../services/vehicle-service/vehicle-service';
-import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
-
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
+import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
+import { VehicleService } from '../../data-access/vehicle-service';
+import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 
-import { VehicleModalState } from '../../enum/vehicle-modal-state.enum';
-import { VehicleModalService} from '../../services/vehicle-modal-service/vehicle-modal-service';
+import { VehicleModalService} from '../../state/vehicle-modal-service';
+import { VehicleModalState } from '../../enums/vehicle-modal-state.enum';
 import { ConfirmModalComponent } from "../../../../shared/components/modals/confirm-modal/confirm-modal";
 import { VehicleFormModalComponent } from "../../modals/vehicle-form-modal/vehicle-form-modal";
 import { ManageVehicleUsersModalComponent } from '../../modals/manage-vehicle-users-modal/manage-vehicle-users-modal';
@@ -36,15 +35,14 @@ import { CreateButtonComponent } from "../../../../shared/components/buttons/cre
   templateUrl: './vehicle-view.html',
   styleUrl: './vehicle-view.css',
 })
-
-export class VehicleViewComponent {
+export class VehicleViewComponent implements OnInit {
   
   @ViewChild(ManageVehicleUsersModalComponent) userModal?: ManageVehicleUsersModalComponent;
 
-  private auth = inject(Auth);
-  private geo = inject(GeolocationService);
-  private vehicleService = inject(VehicleService);
-  private messagesService = inject(VehicleMessagesService);
+  private readonly auth = inject(Auth);
+  private readonly geo = inject(GeolocationService);
+  private readonly vehicleService = inject(VehicleService);
+  private readonly messagesService = inject(VehicleMessagesService);
 
   public modalState = inject(VehicleModalService);
 

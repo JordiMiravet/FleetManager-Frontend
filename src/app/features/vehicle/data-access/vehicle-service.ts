@@ -1,5 +1,5 @@
 import { Injectable, signal, inject } from '@angular/core';
-import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../interfaces/vehicle/vehicle';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Auth } from '@angular/fire/auth';
@@ -9,9 +9,9 @@ import { Auth } from '@angular/fire/auth';
 })
 export class VehicleService {
   
-  private http = inject(HttpClient);
-  private auth = inject(Auth);
-  private apiUrl = 'http://localhost:3000/vehicles';
+  private readonly http = inject(HttpClient);
+  private readonly auth = inject(Auth);
+  private readonly apiUrl = 'http://localhost:3000/vehicles';
 
   public vehicles = signal<VehicleInterface[]>([]);
 

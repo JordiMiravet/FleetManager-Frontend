@@ -1,6 +1,6 @@
 import { Component, inject, output, signal } from '@angular/core';
-import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
 import { SortDir, SortField, VehicleFilterState } from '../../interfaces/vehicle-filter-state/vehicle-filter-state';
+import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 
 @Component({
   selector: 'app-vehicle-table-actions',

@@ -4,13 +4,9 @@ import { MapContainerComponent } from '../../components/map-container/map-contai
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [
-    MapContainerComponent
-  ],
-  templateUrl: './map.html',
-  styleUrls: ['./map.css'],
+  imports: [MapContainerComponent],
+  templateUrl: './map-page.html',
+  styleUrls: ['./map-page.css'],
 })
-
 export class MapComponent {
-
 }

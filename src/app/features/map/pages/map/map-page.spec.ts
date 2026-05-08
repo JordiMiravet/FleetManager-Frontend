@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { Auth } from '@angular/fire/auth';
 
-import { MapComponent } from './map';
+import { MapComponent } from './map-page';
 
 export const authMock = {
   currentUser: {

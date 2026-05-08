@@ -4,15 +4,15 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { Auth } from '@angular/fire/auth';
 
 import { VehicleService } from './vehicle-service';
-import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../interfaces/vehicle/vehicle';
 
 describe('VehicleService', () => {
   let service: VehicleService;
   let httpMock: HttpTestingController;
 
   const vehiclesMock: VehicleInterface[] = [
-    { _id: '1', name: 'Ferrari', model: 'F8 Tributo', plate: 'F123', location: { lat: 41.0, lng: 2.0 } },
-    { _id: '2', name: 'Pagani', model: 'Huayra', plate: 'P456', location: { lat: 42.0, lng: 3.0 } }
+    { _id: '1', name: 'Ferrari', model: 'F8 Tributo', plate: 'F123', location: { lat: 41, lng: 2 } },
+    { _id: '2', name: 'Pagani', model: 'Huayra', plate: 'P456', location: { lat: 42, lng: 3 } }
   ];
 
   const authMock = {
@@ -129,8 +129,8 @@ describe('VehicleService', () => {
         model: 'Huayra',
         plate: 'P456',
         location: {
-          lat: 42.0,
-          lng: 3.0
+          lat: 42,
+          lng: 3
         }
       };
 
@@ -222,35 +222,35 @@ describe('VehicleService', () => {
       model: 'F8 Tributo',
       plate: 'F123',
       location: {
-        lat: 41.0,
-        lng: 2.0
+        lat: 41,
+        lng: 2
       }
     };
 
     it('should call PUT /vehicles/:id with location payload', () => {
 
       service.vehicles.set([vehicle]);
-      service.updateVehicleLocation(vehicle, { lat: 42.0, lng: 3.0 });
+      service.updateVehicleLocation(vehicle, { lat: 42, lng: 3 });
 
       const req = httpMock.expectOne('http://localhost:3000/vehicles/1');
       expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual({ location: { lat: 42.0, lng: 3.0 } });
+      expect(req.request.body).toEqual({ location: { lat: 42, lng: 3 } });
 
-      req.flush({ ...vehicle, location: { lat: 42.0, lng: 3.0 } });
+      req.flush({ ...vehicle, location: { lat: 42, lng: 3 } });
 
-      expect(service.vehicles()[0].location).toEqual({ lat: 42.0, lng: 3.0 });
+      expect(service.vehicles()[0].location).toEqual({ lat: 42, lng: 3 });
     });
 
     it('should update only the location of the vehicle in vehicles signal', () => {
 
       service.vehicles.set([vehicle]);
-      service.updateVehicleLocation(vehicle, { lat: 42.0, lng: 3.0 });
+      service.updateVehicleLocation(vehicle, { lat: 42, lng: 3 });
 
       const req = httpMock.expectOne('http://localhost:3000/vehicles/1');
       expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual({ location: { lat: 42.0, lng: 3.0 } });
+      expect(req.request.body).toEqual({ location: { lat: 42, lng: 3 } });
 
-      req.flush({ ...vehicle, location: { lat: 42.0, lng: 3.0 } });
+      req.flush({ ...vehicle, location: { lat: 42, lng: 3 } });
 
       expect(service.vehicles().length).toBe(1);
       expect(service.vehicles()[0]._id).toBe('1');
@@ -265,8 +265,8 @@ describe('VehicleService', () => {
       model: 'F8 Tributo',
       plate: 'F123',
       location: {
-        lat: 41.0,
-        lng: 2.0
+        lat: 41,
+        lng: 2
       }
     };
 

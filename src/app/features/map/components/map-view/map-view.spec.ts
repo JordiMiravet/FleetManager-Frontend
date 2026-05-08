@@ -8,7 +8,7 @@ import * as L from 'leaflet';
 import { MapViewComponent } from './map-view';
 import { MapService } from '../../data-access/map-service';
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
-import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
+import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 
 export const authMock = {

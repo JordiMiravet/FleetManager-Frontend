@@ -4,10 +4,10 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { MapContainerComponent } from './map-container';
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
-import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
-import { VehicleModalService } from '../../../vehicle/services/vehicle-modal-service/vehicle-modal-service';
+import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
+import { VehicleModalService } from '../../../vehicle/state/vehicle-modal-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
-import { VehicleModalState } from '../../../vehicle/enum/vehicle-modal-state.enum';
+import { VehicleModalState } from '../../../vehicle/enums/vehicle-modal-state.enum';
 
 const vehicleServiceMock = {
   vehicles: signal<VehicleInterface[]>([]),

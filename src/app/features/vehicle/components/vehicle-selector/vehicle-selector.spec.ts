@@ -9,8 +9,8 @@ describe('VehicleSelectorComponent', () => {
   let fixture: ComponentFixture<VehicleSelectorComponent>;
 
   const mockVehicles: VehicleInterface[] = [
-    { name: 'Ferrari', model: 'F8 Tributo', plate: 'F123', location: { lat: 41.0, lng: 2.0 } },
-    { name: 'Pagani', model: 'Huayra', plate: 'P456', location: { lat: 42.0, lng: 3.0 } }
+    { name: 'Ferrari', model: 'F8 Tributo', plate: 'F123', location: { lat: 41, lng: 2 } },
+    { name: 'Pagani', model: 'Huayra', plate: 'P456', location: { lat: 42, lng: 3 } }
   ];
 
   beforeEach(async () => {

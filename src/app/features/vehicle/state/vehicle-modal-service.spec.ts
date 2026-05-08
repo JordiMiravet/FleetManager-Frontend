@@ -3,8 +3,8 @@ import { Auth } from '@angular/fire/auth';
 
 import { VehicleModalService } from './vehicle-modal-service';
 
-import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
-import { VehicleModalState } from '../../enum/vehicle-modal-state.enum';
+import { VehicleInterface } from '../interfaces/vehicle/vehicle';
+import { VehicleModalState } from '../enums/vehicle-modal-state.enum';
 
 export const authMock = {
   currentUser: {

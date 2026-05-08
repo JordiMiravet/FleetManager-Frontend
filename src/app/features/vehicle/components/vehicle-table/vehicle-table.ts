@@ -2,13 +2,12 @@ import { Component, inject, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PermissionService } from '../../../../shared/services/permission/permission';
-import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
-
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
 import { EditButtonComponent } from '../../../../shared/components/buttons/edit-button/edit-button';
 import { DeleteButtonComponent } from '../../../../shared/components/buttons/delete-button/delete-button';
 import { UserButtonComponent } from "../../../../shared/components/buttons/user-button/user-button";
+import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 
 @Component({
   selector: 'app-vehicle-table',
@@ -22,11 +21,10 @@ import { UserButtonComponent } from "../../../../shared/components/buttons/user-
   templateUrl: './vehicle-table.html',
   styleUrl: './vehicle-table.css',
 })
-
 export class VehicleTableComponent {
 
-  private permission = inject(PermissionService);
-  private messagesService = inject(VehicleMessagesService);
+  private readonly permission = inject(PermissionService);
+  private readonly messagesService = inject(VehicleMessagesService);
 
   public readonly tableMsg = this.messagesService.table;
 

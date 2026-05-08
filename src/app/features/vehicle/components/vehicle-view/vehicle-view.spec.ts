@@ -4,11 +4,11 @@ import { Auth } from '@angular/fire/auth';
 
 import { VehicleViewComponent } from './vehicle-view';
 
-import { VehicleService } from '../../services/vehicle-service/vehicle-service';
+import { VehicleService } from '../../data-access/vehicle-service';
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
-import { VehicleModalService } from '../../services/vehicle-modal-service/vehicle-modal-service';
+import { VehicleModalService } from '../../state/vehicle-modal-service';
 import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
-import { VehicleModalState } from '../../enum/vehicle-modal-state.enum';
+import { VehicleModalState } from '../../enums/vehicle-modal-state.enum';
 
 const authMock = {
   isLoggedIn: jasmine.createSpy('isLoggedIn').and.returnValue(true),

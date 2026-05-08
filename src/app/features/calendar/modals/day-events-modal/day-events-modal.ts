@@ -4,7 +4,7 @@ import { Component, inject, input, output } from '@angular/core';
 import { EventInterface } from '../../interfaces/event';
 import { EventMessagesService } from '../../i18n/event-messages';
 
-import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
+import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 
 import { EditButtonComponent } from '../../../../shared/components/buttons/edit-button/edit-button';
 import { DeleteButtonComponent } from '../../../../shared/components/buttons/delete-button/delete-button';

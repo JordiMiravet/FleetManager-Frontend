@@ -4,7 +4,7 @@ import Chart from 'chart.js/auto';
 import { TimePeriod } from '../../enums/time-period.enum';
 
 import { GraphicsServices } from '../../data-access/graphics-services';
-import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
+import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 @Component({
   selector: 'app-most-used-vehicle-chart',
   standalone: true,

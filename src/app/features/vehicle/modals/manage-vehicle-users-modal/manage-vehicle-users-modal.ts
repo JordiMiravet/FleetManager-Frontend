@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 import { PermissionService } from '../../../../shared/services/permission/permission';
-import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
+import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 import { DeleteButtonComponent } from "../../../../shared/components/buttons/delete-button/delete-button";
 
 @Component({
@@ -19,8 +19,8 @@ import { DeleteButtonComponent } from "../../../../shared/components/buttons/del
 })
 export class ManageVehicleUsersModalComponent {
 
-  private permission = inject(PermissionService);
-  private messagesService = inject(VehicleMessagesService);
+  private readonly permission = inject(PermissionService);
+  private readonly messagesService = inject(VehicleMessagesService);
   
   public readonly usersMsg = this.messagesService.users;
 

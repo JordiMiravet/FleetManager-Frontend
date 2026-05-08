@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { VehicleService } from '../../services/vehicle-service/vehicle-service';
-import { VehicleMessagesService } from '../../services/vehicle-messages-service/vehicle-messages-service';
+import { VehicleService } from '../../data-access/vehicle-service';
+import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 
 @Component({
   selector: 'app-vehicle-table-pagination',
@@ -11,8 +11,8 @@ import { VehicleMessagesService } from '../../services/vehicle-messages-service/
 })
 export class VehicleTablePaginationComponent {
   
-  private vehicleService = inject(VehicleService);
-  private messagesService = inject(VehicleMessagesService);
+  private readonly vehicleService = inject(VehicleService);
+  private readonly messagesService = inject(VehicleMessagesService);
 
   public vehicles = this.vehicleService.vehicles;
   public paginationMsg = this.messagesService.pagination;

@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { EventInterface } from '../../interfaces/event';
 import { EventMessagesService } from '../../i18n/event-messages';
 
-import { VehicleService } from '../../../vehicle/services/vehicle-service/vehicle-service';
+import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { EventService } from '../../data-access/event-service';
 
 @Component({
@@ -18,7 +18,6 @@ import { EventService } from '../../data-access/event-service';
   templateUrl: './event-form-modal.html',
   styleUrl: './event-form-modal.css',
 })
-
 export class EventFormModalComponent implements OnInit {
 
   private readonly eventService = inject(EventService);
