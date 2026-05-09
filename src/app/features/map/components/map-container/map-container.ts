@@ -1,7 +1,7 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
 
-import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
+import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';
 import { VehicleModalService } from '../../../vehicle/state/vehicle-modal-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 import { MapViewComponent } from "../map-view/map-view";

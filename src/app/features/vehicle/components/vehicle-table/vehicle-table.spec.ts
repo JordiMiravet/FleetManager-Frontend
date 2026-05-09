@@ -4,7 +4,7 @@ import { Auth } from '@angular/fire/auth';
 
 import { VehicleTableComponent } from './vehicle-table';
 
-import { PermissionService } from '../../../../shared/services/permission/permission';
+import { AuthorizationService } from '../../../../core/services/authorization/authorization-service';
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
 describe('VehicleTableComponent', () => {
@@ -36,7 +36,7 @@ describe('VehicleTableComponent', () => {
       imports: [VehicleTableComponent],
       providers: [
         { provide: Auth, useValue: authMock },
-        { provide: PermissionService, useValue: permissionServiceMock }
+        { provide: AuthorizationService, useValue: permissionServiceMock }
       ]
     }).compileComponents();
 

@@ -2,7 +2,7 @@ import { Component, effect, inject, OnDestroy, OnInit, signal } from '@angular/c
 import * as L from 'leaflet';
 
 import { MapService } from '../../data-access/map-service';
-import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
+import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 import { VehicleSelectorComponent } from '../../../vehicle/components/vehicle-selector/vehicle-selector';

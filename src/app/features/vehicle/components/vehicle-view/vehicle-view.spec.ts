@@ -7,7 +7,7 @@ import { VehicleViewComponent } from './vehicle-view';
 import { VehicleService } from '../../data-access/vehicle-service';
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 import { VehicleModalService } from '../../state/vehicle-modal-service';
-import { GeolocationService } from '../../../../shared/services/geolocation/geolocation-service';
+import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';
 import { VehicleModalState } from '../../enums/vehicle-modal-state.enum';
 
 const authMock = {

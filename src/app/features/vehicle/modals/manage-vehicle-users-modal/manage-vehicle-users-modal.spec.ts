@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 
 import { ManageVehicleUsersModalComponent } from './manage-vehicle-users-modal';
 
-import { AuthorizationService } from '../../../../shared/services/authorization/authorization-service';
+import { AuthorizationService } from '../../../../core/services/authorization/authorization-service';
 import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 

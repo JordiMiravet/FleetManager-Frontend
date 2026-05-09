@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { ThemeService } from '../../../services/theme/theme-service';
+import { ThemeService } from '../../../../core/services/theme/theme-service';
 
 @Component({
   selector: 'app-dark-mode-toggle',
