@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 import { AuthorizationService } from '../../../../core/services/authorization/authorization-service';
 import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
-import { DeleteButtonComponent } from "../../../../shared/components/buttons/delete-button/delete-button";
+import { DeleteButtonComponent } from "../../../../shared/ui/buttons/delete-button/delete-button";
 
 @Component({
   selector: 'app-manage-vehicle-users-modal',

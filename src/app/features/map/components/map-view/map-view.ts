@@ -7,7 +7,7 @@ import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 import { VehicleSelectorComponent } from '../../../vehicle/components/vehicle-selector/vehicle-selector';
 import { DetailsPanelComponent } from "../details-panel/details-panel";
-import { ConfirmModalComponent } from "../../../../shared/components/modals/confirm-modal/confirm-modal";
+import { ConfirmModalComponent } from "../../../../shared/ui/modals/confirm-modal/confirm-modal";
 import { MapMessagesService } from '../../i18n/map-messages';
 
 @Component({

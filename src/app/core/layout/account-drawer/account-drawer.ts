@@ -1,7 +1,7 @@
 import { Component, inject, output } from '@angular/core';
 
 import { LayoutMessagesService } from '../i18n/layout-messages-service';
-import { DarkModeToggleComponent } from '../../../shared/components/buttons/dark-mode-toggle/dark-mode-toggle';
+import { DarkModeToggleComponent } from '../../../shared/ui/buttons/dark-mode-toggle/dark-mode-toggle';
 
 @Component({
   selector: 'app-account-drawer',

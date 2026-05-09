@@ -1,5 +1,5 @@
 import { Component, inject, output } from '@angular/core';
-import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
+import { CreateButtonComponent } from "../../../../shared/ui/buttons/create-button/create-button";
 import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 
 @Component({

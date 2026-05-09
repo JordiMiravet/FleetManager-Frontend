@@ -18,8 +18,8 @@ import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 import { VehicleSelectorComponent } from "../../../vehicle/components/vehicle-selector/vehicle-selector";
 
-import { ConfirmModalComponent } from '../../../../shared/components/modals/confirm-modal/confirm-modal';
-import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
+import { ConfirmModalComponent } from '../../../../shared/ui/modals/confirm-modal/confirm-modal';
+import { CreateButtonComponent } from "../../../../shared/ui/buttons/create-button/create-button";
 import { CalendarModalState } from '../../enums/calendar-modal-state.enum';
 
 @Component({

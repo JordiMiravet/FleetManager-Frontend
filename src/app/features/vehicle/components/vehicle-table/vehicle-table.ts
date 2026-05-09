@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
-import { EditButtonComponent } from '../../../../shared/components/buttons/edit-button/edit-button';
-import { DeleteButtonComponent } from '../../../../shared/components/buttons/delete-button/delete-button';
-import { UserButtonComponent } from "../../../../shared/components/buttons/user-button/user-button";
+import { EditButtonComponent } from '../../../../shared/ui/buttons/edit-button/edit-button';
+import { DeleteButtonComponent } from '../../../../shared/ui/buttons/delete-button/delete-button';
+import { UserButtonComponent } from "../../../../shared/ui/buttons/user-button/user-button";
 import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 import { AuthorizationService } from '../../../../core/services/authorization/authorization-service';
 

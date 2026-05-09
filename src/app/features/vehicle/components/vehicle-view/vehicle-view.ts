@@ -8,7 +8,7 @@ import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 
 import { VehicleModalService} from '../../state/vehicle-modal-service';
 import { VehicleModalState } from '../../enums/vehicle-modal-state.enum';
-import { ConfirmModalComponent } from "../../../../shared/components/modals/confirm-modal/confirm-modal";
+import { ConfirmModalComponent } from "../../../../shared/ui/modals/confirm-modal/confirm-modal";
 import { VehicleFormModalComponent } from "../../modals/vehicle-form-modal/vehicle-form-modal";
 import { ManageVehicleUsersModalComponent } from '../../modals/manage-vehicle-users-modal/manage-vehicle-users-modal';
 
@@ -17,7 +17,7 @@ import { VehicleEmptyStateComponent } from "../vehicle-empty-state/vehicle-empty
 import { VehicleTableActionsComponent } from '../vehicle-table-actions/vehicle-table-actions';
 import { VehicleFilterState } from '../../interfaces/vehicle-filter-state/vehicle-filter-state';
 import { VehicleTablePaginationComponent } from "../vehicle-table-pagination/vehicle-table-pagination";
-import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
+import { CreateButtonComponent } from "../../../../shared/ui/buttons/create-button/create-button";
 
 @Component({
   selector: 'app-vehicle-view',

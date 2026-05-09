@@ -6,9 +6,9 @@ import { EventMessagesService } from '../../i18n/event-messages';
 
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 
-import { EditButtonComponent } from '../../../../shared/components/buttons/edit-button/edit-button';
-import { DeleteButtonComponent } from '../../../../shared/components/buttons/delete-button/delete-button';
-import { CreateButtonComponent } from "../../../../shared/components/buttons/create-button/create-button";
+import { EditButtonComponent } from '../../../../shared/ui/buttons/edit-button/edit-button';
+import { DeleteButtonComponent } from '../../../../shared/ui/buttons/delete-button/delete-button';
+import { CreateButtonComponent } from "../../../../shared/ui/buttons/create-button/create-button";
 
 @Component({
   selector: 'app-day-events-modal',
