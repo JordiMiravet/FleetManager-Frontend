@@ -1,7 +1,7 @@
 import { Component, inject, output } from '@angular/core';
 
-import { LayoutMessagesService } from '../services/layout-messages-service';
-import { DarkModeToggleComponent } from "../../components/buttons/dark-mode-toggle/dark-mode-toggle";
+import { LayoutMessagesService } from '../i18n/layout-messages-service';
+import { DarkModeToggleComponent } from '../../../shared/components/buttons/dark-mode-toggle/dark-mode-toggle';
 
 @Component({
   selector: 'app-account-drawer',
@@ -12,10 +12,9 @@ import { DarkModeToggleComponent } from "../../components/buttons/dark-mode-togg
   templateUrl: './account-drawer.html',
   styleUrl: './account-drawer.scss',
 })
-
 export class AccountDrawerComponent {
 
-  private messagesService = inject(LayoutMessagesService);
+  private readonly messagesService = inject(LayoutMessagesService);
 
   public readonly drawerMsg = this.messagesService.drawer;
 

@@ -5,7 +5,7 @@ import { provideRouter, Router } from '@angular/router';
 
 import { AuthActionsComponent } from './auth-actions';
 import { AuthService } from '../../../features/auth/data-access/auth-service';
-import { LayoutMessagesService } from '../services/layout-messages-service';
+import { LayoutMessagesService } from '../i18n/layout-messages-service';
 
 class MockAuthService {
   isLogged = signal(false);
