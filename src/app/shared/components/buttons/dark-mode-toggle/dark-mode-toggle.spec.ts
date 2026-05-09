@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DarkModeToggleComponent } from './dark-mode-toggle';
-import { ThemeService } from '../../../services/themeService/theme-service';
+import { ThemeService } from '../../../services/theme/theme-service';
 
 describe('DarkModeToggleComponent', () => {
   let component: DarkModeToggleComponent;
