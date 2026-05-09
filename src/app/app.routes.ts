@@ -21,7 +21,7 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./features/vehicle/pages/vehicle/vehicle-page').then(m => m.HomeComponent)
+          import('./features/vehicle/pages/vehicle/vehicle-page').then(m => m.VehicleComponent)
       },
       {
         path: 'map',
