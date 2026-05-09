@@ -1,7 +1,7 @@
 import { Component, inject, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PermissionService } from '../../../../shared/services/permission/permission';
+import { AuthorizationService } from '../../../../shared/services/authorization/authorization-service';
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
 import { EditButtonComponent } from '../../../../shared/components/buttons/edit-button/edit-button';
@@ -23,7 +23,7 @@ import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 })
 export class VehicleTableComponent {
 
-  private readonly permission = inject(PermissionService);
+  private readonly permission = inject(AuthorizationService);
   private readonly messagesService = inject(VehicleMessagesService);
 
   public readonly tableMsg = this.messagesService.table;

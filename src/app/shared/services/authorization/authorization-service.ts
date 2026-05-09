@@ -6,8 +6,8 @@ import { VehicleInterface } from '../../../features/vehicle/interfaces/vehicle/v
   providedIn: 'root',
 })
 
-export class PermissionService {
-  private auth = inject(Auth);
+export class AuthorizationService {
+  private readonly auth = inject(Auth);
 
   isOwner(vehicle: VehicleInterface | null): boolean {
     const currentUid = this.auth.currentUser?.uid;

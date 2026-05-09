@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 
 import { ManageVehicleUsersModalComponent } from './manage-vehicle-users-modal';
 
-import { PermissionService } from '../../../../shared/services/permission/permission';
+import { AuthorizationService } from '../../../../shared/services/authorization/authorization-service';
 import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
@@ -22,7 +22,7 @@ describe('ManageVehicleUsersModalComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ManageVehicleUsersModalComponent],
       providers: [
-        { provide: PermissionService, useValue: permissionMock },
+        { provide: AuthorizationService, useValue: permissionMock },
         VehicleMessagesService
       ]
     }).compileComponents();

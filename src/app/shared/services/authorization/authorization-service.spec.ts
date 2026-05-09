@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Auth } from '@angular/fire/auth';
-
-import { PermissionService } from './permission';
+import { AuthorizationService } from './authorization-service';
 
 export const authMock = {
   currentUser: {
@@ -11,7 +10,7 @@ export const authMock = {
 };
 
 describe('Permission', () => {
-  let service: PermissionService;
+  let service: AuthorizationService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -19,7 +18,7 @@ describe('Permission', () => {
         { provide: Auth, useValue: authMock },
       ]
     });
-    service = TestBed.inject(PermissionService);
+    service = TestBed.inject(AuthorizationService);
   });
 
   it('should be created', () => {

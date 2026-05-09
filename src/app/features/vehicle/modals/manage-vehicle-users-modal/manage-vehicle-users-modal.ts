@@ -3,12 +3,13 @@ import { Component, inject, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
-import { PermissionService } from '../../../../shared/services/permission/permission';
+import { AuthorizationService } from '../../../../shared/services/authorization/authorization-service';
 import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 import { DeleteButtonComponent } from "../../../../shared/components/buttons/delete-button/delete-button";
 
 @Component({
   selector: 'app-manage-vehicle-users-modal',
+  standalone: true,
   imports: [
     FormsModule, 
     CommonModule, 
@@ -19,7 +20,7 @@ import { DeleteButtonComponent } from "../../../../shared/components/buttons/del
 })
 export class ManageVehicleUsersModalComponent {
 
-  private readonly permission = inject(PermissionService);
+  private readonly permission = inject(AuthorizationService);
   private readonly messagesService = inject(VehicleMessagesService);
   
   public readonly usersMsg = this.messagesService.users;
