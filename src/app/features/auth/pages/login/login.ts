@@ -15,7 +15,6 @@ import { AuthMessagesService } from '../../i18n/auth-messages';
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
-
 export class LoginComponent {
   
   private readonly authService = inject(AuthService);
