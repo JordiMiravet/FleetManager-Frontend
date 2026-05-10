@@ -13,7 +13,7 @@ import { AuthMessagesService } from '../../i18n/auth-messages';
     RouterModule 
   ],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrl: './login.scss',
 })
 
 export class LoginComponent {

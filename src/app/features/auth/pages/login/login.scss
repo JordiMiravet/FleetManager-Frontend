@@ -1,0 +1,167 @@
+:host {
+    display: flex;
+    justify-content: center;
+    margin: 10vh 5vw;
+    padding: 0;
+}
+
+/* Auth*/
+
+.auth {
+    width: 100%;
+    max-width: 50rem;
+    padding: 2rem;
+
+    border-radius: 0 0.5rem 0.5rem 0;
+    border-left: 0.5rem solid var(--accent-default);
+
+    background-color: var(--bg-surface-0);
+    box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-0-25);
+
+    /* Switch */
+
+    &__switch {
+        font-size: var(--font-size-xs);
+        font-weight: 500;
+        color: var(--text-secondary);
+    }
+    &__switch-link {
+        color: var(--text-secondary);
+        font-weight: 700;
+    }
+
+    /* Note */
+
+    &__note {
+        margin: 0;
+        text-align: end;
+        font-weight: 700;
+        color: var(--text-secondary);
+    }
+}
+
+/* Form */
+
+.form {
+
+    width: 100%;
+
+    &__fieldset {
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+    &__legend {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--space-1-00);
+
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 2.5rem;
+        border-bottom: 2px solid var(--bg-surface-100);
+
+        color: var(--text-secondary);
+        font-weight: 700;
+        font-size: var(--font-size-xl);
+        text-align: left;
+    }
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: var(--space-1-50);
+    }
+
+    &__label {
+        margin: 0 auto 0.5rem 0.5rem;
+        color: var(--text-secondary);
+        font-weight: 700;
+        font-size: var(--font-size-lg);
+    }
+
+    &__input {
+        width: 100%;
+        padding: var(--space-1-25);
+        border: none;
+        border-radius: var(--radius-sm);
+        outline: none;
+
+        font-size: var(--font-size-base);
+        color: var(--text-secondary);
+
+        background-color: var(--bg-surface-200);
+
+        &::placeholder {
+            color: var(--text-muted);
+        }
+
+        &.ng-invalid.ng-touched {
+            box-shadow: 0 0 0 2px var(--border-color-error);  
+        }
+
+    }
+
+    /* Errors */
+
+    &__error--field {
+        
+        margin: 0;
+        padding: 0.5rem;
+        border-radius: 0 0 0.5rem 0.5rem;
+        color: var(--text-error);
+        font-size: var(--font-size-sm);
+        opacity: 0.9;
+    }
+
+    &__error--submit {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: var(--space-0-50);
+
+        padding: 0.5rem;
+        margin: 1rem 0 0 0;
+        border-radius: var(--radius-sm);
+        opacity: 0.9;
+
+        color: var(--text-inverse);
+        font-size: var(--font-size-sm);
+
+        background-color: var(--btn-danger-bg);
+    }
+
+    /* Button */
+
+    &__submit {
+        width: 100%;
+        padding: var(--space-1-50);
+        border: none;
+        border-radius: var(--radius-sm);
+
+        color: var(--text-inverse);
+        font-weight: 700;
+        font-size: var(--font-size-lg);
+        
+        background-color: var(--btn-primary-bg);
+
+        cursor: pointer;
+        transition: background-color 0.25s ease;
+
+        &:hover {
+            background-color: var(--btn-primary-bg-hover);
+        }
+        &[disabled] {
+            cursor: not-allowed;
+            opacity: 0.9;
+            background-color: var(--btn-primary-bg-disabled);
+            color: var(--text-primary);
+        }
+    }
+}
