@@ -1,84 +1,102 @@
-<form [formGroup]="formReg" (ngSubmit)="onSubmit()" class="form">
-  <fieldset class="form__fieldset">
-    <legend class="form__legend">
-      {{ formMsg.title.register }}
-      <i class="fa-regular fa-address-card" aria-hidden="true"></i>
-    </legend>
-    
-    <div class="form__group">
-      <label for="emailRegister">{{ formMsg.fields.email.label }}</label>
-      <input 
-        type="email" 
-        id="emailRegister" 
-        formControlName="email" 
-        [placeholder]="formMsg.fields.email.placeholder"
-        autocomplete="email"
-        required
-        [attr.aria-invalid]="formControls['email'].invalid && formControls['email'].touched ? 'true' : 'false'"
-        [attr.aria-describedby]="formControls['email'].invalid && formControls['email'].touched ? 'register-email-error' : null"
-      />
-      <p 
-        id="register-email-error"
-        class="form__error-text"
-        role="alert"
-        [attr.aria-hidden]="formControls['email'].valid || !formControls['email'].touched ? 'true' : 'false'"
-        [hidden]="formControls['email'].valid || !formControls['email'].touched"
+<div class="auth">
+  <form [formGroup]="formReg" (ngSubmit)="onSubmit()" class="form">
+
+    <fieldset class="form__fieldset">
+      <legend class="form__legend">
+        {{ formMsg.title.register }}
+        <i class="fa-regular fa-address-card" aria-hidden="true"></i>
+      </legend>
+
+      <div class="form__group">
+        <label for="emailRegister" class="form__label">
+          {{ formMsg.fields.email.label }}
+        </label>
+
+        <input
+          type="email"
+          id="emailRegister"
+          class="form__input"
+          formControlName="email"
+          [placeholder]="formMsg.fields.email.placeholder"
+          autocomplete="email"
+          required
+          [attr.aria-invalid]="formControls.email.invalid && formControls.email.touched ? 'true' : 'false'"
+          [attr.aria-describedby]="formControls.email.invalid && formControls.email.touched ? 'register-email-error' : null"
+        />
+
+        <p
+          id="register-email-error"
+          class="form__error--field"
+          role="alert"
+          [hidden]="formControls.email.valid || !formControls.email.touched"
+          [attr.aria-hidden]="formControls.email.valid || !formControls.email.touched ? 'true' : 'false'"
+        >
+          <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+          {{ formMsg.errors.invalidEmail }}
+        </p>
+      </div>
+
+      <div class="form__group">
+        <label for="passwordRegister" class="form__label">
+          {{ formMsg.fields.password.label }}
+        </label>
+
+        <input
+          type="password"
+          id="passwordRegister"
+          class="form__input"
+          formControlName="password"
+          [placeholder]="formMsg.fields.password.placeholder"
+          autocomplete="new-password"
+          required
+          [attr.aria-invalid]="formControls.password.invalid && formControls.password.touched ? 'true' : 'false'"
+          [attr.aria-describedby]="formControls.password.invalid && formControls.password.touched ? 'register-password-error' : null"
+        />
+
+        <p
+          id="register-password-error"
+          class="form__error--field"
+          role="alert"
+          [hidden]="formControls.password.valid || !formControls.password.touched"
+          [attr.aria-hidden]="formControls.password.valid || !formControls.password.touched ? 'true' : 'false'"
+        >
+          <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+          {{ formMsg.errors.invalidPassword(passwordMinLength) }}
+        </p>
+      </div>
+
+      <button
+        type="submit"
+        class="form__submit"
+        [aria-label]="formMsg.aria.buttons.register"
       >
-        <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-        {{ formMsg.errors.invalidEmail }}
-      </p>
-    </div>
+        {{ formMsg.buttons.register }}
+      </button>
 
-    <div class="form__group">
-      <label for="passwordRegister">{{ formMsg.fields.password.label }}</label>
-      <input 
-        type="password" 
-        id="passwordRegister" 
-        formControlName="password" 
-        [placeholder]="formMsg.fields.password.placeholder"
-        autocomplete="new-password"
-        required
-        [attr.aria-invalid]="formControls['password'].invalid && formControls['password'].touched ? 'true' : 'false'"
-        [attr.aria-describedby]="formControls['password'].invalid && formControls['password'].touched ? 'register-password-error' : null"
-      />
-      <p 
-        id="register-password-error"
-        class="form__error-text" 
-        role="alert"
-        [hidden]="formControls['password'].valid || !formControls['password'].touched"
-        [attr.aria-hidden]="formControls['password'].valid || !formControls['password'].touched ? 'true' : 'false'"
-      >
-        <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-        {{ formMsg.errors.invalidPassword(passwordMinLength) }}
-      </p>
-    </div>
+      @if(errorSubmit){
+        <p class="form__error--submit" role="alert">
+          <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+          {{ errorSubmit }}
+        </p>
+      }
 
-    <button 
-      type="submit" 
-      class="btn__auth" 
-      [aria-label]="formMsg.aria.buttons.register"
-    >
-      {{ formMsg.buttons.register }}
-    </button>
+    </fieldset>
 
-    @if(errorSubmit){ 
-      <p class="form__error-submit" role="alert">
-        <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
-        {{ errorSubmit }}
-      </p>
-    }
+  </form>
 
-  </fieldset>
-
-  <p class="form__switch">
+  <p class="auth__nav">
     {{ formMsg.switch.toLogin.prompt }}
-    <a 
-      routerLink="/login" 
+    <a
+      class="auth__link"
+      routerLink="/login"
       [attr.aria-label]="formMsg.aria.switch.toLogin"
     >
       {{ formMsg.switch.toLogin.action }}
     </a>
   </p>
 
-  <p class="form__note">{{ formMsg.note }}</p>
-</form>
+  <p class="auth__note">
+    {{ formMsg.note }}
+  </p>
+
+</div>

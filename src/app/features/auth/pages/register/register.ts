@@ -13,9 +13,8 @@ import { AuthMessagesService } from '../../i18n/auth-messages';
     RouterModule
   ],
   templateUrl: './register.html',
-  styleUrl: './register.css',
+  styleUrl: './register.scss',
 })
-
 export class RegisterComponent {
 
   private readonly authService = inject(AuthService);
