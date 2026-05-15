@@ -1,0 +1,88 @@
+.map-card {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-0-50);
+
+    width: 100%;
+    margin: 0;
+    padding: 1.5rem 1rem 2rem 1rem;
+    border-radius: 2rem 2rem 0 0 ;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.70);
+    background-color: var(--bg-surface-100);
+
+    transition: background-color 0.25s ease;
+
+    &:hover {
+        background-color: var(--bg-surface-200);
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-0-50);
+        margin: 0 0 0.5rem 0;
+    }
+
+    &__name {
+        margin: 1rem 0 0.5rem 0;
+        font-size: var(--font-size-xl);
+        font-weight: 700;
+        color: var(--text-secondary);
+    }
+
+    &__plate {
+        margin: 0 0 0.5rem 0;
+        font-size: var(--font-size-sm);
+        font-weight: 500;
+        letter-spacing: 0.1rem;
+        color: var(--text-secondary);
+    }
+
+    &__button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--space-1-00);
+
+        width: 100%;
+        margin: 0;
+        padding: 1.25rem;
+        border: none;
+        border-radius: 5rem;
+
+        font-size: var(--font-size-lg);
+        color: var(--btn-primary-text);
+        background-color: var(--btn-primary-bg);
+
+        cursor: pointer;
+
+        transition: background-color 0.25s ease;
+
+        &:hover {
+            background-color: var(--btn-primary-bg-hover);
+        }
+    }
+
+    &__icon {
+        font-size: var(--space-2-50);
+    }
+}
+
+@media (min-width: 576px) {
+    .map-card {
+        width: 35rem;
+        padding: 2rem 1.5rem;
+        border-radius: var(--radius-xl);
+        
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+
+        &__info {
+            gap: var(--space-0-25);
+        }
+    }
+}

@@ -4,9 +4,10 @@ import { MapMessagesService } from '../../i18n/map-messages';
 
 @Component({
   selector: 'app-details-panel',
+  standalone: true,
   imports: [],
   templateUrl: './details-panel.html',
-  styleUrl: './details-panel.css',
+  styleUrl: './details-panel.scss',
 })
 export class DetailsPanelComponent {
 
