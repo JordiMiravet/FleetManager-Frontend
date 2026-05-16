@@ -1,8 +1,9 @@
-<section class="map__section">
+<section class="map">
     @if (vehicleList().length) {
-        <app-map-view/>
+        <app-map-view class="map__view" />
     } @else {
         <app-vehicle-empty-state 
+            class="map__empty"
             (createVehicle)="vehicleModal.openCreate()"
         />
     } 

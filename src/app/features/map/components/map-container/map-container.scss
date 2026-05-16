@@ -1,0 +1,22 @@
+.map {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 auto;
+
+    background-color: var(--bg-surface-200);
+
+    &__view {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    &__empty {
+        width: 100%;
+        margin: 30vh 1rem;
+
+        @media (min-width: 768px) {
+            max-width: 75rem;
+        }
+    }
+}
