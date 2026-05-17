@@ -19,7 +19,7 @@ import { MapMessagesService } from '../../i18n/map-messages';
     ConfirmModalComponent,
   ],
   templateUrl: './map-view.html',
-  styleUrls: ['./map-view.css'],
+  styleUrl: './map-view.scss',
 })
 export class MapViewComponent implements OnInit, OnDestroy {
 
