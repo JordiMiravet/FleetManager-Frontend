@@ -1,27 +1,29 @@
 <section class="map-view">
 
     <app-vehicle-selector
+        class="map-view__vehicle-selector"
         [vehicles]="vehicles()"
         (vehicleSelected)="showVehicle($event)"
-        class="map-view__selector"
     />
 
-    <div 
+    <section 
         id="map" 
         class="map-view__map" 
-        role="region"
         [attr.aria-label]="mapViewMsg.aria.mapRegion"
         aria-describedby="map-description"
-    ></div>
-    <p id="map-description" class="sr-only">
+    ></section>
+    <p 
+        class="sr-only"
+        id="map-view__description"
+    >
         {{ mapViewMsg.aria.mapDescription }}
     </p>
 
     @if(selectedVehicle()){
         <app-details-panel
+            class="map-view__details-panel"
             (click)="onUserLocationClick()"
             [vehicle]="selectedVehicle()"
-            class="map-view__button--location"
         />
     }
 
@@ -29,6 +31,7 @@
 
 @if(showConfirmModal()){
     <app-confirm-modal
+        class="confirm-modal"
         [title]="mapViewMsg.confirmModal.title"
         [message]="mapViewMsg.confirmModal.message"
         (confirm)="onConfirmLocationChange()"
