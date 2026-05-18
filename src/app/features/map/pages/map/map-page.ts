@@ -6,7 +6,7 @@ import { MapContainerComponent } from '../../components/map-container/map-contai
   standalone: true,
   imports: [MapContainerComponent],
   templateUrl: './map-page.html',
-  styleUrls: ['./map-page.css'],
+  styleUrl: './map-page.scss',
 })
 export class MapComponent {
 }
