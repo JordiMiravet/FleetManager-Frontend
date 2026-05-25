@@ -10,7 +10,7 @@ import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
   standalone: true,
   imports: [],
   templateUrl: './hours-by-weekday-vehicle-chart.html',
-  styleUrl: './hours-by-weekday-vehicle-chart.css',
+  styleUrl: './hours-by-weekday-vehicle-chart.scss',
 })
 
 export class HoursByWeekdayVehicleChartComponent implements OnDestroy {
