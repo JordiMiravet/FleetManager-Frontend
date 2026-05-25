@@ -19,13 +19,13 @@ import { EventService } from '../../../calendar/data-access/event-service';
     HoursByWeekdayVehicleChartComponent
   ],
   templateUrl: './graphics-view.html',
-  styleUrl: './graphics-view.css',
+  styleUrl: './graphics-view.scss',
 })
 
 export class GraphicsViewComponent implements AfterViewInit {
 
-  private vehicleService = inject(VehicleService);
-  private eventService = inject(EventService);
+  private readonly vehicleService = inject(VehicleService);
+  private readonly eventService = inject(EventService);
 
   public selectedPeriod = signal<TimePeriod>(TimePeriod.Month);
   public TimePeriod = TimePeriod;
