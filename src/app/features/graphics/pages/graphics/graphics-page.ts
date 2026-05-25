@@ -6,7 +6,7 @@ import { GraphicsViewComponent } from "../../components/graphics-view/graphics-v
   standalone: true,
   imports: [ GraphicsViewComponent ] ,
   templateUrl: './graphics-page.html',
-  styleUrl: './graphics-page.css',
+  styleUrl: './graphics-page.scss',
 })
 export class GraphicsComponent {
 
