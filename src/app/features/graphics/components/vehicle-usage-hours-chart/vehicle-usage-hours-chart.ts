@@ -10,7 +10,7 @@ import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
   standalone: true,
   imports: [],
   templateUrl: './vehicle-usage-hours-chart.html',
-  styleUrl: './vehicle-usage-hours-chart.css',
+  styleUrl: './vehicle-usage-hours-chart.scss',
 })
 
 export class VehicleUsageHoursChartComponent implements OnDestroy {
