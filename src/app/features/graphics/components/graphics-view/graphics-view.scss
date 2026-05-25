@@ -1,0 +1,87 @@
+.vehicle-metrics-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0;
+    padding: 0.5rem 1rem;
+
+    background-color: var(--bg-base);
+
+    &__title {
+        display: flex;
+        align-items: center;
+        gap: var(--space-1-00);
+
+        margin: 0;
+        padding: 1rem;
+
+        font-size: var(--font-size-lg);
+        color: var(--text-primary);
+        opacity: 0.9;
+    }
+
+    &__period {
+        display: flex;
+        gap: var(--space-0-50);
+    }
+
+    &__period-button {
+        padding: 0.5rem 1rem;
+        border: 2px solid transparent;
+        border-radius: var(--radius-sm);
+
+        font-size: var(--font-size-xs);
+        font-weight: 500;
+        color: var(--btn-secondary-muted-text);
+
+        background-color: var(--btn-secondary-muted-bg);
+
+        cursor: pointer;
+        transition: border-color 0.25s ease;
+
+        &:hover {
+            border-color: var(--btn-secondary-muted-bg-hover);
+        }
+
+        &--active {
+            background-color: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+            border-color: var(--btn-primary-bg);
+
+
+            &:hover {
+                border-color: var(--btn-primary-bg);
+            }
+        }
+    }
+
+}
+
+.vehicle-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1-00);
+
+    width: 100%;
+    padding: 1rem;
+
+    &__chart {
+        flex: 1 1 auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .vehicle-metrics {
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        &__chart {
+            width: calc(50% - 0.5rem);
+        }
+
+        &__chart:last-child {
+            width: 100%;
+        }
+    }
+}
