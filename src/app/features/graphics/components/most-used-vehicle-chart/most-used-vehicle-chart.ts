@@ -10,7 +10,7 @@ import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
   standalone: true,
   imports: [],
   templateUrl: './most-used-vehicle-chart.html',
-  styleUrl: './most-used-vehicle-chart.css',
+  styleUrl: './most-used-vehicle-chart.scss',
 })
 
 export class MostUsedVehicleChartComponent implements OnDestroy {
