@@ -20,7 +20,7 @@ import { CreateButtonComponent } from "../../../../shared/ui/buttons/create-butt
     CreateButtonComponent
   ],
   templateUrl: './day-events-modal.html',
-  styleUrl: './day-events-modal.css',
+  styleUrl: './day-events-modal.scss',
 })
 
 export class DayEventsModalComponent {

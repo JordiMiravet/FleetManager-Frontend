@@ -1,5 +1,5 @@
 <dialog 
-    class="modal__backdrop" 
+    class="backdrop" 
     (click)="handleClose()"
     aria-modal="true"
     role="dialog"
@@ -26,9 +26,9 @@
         </header>
 
         @if(events().length > 0) {
-            <ul class="events-list" id="eventsListDesc" role="list">
+            <ul class="modal__events-list" id="eventsListDesc" role="list">
                 @for (event of events(); track $index) {
-                    <li role="listitem">
+                    <li role="listitem" class="modal__event-item">
                         <details class="event-card" [attr.id]="'eventDetails' + $index">
                             <summary
                                 class="event-card__summary"
