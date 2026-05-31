@@ -16,7 +16,7 @@ import { EventService } from '../../data-access/event-service';
     CommonModule 
   ],
   templateUrl: './event-form-modal.html',
-  styleUrl: './event-form-modal.css',
+  styleUrl: './event-form-modal.scss',
 })
 export class EventFormModalComponent implements OnInit {
 
