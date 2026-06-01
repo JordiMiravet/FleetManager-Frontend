@@ -35,7 +35,7 @@ import { CalendarModalState } from '../../enums/calendar-modal-state.enum';
     CreateButtonComponent
   ],
   templateUrl: './calendar-view.html',
-  styleUrl: './calendar-view.css',
+  styleUrl: './calendar-view.scss',
   encapsulation: ViewEncapsulation.None,
 })
 export class CalendarViewComponent implements AfterViewInit {
