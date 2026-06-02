@@ -10,7 +10,7 @@ import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
   standalone: true,
   imports: [ ReactiveFormsModule, CommonModule ],
   templateUrl: './vehicle-form-modal.html',
-  styleUrls: ['./vehicle-form-modal.css'],
+  styleUrls: ['./vehicle-form-modal.scss'],
 })
 export class VehicleFormModalComponent {
 
