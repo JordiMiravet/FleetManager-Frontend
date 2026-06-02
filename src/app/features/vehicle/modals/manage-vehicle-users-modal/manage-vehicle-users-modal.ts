@@ -16,7 +16,7 @@ import { DeleteButtonComponent } from "../../../../shared/ui/buttons/delete-butt
     DeleteButtonComponent
   ],
   templateUrl: './manage-vehicle-users-modal.html',
-  styleUrl: './manage-vehicle-users-modal.css',
+  styleUrl: './manage-vehicle-users-modal.scss',
 })
 export class ManageVehicleUsersModalComponent {
 
