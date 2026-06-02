@@ -47,13 +47,15 @@
         display: flex;
         align-items: center;
         gap: var(--space-0-50);
-        color: var(--text-primary);
-        font-weight: 700;
-        font-size: var(--font-size-lg);
+
         width: 100%;
         padding: 1rem 0;
         margin-bottom: 2rem;
         border-bottom: 2px solid var(--border-color-default);
+
+        font-weight: 700;
+        font-size: var(--font-size-lg);
+        color: var(--text-primary);
     }
 
     &__form-section {
@@ -62,6 +64,7 @@
         align-items: start;
         flex-direction: column;
         gap: var(--space-0-25);
+
         margin-bottom: 1rem;
         min-height: 7.5rem;
 
@@ -71,20 +74,23 @@
     }
 
     &__label {
-        color: var(--text-secondary);
+        width: 100%;
+        padding-left: var(--space-0-50);
+        
         font-size: var(--font-size-sm);
         font-weight: 600;
         text-align: left;
-        width: 100%;
-        padding-left: var(--space-0-50);
+        color: var(--text-secondary);
     }
 
     &__input {
-        font-size: var(--font-size-sm);
         width: 100%;
         padding: 1rem;
         border: none;
         border-radius: var(--radius-sm);
+
+        font-size: var(--font-size-sm);
+
         background-color: var(--bg-surface-100);
 
         &--error {
@@ -97,11 +103,12 @@
         margin: 0;
         padding: 0 0.5rem;
         width: 100%;
+
+        min-height: 2rem;
+        line-height: 2rem;
         font-weight: 500;
         font-size: var(--font-size-xs);
         color: var(--text-error);
-        min-height: 2rem;
-        line-height: 2rem;
     }
 
     /* Actions & Buttons */
@@ -112,6 +119,7 @@
         align-items: center;
         flex-direction: column;
         gap: var(--space-1-00);
+
         padding: 1rem 0;
         width: 100%;
     }
@@ -121,8 +129,10 @@
         width: 100%;
         border: none;
         border-radius: var(--radius-sm);
+
         font-size: var(--font-size-sm);
         color: var(--btn-primary-text);
+        
         cursor: pointer;
         transition: background-color 0.25s ease-in-out;
 
