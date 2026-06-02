@@ -32,9 +32,11 @@
         margin: 0;
         border-radius: 0 0.5rem 0.5rem 0;
         border-left: 0.5rem solid var(--accent-default);
+        overflow-y: auto;
+
         background-color: var(--bg-surface-0);
         box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-        overflow-y: auto;
+
     }
 
     &__fieldset {
@@ -132,7 +134,7 @@
 
         font-size: var(--font-size-sm);
         color: var(--btn-primary-text);
-        
+
         cursor: pointer;
         transition: background-color 0.25s ease-in-out;
 
