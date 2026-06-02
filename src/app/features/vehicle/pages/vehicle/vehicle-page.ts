@@ -6,7 +6,7 @@ import { VehicleViewComponent } from '../../components/vehicle-view/vehicle-view
   standalone: true,
   imports: [ VehicleViewComponent ],
   templateUrl: './vehicle-page.html',
-  styleUrl: './vehicle-page.css',
+  styleUrl: './vehicle-page.scss',
 })
 export class VehicleComponent {
 
