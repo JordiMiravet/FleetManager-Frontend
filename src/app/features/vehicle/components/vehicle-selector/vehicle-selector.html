@@ -5,10 +5,12 @@
   (change)="onVehicleChange($event)"
   aria-required="true"
 >
-  <option class="vehicle-option" value="" selected>{{ selectorMsg.allVehiclesOption }}</option>
+  <option class="vehicle-select__option" value="" selected>
+    {{ selectorMsg.allVehiclesOption }}
+  </option>
   @for (vehicle of vehicles(); track vehicle.plate) {
     <option
-      class="vehicle-option"
+      class="vehicle-select__option"
       [value]="vehicle.plate"
       [selected]="vehicle.plate === selectedPlate()"
     >
