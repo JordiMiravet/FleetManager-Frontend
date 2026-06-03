@@ -8,7 +8,7 @@ import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
   standalone: true,
   imports: [ CommonModule ],
   templateUrl: './vehicle-selector.html',
-  styleUrl: './vehicle-selector.css',
+  styleUrl: './vehicle-selector.scss',
 })
 export class VehicleSelectorComponent {
 
