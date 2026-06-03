@@ -7,7 +7,7 @@ import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
   standalone: true,
   imports: [CreateButtonComponent],
   templateUrl: './vehicle-empty-state.html',
-  styleUrl: './vehicle-empty-state.css',
+  styleUrl: './vehicle-empty-state.scss',
 })
 export class VehicleEmptyStateComponent {
 
