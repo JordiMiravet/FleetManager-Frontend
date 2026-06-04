@@ -5,8 +5,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         padding: 1rem 2rem;
         margin-bottom: 0;
+
         background-color: var(--bg-base);
     }
 
@@ -15,10 +17,13 @@
         justify-content: center;
         align-items: center;
         gap: var(--space-0-50);
+
+        margin: 0;
+
         font-size: var(--font-size-md);
         font-weight: 600;
+
         color: var(--text-primary);
-        margin: 0;
     }
 }
 
@@ -30,8 +35,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: stretch;
-        margin: 1rem auto 2rem auto;
+
         width: 95%;
+        margin: 1rem auto 2rem auto;
 
         app-vehicle-empty-state {
             width: 100%;
