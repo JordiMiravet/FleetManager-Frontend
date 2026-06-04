@@ -33,7 +33,7 @@ import { CreateButtonComponent } from "../../../../shared/ui/buttons/create-butt
     VehicleTablePaginationComponent
   ],
   templateUrl: './vehicle-view.html',
-  styleUrl: './vehicle-view.css',
+  styleUrl: './vehicle-view.scss',
 })
 export class VehicleViewComponent implements OnInit {
   
