@@ -1,13 +1,15 @@
-<div class="vehicle-pagination" role="navigation" [aria-label]="paginationMsg.aria.navigation">
-    <div class="vehicle-pagination__info">
-        <p class="vehicle-pagination__text">
-            {{ paginationMsg.showingLabel }}
-            <span class="vehicle-pagination__value" aria-live="polite">{{ vehicles().length }}</span>
-            {{ paginationMsg.ofLabel }}
-            <span class="vehicle-pagination__value" aria-live="polite">{{ vehicles().length }}</span>
-            {{ paginationMsg.vehiclesLabel }}
-        </p>
-    </div>
+<nav 
+    class="vehicle-pagination" 
+    role="navigation" 
+    [aria-label]="paginationMsg.aria.navigation"
+>
+    <p class="vehicle-pagination__info">
+        {{ paginationMsg.showingLabel }}
+        <span class="vehicle-pagination__value" aria-live="polite">{{ vehicles().length }}</span>
+        {{ paginationMsg.ofLabel }}
+        <span class="vehicle-pagination__value" aria-live="polite">{{ vehicles().length }}</span>
+        {{ paginationMsg.vehiclesLabel }}
+    </p>
 
     <div class="vehicle-pagination__controls">
         <button 
@@ -16,6 +18,7 @@
         >
             <i class="pi pi-angle-left" aria-hidden="true"></i>
         </button>
+
         <button 
             class="vehicle-pagination__button"
             [aria-label]="paginationMsg.aria.nextPage"
@@ -23,4 +26,4 @@
             <i class="pi pi-angle-right" aria-hidden="true"></i>
         </button>
     </div>
-</div>
+</nav>

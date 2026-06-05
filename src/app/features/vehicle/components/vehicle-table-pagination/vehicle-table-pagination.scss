@@ -1,0 +1,73 @@
+
+.vehicle-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-1-00);
+
+    width: 100%;
+    min-width: 35rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color-default);
+    border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+
+    background-color: var(--bg-surface-100);
+
+    @media (min-width: 576px) {
+        padding: 1.25rem;
+    }
+
+    /* Pagination Info */
+
+    &__info {
+        margin: 0;
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+    }
+
+    &__value {
+        font-weight: 700;
+        color: var(--text-primary);
+    }
+
+    /* Pagination Controls */
+
+    &__controls {
+        display: flex;
+        gap: var(--space-0-50);
+    }
+
+    &__button {
+        padding: 1rem;
+        border: 1px solid var(--border-color-default);
+        border-radius: var(--space-0-50);
+
+        cursor: pointer;
+        transition: all 0.15s ease;
+
+        &:hover {
+            border-color: var(--border-color-hover);
+        }
+
+        &:active {
+            background-color: var(--bg-surface-200);
+            transform: scale(0.98);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--border-color-focus);
+            outline-offset: 1px;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            border-color: var(--border-color-default);
+            cursor: not-allowed;
+        }
+
+        @media (min-width: 576px) {
+            padding: 0.5rem;
+        }
+    } 
+}
