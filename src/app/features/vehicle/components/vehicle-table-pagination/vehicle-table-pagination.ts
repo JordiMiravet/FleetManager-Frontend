@@ -7,7 +7,7 @@ import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
   standalone: true,
   imports: [],
   templateUrl: './vehicle-table-pagination.html',
-  styleUrl: './vehicle-table-pagination.css',
+  styleUrl: './vehicle-table-pagination.scss',
 })
 export class VehicleTablePaginationComponent {
   
