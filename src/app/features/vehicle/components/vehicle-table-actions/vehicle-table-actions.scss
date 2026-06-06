@@ -20,7 +20,7 @@
         max-width: 45rem;
     }
 
-    &__icon {
+    &__search-icon {
         position: absolute;
         left: 0.75rem;
         top: 50%;
@@ -32,7 +32,7 @@
         pointer-events: none;
     }
 
-    &__input {
+    &__search-input {
         width: 100%;
         margin: 0;
         padding: 0.75rem 0.75rem 0.75rem 2.5rem;
@@ -53,8 +53,8 @@
         gap: var(--space-0-50);
     }
 
-    &__select,
-    &__button {
+    &__sort-select,
+    &__sort-button {
         padding: 0.75rem;
         border-radius: var(--space-0-50);
         border: 1px solid var(--border-color-default);
@@ -70,18 +70,18 @@
 
     /* States */
 
-    &__input:hover {
+    &__search-input:hover {
         border-color: var(--border-color-hover);
     }
 
-    &__select:hover,
-    &__button:hover {
+    &__sort-select:hover,
+    &__sort-button:hover {
         background-color: var(--btn-secondary-muted-bg-hover);
     }
 
-    &__input:focus-visible,
-    &__select:focus-visible,
-    &__button:focus-visible {
+    &__search-input:focus-visible,
+    &__sort-select:focus-visible,
+    &__sort-button:focus-visible {
         outline: 2px solid var(--border-color-focus);
         outline-offset: 2px;
     }

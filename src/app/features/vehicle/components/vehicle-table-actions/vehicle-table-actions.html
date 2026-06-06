@@ -1,10 +1,10 @@
 <section class="vehicle-actions">
 
   <div class="vehicle-actions__search">
-    <i class="pi pi-search vehicle-actions__icon" aria-hidden="true"></i>
+    <i class="pi pi-search vehicle-actions__search-icon" aria-hidden="true"></i>
     <input
       type="text"
-      class="vehicle-actions__input"
+      class="vehicle-actions__search-input"
       [placeholder]="actionsMsg.searchPlaceholder"
       [attr.aria-label]="actionsMsg.aria.searchInput"
       (input)="onQueryChange($event)"
@@ -13,7 +13,7 @@
 
   <div class="vehicle-actions__sort">
     <button
-      class="vehicle-actions__button"
+      class="vehicle-actions__sort-button"
       [attr.aria-label]="actionsMsg.aria.sortDirButton"
       (click)="toggleSortDir()"
     >
@@ -24,7 +24,7 @@
       ></i>
     </button>
     <select
-      class="vehicle-actions__select"
+      class="vehicle-actions__sort-select"
       [attr.aria-label]="actionsMsg.aria.sortFieldSelect"
       (change)="onSortFieldChange($event)"
     >
