@@ -1,0 +1,88 @@
+.vehicle-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-1-00);
+
+    width: 100%;
+    min-width: 35rem;
+    padding: 1.25rem 1rem;
+    border: 1px solid var(--border-color-default);
+    border-radius: 0.5rem 0.5rem 0 0;
+
+    background-color: var(--bg-base);
+
+    /* Search */
+
+    &__search {
+        position: relative;
+        flex: 1;
+        max-width: 45rem;
+    }
+
+    &__search-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+
+    &__search-input {
+        width: 100%;
+        margin: 0;
+        padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+        border-radius: var(--space-0-50);
+        border: 1px solid var(--border-color-default);
+
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+
+        transition: border 0.15s ease;
+    }
+
+    /* Sort */
+
+    &__sort {
+        display: flex;
+        align-items: center;
+        gap: var(--space-0-50);
+    }
+
+    &__sort-select,
+    &__sort-button {
+        padding: 0.75rem;
+        border-radius: var(--space-0-50);
+        border: 1px solid var(--border-color-default);
+
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+
+        background-color: var(--btn-secondary-muted-bg);
+
+        cursor: pointer;
+        transition: all 0.05s ease-in-out;
+    }
+
+    /* States */
+
+    &__search-input:hover {
+        border-color: var(--border-color-hover);
+    }
+
+    &__sort-select:hover,
+    &__sort-button:hover {
+        background-color: var(--btn-secondary-muted-bg-hover);
+    }
+
+    &__search-input:focus-visible,
+    &__sort-select:focus-visible,
+    &__sort-button:focus-visible {
+        outline: 2px solid var(--border-color-focus);
+        outline-offset: 2px;
+    }
+}

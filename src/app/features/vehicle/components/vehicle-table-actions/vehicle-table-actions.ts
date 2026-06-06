@@ -7,7 +7,7 @@ import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
   standalone: true,
   imports: [],
   templateUrl: './vehicle-table-actions.html',
-  styleUrl: './vehicle-table-actions.css',
+  styleUrl: './vehicle-table-actions.scss',
 })
 export class VehicleTableActionsComponent {
   private readonly messagesService = inject(VehicleMessagesService);
