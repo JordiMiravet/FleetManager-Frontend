@@ -3,12 +3,14 @@
     justify-content: space-between;
     align-items: center;
     gap: var(--space-1-00);
+
     width: 100%;
     min-width: 35rem;
-    background-color: var(--bg-base);
     padding: 1.25rem 1rem;
     border: 1px solid var(--border-color-default);
     border-radius: 0.5rem 0.5rem 0 0;
+
+    background-color: var(--bg-base);
 
     /* Search */
 
@@ -22,9 +24,11 @@
         position: absolute;
         left: 0.75rem;
         top: 50%;
-        transform: translateY(-50%);
-        color: var(--text-muted);
+
         font-size: var(--font-size-sm);
+        color: var(--text-muted);
+
+        transform: translateY(-50%);
         pointer-events: none;
     }
 
@@ -34,8 +38,10 @@
         padding: 0.75rem 0.75rem 0.75rem 2.5rem;
         border-radius: var(--space-0-50);
         border: 1px solid var(--border-color-default);
+
         font-size: var(--font-size-sm);
         color: var(--text-secondary);
+
         transition: border 0.15s ease;
     }
 
@@ -50,12 +56,15 @@
     &__select,
     &__button {
         padding: 0.75rem;
-        background-color: var(--btn-secondary-muted-bg);
-        cursor: pointer;
         border-radius: var(--space-0-50);
         border: 1px solid var(--border-color-default);
+
         font-size: var(--font-size-sm);
         color: var(--text-secondary);
+
+        background-color: var(--btn-secondary-muted-bg);
+
+        cursor: pointer;
         transition: all 0.05s ease-in-out;
     }
 
