@@ -1,0 +1,247 @@
+:host {
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+.vehicle-table {
+    border-collapse: collapse;
+    table-layout: fixed;
+
+
+    width: 100%;
+    min-width: 35rem;
+    padding: 0;
+
+    /* Structure */
+
+    &__header {
+        padding: 0;
+        margin: 0;
+
+        background-color: var(--bg-surface-100);
+
+        .vehicle-table__row {
+            border-top: none;
+            border-left: 1px solid var(--border-color-default);
+            border-right: 1px solid var(--border-color-default);
+        }
+
+        // Header columns
+
+        th {
+            padding: 1.5rem 1rem;
+
+            text-align: start;
+            text-transform: uppercase;
+            font-size: var(--font-size-xs);
+            font-weight: 700;
+            letter-spacing: 0.05rem;
+            color: var(--text-primary);
+
+
+            &.vehicle-table__header-image {
+                width: 7rem;
+                text-align: center;
+            }
+
+            &.vehicle-table__header-name {
+                text-align: start;
+            }
+
+            &.vehicle-table__header-plate {
+                text-align: start;
+                font-size: var(--font-size-xs);
+            }
+
+            &.vehicle-table__header-actions {
+                padding: 1.5rem 1.5rem;
+                text-align: end;
+            }
+        }
+    }
+
+    &__body {
+        border: 1px solid var(--border-color-default);
+        background-color: var(--bg-base);
+
+        .vehicle-table__row {
+            border: 1px solid var(--border-color-default);
+
+            &:hover {
+                background-color: var(--bg-surface-100);
+            }
+        }
+    }
+
+    &__row {
+        height: 100%;
+    }
+
+    /* Cells */
+
+    &__cell {
+        padding: 1rem 1rem;
+
+        font-size: var(--font-size-sm);
+        font-weight: 500;
+        color: var(--text-primary);
+
+        // IMG cell
+
+        &--img {
+            .vehicle-table__image {
+                display: block;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                border: 2px solid var(--bg-surface-200);
+                margin: 0 auto;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+                box-sizing: border-box;
+            }
+        }
+
+        // Name cell
+
+        &--name {
+            .vehicle-table__cell-content {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                overflow: hidden;
+                gap: 0.125rem;
+            }
+        }
+
+        // Actions cell
+
+        &--actions {
+            min-width: 8rem;
+
+            .vehicle-table__actions {
+                justify-content: flex-end;
+                gap: var(--space-0-50);
+            }
+        }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        > * {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    /* Vehicle Info*/
+
+    &__name,
+    &__model {
+        display: block;
+
+        width: 100%;
+        padding: 0;
+        white-space: nowrap;
+        overflow: hidden;
+
+        text-align: start;
+        text-overflow: ellipsis;
+    }
+
+    &__name {
+        font-weight: 500;
+        font-size: var(--font-size-md);
+        color: var(--text-primary);
+    }
+
+    &__model {
+        font-size: var(--font-size-xs);
+        color: var(--text-primary);
+    }
+
+    &__plate {
+        font-weight: 500;
+        font-size: var(--font-size-xs);
+        letter-spacing: 0.05rem;
+        color: var(--text-primary);
+    }
+
+    /* Column Widths */
+
+    &__header-image,
+    &__cell--img {
+        width: 15%;
+        min-width: var(--space-3-00);
+        padding: 0.75rem 0.75rem;
+        margin: 0;
+
+    }
+
+    &__header-name,
+    &__cell--name {
+        width: calc(100% - 15% - 1.5rem);
+    }
+
+    &__header-plate,
+    &__cell--plate {
+        display: none;
+    }
+
+    &__header-actions,
+    &__cell--actions {
+        width: auto;
+    }
+
+    @media (min-width: 576px) {
+
+        &__cell--name {
+            .vehicle-table__cell-content {
+                gap: 0;
+
+                .vehicle-table__plate {
+                    display: none;
+                }
+            }
+        }
+
+        &__plate {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color-default);
+            border-radius: var(--space-0-50);
+
+            font-weight: 500;
+            font-size: var(--font-size-xs);
+            letter-spacing: 0.05rem;
+            color: var(--text-primary);
+
+            background-color: var(--bg-surface-200);
+        }
+
+        &__header-image,
+        &__cell--img {
+            width: 7.5%;
+        }
+
+        &__header-name,
+        &__cell--name {
+            width: 50%;
+        }
+
+        &__header-plate,
+        &__cell--plate {
+            display: table-cell;
+            width: 22.5%;
+        }
+
+        &__header-actions,
+        &__cell--actions {
+            width: 22.5%;
+        }
+    }
+
+}

@@ -19,7 +19,7 @@ import { AuthorizationService } from '../../../../core/services/authorization/au
     UserButtonComponent
   ],
   templateUrl: './vehicle-table.html',
-  styleUrl: './vehicle-table.css',
+  styleUrl: './vehicle-table.scss',
 })
 export class VehicleTableComponent {
 
