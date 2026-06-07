@@ -23,7 +23,7 @@
             border-right: 1px solid var(--border-color-default);
         }
 
-        // Header columns 
+        // — Header columns —
 
         th {
             padding: 1.5rem 1rem;
@@ -130,37 +130,37 @@
             padding: 0;
         }
     }
-}
 
-/* Vehicle Info */
+    /* Vehicle Info */
 
-.vehicle-table__name,
-.vehicle-table__model {
-    width: 100%;
-    display: block;
-    text-align: start;
-    padding: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+    &__name,
+    &__model {
+        width: 100%;
+        display: block;
+        text-align: start;
+        padding: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
-.vehicle-table__name {
-    font-weight: 500;
-    font-size: var(--font-size-md);
-    color: var(--text-primary);
-}
+    &__name {
+        font-weight: 500;
+        font-size: var(--font-size-md);
+        color: var(--text-primary);
+    }
 
-.vehicle-table__model {
-    font-size: var(--font-size-xs);
-    color: var(--text-primary);
-}
+    &__model {
+        font-size: var(--font-size-xs);
+        color: var(--text-primary);
+    }
 
-.vehicle-table__plate {
-    color: var(--text-primary);
-    font-weight: 500;
-    font-size: var(--font-size-xs);
-    letter-spacing: 0.05rem;
+    &__plate {
+        color: var(--text-primary);
+        font-weight: 500;
+        font-size: var(--font-size-xs);
+        letter-spacing: 0.05rem;
+    }
 }
 
 /* Column Widths */
