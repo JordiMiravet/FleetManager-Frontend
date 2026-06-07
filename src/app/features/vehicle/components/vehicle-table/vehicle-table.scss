@@ -22,6 +22,37 @@
             border-left: 1px solid var(--border-color-default);
             border-right: 1px solid var(--border-color-default);
         }
+
+        // — Header columns —
+
+        th {
+            padding: 1.5rem 1rem;
+            text-align: start;
+            text-transform: uppercase;
+            font-size: var(--font-size-xs);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.05rem;
+
+            &.vehicle-table__header-image {
+                text-align: center;
+                width: 7rem;
+            }
+
+            &.vehicle-table__header-name {
+                text-align: start;
+            }
+
+            &.vehicle-table__header-plate {
+                text-align: start;
+                font-size: var(--font-size-xs);
+            }
+
+            &.vehicle-table__header-actions {
+                text-align: end;
+                padding: 1.5rem 1.5rem;
+            }
+        }
     }
 
     &__body {
@@ -40,37 +71,6 @@
     &__row {
         height: 100%;
     }
-}
-
-/* Header */
-
-.vehicle-table__header th {
-    padding: 1.5rem 1rem;
-    text-align: start;
-    text-transform: uppercase;
-    font-size: var(--font-size-xs);
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: 0.05rem;
-}
-
-.vehicle-table__header th.vehicle-table__header-image {
-    text-align: center;
-    width: 7rem;
-}
-
-.vehicle-table__header th.vehicle-table__header-name {
-    text-align: start;
-}
-
-.vehicle-table__header th.vehicle-table__header-plate {
-    text-align: start;
-    font-size: var(--font-size-xs);
-}
-
-.vehicle-table__header th.vehicle-table__header-actions {
-    text-align: end;
-    padding: 1.5rem 1.5rem;
 }
 
 /* Cells */
