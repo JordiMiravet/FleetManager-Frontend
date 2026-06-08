@@ -1,11 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Auth, UserCredential } from '@angular/fire/auth';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter, Router } from '@angular/router';
 
 import { RegisterComponent } from './register';
 import { AuthService } from '../../data-access/auth-service';
-
 
 const mockAuth = {
   signInWithEmailAndPassword: jasmine.createSpy('signInWithEmailAndPassword').and.returnValue(Promise.resolve('usuario logueado')),
@@ -22,11 +20,11 @@ describe('RegisterComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RegisterComponent,
-        RouterTestingModule
       ],
       providers: [
+        provideRouter([]),
         AuthService,
-        { provide: Auth, useValue: mockAuth }
+        { provide: Auth, useValue: mockAuth },
       ]
     }).compileComponents();
 
@@ -49,7 +47,7 @@ describe('RegisterComponent', () => {
 
   describe('Form initialization', () => {
 
-    it('should initialize the login form', () => {
+    it('should initialize the register form', () => {
       expect(component.formReg).toBeTruthy();
 
       expect(component.formReg.get('email')).toBeTruthy();
@@ -157,22 +155,21 @@ describe('RegisterComponent', () => {
       expect(passwordErrorElement.hidden).toBeTrue();
     });
 
-    it('should display submit error message when login fails', () => {
+    it('should display submit error message when register fails', () => {
       component.errorSubmit = 'This email or password is invalid';
       fixture.detectChanges();
 
-      const errorElement: HTMLElement = fixture.nativeElement.querySelector('.form__error-submit');
+      const errorElement: HTMLElement = fixture.nativeElement.querySelector('.form__error--submit');
 
       expect(errorElement).toBeTruthy();
-      expect(errorElement.textContent).toContain('This email or password is invalid')
-
+      expect(errorElement.textContent).toContain('This email or password is invalid');
     });
 
   });
 
   describe('Interactions', () => {
 
-    it('should call authService.login when form is valid', () => {
+    it('should call authService.register when form is valid', () => {
       component.formReg.get('email')?.setValue('gohan@gmail.com');
       component.formReg.get('password')?.setValue('123456');
 
@@ -185,7 +182,7 @@ describe('RegisterComponent', () => {
       });
     });
 
-    it('should navigate to home on successful login', async () => {
+    it('should navigate to home on successful register', async () => {
       const router = TestBed.inject(Router);
       const navigateSpy = spyOn(router, 'navigate');
 
@@ -200,6 +197,15 @@ describe('RegisterComponent', () => {
       expect(navigateSpy).toHaveBeenCalledWith(['']);
     });
 
+    it('should mark all fields as touched when form is invalid', () => {
+      spyOn(component.formReg, 'markAllAsTouched');
+
+      component.formReg.get('email')?.setValue('');
+      component.onSubmit();
+
+      expect(component.formReg.markAllAsTouched).toHaveBeenCalled();
+    });
+
     it('should not fail when form is invalid', () => {
       component.formReg.get('email')?.setValue('');
       component.formReg.get('password')?.setValue('');
@@ -207,6 +213,30 @@ describe('RegisterComponent', () => {
       expect(component.formReg.invalid).toBeTrue();
       component.onSubmit();
     });
+
+    it('should set errorSubmit to emailAlreadyExists when email is already in use', fakeAsync(() => {
+      registerSpy.and.returnValue(Promise.reject({ code: 'auth/email-already-in-use' }));
+
+      component.formReg.get('email')?.setValue('gohan@gmail.com');
+      component.formReg.get('password')?.setValue('123456');
+
+      component.onSubmit();
+      tick();
+
+      expect(component.errorSubmit).toBe(component.formMsg.errors.emailAlreadyExists);
+    }));
+
+    it('should set errorSubmit to invalidCredentials when register fails with unknown error', fakeAsync(() => {
+      registerSpy.and.returnValue(Promise.reject({ code: 'auth/unknown-error' }));
+
+      component.formReg.get('email')?.setValue('gohan@gmail.com');
+      component.formReg.get('password')?.setValue('123456');
+
+      component.onSubmit();
+      tick();
+
+      expect(component.errorSubmit).toBe(component.formMsg.errors.invalidCredentials);
+    }));
 
   });
 
