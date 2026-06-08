@@ -1,11 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Auth, UserCredential } from '@angular/fire/auth';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginComponent } from './login';
 import { AuthService } from '../../data-access/auth-service';
-
+import { provideRouter, Router } from '@angular/router';
 
 const mockAuth = {
   signInWithEmailAndPassword: jasmine.createSpy('signInWithEmailAndPassword').and.returnValue(Promise.resolve('usuario logueado')),
@@ -22,11 +20,11 @@ describe('LoginComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         LoginComponent,
-        RouterTestingModule
       ],
       providers: [
+        provideRouter([]),
         AuthService,
-        { provide: Auth, useValue: mockAuth }
+        { provide: Auth, useValue: mockAuth },
       ]
     }).compileComponents();
 
@@ -161,7 +159,7 @@ describe('LoginComponent', () => {
       component.errorSubmit = 'This email or password is invalid';
       fixture.detectChanges();
 
-      const errorElement: HTMLElement = fixture.nativeElement.querySelector('.form__error-submit');
+      const errorElement: HTMLElement = fixture.nativeElement.querySelector('.form__error--submit');
 
       expect(errorElement).toBeTruthy();
       expect(errorElement.textContent).toContain('This email or password is invalid')
@@ -200,6 +198,15 @@ describe('LoginComponent', () => {
       expect(navigateSpy).toHaveBeenCalledWith(['']);
     });
 
+    it('should mark all fields as touched when form is invalid', () => {
+      spyOn(component.formLogin, 'markAllAsTouched');
+
+      component.formLogin.get('email')?.setValue('');
+      component.onSubmit();
+
+      expect(component.formLogin.markAllAsTouched).toHaveBeenCalled();
+    });
+
     it('should not fail when form is invalid', () => {
       component.formLogin.get('email')?.setValue('');
       component.formLogin.get('password')?.setValue('');
@@ -207,6 +214,18 @@ describe('LoginComponent', () => {
       expect(component.formLogin.invalid).toBeTrue();
       component.onSubmit();
     });
+
+    it('should set errorSubmit when login fails', fakeAsync(() => {
+        loginSpy.and.returnValue(Promise.reject('error'));
+
+        component.formLogin.get('email')?.setValue('gohan@gmail.com');
+        component.formLogin.get('password')?.setValue('123456');
+
+        component.onSubmit();
+        tick();
+
+        expect(component.errorSubmit).toBe(component.formMsg.errors.invalidCredentials);
+    }));
 
   });
 
