@@ -1,7 +1,7 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Auth, UserCredential } from '@angular/fire/auth';
 
-import { LoginComponent } from './login';
+import { LoginPageComponent } from './login';
 import { AuthService } from '../../data-access/auth-service';
 import { provideRouter, Router } from '@angular/router';
 
@@ -10,16 +10,16 @@ const mockAuth = {
   onAuthStateChanged: () => {}
 };
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('LoginPageComponent', () => {
+  let component: LoginPageComponent;
+  let fixture: ComponentFixture<LoginPageComponent>;
   let authService: AuthService;
   let loginSpy: jasmine.Spy;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        LoginComponent,
+        LoginPageComponent,
       ],
       providers: [
         provideRouter([]),
@@ -28,7 +28,7 @@ describe('LoginComponent', () => {
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(LoginPageComponent);
     component = fixture.componentInstance;
 
     authService = TestBed.inject(AuthService);
