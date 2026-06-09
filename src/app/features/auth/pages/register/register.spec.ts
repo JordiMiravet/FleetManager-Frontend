@@ -2,7 +2,7 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { Auth, UserCredential } from '@angular/fire/auth';
 import { provideRouter, Router } from '@angular/router';
 
-import { RegisterComponent } from './register';
+import { RegisterPageComponent } from './register';
 import { AuthService } from '../../data-access/auth-service';
 
 const mockAuth = {
@@ -10,16 +10,16 @@ const mockAuth = {
   onAuthStateChanged: () => {}
 };
 
-describe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
+describe('RegisterPageComponent', () => {
+  let component: RegisterPageComponent;
+  let fixture: ComponentFixture<RegisterPageComponent>;
   let authService: AuthService;
   let registerSpy: jasmine.Spy;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RegisterComponent,
+        RegisterPageComponent,
       ],
       providers: [
         provideRouter([]),
@@ -28,7 +28,7 @@ describe('RegisterComponent', () => {
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RegisterComponent);
+    fixture = TestBed.createComponent(RegisterPageComponent);
     component = fixture.componentInstance;
 
     authService = TestBed.inject(AuthService);
