@@ -31,12 +31,12 @@ export const routes: Routes = [
       {
         path: 'calendar',
         loadComponent: () =>
-          import('./features/calendar/pages/calendar/calendar-page').then(m => m.CalendarComponent)
+          import('./features/calendar/pages/calendar/calendar-page').then(m => m.CalendarPageComponent)
       },
       {
         path: 'graphics',
         loadComponent: () =>
-          import('./features/graphics/pages/graphics/graphics-page').then(m => m.GraphicsPageComponent)
+          import('./features/graphics/pages/graphics/graphics-page').then(m => m.GraphicsComponent)
       }
     ]
   },

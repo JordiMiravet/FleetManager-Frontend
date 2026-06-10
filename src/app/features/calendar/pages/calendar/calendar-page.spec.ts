@@ -3,7 +3,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { Auth } from '@angular/fire/auth';
 
-import { CalendarComponent } from './calendar-page';
+import { CalendarPageComponent } from './calendar-page';
 
 export const authMock = {
   currentUser: {
@@ -12,14 +12,14 @@ export const authMock = {
   }
 }
 
-describe('CalendarComponent', () => {
-  let component: CalendarComponent;
-  let fixture: ComponentFixture<CalendarComponent>;
+describe('CalendarPageComponent', () => {
+  let component: CalendarPageComponent;
+  let fixture: ComponentFixture<CalendarPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        CalendarComponent
+        CalendarPageComponent
       ],
       providers: [
         provideHttpClient(),
@@ -29,7 +29,7 @@ describe('CalendarComponent', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CalendarComponent);
+    fixture = TestBed.createComponent(CalendarPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

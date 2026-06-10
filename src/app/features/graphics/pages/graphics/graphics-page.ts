@@ -8,6 +8,6 @@ import { GraphicsViewComponent } from "../../components/graphics-view/graphics-v
   templateUrl: './graphics-page.html',
   styleUrl: './graphics-page.scss',
 })
-export class GraphicsPageComponent {
+export class GraphicsComponent {
 
 }
