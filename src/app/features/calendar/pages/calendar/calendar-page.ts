@@ -8,4 +8,4 @@ import { CalendarViewComponent } from '../../components/calendar-view/calendar-v
   templateUrl: './calendar-page.html',
   styleUrl: './calendar-page.scss',
 })
-export class CalendarComponent {}
+export class CalendarPageComponent {}
