@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { Auth } from '@angular/fire/auth';
 
-import { MapComponent } from './map-page';
+import { MapPageComponent } from './map-page';
 
 export const authMock = {
   currentUser: {
@@ -11,14 +11,14 @@ export const authMock = {
   }
 }
 
-describe('MapComponent', () => {
-  let component: MapComponent;
-  let fixture: ComponentFixture<MapComponent>;
+describe('MapPageComponent', () => {
+  let component: MapPageComponent;
+  let fixture: ComponentFixture<MapPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        MapComponent, 
+        MapPageComponent, 
         HttpClientModule
       ],
       providers: [
@@ -26,7 +26,7 @@ describe('MapComponent', () => {
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MapComponent);
+    fixture = TestBed.createComponent(MapPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

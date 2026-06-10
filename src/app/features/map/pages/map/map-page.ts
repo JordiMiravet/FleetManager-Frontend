@@ -8,5 +8,5 @@ import { MapContainerComponent } from '../../components/map-container/map-contai
   templateUrl: './map-page.html',
   styleUrl: './map-page.scss',
 })
-export class MapComponent {
+export class MapPageComponent {
 }
