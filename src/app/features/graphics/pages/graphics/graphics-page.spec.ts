@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { GraphicsComponent } from './graphics-page';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Auth } from '@angular/fire/auth';
+
+import { GraphicsPageComponent } from './graphics-page';
 
 export const authMock = {
   currentUser: {
@@ -11,14 +11,14 @@ export const authMock = {
   }
 }
 
-describe('GraphicsComponent', () => {
-  let component: GraphicsComponent;
-  let fixture: ComponentFixture<GraphicsComponent>;
+describe('GraphicsPageComponent', () => {
+  let component: GraphicsPageComponent;
+  let fixture: ComponentFixture<GraphicsPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        GraphicsComponent,
+        GraphicsPageComponent,
         HttpClientTestingModule
       ],
       providers: [
@@ -27,7 +27,7 @@ describe('GraphicsComponent', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GraphicsComponent);
+    fixture = TestBed.createComponent(GraphicsPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
