@@ -36,7 +36,7 @@ export const routes: Routes = [
       {
         path: 'graphics',
         loadComponent: () =>
-          import('./features/graphics/pages/graphics/graphics-page').then(m => m.GraphicsComponent)
+          import('./features/graphics/pages/graphics/graphics-page').then(m => m.GraphicsPageComponent)
       }
     ]
   },
