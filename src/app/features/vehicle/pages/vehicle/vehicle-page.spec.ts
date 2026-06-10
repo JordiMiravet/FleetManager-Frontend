@@ -2,11 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { Auth } from '@angular/fire/auth';
 
-import { VehicleComponent } from './vehicle-page';
+import { VehiclePageComponent } from './vehicle-page';
 
-describe('VehicleComponent', () => {
-  let component: VehicleComponent;
-  let fixture: ComponentFixture<VehicleComponent>;
+describe('VehiclePageComponent', () => {
+  let component: VehiclePageComponent;
+  let fixture: ComponentFixture<VehiclePageComponent>;
 
   const authMock = {
     currentUser: {
@@ -17,13 +17,13 @@ describe('VehicleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleComponent, HttpClientModule],
+      imports: [VehiclePageComponent, HttpClientModule],
       providers: [
         { provide: Auth, useValue: authMock }
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(VehicleComponent);
+    fixture = TestBed.createComponent(VehiclePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
