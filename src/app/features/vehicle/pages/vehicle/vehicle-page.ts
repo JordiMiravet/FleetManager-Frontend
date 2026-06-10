@@ -8,6 +8,6 @@ import { VehicleViewComponent } from '../../components/vehicle-view/vehicle-view
   templateUrl: './vehicle-page.html',
   styleUrl: './vehicle-page.scss',
 })
-export class VehicleComponent {
+export class VehiclePageComponent {
 
 }
