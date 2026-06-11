@@ -168,21 +168,44 @@ describe('EventService', () => {
   });
 
   describe('addEvent', () => {
+
+    const newEvent: Omit<EventInterface, '_id'> = {
+      title: 'New Event', date: '2026-02-15', hourStart: '10:00', hourEnd: '11:00', vehicleId: 'veh-1', comment: ''
+    };
+
+    const createdEvent: EventInterface = { _id: '99', ...newEvent };
+
     it('should call POST /events', () => {
-      // Verificar petición POST
-      // Comprobar payload enviado
+      service.addEvent(newEvent);
+
+      const req = httpMock.expectOne('http://localhost:3000/events');
+      expect(req.request.method).toBe('POST');
+      expect(req.request.body).toEqual(newEvent);
+
+      req.flush(createdEvent);
     });
 
     it('should add returned event to _allEvents', () => {
-      // Simular respuesta del backend
-      // Verificar que el evento aparece en calendarEvents
+      service.addEvent(newEvent);
+
+      const req = httpMock.expectOne('http://localhost:3000/events');
+      req.flush(createdEvent);
+
+      expect(service.calendarEvents()).toContain(createdEvent);
     });
 
     it('should append event without removing existing ones', () => {
-      // Cargar eventos previos
-      // Añadir uno nuevo
-      // Verificar que se conservan todos
+      const existingEvent: EventInterface = { _id: '1', title: 'Existing', date: '2026-02-10', hourStart: '08:00', hourEnd: '09:00', vehicleId: 'veh-1', comment: '' };
+
+      service.loadEvents();
+      httpMock.expectOne('http://localhost:3000/events').flush([existingEvent]);
+
+      service.addEvent(newEvent);
+      httpMock.expectOne('http://localhost:3000/events').flush(createdEvent);
+
+      expect(service.calendarEvents()).toEqual([existingEvent, createdEvent]);
     });
+
   });
 
   describe('updateEvent', () => {
