@@ -183,11 +183,34 @@ describe('DayEventsModalComponent', () => {
     });
 
     it('should render vehicle name correctly', () => {
-      // mockear VehicleService, renderizar eventos y comprobar .event-card__vehicle
+      const eventsMock: EventInterface[] = [
+        {
+          _id: '1',
+          title: 'Cambio de aceite',
+          date: '2026-02-13',
+          hourStart: '09:00',
+          hourEnd: '10:00',
+          comment: 'Revisión general y cambio de filtro',
+          vehicleId: '123'
+        }
+      ];
+
+      fixture.componentRef.setInput('events', eventsMock);
+      fixture.detectChanges();
+
+      const vehicle = fixture.nativeElement.querySelector('.event-card__vehicle');
+
+      expect(vehicle.textContent).toContain('Ferrari Roma');
     });
 
     it('should render modal title with selected date', () => {
-      // asignar date y comprobar contenido de .modal__title
+      fixture.componentRef.setInput('date', '2026-03-26');
+      fixture.componentRef.setInput('events', []);
+      fixture.detectChanges();
+
+      const title = fixture.nativeElement.querySelector('.modal__title');
+
+      expect(title.textContent).toContain('2026-03-26');
     });
 
   });
