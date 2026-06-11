@@ -466,23 +466,78 @@ describe('DayEventsModalComponent', () => {
     });
 
     it('should bind aria-describedby correctly', () => {
-      // comprobar atributo aria-describedby del dialog
+      const eventsMock: EventInterface[] = [
+        { 
+          _id: '1', 
+          title: 'Cambio de aceite', 
+          date: '2026-02-13', 
+          hourStart: '09:00', 
+          hourEnd: '10:00', 
+          comment: '', 
+          vehicleId: '123' 
+        }
+      ];
+
+      fixture.componentRef.setInput('events', eventsMock);
+      fixture.detectChanges();
+
+      const container = fixture.nativeElement.querySelector('.backdrop');
+      const list = fixture.nativeElement.querySelector('#eventsListDesc');
+
+      expect(container.getAttribute('aria-describedby')).toBe(list.getAttribute('id'));
     });
 
     it('should generate aria-controls correctly for details', () => {
-      // renderizar eventos y comprobar aria-controls de los summary
+      const eventsMock: EventInterface[] = [
+        { _id: '1', title: 'Cambio de aceite', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', comment: '', vehicleId: '123' },
+        { _id: '2', title: 'Inspección técnica', date: '2026-02-13', hourStart: '11:00', hourEnd: '12:00', comment: '', vehicleId: '456' }
+      ];
+
+      fixture.componentRef.setInput('events', eventsMock);
+      fixture.detectChanges();
+
+      const summaries = fixture.nativeElement.querySelectorAll('.event-card__summary');
+      const details = fixture.nativeElement.querySelectorAll('.event-card');
+
+      summaries.forEach((summary: HTMLElement, index: number) => {
+        expect(summary.getAttribute('aria-controls')).toBe(details[index].getAttribute('id'));
+      });
     });
 
     it('should render actions container with role group', () => {
-      // renderizar eventos y comprobar role="group"
+      const eventsMock: EventInterface[] = [
+        { 
+          _id: '1', 
+          title: 'Cambio de aceite', 
+          date: '2026-02-13', 
+          hourStart: '09:00', 
+          hourEnd: '10:00', 
+          comment: '', 
+          vehicleId: '123' 
+        }
+      ];
+
+      fixture.componentRef.setInput('events', eventsMock);
+      fixture.detectChanges();
+
+      const actions = fixture.nativeElement.querySelector('.event-card__actions');
+      expect(actions.getAttribute('role')).toBe('group');
     });
 
     it('should render empty state with status role', () => {
-      // renderizar sin eventos y comprobar role="status"
+      fixture.componentRef.setInput('events', []);
+      fixture.detectChanges();
+
+      const empty = fixture.nativeElement.querySelector('.modal__empty');
+      expect(empty.getAttribute('role')).toBe('status');
     });
 
     it('should render empty state with aria-live polite', () => {
-      // renderizar sin eventos y comprobar aria-live="polite"
+      fixture.componentRef.setInput('events', []);
+      fixture.detectChanges();
+
+      const empty = fixture.nativeElement.querySelector('.modal__empty');
+      expect(empty.getAttribute('aria-live')).toBe('polite');
     });
 
   });
