@@ -93,14 +93,17 @@ describe('EventService', () => {
   });
 
   describe('selectedVehicleId', () => {
+
     it('should be null by default', () => {
-      // Comprobar valor inicial del signal
+      expect(service.selectedVehicleId()).toBeNull();
     });
 
     it('should allow updating the selected vehicle id', () => {
-      // Modificar el signal
-      // Verificar nuevo valor
+      service.selectedVehicleId.set('veh-1');
+
+      expect(service.selectedVehicleId()).toBe('veh-1');
     });
+
   });
 
   describe('calendarEvents', () => {
