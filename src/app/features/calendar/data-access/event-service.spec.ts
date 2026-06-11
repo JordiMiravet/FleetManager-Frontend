@@ -209,31 +209,80 @@ describe('EventService', () => {
   });
 
   describe('updateEvent', () => {
+
+    const existingEvents: EventInterface[] = [
+      { _id: '1', title: 'Event 1', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'veh-1', comment: 'Old comment' },
+      { _id: '2', title: 'Event 2', date: '2026-02-14', hourStart: '11:00', hourEnd: '12:00', vehicleId: 'veh-2', comment: '' },
+    ];
+
+    beforeEach(() => {
+      service.loadEvents();
+      httpMock.expectOne('http://localhost:3000/events').flush(existingEvents);
+    });
+
     it('should call PUT /events/:id', () => {
-      // Verificar URL
-      // Verificar método PUT
+      const updatedEvent: EventInterface = { ...existingEvents[0], title: 'Updated Event' };
+
+      service.updateEvent(updatedEvent);
+
+      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      expect(req.request.method).toBe('PUT');
+
+      req.flush(updatedEvent);
     });
 
     it('should send only expected properties in payload', () => {
-      // Inspeccionar body enviado
-      // Verificar estructura eventData
+      const updatedEvent: EventInterface = { ...existingEvents[0], title: 'Updated Event', comment: 'New comment' };
+
+      service.updateEvent(updatedEvent);
+
+      const req = httpMock.expectOne('http://localhost:3000/events/1');
+
+      expect(req.request.body).toEqual({
+        title: 'Updated Event',
+        date: updatedEvent.date,
+        hourStart: updatedEvent.hourStart,
+        hourEnd: updatedEvent.hourEnd,
+        vehicleId: updatedEvent.vehicleId,
+        comment: 'New comment'
+      });
+
+      req.flush(updatedEvent);
     });
 
     it('should replace updated event in _allEvents', () => {
-      // Simular actualización
-      // Verificar sustitución del evento correcto
+      const updatedEvent: EventInterface = { ...existingEvents[0], title: 'Updated Event' };
+
+      service.updateEvent(updatedEvent);
+
+      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      req.flush(updatedEvent);
+
+      expect(service.calendarEvents()).toContain(updatedEvent);
     });
 
     it('should not modify other events', () => {
-      // Tener varios eventos
-      // Actualizar uno
-      // Verificar que el resto permanecen iguales
+      const updatedEvent: EventInterface = { ...existingEvents[0], title: 'Updated Event' };
+
+      service.updateEvent(updatedEvent);
+
+      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      req.flush(updatedEvent);
+
+      expect(service.calendarEvents()).toContain(existingEvents[1]);
     });
 
     it('should send empty string when comment is undefined', () => {
-      // Crear evento sin comment
-      // Verificar payload enviado
+      const updatedEvent: EventInterface = { ...existingEvents[1], comment: undefined as any };
+
+      service.updateEvent(updatedEvent);
+
+      const req = httpMock.expectOne('http://localhost:3000/events/2');
+      expect(req.request.body.comment).toBe('');
+
+      req.flush(updatedEvent);
     });
+
   });
 
   describe('deleteEvent', () => {
