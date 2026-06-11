@@ -236,7 +236,11 @@ describe('DayEventsModalComponent', () => {
     });
 
     it('should not render any event card when events array is empty', () => {
-      // comprobar que no existen elementos .event-card
+      fixture.componentRef.setInput('events', eventsMock);
+      fixture.detectChanges();
+
+      const cards = fixture.nativeElement.querySelectorAll('.event-card');
+      expect(cards.length).toBe(0);
     });
 
   });
