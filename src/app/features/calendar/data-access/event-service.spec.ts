@@ -107,22 +107,34 @@ describe('EventService', () => {
   });
 
   describe('calendarEvents', () => {
+
+    const mockEvents: EventInterface[] = [
+      { _id: '1', title: 'Event 1', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'veh-1', comment: '' },
+      { _id: '2', title: 'Event 2', date: '2026-02-14', hourStart: '11:00', hourEnd: '12:00', vehicleId: 'veh-2', comment: '' },
+    ];
+
+    beforeEach(() => {
+      service.loadEvents();
+      const req = httpMock.expectOne('http://localhost:3000/events');
+      req.flush(mockEvents);
+    });
+
     it('should return all events when no vehicle is selected', () => {
-      // Cargar eventos
-      // Mantener selectedVehicleId a null
-      // Verificar que devuelve todos
+      expect(service.calendarEvents()).toEqual(mockEvents);
     });
 
     it('should return only events matching selected vehicle', () => {
-      // Cargar eventos de distintos vehículos
-      // Seleccionar uno
-      // Verificar filtrado
+      service.selectedVehicleId.set('veh-1');
+
+      expect(service.calendarEvents()).toEqual([mockEvents[0]]);
     });
 
     it('should return empty array when selected vehicle has no events', () => {
-      // Seleccionar vehículo inexistente
-      // Verificar resultado vacío
+      service.selectedVehicleId.set('veh-999');
+
+      expect(service.calendarEvents()).toEqual([]);
     });
+
   });
 
   describe('getEventsByDate', () => {
