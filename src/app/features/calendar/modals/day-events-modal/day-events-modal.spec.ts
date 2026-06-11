@@ -280,11 +280,30 @@ describe('DayEventsModalComponent', () => {
   describe('template interactions', () => {
 
     it('should emit closeModal when backdrop is clicked', () => {
-      // hacer click sobre .backdrop y comprobar emisión
+      fixture.componentRef.setInput('events', []);
+      fixture.detectChanges();
+
+      const closeModal = spyOn(component.closeModal, 'emit');
+      const backdrop = fixture.nativeElement.querySelector('.backdrop');
+      backdrop.click();
+
+      expect(closeModal).toHaveBeenCalled();
     });
 
     it('should call openDetails when summary is clicked', () => {
-      // spyOn(component, 'openDetails') y click sobre summary
+      const eventsMock: EventInterface[] = [
+        { _id: '1', title: 'Cambio de aceite', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', comment: '', vehicleId: '123' },
+        { _id: '2', title: 'Inspección técnica', date: '2026-02-13', hourStart: '11:00', hourEnd: '12:00', comment: '', vehicleId: '456' }
+      ];
+
+      fixture.componentRef.setInput('events', eventsMock);
+      fixture.detectChanges();
+
+      const openDetailsSpy = spyOn(component, 'openDetails');
+      const summary = fixture.nativeElement.querySelector('.event-card__summary');
+      summary.click();
+
+      expect(openDetailsSpy).toHaveBeenCalledWith(0);
     });
 
     it('should emit createEvent when create button is clicked', () => {
