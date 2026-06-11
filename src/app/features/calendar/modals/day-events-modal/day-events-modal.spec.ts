@@ -5,6 +5,7 @@ import { Auth } from '@angular/fire/auth';
 import { DayEventsModalComponent } from './day-events-modal';
 
 import { EventInterface } from '../../interfaces/event';
+import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 
 describe('DayEventsModalComponent', () => {
   let component: DayEventsModalComponent;
@@ -14,12 +15,22 @@ describe('DayEventsModalComponent', () => {
     currentUser: { uid: 'JordiTheBest' }
   };
 
+  const mockVehicleService = {
+    vehicles: jasmine.createSpy('vehicles').and.returnValue([
+      {
+        _id: '123',
+        name: 'Ferrari Roma'
+      }
+    ])
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DayEventsModalComponent],
       providers: [
         provideHttpClient(),
-        { provide: Auth, useValue: mockAuth }
+        { provide: Auth, useValue: mockAuth },
+        { provide: VehicleService, useValue: mockVehicleService }
       ]
     }).compileComponents();
 
@@ -84,11 +95,15 @@ describe('DayEventsModalComponent', () => {
   describe('getVehicleName', () => {
 
     it('should return vehicle name when vehicle exists', () => {
-      // mockear VehicleService y comprobar que devuelve el nombre correcto
+      const vehicle = component.getVehicleName('123');
+
+      expect(vehicle).toBe('Ferrari Roma');
     });
 
     it('should return fallback when vehicle does not exist', () => {
-      // mockear VehicleService y comprobar que devuelve dayEventsMsg.vehicleFallback
+      const result = component.getVehicleName('8888');
+
+      expect(result).toBe(component.dayEventsMsg.vehicleFallback);
     });
 
   });
