@@ -38,15 +38,30 @@ describe('EventService', () => {
   });
 
   describe('loadEvents', () => {
+
+    const mockEvents: EventInterface[] = [
+      { _id: '1', title: 'Event 1', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'veh-1', comment: '' },
+      { _id: '2', title: 'Event 2', date: '2026-02-14', hourStart: '11:00', hourEnd: '12:00', vehicleId: 'veh-2', comment: 'Comentario' },
+    ];
+
     it('should call GET /events', () => {
-      // Verificar que se realiza la petición GET
-      // Comprobar URL y método HTTP
+      service.loadEvents();
+
+      const req = httpMock.expectOne('http://localhost:3000/events');
+      expect(req.request.method).toBe('GET');
+
+      req.flush(mockEvents);
     });
 
     it('should update _allEvents signal with received events', () => {
-      // Simular respuesta del backend
-      // Verificar que calendarEvents contiene los eventos cargados
+      service.loadEvents();
+
+      const req = httpMock.expectOne('http://localhost:3000/events');
+      req.flush(mockEvents);
+
+      expect(service.calendarEvents()).toEqual(mockEvents);
     });
+
   });
 
   describe('getEventById', () => {
