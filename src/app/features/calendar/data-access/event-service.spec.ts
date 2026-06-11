@@ -65,14 +65,31 @@ describe('EventService', () => {
   });
 
   describe('getEventById', () => {
+
+    const mockEvent: EventInterface = {
+      _id: '1', title: 'Event 1', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'veh-1', comment: ''
+    };
+
     it('should call GET /events/:id', () => {
-      // Verificar URL construida correctamente
-      // Comprobar método GET
+      service.getEventById('1').subscribe();
+
+      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      expect(req.request.method).toBe('GET');
+
+      req.flush(mockEvent);
     });
 
     it('should return the requested event', () => {
-      // Simular respuesta y comprobar valor emitido
+      let result: EventInterface | undefined;
+
+      service.getEventById('1').subscribe(event => result = event);
+
+      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      req.flush(mockEvent);
+
+      expect(result).toEqual(mockEvent);
     });
+
   });
 
   describe('selectedVehicleId', () => {
