@@ -15,13 +15,44 @@ describe('DayEventsModalComponent', () => {
     currentUser: { uid: 'JordiTheBest' }
   };
 
-  const mockVehicleService = {
+  const createMockVehicleService = () => ({
     vehicles: jasmine.createSpy('vehicles').and.returnValue([
       {
         _id: '123',
         name: 'Ferrari Roma'
       }
     ])
+  });
+
+  const mockEvents: EventInterface[] = [
+    {
+      _id: '1',
+      title: 'Cambio de aceite',
+      date: '2026-02-13',
+      hourStart: '09:00',
+      hourEnd: '10:00',
+      comment: 'Revisión general y cambio de filtro',
+      vehicleId: '123'
+    },
+    {
+      _id: '2',
+      title: 'Inspección técnica',
+      date: '2026-02-13',
+      hourStart: '11:00',
+      hourEnd: '12:00',
+      comment: '',
+      vehicleId: '456'
+    }
+  ];
+
+  const mockSingleEvent: EventInterface = {
+    _id: '1',
+    title: 'Cambio de aceite',
+    date: '2026-02-13',
+    hourStart: '09:00',
+    hourEnd: '10:00',
+    comment: '',
+    vehicleId: '123'
   };
 
   beforeEach(async () => {
@@ -30,7 +61,7 @@ describe('DayEventsModalComponent', () => {
       providers: [
         provideHttpClient(),
         { provide: Auth, useValue: mockAuth },
-        { provide: VehicleService, useValue: mockVehicleService }
+        { provide: VehicleService, useValue: createMockVehicleService() }
       ]
     }).compileComponents();
 
@@ -45,16 +76,6 @@ describe('DayEventsModalComponent', () => {
 
   describe('inputs', () => {
 
-    const eventMock: EventInterface = {
-      _id: '1',
-      title: 'Cambio de aceite',
-      date: '2026-02-13',
-      hourStart: '09:00',
-      hourEnd: '10:00',
-      comment: 'Revisión general y cambio de filtro',
-      vehicleId: '123'
-    };
-
     it('should assign date input correctly', () => {
       fixture.componentRef.setInput('date', '2026-02-13');
       fixture.detectChanges();
@@ -63,31 +84,31 @@ describe('DayEventsModalComponent', () => {
     });
 
     it('should assign events input correctly', () => {
-      fixture.componentRef.setInput('events', [eventMock]);
+      fixture.componentRef.setInput('events', [mockSingleEvent]);
       fixture.detectChanges();
 
-      expect(component.events()).toEqual([eventMock]);
+      expect(component.events()).toEqual([mockSingleEvent]);
     });
 
     it('should return the first event title correctly', () => {
-      fixture.componentRef.setInput('events', [eventMock]);
+      fixture.componentRef.setInput('events', [mockSingleEvent]);
       fixture.detectChanges();
 
       expect(component.events()[0].title).toBe('Cambio de aceite');
     });
 
     it('should return the first event time correctly', () => {
-      fixture.componentRef.setInput('events', [eventMock]);
+      fixture.componentRef.setInput('events', [mockSingleEvent]);
       fixture.detectChanges();
 
       expect(component.events()[0].hourStart + ' - ' + component.events()[0].hourEnd).toBe('09:00 - 10:00');
     });
 
     it('should return the first event comment correctly', () => {
-      fixture.componentRef.setInput('events', [eventMock]);
+      fixture.componentRef.setInput('events', [mockSingleEvent]);
       fixture.detectChanges();
 
-      expect(component.events()[0].comment).toBe('Revisión general y cambio de filtro');
+      expect(component.events()[0].comment).toBe('');
     });
 
   });
@@ -110,62 +131,41 @@ describe('DayEventsModalComponent', () => {
 
   describe('template rendering with events', () => {
 
-    const eventsMock: EventInterface[] = [
-      {
-        _id: '1',
-        title: 'Cambio de aceite',
-        date: '2026-02-13',
-        hourStart: '09:00',
-        hourEnd: '10:00',
-        comment: 'Revisión general y cambio de filtro',
-        vehicleId: '123'
-      },
-      {
-        _id: '2',
-        title: 'Inspección técnica',
-        date: '2026-02-13',
-        hourStart: '11:00',
-        hourEnd: '12:00',
-        comment: '',
-        vehicleId: '456'
-      }
-    ];
-
     it('should render the events list when events exist', () => {
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
-      expect(component.events().length).toBe(eventsMock.length);
+      expect(component.events().length).toBe(mockEvents.length);
     });
 
     it('should render one <li> per event', () => {
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
       const items = fixture.nativeElement.querySelectorAll('li');
-      expect(items.length).toBe(eventsMock.length);
+      expect(items.length).toBe(mockEvents.length);
     });
 
     it('should render event title correctly', () => {
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
       const title = fixture.nativeElement.querySelectorAll('.event-card__title');
-      expect(title.length).toBe(eventsMock.length);
-      expect(title[0].textContent).toContain(eventsMock[0].title);
+      expect(title.length).toBe(mockEvents.length);
+      expect(title[0].textContent).toContain(mockEvents[0].title);
     });
 
     it('should render event time correctly', () => {
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
       const time = fixture.nativeElement.querySelectorAll('.event-card__time-value');
-      expect(time.length).toBe(eventsMock.length);
-      expect(time[0].textContent).toContain(`${eventsMock[0].hourStart} - ${eventsMock[0].hourEnd}`);
+      expect(time.length).toBe(mockEvents.length);
+      expect(time[0].textContent).toContain(`${mockEvents[0].hourStart} - ${mockEvents[0].hourEnd}`);
     });
 
     it('should render comment when comment exists', () => {
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
       const comment = fixture.nativeElement.querySelectorAll('.event-card__comment');
@@ -174,28 +174,16 @@ describe('DayEventsModalComponent', () => {
     });
 
     it('should not render comment when comment is empty', () => {
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
       const comments = fixture.nativeElement.querySelectorAll('.event-card__comment');
       expect(comments.length).toBe(1);
-      expect(comments[0].textContent).toContain(eventsMock[0].comment);
+      expect(comments[0].textContent).toContain(mockEvents[0].comment);
     });
 
     it('should render vehicle name correctly', () => {
-      const eventsMock: EventInterface[] = [
-        {
-          _id: '1',
-          title: 'Cambio de aceite',
-          date: '2026-02-13',
-          hourStart: '09:00',
-          hourEnd: '10:00',
-          comment: 'Revisión general y cambio de filtro',
-          vehicleId: '123'
-        }
-      ];
-
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', [mockSingleEvent]);
       fixture.detectChanges();
 
       const vehicle = fixture.nativeElement.querySelector('.event-card__vehicle');
@@ -217,10 +205,8 @@ describe('DayEventsModalComponent', () => {
 
   describe('template rendering without events', () => {
 
-    const eventsMock: EventInterface[] = [];
-
     it('should render empty state message', () => {
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
       const message = fixture.nativeElement.querySelector('.modal__empty');
@@ -228,7 +214,7 @@ describe('DayEventsModalComponent', () => {
     });
 
     it('should not render events list when no events exist', () => {
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
       const list = fixture.nativeElement.querySelector('.events-list');
@@ -236,7 +222,7 @@ describe('DayEventsModalComponent', () => {
     });
 
     it('should not render any event card when events array is empty', () => {
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
       const cards = fixture.nativeElement.querySelectorAll('.event-card');
@@ -274,7 +260,7 @@ describe('DayEventsModalComponent', () => {
 
       expect(spy).toHaveBeenCalled();
     });
-    
+
   });
 
   describe('template interactions', () => {
@@ -291,12 +277,7 @@ describe('DayEventsModalComponent', () => {
     });
 
     it('should call openDetails when summary is clicked', () => {
-      const eventsMock: EventInterface[] = [
-        { _id: '1', title: 'Cambio de aceite', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', comment: '', vehicleId: '123' },
-        { _id: '2', title: 'Inspección técnica', date: '2026-02-13', hourStart: '11:00', hourEnd: '12:00', comment: '', vehicleId: '456' }
-      ];
-
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
       const openDetailsSpy = spyOn(component, 'openDetails');
@@ -321,18 +302,7 @@ describe('DayEventsModalComponent', () => {
     it('should emit editEvent when edit button is clicked', () => {
       const editEvent = spyOn(component.editEvent, 'emit');
 
-      const eventsMock: EventInterface[] = [
-        {
-          _id: '001',
-          title: 'Cambio de aceite',
-          date: '2026-02-13',
-          hourStart: '09:00',
-          hourEnd: '10:00',
-          comment: 'Revisión general y cambio de filtro',
-          vehicleId: '123'
-        }
-      ];
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', [mockSingleEvent]);
       fixture.detectChanges();
 
       component.onEdit('001');
@@ -342,19 +312,7 @@ describe('DayEventsModalComponent', () => {
     it('should emit deleteEvent when delete button is clicked', () => {
       const deleteEvent = spyOn(component.deleteEvent, 'emit');
 
-      const eventsMock: EventInterface[] = [
-        {
-          _id: '001',
-          title: 'Cambio de aceite',
-          date: '2026-02-13',
-          hourStart: '09:00',
-          hourEnd: '10:00',
-          comment: 'Revisión general y cambio de filtro',
-          vehicleId: '123'
-        }
-      ];
-
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', [mockSingleEvent]);
       fixture.detectChanges();
 
       component.onDelete('001');
@@ -387,29 +345,8 @@ describe('DayEventsModalComponent', () => {
 
   describe('openDetails', () => {
 
-    const eventsMock: EventInterface[] = [
-      {
-        _id: '001',
-        title: 'Cambio de aceite',
-        date: '2026-02-13',
-        hourStart: '09:00',
-        hourEnd: '10:00',
-        comment: 'Revisión general y cambio de filtro',
-        vehicleId: '123'
-      },
-      {
-        _id: '002',
-        title: 'Inspección técnica',
-        date: '2026-02-13',
-        hourStart: '11:00',
-        hourEnd: '12:00',
-        comment: '',
-        vehicleId: '456'
-      }
-    ];
-
     it('should close other details when one is opened', () => {
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
       const details = fixture.nativeElement.querySelectorAll('.event-card');
@@ -424,7 +361,7 @@ describe('DayEventsModalComponent', () => {
     });
 
     it('should not close the selected detail', () => {
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
       const details = fixture.nativeElement.querySelectorAll('.event-card');
@@ -466,19 +403,7 @@ describe('DayEventsModalComponent', () => {
     });
 
     it('should bind aria-describedby correctly', () => {
-      const eventsMock: EventInterface[] = [
-        { 
-          _id: '1', 
-          title: 'Cambio de aceite', 
-          date: '2026-02-13', 
-          hourStart: '09:00', 
-          hourEnd: '10:00', 
-          comment: '', 
-          vehicleId: '123' 
-        }
-      ];
-
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', [mockSingleEvent]);
       fixture.detectChanges();
 
       const container = fixture.nativeElement.querySelector('.backdrop');
@@ -488,12 +413,7 @@ describe('DayEventsModalComponent', () => {
     });
 
     it('should generate aria-controls correctly for details', () => {
-      const eventsMock: EventInterface[] = [
-        { _id: '1', title: 'Cambio de aceite', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', comment: '', vehicleId: '123' },
-        { _id: '2', title: 'Inspección técnica', date: '2026-02-13', hourStart: '11:00', hourEnd: '12:00', comment: '', vehicleId: '456' }
-      ];
-
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
       const summaries = fixture.nativeElement.querySelectorAll('.event-card__summary');
@@ -505,19 +425,7 @@ describe('DayEventsModalComponent', () => {
     });
 
     it('should render actions container with role group', () => {
-      const eventsMock: EventInterface[] = [
-        { 
-          _id: '1', 
-          title: 'Cambio de aceite', 
-          date: '2026-02-13', 
-          hourStart: '09:00', 
-          hourEnd: '10:00', 
-          comment: '', 
-          vehicleId: '123' 
-        }
-      ];
-
-      fixture.componentRef.setInput('events', eventsMock);
+      fixture.componentRef.setInput('events', [mockSingleEvent]);
       fixture.detectChanges();
 
       const actions = fixture.nativeElement.querySelector('.event-card__actions');
