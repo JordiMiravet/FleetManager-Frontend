@@ -382,7 +382,7 @@ describe('DayEventsModalComponent', () => {
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const container = fixture.nativeElement.querySelector('.modal__backdrop');
+      const container = fixture.nativeElement.querySelector('.backdrop');
       expect(container.getAttribute('role')).toBe('dialog');
     });
 
@@ -390,7 +390,7 @@ describe('DayEventsModalComponent', () => {
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const container = fixture.nativeElement.querySelector('.modal__backdrop');
+      const container = fixture.nativeElement.querySelector('.backdrop');
       const title = fixture.nativeElement.querySelector('#dayEventsTitle');
       expect(container.getAttribute('aria-labelledby')).toBe(title.getAttribute('id'));
     });
