@@ -81,6 +81,18 @@ describe('DayEventsModalComponent', () => {
 
   });
 
+  describe('getVehicleName', () => {
+
+    it('should return vehicle name when vehicle exists', () => {
+      // mockear VehicleService y comprobar que devuelve el nombre correcto
+    });
+
+    it('should return fallback when vehicle does not exist', () => {
+      // mockear VehicleService y comprobar que devuelve dayEventsMsg.vehicleFallback
+    });
+
+  });
+
   describe('template rendering with events', () => {
 
     const eventsMock: EventInterface[] = [
@@ -155,6 +167,14 @@ describe('DayEventsModalComponent', () => {
       expect(comments[0].textContent).toContain(eventsMock[0].comment);
     });
 
+    it('should render vehicle name correctly', () => {
+      // mockear VehicleService, renderizar eventos y comprobar .event-card__vehicle
+    });
+
+    it('should render modal title with selected date', () => {
+      // asignar date y comprobar contenido de .modal__title
+    });
+
   });
 
   describe('template rendering without events', () => {
@@ -175,6 +195,10 @@ describe('DayEventsModalComponent', () => {
 
       const list = fixture.nativeElement.querySelector('.events-list');
       expect(list).toBeFalsy();
+    });
+
+    it('should not render any event card when events array is empty', () => {
+      // comprobar que no existen elementos .event-card
     });
 
   });
@@ -212,6 +236,14 @@ describe('DayEventsModalComponent', () => {
   });
 
   describe('template interactions', () => {
+
+    it('should emit closeModal when backdrop is clicked', () => {
+      // hacer click sobre .backdrop y comprobar emisión
+    });
+
+    it('should call openDetails when summary is clicked', () => {
+      // spyOn(component, 'openDetails') y click sobre summary
+    });
 
     it('should emit createEvent when create button is clicked', () => {
       fixture.componentRef.setInput('events', []);
@@ -370,6 +402,26 @@ describe('DayEventsModalComponent', () => {
 
       const title = fixture.nativeElement.querySelector('.modal__title');
       expect(title.getAttribute('aria-label')).toContain(component.date());
+    });
+
+    it('should bind aria-describedby correctly', () => {
+      // comprobar atributo aria-describedby del dialog
+    });
+
+    it('should generate aria-controls correctly for details', () => {
+      // renderizar eventos y comprobar aria-controls de los summary
+    });
+
+    it('should render actions container with role group', () => {
+      // renderizar eventos y comprobar role="group"
+    });
+
+    it('should render empty state with status role', () => {
+      // renderizar sin eventos y comprobar role="status"
+    });
+
+    it('should render empty state with aria-live polite', () => {
+      // renderizar sin eventos y comprobar aria-live="polite"
     });
 
   });
