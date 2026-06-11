@@ -1,11 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import {
-  provideHttpClient,
-} from '@angular/common/http';
-import {
-  provideHttpClientTesting,
-  HttpTestingController,
-} from '@angular/common/http/testing';
+import { provideHttpClient} from '@angular/common/http';
+import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 
 import { EventService } from './event-service';
 import { EventInterface } from '../interfaces/event';
@@ -13,9 +8,9 @@ import { EventInterface } from '../interfaces/event';
 const API_URL = 'http://localhost:3000/events';
 
 const mockEvents: EventInterface[] = [
-  { _id: '1', title: 'Event 1', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'veh-1', comment: '' },
-  { _id: '2', title: 'Event 2', date: '2026-02-13', hourStart: '11:00', hourEnd: '12:00', vehicleId: 'veh-2', comment: '' },
-  { _id: '3', title: 'Event 3', date: '2026-02-14', hourStart: '08:00', hourEnd: '09:00', vehicleId: 'veh-1', comment: 'Comentario' },
+  { _id: '1', title: 'Date', date: '2026-03-26', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'Ferrari-1', comment: '' },
+  { _id: '2', title: 'Route', date: '2026-03-26', hourStart: '11:00', hourEnd: '12:00', vehicleId: 'Pagani-1', comment: '' },
+  { _id: '3', title: 'Work', date: '2026-04-23', hourStart: '08:00', hourEnd: '09:00', vehicleId: 'Ferrari-1', comment: 'Coment' },
 ];
 
 describe('EventService', () => {
@@ -101,9 +96,9 @@ describe('EventService', () => {
     });
 
     it('should allow updating the selected vehicle id', () => {
-      service.selectedVehicleId.set('veh-1');
+      service.selectedVehicleId.set('Ferrari-1');
 
-      expect(service.selectedVehicleId()).toBe('veh-1');
+      expect(service.selectedVehicleId()).toBe('Ferrari-1');
     });
 
   });
@@ -117,7 +112,7 @@ describe('EventService', () => {
     });
 
     it('should return only events matching selected vehicle', () => {
-      service.selectedVehicleId.set('veh-1');
+      service.selectedVehicleId.set('Ferrari-1');
 
       expect(service.calendarEvents()).toEqual([mockEvents[0], mockEvents[2]]);
     });
@@ -135,7 +130,7 @@ describe('EventService', () => {
     beforeEach(() => loadMockEvents());
 
     it('should return events matching the provided date', () => {
-      expect(service.getEventsByDate('2026-02-13')).toEqual([mockEvents[0], mockEvents[1]]);
+      expect(service.getEventsByDate('2026-03-26')).toEqual([mockEvents[0], mockEvents[1]]);
     });
 
     it('should return empty array when no events exist for the date', () => {
@@ -143,9 +138,9 @@ describe('EventService', () => {
     });
 
     it('should apply vehicle filter before date filter', () => {
-      service.selectedVehicleId.set('veh-1');
+      service.selectedVehicleId.set('Ferrari-1');
 
-      expect(service.getEventsByDate('2026-02-13')).toEqual([mockEvents[0]]);
+      expect(service.getEventsByDate('2026-03-26')).toEqual([mockEvents[0]]);
     });
 
   });
@@ -153,7 +148,12 @@ describe('EventService', () => {
   describe('addEvent', () => {
 
     const newEvent: Omit<EventInterface, '_id'> = {
-      title: 'New Event', date: '2026-02-15', hourStart: '10:00', hourEnd: '11:00', vehicleId: 'veh-1', comment: ''
+      title: 'New Event', 
+      date: '2026-03-28', 
+      hourStart: '10:00', 
+      hourEnd: '11:00', 
+      vehicleId: 'Ferrari-1', 
+      comment: ''
     };
 
     const createdEvent: EventInterface = { _id: '99', ...newEvent };
