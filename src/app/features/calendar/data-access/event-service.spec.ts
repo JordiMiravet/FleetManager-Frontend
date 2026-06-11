@@ -285,21 +285,44 @@ describe('EventService', () => {
 
   });
 
-  describe('deleteEvent', () => {
+    describe('deleteEvent', () => {
+
+    const existingEvents: EventInterface[] = [
+      { _id: '1', title: 'Event 1', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'veh-1', comment: '' },
+      { _id: '2', title: 'Event 2', date: '2026-02-14', hourStart: '11:00', hourEnd: '12:00', vehicleId: 'veh-2', comment: '' },
+    ];
+
+    beforeEach(() => {
+      service.loadEvents();
+      httpMock.expectOne('http://localhost:3000/events').flush(existingEvents);
+    });
+
     it('should call DELETE /events/:id', () => {
-      // Verificar URL
-      // Verificar método DELETE
+      service.deleteEvent('1');
+
+      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      expect(req.request.method).toBe('DELETE');
+
+      req.flush(null);
     });
 
     it('should remove deleted event from _allEvents', () => {
-      // Simular eliminación
-      // Verificar que ya no existe
+      service.deleteEvent('1');
+
+      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      req.flush(null);
+
+      expect(service.calendarEvents()).not.toContain(existingEvents[0]);
     });
 
     it('should not remove other events', () => {
-      // Tener varios eventos
-      // Eliminar uno
-      // Verificar que los demás siguen presentes
+      service.deleteEvent('1');
+
+      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      req.flush(null);
+
+      expect(service.calendarEvents()).toContain(existingEvents[1]);
     });
+
   });
 });
