@@ -10,6 +10,14 @@ import {
 import { EventService } from './event-service';
 import { EventInterface } from '../interfaces/event';
 
+const API_URL = 'http://localhost:3000/events';
+
+const mockEvents: EventInterface[] = [
+  { _id: '1', title: 'Event 1', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'veh-1', comment: '' },
+  { _id: '2', title: 'Event 2', date: '2026-02-13', hourStart: '11:00', hourEnd: '12:00', vehicleId: 'veh-2', comment: '' },
+  { _id: '3', title: 'Event 3', date: '2026-02-14', hourStart: '08:00', hourEnd: '09:00', vehicleId: 'veh-1', comment: 'Comentario' },
+];
+
 describe('EventService', () => {
   let service: EventService;
   let httpMock: HttpTestingController;
@@ -27,9 +35,13 @@ describe('EventService', () => {
   });
 
   afterEach(() => {
-    // Verificar que no quedan peticiones HTTP pendientes
     httpMock.verify();
   });
+
+  function loadMockEvents(events: EventInterface[] = mockEvents): void {
+    service.loadEvents();
+    httpMock.expectOne(API_URL).flush(events);
+  }
 
   describe('Creación del servicio', () => {
     it('should be created', () => {
@@ -39,25 +51,17 @@ describe('EventService', () => {
 
   describe('loadEvents', () => {
 
-    const mockEvents: EventInterface[] = [
-      { _id: '1', title: 'Event 1', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'veh-1', comment: '' },
-      { _id: '2', title: 'Event 2', date: '2026-02-14', hourStart: '11:00', hourEnd: '12:00', vehicleId: 'veh-2', comment: 'Comentario' },
-    ];
-
     it('should call GET /events', () => {
       service.loadEvents();
 
-      const req = httpMock.expectOne('http://localhost:3000/events');
+      const req = httpMock.expectOne(API_URL);
       expect(req.request.method).toBe('GET');
 
       req.flush(mockEvents);
     });
 
     it('should update _allEvents signal with received events', () => {
-      service.loadEvents();
-
-      const req = httpMock.expectOne('http://localhost:3000/events');
-      req.flush(mockEvents);
+      loadMockEvents();
 
       expect(service.calendarEvents()).toEqual(mockEvents);
     });
@@ -66,14 +70,12 @@ describe('EventService', () => {
 
   describe('getEventById', () => {
 
-    const mockEvent: EventInterface = {
-      _id: '1', title: 'Event 1', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'veh-1', comment: ''
-    };
+    const mockEvent = mockEvents[0];
 
     it('should call GET /events/:id', () => {
       service.getEventById('1').subscribe();
 
-      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      const req = httpMock.expectOne(`${API_URL}/1`);
       expect(req.request.method).toBe('GET');
 
       req.flush(mockEvent);
@@ -84,7 +86,7 @@ describe('EventService', () => {
 
       service.getEventById('1').subscribe(event => result = event);
 
-      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      const req = httpMock.expectOne(`${API_URL}/1`);
       req.flush(mockEvent);
 
       expect(result).toEqual(mockEvent);
@@ -108,16 +110,7 @@ describe('EventService', () => {
 
   describe('calendarEvents', () => {
 
-    const mockEvents: EventInterface[] = [
-      { _id: '1', title: 'Event 1', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'veh-1', comment: '' },
-      { _id: '2', title: 'Event 2', date: '2026-02-14', hourStart: '11:00', hourEnd: '12:00', vehicleId: 'veh-2', comment: '' },
-    ];
-
-    beforeEach(() => {
-      service.loadEvents();
-      const req = httpMock.expectOne('http://localhost:3000/events');
-      req.flush(mockEvents);
-    });
+    beforeEach(() => loadMockEvents());
 
     it('should return all events when no vehicle is selected', () => {
       expect(service.calendarEvents()).toEqual(mockEvents);
@@ -126,7 +119,7 @@ describe('EventService', () => {
     it('should return only events matching selected vehicle', () => {
       service.selectedVehicleId.set('veh-1');
 
-      expect(service.calendarEvents()).toEqual([mockEvents[0]]);
+      expect(service.calendarEvents()).toEqual([mockEvents[0], mockEvents[2]]);
     });
 
     it('should return empty array when selected vehicle has no events', () => {
@@ -139,17 +132,7 @@ describe('EventService', () => {
 
   describe('getEventsByDate', () => {
 
-    const mockEvents: EventInterface[] = [
-      { _id: '1', title: 'Event 1', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'veh-1', comment: '' },
-      { _id: '2', title: 'Event 2', date: '2026-02-13', hourStart: '11:00', hourEnd: '12:00', vehicleId: 'veh-2', comment: '' },
-      { _id: '3', title: 'Event 3', date: '2026-02-14', hourStart: '08:00', hourEnd: '09:00', vehicleId: 'veh-1', comment: '' },
-    ];
-
-    beforeEach(() => {
-      service.loadEvents();
-      const req = httpMock.expectOne('http://localhost:3000/events');
-      req.flush(mockEvents);
-    });
+    beforeEach(() => loadMockEvents());
 
     it('should return events matching the provided date', () => {
       expect(service.getEventsByDate('2026-02-13')).toEqual([mockEvents[0], mockEvents[1]]);
@@ -178,7 +161,7 @@ describe('EventService', () => {
     it('should call POST /events', () => {
       service.addEvent(newEvent);
 
-      const req = httpMock.expectOne('http://localhost:3000/events');
+      const req = httpMock.expectOne(API_URL);
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(newEvent);
 
@@ -188,55 +171,43 @@ describe('EventService', () => {
     it('should add returned event to _allEvents', () => {
       service.addEvent(newEvent);
 
-      const req = httpMock.expectOne('http://localhost:3000/events');
-      req.flush(createdEvent);
+      httpMock.expectOne(API_URL).flush(createdEvent);
 
       expect(service.calendarEvents()).toContain(createdEvent);
     });
 
     it('should append event without removing existing ones', () => {
-      const existingEvent: EventInterface = { _id: '1', title: 'Existing', date: '2026-02-10', hourStart: '08:00', hourEnd: '09:00', vehicleId: 'veh-1', comment: '' };
-
-      service.loadEvents();
-      httpMock.expectOne('http://localhost:3000/events').flush([existingEvent]);
+      loadMockEvents();
 
       service.addEvent(newEvent);
-      httpMock.expectOne('http://localhost:3000/events').flush(createdEvent);
+      httpMock.expectOne(API_URL).flush(createdEvent);
 
-      expect(service.calendarEvents()).toEqual([existingEvent, createdEvent]);
+      expect(service.calendarEvents()).toEqual([...mockEvents, createdEvent]);
     });
 
   });
 
   describe('updateEvent', () => {
 
-    const existingEvents: EventInterface[] = [
-      { _id: '1', title: 'Event 1', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'veh-1', comment: 'Old comment' },
-      { _id: '2', title: 'Event 2', date: '2026-02-14', hourStart: '11:00', hourEnd: '12:00', vehicleId: 'veh-2', comment: '' },
-    ];
-
-    beforeEach(() => {
-      service.loadEvents();
-      httpMock.expectOne('http://localhost:3000/events').flush(existingEvents);
-    });
+    beforeEach(() => loadMockEvents());
 
     it('should call PUT /events/:id', () => {
-      const updatedEvent: EventInterface = { ...existingEvents[0], title: 'Updated Event' };
+      const updatedEvent: EventInterface = { ...mockEvents[0], title: 'Updated Event' };
 
       service.updateEvent(updatedEvent);
 
-      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      const req = httpMock.expectOne(`${API_URL}/1`);
       expect(req.request.method).toBe('PUT');
 
       req.flush(updatedEvent);
     });
 
     it('should send only expected properties in payload', () => {
-      const updatedEvent: EventInterface = { ...existingEvents[0], title: 'Updated Event', comment: 'New comment' };
+      const updatedEvent: EventInterface = { ...mockEvents[0], title: 'Updated Event', comment: 'New comment' };
 
       service.updateEvent(updatedEvent);
 
-      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      const req = httpMock.expectOne(`${API_URL}/1`);
 
       expect(req.request.body).toEqual({
         title: 'Updated Event',
@@ -251,33 +222,32 @@ describe('EventService', () => {
     });
 
     it('should replace updated event in _allEvents', () => {
-      const updatedEvent: EventInterface = { ...existingEvents[0], title: 'Updated Event' };
+      const updatedEvent: EventInterface = { ...mockEvents[0], title: 'Updated Event' };
 
       service.updateEvent(updatedEvent);
 
-      const req = httpMock.expectOne('http://localhost:3000/events/1');
-      req.flush(updatedEvent);
+      httpMock.expectOne(`${API_URL}/1`).flush(updatedEvent);
 
       expect(service.calendarEvents()).toContain(updatedEvent);
     });
 
     it('should not modify other events', () => {
-      const updatedEvent: EventInterface = { ...existingEvents[0], title: 'Updated Event' };
+      const updatedEvent: EventInterface = { ...mockEvents[0], title: 'Updated Event' };
 
       service.updateEvent(updatedEvent);
 
-      const req = httpMock.expectOne('http://localhost:3000/events/1');
-      req.flush(updatedEvent);
+      httpMock.expectOne(`${API_URL}/1`).flush(updatedEvent);
 
-      expect(service.calendarEvents()).toContain(existingEvents[1]);
+      expect(service.calendarEvents()).toContain(mockEvents[1]);
+      expect(service.calendarEvents()).toContain(mockEvents[2]);
     });
 
     it('should send empty string when comment is undefined', () => {
-      const updatedEvent: EventInterface = { ...existingEvents[1], comment: undefined as any };
+      const updatedEvent: EventInterface = { ...mockEvents[1], comment: undefined as any };
 
       service.updateEvent(updatedEvent);
 
-      const req = httpMock.expectOne('http://localhost:3000/events/2');
+      const req = httpMock.expectOne(`${API_URL}/2`);
       expect(req.request.body.comment).toBe('');
 
       req.flush(updatedEvent);
@@ -285,22 +255,14 @@ describe('EventService', () => {
 
   });
 
-    describe('deleteEvent', () => {
+  describe('deleteEvent', () => {
 
-    const existingEvents: EventInterface[] = [
-      { _id: '1', title: 'Event 1', date: '2026-02-13', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'veh-1', comment: '' },
-      { _id: '2', title: 'Event 2', date: '2026-02-14', hourStart: '11:00', hourEnd: '12:00', vehicleId: 'veh-2', comment: '' },
-    ];
-
-    beforeEach(() => {
-      service.loadEvents();
-      httpMock.expectOne('http://localhost:3000/events').flush(existingEvents);
-    });
+    beforeEach(() => loadMockEvents());
 
     it('should call DELETE /events/:id', () => {
       service.deleteEvent('1');
 
-      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      const req = httpMock.expectOne(`${API_URL}/1`);
       expect(req.request.method).toBe('DELETE');
 
       req.flush(null);
@@ -309,20 +271,20 @@ describe('EventService', () => {
     it('should remove deleted event from _allEvents', () => {
       service.deleteEvent('1');
 
-      const req = httpMock.expectOne('http://localhost:3000/events/1');
-      req.flush(null);
+      httpMock.expectOne(`${API_URL}/1`).flush(null);
 
-      expect(service.calendarEvents()).not.toContain(existingEvents[0]);
+      expect(service.calendarEvents()).not.toContain(mockEvents[0]);
     });
 
     it('should not remove other events', () => {
       service.deleteEvent('1');
 
-      const req = httpMock.expectOne('http://localhost:3000/events/1');
-      req.flush(null);
+      httpMock.expectOne(`${API_URL}/1`).flush(null);
 
-      expect(service.calendarEvents()).toContain(existingEvents[1]);
+      expect(service.calendarEvents()).toContain(mockEvents[1]);
+      expect(service.calendarEvents()).toContain(mockEvents[2]);
     });
 
   });
+
 });
