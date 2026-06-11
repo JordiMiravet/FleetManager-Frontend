@@ -33,7 +33,7 @@ describe('EventService', () => {
 
   describe('Creación del servicio', () => {
     it('should be created', () => {
-      // Comprobar que el servicio se instancia correctamente
+      expect(service).toBeTruthy();
     });
   });
 
