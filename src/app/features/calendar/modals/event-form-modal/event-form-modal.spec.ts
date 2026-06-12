@@ -289,7 +289,26 @@ describe('EventFormModalComponent', () => {
     });
 
     it('should ignore events from different vehicles', () => {
+      eventService.getEventsByDate = () => [
+        {
+          _id: '1',
+          date: '2026-02-15',
+          hourStart: '10:00',
+          hourEnd: '12:00',
+          vehicleId: 'otherVehicle'
+        } as EventInterface
+      ];
 
+      component.formEvent.patchValue({
+        date: '2026-02-15',
+        hourStart: '11:00',
+        hourEnd: '13:00',
+        vehicleId: 'myVehicle'
+      });
+
+      component.formEvent.updateValueAndValidity();
+
+      expect(component.formEvent.hasError('timeOverlap')).toBeFalse();
     });
 
   });
