@@ -38,7 +38,7 @@ function buildEventMock(overrides: Partial<EventInterface> = {}): EventInterface
     vehicleId: TEST_VEHICLE,
     comment: '',
     ...overrides
-  } as EventInterface;
+  };
 }
 
 describe('EventFormModalComponent', () => {
