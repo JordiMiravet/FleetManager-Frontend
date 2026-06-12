@@ -16,6 +16,31 @@ const authMock = {
   }
 };
 
+const TEST_DATE = '2026-03-26';
+const TEST_VEHICLE = '123456';
+
+const validFormValues = {
+  title: 'BBQ',
+  date: TEST_DATE,
+  hourStart: '10:00',
+  hourEnd: '17:00',
+  vehicleId: TEST_VEHICLE,
+  comment: ''
+};
+
+function buildEventMock(overrides: Partial<EventInterface> = {}): EventInterface {
+  return {
+    _id: '1',
+    title: 'Nintendo Direct',
+    date: TEST_DATE,
+    hourStart: '10:00',
+    hourEnd: '12:00',
+    vehicleId: TEST_VEHICLE,
+    comment: '',
+    ...overrides
+  };
+}
+
 describe('EventFormModalComponent', () => {
   let component: EventFormModalComponent;
   let fixture: ComponentFixture<EventFormModalComponent>;
@@ -37,6 +62,11 @@ describe('EventFormModalComponent', () => {
     eventService = TestBed.inject(EventService);
     vehicleService = TestBed.inject(VehicleService);
   });
+
+  function patchForm(overrides: Partial<typeof validFormValues> = {}): void {
+    component.formEvent.patchValue({ ...validFormValues, ...overrides });
+    component.formEvent.updateValueAndValidity();
+  }
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -69,24 +99,14 @@ describe('EventFormModalComponent', () => {
     });
 
     it('should patch date if preselectedDate is provided', () => {
-      const dateMock = '2026-02-15';
-
-      fixture.componentRef.setInput('preselectedDate', dateMock);
+      fixture.componentRef.setInput('preselectedDate', TEST_DATE);
       fixture.detectChanges();
 
-      expect(component.formEvent.get('date')?.value).toBe(dateMock);
+      expect(component.formEvent.get('date')?.value).toBe(TEST_DATE);
     });
 
     it('should patch form values if event is provided', () => {
-      const eventMock = {
-        _id: '123',
-        title: 'Nintendo Direct',
-        date: '2026-02-15',
-        hourStart: '10:00',
-        hourEnd: '12:00',
-        vehicleId: '123',
-        comment: 'I want a new Zelda!'
-      };
+      const eventMock = buildEventMock({ comment: 'I want a new Zelda!' });
 
       fixture.componentRef.setInput('event', eventMock);
       fixture.detectChanges();
@@ -199,18 +219,19 @@ describe('EventFormModalComponent', () => {
       expect(component.formEvent.hasError('invalidTimeRange')).toBeFalse();
     });
 
+    it('should return error if hourStart is equal to hourEnd', () => {
+      component.formEvent.patchValue({ hourStart: '10:00', hourEnd: '10:00' });
+      component.formEvent.updateValueAndValidity();
+
+      expect(component.formEvent.hasError('invalidTimeRange')).toBeTrue();
+    });
+
   });
 
   describe('timeOverlapValidator', () => {
 
     it('should return null if required fields are missing', () => {
-      component.formEvent.patchValue({
-        date: '',
-        hourStart: '',
-        hourEnd: '',
-        vehicleId: ''
-      });
-
+      component.formEvent.patchValue({ date: '', hourStart: '', hourEnd: '', vehicleId: '' });
       component.formEvent.updateValueAndValidity();
 
       expect(component.formEvent.hasError('timeOverlap')).toBeFalse();
@@ -218,70 +239,47 @@ describe('EventFormModalComponent', () => {
 
     it('should return error if there is overlapping event', () => {
       eventService.getEventsByDate = () => [
-        {
-          _id: '1',
-          date: '2026-02-15',
-          hourStart: '10:00',
-          hourEnd: '12:00',
-          vehicleId: '123',
-        } as EventInterface
+        buildEventMock({ hourStart: '10:00', hourEnd: '12:00' })
       ];
 
-      component.formEvent.patchValue({
-        date: '2026-02-15',
-        hourStart: '11:00',
-        hourEnd: '13:00',
-        vehicleId: '123'
-      });
+      component.formEvent.patchValue({ date: TEST_DATE, hourStart: '11:00', hourEnd: '13:00', vehicleId: TEST_VEHICLE });
       component.formEvent.updateValueAndValidity();
+
       expect(component.formEvent.hasError('timeOverlap')).toBeTrue();
     });
 
     it('should return null if there is no overlapping event', () => {
       eventService.getEventsByDate = () => [
-        {
-          _id: '1',
-          title: 'Nintendo Direct',
-          date: '2026-02-15',
-          hourStart: '08:00',
-          hourEnd: '10:00',
-          vehicleId: '123',
-          comment: ''
-        } as EventInterface
+        buildEventMock({ title: 'Nintendo Direct', hourStart: '08:00', hourEnd: '10:00' })
       ];
 
-      component.formEvent.patchValue({
-        date: '2026-02-15',
-        hourStart: '10:00',
-        hourEnd: '12:00',
-        vehicleId: '123'
-      });
+      component.formEvent.patchValue({ date: TEST_DATE, hourStart: '10:00', hourEnd: '12:00', vehicleId: TEST_VEHICLE });
       component.formEvent.updateValueAndValidity();
+
       expect(component.formEvent.hasError('timeOverlap')).toBeFalse();
     });
 
     it('should ignore current event when editing', () => {
-      const currentEvent = {
-        _id: '1',
-        title: 'Comida con amigos',
-        date: '2026-02-15',
-        hourStart: '10:00',
-        hourEnd: '15:00',
-        vehicleId: '123456',
-        comment: ''
-      };
+      const currentEvent = buildEventMock({ title: 'Comida con amigos', hourEnd: '15:00' });
 
       fixture.componentRef.setInput('event', currentEvent);
       eventService.getEventsByDate = () => [currentEvent];
 
-      component.formEvent.patchValue({
-        date: '2026-02-15',
-        hourStart: '10:00',
-        hourEnd: '15:00',
-        vehicleId: '123456'
-      });
+      component.formEvent.patchValue({ date: TEST_DATE, hourStart: '10:00', hourEnd: '15:00', vehicleId: TEST_VEHICLE });
       component.formEvent.updateValueAndValidity();
+
       expect(component.formEvent.hasError('timeOverlap')).toBe(false);
+    });
+
+    it('should ignore events from different vehicles', () => {
+      eventService.getEventsByDate = () => [
+        buildEventMock({ hourStart: '10:00', hourEnd: '12:00', vehicleId: 'otherVehicle' })
+      ];
+
+      component.formEvent.patchValue({ date: TEST_DATE, hourStart: '11:00', hourEnd: '13:00', vehicleId: 'myVehicle' });
+      component.formEvent.updateValueAndValidity();
+
+      expect(component.formEvent.hasError('timeOverlap')).toBeFalse();
     });
 
   });
@@ -318,12 +316,7 @@ describe('EventFormModalComponent', () => {
 
     it('should not submit if form is invalid', () => {
       component.formEvent.patchValue({
-        title: '',
-        date: '',
-        hourStart: '',
-        hourEnd: '',
-        vehicleId: '',
-        comment: ''
+        title: '', date: '', hourStart: '', hourEnd: '', vehicleId: '', comment: ''
       });
 
       spyOn(eventService, 'addEvent');
@@ -339,15 +332,7 @@ describe('EventFormModalComponent', () => {
 
     it('should call addEvent if mode is "create"', () => {
       fixture.componentRef.setInput('mode', 'create');
-
-      component.formEvent.patchValue({
-        title: 'BBQ',
-        date: '2026-02-15',
-        hourStart: '10:00',
-        hourEnd: '17:00',
-        vehicleId: '123456',
-        comment: ''
-      });
+      patchForm();
 
       spyOn(eventService, 'addEvent');
       spyOn(component.close, 'emit');
@@ -359,27 +344,12 @@ describe('EventFormModalComponent', () => {
     });
 
     it('should call updateEvent if mode is "edit"', () => {
-      const event = {
-        _id: '1',
-        title: 'XBOX Direct',
-        date: '2026-02-15',
-        hourStart: '10:00',
-        hourEnd: '12:00',
-        vehicleId: '123456',
-        comment: ''
-      };
+      const event = buildEventMock({ title: 'XBOX Direct' });
 
       fixture.componentRef.setInput('mode', 'edit');
       fixture.componentRef.setInput('event', event);
 
-      component.formEvent.patchValue({
-        title: 'XBOX Direct',
-        date: '2026-02-15',
-        hourStart: '10:00',
-        hourEnd: '12:00',
-        vehicleId: '123456',
-        comment: ''
-      });
+      patchForm({ title: 'XBOX Direct', hourEnd: '12:00' });
 
       spyOn(eventService, 'updateEvent');
       spyOn(component.close, 'emit');
@@ -390,14 +360,7 @@ describe('EventFormModalComponent', () => {
     });
 
     it('should call handleClose after successful submit', () => {
-      component.formEvent.patchValue({
-        title: 'XBOX Indirect xD',
-        date: '2026-02-15',
-        hourStart: '10:00',
-        hourEnd: '12:00',
-        vehicleId: '123456',
-        comment: ''
-      });
+      patchForm({ title: 'XBOX Indirect xD', hourEnd: '12:00' });
 
       spyOn(component, 'handleClose');
       component.onSubmit();
@@ -405,19 +368,59 @@ describe('EventFormModalComponent', () => {
       expect(component.handleClose).toHaveBeenCalled();
     });
 
+    it('should mark all controls as touched when form is invalid', () => {
+      spyOn(component.formEvent, 'markAllAsTouched');
+
+      component.onSubmit();
+
+      expect(component.formEvent.markAllAsTouched).toHaveBeenCalled();
+    });
+
+    it('should send form values to addEvent', () => {
+      fixture.componentRef.setInput('mode', 'create');
+      patchForm({ comment: 'test comment' });
+
+      const spy = spyOn(eventService, 'addEvent');
+
+      component.onSubmit();
+
+      expect(spy).toHaveBeenCalledWith(
+        jasmine.objectContaining({
+          title: validFormValues.title,
+          date: TEST_DATE,
+          vehicleId: TEST_VEHICLE,
+          comment: 'test comment'
+        })
+      );
+    });
+
+    it('should merge event data with form values when updating', () => {
+      const event = buildEventMock({ title: 'Old title', hourStart: '08:00', hourEnd: '09:00' });
+
+      fixture.componentRef.setInput('mode', 'edit');
+      fixture.componentRef.setInput('event', event);
+
+      patchForm({ title: 'New title', hourEnd: '12:00', comment: 'updated' });
+
+      const spy = spyOn(eventService, 'updateEvent');
+
+      component.onSubmit();
+
+      expect(spy).toHaveBeenCalledWith(
+        jasmine.objectContaining({
+          _id: '1',
+          title: 'New title',
+          comment: 'updated'
+        })
+      );
+    });
+
   });
 
   describe('handleClose', () => {
 
     it('should reset the form', () => {
-      component.formEvent.patchValue({
-        title: 'RetroWorld',
-        date: '2026-02-15',
-        hourStart: '10:00',
-        hourEnd: '12:00',
-        vehicleId: 'Delorean123',
-        comment: 'PS1 > N64. Y no hay mas discusión'
-      });
+      patchForm({ title: 'RetroWorld', hourEnd: '12:00', vehicleId: 'Delorean123', comment: 'PS1 > N64' });
       component.handleClose();
 
       expect(component.formEvent.get('title')?.value).toBeNull();
@@ -440,14 +443,7 @@ describe('EventFormModalComponent', () => {
   describe('Template integration', () => {
 
     it('should enable save button when form is valid', () => {
-      component.formEvent.patchValue({
-        title: 'Quedada JDM',
-        date: '2026-02-15',
-        hourStart: '17:00',
-        hourEnd: '22:00',
-        vehicleId: 'R34-123456',
-        comment: 'Wrap wraaap!'
-      });
+      patchForm({ title: 'Quedada JDM', hourStart: '17:00', hourEnd: '22:00', vehicleId: 'R34-123456', comment: 'Wrap wraaap!' });
       fixture.detectChanges();
 
       const button = fixture.nativeElement.querySelector('.event-form__button--Save');
@@ -472,6 +468,29 @@ describe('EventFormModalComponent', () => {
       form.click();
 
       expect(close).not.toHaveBeenCalled();
+    });
+
+    it('should show create title when mode is create', () => {
+      fixture.componentRef.setInput('mode', 'create');
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.textContent).toContain(component.formMsg.title.create);
+    });
+
+    it('should show edit title when mode is edit', () => {
+      fixture.componentRef.setInput('mode', 'edit');
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.textContent).toContain(component.formMsg.title.edit);
+    });
+
+    it('should show title error when title is touched and invalid', () => {
+      const title = component.formEvent.get('title');
+      title?.markAsTouched();
+      fixture.detectChanges();
+
+      const error = fixture.nativeElement.querySelector('#titleError');
+      expect(error.hidden).toBeFalse();
     });
 
   });
