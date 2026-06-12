@@ -199,6 +199,10 @@ describe('EventFormModalComponent', () => {
       expect(component.formEvent.hasError('invalidTimeRange')).toBeFalse();
     });
 
+    it('should return error if hourStart is equal to hourEnd', () => {
+
+    });
+
   });
 
   describe('timeOverlapValidator', () => {
@@ -282,6 +286,10 @@ describe('EventFormModalComponent', () => {
       });
       component.formEvent.updateValueAndValidity();
       expect(component.formEvent.hasError('timeOverlap')).toBe(false);
+    });
+
+    it('should ignore events from different vehicles', () => {
+
     });
 
   });
@@ -405,6 +413,18 @@ describe('EventFormModalComponent', () => {
       expect(component.handleClose).toHaveBeenCalled();
     });
 
+    it('should mark all controls as touched when form is invalid', () => {
+
+    });
+
+    it('should send form values to addEvent', () => {
+
+    });
+
+    it('should merge event data with form values when updating', () => {
+
+    });
+
   });
 
   describe('handleClose', () => {
@@ -472,6 +492,18 @@ describe('EventFormModalComponent', () => {
       form.click();
 
       expect(close).not.toHaveBeenCalled();
+    });
+
+    it('should show create title when mode is create', () => {
+
+    });
+
+    it('should show edit title when mode is edit', () => {
+
+    });
+
+    it('should show title error when title is touched and invalid', () => {
+
     });
 
   });
