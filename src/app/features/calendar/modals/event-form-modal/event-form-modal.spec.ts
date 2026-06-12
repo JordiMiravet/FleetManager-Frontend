@@ -414,15 +414,73 @@ describe('EventFormModalComponent', () => {
     });
 
     it('should mark all controls as touched when form is invalid', () => {
+      spyOn(component.formEvent, 'markAllAsTouched');
 
+      component.onSubmit();
+
+      expect(component.formEvent.markAllAsTouched).toHaveBeenCalled();
     });
 
     it('should send form values to addEvent', () => {
+      fixture.componentRef.setInput('mode', 'create');
 
+      component.formEvent.patchValue({
+        title: 'BBQ',
+        date: '2026-02-15',
+        hourStart: '10:00',
+        hourEnd: '17:00',
+        vehicleId: '123456',
+        comment: 'test comment'
+      });
+
+      const spy = spyOn(eventService, 'addEvent');
+
+      component.onSubmit();
+
+      expect(spy).toHaveBeenCalledWith(
+        jasmine.objectContaining({
+          title: 'BBQ',
+          date: '2026-02-15',
+          vehicleId: '123456',
+          comment: 'test comment'
+        })
+      );
     });
 
     it('should merge event data with form values when updating', () => {
+      const event = {
+        _id: '1',
+        title: 'Old title',
+        date: '2026-02-15',
+        hourStart: '08:00',
+        hourEnd: '09:00',
+        vehicleId: '123456',
+        comment: ''
+      };
 
+      fixture.componentRef.setInput('mode', 'edit');
+      fixture.componentRef.setInput('event', event);
+
+      component.formEvent.patchValue({
+        title: 'New title',
+        date: '2026-02-15',
+        hourStart: '10:00',
+        hourEnd: '12:00',
+        vehicleId: '123456',
+        comment: 'updated'
+      });
+
+      const spy = spyOn(eventService, 'updateEvent');
+
+      component.onSubmit();
+
+      expect(spy).toHaveBeenCalledWith(
+        jasmine.objectContaining({
+          _id: '1',
+          title: 'New title',
+          comment: 'updated'
+        })
+      );
     });
 
   });
