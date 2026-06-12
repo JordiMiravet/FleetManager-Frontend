@@ -200,7 +200,14 @@ describe('EventFormModalComponent', () => {
     });
 
     it('should return error if hourStart is equal to hourEnd', () => {
+      component.formEvent.patchValue({
+        hourStart: '10:00',
+        hourEnd: '10:00'
+      });
 
+      component.formEvent.updateValueAndValidity();
+
+      expect(component.formEvent.hasError('invalidTimeRange')).toBeTrue();
     });
 
   });
