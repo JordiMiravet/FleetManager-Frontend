@@ -495,15 +495,26 @@ describe('EventFormModalComponent', () => {
     });
 
     it('should show create title when mode is create', () => {
+      fixture.componentRef.setInput('mode', 'create');
+      fixture.detectChanges();
 
+      expect(fixture.nativeElement.textContent).toContain(component.formMsg.title.create);
     });
 
     it('should show edit title when mode is edit', () => {
+      fixture.componentRef.setInput('mode', 'edit');
+      fixture.detectChanges();
 
+      expect(fixture.nativeElement.textContent).toContain(component.formMsg.title.edit);
     });
 
     it('should show title error when title is touched and invalid', () => {
+      const title = component.formEvent.get('title');
+      title?.markAsTouched();
+      fixture.detectChanges();
 
+      const error = fixture.nativeElement.querySelector('#titleError');
+      expect(error.hidden).toBeFalse();
     });
 
   });
