@@ -86,15 +86,18 @@ describe('GraphicsViewComponent', () => {
 
   describe('rendering', () => {
     it('should render VehicleUsageHoursChartComponent', () => {
-
+      const chart = fixture.nativeElement.querySelector('app-vehicle-usage-hours-chart');
+      expect(chart).toBeTruthy();
     });
 
     it('should render MostUsedVehicleChartComponent', () => {
-
+      const chart = fixture.nativeElement.querySelector('app-most-used-vehicle-chart');
+      expect(chart).toBeTruthy();
     });
 
     it('should render HoursByWeekdayVehicleChartComponent', () => {
-
+      const chart = fixture.nativeElement.querySelector('app-hours-by-weekday-vehicle-chart');
+      expect(chart).toBeTruthy();
     });
   });
 
