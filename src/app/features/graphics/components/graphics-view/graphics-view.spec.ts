@@ -55,12 +55,15 @@ describe('GraphicsViewComponent', () => {
   });
 
   describe('initial state', () => {
+
     it('should initialize selectedPeriod with Month', () => {
       expect(component.selectedPeriod()).toBe(TimePeriod.Month);
     });
+
   });
 
   describe('lifecycle', () => {
+
     it('should call loadVehicles on ngAfterViewInit', () => {
       component.ngAfterViewInit();
       expect(vehicleServiceMock.loadVehicles).toHaveBeenCalled();
@@ -70,9 +73,11 @@ describe('GraphicsViewComponent', () => {
       component.ngAfterViewInit();
       expect(eventServiceMock.loadEvents).toHaveBeenCalled();
     });
+
   });
 
   describe('period changes', () => {
+
     it('should change selectedPeriod to Year', () => {
       component.changePeriod(TimePeriod.Year);
       expect(component.selectedPeriod()).toBe(TimePeriod.Year);
@@ -82,9 +87,11 @@ describe('GraphicsViewComponent', () => {
       component.changePeriod(TimePeriod.AllTime);
       expect(component.selectedPeriod()).toBe(TimePeriod.AllTime);
     });
+
   });
 
   describe('rendering', () => {
+
     it('should render VehicleUsageHoursChartComponent', () => {
       const chart = fixture.nativeElement.querySelector('app-vehicle-usage-hours-chart');
       expect(chart).toBeTruthy();
@@ -99,9 +106,11 @@ describe('GraphicsViewComponent', () => {
       const chart = fixture.nativeElement.querySelector('app-hours-by-weekday-vehicle-chart');
       expect(chart).toBeTruthy();
     });
+
   });
 
   describe('user interactions', () => {
+
     it('should update selectedPeriod when clicking This Year button', () => {
       const buttons = fixture.nativeElement.querySelectorAll('.vehicle-metrics-toolbar__period-button');
 
@@ -119,5 +128,7 @@ describe('GraphicsViewComponent', () => {
 
       expect(component.selectedPeriod()).toBe(TimePeriod.AllTime);
     });
+
   });
+
 });
