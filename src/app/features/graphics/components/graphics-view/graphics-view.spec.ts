@@ -56,7 +56,7 @@ describe('GraphicsViewComponent', () => {
 
   describe('initial state', () => {
     it('should initialize selectedPeriod with Month', () => {
-
+      expect(component.selectedPeriod()).toBe(TimePeriod.Month);
     });
   });
 
