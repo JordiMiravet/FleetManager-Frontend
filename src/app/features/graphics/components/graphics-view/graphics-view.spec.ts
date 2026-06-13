@@ -74,11 +74,13 @@ describe('GraphicsViewComponent', () => {
 
   describe('period changes', () => {
     it('should change selectedPeriod to Year', () => {
-
+      component.changePeriod(TimePeriod.Year);
+      expect(component.selectedPeriod()).toBe(TimePeriod.Year);
     });
 
     it('should change selectedPeriod to AllTime', () => {
-
+      component.changePeriod(TimePeriod.AllTime);
+      expect(component.selectedPeriod()).toBe(TimePeriod.AllTime);
     });
   });
 
