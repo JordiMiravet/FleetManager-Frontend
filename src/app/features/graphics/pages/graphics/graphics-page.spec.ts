@@ -1,8 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { Auth } from '@angular/fire/auth';
+import { By } from '@angular/platform-browser';
 
 import { GraphicsPageComponent } from './graphics-page';
+import { GraphicsViewComponent } from '../../components/graphics-view/graphics-view';
 
 export const authMock = {
   currentUser: {
@@ -19,9 +22,10 @@ describe('GraphicsPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         GraphicsPageComponent,
-        HttpClientTestingModule
       ],
       providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
         { provide: Auth, useValue: authMock },
       ]
     })
@@ -43,5 +47,14 @@ describe('GraphicsPageComponent', () => {
       expect(graphicsComponent).toBeTruthy();
     });
 
+    it('should render GraphicsViewComponent', () => {
+      const child = fixture.debugElement.query(
+        By.directive(GraphicsViewComponent)
+      );
+
+      expect(child).toBeTruthy();
+    });
+
   });
+
 });
