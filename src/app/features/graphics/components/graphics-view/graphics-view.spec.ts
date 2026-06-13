@@ -103,11 +103,21 @@ describe('GraphicsViewComponent', () => {
 
   describe('user interactions', () => {
     it('should update selectedPeriod when clicking This Year button', () => {
+      const buttons = fixture.nativeElement.querySelectorAll('.vehicle-metrics-toolbar__period-button');
 
+      buttons[1].click();
+      fixture.detectChanges();
+
+      expect(component.selectedPeriod()).toBe(TimePeriod.Year);
     });
 
     it('should update selectedPeriod when clicking All Time button', () => {
+      const buttons = fixture.nativeElement.querySelectorAll('.vehicle-metrics-toolbar__period-button');
 
+      buttons[2].click();
+      fixture.detectChanges();
+
+      expect(component.selectedPeriod()).toBe(TimePeriod.AllTime);
     });
   });
 });
