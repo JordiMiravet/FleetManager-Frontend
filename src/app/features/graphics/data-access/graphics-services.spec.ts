@@ -183,17 +183,68 @@ describe('GraphicsServices', () => {
 
   describe('getHoursByWeekdayPerVehicle', () => {
 
-    it('should return weekday names');
+    const getThisTuesday = (): string => {
+      const d = new Date(currentYear, currentDate.getMonth(), 1);
+      while (d.getDay() !== 2) d.setDate(d.getDate() + 1);
+      return `${currentYear}-${currentMonth}-${String(d.getDate()).padStart(2, '0')}`;
+    };
 
-    it('should initialize all vehicles with empty hours');
+    beforeEach(() => mockVehicles([{ _id: 'ferrari-1', name: 'Ferrari Roma' }]));
 
-    it('should accumulate hours on correct weekday');
+    it('should return weekday names', () => {
+      mockEvents([]);
 
-    it('should ignore events outside selected period');
+      const { weekdayNames } = service.getHoursByWeekdayPerVehicle(TimePeriod.Month);
 
-    it('should ignore events with missing required data');
+      expect(weekdayNames).toEqual(['monday','tuesday','wednesday','thursday','friday','saturday','sunday']);
+    });
 
-    it('should return empty hours when there are no events');
+    it('should initialize all vehicles with empty hours', () => {
+      mockEvents([]);
+
+      const { vehicles } = service.getHoursByWeekdayPerVehicle(TimePeriod.Month);
+
+      expect(vehicles[0].hours).toEqual([0,0,0,0,0,0,0]);
+    });
+
+    it('should accumulate hours on correct weekday', () => {
+      const tuesday = getThisTuesday();
+      mockEvents([
+        { _id: '1', vehicleId: 'ferrari-1', date: tuesday, hourStart: '09:00', hourEnd: '11:00' }
+      ]);
+
+      const { vehicles } = service.getHoursByWeekdayPerVehicle(TimePeriod.Month);
+
+      expect(vehicles[0].hours[1]).toBe(2);
+    });
+
+    it('should ignore events outside selected period', () => {
+      mockEvents([
+        { _id: '1', vehicleId: 'ferrari-1', date: lastYear, hourStart: '09:00', hourEnd: '11:00' }
+      ]);
+
+      const { vehicles } = service.getHoursByWeekdayPerVehicle(TimePeriod.Month);
+
+      expect(vehicles[0].hours.every((h: number) => h === 0)).toBeTrue();
+    });
+
+    it('should ignore events with missing required data', () => {
+      mockEvents([
+        { _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: null, hourEnd: null }
+      ]);
+
+      const { vehicles } = service.getHoursByWeekdayPerVehicle(TimePeriod.Month);
+
+      expect(vehicles[0].hours.every((h: number) => h === 0)).toBeTrue();
+    });
+
+    it('should return empty hours when there are no events', () => {
+      mockEvents([]);
+
+      const { vehicles } = service.getHoursByWeekdayPerVehicle(TimePeriod.Month);
+
+      expect(vehicles[0].hours).toEqual([0,0,0,0,0,0,0]);
+    });
 
   });
 
