@@ -250,17 +250,33 @@ describe('GraphicsServices', () => {
 
   describe('isInPeriod', () => {
 
-    it('should return true for all time period');
+    const thisYearOtherMonth = currentDate.getMonth() === 0
+      ? `${currentYear}-02-15`
+      : `${currentYear}-01-15`;
 
-    it('should return true when event belongs to current year');
+    it('should return true for all time period', () => {
+      expect(service['isInPeriod'](lastYear, TimePeriod.AllTime)).toBeTrue();
+    });
 
-    it('should return false when event does not belong to current year');
+    it('should return true when event belongs to current year', () => {
+      expect(service['isInPeriod'](thisMonth, TimePeriod.Year)).toBeTrue();
+    });
 
-    it('should return true when event belongs to current month and year');
+    it('should return false when event does not belong to current year', () => {
+      expect(service['isInPeriod'](lastYear, TimePeriod.Year)).toBeFalse();
+    });
 
-    it('should return false when event belongs to different month');
+    it('should return true when event belongs to current month and year', () => {
+      expect(service['isInPeriod'](thisMonth, TimePeriod.Month)).toBeTrue();
+    });
 
-    it('should return false when event belongs to different year');
+    it('should return false when event belongs to different month', () => {
+      expect(service['isInPeriod'](thisYearOtherMonth, TimePeriod.Month)).toBeFalse();
+    });
+
+    it('should return false when event belongs to different year', () => {
+      expect(service['isInPeriod'](lastYear, TimePeriod.Month)).toBeFalse();
+    });
 
   });
 
