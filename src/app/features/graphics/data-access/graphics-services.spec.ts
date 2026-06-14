@@ -4,7 +4,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { Auth } from '@angular/fire/auth';
 
 import { GraphicsServices } from './graphics-services';
-import { EventService } from '../../calendar/data-access/event-service';
+
 import { VehicleService } from '../../vehicle/data-access/vehicle-service';
 import { TimePeriod } from '../enums/time-period.enum';
 
@@ -17,7 +17,6 @@ export const authMock = {
 
 describe('GraphicsServices', () => {
   let service: GraphicsServices;
-  let eventService: EventService;
   let vehicleService: VehicleService;
 
   const currentDate = new Date();
@@ -37,7 +36,6 @@ describe('GraphicsServices', () => {
     });
 
     service = TestBed.inject(GraphicsServices);
-    eventService = TestBed.inject(EventService);
     vehicleService = TestBed.inject(VehicleService);
   });
 
@@ -61,10 +59,7 @@ describe('GraphicsServices', () => {
     beforeEach(() => mockVehicles());
 
     it('should return vehicle usage hours for current month', () => {
-      mockEvents([
-        { _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' }
-      ]);
-
+      mockEvents([{ _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' }]);
       const result = service.getVehicleUsageHours(TimePeriod.Month);
 
       expect(result.length).toBe(1);
@@ -73,10 +68,7 @@ describe('GraphicsServices', () => {
     });
 
     it('should return vehicle usage hours for current year', () => {
-      mockEvents([
-        { _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' }
-      ]);
-
+      mockEvents([{ _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' }]);
       const result = service.getVehicleUsageHours(TimePeriod.Year);
 
       expect(result.length).toBe(1);
@@ -84,10 +76,7 @@ describe('GraphicsServices', () => {
     });
 
     it('should return vehicle usage hours for all time', () => {
-      mockEvents([
-        { _id: '1', vehicleId: 'ferrari-1', date: lastYear, hourStart: '10:00', hourEnd: '12:00' }
-      ]);
-
+      mockEvents([{ _id: '1', vehicleId: 'ferrari-1', date: lastYear, hourStart: '10:00', hourEnd: '12:00' }]);
       const result = service.getVehicleUsageHours(TimePeriod.AllTime);
 
       expect(result.length).toBe(1);
@@ -95,20 +84,14 @@ describe('GraphicsServices', () => {
     });
 
     it('should ignore events without valid hours', () => {
-      mockEvents([
-        { _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: null, hourEnd: null }
-      ]);
-
+      mockEvents([{ _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: null, hourEnd: null }]);
       const result = service.getVehicleUsageHours(TimePeriod.Month);
 
       expect(result.length).toBe(0);
     });
 
     it('should ignore events from other vehicles', () => {
-      mockEvents([
-        { _id: '1', vehicleId: 'ghost-vehicle', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' }
-      ]);
-
+      mockEvents([{ _id: '1', vehicleId: 'ghost-vehicle', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' }]);
       const result = service.getVehicleUsageHours(TimePeriod.Month);
 
       expect(result.length).toBe(0);
@@ -116,7 +99,6 @@ describe('GraphicsServices', () => {
 
     it('should return empty array when no vehicle has usage', () => {
       mockEvents([]);
-
       const result = service.getVehicleUsageHours(TimePeriod.Month);
 
       expect(result).toEqual([]);
@@ -127,7 +109,6 @@ describe('GraphicsServices', () => {
         { _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' },
         { _id: '2', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '14:00', hourEnd: '16:00' }
       ]);
-
       const result = service.getVehicleUsageHours(TimePeriod.Month);
 
       expect(result[0].totalHours).toBe(4);
@@ -141,14 +122,13 @@ describe('GraphicsServices', () => {
       mockVehicles([
         { _id: 'ferrari-1', name: 'Ferrari Roma' },
         { _id: 'pagani-1', name: 'Pagani Huayra' },
-        { _id: 'lambo-1', name: 'Lamborghini Huracan' },
-        { _id: 'mclaren-1', name: 'McLaren 720s' }
+        { _id: 'mclaren-1', name: 'McLaren P1' },
+        { _id: 'porsche-1', name: 'Porsche 911 Turbo S' },
       ]);
     });
 
     it('should return empty array when there are no vehicles with usage', () => {
       mockEvents([]);
-
       const result = service.getMostUsedVehicle(TimePeriod.Month);
 
       expect(result).toEqual([]);
@@ -159,7 +139,6 @@ describe('GraphicsServices', () => {
         { _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' },
         { _id: '2', vehicleId: 'pagani-1', date: thisMonth, hourStart: '09:00', hourEnd: '15:00' }
       ]);
-
       const result = service.getMostUsedVehicle(TimePeriod.Month);
 
       expect(result[0].vehicleId).toBe('pagani-1');
@@ -170,10 +149,9 @@ describe('GraphicsServices', () => {
       mockEvents([
         { _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' },
         { _id: '2', vehicleId: 'pagani-1', date: thisMonth, hourStart: '09:00', hourEnd: '15:00' },
-        { _id: '3', vehicleId: 'lambo-1', date: thisMonth, hourStart: '09:00', hourEnd: '13:00' },
+        { _id: '3', vehicleId: 'porsche-1', date: thisMonth, hourStart: '09:00', hourEnd: '13:00' },
         { _id: '4', vehicleId: 'mclaren-1', date: thisMonth, hourStart: '09:00', hourEnd: '12:00' }
       ]);
-
       const result = service.getMostUsedVehicle(TimePeriod.Month);
 
       expect(result.length).toBe(3);
@@ -193,7 +171,6 @@ describe('GraphicsServices', () => {
 
     it('should return weekday names', () => {
       mockEvents([]);
-
       const { weekdayNames } = service.getHoursByWeekdayPerVehicle(TimePeriod.Month);
 
       expect(weekdayNames).toEqual(['monday','tuesday','wednesday','thursday','friday','saturday','sunday']);
@@ -201,7 +178,6 @@ describe('GraphicsServices', () => {
 
     it('should initialize all vehicles with empty hours', () => {
       mockEvents([]);
-
       const { vehicles } = service.getHoursByWeekdayPerVehicle(TimePeriod.Month);
 
       expect(vehicles[0].hours).toEqual([0,0,0,0,0,0,0]);
@@ -209,30 +185,21 @@ describe('GraphicsServices', () => {
 
     it('should accumulate hours on correct weekday', () => {
       const tuesday = getThisTuesday();
-      mockEvents([
-        { _id: '1', vehicleId: 'ferrari-1', date: tuesday, hourStart: '09:00', hourEnd: '11:00' }
-      ]);
-
+      mockEvents([{ _id: '1', vehicleId: 'ferrari-1', date: tuesday, hourStart: '09:00', hourEnd: '11:00' }]);
       const { vehicles } = service.getHoursByWeekdayPerVehicle(TimePeriod.Month);
 
       expect(vehicles[0].hours[1]).toBe(2);
     });
 
     it('should ignore events outside selected period', () => {
-      mockEvents([
-        { _id: '1', vehicleId: 'ferrari-1', date: lastYear, hourStart: '09:00', hourEnd: '11:00' }
-      ]);
-
+      mockEvents([{ _id: '1', vehicleId: 'ferrari-1', date: lastYear, hourStart: '09:00', hourEnd: '11:00' }]);
       const { vehicles } = service.getHoursByWeekdayPerVehicle(TimePeriod.Month);
 
       expect(vehicles[0].hours.every((h: number) => h === 0)).toBeTrue();
     });
 
     it('should ignore events with missing required data', () => {
-      mockEvents([
-        { _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: null, hourEnd: null }
-      ]);
-
+      mockEvents([{ _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: null, hourEnd: null }]);
       const { vehicles } = service.getHoursByWeekdayPerVehicle(TimePeriod.Month);
 
       expect(vehicles[0].hours.every((h: number) => h === 0)).toBeTrue();
@@ -240,7 +207,6 @@ describe('GraphicsServices', () => {
 
     it('should return empty hours when there are no events', () => {
       mockEvents([]);
-
       const { vehicles } = service.getHoursByWeekdayPerVehicle(TimePeriod.Month);
 
       expect(vehicles[0].hours).toEqual([0,0,0,0,0,0,0]);
