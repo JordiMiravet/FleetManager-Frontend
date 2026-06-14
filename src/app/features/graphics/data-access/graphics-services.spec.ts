@@ -137,11 +137,47 @@ describe('GraphicsServices', () => {
 
   describe('getMostUsedVehicle', () => {
 
-    it('should return empty array when there are no vehicles with usage');
+    beforeEach(() => {
+      mockVehicles([
+        { _id: 'ferrari-1', name: 'Ferrari Roma' },
+        { _id: 'pagani-1', name: 'Pagani Huayra' },
+        { _id: 'lambo-1', name: 'Lamborghini Huracan' },
+        { _id: 'mclaren-1', name: 'McLaren 720s' }
+      ]);
+    });
 
-    it('should return the most used vehicles sorted by total hours');
+    it('should return empty array when there are no vehicles with usage', () => {
+      mockEvents([]);
 
-    it('should return only top three vehicles');
+      const result = service.getMostUsedVehicle(TimePeriod.Month);
+
+      expect(result).toEqual([]);
+    });
+
+    it('should return the most used vehicles sorted by total hours', () => {
+      mockEvents([
+        { _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' },
+        { _id: '2', vehicleId: 'pagani-1', date: thisMonth, hourStart: '09:00', hourEnd: '15:00' }
+      ]);
+
+      const result = service.getMostUsedVehicle(TimePeriod.Month);
+
+      expect(result[0].vehicleId).toBe('pagani-1');
+      expect(result[1].vehicleId).toBe('ferrari-1');
+    });
+
+    it('should return only top three vehicles', () => {
+      mockEvents([
+        { _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' },
+        { _id: '2', vehicleId: 'pagani-1', date: thisMonth, hourStart: '09:00', hourEnd: '15:00' },
+        { _id: '3', vehicleId: 'lambo-1', date: thisMonth, hourStart: '09:00', hourEnd: '13:00' },
+        { _id: '4', vehicleId: 'mclaren-1', date: thisMonth, hourStart: '09:00', hourEnd: '12:00' }
+      ]);
+
+      const result = service.getMostUsedVehicle(TimePeriod.Month);
+
+      expect(result.length).toBe(3);
+    });
 
   });
 
