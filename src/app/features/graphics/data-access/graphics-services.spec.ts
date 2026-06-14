@@ -4,6 +4,9 @@ import { provideHttpClient } from '@angular/common/http';
 import { Auth } from '@angular/fire/auth';
 
 import { GraphicsServices } from './graphics-services';
+import { EventService } from '../../calendar/data-access/event-service';
+import { VehicleService } from '../../vehicle/data-access/vehicle-service';
+import { TimePeriod } from '../enums/time-period.enum';
 
 export const authMock = {
   currentUser: {
@@ -14,6 +17,14 @@ export const authMock = {
 
 describe('GraphicsServices', () => {
   let service: GraphicsServices;
+  let eventService: EventService;
+  let vehicleService: VehicleService;
+
+  const currentDate = new Date();
+  const currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const currentYear = currentDate.getFullYear();
+  const thisMonth = `${currentYear}-${currentMonth}-15`;
+  const lastYear = `${currentYear - 1}-${currentMonth}-15`;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -24,9 +35,22 @@ describe('GraphicsServices', () => {
         provideHttpClientTesting(),
       ]
     });
-    service = TestBed.inject(GraphicsServices);
 
+    service = TestBed.inject(GraphicsServices);
+    eventService = TestBed.inject(EventService);
+    vehicleService = TestBed.inject(VehicleService);
   });
+
+  function mockVehicles(vehicles = [
+    { _id: 'ferrari-1', name: 'Ferrari Roma' },
+    { _id: 'pagani-1', name: 'Pagani Huayra' }
+  ]) {
+    spyOn(vehicleService, 'vehicles').and.returnValue(vehicles as any);
+  }
+
+  function mockEvents(events: any[]) {
+    service['eventService']['_allEvents'].set(events);
+  }
 
   it('should be created', () => {
     expect(service).toBeTruthy();
