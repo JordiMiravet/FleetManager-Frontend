@@ -58,19 +58,80 @@ describe('GraphicsServices', () => {
 
   describe('getVehicleUsageHours', () => {
 
-    it('should return vehicle usage hours for current month');
+    beforeEach(() => mockVehicles());
 
-    it('should return vehicle usage hours for current year');
+    it('should return vehicle usage hours for current month', () => {
+      mockEvents([
+        { _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' }
+      ]);
 
-    it('should return vehicle usage hours for all time');
+      const result = service.getVehicleUsageHours(TimePeriod.Month);
 
-    it('should ignore events without valid hours');
+      expect(result.length).toBe(1);
+      expect(result[0].vehicleId).toBe('ferrari-1');
+      expect(result[0].totalHours).toBe(2);
+    });
 
-    it('should ignore events from other vehicles');
+    it('should return vehicle usage hours for current year', () => {
+      mockEvents([
+        { _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' }
+      ]);
 
-    it('should return empty array when no vehicle has usage');
+      const result = service.getVehicleUsageHours(TimePeriod.Year);
 
-    it('should accumulate hours from multiple events of same vehicle');
+      expect(result.length).toBe(1);
+      expect(result[0].totalHours).toBe(2);
+    });
+
+    it('should return vehicle usage hours for all time', () => {
+      mockEvents([
+        { _id: '1', vehicleId: 'ferrari-1', date: lastYear, hourStart: '10:00', hourEnd: '12:00' }
+      ]);
+
+      const result = service.getVehicleUsageHours(TimePeriod.AllTime);
+
+      expect(result.length).toBe(1);
+      expect(result[0].totalHours).toBe(2);
+    });
+
+    it('should ignore events without valid hours', () => {
+      mockEvents([
+        { _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: null, hourEnd: null }
+      ]);
+
+      const result = service.getVehicleUsageHours(TimePeriod.Month);
+
+      expect(result.length).toBe(0);
+    });
+
+    it('should ignore events from other vehicles', () => {
+      mockEvents([
+        { _id: '1', vehicleId: 'ghost-vehicle', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' }
+      ]);
+
+      const result = service.getVehicleUsageHours(TimePeriod.Month);
+
+      expect(result.length).toBe(0);
+    });
+
+    it('should return empty array when no vehicle has usage', () => {
+      mockEvents([]);
+
+      const result = service.getVehicleUsageHours(TimePeriod.Month);
+
+      expect(result).toEqual([]);
+    });
+
+    it('should accumulate hours from multiple events of same vehicle', () => {
+      mockEvents([
+        { _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' },
+        { _id: '2', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '14:00', hourEnd: '16:00' }
+      ]);
+
+      const result = service.getVehicleUsageHours(TimePeriod.Month);
+
+      expect(result[0].totalHours).toBe(4);
+    });
 
   });
 
