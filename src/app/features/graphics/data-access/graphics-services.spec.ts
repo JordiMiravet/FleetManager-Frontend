@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 import { Auth } from '@angular/fire/auth';
 
 import { GraphicsServices } from './graphics-services';
@@ -16,9 +17,11 @@ describe('GraphicsServices', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [],
       providers: [
         { provide: Auth, useValue: authMock },
+        provideHttpClient(),
+        provideHttpClientTesting(),
       ]
     });
     service = TestBed.inject(GraphicsServices);
