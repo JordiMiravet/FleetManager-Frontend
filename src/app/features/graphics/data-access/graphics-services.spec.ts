@@ -282,13 +282,21 @@ describe('GraphicsServices', () => {
 
   describe('calculateEventHours', () => {
 
-    it('should calculate whole hours correctly');
+    it('should calculate whole hours correctly', () => {
+      expect(service['calculateEventHours']('09:00', '11:00')).toBe(2);
+    });
 
-    it('should calculate decimal hours correctly');
+    it('should calculate decimal hours correctly', () => {
+      expect(service['calculateEventHours']('09:00', '10:30')).toBe(1.5);
+    });
 
-    it('should return zero when start and end hours are equal');
+    it('should return zero when start and end hours are equal', () => {
+      expect(service['calculateEventHours']('10:00', '10:00')).toBe(0);
+    });
 
-    it('should return negative value when end time is before start time');
+    it('should return negative value when end time is before start time', () => {
+      expect(service['calculateEventHours']('12:00', '10:00')).toBe(-2);
+    });
 
   });
 
