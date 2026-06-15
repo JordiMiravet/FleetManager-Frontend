@@ -45,9 +45,16 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
 
   describe('period input', () => {
 
-    it('should default to TimePeriod.Month');
+    it('should default to TimePeriod.Month', () => {
+      expect(component.period()).toBe(TimePeriod.Month);
+    });
 
-    it('should accept a different period value');
+    it('should accept a different period value', () => {
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
+
+      expect(component.period()).toBe(TimePeriod.Year);
+    });
 
   });
 
