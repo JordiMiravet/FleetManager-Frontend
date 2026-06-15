@@ -19,7 +19,6 @@ describe('VehicleUsageHoursChartComponent', () => {
   let component: VehicleUsageHoursChartComponent;
   let fixture: ComponentFixture<VehicleUsageHoursChartComponent>;
   let graphicsService: GraphicsServices;
-  let vehicleService: VehicleService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -35,7 +34,6 @@ describe('VehicleUsageHoursChartComponent', () => {
     fixture = TestBed.createComponent(VehicleUsageHoursChartComponent);
     component = fixture.componentInstance;
     graphicsService = TestBed.inject(GraphicsServices);
-    vehicleService = TestBed.inject(VehicleService);
     fixture.detectChanges();
   });
 
