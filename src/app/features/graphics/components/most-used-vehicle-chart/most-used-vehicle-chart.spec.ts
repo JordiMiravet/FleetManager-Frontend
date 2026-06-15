@@ -60,13 +60,55 @@ describe('MostUsedVehicleChartComponent', () => {
 
   describe('chart creation', () => {
 
-    it('should call getMostUsedVehicle when canvas is available');
+    it('should call getMostUsedVehicle when canvas is available', () => {
+      spyOn(graphicsService, 'getMostUsedVehicle').and.returnValue([
+        { 
+          vehicleId: 'ferrari-1', 
+          vehicleName: 'Ferrari Roma', 
+          totalHours: 4 
+        }
+      ]);
 
-    it('should not create chart if data is empty');
+      component['mostUsedVehicle'] = { nativeElement: document.createElement('canvas') } as any;
+      component['createMostUsedVehicleChart']();
 
-    it('should destroy previous chart before creating a new one');
+      expect(graphicsService.getMostUsedVehicle).toHaveBeenCalledWith(TimePeriod.Month);
+    });
 
-    it('should not create chart if canvas is not available');
+    it('should not create chart if data is empty', () => {
+      spyOn(graphicsService, 'getMostUsedVehicle').and.returnValue([]);
+
+      component['mostUsedVehicle'] = { nativeElement: document.createElement('canvas') } as any;
+      component['createMostUsedVehicleChart']();
+
+      expect(component['chart']).toBeFalsy();
+    });
+
+    it('should destroy previous chart before creating a new one', () => {
+      spyOn(graphicsService, 'getMostUsedVehicle').and.returnValue([
+        { 
+          vehicleId: 'ferrari-1', 
+          vehicleName: 'Ferrari Roma', 
+          totalHours: 4 
+        }
+      ]);
+
+      const destroySpy = jasmine.createSpy('destroy');
+      component['chart'] = { destroy: destroySpy } as any;
+      component['mostUsedVehicle'] = { nativeElement: document.createElement('canvas') } as any;
+      component['createMostUsedVehicleChart']();
+
+      expect(destroySpy).toHaveBeenCalled();
+    });
+
+    it('should not create chart if canvas is not available', () => {
+      const spy = spyOn(graphicsService, 'getMostUsedVehicle');
+
+      component['mostUsedVehicle'] = null as any;
+      component['createMostUsedVehicleChart']();
+
+      expect(spy).not.toHaveBeenCalled();
+    });
 
   });
 
