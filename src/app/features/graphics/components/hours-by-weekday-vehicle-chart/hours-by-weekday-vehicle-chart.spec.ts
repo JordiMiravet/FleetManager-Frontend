@@ -60,11 +60,43 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
 
   describe('chart creation', () => {
 
-    it('should call getHoursByWeekdayPerVehicle on init');
+    it('should call getHoursByWeekdayPerVehicle on init', () => {
+      const spy = spyOn(graphicsService, 'getHoursByWeekdayPerVehicle').and.returnValue({
+        weekdayNames: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'],
+        vehicles: []
+      });
 
-    it('should destroy previous chart before creating a new one');
+      fixture.componentRef.setInput('period', TimePeriod.Month);
+      fixture.detectChanges();
 
-    it('should not create chart if canvas is not available');
+      expect(spy).toHaveBeenCalledWith(TimePeriod.Month);
+    });
+
+    it('should destroy previous chart before creating a new one', () => {
+      spyOn(graphicsService, 'getHoursByWeekdayPerVehicle').and.returnValue({
+        weekdayNames: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'],
+        vehicles: [{ id: 'ferrari-1', name: 'Ferrari Roma', hours: [0,0,0,0,0,0,0] }]
+      });
+
+      fixture.detectChanges();
+
+      const destroySpy = spyOn(component['chart'], 'destroy');
+
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
+
+      expect(destroySpy).toHaveBeenCalled();
+    });
+
+    it('should not create chart if canvas is not available', () => {
+      const spy = spyOn(graphicsService, 'getHoursByWeekdayPerVehicle');
+
+      component['hoursByWeekday'] = null as any;
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
+
+      expect(spy).not.toHaveBeenCalled();
+    });
 
   });
 
