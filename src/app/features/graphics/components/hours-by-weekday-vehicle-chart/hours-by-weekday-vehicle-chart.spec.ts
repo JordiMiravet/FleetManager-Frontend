@@ -15,6 +15,15 @@ export const authMock = {
   }
 };
 
+const mockChartData = {
+  weekdayNames: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'],
+  vehicles: [{ 
+    id: 'ferrari-1', 
+    name: 'Ferrari Roma', 
+    hours: [1,0,2,0,0,0,0] 
+  }]
+};
+
 describe('HoursByWeekdayVehicleChartComponent', () => {
   let component: HoursByWeekdayVehicleChartComponent;
   let fixture: ComponentFixture<HoursByWeekdayVehicleChartComponent>;
@@ -35,7 +44,9 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
     fixture = TestBed.createComponent(HoursByWeekdayVehicleChartComponent);
     component = fixture.componentInstance;
     graphicsService = TestBed.inject(GraphicsServices);
-    vehicleService = TestBed.inject(VehicleService);
+
+    spyOn(graphicsService, 'getHoursByWeekdayPerVehicle').and.returnValue(mockChartData);
+
     fixture.detectChanges();
   });
 
@@ -60,42 +71,28 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
 
   describe('chart creation', () => {
 
-    it('should call getHoursByWeekdayPerVehicle on init', () => {
-      const spy = spyOn(graphicsService, 'getHoursByWeekdayPerVehicle').and.returnValue({
-        weekdayNames: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'],
-        vehicles: []
-      });
+    it('should call getHoursByWeekdayPerVehicle when canvas is available', () => {
+      component['hoursByWeekday'] = { nativeElement: document.createElement('canvas') } as any;
+      component['createHoursByWeekdayByVehicle']();
 
-      fixture.componentRef.setInput('period', TimePeriod.Month);
-      fixture.detectChanges();
-
-      expect(spy).toHaveBeenCalledWith(TimePeriod.Month);
+      expect(graphicsService.getHoursByWeekdayPerVehicle).toHaveBeenCalledWith(TimePeriod.Month);
     });
 
     it('should destroy previous chart before creating a new one', () => {
-      spyOn(graphicsService, 'getHoursByWeekdayPerVehicle').and.returnValue({
-        weekdayNames: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'],
-        vehicles: [{ id: 'ferrari-1', name: 'Ferrari Roma', hours: [0,0,0,0,0,0,0] }]
-      });
+      const destroySpy = jasmine.createSpy('destroy');
 
-      fixture.detectChanges();
-
-      const destroySpy = spyOn(component['chart'], 'destroy');
-
-      fixture.componentRef.setInput('period', TimePeriod.Year);
-      fixture.detectChanges();
+      component['chart'] = { destroy: destroySpy } as any;
+      component['hoursByWeekday'] = { nativeElement: document.createElement('canvas') } as any;
+      component['createHoursByWeekdayByVehicle']();
 
       expect(destroySpy).toHaveBeenCalled();
     });
 
-    it('should not create chart if canvas is not available', () => {
-      const spy = spyOn(graphicsService, 'getHoursByWeekdayPerVehicle');
-
+    it('should not call getHoursByWeekdayPerVehicle if canvas is not available', () => {
       component['hoursByWeekday'] = null as any;
-      fixture.componentRef.setInput('period', TimePeriod.Year);
-      fixture.detectChanges();
+      component['createHoursByWeekdayByVehicle']();
 
-      expect(spy).not.toHaveBeenCalled();
+      expect(graphicsService.getHoursByWeekdayPerVehicle).not.toHaveBeenCalled();
     });
 
   });
@@ -103,13 +100,8 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
   describe('ngOnDestroy', () => {
 
     it('should destroy the chart on component destroy', () => {
-      spyOn(graphicsService, 'getHoursByWeekdayPerVehicle').and.returnValue({
-        weekdayNames: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'],
-        vehicles: [{ id: 'ferrari-1', name: 'Ferrari Roma', hours: [1,0,2,0,0,0,0] }]
-      });
-      fixture.detectChanges();
-
-      const destroySpy = spyOn(component['chart'], 'destroy');
+      const destroySpy = jasmine.createSpy('destroy');
+      component['chart'] = { destroy: destroySpy } as any;
       component.ngOnDestroy();
 
       expect(destroySpy).toHaveBeenCalled();

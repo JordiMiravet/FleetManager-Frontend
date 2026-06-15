@@ -42,6 +42,8 @@ export class HoursByWeekdayVehicleChartComponent implements OnDestroy {
   }
 
   private createHoursByWeekdayByVehicle(): void {
+
+    if (!this.hoursByWeekday) return;
   
     const data = this.graphicsService.getHoursByWeekdayPerVehicle(this.period());
     if (!data) return;
