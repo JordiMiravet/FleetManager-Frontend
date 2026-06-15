@@ -43,6 +43,8 @@ export class VehicleUsageHoursChartComponent implements OnDestroy {
   
   private createVehicleUsageHours(): void {
 
+    if (!this.vehicleUsageHours) return;
+    
     const data = this.graphicsService.getVehicleUsageHours(this.period());
     if (!data.length) return;
 
