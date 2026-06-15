@@ -125,13 +125,31 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
 
   describe('template', () => {
 
-    it('should render the canvas element');
+    it('should render the canvas element', () => {
+      const canvas = fixture.nativeElement.querySelector('canvas');
 
-    it('should have role="img" on the figure');
+      expect(canvas).toBeTruthy();
+    });
 
-    it('should have aria-labelledby pointing to the title');
+    it('should have role="img" on the figure', () => {
+      const figure = fixture.nativeElement.querySelector('figure');
 
-    it('should have aria-describedby pointing to the description');
+      expect(figure.getAttribute('role')).toBe('img');
+    });
+
+    it('should have aria-labelledby pointing to the title', () => {
+      const figure = fixture.nativeElement.querySelector('figure');
+      const title = fixture.nativeElement.querySelector('#hours-by-weekday-title');
+
+      expect(figure.getAttribute('aria-labelledby')).toBe(title.getAttribute('id'));
+    });
+
+    it('should have aria-describedby pointing to the description', () => {
+      const figure = fixture.nativeElement.querySelector('figure');
+      const desc = fixture.nativeElement.querySelector('#hours-by-weekday-desc');
+
+      expect(figure.getAttribute('aria-describedby')).toBe(desc.getAttribute('id'));
+    });
 
   });
 
