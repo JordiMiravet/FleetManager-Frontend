@@ -60,13 +60,56 @@ describe('VehicleUsageHoursChartComponent', () => {
 
   describe('chart creation', () => {
 
-    it('should call getVehicleUsageHours when canvas is available');
+    it('should call getVehicleUsageHours when canvas is available', () => {
+      spyOn(graphicsService, 'getVehicleUsageHours').and.returnValue([
+        { 
+          vehicleId: 'ferrari-1', 
+          vehicleName: 'Ferrari Roma', 
+          totalHours: 4 
+        }
+      ]);
 
-    it('should not create chart if data is empty');
+      component['vehicleUsageHours'] = { nativeElement: document.createElement('canvas') } as any;
+      component['createVehicleUsageHours']();
 
-    it('should destroy previous chart before creating a new one');
+      expect(graphicsService.getVehicleUsageHours).toHaveBeenCalledWith(TimePeriod.Month);
+    });
 
-    it('should not create chart if canvas is not available');
+    it('should not create chart if data is empty', () => {
+      spyOn(graphicsService, 'getVehicleUsageHours').and.returnValue([]);
+
+      component['vehicleUsageHours'] = { nativeElement: document.createElement('canvas') } as any;
+      component['createVehicleUsageHours']();
+
+      expect(component['chart']).toBeFalsy();
+    });
+
+    it('should destroy previous chart before creating a new one', () => {
+      spyOn(graphicsService, 'getVehicleUsageHours').and.returnValue([
+        { 
+          vehicleId: 'ferrari-1', 
+          vehicleName: 'Ferrari Roma', 
+          totalHours: 4 
+        }
+      ]);
+
+      const destroySpy = jasmine.createSpy('destroy');
+
+      component['chart'] = { destroy: destroySpy } as any;
+      component['vehicleUsageHours'] = { nativeElement: document.createElement('canvas') } as any;
+      component['createVehicleUsageHours']();
+
+      expect(destroySpy).toHaveBeenCalled();
+    });
+
+    it('should not create chart if canvas is not available', () => {
+      const spy = spyOn(graphicsService, 'getVehicleUsageHours');
+
+      component['vehicleUsageHours'] = null as any;
+      component['createVehicleUsageHours']();
+
+      expect(spy).not.toHaveBeenCalled();
+    });
 
   });
 
