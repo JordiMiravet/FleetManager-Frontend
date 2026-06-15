@@ -43,6 +43,8 @@ export class MostUsedVehicleChartComponent implements OnDestroy {
  
   private createMostUsedVehicleChart(): void {
 
+    if (!this.mostUsedVehicle) return;
+
     const data = this.graphicsService.getMostUsedVehicle(this.period());
     if(!data.length) return;
 
