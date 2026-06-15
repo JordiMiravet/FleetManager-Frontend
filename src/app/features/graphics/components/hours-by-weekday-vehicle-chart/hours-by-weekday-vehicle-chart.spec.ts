@@ -102,9 +102,24 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
 
   describe('ngOnDestroy', () => {
 
-    it('should destroy the chart on component destroy');
+    it('should destroy the chart on component destroy', () => {
+      spyOn(graphicsService, 'getHoursByWeekdayPerVehicle').and.returnValue({
+        weekdayNames: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'],
+        vehicles: [{ id: 'ferrari-1', name: 'Ferrari Roma', hours: [1,0,2,0,0,0,0] }]
+      });
+      fixture.detectChanges();
 
-    it('should not throw if chart was never created');
+      const destroySpy = spyOn(component['chart'], 'destroy');
+      component.ngOnDestroy();
+
+      expect(destroySpy).toHaveBeenCalled();
+    });
+
+    it('should not throw if chart was never created', () => {
+      component['chart'] = undefined as any;
+
+      expect(() => component.ngOnDestroy()).not.toThrow();
+    });
 
   });
 
