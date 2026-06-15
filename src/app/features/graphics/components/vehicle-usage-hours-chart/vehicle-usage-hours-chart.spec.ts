@@ -115,9 +115,19 @@ describe('VehicleUsageHoursChartComponent', () => {
 
   describe('ngOnDestroy', () => {
 
-    it('should destroy the chart on component destroy');
+    it('should destroy the chart on component destroy', () => {
+      const destroySpy = jasmine.createSpy('destroy');
+      component['chart'] = { destroy: destroySpy } as any;
+      component.ngOnDestroy();
 
-    it('should not throw if chart was never created');
+      expect(destroySpy).toHaveBeenCalled();
+    });
+
+    it('should not throw if chart was never created', () => {
+      component['chart'] = undefined as any;
+
+      expect(() => component.ngOnDestroy()).not.toThrow();
+    });
 
   });
 
