@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { Auth } from '@angular/fire/auth';
 
 import { MapPageComponent } from './map-page';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 export const authMock = {
   currentUser: {
@@ -19,10 +20,11 @@ describe('MapPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         MapPageComponent, 
-        HttpClientModule
       ],
       providers: [
         { provide: Auth, useValue: authMock },
+        provideHttpClient(),
+        provideHttpClientTesting(),
       ]
     }).compileComponents();
 
