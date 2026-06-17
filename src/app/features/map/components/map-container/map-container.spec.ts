@@ -170,7 +170,7 @@ describe('MapContainerComponent', () => {
       vehicleServiceMock.addVehicles.calls.reset();
       vehicleServiceMock.updateVehicle.calls.reset();
 
-      await component.saveVehicle(vehicle as VehicleInterface);
+      await component.saveVehicle(vehicle);
 
       expect(vehicleServiceMock.addVehicles).toHaveBeenCalledOnceWith(vehicle);
       expect(vehicleServiceMock.updateVehicle).not.toHaveBeenCalled()
@@ -203,7 +203,7 @@ describe('MapContainerComponent', () => {
       vehicleServiceMock.addVehicles.calls.reset();
       vehicleServiceMock.updateVehicle.calls.reset();
 
-      await component.saveVehicle(vehicle as VehicleInterface);
+      await component.saveVehicle(vehicle);
 
       expect(vehicleServiceMock.addVehicles).not.toHaveBeenCalled();
       expect(vehicleServiceMock.updateVehicle).toHaveBeenCalledOnceWith(selectedVehicle, vehicle);
@@ -227,7 +227,7 @@ describe('MapContainerComponent', () => {
       vehicleServiceMock.addVehicles.calls.reset();
       vehicleServiceMock.updateVehicle.calls.reset();
 
-      await component.saveVehicle(vehicle as VehicleInterface);
+      await component.saveVehicle(vehicle);
 
       expect(vehicleServiceMock.updateVehicle).not.toHaveBeenCalled();
       expect(vehicleServiceMock.addVehicles).not.toHaveBeenCalled();
@@ -248,7 +248,7 @@ describe('MapContainerComponent', () => {
       VehicleModalServiceMock.formMode.set('create');
       VehicleModalServiceMock.close.calls.reset();
 
-      await component.saveVehicle(vehicle as VehicleInterface);
+      await component.saveVehicle(vehicle);
 
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
     });
