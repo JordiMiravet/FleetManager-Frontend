@@ -336,4 +336,18 @@ describe('MapContainerComponent', () => {
 
   });
 
+  describe('isModalOpen computed', () => {
+
+    it('should return true when modal state is VehicleForm');
+
+    it('should return false when modal state is Closed');
+
+  });
+
+  describe('VehicleModalState exposure', () => {
+
+    it('should expose VehicleModalState enum as public property');
+
+  });
+
 });
