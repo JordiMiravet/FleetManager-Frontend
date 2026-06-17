@@ -101,11 +101,11 @@ describe('MapContainerComponent', () => {
   describe('Initial state', () => {
 
     it('should expose vehicle list from VehicleService', () => {
-      expect(component.vehicleList).toEqual(vehicleServiceMock.vehicles)
+      expect(component.vehicleList).toEqual(vehicleServiceMock.vehicles);
     });
 
     it('should load vehicles on init', () => {
-      expect(vehicleServiceMock.loadVehicles).toHaveBeenCalled()
+      expect(vehicleServiceMock.loadVehicles).toHaveBeenCalled();
     });
 
   });
@@ -207,11 +207,11 @@ describe('MapContainerComponent', () => {
       fixture.detectChanges();
 
       const mapViewComponent = fixture.nativeElement.querySelector('app-map-view');
-      expect(mapViewComponent).toBeTruthy()
+      expect(mapViewComponent).toBeTruthy();
     });
 
     it('should render empty state when vehicle list is empty', () => {
-      vehicleServiceMock.vehicles.set([])
+      vehicleServiceMock.vehicles.set([]);
       fixture.detectChanges();
 
       expect(vehicleServiceMock.vehicles().length).toBe(0);
