@@ -356,7 +356,9 @@ describe('MapContainerComponent', () => {
 
   describe('VehicleModalState exposure', () => {
 
-    it('should expose VehicleModalState enum as public property');
+    it('should expose VehicleModalState enum as public property', () => {
+      expect(component.VehicleModalState).toBe(VehicleModalState);
+    });
 
   });
 
