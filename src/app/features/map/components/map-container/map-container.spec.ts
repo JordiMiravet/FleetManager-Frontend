@@ -1,13 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
+import { By } from '@angular/platform-browser';
 
 import { MapContainerComponent } from './map-container';
+
 import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { VehicleModalService } from '../../../vehicle/state/vehicle-modal-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 import { VehicleModalState } from '../../../vehicle/enums/vehicle-modal-state.enum';
+import { VehicleFormModalComponent } from '../../../vehicle/modals/vehicle-form-modal/vehicle-form-modal';
 
 const vehicleServiceMock = {
   vehicles: signal<VehicleInterface[]>([]),
@@ -304,20 +307,22 @@ describe('MapContainerComponent', () => {
       VehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
       fixture.detectChanges();
 
-      spyOn(component, 'saveVehicle');
+      const spy = spyOn(component, 'saveVehicle');
 
       const vehicleData = {
         name: 'Mercedes GLC Coupe',
         model: 'GLC Coupe',
         plate: '3447VHZ',
-        location: { 
-          lat: 41.486394600830806, 
-          lng: 2.3118222053234576 
+        location: {
+          lat: 41.486394600830806,
+          lng: 2.3118222053234576
         },
       };
-      component.saveVehicle(vehicleData);
 
-      expect(component.saveVehicle).toHaveBeenCalledWith(vehicleData);
+      const modal = fixture.debugElement.query(By.directive(VehicleFormModalComponent));
+      modal.triggerEventHandler('submit', vehicleData);
+
+      expect(spy).toHaveBeenCalledWith(vehicleData);
     });
 
     it('should close modal when form modal emits cancel', () => {
