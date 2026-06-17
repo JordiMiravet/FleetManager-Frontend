@@ -338,9 +338,19 @@ describe('MapContainerComponent', () => {
 
   describe('isModalOpen computed', () => {
 
-    it('should return true when modal state is VehicleForm');
+    it('should return true when modal state is VehicleForm', () => {
+      VehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
+      fixture.detectChanges();
 
-    it('should return false when modal state is Closed');
+      expect(component.isModalOpen()).toBeTrue();
+    });
+
+    it('should return false when modal state is Closed', () => {
+      VehicleModalServiceMock.activeModal.set(VehicleModalState.Closed);
+      fixture.detectChanges();
+
+      expect(component.isModalOpen()).toBeFalse();
+    });
 
   });
 
