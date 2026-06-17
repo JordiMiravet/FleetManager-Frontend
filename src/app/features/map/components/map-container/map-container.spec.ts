@@ -1,13 +1,42 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
+import { By } from '@angular/platform-browser';
 
 import { MapContainerComponent } from './map-container';
+
 import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { VehicleModalService } from '../../../vehicle/state/vehicle-modal-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 import { VehicleModalState } from '../../../vehicle/enums/vehicle-modal-state.enum';
+import { VehicleFormModalComponent } from '../../../vehicle/modals/vehicle-form-modal/vehicle-form-modal';
+
+const vehicleMock: VehicleInterface = {
+  name: 'Mercedes GLC Coupe',
+  model: 'GLC Coupe',
+  plate: '3447VHZ',
+  location: {
+    lat: 41.486394600830806,
+    lng: 2.3118222053234576,
+  },
+};
+
+const vehicleWithoutLocation = {
+  name: 'Mercedes GLC Coupe',
+  model: 'GLC Coupe',
+  plate: '3447VHZ',
+};
+
+const selectedVehicleMock: VehicleInterface = {
+  name: 'Mercedes GLC Coupe',
+  model: 'GLC Coupe',
+  plate: '0000AAA',
+  location: {
+    lat: 41.486394600830806,
+    lng: 2.3118222053234576,
+  },
+};
 
 const vehicleServiceMock = {
   vehicles: signal<VehicleInterface[]>([]),
@@ -39,7 +68,7 @@ describe('MapContainerComponent', () => {
     VehicleModalServiceMock.openCreate.calls.reset();
     VehicleModalServiceMock.close.calls.reset();
     geolocationServiceMock.getCurrentLocation.calls.reset();
-    
+
     VehicleModalServiceMock.activeModal.set(VehicleModalState.Closed);
     VehicleModalServiceMock.formMode.set('create');
     VehicleModalServiceMock.selectedVehicle.set(null);
@@ -72,11 +101,11 @@ describe('MapContainerComponent', () => {
   describe('Initial state', () => {
 
     it('should expose vehicle list from VehicleService', () => {
-      expect(component.vehicleList).toEqual(vehicleServiceMock.vehicles)
+      expect(component.vehicleList).toEqual(vehicleServiceMock.vehicles);
     });
 
     it('should load vehicles on init', () => {
-      expect(vehicleServiceMock.loadVehicles).toHaveBeenCalled()
+      expect(vehicleServiceMock.loadVehicles).toHaveBeenCalled();
     });
 
   });
@@ -84,40 +113,24 @@ describe('MapContainerComponent', () => {
   describe('Save vehicle', () => {
 
     it('should keep provided location when vehicle already has location', async () => {
-      const vehicle = {
-        name: 'Mercedes GLC Coupe',
-        model: 'GLC Coupe',
-        plate: '3447VHZ',
-        location: {
-          lat: 41.486394600830806,
-          lng: 2.3118222053234576,
-        },
-      };
-
       VehicleModalServiceMock.formMode.set('create');
       geolocationServiceMock.getCurrentLocation.calls.reset();
       vehicleServiceMock.addVehicles.calls.reset();
 
-      await component.saveVehicle(vehicle);
+      await component.saveVehicle(vehicleMock);
 
       expect(geolocationServiceMock.getCurrentLocation).not.toHaveBeenCalled();
-      expect(vehicleServiceMock.addVehicles).toHaveBeenCalledOnceWith(vehicle);
+      expect(vehicleServiceMock.addVehicles).toHaveBeenCalledOnceWith(vehicleMock);
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
     });
 
     it('should request geolocation when vehicle has no location', async () => {
-      const vehicle = {
-        name: 'Mercedes GLC Coupe',
-        model: 'GLC Coupe',
-        plate: '3447VHZ',
-      };
-
       VehicleModalServiceMock.formMode.set('create');
 
       geolocationServiceMock.getCurrentLocation.and.resolveTo([41.4, 2.1]);
       vehicleServiceMock.addVehicles.calls.reset();
 
-      await component.saveVehicle(vehicle as any);
+      await component.saveVehicle(vehicleWithoutLocation as any);
 
       expect(geolocationServiceMock.getCurrentLocation).toHaveBeenCalled();
       expect(vehicleServiceMock.addVehicles).toHaveBeenCalled();
@@ -129,22 +142,13 @@ describe('MapContainerComponent', () => {
     });
 
     it('should use fallback location when geolocation fails', async () => {
-      const vehicle = {
-        name: 'Mercedes GLC Coupe',
-        model: 'GLC Coupe',
-        plate: '3447VHZ',
-      };
-
       VehicleModalServiceMock.formMode.set('create');
       geolocationServiceMock.getCurrentLocation.and.returnValue(
         Promise.reject(new Error('geolocation failed'))
       );
       vehicleServiceMock.addVehicles.calls.reset();
 
-      await component.saveVehicle(vehicle as any);
-
-      expect(geolocationServiceMock.getCurrentLocation).toHaveBeenCalled();
-      expect(vehicleServiceMock.addVehicles).toHaveBeenCalled();
+      await component.saveVehicle(vehicleWithoutLocation as any);
 
       const addedVehicle = vehicleServiceMock.addVehicles.calls.mostRecent().args[0];
 
@@ -153,78 +157,32 @@ describe('MapContainerComponent', () => {
     });
 
     it('should add vehicle when modal mode is create', async () => {
-      const vehicle = {
-        name: 'Mercedes GLC Coupe',
-        model: 'GLC Coupe',
-        plate: '3447VHZ',
-        location: {
-          lat: 41.486394600830806,
-          lng: 2.3118222053234576,
-        },
-      };
-
       VehicleModalServiceMock.formMode.set('create');
       vehicleServiceMock.addVehicles.calls.reset();
       vehicleServiceMock.updateVehicle.calls.reset();
 
-      await component.saveVehicle(vehicle as VehicleInterface);
+      await component.saveVehicle(vehicleMock);
 
-      expect(vehicleServiceMock.addVehicles).toHaveBeenCalledOnceWith(vehicle);
-      expect(vehicleServiceMock.updateVehicle).not.toHaveBeenCalled()
+      expect(vehicleServiceMock.addVehicles).toHaveBeenCalledOnceWith(vehicleMock);
+      expect(vehicleServiceMock.updateVehicle).not.toHaveBeenCalled();
     });
 
     it('should update vehicle when modal mode is edit and selected vehicle exists', async () => {
-      const vehicle = {
-        name: 'Mercedes GLC Coupe',
-        model: 'GLC Coupe',
-        plate: '3447VHZ',
-        location: {
-          lat: 41.486394600830806,
-          lng: 2.3118222053234576,
-        },
-      };
-
-      const selectedVehicle = {
-        name: 'Mercedes GLC Coupe',
-        model: 'GLC Coupe',
-        plate: '0000AAA',
-        location: {
-          lat: 41.486394600830806,
-          lng: 2.3118222053234576,
-        },
-      };
-
       VehicleModalServiceMock.formMode.set('edit');
-      VehicleModalServiceMock.selectedVehicle.set(selectedVehicle);
+      VehicleModalServiceMock.selectedVehicle.set(selectedVehicleMock);
 
-      vehicleServiceMock.addVehicles.calls.reset();
-      vehicleServiceMock.updateVehicle.calls.reset();
-
-      await component.saveVehicle(vehicle as VehicleInterface);
+      await component.saveVehicle(vehicleMock);
 
       expect(vehicleServiceMock.addVehicles).not.toHaveBeenCalled();
-      expect(vehicleServiceMock.updateVehicle).toHaveBeenCalledOnceWith(selectedVehicle, vehicle);
+      expect(vehicleServiceMock.updateVehicle).toHaveBeenCalledOnceWith(selectedVehicleMock, vehicleMock);
     });
 
 
     it('should not update vehicle when modal mode is edit but no selected vehicle', async () => {
-      const vehicle = {
-        name: 'Mercedes GLC Coupe',
-        model: 'GLC Coupe',
-        plate: '3447VHZ',
-        location: {
-          lat: 41.486394600830806,
-          lng: 2.3118222053234576,
-        },
-      };
-
       VehicleModalServiceMock.formMode.set('edit');
       VehicleModalServiceMock.selectedVehicle.set(null);
 
-      vehicleServiceMock.addVehicles.calls.reset();
-      vehicleServiceMock.updateVehicle.calls.reset();
-
-      await component.saveVehicle(vehicle as VehicleInterface);
+      await component.saveVehicle(vehicleMock);
 
       expect(vehicleServiceMock.updateVehicle).not.toHaveBeenCalled();
       expect(vehicleServiceMock.addVehicles).not.toHaveBeenCalled();
@@ -232,20 +190,10 @@ describe('MapContainerComponent', () => {
     });
 
     it('should close modal after saving vehicle', async () => {
-      const vehicle = {
-        name: 'Mercedes GLC Coupe',
-        model: 'GLC Coupe',
-        plate: '3447VHZ',
-        location: {
-          lat: 41.486394600830806,
-          lng: 2.3118222053234576,
-        },
-      };
-
       VehicleModalServiceMock.formMode.set('create');
       VehicleModalServiceMock.close.calls.reset();
 
-      await component.saveVehicle(vehicle as VehicleInterface);
+      await component.saveVehicle(vehicleMock);
 
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
     });
@@ -255,25 +203,15 @@ describe('MapContainerComponent', () => {
   describe('Template rendering', () => {
 
     it('should render map view when vehicle list is not empty', () => {
-      const vehicle = {
-        name: 'Mercedes GLC Coupe',
-        model: 'GLC Coupe',
-        plate: '3447VHZ',
-        location: {
-          lat: 41.486394600830806,
-          lng: 2.3118222053234576,
-        },
-      };
-
-      vehicleServiceMock.vehicles.set([vehicle]);
+      vehicleServiceMock.vehicles.set([vehicleMock]);
       fixture.detectChanges();
 
       const mapViewComponent = fixture.nativeElement.querySelector('app-map-view');
-      expect(mapViewComponent).toBeTruthy()
+      expect(mapViewComponent).toBeTruthy();
     });
 
     it('should render empty state when vehicle list is empty', () => {
-      vehicleServiceMock.vehicles.set([])
+      vehicleServiceMock.vehicles.set([]);
       fixture.detectChanges();
 
       expect(vehicleServiceMock.vehicles().length).toBe(0);
@@ -291,7 +229,6 @@ describe('MapContainerComponent', () => {
       expect(VehicleModalServiceMock.openCreate).toHaveBeenCalled();
     });
 
-
     it('should render vehicle form modal when modal is open', () => {
       VehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
       fixture.detectChanges();
@@ -304,20 +241,12 @@ describe('MapContainerComponent', () => {
       VehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
       fixture.detectChanges();
 
-      spyOn(component, 'saveVehicle');
+      const spy = spyOn(component, 'saveVehicle');
 
-      const vehicleData = {
-        name: 'Mercedes GLC Coupe',
-        model: 'GLC Coupe',
-        plate: '3447VHZ',
-        location: { 
-          lat: 41.486394600830806, 
-          lng: 2.3118222053234576 
-        },
-      };
-      component.saveVehicle(vehicleData);
+      const modal = fixture.debugElement.query(By.directive(VehicleFormModalComponent));
+      modal.triggerEventHandler('submit', vehicleMock);
 
-      expect(component.saveVehicle).toHaveBeenCalledWith(vehicleData);
+      expect(spy).toHaveBeenCalledWith(vehicleMock);
     });
 
     it('should close modal when form modal emits cancel', () => {
@@ -327,6 +256,32 @@ describe('MapContainerComponent', () => {
       component.vehicleModal.close();
 
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
+    });
+
+  });
+
+  describe('isModalOpen computed', () => {
+
+    it('should return true when modal state is VehicleForm', () => {
+      VehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
+      fixture.detectChanges();
+
+      expect(component.isModalOpen()).toBeTrue();
+    });
+
+    it('should return false when modal state is Closed', () => {
+      VehicleModalServiceMock.activeModal.set(VehicleModalState.Closed);
+      fixture.detectChanges();
+
+      expect(component.isModalOpen()).toBeFalse();
+    });
+
+  });
+
+  describe('VehicleModalState exposure', () => {
+
+    it('should expose VehicleModalState enum as public property', () => {
+      expect(component.VehicleModalState).toBe(VehicleModalState);
     });
 
   });
