@@ -1,8 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { Auth } from '@angular/fire/auth';
+import { By } from '@angular/platform-browser';
 
 import { MapPageComponent } from './map-page';
+import { MapContainerComponent } from '../../components/map-container/map-container';
 
 export const authMock = {
   currentUser: {
@@ -19,10 +22,11 @@ describe('MapPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         MapPageComponent, 
-        HttpClientModule
       ],
       providers: [
         { provide: Auth, useValue: authMock },
+        provideHttpClient(),
+        provideHttpClientTesting(),
       ]
     }).compileComponents();
 
@@ -38,5 +42,22 @@ describe('MapPageComponent', () => {
     });
 
   });
+
+    describe('child components rendering', () => {
+
+      it('should render graphics-view component', () => {
+        const graphicsComponent = fixture.nativeElement.querySelector('app-map-container');
+        expect(graphicsComponent).toBeTruthy();
+      });
+
+      it('should render GraphicsViewComponent', () => {
+        const child = fixture.debugElement.query(
+          By.directive(MapContainerComponent)
+        );
+
+        expect(child).toBeTruthy();
+      });
+
+    });
 
 });
