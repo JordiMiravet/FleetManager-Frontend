@@ -335,11 +335,16 @@ describe('MapViewComponent', () => {
     });
 
     it('should do nothing when there is no selected vehicle', () => {
+      component.selectedVehicle.set(null);
 
+      expect(() => component.onCancelLocationChange()).not.toThrow();
     });
 
     it('should do nothing when there is no marker', () => {
+      component.selectedVehicle.set(mockVehicle);
+      (component as any).selectedVehicleMarker = undefined;
 
+      expect(() => component.onCancelLocationChange()).not.toThrow();
     });
 
   });
