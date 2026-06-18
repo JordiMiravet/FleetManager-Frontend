@@ -6,14 +6,24 @@ describe('DetailsPanelComponent', () => {
   let component: DetailsPanelComponent;
   let fixture: ComponentFixture<DetailsPanelComponent>;
 
-  const messagesMock = {
-    detailsPanel: {
+  const MockDetailsPanel = {
+    mapView: {
       aria: {
-        region: 'Vehicle panel region',
-        button: 'Center map on vehicle',
-        buttonTitle: 'Center map on current vehicle location'
+        mapRegion: '',
+        mapDescription: ''
       },
-      button: 'Center'
+      confirmModal: {
+        title: '',
+        message: ''
+      }
+    },
+    detailsPanel: {
+      button: 'Center on Me',
+      aria: {
+        region: 'Selected vehicle details',
+        button: 'Center map on current location',
+        buttonTitle: "Click to center the map on the vehicle's location"
+      }
     }
   };
 
@@ -23,7 +33,7 @@ describe('DetailsPanelComponent', () => {
       providers: [
         {
           provide: MapMessagesService,
-          useValue: messagesMock
+          useValue: MockDetailsPanel
         }
       ]
     }).compileComponents();
@@ -75,7 +85,7 @@ describe('DetailsPanelComponent', () => {
 
     it('should have correct aria-label', () => {
       const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
-      expect(button.getAttribute('aria-label')).toBe('Center map on current location');
+      expect(button.getAttribute('aria-label')).toBe(MockDetailsPanel.detailsPanel.aria.button);
     });
 
     it('should render the icon element', () => {
