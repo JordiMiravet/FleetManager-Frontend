@@ -136,11 +136,13 @@ describe('DetailsPanelComponent', () => {
     });
 
     it('should set title attribute from messages service', () => {
-
+      const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
+      expect(button.getAttribute('title')).toBe(MockDetailsPanel.detailsPanel.aria.buttonTitle);
     });
 
     it('should set aria-label on article using region message', () => {
-
+      const article: HTMLElement = fixture.nativeElement.querySelector('article');
+      expect(article.getAttribute('aria-label')).toBe(MockDetailsPanel.detailsPanel.aria.region);
     });
 
     it('should render the icon element', () => {
@@ -163,7 +165,8 @@ describe('DetailsPanelComponent', () => {
     });
 
     it('should render button text from messages service', () => {
-
+      const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
+      expect(button.textContent).toContain(MockDetailsPanel.detailsPanel.button);
     });
 
   });
