@@ -286,7 +286,17 @@ describe('MapViewComponent', () => {
     });
 
     it('should center map on confirmed position', () => {
+      const mapService = TestBed.inject(MapService);
+      const setViewSpy = spyOn(mapService, 'setView');
 
+      const newPos = { lat: 50, lng: 8 } as any;
+
+      component.selectedVehicle.set(mockVehicle);
+      component.newPosition.set(newPos);
+
+      component.onConfirmLocationChange();
+
+      expect(setViewSpy).toHaveBeenCalledOnceWith(newPos, 19);
     });
 
   });
