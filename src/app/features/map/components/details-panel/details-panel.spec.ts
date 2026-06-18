@@ -79,15 +79,46 @@ describe('DetailsPanelComponent', () => {
   describe('Vehicle rendering', () => {
 
     it('should render vehicle name when vehicle is provided', () => {
+      const vehicleMock = {
+        _id: '1',
+        name: 'Ferrari',
+        model: 'F8',
+        plate: 'F123',
+        location: { lat: 41, lng: 2 }
+      };
 
+      fixture.componentRef.setInput('vehicle', vehicleMock);
+      fixture.detectChanges();
+
+      const name = fixture.nativeElement.querySelector('#map-card-title');
+      expect(name.textContent).toContain('Ferrari');
     });
 
     it('should render vehicle plate when vehicle is provided', () => {
+      const vehicleMock = {
+        _id: '1',
+        name: 'Ferrari',
+        model: 'F8',
+        plate: 'F123',
+        location: { lat: 41, lng: 2 }
+      };
 
+      fixture.componentRef.setInput('vehicle', vehicleMock);
+      fixture.detectChanges();
+
+      const plate = fixture.nativeElement.querySelector('#vehicle-plate');
+      expect(plate.textContent).toContain('F123');
     });
 
     it('should render empty values when vehicle is null', () => {
+      fixture.componentRef.setInput('vehicle', null);
+      fixture.detectChanges();
 
+      const name = fixture.nativeElement.querySelector('#map-card-title');
+      const plate = fixture.nativeElement.querySelector('#vehicle-plate');
+
+      expect(name.textContent.trim()).toBe('');
+      expect(plate.textContent.trim()).toBe('');
     });
 
   });
@@ -132,7 +163,7 @@ describe('DetailsPanelComponent', () => {
     });
 
     it('should render button text from messages service', () => {
-      
+
     });
 
   });
