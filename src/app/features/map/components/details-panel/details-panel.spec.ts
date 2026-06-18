@@ -76,6 +76,22 @@ describe('DetailsPanelComponent', () => {
 
   });
 
+  describe('Vehicle rendering', () => {
+
+    it('should render vehicle name when vehicle is provided', () => {
+
+    });
+
+    it('should render vehicle plate when vehicle is provided', () => {
+
+    });
+
+    it('should render empty values when vehicle is null', () => {
+
+    });
+
+  });
+
   describe('Accessibility and template', () => {
 
     it('should render a button element', () => {
@@ -86,6 +102,14 @@ describe('DetailsPanelComponent', () => {
     it('should have correct aria-label', () => {
       const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
       expect(button.getAttribute('aria-label')).toBe(MockDetailsPanel.detailsPanel.aria.button);
+    });
+
+    it('should set title attribute from messages service', () => {
+
+    });
+
+    it('should set aria-label on article using region message', () => {
+
     });
 
     it('should render the icon element', () => {
@@ -105,6 +129,10 @@ describe('DetailsPanelComponent', () => {
     it('should have aria-hidden true on icon', () => {
       const icon: HTMLElement = fixture.nativeElement.querySelector('i');
       expect(icon.getAttribute('aria-hidden')).toBe('true');
+    });
+
+    it('should render button text from messages service', () => {
+      
     });
 
   });
