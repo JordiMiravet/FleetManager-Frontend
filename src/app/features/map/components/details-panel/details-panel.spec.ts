@@ -2,30 +2,38 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DetailsPanelComponent } from './details-panel';
 import { MapMessagesService } from '../../i18n/map-messages';
 
+const MockDetailsPanel = {
+  mapView: {
+    aria: {
+      mapRegion: '',
+      mapDescription: ''
+    },
+    confirmModal: {
+      title: '',
+      message: ''
+    }
+  },
+  detailsPanel: {
+    button: 'Center on Me',
+    aria: {
+      region: 'Selected vehicle details',
+      button: 'Center map on current location',
+      buttonTitle: "Click to center the map on the vehicle's location"
+    }
+  }
+};
+
+const MockVehicle = {
+  _id: '1',
+  name: 'Ferrari',
+  model: 'F8',
+  plate: 'F123',
+  location: { lat: 41, lng: 2 }
+};
+
 describe('DetailsPanelComponent', () => {
   let component: DetailsPanelComponent;
   let fixture: ComponentFixture<DetailsPanelComponent>;
-
-  const MockDetailsPanel = {
-    mapView: {
-      aria: {
-        mapRegion: '',
-        mapDescription: ''
-      },
-      confirmModal: {
-        title: '',
-        message: ''
-      }
-    },
-    detailsPanel: {
-      button: 'Center on Me',
-      aria: {
-        region: 'Selected vehicle details',
-        button: 'Center map on current location',
-        buttonTitle: "Click to center the map on the vehicle's location"
-      }
-    }
-  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -77,36 +85,14 @@ describe('DetailsPanelComponent', () => {
   });
 
   describe('Vehicle rendering', () => {
-
-    it('should render vehicle name when vehicle is provided', () => {
-      const vehicleMock = {
-        _id: '1',
-        name: 'Ferrari',
-        model: 'F8',
-        plate: 'F123',
-        location: { lat: 41, lng: 2 }
-      };
-
-      fixture.componentRef.setInput('vehicle', vehicleMock);
+    it('should render vehicle data when provided', () => {
+      fixture.componentRef.setInput('vehicle', MockVehicle);
       fixture.detectChanges();
 
       const name = fixture.nativeElement.querySelector('#map-card-title');
-      expect(name.textContent).toContain('Ferrari');
-    });
-
-    it('should render vehicle plate when vehicle is provided', () => {
-      const vehicleMock = {
-        _id: '1',
-        name: 'Ferrari',
-        model: 'F8',
-        plate: 'F123',
-        location: { lat: 41, lng: 2 }
-      };
-
-      fixture.componentRef.setInput('vehicle', vehicleMock);
-      fixture.detectChanges();
-
       const plate = fixture.nativeElement.querySelector('#vehicle-plate');
+
+      expect(name.textContent).toContain('Ferrari');
       expect(plate.textContent).toContain('F123');
     });
 
