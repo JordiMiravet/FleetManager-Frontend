@@ -1,15 +1,32 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DetailsPanelComponent } from './details-panel';
+import { MapMessagesService } from '../../i18n/map-messages';
 
 describe('DetailsPanelComponent', () => {
   let component: DetailsPanelComponent;
   let fixture: ComponentFixture<DetailsPanelComponent>;
 
+  const messagesMock = {
+    detailsPanel: {
+      aria: {
+        region: 'Vehicle panel region',
+        button: 'Center map on vehicle',
+        buttonTitle: 'Center map on current vehicle location'
+      },
+      button: 'Center'
+    }
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DetailsPanelComponent]
-    })
-    .compileComponents();
+      imports: [DetailsPanelComponent],
+      providers: [
+        {
+          provide: MapMessagesService,
+          useValue: messagesMock
+        }
+      ]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DetailsPanelComponent);
     component = fixture.componentInstance;
