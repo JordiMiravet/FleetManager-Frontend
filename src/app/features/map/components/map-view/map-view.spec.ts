@@ -399,7 +399,16 @@ describe('MapViewComponent', () => {
     });
 
     it('should handle geolocation errors', async () => {
+      const geo = TestBed.inject(GeolocationService);
 
+      spyOn(geo, 'getCurrentLocation').and.returnValue(Promise.reject('error'));
+      spyOn(console, 'error');
+
+      component.selectedVehicle.set(mockVehicle);
+
+      await component.onUserLocationClick();
+
+      expect(console.error).toHaveBeenCalled();
     });
 
   });
