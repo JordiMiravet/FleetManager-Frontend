@@ -74,7 +74,13 @@ describe('MapViewComponent', () => {
     });
 
     it('should clear markers on ngOnDestroy', () => {
+      const clearAllMarkersSpy = spyOn<any>(component, 'clearAllMarkers');
+      const clearSelectedMarkerSpy = spyOn<any>(component, 'clearSelectedMarker');
 
+      component.ngOnDestroy();
+
+      expect(clearAllMarkersSpy).toHaveBeenCalled();
+      expect(clearSelectedMarkerSpy).toHaveBeenCalled();
     });
 
   });
