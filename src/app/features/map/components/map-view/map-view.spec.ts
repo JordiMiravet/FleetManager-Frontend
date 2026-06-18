@@ -441,7 +441,17 @@ describe('MapViewComponent', () => {
     });
 
     it('should clear selected marker', () => {
+      const mapService = TestBed.inject(MapService);
+      const marker = {} as L.Marker;
 
+      (component as any).selectedVehicleMarker = marker;
+
+      const removeLayerSpy = spyOn(mapService, 'removeLayer');
+
+      (component as any).clearSelectedMarker();
+
+      expect(removeLayerSpy).toHaveBeenCalledOnceWith(marker);
+      expect((component as any).selectedVehicleMarker).toBeUndefined();
     });
 
   });
