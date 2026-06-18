@@ -1,11 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { signal } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 
 import * as L from 'leaflet';
 
 import { MapViewComponent } from './map-view';
+
 import { MapService } from '../../data-access/map-service';
 import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
@@ -38,7 +40,8 @@ describe('MapViewComponent', () => {
       providers: [
         { provide: Auth, useValue: authMock },
         { provide: VehicleService, useValue: vehicleServiceMock },
-        provideHttpClient()
+        provideHttpClient(),
+        provideHttpClientTesting(),
       ]
     }).compileComponents();
 
