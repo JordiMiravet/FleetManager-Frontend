@@ -150,15 +150,58 @@ describe('MapViewComponent', () => {
     });
 
     it('should show all vehicles when null vehicle is selected', () => {
+      const showAllVehiclesSpy = spyOn<any>(component, 'showAllVehicles');
 
+      component.showVehicle(null);
+
+      expect(showAllVehiclesSpy).toHaveBeenCalled();
     });
 
     it('should create markers for all vehicles with location', () => {
+      const mapService = TestBed.inject(MapService);
+      const markerMock = {} as L.Marker;
 
+      spyOn(mapService, 'createMarker').and.returnValue(markerMock);
+
+      vehicleService.vehicles.set([
+        {
+          _id: '1',
+          name: 'Ferrari',
+          model: 'F8',
+          plate: 'AAA',
+          location: { lat: 41, lng: 2 }
+        },
+        {
+          _id: '2',
+          name: 'Porsche',
+          model: '911',
+          plate: 'BBB',
+          location: { lat: 42, lng: 3 }
+        }
+      ]);
+      (component as any).showAllVehicles();
+
+      expect(mapService.createMarker).toHaveBeenCalledTimes(2);
     });
 
     it('should ignore vehicles without location when showing all vehicles', () => {
+      const mapService = TestBed.inject(MapService);
+      const markerMock = {} as L.Marker;
 
+      spyOn(mapService, 'createMarker').and.returnValue(markerMock);
+
+      vehicleService.vehicles.set([
+        {
+          _id: '1',
+          name: 'Ferrari',
+          model: 'F8',
+          plate: 'AAA',
+          location: undefined
+        }
+      ]);
+      (component as any).showAllVehicles();
+
+      expect(mapService.createMarker).not.toHaveBeenCalled();
     });
 
   });
