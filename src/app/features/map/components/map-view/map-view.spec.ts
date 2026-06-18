@@ -73,6 +73,10 @@ describe('MapViewComponent', () => {
       expect(initMapSpy).toHaveBeenCalledOnceWith('map', [41.478, 2.31], 10);
     });
 
+    it('should clear markers on ngOnDestroy', () => {
+
+    });
+
   });
 
   describe('vehicle selection', () => {
@@ -137,6 +141,18 @@ describe('MapViewComponent', () => {
       component.showVehicle(vehicleWithoutLocation);
 
       expect(createMarkerSpy).not.toHaveBeenCalled();
+    });
+
+    it('should show all vehicles when null vehicle is selected', () => {
+
+    });
+
+    it('should create markers for all vehicles with location', () => {
+
+    });
+
+    it('should ignore vehicles without location when showing all vehicles', () => {
+
     });
 
   });
@@ -220,6 +236,10 @@ describe('MapViewComponent', () => {
       expect(component.showConfirmModal()).toBe(false);
     });
 
+    it('should center map on confirmed position', () => {
+
+    });
+
   });
 
   describe('cancel location change', () => {
@@ -253,6 +273,14 @@ describe('MapViewComponent', () => {
       component.onCancelLocationChange();
 
       expect(component.showConfirmModal()).toBe(false);
+    });
+
+    it('should do nothing when there is no selected vehicle', () => {
+
+    });
+
+    it('should do nothing when there is no marker', () => {
+
     });
 
   });
@@ -306,6 +334,10 @@ describe('MapViewComponent', () => {
       expect(component.selectedVehicle()?.location).toEqual({ lat: 50, lng: 8 });
     });
 
+    it('should handle geolocation errors', async () => {
+
+    });
+
   });
 
   describe('private helper methods', () => {
@@ -333,6 +365,10 @@ describe('MapViewComponent', () => {
       expect(mapService.createMarker).toHaveBeenCalledWith([41, 2], true);
       expect(mockMarker.on).toHaveBeenCalledWith('dragend', jasmine.any(Function));
       expect(setViewSpy).toHaveBeenCalledOnceWith([41, 2], 19);
+    });
+
+    it('should clear selected marker', () => {
+
     });
 
   });
