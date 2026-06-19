@@ -3,8 +3,19 @@ import * as L from 'leaflet';
 
 import { MapService } from './map-service';
 
+function createMapDom() {
+  const div = document.createElement('div');
+  div.id = 'map';
+  document.body.appendChild(div);
+}
+
 describe('MapService', () => {
   let service: MapService;
+
+  function cleanupMapDom() {
+    document.getElementById('map')?.remove();
+    service.destroy();
+  }
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -18,14 +29,11 @@ describe('MapService', () => {
   describe('initMap', () => {
 
     beforeEach(() => {
-      const div = document.createElement('div');
-      div.id = 'map';
-      document.body.appendChild(div);
+      createMapDom();
     });
 
     afterEach(() => {
-      document.getElementById('map')?.remove();
-      service.destroy();
+      cleanupMapDom();
     });
 
     it('should initialize the map', () => {
@@ -52,14 +60,11 @@ describe('MapService', () => {
   describe('getMap', () => {
 
     beforeEach(() => {
-      const div = document.createElement('div');
-      div.id = 'map';
-      document.body.appendChild(div);
+      createMapDom();
     });
 
     afterEach(() => {
-      document.getElementById('map')?.remove();
-      service.destroy();
+      cleanupMapDom();
     });
 
     it('should return the initialized map', () => {
@@ -78,16 +83,12 @@ describe('MapService', () => {
   describe('createMarker', () => {
 
     beforeEach(() => {
-      const div = document.createElement('div');
-      div.id = 'map';
-      document.body.appendChild(div);
-
+      createMapDom();
       service.initMap('map', [41.3851, 2.1734], 13);
     });
 
     afterEach(() => {
-      document.getElementById('map')?.remove();
-      service.destroy();
+      cleanupMapDom();
     });
 
     it('should create a marker with default draggable value', () => {
@@ -131,16 +132,12 @@ describe('MapService', () => {
   describe('setView', () => {
 
     beforeEach(() => {
-      const div = document.createElement('div');
-      div.id = 'map';
-      document.body.appendChild(div);
-
+      createMapDom();
       service.initMap('map', [41.3851, 2.1734], 13);
     });
 
     afterEach(() => {
-      document.getElementById('map')?.remove();
-      service.destroy();
+      cleanupMapDom();
     });
 
     it('should set the map view with provided coordinates', () => {
@@ -169,16 +166,12 @@ describe('MapService', () => {
   describe('removeLayer', () => {
 
     beforeEach(() => {
-      const div = document.createElement('div');
-      div.id = 'map';
-      document.body.appendChild(div);
-
+      createMapDom();
       service.initMap('map', [41.3851, 2.1734], 13);
     });
 
     afterEach(() => {
-      document.getElementById('map')?.remove();
-      service.destroy();
+      cleanupMapDom();
     });
 
     it('should remove the provided layer from the map', () => {
@@ -196,9 +189,7 @@ describe('MapService', () => {
   describe('destroy', () => {
 
     beforeEach(() => {
-      const div = document.createElement('div');
-      div.id = 'map';
-      document.body.appendChild(div);
+      createMapDom();
     });
 
     afterEach(() => {
