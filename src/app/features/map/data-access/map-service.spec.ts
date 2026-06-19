@@ -77,17 +77,54 @@ describe('MapService', () => {
 
   describe('createMarker', () => {
 
-    it('should create a marker with default draggable value');
+    beforeEach(() => {
+      const div = document.createElement('div');
+      div.id = 'map';
+      document.body.appendChild(div);
 
-    it('should create a marker with draggable set to true');
+      service.initMap('map', [41.3851, 2.1734], 13);
+    });
 
-    it('should create a marker with draggable set to false');
+    afterEach(() => {
+      document.getElementById('map')?.remove();
+      service.destroy();
+    });
 
-    it('should use the configured location icon');
+    it('should create a marker with default draggable value', () => {
+      const marker = service.createMarker([41.3851, 2.1734]);
 
-    it('should add the marker to the map');
+      expect(marker.dragging?.enabled()).toBeTrue();
+    });
 
-    it('should return the created marker');
+    it('should create a marker with draggable set to true', () => {
+      const marker = service.createMarker([41.3851, 2.1734], true);
+
+      expect(marker.dragging?.enabled()).toBeTrue();
+    });
+
+    it('should create a marker with draggable set to false', () => {
+      const marker = service.createMarker([41.3851, 2.1734], false);
+
+      expect(marker.dragging?.enabled()).toBeFalse();
+    });
+
+    it('should use the configured location icon', () => {
+      const marker = service.createMarker([41.3851, 2.1734]);
+
+      expect((marker.options as any).icon).toBe(service.locationIcon);
+    });
+
+    it('should add the marker to the map', () => {
+      const marker = service.createMarker([41.3851, 2.1734]);
+
+      expect(service.getMap().hasLayer(marker)).toBeTrue();
+    });
+
+    it('should return the created marker', () => {
+      const marker = service.createMarker([41.3851, 2.1734]);
+
+      expect(marker instanceof L.Marker).toBeTrue();
+    });
 
   });
 
