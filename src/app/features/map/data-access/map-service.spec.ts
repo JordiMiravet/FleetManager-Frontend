@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import * as L from 'leaflet';
 
 import { MapService } from './map-service';
 
@@ -16,11 +17,35 @@ describe('MapService', () => {
 
   describe('initMap', () => {
 
-    it('should initialize the map');
+    beforeEach(() => {
+      const div = document.createElement('div');
+      div.id = 'map';
+      document.body.appendChild(div);
+    });
 
-    it('should configure the tile layer');
+    afterEach(() => {
+      document.getElementById('map')?.remove();
+      service.destroy();
+    });
 
-    it('should return the created map');
+    it('should initialize the map', () => {
+      const map = service.initMap('map', [41.3851, 2.1734], 13);
+
+      expect(map).toBeTruthy();
+    });
+
+    it('should configure the tile layer', () => {
+      const map = service.initMap('map', [41.3851, 2.1734], 13);
+      const tileLayers = Object.values((map as any)._layers).filter(layer => layer instanceof L.TileLayer);
+
+      expect(tileLayers.length).toBe(1);
+    });
+
+    it('should return the created map', () => {
+      const result = service.initMap('map', [41.3851, 2.1734], 13);
+
+      expect(result).toBe(service.getMap());
+    });
 
   });
 
