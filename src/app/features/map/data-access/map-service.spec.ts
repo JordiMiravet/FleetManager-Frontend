@@ -168,7 +168,28 @@ describe('MapService', () => {
 
   describe('removeLayer', () => {
 
-    it('should remove the provided layer from the map');
+    beforeEach(() => {
+      const div = document.createElement('div');
+      div.id = 'map';
+      document.body.appendChild(div);
+
+      service.initMap('map', [41.3851, 2.1734], 13);
+    });
+
+    afterEach(() => {
+      document.getElementById('map')?.remove();
+      service.destroy();
+    });
+
+    it('should remove the provided layer from the map', () => {
+      const map = service.getMap();
+      const removeLayerSpy = spyOn(map, 'removeLayer').and.callThrough();
+      const marker = service.createMarker([41.3851, 2.1734]);
+
+      service.removeLayer(marker);
+
+      expect(removeLayerSpy).toHaveBeenCalledWith(marker);
+    });
 
   });
 
