@@ -130,11 +130,39 @@ describe('MapService', () => {
 
   describe('setView', () => {
 
-    it('should set the map view with provided coordinates');
+    beforeEach(() => {
+      const div = document.createElement('div');
+      div.id = 'map';
+      document.body.appendChild(div);
 
-    it('should set the map view with provided zoom');
+      service.initMap('map', [41.3851, 2.1734], 13);
+    });
 
-    it('should use default zoom when none is provided');
+    afterEach(() => {
+      document.getElementById('map')?.remove();
+      service.destroy();
+    });
+
+    it('should set the map view with provided coordinates', () => {
+      const setViewSpy = spyOn(service.getMap(), 'setView').and.callThrough();
+      service.setView([40.4168, -3.7038]);
+
+      expect(setViewSpy).toHaveBeenCalledWith([40.4168, -3.7038], 19);
+    });
+
+    it('should set the map view with provided zoom', () => {
+      const setViewSpy = spyOn(service.getMap(), 'setView').and.callThrough();
+      service.setView([40.4168, -3.7038], 15);
+
+      expect(setViewSpy).toHaveBeenCalledWith([40.4168, -3.7038], 15);
+    });
+
+    it('should use default zoom when none is provided', () => {
+      const setViewSpy = spyOn(service.getMap(), 'setView').and.callThrough();
+      service.setView([40.4168, -3.7038]);
+
+      expect(setViewSpy).toHaveBeenCalledWith([40.4168, -3.7038], 19);
+    });
 
   });
 
