@@ -194,10 +194,31 @@ describe('MapService', () => {
   });
 
   describe('destroy', () => {
-  
-    it('should remove the map when initialized');
 
-    it('should not throw when map is not initialized');
+    beforeEach(() => {
+      const div = document.createElement('div');
+      div.id = 'map';
+      document.body.appendChild(div);
+    });
+
+    afterEach(() => {
+      document.getElementById('map')?.remove();
+    });
+
+    it('should remove the map when initialized', () => {
+      service.initMap('map', [41.3851, 2.1734], 13);
+
+      const map = service.getMap();
+      const removeSpy = spyOn(map, 'remove').and.callThrough();
+
+      service.destroy();
+
+      expect(removeSpy).toHaveBeenCalled();
+    });
+
+    it('should not throw when map is not initialized', () => {
+      expect(() => service.destroy()).not.toThrow();
+    });
 
   });
 
