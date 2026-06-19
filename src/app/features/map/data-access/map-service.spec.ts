@@ -51,9 +51,27 @@ describe('MapService', () => {
 
   describe('getMap', () => {
 
-    it('should return the initialized map');
+    beforeEach(() => {
+      const div = document.createElement('div');
+      div.id = 'map';
+      document.body.appendChild(div);
+    });
 
-    it('should throw an error when map is not initialized');
+    afterEach(() => {
+      document.getElementById('map')?.remove();
+      service.destroy();
+    });
+
+    it('should return the initialized map', () => {
+      const map = service.initMap('map', [41.3851, 2.1734], 13);
+      const result = service.getMap();
+
+      expect(result).toBe(map);
+    });
+
+    it('should throw an error when map is not initialized', () => {
+      expect(() => service.getMap()).toThrowError('Map not initialized');
+    });
 
   });
 
