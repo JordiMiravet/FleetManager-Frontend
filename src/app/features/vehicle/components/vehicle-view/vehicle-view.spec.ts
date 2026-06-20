@@ -22,6 +22,7 @@ const vehicleServiceMock = {
   updateVehicle: jasmine.createSpy('updateVehicle'),
   deleteVehicle: jasmine.createSpy('deleteVehicle'),
   addUserToVehicle: jasmine.createSpy('addUserToVehicle'),
+  removeUserFromVehicle: jasmine.createSpy('removeUserFromVehicle'),
 };
 
 const VehicleModalServiceMock = {
@@ -476,15 +477,70 @@ describe('VehicleViewComponent', () => {
 
   describe('Remove user from vehicle', () => {
 
-    it('should call removeUserFromVehicle on VehicleService');
+    const vehicleMock: VehicleInterface = {
+      _id: '123',
+      name: 'Ferrari',
+      model: 'F8',
+      plate: '12345XC'
+    };
 
-    it('should close modal when removed user is current user');
+    it('should call removeUserFromVehicle on VehicleService', () => {
+      vehicleServiceMock.removeUserFromVehicle = jasmine.createSpy('removeUserFromVehicle')
+        .and.returnValue({ subscribe: ({ next }: any) => next() });
 
-    it('should update selectedVehicle when removed user is not current user');
+      component.selectedVehicle.set(vehicleMock);
+      component.removeUserFromVehicle('user-1');
 
-    it('should log error when request fails');
+      expect(vehicleServiceMock.removeUserFromVehicle).toHaveBeenCalledWith('123', 'user-1');
+    });
 
-    it('should not call service if no vehicle is selected');
+    it('should close modal when removed user is current user', () => {
+      vehicleServiceMock.removeUserFromVehicle = jasmine.createSpy('removeUserFromVehicle')
+        .and.returnValue({ subscribe: ({ next }: any) => next() });
+
+      authMock.getUser.and.returnValue({ name: 'JordiTheBest', role: 'admin' });
+      (authMock as any).currentUser = { uid: 'user-1' };
+
+      component.selectedVehicle.set(vehicleMock);
+      component.removeUserFromVehicle('user-1');
+
+      expect(VehicleModalServiceMock.close).toHaveBeenCalled();
+    });
+
+    it('should update selectedVehicle when removed user is not current user', () => {
+      const updatedVehicle: VehicleInterface = { ...vehicleMock, name: 'Ferrari Updated' };
+      vehicleServiceMock.vehicles.set([updatedVehicle]);
+
+      vehicleServiceMock.removeUserFromVehicle = jasmine.createSpy('removeUserFromVehicle')
+        .and.returnValue({ subscribe: ({ next }: any) => next() });
+
+      (authMock as any).currentUser = { uid: 'someone-else' };
+
+      component.selectedVehicle.set(vehicleMock);
+      component.removeUserFromVehicle('user-2');
+
+      expect(component.selectedVehicle()).toEqual(updatedVehicle);
+    });
+
+    it('should log error when request fails', () => {
+      const consoleSpy = spyOn(console, 'error');
+      vehicleServiceMock.removeUserFromVehicle = jasmine.createSpy('removeUserFromVehicle')
+        .and.returnValue({ subscribe: ({ error }: any) => error('failed') });
+
+      component.selectedVehicle.set(vehicleMock);
+      component.removeUserFromVehicle('user-1');
+
+      expect(consoleSpy).toHaveBeenCalled();
+    });
+
+    it('should not call service if no vehicle is selected', () => {
+      vehicleServiceMock.removeUserFromVehicle = jasmine.createSpy('removeUserFromVehicle');
+
+      component.selectedVehicle.set(null);
+      component.removeUserFromVehicle('user-1');
+
+      expect(vehicleServiceMock.removeUserFromVehicle).not.toHaveBeenCalled();
+    });
 
   });
 });
