@@ -343,19 +343,68 @@ describe('VehicleViewComponent', () => {
 
   describe('Filter vehicles', () => {
 
-    it('should call onFilterChange and update filterState');
+    beforeEach(() => {
+      vehicleServiceMock.vehicles.set([
+        { _id: '1', name: 'Ferrari', model: 'F8', plate: '12345XC' },
+        { _id: '2', name: 'Lamborghini', model: 'Aventador', plate: 'LMB2026' },
+        { _id: '3', name: 'Pagani', model: 'Huayra', plate: 'PAG0001' }
+      ]);
+    });
 
-    it('should filter vehicles by name');
+    it('should call onFilterChange and update filterState', () => {
+      const newState = { query: 'ferrari', sortField: 'name' as const, sortDir: 'asc' as const };
 
-    it('should filter vehicles by model');
+      component.onFilterChange(newState);
 
-    it('should filter vehicles by plate');
+      expect(component.filterState()).toEqual(newState);
+    });
 
-    it('should return all vehicles when query is empty');
+    it('should filter vehicles by name', () => {
+      component.onFilterChange({ query: 'ferrari', sortField: 'name', sortDir: 'asc' });
 
-    it('should sort vehicles ascending by default field');
+      const result = component.filteredVehicles();
+      expect(result.length).toBe(1);
+      expect(result[0].name).toBe('Ferrari');
+    });
 
-    it('should sort vehicles descending when sortDir is desc');
+    it('should filter vehicles by model', () => {
+      component.onFilterChange({ query: 'aventador', sortField: 'name', sortDir: 'asc' });
+
+      const result = component.filteredVehicles();
+      expect(result.length).toBe(1);
+      expect(result[0].model).toBe('Aventador');
+    });
+
+    it('should filter vehicles by plate', () => {
+      component.onFilterChange({ query: 'pag0001', sortField: 'name', sortDir: 'asc' });
+
+      const result = component.filteredVehicles();
+      expect(result.length).toBe(1);
+      expect(result[0].plate).toBe('PAG0001');
+    });
+
+    it('should return all vehicles when query is empty', () => {
+      component.onFilterChange({ query: '', sortField: 'name', sortDir: 'asc' });
+
+      const result = component.filteredVehicles();
+      expect(result.length).toBe(3);
+    });
+
+    it('should sort vehicles ascending by default field', () => {
+      component.onFilterChange({ query: '', sortField: 'name', sortDir: 'asc' });
+
+      const result = component.filteredVehicles();
+      expect(result[0].name).toBe('Ferrari');
+      expect(result[2].name).toBe('Pagani');
+    });
+
+    it('should sort vehicles descending when sortDir is desc', () => {
+      component.onFilterChange({ query: '', sortField: 'name', sortDir: 'desc' });
+
+      const result = component.filteredVehicles();
+      expect(result[0].name).toBe('Pagani');
+      expect(result[2].name).toBe('Ferrari');
+    });
 
   });
 
