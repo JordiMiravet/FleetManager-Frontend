@@ -335,5 +335,55 @@ describe('VehicleViewComponent', () => {
       const confirmModalElement = fixture.nativeElement.querySelector('app-confirm-modal');
       expect(confirmModalElement).toBeTruthy();
     });
+
+    it('should render user management modal when user management modal is open', () => {
+
+    });
+  });
+
+  describe('Filter vehicles', () => {
+
+    it('should call onFilterChange and update filterState');
+
+    it('should filter vehicles by name');
+
+    it('should filter vehicles by model');
+
+    it('should filter vehicles by plate');
+
+    it('should return all vehicles when query is empty');
+
+    it('should sort vehicles ascending by default field');
+
+    it('should sort vehicles descending when sortDir is desc');
+
+  });
+
+  describe('Add user to vehicle', () => {
+
+    it('should set selectedVehicle and open user management modal');
+
+    it('should call addUserToVehicle on VehicleService');
+
+    it('should reset modal and close on success');
+
+    it('should set error message on user modal when request fails');
+
+    it('should not call service if no vehicle is selected');
+
+  });
+
+  describe('Remove user from vehicle', () => {
+
+    it('should call removeUserFromVehicle on VehicleService');
+
+    it('should close modal when removed user is current user');
+
+    it('should update selectedVehicle when removed user is not current user');
+
+    it('should log error when request fails');
+
+    it('should not call service if no vehicle is selected');
+
   });
 });
