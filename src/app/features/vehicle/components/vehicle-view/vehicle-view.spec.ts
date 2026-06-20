@@ -149,7 +149,7 @@ describe('VehicleViewComponent', () => {
 
     it('should use fallback location when geolocation fails on create', async () => {
       VehicleModalServiceMock.formMode.set('create');
-      geolocationServiceMock.getCurrentLocation.and.returnValue(Promise.reject('error'));
+      geolocationServiceMock.getCurrentLocation.and.returnValue(Promise.reject(new Error('geolocation failed')));
 
       await component.saveVehicle(vehicleWithoutLocationMock);
 
