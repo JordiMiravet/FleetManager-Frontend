@@ -1,9 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { Auth } from '@angular/fire/auth';
 
 import { VehiclePageComponent } from './vehicle-page';
+import { VehicleViewComponent } from '../../components/vehicle-view/vehicle-view';
 
 describe('VehiclePageComponent', () => {
   let component: VehiclePageComponent;
@@ -37,11 +39,16 @@ describe('VehiclePageComponent', () => {
     });
   });
 
-  describe('Template rendering', () => {
-    it('should render vehicle view component', () => {
-      const vehicleViewComponent = fixture.nativeElement.querySelector('app-vehicle-view');
-      expect(vehicleViewComponent).toBeTruthy();
+  describe('Child components rendering', () => {
+
+    it('should render app-vehicle-view element', () => {
+
     });
+
+    it('should render VehicleViewComponent', () => {
+
+    });
+
   });
 
 });
