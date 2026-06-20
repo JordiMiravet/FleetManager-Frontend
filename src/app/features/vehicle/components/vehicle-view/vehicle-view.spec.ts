@@ -74,12 +74,15 @@ describe('VehicleViewComponent', () => {
   });
 
   describe('Component creation', () => {
+
     it('should create', () => {
       expect(component).toBeTruthy();
     });
+
   });
 
   describe('Initial state', () => {
+
     it('should expose the vehicle list from VehicleService', () => {
       expect(component.vehicleList).toBe(vehicleServiceMock.vehicles);
     });
@@ -96,9 +99,11 @@ describe('VehicleViewComponent', () => {
       expect(component.confirmMsg.deleteVehicle.title).toBe('Delete vehicle?');
       expect(component.confirmMsg.deleteVehicle.message).toBe('Are you sure you want to delete this vehicle? This action cannot be undone.');
     });
+
   });
 
   describe('Save vehicle', () => {
+
     it('should keep provided location when vehicle already has location', async () => {
       const vehicleMock: VehicleInterface = {
         name: 'Ferrari',
@@ -247,9 +252,11 @@ describe('VehicleViewComponent', () => {
 
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
     });
+
   });
 
   describe('Delete vehicle', () => {
+
     it('should delete vehicle when confirmed', () => {
       const vehicleMock: VehicleInterface = {
         _id: '123',
@@ -288,6 +295,7 @@ describe('VehicleViewComponent', () => {
 
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
     });
+
   });
 
   describe('Template rendering', () => {
@@ -341,6 +349,7 @@ describe('VehicleViewComponent', () => {
     it('should render user management modal when user management modal is open', () => {
 
     });
+
   });
 
   describe('Filter vehicles', () => {
@@ -543,4 +552,5 @@ describe('VehicleViewComponent', () => {
     });
 
   });
+
 });
