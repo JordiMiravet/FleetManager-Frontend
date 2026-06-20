@@ -34,9 +34,11 @@ describe('VehiclePageComponent', () => {
   });
 
   describe('Component creation', () => {
+
     it('should create', () => {
       expect(component).toBeTruthy();
     });
+
   });
 
   describe('Child components rendering', () => {
