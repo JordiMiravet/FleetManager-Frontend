@@ -1,8 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { By } from '@angular/platform-browser';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { Auth } from '@angular/fire/auth';
 
 import { VehiclePageComponent } from './vehicle-page';
+import { VehicleViewComponent } from '../../components/vehicle-view/vehicle-view';
 
 describe('VehiclePageComponent', () => {
   let component: VehiclePageComponent;
@@ -17,9 +20,11 @@ describe('VehiclePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehiclePageComponent, HttpClientModule],
+      imports: [VehiclePageComponent],
       providers: [
-        { provide: Auth, useValue: authMock }
+        { provide: Auth, useValue: authMock },
+        provideHttpClient(),
+        provideHttpClientTesting()
       ]
     }).compileComponents();
 
@@ -29,16 +34,27 @@ describe('VehiclePageComponent', () => {
   });
 
   describe('Component creation', () => {
+
     it('should create', () => {
       expect(component).toBeTruthy();
     });
+
   });
 
-  describe('Template rendering', () => {
-    it('should render vehicle view component', () => {
+  describe('Child components rendering', () => {
+
+    it('should render app-vehicle-view element', () => {
       const vehicleViewComponent = fixture.nativeElement.querySelector('app-vehicle-view');
+
       expect(vehicleViewComponent).toBeTruthy();
     });
+
+    it('should render VehicleViewComponent', () => {
+      const child = fixture.debugElement.query(By.directive(VehicleViewComponent));
+      
+      expect(child).toBeTruthy();
+    });
+
   });
 
 });
