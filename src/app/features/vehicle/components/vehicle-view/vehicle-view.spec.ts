@@ -347,7 +347,11 @@ describe('VehicleViewComponent', () => {
     });
 
     it('should render user management modal when user management modal is open', () => {
+      VehicleModalServiceMock.activeModal.set(VehicleModalState.UserManagement);
+      fixture.detectChanges();
 
+      const userModalElement = fixture.nativeElement.querySelector('app-manage-vehicle-users-modal');
+      expect(userModalElement).toBeTruthy();
     });
 
   });
