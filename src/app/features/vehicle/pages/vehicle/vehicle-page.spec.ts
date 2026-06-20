@@ -42,11 +42,15 @@ describe('VehiclePageComponent', () => {
   describe('Child components rendering', () => {
 
     it('should render app-vehicle-view element', () => {
+      const vehicleViewComponent = fixture.nativeElement.querySelector('app-vehicle-view');
 
+      expect(vehicleViewComponent).toBeTruthy();
     });
 
     it('should render VehicleViewComponent', () => {
-
+      const child = fixture.debugElement.query(By.directive(VehicleViewComponent));
+      
+      expect(child).toBeTruthy();
     });
 
   });
