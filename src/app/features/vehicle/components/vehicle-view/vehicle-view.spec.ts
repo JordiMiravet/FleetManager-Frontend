@@ -12,7 +12,10 @@ import { VehicleModalState } from '../../enums/vehicle-modal-state.enum';
 
 const authMock = {
   isLoggedIn: jasmine.createSpy('isLoggedIn').and.returnValue(true),
-  getUser: jasmine.createSpy('getUser').and.returnValue({ name: 'JordiTheBest', role: 'admin' })
+  getUser: jasmine.createSpy('getUser').and.returnValue({ name: 'JordiTheBest', role: 'admin' }),
+  currentUser: { 
+    uid: 'JordiTheBest' 
+  } as { uid: string } | null
 };
 
 const vehicleServiceMock = {
@@ -40,6 +43,20 @@ const geolocationServiceMock = {
   getCurrentLocation: jasmine.createSpy('getCurrentLocation')
 };
 
+const vehicleMock: VehicleInterface = {
+  _id: '123',
+  name: 'Ferrari',
+  model: 'F8',
+  plate: '12345XC',
+  location: { lat: 10, lng: 20 }
+};
+
+const vehicleWithoutLocationMock: VehicleInterface = {
+  name: 'Ferrari',
+  model: 'F8',
+  plate: '12345XC'
+};
+
 describe('VehicleViewComponent', () => {
   let component: VehicleViewComponent;
   let fixture: ComponentFixture<VehicleViewComponent>;
@@ -49,14 +66,19 @@ describe('VehicleViewComponent', () => {
     vehicleServiceMock.addVehicles.calls.reset();
     vehicleServiceMock.updateVehicle.calls.reset();
     vehicleServiceMock.deleteVehicle.calls.reset();
+    vehicleServiceMock.addUserToVehicle.calls.reset();
+    vehicleServiceMock.removeUserFromVehicle.calls.reset();
     VehicleModalServiceMock.openCreate.calls.reset();
     VehicleModalServiceMock.close.calls.reset();
     VehicleModalServiceMock.openConfirmDelete.calls.reset();
     geolocationServiceMock.getCurrentLocation.calls.reset();
-    
+
     VehicleModalServiceMock.selectedVehicle.set(null);
     VehicleModalServiceMock.formMode.set('create');
     VehicleModalServiceMock.activeModal.set(VehicleModalState.Closed);
+    authMock.currentUser = { 
+      uid: 'JordiTheBest' 
+    };
 
     await TestBed.configureTestingModule({
       imports: [VehicleViewComponent],
@@ -105,84 +127,47 @@ describe('VehicleViewComponent', () => {
   describe('Save vehicle', () => {
 
     it('should keep provided location when vehicle already has location', async () => {
-      const vehicleMock: VehicleInterface = {
-        name: 'Ferrari',
-        model: 'F8',
-        plate: '12345XC',
-        location: { lat: 10, lng: 20 }
-      };
-
       VehicleModalServiceMock.formMode.set('create');
-      geolocationServiceMock.getCurrentLocation.calls.reset();
+
       await component.saveVehicle(vehicleMock);
 
       expect(geolocationServiceMock.getCurrentLocation).not.toHaveBeenCalled();
     });
 
     it('should get geolocation when creating vehicle without location', async () => {
-      const vehicleMock: VehicleInterface = {
-        name: 'Ferrari',
-        model: 'F8',
-        plate: '12345XC'
-      };
-
       VehicleModalServiceMock.formMode.set('create');
       geolocationServiceMock.getCurrentLocation.and.returnValue(Promise.resolve([41.5, 2.3]));
 
-      await component.saveVehicle(vehicleMock);
+      await component.saveVehicle(vehicleWithoutLocationMock);
 
       expect(geolocationServiceMock.getCurrentLocation).toHaveBeenCalled();
       expect(vehicleServiceMock.addVehicles).toHaveBeenCalledWith({
-        name: 'Ferrari',
-        model: 'F8',
-        plate: '12345XC',
+        ...vehicleWithoutLocationMock,
         location: { lat: 41.5, lng: 2.3 }
       });
     });
 
     it('should use fallback location when geolocation fails on create', async () => {
-      const vehicleMock: VehicleInterface = {
-        name: 'Ferrari',
-        model: 'F8',
-        plate: '12345XC'
-      };
-
       VehicleModalServiceMock.formMode.set('create');
       geolocationServiceMock.getCurrentLocation.and.returnValue(Promise.reject('error'));
 
-      await component.saveVehicle(vehicleMock);
+      await component.saveVehicle(vehicleWithoutLocationMock);
 
       expect(vehicleServiceMock.addVehicles).toHaveBeenCalledWith({
-        name: 'Ferrari',
-        model: 'F8',
-        plate: '12345XC',
+        ...vehicleWithoutLocationMock,
         location: { lat: 41.402, lng: 2.194 }
       });
     });
 
     it('should call addVehicles when mode is create', async () => {
-      const vehicleMock: VehicleInterface = {
-        name: 'Ferrari',
-        model: 'F8',
-        plate: '12345XC',
-        location: { lat: 10, lng: 20 }
-      };
-
       VehicleModalServiceMock.formMode.set('create');
+
       await component.saveVehicle(vehicleMock);
 
       expect(vehicleServiceMock.addVehicles).toHaveBeenCalledWith(vehicleMock);
     });
 
     it('should call updateVehicle when mode is edit', async () => {
-      const originalVehicle: VehicleInterface = {
-        _id: '123',
-        name: 'Ferrari',
-        model: 'F8',
-        plate: '12345XC',
-        location: { lat: 10, lng: 20 }
-      };
-
       const updatedData: VehicleInterface = {
         name: 'Lamborghini',
         model: 'Aventador',
@@ -190,26 +175,17 @@ describe('VehicleViewComponent', () => {
       };
 
       VehicleModalServiceMock.formMode.set('edit');
-      VehicleModalServiceMock.selectedVehicle.set(originalVehicle);
+      VehicleModalServiceMock.selectedVehicle.set(vehicleMock);
 
       await component.saveVehicle(updatedData);
 
-      expect(vehicleServiceMock.updateVehicle).toHaveBeenCalledWith(originalVehicle, {
-        name: 'Lamborghini',
-        model: 'Aventador',
-        plate: '54321AB',
-        location: { lat: 10, lng: 20 }
+      expect(vehicleServiceMock.updateVehicle).toHaveBeenCalledWith(vehicleMock, {
+        ...updatedData,
+        location: vehicleMock.location
       });
     });
 
     it('should preserve original location when editing', async () => {
-      const originalVehicle: VehicleInterface = {
-        _id: '123',
-        name: 'Ferrari',
-        model: 'F8',
-        plate: '12345XC',
-        location: { lat: 10, lng: 20 }
-      };
 
       const updatedData: VehicleInterface = {
         name: 'Ferrari',
@@ -218,37 +194,27 @@ describe('VehicleViewComponent', () => {
       };
 
       VehicleModalServiceMock.formMode.set('edit');
-      VehicleModalServiceMock.selectedVehicle.set(originalVehicle);
+      VehicleModalServiceMock.selectedVehicle.set(vehicleMock);
 
       await component.saveVehicle(updatedData);
 
       const callArgs = vehicleServiceMock.updateVehicle.calls.mostRecent().args;
-      expect(callArgs[1].location).toEqual({ lat: 10, lng: 20 });
+      expect(callArgs[1].location).toEqual(vehicleMock.location);
     });
 
     it('should not update vehicle if no original vehicle is selected', async () => {
-      const updatedData: VehicleInterface = {
-        name: 'Ferrari',
-        model: 'F8',
-        plate: '12345XC'
-      };
-
       VehicleModalServiceMock.formMode.set('edit');
       VehicleModalServiceMock.selectedVehicle.set(null);
 
-      await component.saveVehicle(updatedData);
+      await component.saveVehicle(vehicleWithoutLocationMock);
 
       expect(vehicleServiceMock.updateVehicle).not.toHaveBeenCalled();
     });
 
     it('should close the vehicle modal after saving', async () => {
-      const vehicle: VehicleInterface = {
-        name: 'Ferrari',
-        model: '488',
-        plate: '3333CCC'
-      };
       VehicleModalServiceMock.formMode.set('create');
-      await component.saveVehicle(vehicle);
+
+      await component.saveVehicle(vehicleWithoutLocationMock);
 
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
     });
@@ -258,16 +224,7 @@ describe('VehicleViewComponent', () => {
   describe('Delete vehicle', () => {
 
     it('should delete vehicle when confirmed', () => {
-      const vehicleMock: VehicleInterface = {
-        _id: '123',
-        name: 'Ferrari',
-        model: 'F8',
-        plate: '12345XC',
-        location: { lat: 10, lng: 20 }
-      };
-
       VehicleModalServiceMock.selectedVehicle.set(vehicleMock);
-
       component.confirmDeleteVehicle();
 
       expect(vehicleServiceMock.deleteVehicle).toHaveBeenCalledWith(vehicleMock);
@@ -275,22 +232,13 @@ describe('VehicleViewComponent', () => {
 
     it('should not delete if no vehicle is selected', () => {
       VehicleModalServiceMock.selectedVehicle.set(null);
-
       component.confirmDeleteVehicle();
 
       expect(vehicleServiceMock.deleteVehicle).not.toHaveBeenCalled();
     });
 
     it('should close modal after deleting', () => {
-      const vehicleMock: VehicleInterface = {
-        _id: '123',
-        name: 'Ferrari',
-        model: 'F8',
-        plate: '12345XC'
-      };
-
       VehicleModalServiceMock.selectedVehicle.set(vehicleMock);
-
       component.confirmDeleteVehicle();
 
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
@@ -301,7 +249,7 @@ describe('VehicleViewComponent', () => {
   describe('Template rendering', () => {
 
     it('should render vehicle table when vehicle list is not empty', () => {
-      vehicleServiceMock.vehicles.set([ 
+      vehicleServiceMock.vehicles.set([
         { name: 'Lamborghini', model: 'Aventador', plate: 'LMB2026' },
         { name: 'Ferrari', model: 'F8 Tributo', plate: 'F8X2019' }
       ]);
@@ -425,13 +373,6 @@ describe('VehicleViewComponent', () => {
 
   describe('Add user to vehicle', () => {
 
-    const vehicleMock: VehicleInterface = {
-      _id: '123',
-      name: 'Ferrari',
-      model: 'F8',
-      plate: '12345XC'
-    };
-
     it('should set selectedVehicle and open user management modal', () => {
       component.openAddUserModal(vehicleMock);
 
@@ -440,8 +381,7 @@ describe('VehicleViewComponent', () => {
     });
 
     it('should call addUserToVehicle on VehicleService', () => {
-      vehicleServiceMock.addUserToVehicle = jasmine.createSpy('addUserToVehicle')
-        .and.returnValue({ subscribe: ({ next }: any) => next() });
+      vehicleServiceMock.addUserToVehicle.and.returnValue({ subscribe: ({ next }: any) => next() });
 
       component.selectedVehicle.set(vehicleMock);
       component.addUserToVehicle('test@test.com');
@@ -450,8 +390,7 @@ describe('VehicleViewComponent', () => {
     });
 
     it('should reset modal and close on success', () => {
-      vehicleServiceMock.addUserToVehicle = jasmine.createSpy('addUserToVehicle')
-        .and.returnValue({ subscribe: ({ next }: any) => next() });
+      vehicleServiceMock.addUserToVehicle.and.returnValue({ subscribe: ({ next }: any) => next() });
 
       const resetSpy = jasmine.createSpy('resetModal');
       component['userModal'] = { resetModal: resetSpy, setError: jasmine.createSpy('setError') } as any;
@@ -465,8 +404,7 @@ describe('VehicleViewComponent', () => {
 
     it('should set error message on user modal when request fails', () => {
       const errorResponse = { error: { message: 'User already added' } };
-      vehicleServiceMock.addUserToVehicle = jasmine.createSpy('addUserToVehicle')
-        .and.returnValue({ subscribe: ({ error }: any) => error(errorResponse) });
+      vehicleServiceMock.addUserToVehicle.and.returnValue({ subscribe: ({ error }: any) => error(errorResponse) });
 
       const setErrorSpy = jasmine.createSpy('setError');
       component['userModal'] = { resetModal: jasmine.createSpy('resetModal'), setError: setErrorSpy } as any;
@@ -490,16 +428,8 @@ describe('VehicleViewComponent', () => {
 
   describe('Remove user from vehicle', () => {
 
-    const vehicleMock: VehicleInterface = {
-      _id: '123',
-      name: 'Ferrari',
-      model: 'F8',
-      plate: '12345XC'
-    };
-
     it('should call removeUserFromVehicle on VehicleService', () => {
-      vehicleServiceMock.removeUserFromVehicle = jasmine.createSpy('removeUserFromVehicle')
-        .and.returnValue({ subscribe: ({ next }: any) => next() });
+      vehicleServiceMock.removeUserFromVehicle.and.returnValue({ subscribe: ({ next }: any) => next() });
 
       component.selectedVehicle.set(vehicleMock);
       component.removeUserFromVehicle('user-1');
@@ -508,11 +438,8 @@ describe('VehicleViewComponent', () => {
     });
 
     it('should close modal when removed user is current user', () => {
-      vehicleServiceMock.removeUserFromVehicle = jasmine.createSpy('removeUserFromVehicle')
-        .and.returnValue({ subscribe: ({ next }: any) => next() });
-
-      authMock.getUser.and.returnValue({ name: 'JordiTheBest', role: 'admin' });
-      (authMock as any).currentUser = { uid: 'user-1' };
+      vehicleServiceMock.removeUserFromVehicle.and.returnValue({ subscribe: ({ next }: any) => next() });
+      authMock.currentUser = { uid: 'user-1' };
 
       component.selectedVehicle.set(vehicleMock);
       component.removeUserFromVehicle('user-1');
@@ -523,11 +450,8 @@ describe('VehicleViewComponent', () => {
     it('should update selectedVehicle when removed user is not current user', () => {
       const updatedVehicle: VehicleInterface = { ...vehicleMock, name: 'Ferrari Updated' };
       vehicleServiceMock.vehicles.set([updatedVehicle]);
-
-      vehicleServiceMock.removeUserFromVehicle = jasmine.createSpy('removeUserFromVehicle')
-        .and.returnValue({ subscribe: ({ next }: any) => next() });
-
-      (authMock as any).currentUser = { uid: 'someone-else' };
+      vehicleServiceMock.removeUserFromVehicle.and.returnValue({ subscribe: ({ next }: any) => next() });
+      authMock.currentUser = { uid: 'someone-else' };
 
       component.selectedVehicle.set(vehicleMock);
       component.removeUserFromVehicle('user-2');
@@ -537,8 +461,7 @@ describe('VehicleViewComponent', () => {
 
     it('should log error when request fails', () => {
       const consoleSpy = spyOn(console, 'error');
-      vehicleServiceMock.removeUserFromVehicle = jasmine.createSpy('removeUserFromVehicle')
-        .and.returnValue({ subscribe: ({ error }: any) => error('failed') });
+      vehicleServiceMock.removeUserFromVehicle.and.returnValue({ subscribe: ({ error }: any) => error('failed') });
 
       component.selectedVehicle.set(vehicleMock);
       component.removeUserFromVehicle('user-1');
