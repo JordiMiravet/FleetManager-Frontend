@@ -20,7 +20,8 @@ const vehicleServiceMock = {
   loadVehicles: jasmine.createSpy('loadVehicles'),
   addVehicles: jasmine.createSpy('addVehicles'),
   updateVehicle: jasmine.createSpy('updateVehicle'),
-  deleteVehicle: jasmine.createSpy('deleteVehicle')
+  deleteVehicle: jasmine.createSpy('deleteVehicle'),
+  addUserToVehicle: jasmine.createSpy('addUserToVehicle'),
 };
 
 const VehicleModalServiceMock = {
@@ -410,15 +411,66 @@ describe('VehicleViewComponent', () => {
 
   describe('Add user to vehicle', () => {
 
-    it('should set selectedVehicle and open user management modal');
+    const vehicleMock: VehicleInterface = {
+      _id: '123',
+      name: 'Ferrari',
+      model: 'F8',
+      plate: '12345XC'
+    };
 
-    it('should call addUserToVehicle on VehicleService');
+    it('should set selectedVehicle and open user management modal', () => {
+      component.openAddUserModal(vehicleMock);
 
-    it('should reset modal and close on success');
+      expect(component.selectedVehicle()).toEqual(vehicleMock);
+      expect(VehicleModalServiceMock.activeModal()).toBe(VehicleModalState.UserManagement);
+    });
 
-    it('should set error message on user modal when request fails');
+    it('should call addUserToVehicle on VehicleService', () => {
+      vehicleServiceMock.addUserToVehicle = jasmine.createSpy('addUserToVehicle')
+        .and.returnValue({ subscribe: ({ next }: any) => next() });
 
-    it('should not call service if no vehicle is selected');
+      component.selectedVehicle.set(vehicleMock);
+      component.addUserToVehicle('test@test.com');
+
+      expect(vehicleServiceMock.addUserToVehicle).toHaveBeenCalledWith('123', 'test@test.com');
+    });
+
+    it('should reset modal and close on success', () => {
+      vehicleServiceMock.addUserToVehicle = jasmine.createSpy('addUserToVehicle')
+        .and.returnValue({ subscribe: ({ next }: any) => next() });
+
+      const resetSpy = jasmine.createSpy('resetModal');
+      component['userModal'] = { resetModal: resetSpy, setError: jasmine.createSpy('setError') } as any;
+
+      component.selectedVehicle.set(vehicleMock);
+      component.addUserToVehicle('test@test.com');
+
+      expect(resetSpy).toHaveBeenCalled();
+      expect(VehicleModalServiceMock.activeModal()).toBe(VehicleModalState.Closed);
+    });
+
+    it('should set error message on user modal when request fails', () => {
+      const errorResponse = { error: { message: 'User already added' } };
+      vehicleServiceMock.addUserToVehicle = jasmine.createSpy('addUserToVehicle')
+        .and.returnValue({ subscribe: ({ error }: any) => error(errorResponse) });
+
+      const setErrorSpy = jasmine.createSpy('setError');
+      component['userModal'] = { resetModal: jasmine.createSpy('resetModal'), setError: setErrorSpy } as any;
+
+      component.selectedVehicle.set(vehicleMock);
+      component.addUserToVehicle('test@test.com');
+
+      expect(setErrorSpy).toHaveBeenCalledWith('User already added');
+    });
+
+    it('should not call service if no vehicle is selected', () => {
+      vehicleServiceMock.addUserToVehicle = jasmine.createSpy('addUserToVehicle');
+
+      component.selectedVehicle.set(null);
+      component.addUserToVehicle('test@test.com');
+
+      expect(vehicleServiceMock.addUserToVehicle).not.toHaveBeenCalled();
+    });
 
   });
 
