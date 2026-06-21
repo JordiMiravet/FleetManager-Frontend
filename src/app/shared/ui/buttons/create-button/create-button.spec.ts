@@ -31,25 +31,25 @@ describe('CreateButtonComponent', () => {
     });
 
     it('should render text when input is provided', () => {
-      (component.createText as any) = () => 'Add vehicle';
+      fixture.componentRef.setInput('createText', 'Add vehicle');
       fixture.detectChanges();
 
-      const span = fixture.nativeElement.querySelector('.create-button__text');
+      const button = fixture.nativeElement.querySelector('button');
 
-      expect(span.textContent.trim()).toBe('Add vehicle');
+      expect(button.textContent.trim()).toBe('Add vehicle');
     });
 
     it('should render empty text when input is null', () => {
-      (component.createText as any) = () => null;
+      fixture.componentRef.setInput('createText', null);
       fixture.detectChanges();
 
-      const span = fixture.nativeElement.querySelector('.create-button__text');
+      const button = fixture.nativeElement.querySelector('button');
 
-      expect(span.textContent.trim()).toBe('');
+      expect(button.textContent.trim()).toBe('');
     });
 
     it('should set aria-label from input', () => {
-      (component.createText as any) = () => 'Add vehicle';
+      fixture.componentRef.setInput('createText', 'Add vehicle');
       fixture.detectChanges();
 
       const button = fixture.nativeElement.querySelector('button');
