@@ -57,15 +57,6 @@ describe('CreateButtonComponent', () => {
       expect(button.getAttribute('aria-label')).toBe('Add vehicle');
     });
 
-    it('should call onClick when button is clicked', () => {
-      spyOn(component, 'onClick');
-
-      const button = fixture.nativeElement.querySelector('button');
-      button.click();
-
-      expect(component.onClick).toHaveBeenCalled();
-    });
-
   });
 
   describe('Output: create', () => {
@@ -85,18 +76,6 @@ describe('CreateButtonComponent', () => {
       button.click();
 
       expect(component.create.emit).toHaveBeenCalled();
-    });
-
-  });
-
-  describe('onClick method', () => {
-
-    it('should trigger create.emit()', () => {
-      const emitSpy = spyOn(component.create, 'emit');
-
-      component.onClick();
-
-      expect(emitSpy).toHaveBeenCalled();
     });
 
   });
