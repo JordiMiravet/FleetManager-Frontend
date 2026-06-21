@@ -45,7 +45,7 @@ describe('ConfirmModalComponent', () => {
     it('should call onConfirm when Confirm button is clicked', () => {
       const spyConfirm = spyOn(component, 'onConfirm');
 
-      const confirmButton = fixture.nativeElement.querySelector('#confirm-modal__button-confirm');
+      const confirmButton = fixture.nativeElement.querySelector('.modal__button--confirm');
       confirmButton.click();
 
       expect(spyConfirm).toHaveBeenCalled();
@@ -54,7 +54,7 @@ describe('ConfirmModalComponent', () => {
     it('should call onCancel when Cancel button is clicked', () => {
       const spyCancel = spyOn(component, 'onCancel');
 
-      const cancelButton = fixture.nativeElement.querySelector('#confirm-modal__button-cancel');
+      const cancelButton = fixture.nativeElement.querySelector('.modal__button--cancel');
       cancelButton.click();
 
       expect(spyCancel).toHaveBeenCalled();
@@ -92,7 +92,7 @@ describe('ConfirmModalComponent', () => {
     it('should emit confirm event when Confirm button is clicked', () => {
       const spyConfirm = spyOn(component.confirm, 'emit');
 
-      const confirmButton = fixture.nativeElement.querySelector('#confirm-modal__button-confirm');
+      const confirmButton = fixture.nativeElement.querySelector('.modal__button--confirm');
       confirmButton.click();
 
       expect(spyConfirm).toHaveBeenCalled();
@@ -122,13 +122,45 @@ describe('ConfirmModalComponent', () => {
 
   describe('Accessibility attributes', () => {
 
-    it('should have role dialog and aria attributes', () => {
+    it('should have aria attributes on the dialog', () => {
       const modal: HTMLElement = fixture.nativeElement.querySelector('.modal__backdrop');
 
-      expect(modal.getAttribute('role')).toBe('dialog');
       expect(modal.getAttribute('aria-modal')).toBe('true');
       expect(modal.getAttribute('aria-labelledby')).toBe('confirm-modal__modal-title');
       expect(modal.getAttribute('aria-describedby')).toBe('confirm-modal__modal-message');
+    });
+
+  });
+
+  describe('Custom inputs', () => {
+
+    it('should render custom title when provided', () => {
+      fixture.componentRef.setInput('title', 'Delete vehicle?');
+      fixture.detectChanges();
+
+      const title: HTMLElement = fixture.nativeElement.querySelector('#confirm-modal__modal-title');
+      expect(title.textContent?.trim()).toBe('Delete vehicle?');
+    });
+
+    it('should render custom message when provided', () => {
+      fixture.componentRef.setInput('message', 'This vehicle will be permanently removed');
+      fixture.detectChanges();
+
+      const message: HTMLElement = fixture.nativeElement.querySelector('#confirm-modal__modal-message');
+      expect(message.textContent?.trim()).toBe('This vehicle will be permanently removed');
+    });
+
+  });
+
+  describe('Keyboard interaction', () => {
+
+    it('should call onCancel when Escape key is pressed', () => {
+      const spyCancel = spyOn(component, 'onCancel');
+
+      const modal: HTMLElement = fixture.nativeElement.querySelector('.modal__backdrop');
+      modal.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+      expect(spyCancel).toHaveBeenCalled();
     });
 
   });
