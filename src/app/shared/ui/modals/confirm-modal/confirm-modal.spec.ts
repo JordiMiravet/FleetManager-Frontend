@@ -134,9 +134,21 @@ describe('ConfirmModalComponent', () => {
 
   describe('Custom inputs', () => {
 
-    it('should render custom title when provided');
+    it('should render custom title when provided', () => {
+      fixture.componentRef.setInput('title', 'Delete vehicle?');
+      fixture.detectChanges();
 
-    it('should render custom message when provided');
+      const title: HTMLElement = fixture.nativeElement.querySelector('#confirm-modal__modal-title');
+      expect(title.textContent?.trim()).toBe('Delete vehicle?');
+    });
+
+    it('should render custom message when provided', () => {
+      fixture.componentRef.setInput('message', 'This vehicle will be permanently removed');
+      fixture.detectChanges();
+
+      const message: HTMLElement = fixture.nativeElement.querySelector('#confirm-modal__modal-message');
+      expect(message.textContent?.trim()).toBe('This vehicle will be permanently removed');
+    });
 
   });
 
