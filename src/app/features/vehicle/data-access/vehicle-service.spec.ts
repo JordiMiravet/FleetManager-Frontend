@@ -39,12 +39,15 @@ describe('VehicleService', () => {
   });
 
   describe('Service creation', () => {
+
     it('should be created', () => {
       expect(service).toBeTruthy();
     });
+
   });
 
   describe('Initial state', () => {
+
     it('should initialize vehicles signal as empty array', () => {
       expect(service.vehicles()).toEqual([]);
     });
@@ -84,9 +87,11 @@ describe('VehicleService', () => {
 
       expect(service.vehicles()).toEqual(vehiclesMock);
     });
+
   });
 
   describe('addVehicles', () => {
+
     it('should call POST /vehicles endpoint with vehicle payload', () => {
       const vehicle: VehicleInterface = {
         _id: '1',
@@ -110,6 +115,7 @@ describe('VehicleService', () => {
     });
 
     it('should append created vehicle returned by backend to vehicles signal', () => {
+
       const vehicleList: VehicleInterface[] = [
         {
           _id: '1',
@@ -154,9 +160,11 @@ describe('VehicleService', () => {
       ]);
       expect(service.vehicles().length).toBe(2);
     });
+
   });
 
   describe('updateVehicle', () => {
+
     const vehicleList: VehicleInterface[] = [
       {
         _id: '1',
@@ -213,9 +221,11 @@ describe('VehicleService', () => {
         vehiclesMock[1],
       ]);
     });
+
   });
 
   describe('updateVehicleLocation', () => {
+
     const vehicle: VehicleInterface = {
       _id: '1',
       name: 'Ferrari',
@@ -256,9 +266,11 @@ describe('VehicleService', () => {
       expect(service.vehicles()[0]._id).toBe('1');
       expect(service.vehicles()[0].name).toBe('Ferrari');
     });
+
   });
 
   describe('deleteVehicle', () => {
+
     const vehicle: VehicleInterface = {
       _id: '1',
       name: 'Ferrari',
@@ -298,6 +310,7 @@ describe('VehicleService', () => {
       expect(service.vehicles()[0]._id).toBe('2');
       expect(service.vehicles()[0].name).toBe('Pagani');
     });
+
   });
 
   describe('addUserToVehicle', () => {
