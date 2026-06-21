@@ -300,4 +300,30 @@ describe('VehicleService', () => {
     });
   });
 
+  describe('addUserToVehicle', () => {
+
+    it('should call POST /vehicles/:id/users with email payload');
+
+    it('should add new user to vehicle in vehicles signal');
+
+    it('should not modify other vehicles');
+
+    it('should append to existing users array if present');
+
+    it('should initialize users array if not present');
+
+  });
+
+  describe('removeUserFromVehicle', () => {
+
+    it('should call DELETE /vehicles/:id/users/:userId');
+
+    it('should remove vehicle from signal when removed user is current user');
+
+    it('should remove only the user from vehicle when removed user is not current user');
+
+    it('should not modify other vehicles');
+
+  });
+
 });
