@@ -132,4 +132,18 @@ describe('ConfirmModalComponent', () => {
 
   });
 
+  describe('Custom inputs', () => {
+
+    it('should render custom title when provided');
+
+    it('should render custom message when provided');
+
+  });
+
+  describe('Keyboard interaction', () => {
+
+    it('should call onCancel when Escape key is pressed');
+
+  });
+
 });
