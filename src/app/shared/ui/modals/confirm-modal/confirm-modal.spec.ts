@@ -154,7 +154,14 @@ describe('ConfirmModalComponent', () => {
 
   describe('Keyboard interaction', () => {
 
-    it('should call onCancel when Escape key is pressed');
+    it('should call onCancel when Escape key is pressed', () => {
+      const spyCancel = spyOn(component, 'onCancel');
+
+      const modal: HTMLElement = fixture.nativeElement.querySelector('.modal__backdrop');
+      modal.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+      expect(spyCancel).toHaveBeenCalled();
+    });
 
   });
 
