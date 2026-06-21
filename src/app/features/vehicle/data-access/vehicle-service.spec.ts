@@ -387,13 +387,68 @@ describe('VehicleService', () => {
 
   describe('removeUserFromVehicle', () => {
 
-    it('should call DELETE /vehicles/:id/users/:userId');
+    const vehicleWithUsers: VehicleInterface = {
+      _id: '1',
+      name: 'Ferrari',
+      model: 'F8 Tributo',
+      plate: 'F123',
+      location: { lat: 41, lng: 2 },
+      users: [
+        { userId: 'JordiTheBest', email: 'jordi@test.com' },
+        { userId: 'other-user', email: 'other@test.com' }
+      ]
+    };
 
-    it('should remove vehicle from signal when removed user is current user');
+    it('should call DELETE /vehicles/:id/users/:userId', () => {
+      service.vehicles.set([vehicleWithUsers]);
+      service.removeUserFromVehicle('1', 'other-user').subscribe();
 
-    it('should remove only the user from vehicle when removed user is not current user');
+      const req = httpMock.expectOne('http://localhost:3000/vehicles/1/users/other-user');
+      expect(req.request.method).toBe('DELETE');
 
-    it('should not modify other vehicles');
+      req.flush(null);
+    });
+
+    it('should remove vehicle from signal when removed user is current user', () => {
+      service.vehicles.set([vehicleWithUsers]);
+      service.removeUserFromVehicle('1', 'JordiTheBest').subscribe();
+
+      const req = httpMock.expectOne('http://localhost:3000/vehicles/1/users/JordiTheBest');
+      req.flush(null);
+
+      expect(service.vehicles()).toEqual([]);
+    });
+
+    it('should remove only the user from vehicle when removed user is not current user', () => {
+      service.vehicles.set([vehicleWithUsers]);
+      service.removeUserFromVehicle('1', 'other-user').subscribe();
+
+      const req = httpMock.expectOne('http://localhost:3000/vehicles/1/users/other-user');
+      req.flush(null);
+
+      expect(service.vehicles().length).toBe(1);
+      expect(service.vehicles()[0].users).toEqual([
+        { userId: 'JordiTheBest', email: 'jordi@test.com' }
+      ]);
+    });
+
+    it('should not modify other vehicles', () => {
+      const secondVehicle: VehicleInterface = {
+        _id: '2',
+        name: 'Pagani',
+        model: 'Huayra',
+        plate: 'P456',
+        location: { lat: 42, lng: 3 }
+      };
+
+      service.vehicles.set([vehicleWithUsers, secondVehicle]);
+      service.removeUserFromVehicle('1', 'other-user').subscribe();
+
+      const req = httpMock.expectOne('http://localhost:3000/vehicles/1/users/other-user');
+      req.flush(null);
+
+      expect(service.vehicles()[1]).toEqual(secondVehicle);
+    });
 
   });
 
