@@ -315,15 +315,73 @@ describe('VehicleService', () => {
 
   describe('addUserToVehicle', () => {
 
-    it('should call POST /vehicles/:id/users with email payload');
+    const vehicle: VehicleInterface = {
+      _id: '1',
+      name: 'Ferrari',
+      model: 'F8 Tributo',
+      plate: 'F123',
+      location: { lat: 41, lng: 2 }
+    };
 
-    it('should add new user to vehicle in vehicles signal');
+    it('should call POST /vehicles/:id/users with email payload', () => {
+      service.vehicles.set([vehicle]);
+      service.addUserToVehicle('1', 'test@test.com').subscribe();
 
-    it('should not modify other vehicles');
+      const req = httpMock.expectOne('http://localhost:3000/vehicles/1/users');
+      expect(req.request.method).toBe('POST');
+      expect(req.request.body).toEqual({ email: 'test@test.com' });
 
-    it('should append to existing users array if present');
+      req.flush({ userId: 'user-1', email: 'test@test.com' });
+    });
 
-    it('should initialize users array if not present');
+    it('should add new user to vehicle in vehicles signal', () => {
+      service.vehicles.set([vehicle]);
+      service.addUserToVehicle('1', 'test@test.com').subscribe();
+
+      const req = httpMock.expectOne('http://localhost:3000/vehicles/1/users');
+      req.flush({ userId: 'user-1', email: 'test@test.com' });
+
+      expect(service.vehicles()[0].users).toEqual([{ userId: 'user-1', email: 'test@test.com' }]);
+    });
+
+    it('should not modify other vehicles', () => {
+      service.vehicles.set(vehiclesMock);
+      service.addUserToVehicle('1', 'test@test.com').subscribe();
+
+      const req = httpMock.expectOne('http://localhost:3000/vehicles/1/users');
+      req.flush({ userId: 'user-1', email: 'test@test.com' });
+
+      expect(service.vehicles()[1]).toEqual(vehiclesMock[1]);
+    });
+
+    it('should append to existing users array if present', () => {
+      const vehicleWithUsers: VehicleInterface = {
+        ...vehicle,
+        users: [{ userId: 'existing-user', email: 'existing@test.com' }]
+      };
+      service.vehicles.set([vehicleWithUsers]);
+
+      service.addUserToVehicle('1', 'new@test.com').subscribe();
+
+      const req = httpMock.expectOne('http://localhost:3000/vehicles/1/users');
+      req.flush({ userId: 'new-user', email: 'new@test.com' });
+
+      expect(service.vehicles()[0].users).toEqual([
+        { userId: 'existing-user', email: 'existing@test.com' },
+        { userId: 'new-user', email: 'new@test.com' }
+      ]);
+    });
+
+    it('should initialize users array if not present', () => {
+      service.vehicles.set([vehicle]);
+      service.addUserToVehicle('1', 'test@test.com').subscribe();
+
+      const req = httpMock.expectOne('http://localhost:3000/vehicles/1/users');
+      req.flush({ userId: 'user-1', email: 'test@test.com' });
+
+      expect(Array.isArray(service.vehicles()[0].users)).toBeTrue();
+      expect(service.vehicles()[0].users?.length).toBe(1);
+    });
 
   });
 
