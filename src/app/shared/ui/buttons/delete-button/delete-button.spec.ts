@@ -37,15 +37,11 @@ describe('DeleteButtonComponent', () => {
       expect(icon.classList).toContain('pi-trash');
     });
 
-    it('should call onClick when button is clicked', () => {
-      const spy = spyOn(component, 'onClick');
+    it('should render trash icon with correct class', () => {
+      const icon = fixture.nativeElement.querySelector('i');
 
-      const button = fixture.nativeElement.querySelector('button');
-      button.click();
-
-      expect(spy).toHaveBeenCalled();
+      expect(icon.classList).toContain('delete-button__icon');
     });
-
   });
 
   describe('Output: delete', () => {
@@ -63,18 +59,6 @@ describe('DeleteButtonComponent', () => {
 
       const button = fixture.nativeElement.querySelector('button');
       button.click();
-
-      expect(emitSpy).toHaveBeenCalled();
-    });
-
-  });
-
-  describe('onClick method', () => {
-
-    it('should trigger delete.emit()', () => {
-      const emitSpy = spyOn(component.delete, 'emit');
-
-      component.onClick();
 
       expect(emitSpy).toHaveBeenCalled();
     });
