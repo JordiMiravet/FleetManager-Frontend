@@ -9,11 +9,10 @@ describe('DarkModeToggleComponent', () => {
 
   beforeEach(async () => {
     mockThemeService = jasmine.createSpyObj('ThemeService', ['toggle', 'isDark']);
+    mockThemeService.isDark.and.returnValue(false);
 
     await TestBed.configureTestingModule({
-      imports: [ 
-        DarkModeToggleComponent
-      ],
+      imports: [DarkModeToggleComponent],
       providers: [
         { provide: ThemeService, useValue: mockThemeService }
       ]
@@ -21,10 +20,7 @@ describe('DarkModeToggleComponent', () => {
 
     fixture = TestBed.createComponent(DarkModeToggleComponent);
     component = fixture.componentInstance;
-  });
 
-  beforeEach(() => {
-    mockThemeService.isDark.and.returnValue(false);
     fixture.detectChanges();
   });
 
