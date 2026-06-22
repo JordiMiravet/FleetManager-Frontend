@@ -44,9 +44,22 @@ describe('UserButtonComponent', () => {
 
   describe('Output: user', () => {
 
-    it('should emit user when onClick is called');
+    it('should emit user when onClick is called', () => {
+      const emitSpy = spyOn(component.user, 'emit');
 
-    it('should emit user when button is clicked');
+      component.onClick();
+
+      expect(emitSpy).toHaveBeenCalled();
+    });
+
+    it('should emit user when button is clicked', () => {
+      const emitSpy = spyOn(component.user, 'emit');
+
+      const button = fixture.nativeElement.querySelector('button');
+      button.click();
+
+      expect(emitSpy).toHaveBeenCalled();
+    });
 
   });
 
