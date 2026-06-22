@@ -37,6 +37,8 @@ describe('DeleteButtonComponent', () => {
       expect(icon.classList).toContain('pi-trash');
     });
 
+    it('should render trash icon with correct class');
+
   });
 
   describe('Output: delete', () => {
