@@ -23,9 +23,22 @@ describe('UserButtonComponent', () => {
 
   describe('Template rendering', () => {
 
-    it('should render button with correct attributes');
+    it('should render button with correct attributes', () => {
+      const button = fixture.nativeElement.querySelector('button');
 
-    it('should render user icon with correct classes');
+      expect(button).toBeTruthy();
+      expect(button.getAttribute('type')).toBe('button');
+      expect(button.classList.contains('user-button')).toBeTrue();
+    });
+
+    it('should render user icon with correct classes', () => {
+      const icon = fixture.nativeElement.querySelector('i');
+
+      expect(icon.classList).toContain('fa-solid');
+      expect(icon.classList).toContain('fa-user-group');
+      expect(icon.classList).toContain('user-button__icon');
+      expect(icon.getAttribute('aria-hidden')).toBe('true');
+    });
 
   });
 
