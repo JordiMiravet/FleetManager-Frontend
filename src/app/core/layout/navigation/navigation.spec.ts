@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavigationComponent } from './navigation';
 import { isSignal, signal } from '@angular/core';
+import { provideRouter } from '@angular/router';
 
 import { AuthService } from '../../../features/auth/data-access/auth-service';
-import { provideRouter } from '@angular/router';
 
 class MockAuthService {
   isLogged = signal(false);
@@ -19,16 +19,20 @@ describe('NavigationComponent', () => {
       imports: [NavigationComponent],
       providers: [
         provideRouter([]),
-        { provide: AuthService, useClass: MockAuthService },
+        { provide: AuthService, useClass: MockAuthService }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NavigationComponent);
     component = fixture.componentInstance;
     authService = TestBed.inject(AuthService) as unknown as MockAuthService;
     fixture.detectChanges();
   });
+
+  function setLoggedIn(value: boolean): void {
+    authService.isLogged.set(value);
+    fixture.detectChanges();
+  }
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -38,38 +42,34 @@ describe('NavigationComponent', () => {
 
     it('should render the nav element with correct role and aria-label', () => {
       const navElement = fixture.nativeElement.querySelector('nav');
-      
+
       expect(navElement.getAttribute('role')).toBe('navigation');
-      expect(navElement.getAttribute('aria-label')).toBe(component.navigationMsg.aria.nav)
+      expect(navElement.getAttribute('aria-label')).toBe(component.navigationMsg.aria.nav);
     });
 
     it('should render the links list when user is logged', () => {
-      authService.isLogged.set(true);
-      fixture.detectChanges();
+      setLoggedIn(true);
 
       const unorderListElement = fixture.nativeElement.querySelector('.navbar__links');
       expect(unorderListElement).toBeTruthy();
     });
 
     it('should NOT render links list when user is not logged', () => {
-      authService.isLogged.set(false);
-      fixture.detectChanges();
+      setLoggedIn(false);
 
       const unorderListElement = fixture.nativeElement.querySelector('.navbar__links');
       expect(unorderListElement).toBeFalsy();
     });
 
     it('should render all navigation links when user is logged', () => {
-      authService.isLogged.set(true);
-      fixture.detectChanges();
+      setLoggedIn(true);
 
       const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
       expect(links.length).toBe(4);
     });
 
     it('should have correct routerLink for each navigation link', () => {
-      authService.isLogged.set(true);
-      fixture.detectChanges();
+      setLoggedIn(true);
 
       const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
       const expectedLinks = ['/', '/map', '/calendar', '/graphics'];
@@ -82,8 +82,7 @@ describe('NavigationComponent', () => {
     });
 
     it('should render correct icons and labels for each link', () => {
-      authService.isLogged.set(true);
-      fixture.detectChanges();
+      setLoggedIn(true);
 
       const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
       const expectedIcons = ['pi-home', 'pi-map', 'pi-calendar', 'pi-chart-bar'];
@@ -115,14 +114,12 @@ describe('NavigationComponent', () => {
     });
 
     it('should react to isLogged changes', () => {
-      authService.isLogged.set(true);
-      fixture.detectChanges();
+      setLoggedIn(true);
 
       let linksList = fixture.nativeElement.querySelector('.navbar__links');
       expect(linksList).toBeTruthy();
 
-      authService.isLogged.set(false);
-      fixture.detectChanges();
+      setLoggedIn(false);
 
       linksList = fixture.nativeElement.querySelector('.navbar__links');
       expect(linksList).toBeFalsy();
@@ -133,8 +130,7 @@ describe('NavigationComponent', () => {
   describe('Accessibility', () => {
 
     it('should set aria-current to null on inactive links', () => {
-      authService.isLogged.set(true);
-      fixture.detectChanges();
+      setLoggedIn(true);
 
       const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
 
@@ -145,8 +141,7 @@ describe('NavigationComponent', () => {
     });
 
     it('should have aria-hidden on all nav icons', () => {
-      authService.isLogged.set(true);
-      fixture.detectChanges();
+      setLoggedIn(true);
 
       const icons = fixture.nativeElement.querySelectorAll('.navbar__links li a i');
 
