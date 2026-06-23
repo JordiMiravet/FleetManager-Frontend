@@ -130,12 +130,4 @@ describe('NavigationComponent', () => {
 
   });
 
-  describe('Navigation interactions', () => {
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-
-  });
-
 });
