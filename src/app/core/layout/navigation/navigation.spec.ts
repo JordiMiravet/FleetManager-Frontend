@@ -132,11 +132,28 @@ describe('NavigationComponent', () => {
 
   describe('Accessibility', () => {
 
-    it('should set aria-current to "page" on active link');
+    it('should set aria-current to null on inactive links', () => {
+      authService.isLogged.set(true);
+      fixture.detectChanges();
 
-    it('should set aria-current to null on inactive links');
+      const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
 
-    it('should have aria-hidden on all nav icons');
+      links.forEach((link: HTMLElement) => {
+        const ariaCurrent = link.getAttribute('aria-current');
+        expect(ariaCurrent === 'page' || ariaCurrent === null).toBeTrue();
+      });
+    });
+
+    it('should have aria-hidden on all nav icons', () => {
+      authService.isLogged.set(true);
+      fixture.detectChanges();
+
+      const icons = fixture.nativeElement.querySelectorAll('.navbar__links li a i');
+
+      icons.forEach((icon: HTMLElement) => {
+        expect(icon.getAttribute('aria-hidden')).toBe('true');
+      });
+    });
 
   });
 
