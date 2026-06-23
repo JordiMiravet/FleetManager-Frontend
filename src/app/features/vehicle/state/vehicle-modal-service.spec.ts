@@ -47,12 +47,15 @@ describe('VehicleModalService', () => {
   });
 
   describe('service creation', () => {
+
     it('should be created', () => {
       expect(service).toBeTruthy();
     });
+
   });
 
   describe('initial state', () => {
+
     it('should initialize activeModal as Closed', () => {
       expect(service.activeModal()).toBe(VehicleModalState.Closed);
     });
@@ -64,9 +67,11 @@ describe('VehicleModalService', () => {
     it('should initialize selectedVehicle as null', () => {
       expect(service.selectedVehicle()).toBe(null);
     });
+
   });
 
   describe('openCreate behavior', () => {
+
     it('should open modal in create mode', () => {
       service.openCreate();
 
@@ -85,9 +90,11 @@ describe('VehicleModalService', () => {
       expect(service.selectedVehicle()).toBe(null);
       expect(service.activeModal()).toBe(VehicleModalState.VehicleForm);
     });
+
   });
 
   describe('openEdit behavior', () => {
+
     it('should open modal in edit mode with selected vehicle', () => {
       service.openEdit(mockVehicle);
 
@@ -111,6 +118,7 @@ describe('VehicleModalService', () => {
   });
 
   describe('openConfirmDelete behavior', () => {
+
     it('should open confirm delete modal with selected vehicle', () => {
       service.openConfirmDelete(mockVehicle);
 
@@ -124,9 +132,11 @@ describe('VehicleModalService', () => {
 
       expect(service.formMode()).toBe('edit');
     });
+
   });
 
   describe('close behavior', () => {
+
     it('should close the modal', () => {
       service.openCreate();
       service.close();
@@ -151,6 +161,7 @@ describe('VehicleModalService', () => {
   });
 
   describe('state transitions', () => {
+
     it('should allow reopening modal after closing', () => {
       service.openCreate();
       service.close();
@@ -171,5 +182,7 @@ describe('VehicleModalService', () => {
       expect(service.selectedVehicle()).toBe(mockVehicle);
       expect(service.activeModal()).toBe(VehicleModalState.VehicleForm);
     });
+
   });
+  
 });
