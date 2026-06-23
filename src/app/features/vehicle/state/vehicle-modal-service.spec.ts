@@ -26,6 +26,16 @@ describe('VehicleModalService', () => {
     }
   };
 
+  const mockVehicle2: VehicleInterface = {
+    name: 'Pagani',
+    model: 'Huayra',
+    plate: '5669JKX',
+    location: {
+      lat: 42.48644688584013,
+      lng: 3.3107555554463137
+    }
+  };
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -87,16 +97,6 @@ describe('VehicleModalService', () => {
     });
 
     it('should replace selected vehicle when openEdit is called again', () => {
-      const mockVehicle2: VehicleInterface = {
-        name: 'Pagani',
-        model: 'Huayra',
-        plate: '5669JKX',
-        location: {
-          lat: 42.48644688584013,
-          lng: 3.3107555554463137
-        }
-      };
-
       service.openEdit(mockVehicle);
       expect(service.selectedVehicle()).toBe(mockVehicle);
       expect(service.formMode()).toBe('edit');
@@ -107,6 +107,7 @@ describe('VehicleModalService', () => {
       expect(service.formMode()).toBe('edit');
       expect(service.activeModal()).toBe(VehicleModalState.VehicleForm);
     });
+
   });
 
   describe('openConfirmDelete behavior', () => {
