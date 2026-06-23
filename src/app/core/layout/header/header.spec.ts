@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { signal } from '@angular/core';
 
 import { AuthService } from '../../../features/auth/data-access/auth-service';
+import { provideRouter } from '@angular/router';
 
 class MockAuthService {
   isLogged = signal(false);
@@ -17,12 +18,11 @@ describe('HeaderComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HeaderComponent,
-        RouterTestingModule
       ],
-      providers: [{
-        provide: AuthService,
-        useClass: MockAuthService
-      }]
+      providers: [
+        provideRouter([]),
+        { provide: AuthService, useClass: MockAuthService},
+      ]
     })
     .compileComponents();
 
