@@ -58,6 +58,14 @@ describe('HeaderComponent', () => {
       expect(authActions).toBeTruthy();
     });
 
+    it('should render the header element with correct role', () => {
+      const header = fixture.nativeElement.querySelector('header');
+
+      expect(header).toBeTruthy();
+      expect(header.getAttribute('role')).toBe('banner');
+      expect(header.classList.contains('header')).toBeTrue();
+    });
+
   });
 
   describe('Layout structure', () => {
