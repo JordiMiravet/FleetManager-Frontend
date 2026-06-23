@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavigationComponent } from './navigation';
 import { isSignal, signal } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
 
 import { AuthService } from '../../../features/auth/data-access/auth-service';
+import { provideRouter } from '@angular/router';
 
 class MockAuthService {
   isLogged = signal(false);
@@ -16,14 +16,11 @@ describe('NavigationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        NavigationComponent,
-        RouterTestingModule 
-      ],
-      providers: [{ 
-        provide: AuthService, 
-        useClass: MockAuthService 
-      }]
+      imports: [NavigationComponent],
+      providers: [
+        provideRouter([]),
+        { provide: AuthService, useClass: MockAuthService },
+      ]
     })
     .compileComponents();
 
