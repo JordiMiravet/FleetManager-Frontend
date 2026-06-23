@@ -87,7 +87,12 @@ describe('NavigationComponent', () => {
 
       const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
       const expectedIcons = ['pi-home', 'pi-map', 'pi-calendar', 'pi-chart-bar'];
-      const expectedLabels = ['Home', 'Map', 'Calendar', 'Graphics'];
+      const expectedLabels = [
+        component.navigationMsg.links.home,
+        component.navigationMsg.links.map,
+        component.navigationMsg.links.calendar,
+        component.navigationMsg.links.graphics
+      ];
 
       links.forEach((link: HTMLElement, index: number) => {
         const icon = link.querySelector('i');
@@ -95,7 +100,7 @@ describe('NavigationComponent', () => {
         expect(icon?.className).toContain('pi');
         expect(icon?.className).toContain(expectedIcons[index]);
 
-        const span = link.querySelector('.nav-label');
+        const span = link.querySelector('.navbar__label');
         expect(span?.textContent?.trim()).toBe(expectedLabels[index]);
       });
     });
