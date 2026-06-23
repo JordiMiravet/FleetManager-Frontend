@@ -130,4 +130,14 @@ describe('NavigationComponent', () => {
 
   });
 
+  describe('Accessibility', () => {
+
+    it('should set aria-current to "page" on active link');
+
+    it('should set aria-current to null on inactive links');
+
+    it('should have aria-hidden on all nav icons');
+
+  });
+
 });
