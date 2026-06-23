@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from '../header/header';
-import { RouterTestingModule } from '@angular/router/testing';
 import { signal } from '@angular/core';
+import { provideRouter } from '@angular/router';
 
 import { AuthService } from '../../../features/auth/data-access/auth-service';
-import { provideRouter } from '@angular/router';
 
 class MockAuthService {
   isLogged = signal(false);
@@ -41,11 +40,12 @@ describe('HeaderComponent', () => {
 
   describe('Template rendering', () => {
 
-    it('should render the header element with correct role', () => {
+    it('should render the header element with correct role and class', () => {
       const header = fixture.nativeElement.querySelector('header');
-      
+
       expect(header).toBeTruthy();
       expect(header.getAttribute('role')).toBe('banner');
+      expect(header.classList.contains('header')).toBeTrue();
     });
 
     it('should render NavigationComponent', () => {
@@ -56,14 +56,6 @@ describe('HeaderComponent', () => {
     it('should render AuthActionsComponent', () => {
       const authActions = fixture.nativeElement.querySelector('app-auth-actions');
       expect(authActions).toBeTruthy();
-    });
-
-    it('should render the header element with correct role', () => {
-      const header = fixture.nativeElement.querySelector('header');
-
-      expect(header).toBeTruthy();
-      expect(header.getAttribute('role')).toBe('banner');
-      expect(header.classList.contains('header')).toBeTrue();
     });
 
   });
