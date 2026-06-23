@@ -140,12 +140,13 @@ describe('VehicleModalService', () => {
       expect(service.selectedVehicle()).toBe(null);
     });
 
-    it('should not modify formMode when closing modal', () => {
+    it('should reset formMode to create when closing modal', () => {
       service.openEdit(mockVehicle);
       service.close();
 
       expect(service.formMode()).toBe('create');
     });
+
   });
 
   describe('state transitions', () => {
