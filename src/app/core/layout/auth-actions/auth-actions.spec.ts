@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingHarness, RouterTestingModule } from '@angular/router/testing';
+import { RouterTestingHarness } from '@angular/router/testing';
 import { Component, signal } from '@angular/core';
 import { provideRouter, Router } from '@angular/router';
 
@@ -33,7 +33,6 @@ describe('AuthActionsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         AuthActionsComponent,
-        RouterTestingModule
       ],
       providers: [
         { provide: AuthService, useClass: MockAuthService },
