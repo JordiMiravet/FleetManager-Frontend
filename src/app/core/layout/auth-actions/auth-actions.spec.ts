@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { Component, signal } from '@angular/core';
 import { provideRouter, Router } from '@angular/router';
@@ -235,7 +235,19 @@ describe('AuthActionsComponent', () => {
 
   describe('Error handling', () => {
 
-    it('should log error when logout fails');
+    it('should log error when logout fails', fakeAsync(() => {
+      const consoleSpy = spyOn(console, 'error');
+      const authService = TestBed.inject(AuthService) as unknown as MockAuthService;
+
+      authService.logout.and.returnValue(
+        Promise.reject(new Error('Logout error'))
+      );
+
+      component.onLogout();
+      tick();
+
+      expect(consoleSpy).toHaveBeenCalledWith(jasmine.any(Error));
+    }));
 
   });
 
