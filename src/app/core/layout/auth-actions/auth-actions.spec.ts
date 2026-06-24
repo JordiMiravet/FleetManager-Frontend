@@ -60,9 +60,15 @@ describe('AuthActionsComponent', () => {
 
   describe('Initial state', () => {
 
-    it('should initialize isDrawerOpen as false');
+    it('should initialize isDrawerOpen as false', () => {
+      expect(component.isDrawerOpen()).toBeFalse();
+    });
 
-    it('should reflect isLogged signal from AuthService');
+    it('should reflect isLogged signal from AuthService', () => {
+      const authService = TestBed.inject(AuthService) as unknown as MockAuthService;
+
+      expect(component.isLogged()).toBe(authService.isLogged());
+    });
 
   });
 
