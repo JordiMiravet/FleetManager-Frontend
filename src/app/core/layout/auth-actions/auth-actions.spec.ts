@@ -58,6 +58,14 @@ describe('AuthActionsComponent', () => {
 
   });
 
+  describe('Initial state', () => {
+
+    it('should initialize isDrawerOpen as false');
+
+    it('should reflect isLogged signal from AuthService');
+
+  });
+
   describe('Template rendering', () => {
 
     it('should render settings button when user is logged', () => {
@@ -151,6 +159,18 @@ describe('AuthActionsComponent', () => {
 
   });
 
+  describe('Method: openDrawer', () => {
+
+    it('should set isDrawerOpen to true');
+
+  });
+
+  describe('Method: closeDrawer', () => {
+
+    it('should set isDrawerOpen to false');
+
+  });
+
   describe('Interactions', () => {
 
     it('should call logout and navigate when onLogout is called', async () => {
@@ -179,6 +199,34 @@ describe('AuthActionsComponent', () => {
 
       expect(component.onLogout).toHaveBeenCalled();
     });
+
+  });
+
+  describe('Drawer integration', () => {
+
+    it('should close drawer when close event is emitted from account drawer');
+
+  });
+
+  describe('Error handling', () => {
+
+    it('should log error when logout fails');
+
+  });
+
+  describe('Reactive updates', () => {
+
+    it('should update template when isLogged signal changes');
+
+  });
+
+  describe('Accessibility', () => {
+
+    it('should have aria-label on settings button');
+
+    it('should have aria-label on login button');
+
+    it('should have aria-label on register button');
 
   });
 
