@@ -83,11 +83,28 @@ describe('AccountDrawerComponent', () => {
 
   describe('Output: close', () => {
 
-    it('should emit close when onClose is called');
+    it('should emit close when onClose is called', () => {
+      spyOn(component.close, 'emit');
+      component.onClose();
 
-    it('should emit close when backdrop is clicked');
+      expect(component.close.emit).toHaveBeenCalled();
+    });
 
-    it('should emit close when close button is clicked');
+    it('should emit close when backdrop is clicked', () => {
+      spyOn(component.close, 'emit');
+      const backdrop = fixture.nativeElement.querySelector('.drawer__backdrop');
+      backdrop.click();
+
+      expect(component.close.emit).toHaveBeenCalled();
+    });
+
+    it('should emit close when close button is clicked', () => {
+      spyOn(component.close, 'emit');
+      const button = fixture.nativeElement.querySelector('.drawer__close');
+      button.click();
+
+      expect(component.close.emit).toHaveBeenCalled();
+    });
 
   });
 
