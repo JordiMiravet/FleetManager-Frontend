@@ -142,13 +142,33 @@ describe('AccountDrawerComponent', () => {
 
   describe('Accessibility', () => {
 
-    it('should have aria-hidden on backdrop');
+    it('should have aria-hidden on backdrop', () => {
+      const backdrop = fixture.nativeElement.querySelector('.drawer__backdrop');
 
-    it('should have aria-label on the aside');
+      expect(backdrop.getAttribute('aria-hidden')).toBe('true');
+    });
 
-    it('should have aria-label on the close button');
+    it('should have aria-label on the aside', () => {
+      const aside = fixture.nativeElement.querySelector('aside.drawer');
 
-    it('should have aria-hidden on icons');
+      expect(aside.getAttribute('aria-label')).toBe(component.drawerMsg.aria.drawer);
+    });
+
+    it('should have aria-label on the close button', () => {
+      const button = fixture.nativeElement.querySelector('.drawer__close');
+
+      expect(button.getAttribute('aria-label')).toBe(component.drawerMsg.aria.closeButton);
+    });
+
+    it('should have aria-hidden on icons', () => {
+      const hiddenIcons = fixture.nativeElement.querySelectorAll('i[aria-hidden="true"]');
+
+      expect(hiddenIcons.length).toBeGreaterThan(0);
+
+      hiddenIcons.forEach((icon: HTMLElement) => {
+        expect(icon.getAttribute('aria-hidden')).toBe('true')
+      });
+    });
 
   });
 
