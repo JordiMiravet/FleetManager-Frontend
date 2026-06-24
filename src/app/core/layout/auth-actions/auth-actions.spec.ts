@@ -253,7 +253,23 @@ describe('AuthActionsComponent', () => {
 
   describe('Reactive updates', () => {
 
-    it('should update template when isLogged signal changes');
+    it('should update template when isLogged signal changes', () => {
+      component.isLogged = signal(false);
+      fixture.detectChanges();
+
+      let loginButton = fixture.nativeElement.querySelector('[data-test="loginButton"]');
+      let registerButton = fixture.nativeElement.querySelector('[data-test="registerButton"]');
+
+      expect(loginButton).toBeTruthy();
+      expect(registerButton).toBeTruthy();
+
+      component.isLogged = signal(true);
+      fixture.detectChanges();
+
+      const settingsButton = fixture.nativeElement.querySelector('.navbar__auth-button');
+
+      expect(settingsButton).toBeTruthy();
+    });
 
   });
 
