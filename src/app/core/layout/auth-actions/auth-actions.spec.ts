@@ -275,11 +275,32 @@ describe('AuthActionsComponent', () => {
 
   describe('Accessibility', () => {
 
-    it('should have aria-label on settings button');
+    it('should have aria-label on settings button', () => {
+      component.isLogged = signal(true);
+      fixture.detectChanges();
 
-    it('should have aria-label on login button');
+      const button = fixture.nativeElement.querySelector('.navbar__auth-button');
 
-    it('should have aria-label on register button');
+      expect(button.getAttribute('aria-label')).toBe(component.drawerMsg.aria.openButton);
+    });
+
+    it('should have aria-label on login button', () => {
+      component.isLogged = signal(false);
+      fixture.detectChanges();
+
+      const button = fixture.nativeElement.querySelector('[data-test="loginButton"]');
+
+      expect(button.getAttribute('aria-label')).toBe(component.authActionsMsg.aria.login);
+    });
+
+    it('should have aria-label on register button', () => {
+      component.isLogged = signal(false);
+      fixture.detectChanges();
+
+      const button = fixture.nativeElement.querySelector('[data-test="registerButton"]');
+
+      expect(button.getAttribute('aria-label')).toBe(component.authActionsMsg.aria.register);
+    });
 
   });
 
