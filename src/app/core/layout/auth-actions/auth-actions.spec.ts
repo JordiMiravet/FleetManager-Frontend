@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingHarness, RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { RouterTestingHarness } from '@angular/router/testing';
 import { Component, signal } from '@angular/core';
 import { provideRouter, Router } from '@angular/router';
 
@@ -31,17 +31,14 @@ describe('AuthActionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        AuthActionsComponent,
-        RouterTestingModule
-      ],
+      imports: [AuthActionsComponent],
       providers: [
-        { provide: AuthService, useClass: MockAuthService },
-        LayoutMessagesService,
         provideRouter([
           { path: 'login', component: LoginComponent },
           { path: 'register', component: RegisterComponent }
-        ])
+        ]),
+        { provide: AuthService, useClass: MockAuthService },
+        LayoutMessagesService,
       ]
     }).compileComponents();
 
@@ -55,6 +52,20 @@ describe('AuthActionsComponent', () => {
 
     it('should create', () => {
       expect(component).toBeTruthy();
+    });
+
+  });
+
+  describe('Initial state', () => {
+
+    it('should initialize isDrawerOpen as false', () => {
+      expect(component.isDrawerOpen()).toBeFalse();
+    });
+
+    it('should reflect isLogged signal from AuthService', () => {
+      const authService = TestBed.inject(AuthService) as unknown as MockAuthService;
+
+      expect(component.isLogged()).toBe(authService.isLogged());
     });
 
   });
@@ -152,6 +163,28 @@ describe('AuthActionsComponent', () => {
 
   });
 
+  describe('Method: openDrawer', () => {
+
+    it('should set isDrawerOpen to true', () => {
+      component.isDrawerOpen.set(false);
+      component.openDrawer();
+
+      expect(component.isDrawerOpen()).toBeTrue();
+    });
+
+  });
+
+  describe('Method: closeDrawer', () => {
+
+    it('should set isDrawerOpen to false', () => {
+      component.isDrawerOpen.set(true);
+      component.closeDrawer();
+
+      expect(component.isDrawerOpen()).toBeFalse();
+    });
+
+  });
+
   describe('Interactions', () => {
 
     it('should call logout and navigate when onLogout is called', async () => {
@@ -179,6 +212,92 @@ describe('AuthActionsComponent', () => {
       drawer.triggerEventHandler('logout');
 
       expect(component.onLogout).toHaveBeenCalled();
+    });
+
+  });
+
+  describe('Drawer integration', () => {
+
+    it('should close drawer when close event is emitted from account drawer', () => {
+      component.isLogged = signal(true);
+      component.isDrawerOpen.set(true);
+      fixture.detectChanges();
+
+      const drawer = fixture.debugElement.query(sel => sel.name === 'app-account-drawer');
+      drawer.triggerEventHandler('close');
+
+      expect(component.isDrawerOpen()).toBeFalse();
+    });
+
+  });
+
+  describe('Error handling', () => {
+
+    it('should log error when logout fails', fakeAsync(() => {
+      const consoleSpy = spyOn(console, 'error');
+      const authService = TestBed.inject(AuthService) as unknown as MockAuthService;
+
+      authService.logout.and.returnValue(
+        Promise.reject(new Error('Logout error'))
+      );
+
+      component.onLogout();
+      tick();
+
+      expect(consoleSpy).toHaveBeenCalledWith(jasmine.any(Error));
+    }));
+
+  });
+
+  describe('Reactive updates', () => {
+
+    it('should update template when isLogged signal changes', () => {
+      component.isLogged = signal(false);
+      fixture.detectChanges();
+
+      let loginButton = fixture.nativeElement.querySelector('[data-test="loginButton"]');
+      let registerButton = fixture.nativeElement.querySelector('[data-test="registerButton"]');
+
+      expect(loginButton).toBeTruthy();
+      expect(registerButton).toBeTruthy();
+
+      component.isLogged = signal(true);
+      fixture.detectChanges();
+
+      const settingsButton = fixture.nativeElement.querySelector('.navbar__auth-button');
+
+      expect(settingsButton).toBeTruthy();
+    });
+
+  });
+
+  describe('Accessibility', () => {
+
+    it('should have aria-label on settings button', () => {
+      component.isLogged = signal(true);
+      fixture.detectChanges();
+
+      const button = fixture.nativeElement.querySelector('.navbar__auth-button');
+
+      expect(button.getAttribute('aria-label')).toBe(component.drawerMsg.aria.openButton);
+    });
+
+    it('should have aria-label on login button', () => {
+      component.isLogged = signal(false);
+      fixture.detectChanges();
+
+      const button = fixture.nativeElement.querySelector('[data-test="loginButton"]');
+
+      expect(button.getAttribute('aria-label')).toBe(component.authActionsMsg.aria.login);
+    });
+
+    it('should have aria-label on register button', () => {
+      component.isLogged = signal(false);
+      fixture.detectChanges();
+
+      const button = fixture.nativeElement.querySelector('[data-test="registerButton"]');
+
+      expect(button.getAttribute('aria-label')).toBe(component.authActionsMsg.aria.register);
     });
 
   });
