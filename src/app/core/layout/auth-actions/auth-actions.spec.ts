@@ -167,7 +167,12 @@ describe('AuthActionsComponent', () => {
 
   describe('Method: openDrawer', () => {
 
-    it('should set isDrawerOpen to true');
+    it('should set isDrawerOpen to true', () => {
+      component.isDrawerOpen.set(false);
+      component.openDrawer();
+
+      expect(component.isDrawerOpen()).toBeTrue();
+    });
 
   });
 
