@@ -129,7 +129,14 @@ describe('AccountDrawerComponent', () => {
 
   describe('onLogout method', () => {
 
-    it('should emit both logout and close when onLogout is called');
+    it('should emit both logout and close when onLogout is called', () => {
+      spyOn(component.logout, 'emit');
+      spyOn(component.close, 'emit');
+      component.onLogout();
+
+      expect(component.logout.emit).toHaveBeenCalledTimes(1);
+      expect(component.close.emit).toHaveBeenCalledTimes(1);
+    });
 
   });
 
