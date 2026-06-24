@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { AccountDrawerComponent } from './account-drawer';
 import { ThemeService } from '../../services/theme/theme-service';
 
@@ -16,8 +17,7 @@ describe('AccountDrawerComponent', () => {
       providers: [
         { provide: ThemeService, useValue: mockThemeService }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AccountDrawerComponent);
     component = fixture.componentInstance;
