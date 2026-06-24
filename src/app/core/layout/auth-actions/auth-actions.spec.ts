@@ -220,7 +220,16 @@ describe('AuthActionsComponent', () => {
 
   describe('Drawer integration', () => {
 
-    it('should close drawer when close event is emitted from account drawer');
+    it('should close drawer when close event is emitted from account drawer', () => {
+      component.isLogged = signal(true);
+      component.isDrawerOpen.set(true);
+      fixture.detectChanges();
+
+      const drawer = fixture.debugElement.query(sel => sel.name === 'app-account-drawer');
+      drawer.triggerEventHandler('close');
+
+      expect(component.isDrawerOpen()).toBeFalse();
+    });
 
   });
 
