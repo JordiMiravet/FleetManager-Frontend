@@ -178,7 +178,12 @@ describe('AuthActionsComponent', () => {
 
   describe('Method: closeDrawer', () => {
 
-    it('should set isDrawerOpen to false');
+    it('should set isDrawerOpen to false', () => {
+      component.isDrawerOpen.set(true);
+      component.closeDrawer();
+
+      expect(component.isDrawerOpen()).toBeFalse();
+    });
 
   });
 
