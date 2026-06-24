@@ -31,16 +31,14 @@ describe('AuthActionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        AuthActionsComponent,
-      ],
+      imports: [AuthActionsComponent],
       providers: [
-        { provide: AuthService, useClass: MockAuthService },
-        LayoutMessagesService,
         provideRouter([
           { path: 'login', component: LoginComponent },
           { path: 'register', component: RegisterComponent }
-        ])
+        ]),
+        { provide: AuthService, useClass: MockAuthService },
+        LayoutMessagesService,
       ]
     }).compileComponents();
 
