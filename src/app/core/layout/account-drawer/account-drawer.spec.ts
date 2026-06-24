@@ -110,9 +110,20 @@ describe('AccountDrawerComponent', () => {
 
   describe('Output: logout', () => {
 
-    it('should emit logout when onLogout is called');
+    it('should emit logout when onLogout is called', () => {
+      spyOn(component.logout, 'emit');
+      component.onLogout();
 
-    it('should emit logout when logout button is clicked');
+      expect(component.logout.emit).toHaveBeenCalled();
+    });
+
+    it('should emit logout when logout button is clicked', () => {
+      spyOn(component.logout, 'emit');
+      const logoutButton = fixture.nativeElement.querySelector('.drawer__item--danger');
+      logoutButton.click();
+
+      expect(component.logout.emit).toHaveBeenCalled();
+    });
 
   });
 
