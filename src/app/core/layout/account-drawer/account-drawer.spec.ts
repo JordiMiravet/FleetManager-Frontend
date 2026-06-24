@@ -30,19 +30,54 @@ describe('AccountDrawerComponent', () => {
 
   describe('Template rendering', () => {
 
-    it('should render the backdrop');
+    it('should render the backdrop', () => {
+      const backdrop = fixture.nativeElement.querySelector('.drawer__backdrop');
 
-    it('should render the aside with role dialog');
+      expect(backdrop).toBeTruthy();
+    });
 
-    it('should render the drawer title');
+    it('should render the aside with role dialog', () => {
+      const aside = fixture.nativeElement.querySelector('aside.drawer');
 
-    it('should render the close button');
+      expect(aside).toBeTruthy();
+      expect(aside.getAttribute('role')).toBe('dialog');
+    });
 
-    it('should render all menu items');
+    it('should render the drawer title', () => {
+      const title = fixture.nativeElement.querySelector('.drawer__title');
 
-    it('should render the dark mode toggle');
+      expect(title).toBeTruthy();
+      expect(title.textContent.trim()).toBe(component.drawerMsg.title);
+    });
 
-    it('should render the logout button');
+    it('should render the close button', () => {
+      const button = fixture.nativeElement.querySelector('.drawer__close');
+
+      expect(button).toBeTruthy();
+    });
+
+    it('should render all menu items', () => {
+      const items = fixture.nativeElement.querySelectorAll('.drawer__section:first-of-type .drawer__item');
+
+      expect(items.length).toBe(4);
+      expect(items[0].textContent).toContain(component.drawerMsg.items.editProfile);
+      expect(items[1].textContent).toContain(component.drawerMsg.items.settings);
+      expect(items[2].textContent).toContain(component.drawerMsg.items.language);
+      expect(items[3].textContent).toContain(component.drawerMsg.items.darkMode);
+    });
+
+    it('should render the dark mode toggle', () => {
+      const toggle = fixture.nativeElement.querySelector('app-dark-mode-toggle');
+
+      expect(toggle).toBeTruthy();
+    });
+
+    it('should render the logout button', () => {
+      const button = fixture.nativeElement.querySelector('.drawer__item--danger');
+
+      expect(button).toBeTruthy();
+      expect(button.textContent).toContain(component.drawerMsg.buttons.logout);
+    });
 
   });
 
