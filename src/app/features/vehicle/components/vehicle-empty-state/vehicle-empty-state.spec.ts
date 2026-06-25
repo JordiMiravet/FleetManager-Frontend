@@ -18,19 +18,24 @@ describe('VehicleEmptyStateComponent', () => {
   });
 
   describe('component creation', () => {
+
     it('should create', () => {
       expect(component).toBeTruthy();
     });
+
   });
 
   describe('initial state', () => {
+
     it('should have createVehicle as an output', () => {
       expect(component.createVehicle).toBeDefined();
       expect(typeof component.createVehicle.emit).toBe('function');
     });
+
   });
 
   describe('template rendering', () => {
+
     it('should render the container', () => {
       const container = fixture.nativeElement.querySelector('.vehicle-empty__container');
       expect(container).toBeTruthy();
@@ -58,9 +63,11 @@ describe('VehicleEmptyStateComponent', () => {
 
       expect(button.componentInstance.createText).toBeTruthy();
     });
+
   });
 
   describe('methods', () => {
+
     it('should call onClick method', () => {
       spyOn(component, 'onClick');
 
@@ -76,6 +83,7 @@ describe('VehicleEmptyStateComponent', () => {
 
       expect(component.createVehicle.emit).toHaveBeenCalled();
     });
+
   });
 
   describe('events', () => {
@@ -88,6 +96,7 @@ describe('VehicleEmptyStateComponent', () => {
 
       expect(component.createVehicle.emit).toHaveBeenCalled();
     });
+
   });
 
 });
