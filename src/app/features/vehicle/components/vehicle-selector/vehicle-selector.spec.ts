@@ -161,11 +161,9 @@ describe('VehicleSelectorComponent', () => {
 
       spyOn(component.vehicleSelected, 'emit');
 
-      const select: HTMLSelectElement =
-        fixture.nativeElement.querySelector('#vehicle-select');
-
-      select.value = 'UNKNOWN';
-      select.dispatchEvent(new Event('change'));
+      component.onVehicleChange({
+        target: { value: 'UNKNOWN' }
+      } as any);
 
       expect(component.vehicleSelected.emit).not.toHaveBeenCalled();
     });
