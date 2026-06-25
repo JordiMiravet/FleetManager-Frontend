@@ -71,6 +71,22 @@ describe('VehicleSelectorComponent', () => {
       const select: HTMLSelectElement = fixture.nativeElement.querySelector('select');
       expect(select.value).toBe('F123');
     });
+
+    it('should render only the default option when there are no vehicles', () => {
+
+    });
+
+    it('should render vehicle names', () => {
+
+    });
+
+    it('should render the accessibility label', () => {
+
+    });
+
+    it('should not select any vehicle when selectedPlate is null', () => {
+
+    });
   });
 
   describe('events', () => {
@@ -109,6 +125,10 @@ describe('VehicleSelectorComponent', () => {
       } as any);
 
       expect(component.vehicleSelected.emit).not.toHaveBeenCalled();
+    });
+
+    it('should not emit when selecting an unknown plate from DOM', () => {
+
     });
   });
 
