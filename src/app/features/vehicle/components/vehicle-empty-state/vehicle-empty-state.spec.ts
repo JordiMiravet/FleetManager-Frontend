@@ -81,7 +81,12 @@ describe('VehicleEmptyStateComponent', () => {
   describe('events', () => {
 
     it('should emit createVehicle when button is clicked', () => {
+      spyOn(component.createVehicle, 'emit');
 
+      const button = fixture.debugElement.query(By.css('app-create-button'));
+      button.triggerEventHandler('click', null);
+
+      expect(component.createVehicle.emit).toHaveBeenCalled();
     });
   });
 
