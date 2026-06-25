@@ -10,12 +10,12 @@ describe('VehicleSelectorComponent', () => {
 
   const mockVehicles: VehicleInterface[] = [
     { name: 'Ferrari', model: 'F8 Tributo', plate: 'F123', location: { lat: 41, lng: 2 } },
-    { name: 'Pagani', model: 'Huayra', plate: 'P456', location: { lat: 42, lng: 3 } }
+    { name: 'Pagani', model: 'Huayra', plate: 'P456', location: { lat: 42, lng: 3 } },
   ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleSelectorComponent]
+      imports: [ VehicleSelectorComponent ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(VehicleSelectorComponent);
@@ -24,12 +24,15 @@ describe('VehicleSelectorComponent', () => {
   });
 
   describe('component creation', () => {
+
     it('should create', () => {
       expect(component).toBeTruthy();
     });
+
   });
 
   describe('inputs', () => {
+
     it('should accept vehicles input', () => {
       const mockSignal = () => mockVehicles;
       (component.vehicles as any) = mockSignal;
@@ -43,9 +46,11 @@ describe('VehicleSelectorComponent', () => {
 
       expect(component.selectedPlate()).toBe('F123');
     });
+
   });
 
   describe('template rendering', () => {
+
     it('should render the select element', () => {
       const select = fixture.nativeElement.querySelector('#vehicle-select');
       expect(select).toBeTruthy();
@@ -108,9 +113,11 @@ describe('VehicleSelectorComponent', () => {
 
       expect(select.value).toBe('');
     });
+
   });
 
   describe('events', () => {
+
     it('should emit vehicleSelected when a vehicle is selected', () => {
       (component.vehicles as any) = () => mockVehicles;
       fixture.detectChanges();
@@ -162,6 +169,7 @@ describe('VehicleSelectorComponent', () => {
 
       expect(component.vehicleSelected.emit).not.toHaveBeenCalled();
     });
+
   });
 
 });
