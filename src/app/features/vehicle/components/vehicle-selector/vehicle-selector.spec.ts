@@ -10,12 +10,12 @@ describe('VehicleSelectorComponent', () => {
 
   const mockVehicles: VehicleInterface[] = [
     { name: 'Ferrari', model: 'F8 Tributo', plate: 'F123', location: { lat: 41, lng: 2 } },
-    { name: 'Pagani', model: 'Huayra', plate: 'P456', location: { lat: 42, lng: 3 } }
+    { name: 'Pagani', model: 'Huayra', plate: 'P456', location: { lat: 42, lng: 3 } },
   ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleSelectorComponent]
+      imports: [ VehicleSelectorComponent ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(VehicleSelectorComponent);
@@ -24,12 +24,15 @@ describe('VehicleSelectorComponent', () => {
   });
 
   describe('component creation', () => {
+
     it('should create', () => {
       expect(component).toBeTruthy();
     });
+
   });
 
   describe('inputs', () => {
+
     it('should accept vehicles input', () => {
       const mockSignal = () => mockVehicles;
       (component.vehicles as any) = mockSignal;
@@ -43,9 +46,11 @@ describe('VehicleSelectorComponent', () => {
 
       expect(component.selectedPlate()).toBe('F123');
     });
+
   });
 
   describe('template rendering', () => {
+
     it('should render the select element', () => {
       const select = fixture.nativeElement.querySelector('#vehicle-select');
       expect(select).toBeTruthy();
@@ -71,9 +76,48 @@ describe('VehicleSelectorComponent', () => {
       const select: HTMLSelectElement = fixture.nativeElement.querySelector('select');
       expect(select.value).toBe('F123');
     });
+
+    it('should render only the default option when there are no vehicles', () => {
+      (component.vehicles as any) = () => [];
+      fixture.detectChanges();
+
+      const options = fixture.nativeElement.querySelectorAll('option');
+
+      expect(options.length).toBe(1);
+    });
+
+    it('should render vehicle names', () => {
+      (component.vehicles as any) = () => mockVehicles;
+      fixture.detectChanges();
+
+      const options = fixture.nativeElement.querySelectorAll('option');
+
+      expect(options[1].textContent.trim()).toBe('Ferrari');
+      expect(options[2].textContent.trim()).toBe('Pagani');
+    });
+
+    it('should render the accessibility label', () => {
+      const label = fixture.nativeElement.querySelector('label');
+
+      expect(label).toBeTruthy();
+      expect(label.getAttribute('for')).toBe('vehicle-select');
+    });
+
+    it('should not select any vehicle when selectedPlate is null', () => {
+      (component.vehicles as any) = signal(mockVehicles);
+      (component.selectedPlate as any) = signal(null);
+
+      fixture.detectChanges();
+
+      const select: HTMLSelectElement = fixture.nativeElement.querySelector('select');
+
+      expect(select.value).toBe('');
+    });
+
   });
 
   describe('events', () => {
+
     it('should emit vehicleSelected when a vehicle is selected', () => {
       (component.vehicles as any) = () => mockVehicles;
       fixture.detectChanges();
@@ -110,6 +154,22 @@ describe('VehicleSelectorComponent', () => {
 
       expect(component.vehicleSelected.emit).not.toHaveBeenCalled();
     });
+
+    it('should not emit when selecting an unknown plate from DOM', () => {
+      (component.vehicles as any) = () => mockVehicles;
+      fixture.detectChanges();
+
+      spyOn(component.vehicleSelected, 'emit');
+
+      const select: HTMLSelectElement =
+        fixture.nativeElement.querySelector('#vehicle-select');
+
+      select.value = 'UNKNOWN';
+      select.dispatchEvent(new Event('change'));
+
+      expect(component.vehicleSelected.emit).not.toHaveBeenCalled();
+    });
+
   });
 
 });
