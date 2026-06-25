@@ -149,7 +149,18 @@ describe('VehicleSelectorComponent', () => {
     });
 
     it('should not emit when selecting an unknown plate from DOM', () => {
+      (component.vehicles as any) = () => mockVehicles;
+      fixture.detectChanges();
 
+      spyOn(component.vehicleSelected, 'emit');
+
+      const select: HTMLSelectElement =
+        fixture.nativeElement.querySelector('#vehicle-select');
+
+      select.value = 'UNKNOWN';
+      select.dispatchEvent(new Event('change'));
+
+      expect(component.vehicleSelected.emit).not.toHaveBeenCalled();
     });
   });
 
