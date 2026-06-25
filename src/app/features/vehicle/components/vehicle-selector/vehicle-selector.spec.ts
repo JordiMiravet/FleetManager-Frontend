@@ -73,19 +73,40 @@ describe('VehicleSelectorComponent', () => {
     });
 
     it('should render only the default option when there are no vehicles', () => {
+      (component.vehicles as any) = () => [];
+      fixture.detectChanges();
 
+      const options = fixture.nativeElement.querySelectorAll('option');
+
+      expect(options.length).toBe(1);
     });
 
     it('should render vehicle names', () => {
+      (component.vehicles as any) = () => mockVehicles;
+      fixture.detectChanges();
 
+      const options = fixture.nativeElement.querySelectorAll('option');
+
+      expect(options[1].textContent.trim()).toBe('Ferrari');
+      expect(options[2].textContent.trim()).toBe('Pagani');
     });
 
     it('should render the accessibility label', () => {
+      const label = fixture.nativeElement.querySelector('label');
 
+      expect(label).toBeTruthy();
+      expect(label.getAttribute('for')).toBe('vehicle-select');
     });
 
     it('should not select any vehicle when selectedPlate is null', () => {
+      (component.vehicles as any) = signal(mockVehicles);
+      (component.selectedPlate as any) = signal(null);
 
+      fixture.detectChanges();
+
+      const select: HTMLSelectElement = fixture.nativeElement.querySelector('select');
+
+      expect(select.value).toBe('');
     });
   });
 
