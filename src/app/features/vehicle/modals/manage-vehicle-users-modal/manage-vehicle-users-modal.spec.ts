@@ -108,13 +108,42 @@ describe('ManageVehicleUsersModalComponent', () => {
 
   describe('loading state', () => {
 
-    it('should disable submit button when loading');
+    beforeEach(() => {
+      permissionMock.isOwner.and.returnValue(true);
+      fixture.detectChanges();
+    });
 
-    it('should show spinner when loading');
+    it('should disable submit button when loading', () => {
+      component.loading.set(true);
+      fixture.detectChanges();
 
-    it('should disable cancel button when loading');
+      const submitButton = fixture.nativeElement.querySelector('.modal__button--submit');
+      expect(submitButton.disabled).toBeTrue();
+    });
 
-    it('should disable email input when loading');
+    it('should show spinner when loading', () => {
+      component.loading.set(true);
+      fixture.detectChanges();
+
+      const spinner = fixture.nativeElement.querySelector('.pi-spinner');
+      expect(spinner).toBeTruthy();
+    });
+
+    it('should disable cancel button when loading', () => {
+      component.loading.set(true);
+      fixture.detectChanges();
+
+      const cancelButton = fixture.nativeElement.querySelector('.modal__button--cancel');
+      expect(cancelButton.disabled).toBeTrue();
+    });
+
+    it('should disable email input when loading', () => {
+      component.loading.set(true);
+      fixture.detectChanges();
+
+      const input = fixture.nativeElement.querySelector('#userEmail');
+      expect(input.disabled).toBeTrue();
+    });
 
   });
 
