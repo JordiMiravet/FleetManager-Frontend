@@ -149,11 +149,35 @@ describe('ManageVehicleUsersModalComponent', () => {
 
   describe('error template', () => {
 
-    it('should show error message when error is set');
+    beforeEach(() => {
+      permissionMock.isOwner.and.returnValue(true);
+      fixture.detectChanges();
+    });
 
-    it('should not show error message when error is empty');
+    it('should show error message when error is set', () => {
+      component.error.set('User already exists');
+      fixture.detectChanges();
 
-    it('should set aria-invalid to true when error is set');
+      const errorText = fixture.nativeElement.querySelector('.modal__error-text');
+      expect(errorText).toBeTruthy();
+      expect(errorText.textContent).toContain('User already exists');
+    });
+
+    it('should not show error message when error is empty', () => {
+      component.error.set('');
+      fixture.detectChanges();
+
+      const errorText = fixture.nativeElement.querySelector('.modal__error-text');
+      expect(errorText).toBeFalsy();
+    });
+
+    it('should set aria-invalid to true when error is set', () => {
+      component.error.set('User already exists');
+      fixture.detectChanges();
+
+      const input = fixture.nativeElement.querySelector('#userEmail');
+      expect(input.getAttribute('aria-invalid')).toBe('true');
+    });
 
   });
 
