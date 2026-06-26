@@ -246,19 +246,29 @@ describe('VehicleFormModalComponent', () => {
   describe('accessibility', () => {
 
     it('should have role dialog on the backdrop', () => {
-
+      const dialog = fixture.nativeElement.querySelector('dialog');
+      expect(dialog.getAttribute('role')).toBe('dialog');
     });
 
     it('should have aria-modal on the backdrop', () => {
-
+      const dialog = fixture.nativeElement.querySelector('dialog');
+      expect(dialog.getAttribute('aria-modal')).toBe('true');
     });
 
     it('should have aria-labelledby pointing to the legend', () => {
+      const dialog = fixture.nativeElement.querySelector('dialog');
+      const legend = fixture.nativeElement.querySelector('#modal-title');
 
+      expect(dialog.getAttribute('aria-labelledby')).toBe(legend.getAttribute('id'));
     });
 
     it('should set aria-invalid on touched invalid fields', () => {
+      component.form.get('name')?.setValue('');
+      component.form.get('name')?.markAsTouched();
+      fixture.detectChanges();
 
+      const input = fixture.nativeElement.querySelector('#createVehicleName');
+      expect(input.getAttribute('aria-invalid')).toBe('true');
     });
 
   });
