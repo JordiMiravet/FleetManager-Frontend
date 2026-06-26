@@ -210,19 +210,35 @@ describe('VehicleFormModalComponent', () => {
   describe('mode input', () => {
 
     it('should show create title when mode is create', () => {
+      fixture.componentRef.setInput('mode', 'create');
+      fixture.detectChanges();
 
+      const legend = fixture.nativeElement.querySelector('.modal__legend');
+      expect(legend.textContent).toContain(component.formMsg.title.create);
     });
 
     it('should show edit title when mode is edit', () => {
+      fixture.componentRef.setInput('mode', 'edit');
+      fixture.detectChanges();
 
+      const legend = fixture.nativeElement.querySelector('.modal__legend');
+      expect(legend.textContent).toContain(component.formMsg.title.edit);
     });
 
     it('should show create button label when mode is create', () => {
+      fixture.componentRef.setInput('mode', 'create');
+      fixture.detectChanges();
 
+      const button = fixture.nativeElement.querySelector('.modal__button--save');
+      expect(button.textContent).toContain(component.formMsg.buttons.create);
     });
 
     it('should show update button label when mode is edit', () => {
+      fixture.componentRef.setInput('mode', 'edit');
+      fixture.detectChanges();
 
+      const button = fixture.nativeElement.querySelector('.modal__button--save');
+      expect(button.textContent).toContain(component.formMsg.buttons.update);
     });
 
   });
