@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { signal } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 
 import { VehicleFormModalComponent } from './vehicle-form-modal';
@@ -14,6 +13,12 @@ describe('VehicleFormModalComponent', () => {
       uid: 'JordiTheBest',
       getIdToken: () => Promise.resolve('MyToken')
     }
+  };
+  
+  const vehicleMock: VehicleInterface = {
+    name: 'R34',
+    model: 'Nissan Skyline GT-R R34',
+    plate: '123456',
   };
 
   beforeEach(async () => {
@@ -41,28 +46,22 @@ describe('VehicleFormModalComponent', () => {
       expect(formControl['name']).toBeTruthy();
       expect(formControl['model']).toBeTruthy();
       expect(formControl['plate']).toBeTruthy();
+      expect(formControl['imageUrl']).toBeTruthy();
     });
 
     it('should patch form values when mode is edit', () => {
-      const inputVehicle: VehicleInterface = {
-        name: 'R34',
-        model: 'Nissan Skyline GT-R R34',
-        plate: '123456',
-      };
+      fixture.componentRef.setInput('vehicle', vehicleMock);
+      fixture.componentRef.setInput('mode', 'edit');
+      fixture.detectChanges();
 
-      (component as any).vehicle = signal(inputVehicle);
-      (component as any).mode = signal('edit');
-
-      component.ngOnChanges();
-
-      expect(component.form.get('name')?.value).toBe(inputVehicle.name);
-      expect(component.form.get('model')?.value).toBe(inputVehicle.model);
-      expect(component.form.get('plate')?.value).toBe(inputVehicle.plate);
+      expect(component.form.get('name')?.value).toBe(vehicleMock.name);
+      expect(component.form.get('model')?.value).toBe(vehicleMock.model);
+      expect(component.form.get('plate')?.value).toBe(vehicleMock.plate);
     });
 
     it('should reset form when mode is create', () => {
-      (component as any).mode = signal('create');
-      component.ngOnChanges();
+      fixture.componentRef.setInput('mode', 'create');
+      fixture.detectChanges();
 
       expect(component.form.get('name')?.value).toBeNull();
       expect(component.form.get('model')?.value).toBeNull();
@@ -104,10 +103,17 @@ describe('VehicleFormModalComponent', () => {
     });
 
     it('should return invalidUrl error when imageUrl has invalid format', () => {
-      component.form.get('imageUrl')?.setValue('not-a-valid-url!!!');
+      component.form.get('imageUrl')?.setValue('not a valid url!!!');
       component.form.get('imageUrl')?.markAsTouched();
 
       expect(component.getFieldError('imageUrl')).toBeTruthy();
+    });
+
+    it('should return null for imageUrl when value is empty', () => {
+      component.form.get('imageUrl')?.setValue('');
+      component.form.get('imageUrl')?.markAsTouched();
+
+      expect(component.getFieldError('imageUrl')).toBeNull();
     });
 
     it('should return null when field does not exist', () => {
@@ -160,6 +166,36 @@ describe('VehicleFormModalComponent', () => {
 
   });
 
+  describe('accessibility', () => {
+
+    it('should have role dialog on the backdrop', () => {
+      const dialog = fixture.nativeElement.querySelector('dialog');
+      expect(dialog.getAttribute('role')).toBe('dialog');
+    });
+
+    it('should have aria-modal on the backdrop', () => {
+      const dialog = fixture.nativeElement.querySelector('dialog');
+      expect(dialog.getAttribute('aria-modal')).toBe('true');
+    });
+
+    it('should have aria-labelledby pointing to the legend', () => {
+      const dialog = fixture.nativeElement.querySelector('dialog');
+      const legend = fixture.nativeElement.querySelector('#modal-title');
+
+      expect(dialog.getAttribute('aria-labelledby')).toBe(legend.getAttribute('id'));
+    });
+
+    it('should set aria-invalid on touched invalid fields', () => {
+      component.form.get('name')?.setValue('');
+      component.form.get('name')?.markAsTouched();
+      fixture.detectChanges();
+
+      const input = fixture.nativeElement.querySelector('#createVehicleName');
+      expect(input.getAttribute('aria-invalid')).toBe('true');
+    });
+
+  });
+
   describe('template interaction', () => {
 
     it('should call onSubmit on Enter key press', () => {
@@ -196,6 +232,42 @@ describe('VehicleFormModalComponent', () => {
       fixture.detectChanges();
 
       expect(component.onCancel).toHaveBeenCalled();
+    });
+
+  });
+
+  describe('mode input', () => {
+
+    it('should show create title when mode is create', () => {
+      fixture.componentRef.setInput('mode', 'create');
+      fixture.detectChanges();
+
+      const legend = fixture.nativeElement.querySelector('.modal__legend');
+      expect(legend.textContent).toContain(component.formMsg.title.create);
+    });
+
+    it('should show edit title when mode is edit', () => {
+      fixture.componentRef.setInput('mode', 'edit');
+      fixture.detectChanges();
+
+      const legend = fixture.nativeElement.querySelector('.modal__legend');
+      expect(legend.textContent).toContain(component.formMsg.title.edit);
+    });
+
+    it('should show create button label when mode is create', () => {
+      fixture.componentRef.setInput('mode', 'create');
+      fixture.detectChanges();
+
+      const button = fixture.nativeElement.querySelector('.modal__button--save');
+      expect(button.textContent).toContain(component.formMsg.buttons.create);
+    });
+
+    it('should show update button label when mode is edit', () => {
+      fixture.componentRef.setInput('mode', 'edit');
+      fixture.detectChanges();
+
+      const button = fixture.nativeElement.querySelector('.modal__button--save');
+      expect(button.textContent).toContain(component.formMsg.buttons.update);
     });
 
   });
