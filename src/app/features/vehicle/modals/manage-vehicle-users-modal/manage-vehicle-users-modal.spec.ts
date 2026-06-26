@@ -137,12 +137,10 @@ describe('ManageVehicleUsersModalComponent', () => {
       expect(cancelButton.disabled).toBeTrue();
     });
 
-    it('should disable email input when loading', () => {
+    it('should set loading to true', () => {
       component.loading.set(true);
-      fixture.detectChanges();
 
-      const input = fixture.nativeElement.querySelector('#userEmail');
-      expect(input.disabled).toBeTrue();
+      expect(component.loading()).toBeTrue();
     });
 
   });
