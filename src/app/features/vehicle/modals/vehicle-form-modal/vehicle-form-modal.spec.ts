@@ -207,4 +207,44 @@ describe('VehicleFormModalComponent', () => {
 
   });
 
+  describe('mode input', () => {
+
+    it('should show create title when mode is create', () => {
+
+    });
+
+    it('should show edit title when mode is edit', () => {
+
+    });
+
+    it('should show create button label when mode is create', () => {
+
+    });
+
+    it('should show update button label when mode is edit', () => {
+
+    });
+
+  });
+
+  describe('accessibility', () => {
+
+    it('should have role dialog on the backdrop', () => {
+
+    });
+
+    it('should have aria-modal on the backdrop', () => {
+
+    });
+
+    it('should have aria-labelledby pointing to the legend', () => {
+
+    });
+
+    it('should set aria-invalid on touched invalid fields', () => {
+
+    });
+
+  });
+
 });
