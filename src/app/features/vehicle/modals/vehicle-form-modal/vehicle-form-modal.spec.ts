@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { signal } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 
 import { VehicleFormModalComponent } from './vehicle-form-modal';
