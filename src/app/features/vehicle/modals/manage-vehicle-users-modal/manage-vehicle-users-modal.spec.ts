@@ -134,6 +134,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       fixture.detectChanges();
 
       const submitButton = fixture.nativeElement.querySelector('.modal__button--submit');
+
       expect(submitButton.disabled).toBeTrue();
     });
 
@@ -142,6 +143,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       fixture.detectChanges();
 
       const spinner = fixture.nativeElement.querySelector('.pi-spinner');
+
       expect(spinner).toBeTruthy();
     });
 
@@ -150,6 +152,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       fixture.detectChanges();
 
       const cancelButton = fixture.nativeElement.querySelector('.modal__button--cancel');
+
       expect(cancelButton.disabled).toBeTrue();
     });
 
@@ -170,6 +173,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       fixture.detectChanges();
 
       const errorText = fixture.nativeElement.querySelector('.modal__error-text');
+
       expect(errorText).toBeTruthy();
       expect(errorText.textContent).toContain('User already exists');
     });
@@ -179,6 +183,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       fixture.detectChanges();
 
       const errorText = fixture.nativeElement.querySelector('.modal__error-text');
+
       expect(errorText).toBeFalsy();
     });
 
@@ -187,6 +192,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       fixture.detectChanges();
 
       const input = fixture.nativeElement.querySelector('#userEmail');
+      
       expect(input.getAttribute('aria-invalid')).toBe('true');
     });
 
@@ -318,7 +324,6 @@ describe('ManageVehicleUsersModalComponent', () => {
 
       const spy = spyOn(component, 'onRemoveUser');
       const deleteBtn = fixture.debugElement.query(By.css('app-delete-button'));
-
       deleteBtn.triggerEventHandler('delete');
 
       expect(spy).toHaveBeenCalledWith('1');
