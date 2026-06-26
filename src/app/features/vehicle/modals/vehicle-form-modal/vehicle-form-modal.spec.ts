@@ -41,6 +41,7 @@ describe('VehicleFormModalComponent', () => {
       expect(formControl['name']).toBeTruthy();
       expect(formControl['model']).toBeTruthy();
       expect(formControl['plate']).toBeTruthy();
+      expect(formControl['imageUrl']).toBeTruthy();
     });
 
     it('should patch form values when mode is edit', () => {
@@ -50,10 +51,9 @@ describe('VehicleFormModalComponent', () => {
         plate: '123456',
       };
 
-      (component as any).vehicle = signal(inputVehicle);
-      (component as any).mode = signal('edit');
-
-      component.ngOnChanges();
+      fixture.componentRef.setInput('vehicle', inputVehicle);
+      fixture.componentRef.setInput('mode', 'edit');
+      fixture.detectChanges();
 
       expect(component.form.get('name')?.value).toBe(inputVehicle.name);
       expect(component.form.get('model')?.value).toBe(inputVehicle.model);
@@ -61,8 +61,8 @@ describe('VehicleFormModalComponent', () => {
     });
 
     it('should reset form when mode is create', () => {
-      (component as any).mode = signal('create');
-      component.ngOnChanges();
+      fixture.componentRef.setInput('mode', 'create');
+      fixture.detectChanges();
 
       expect(component.form.get('name')?.value).toBeNull();
       expect(component.form.get('model')?.value).toBeNull();
