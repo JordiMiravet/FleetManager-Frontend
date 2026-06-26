@@ -106,6 +106,28 @@ describe('ManageVehicleUsersModalComponent', () => {
 
   });
 
+  describe('loading state', () => {
+
+    it('should disable submit button when loading');
+
+    it('should show spinner when loading');
+
+    it('should disable cancel button when loading');
+
+    it('should disable email input when loading');
+
+  });
+
+  describe('error template', () => {
+
+    it('should show error message when error is set');
+
+    it('should not show error message when error is empty');
+
+    it('should set aria-invalid to true when error is set');
+
+  });
+
   describe('remove user behavior', () => {
 
     it('should emit removeUser event when removing user', () => {
