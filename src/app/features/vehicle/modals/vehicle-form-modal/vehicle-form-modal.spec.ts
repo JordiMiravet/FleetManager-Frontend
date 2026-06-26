@@ -14,6 +14,12 @@ describe('VehicleFormModalComponent', () => {
       getIdToken: () => Promise.resolve('MyToken')
     }
   };
+  
+  const vehicleMock: VehicleInterface = {
+    name: 'R34',
+    model: 'Nissan Skyline GT-R R34',
+    plate: '123456',
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -44,19 +50,13 @@ describe('VehicleFormModalComponent', () => {
     });
 
     it('should patch form values when mode is edit', () => {
-      const inputVehicle: VehicleInterface = {
-        name: 'R34',
-        model: 'Nissan Skyline GT-R R34',
-        plate: '123456',
-      };
-
-      fixture.componentRef.setInput('vehicle', inputVehicle);
+      fixture.componentRef.setInput('vehicle', vehicleMock);
       fixture.componentRef.setInput('mode', 'edit');
       fixture.detectChanges();
 
-      expect(component.form.get('name')?.value).toBe(inputVehicle.name);
-      expect(component.form.get('model')?.value).toBe(inputVehicle.model);
-      expect(component.form.get('plate')?.value).toBe(inputVehicle.plate);
+      expect(component.form.get('name')?.value).toBe(vehicleMock.name);
+      expect(component.form.get('model')?.value).toBe(vehicleMock.model);
+      expect(component.form.get('plate')?.value).toBe(vehicleMock.plate);
     });
 
     it('should reset form when mode is create', () => {
