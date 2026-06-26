@@ -104,10 +104,17 @@ describe('VehicleFormModalComponent', () => {
     });
 
     it('should return invalidUrl error when imageUrl has invalid format', () => {
-      component.form.get('imageUrl')?.setValue('not-a-valid-url!!!');
+      component.form.get('imageUrl')?.setValue('not a valid url!!!');
       component.form.get('imageUrl')?.markAsTouched();
 
       expect(component.getFieldError('imageUrl')).toBeTruthy();
+    });
+
+    it('should return null for imageUrl when value is empty', () => {
+      component.form.get('imageUrl')?.setValue('');
+      component.form.get('imageUrl')?.markAsTouched();
+
+      expect(component.getFieldError('imageUrl')).toBeNull();
     });
 
     it('should return null when field does not exist', () => {
