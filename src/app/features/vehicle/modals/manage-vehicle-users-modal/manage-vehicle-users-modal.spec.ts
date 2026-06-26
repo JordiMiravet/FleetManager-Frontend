@@ -7,6 +7,31 @@ import { AuthorizationService } from '../../../../core/services/authorization/au
 import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
+const vehicleMock: VehicleInterface = {
+  _id: '1',
+  name: 'Pagani',
+  model: 'Huayra',
+  plate: 'ABC123',
+  users: [
+    { userId: '1', email: 'test@gmail.com' }
+  ]
+};
+
+const vehicleWithoutUsersMock: VehicleInterface = {
+  ...vehicleMock,
+  users: []
+};
+
+const vehicleForPermissionMock: VehicleInterface = {
+  _id: '1',
+  name: 'R34',
+  model: 'Skyline',
+  plate: '123-ABC',
+  users: [
+    { userId: 'JordiTheBest', email: 'jordithebest@gmail.com' }
+  ]
+};
+
 describe('ManageVehicleUsersModalComponent', () => {
 
   let component: ManageVehicleUsersModalComponent;
@@ -18,7 +43,6 @@ describe('ManageVehicleUsersModalComponent', () => {
   };
 
   beforeEach(async () => {
-
     await TestBed.configureTestingModule({
       imports: [ManageVehicleUsersModalComponent],
       providers: [
@@ -34,6 +58,11 @@ describe('ManageVehicleUsersModalComponent', () => {
 
     fixture.detectChanges();
   });
+
+  function setAsOwner(): void {
+    permissionMock.isOwner.and.returnValue(true);
+    fixture.detectChanges();
+  }
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -56,21 +85,11 @@ describe('ManageVehicleUsersModalComponent', () => {
     });
 
     it('should call permission service when checking removable user', () => {
-      const vehicleMock: VehicleInterface = {
-        _id: '1',
-        name: 'R34',
-        model: 'Skyline',
-        plate: '123-ABC',
-        users: [
-          { userId: 'JordiTheBest', email: 'jordithebest@gmail.com' }
-        ]
-      };
-
-      fixture.componentRef.setInput('vehicle', vehicleMock);
+      fixture.componentRef.setInput('vehicle', vehicleForPermissionMock);
       fixture.detectChanges();
 
       component.canRemove('JordiTheBest');
-      expect(permissionMock.canRemove).toHaveBeenCalledWith(vehicleMock, 'JordiTheBest');
+      expect(permissionMock.canRemove).toHaveBeenCalledWith(vehicleForPermissionMock, 'JordiTheBest');
     });
 
   });
@@ -102,6 +121,79 @@ describe('ManageVehicleUsersModalComponent', () => {
       expect(component.error()).toBe('');
       expect(component.loading()).toBeTrue();
       expect(emitSpy).toHaveBeenCalledWith('jordithebest@gmail.com');
+    });
+
+  });
+
+  describe('loading state', () => {
+
+    beforeEach(() => setAsOwner());
+
+    it('should disable submit button when loading', () => {
+      component.loading.set(true);
+      fixture.detectChanges();
+
+      const submitButton = fixture.nativeElement.querySelector('.modal__button--submit');
+
+      expect(submitButton.disabled).toBeTrue();
+    });
+
+    it('should show spinner when loading', () => {
+      component.loading.set(true);
+      fixture.detectChanges();
+
+      const spinner = fixture.nativeElement.querySelector('.pi-spinner');
+
+      expect(spinner).toBeTruthy();
+    });
+
+    it('should disable cancel button when loading', () => {
+      component.loading.set(true);
+      fixture.detectChanges();
+
+      const cancelButton = fixture.nativeElement.querySelector('.modal__button--cancel');
+
+      expect(cancelButton.disabled).toBeTrue();
+    });
+
+    it('should set loading to true', () => {
+      component.loading.set(true);
+
+      expect(component.loading()).toBeTrue();
+    });
+
+  });
+
+  describe('error template', () => {
+
+    beforeEach(() => setAsOwner());
+
+    it('should show error message when error is set', () => {
+      component.error.set('User already exists');
+      fixture.detectChanges();
+
+      const errorText = fixture.nativeElement.querySelector('.modal__error-text');
+
+      expect(errorText).toBeTruthy();
+      expect(errorText.textContent).toContain('User already exists');
+    });
+
+    it('should not show error message when error is empty', () => {
+      component.error.set('');
+      fixture.detectChanges();
+
+      const errorText = fixture.nativeElement.querySelector('.modal__error-text');
+
+      expect(errorText).toBeFalsy();
+    });
+
+    it('should set aria-invalid to true when error is set', () => {
+      component.error.set('User already exists');
+      fixture.detectChanges();
+
+      const input = fixture.nativeElement.querySelector('#userEmail');
+      
+      expect(input.getAttribute('aria-invalid')).toBe('true');
     });
 
   });
@@ -164,43 +256,23 @@ describe('ManageVehicleUsersModalComponent', () => {
   describe('template rendering', () => {
 
     it('should show empty users message when vehicle has no users', () => {
-      const vehicleMock: VehicleInterface = {
-        _id: '1',
-        name: 'Pagani',
-        model: 'Huayra',
-        plate: 'ABC123',
-        users: []
-      };
-
-      fixture.componentRef.setInput('vehicle', vehicleMock);
+      fixture.componentRef.setInput('vehicle', vehicleWithoutUsersMock);
       fixture.detectChanges();
 
-      const compiled = fixture.nativeElement as HTMLElement;
-      const emptyMessage = compiled.querySelector('.modal__empty');
+      const emptyMessage = fixture.nativeElement.querySelector('.modal__empty');
 
       expect(emptyMessage).toBeTruthy();
       expect(emptyMessage?.textContent).toContain(component.usersMsg.status.noUsers);
     });
 
     it('should render users list when vehicle has users', () => {
-      const vehicleMock: VehicleInterface = {
-        _id: '1',
-        name: 'Pagani',
-        model: 'Huayra',
-        plate: 'ABC123',
-        users: [
-          { userId: '1', email: 'JordiTheBest@gmail.com' }
-        ]
-      };
-
       fixture.componentRef.setInput('vehicle', vehicleMock);
       fixture.detectChanges();
 
-      const compiled = fixture.nativeElement as HTMLElement;
-      const users = compiled.querySelectorAll('.modal__user');
+      const users = fixture.nativeElement.querySelectorAll('.modal__user');
 
       expect(users.length).toBe(1);
-      expect(users[0].textContent).toContain('JordiTheBest@gmail.com');
+      expect(users[0].textContent).toContain('test@gmail.com');
     });
 
   });
@@ -208,19 +280,12 @@ describe('ManageVehicleUsersModalComponent', () => {
   describe('template interactions', () => {
 
     it('should call onSubmit when pressing Enter on email input', () => {
-      permissionMock.isOwner.and.returnValue(true);
-
-      fixture.detectChanges();
+      setAsOwner();
 
       const submitSpy = spyOn(component, 'onSubmit');
 
       const input: HTMLInputElement = fixture.nativeElement.querySelector('#userEmail');
-
-      const event = new KeyboardEvent('keydown', {
-        key: 'Enter'
-      });
-
-      input.dispatchEvent(event);
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
       fixture.detectChanges();
 
       expect(submitSpy).toHaveBeenCalled();
@@ -230,7 +295,6 @@ describe('ManageVehicleUsersModalComponent', () => {
       const cancelSpy = spyOn(component, 'onCancel');
 
       const overlay: HTMLElement = fixture.nativeElement.querySelector('dialog');
-
       overlay.click();
       fixture.detectChanges();
 
@@ -241,7 +305,6 @@ describe('ManageVehicleUsersModalComponent', () => {
       const cancelSpy = spyOn(component, 'onCancel');
 
       const modal: HTMLElement = fixture.nativeElement.querySelector('.modal');
-
       modal.click();
       fixture.detectChanges();
 
@@ -255,24 +318,12 @@ describe('ManageVehicleUsersModalComponent', () => {
     it('should call onRemoveUser when delete button emits event', () => {
       permissionMock.isOwner.and.returnValue(true);
       permissionMock.canRemove.and.returnValue(true);
-
-      const vehicleMock: VehicleInterface = {
-        _id: '1',
-        name: 'Pagani',
-        model: 'Huayra',
-        plate: 'ABC123',
-        users: [
-          { userId: '1', email: 'test@gmail.com' }
-        ]
-      };
-
+      
       fixture.componentRef.setInput('vehicle', vehicleMock);
-      fixture.detectChanges();
+      setAsOwner();
 
       const spy = spyOn(component, 'onRemoveUser');
-
       const deleteBtn = fixture.debugElement.query(By.css('app-delete-button'));
-
       deleteBtn.triggerEventHandler('delete');
 
       expect(spy).toHaveBeenCalledWith('1');
