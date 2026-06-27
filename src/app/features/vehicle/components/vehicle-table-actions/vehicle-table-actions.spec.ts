@@ -23,11 +23,17 @@ describe('VehicleTableActionsComponent', () => {
 
   describe('initial state', () => {
 
-    it('should initialize query as empty string');
+    it('should initialize query as empty string', () => {
+      expect(component.query()).toBe('');
+    });
 
-    it('should initialize sortField as "name"');
+    it('should initialize sortField as "name"', () => {
+      expect(component.sortField()).toBe('name');
+    });
 
-    it('should initialize sortDir as "asc"');
+    it('should initialize sortDir as "asc"', () => {
+      expect(component.sortDir()).toBe('asc');
+    });
 
   });
 
