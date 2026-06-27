@@ -116,15 +116,39 @@ describe('VehicleTableActionsComponent', () => {
 
   describe('template rendering', () => {
 
-    it('should render search input');
+    it('should render search input', () => {
+      const input = fixture.nativeElement.querySelector('.vehicle-actions__search-input');
+      expect(input).toBeTruthy();
+    });
 
-    it('should render sort direction button');
+    it('should render sort direction button', () => {
+      const button = fixture.nativeElement.querySelector('.vehicle-actions__sort-button');
+      expect(button).toBeTruthy();
+    });
 
-    it('should render sort field select with options');
+    it('should render sort field select with options', () => {
+      const select = fixture.nativeElement.querySelector('.vehicle-actions__sort-select');
+      const options = select.querySelectorAll('option');
 
-    it('should show asc icon when sortDir is asc');
+      expect(select).toBeTruthy();
+      expect(options.length).toBe(3);
+    });
 
-    it('should show desc icon when sortDir is desc');
+    it('should show asc icon when sortDir is asc', () => {
+      component.sortDir.set('asc');
+      fixture.detectChanges();
+
+      const icon = fixture.nativeElement.querySelector('.vehicle-actions__sort-button i');
+      expect(icon.classList).toContain('pi-sort-amount-down');
+    });
+
+    it('should show desc icon when sortDir is desc', () => {
+      component.sortDir.set('desc');
+      fixture.detectChanges();
+
+      const icon = fixture.nativeElement.querySelector('.vehicle-actions__sort-button i');
+      expect(icon.classList).toContain('pi-sort-amount-up');
+    });
 
   });
 
