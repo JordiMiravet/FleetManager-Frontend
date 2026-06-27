@@ -39,9 +39,25 @@ describe('VehicleTableActionsComponent', () => {
 
   describe('onQueryChange', () => {
 
-    it('should update query signal when input changes');
+    it('should update query signal when input changes', () => {
+      const event = { target: { value: 'Ferrari' } } as unknown as Event;
+      component.onQueryChange(event);
 
-    it('should emit filterChange with updated query');
+      expect(component.query()).toBe('Ferrari');
+    });
+
+    it('should emit filterChange with updated query', () => {
+      const emitSpy = spyOn(component.filterChange, 'emit');
+      const event = { target: { value: 'Ferrari' } } as unknown as Event;
+
+      component.onQueryChange(event);
+
+      expect(emitSpy).toHaveBeenCalledWith({
+        query: 'Ferrari',
+        sortField: 'name',
+        sortDir: 'asc'
+      });
+    });
 
   });
 
