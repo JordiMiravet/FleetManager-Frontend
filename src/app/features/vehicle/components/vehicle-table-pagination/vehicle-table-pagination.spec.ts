@@ -43,7 +43,9 @@ describe('VehicleTablePaginationComponent', () => {
 
   describe('initial state', () => {
 
-    it('should expose vehicles from VehicleService');
+    it('should expose vehicles from VehicleService', () => {
+      expect(component.vehicles).toBe(vehicleServiceMock.vehicles);
+    });
 
   });
 
