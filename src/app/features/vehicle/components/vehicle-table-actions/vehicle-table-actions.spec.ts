@@ -2,6 +2,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VehicleTableActionsComponent } from './vehicle-table-actions';
 
+function createInputEvent(value: string): Event {
+  return { target: { value } } as unknown as Event;
+}
+
+const defaultFilterState = {
+  query: '',
+  sortField: 'name' as const,
+  sortDir: 'asc' as const
+};
+
 describe('VehicleTableActionsComponent', () => {
   let component: VehicleTableActionsComponent;
   let fixture: ComponentFixture<VehicleTableActionsComponent>;
@@ -40,23 +50,16 @@ describe('VehicleTableActionsComponent', () => {
   describe('onQueryChange', () => {
 
     it('should update query signal when input changes', () => {
-      const event = { target: { value: 'Ferrari' } } as unknown as Event;
-      component.onQueryChange(event);
+      component.onQueryChange(createInputEvent('Ferrari'));
 
       expect(component.query()).toBe('Ferrari');
     });
 
     it('should emit filterChange with updated query', () => {
       const emitSpy = spyOn(component.filterChange, 'emit');
-      const event = { target: { value: 'Ferrari' } } as unknown as Event;
+      component.onQueryChange(createInputEvent('Ferrari'));
 
-      component.onQueryChange(event);
-
-      expect(emitSpy).toHaveBeenCalledWith({
-        query: 'Ferrari',
-        sortField: 'name',
-        sortDir: 'asc'
-      });
+      expect(emitSpy).toHaveBeenCalledWith({ ...defaultFilterState, query: 'Ferrari' });
     });
 
   });
@@ -205,6 +208,6 @@ describe('VehicleTableActionsComponent', () => {
       expect(icon.getAttribute('aria-hidden')).toBe('true');
     });
 
-  });
+  }); 
 
 });
