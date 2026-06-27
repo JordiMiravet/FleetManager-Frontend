@@ -63,9 +63,25 @@ describe('VehicleTableActionsComponent', () => {
 
   describe('onSortFieldChange', () => {
 
-    it('should update sortField signal when select changes');
+    it('should update sortField signal when select changes', () => {
+      const event = { target: { value: 'model' } } as unknown as Event;
+      component.onSortFieldChange(event);
 
-    it('should emit filterChange with updated sortField');
+      expect(component.sortField()).toBe('model');
+    });
+
+    it('should emit filterChange with updated sortField', () => {
+      const emitSpy = spyOn(component.filterChange, 'emit');
+      const event = { target: { value: 'plate' } } as unknown as Event;
+
+      component.onSortFieldChange(event);
+
+      expect(emitSpy).toHaveBeenCalledWith({
+        query: '',
+        sortField: 'plate',
+        sortDir: 'asc'
+      });
+    });
 
   });
 
