@@ -51,13 +51,35 @@ describe('VehicleTablePaginationComponent', () => {
 
   describe('template rendering', () => {
 
-    it('should render the nav with correct role and aria-label');
+    it('should render the nav with correct role and aria-label', () => {
+      const nav = fixture.nativeElement.querySelector('nav');
 
-    it('should render vehicle count from vehicles signal');
+      expect(nav).toBeTruthy();
+      expect(nav.getAttribute('role')).toBe('navigation');
+      expect(nav.getAttribute('aria-label')).toBe(component.paginationMsg.aria.navigation);
+    });
 
-    it('should render previous page button');
+    it('should render vehicle count from vehicles signal', () => {
+      vehicleServiceMock.vehicles.set([
+        { _id: '1', name: 'Ferrari', model: 'F8', plate: '123XC' },
+        { _id: '2', name: 'Pagani', model: 'Huayra', plate: '456YZ' }
+      ]);
+      fixture.detectChanges();
 
-    it('should render next page button');
+      const values = fixture.nativeElement.querySelectorAll('.vehicle-pagination__value');
+      expect(values[0].textContent.trim()).toBe('2');
+      expect(values[1].textContent.trim()).toBe('2');
+    });
+
+    it('should render previous page button', () => {
+      const button = fixture.nativeElement.querySelector('.vehicle-pagination__button:first-of-type');
+      expect(button).toBeTruthy();
+    });
+
+    it('should render next page button', () => {
+      const buttons = fixture.nativeElement.querySelectorAll('.vehicle-pagination__button');
+      expect(buttons.length).toBe(2);
+    });
 
   });
 
