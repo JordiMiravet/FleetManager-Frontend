@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 import { Auth} from '@angular/fire/auth';
 
 import { VehicleTablePaginationComponent } from './vehicle-table-pagination';
@@ -17,12 +17,10 @@ describe('VehicleTablePaginationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        VehicleTablePaginationComponent,
-        HttpClientModule,
-      ],
+      imports: [VehicleTablePaginationComponent],
       providers: [
         { provide: Auth, useValue: authMock },
+        provideRouter([]),
       ]
     })
     .compileComponents();
