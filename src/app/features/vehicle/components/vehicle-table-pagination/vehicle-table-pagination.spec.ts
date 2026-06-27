@@ -85,13 +85,31 @@ describe('VehicleTablePaginationComponent', () => {
 
   describe('accessibility', () => {
 
-    it('should have aria-label on previous page button');
+    it('should have aria-label on previous page button', () => {
+      const button = fixture.nativeElement.querySelector('.vehicle-pagination__button:first-of-type');
+      expect(button.getAttribute('aria-label')).toBe(component.paginationMsg.aria.previousPage);
+    });
 
-    it('should have aria-label on next page button');
+    it('should have aria-label on next page button', () => {
+      const buttons = fixture.nativeElement.querySelectorAll('.vehicle-pagination__button');
+      expect(buttons[1].getAttribute('aria-label')).toBe(component.paginationMsg.aria.nextPage);
+    });
 
-    it('should have aria-live on vehicle count spans');
+    it('should have aria-live on vehicle count spans', () => {
+      const values = fixture.nativeElement.querySelectorAll('.vehicle-pagination__value');
 
-    it('should have aria-hidden on pagination icons');
+      values.forEach((value: HTMLElement) => {
+        expect(value.getAttribute('aria-live')).toBe('polite');
+      });
+    });
+
+    it('should have aria-hidden on pagination icons', () => {
+      const icons = fixture.nativeElement.querySelectorAll('.vehicle-pagination__button i');
+      
+      icons.forEach((icon: HTMLElement) => {
+        expect(icon.getAttribute('aria-hidden')).toBe('true');
+      });
+    });
 
   });
 
