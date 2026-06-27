@@ -154,11 +154,32 @@ describe('VehicleTableActionsComponent', () => {
 
   describe('template interactions', () => {
 
-    it('should call onQueryChange when typing in search input');
+    it('should call onQueryChange when typing in search input', () => {
+      const spy = spyOn(component, 'onQueryChange');
 
-    it('should call onSortFieldChange when selecting sort field');
+      const input: HTMLInputElement = fixture.nativeElement.querySelector('.vehicle-actions__search-input');
+      input.dispatchEvent(new Event('input'));
 
-    it('should call toggleSortDir when clicking sort button');
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('should call onSortFieldChange when selecting sort field', () => {
+      const spy = spyOn(component, 'onSortFieldChange');
+
+      const select: HTMLSelectElement = fixture.nativeElement.querySelector('.vehicle-actions__sort-select');
+      select.dispatchEvent(new Event('change'));
+
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('should call toggleSortDir when clicking sort button', () => {
+      const spy = spyOn(component, 'toggleSortDir');
+
+      const button: HTMLButtonElement = fixture.nativeElement.querySelector('.vehicle-actions__sort-button');
+      button.click();
+
+      expect(spy).toHaveBeenCalled();
+    });
 
   });
 
