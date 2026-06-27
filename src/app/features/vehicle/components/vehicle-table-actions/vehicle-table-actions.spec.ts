@@ -185,13 +185,25 @@ describe('VehicleTableActionsComponent', () => {
 
   describe('accessibility', () => {
 
-    it('should have aria-label on search input');
+    it('should have aria-label on search input', () => {
+      const input = fixture.nativeElement.querySelector('.vehicle-actions__search-input');
+      expect(input.getAttribute('aria-label')).toBe(component.actionsMsg.aria.searchInput);
+    });
 
-    it('should have aria-label on sort direction button');
+    it('should have aria-label on sort direction button', () => {
+      const button = fixture.nativeElement.querySelector('.vehicle-actions__sort-button');
+      expect(button.getAttribute('aria-label')).toBe(component.actionsMsg.aria.sortDirButton);
+    });
 
-    it('should have aria-label on sort field select');
+    it('should have aria-label on sort field select', () => {
+      const select = fixture.nativeElement.querySelector('.vehicle-actions__sort-select');
+      expect(select.getAttribute('aria-label')).toBe(component.actionsMsg.aria.sortFieldSelect);
+    });
 
-    it('should have aria-hidden on search icon');
+    it('should have aria-hidden on search icon', () => {
+      const icon = fixture.nativeElement.querySelector('.vehicle-actions__search-icon');
+      expect(icon.getAttribute('aria-hidden')).toBe('true');
+    });
 
   });
 
