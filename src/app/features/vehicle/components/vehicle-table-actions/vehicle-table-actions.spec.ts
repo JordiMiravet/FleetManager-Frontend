@@ -87,11 +87,30 @@ describe('VehicleTableActionsComponent', () => {
 
   describe('toggleSortDir', () => {
 
-    it('should toggle sortDir from asc to desc');
+    it('should toggle sortDir from asc to desc', () => {
+      component.toggleSortDir();
 
-    it('should toggle sortDir from desc to asc');
+      expect(component.sortDir()).toBe('desc');
+    });
 
-    it('should emit filterChange after toggling');
+    it('should toggle sortDir from desc to asc', () => {
+      component.sortDir.set('desc');
+      component.toggleSortDir();
+
+      expect(component.sortDir()).toBe('asc');
+    });
+
+    it('should emit filterChange after toggling', () => {
+      const emitSpy = spyOn(component.filterChange, 'emit');
+
+      component.toggleSortDir();
+
+      expect(emitSpy).toHaveBeenCalledWith({
+        query: '',
+        sortField: 'name',
+        sortDir: 'desc'
+      });
+    });
 
   });
 
