@@ -155,4 +155,40 @@ describe('VehicleTableComponent', () => {
     });
   });
 
+  describe('isOwner', () => {
+
+    it('should return true when permission service returns true');
+
+    it('should return false when permission service returns false');
+
+    it('should not render edit and delete buttons when user is not owner');
+
+  });
+
+  describe('addUserToVehicle output', () => {
+
+    it('should emit addUserToVehicle when user button emits user');
+
+  });
+
+  describe('template: image', () => {
+
+    it('should render vehicle image with correct alt text');
+
+    it('should use fallback image when vehicle has no imageUrl');
+
+  });
+
+  describe('accessibility', () => {
+
+    it('should have a caption for the table');
+
+    it('should have scope col on header cells');
+
+    it('should have scope row on name cell');
+
+    it('should have aria-hidden on plate span inside name cell');
+
+  });
+
 });
