@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { signal, WritableSignal } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 
 import { VehicleTableComponent } from './vehicle-table';
@@ -32,6 +31,9 @@ describe('VehicleTableComponent', () => {
   let fixture: ComponentFixture<VehicleTableComponent>;
 
   beforeEach(async () => {
+    permissionServiceMock.isOwner.calls.reset();
+    mockVehicleModal.openEdit.calls.reset();
+
     await TestBed.configureTestingModule({
       imports: [VehicleTableComponent],
       providers: [
@@ -52,20 +54,29 @@ describe('VehicleTableComponent', () => {
   });
 
   describe('inputs', () => {
-    it('should accept vehicles input as signal', () => {
-      const vehiclesSignal: WritableSignal<VehicleInterface[]> = signal(mockVehicles);
-      (component.vehicles as any) = vehiclesSignal;
 
-      expect(component.vehicles()).toBe(mockVehicles);
+    it('should accept vehicles input', () => {
+      fixture.componentRef.setInput('vehicles', mockVehicles);
+      fixture.detectChanges();
+
+      expect(component.vehicles()).toEqual(mockVehicles);
     });
 
     it('should accept vehicleModal input', () => {
-      (component.vehicleModal as any) = () => mockVehicleModal;
+      fixture.componentRef.setInput('vehicleModal', mockVehicleModal);
+      fixture.detectChanges();
+
       expect(component.vehicleModal()).toBe(mockVehicleModal);
     });
   });
 
   describe('template rendering', () => {
+    beforeEach(() => {
+      fixture.componentRef.setInput('vehicles', mockVehicles);
+      fixture.componentRef.setInput('vehicleModal', mockVehicleModal);
+      fixture.detectChanges();
+    });
+
     it('should render the table element', () => {
       const table = fixture.nativeElement.querySelector('table');
       expect(table).toBeTruthy();
@@ -82,17 +93,11 @@ describe('VehicleTableComponent', () => {
     });
 
     it('should render one table row per vehicle', () => {
-      (component.vehicles as any) = () => mockVehicles;
-      fixture.detectChanges();
-
       const rows = fixture.nativeElement.querySelectorAll('tbody tr');
       expect(rows.length).toBe(mockVehicles.length);
     });
 
     it('should render vehicle name, model and plate in each row', () => {
-      (component.vehicles as any) = () => mockVehicles;
-      fixture.detectChanges();
-
       const textContent = fixture.nativeElement.textContent;
 
       expect(textContent).toContain(mockVehicles[0].name);
@@ -105,9 +110,6 @@ describe('VehicleTableComponent', () => {
     });
 
     it('should render edit and delete buttons for owner vehicles', () => {
-      (component.vehicles as any) = () => mockVehicles;
-      fixture.detectChanges();
-
       const editButtons = fixture.nativeElement.querySelectorAll('app-edit-button');
       const deleteButtons = fixture.nativeElement.querySelectorAll('app-delete-button');
 
@@ -117,20 +119,19 @@ describe('VehicleTableComponent', () => {
   });
 
   describe('actions', () => {
-    it('should call vehicleModal.openEdit when edit button emits edit', () => {
-      (component.vehicles as any) = () => mockVehicles;
-      (component.vehicleModal as any) = () => mockVehicleModal;
+    beforeEach(() => {
+      fixture.componentRef.setInput('vehicles', mockVehicles);
+      fixture.componentRef.setInput('vehicleModal', mockVehicleModal);
       fixture.detectChanges();
+    });
 
+    it('should call vehicleModal.openEdit when edit button emits edit', () => {
       component.vehicleModal().openEdit(mockVehicles[0]);
 
       expect(mockVehicleModal.openEdit).toHaveBeenCalledWith(mockVehicles[0]);
     });
 
     it('should emit deleteVehicle when delete button emits delete', () => {
-      (component.vehicles as any) = () => mockVehicles;
-      fixture.detectChanges();
-
       spyOn(component.deleteVehicle, 'emit');
 
       component.deleteVehicle.emit(mockVehicles[0]);
@@ -141,11 +142,12 @@ describe('VehicleTableComponent', () => {
 
   describe('@for tracking', () => {
     it('should track rows by vehicle plate', () => {
-      (component.vehicles as any) = () => mockVehicles;
+      fixture.componentRef.setInput('vehicles', mockVehicles);
       fixture.detectChanges();
 
       const rowsBefore = fixture.nativeElement.querySelectorAll('tbody tr');
-      (component.vehicles as any) = () => [mockVehicles[1], mockVehicles[0]];
+
+      fixture.componentRef.setInput('vehicles', [mockVehicles[1], mockVehicles[0]]);
       fixture.detectChanges();
 
       const rowsAfter = fixture.nativeElement.querySelectorAll('tbody tr');
