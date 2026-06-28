@@ -7,29 +7,29 @@ import { VehicleTableComponent } from './vehicle-table';
 import { AuthorizationService } from '../../../../core/services/authorization/authorization-service';
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
 
+const authMock = {
+  currentUser: {
+    uid: 'JordiTheBest',
+    getIdToken: () => Promise.resolve('MyToken')
+  }
+};
+
+const permissionServiceMock = {
+  isOwner: jasmine.createSpy('isOwner').and.returnValue(true)
+};
+
+const mockVehicles: VehicleInterface[] = [
+  { _id: '1', name: 'Ferrari', model: 'F8', plate: 'F123', location: { lat: 41, lng: 2 }, userId: 'JordiTheBest' },
+  { _id: '2', name: 'Lamborghini', model: 'Huracan', plate: 'L456', location: { lat: 42, lng: 3 }, userId: 'JordiTheBest' }
+];
+
+const mockVehicleModal = {
+  openEdit: jasmine.createSpy('openEdit')
+};
+
 describe('VehicleTableComponent', () => {
   let component: VehicleTableComponent;
   let fixture: ComponentFixture<VehicleTableComponent>;
-
-  const authMock = {
-    currentUser: {
-      uid: 'JordiTheBest',
-      getIdToken: () => Promise.resolve('MyToken')
-    }
-  };
-
-  const permissionServiceMock = {
-    isOwner: jasmine.createSpy('isOwner').and.returnValue(true)
-  };
-
-  const mockVehicles: VehicleInterface[] = [
-    { _id: '1', name: 'Ferrari', model: 'F8', plate: 'F123', location: { lat: 41, lng: 2 }, userId: 'JordiTheBest' },
-    { _id: '2', name: 'Lamborghini', model: 'Huracan', plate: 'L456', location: { lat: 42, lng: 3 }, userId: 'JordiTheBest' }
-  ];
-
-  const mockVehicleModal = {
-    openEdit: jasmine.createSpy('openEdit')
-  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
