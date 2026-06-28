@@ -227,13 +227,43 @@ describe('VehicleTableComponent', () => {
 
   describe('accessibility', () => {
 
-    it('should have a caption for the table');
+    beforeEach(() => {
+      fixture.componentRef.setInput('vehicles', mockVehicles);
+      fixture.componentRef.setInput('vehicleModal', mockVehicleModal);
+      fixture.detectChanges();
+    });
 
-    it('should have scope col on header cells');
+    it('should have a caption for the table', () => {
+      const caption = fixture.nativeElement.querySelector('caption');
 
-    it('should have scope row on name cell');
+      expect(caption).toBeTruthy();
+      expect(caption.textContent).toContain(component.tableMsg.captionText);
+    });
 
-    it('should have aria-hidden on plate span inside name cell');
+    it('should have scope col on header cells', () => {
+      const headers = fixture.nativeElement.querySelectorAll('thead th');
+
+      headers.forEach((th: HTMLElement) => {
+        expect(th.getAttribute('scope')).toBe('col');
+      });
+    });
+
+    it('should have scope row on name cell', () => {
+      const nameHeaders = fixture.nativeElement.querySelectorAll('.vehicle-table__cell--name');
+
+      nameHeaders.forEach((th: HTMLElement) => {
+        expect(th.getAttribute('scope')).toBe('row');
+      });
+    });
+
+    it('should have aria-hidden on plate span inside name cell', () => {
+      const nameCells = fixture.nativeElement.querySelectorAll('.vehicle-table__cell--name');
+
+      nameCells.forEach((cell: HTMLElement) => {
+        const plateSpan = cell.querySelector('.vehicle-table__plate');
+        expect(plateSpan?.getAttribute('aria-hidden')).toBe('true');
+      });
+    });
 
   });
 
