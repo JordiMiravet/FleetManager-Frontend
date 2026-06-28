@@ -72,6 +72,7 @@ describe('VehicleTableComponent', () => {
 
   describe('template rendering', () => {
     beforeEach(() => {
+      permissionServiceMock.isOwner.and.returnValue(true);
       fixture.componentRef.setInput('vehicles', mockVehicles);
       fixture.componentRef.setInput('vehicleModal', mockVehicleModal);
       fixture.detectChanges();
