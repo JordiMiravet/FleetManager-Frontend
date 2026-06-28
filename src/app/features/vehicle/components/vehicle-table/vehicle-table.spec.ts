@@ -48,9 +48,11 @@ describe('VehicleTableComponent', () => {
   });
 
   describe('component creation', () => {
+
     it('should create', () => {
       expect(component).toBeTruthy();
     });
+
   });
 
   describe('inputs', () => {
@@ -68,9 +70,11 @@ describe('VehicleTableComponent', () => {
 
       expect(component.vehicleModal()).toBe(mockVehicleModal);
     });
+
   });
 
   describe('template rendering', () => {
+
     beforeEach(() => {
       permissionServiceMock.isOwner.and.returnValue(true);
       fixture.componentRef.setInput('vehicles', mockVehicles);
@@ -117,9 +121,11 @@ describe('VehicleTableComponent', () => {
       expect(editButtons.length).toBe(mockVehicles.length);
       expect(deleteButtons.length).toBe(mockVehicles.length);
     });
+
   });
 
   describe('actions', () => {
+
     beforeEach(() => {
       fixture.componentRef.setInput('vehicles', mockVehicles);
       fixture.componentRef.setInput('vehicleModal', mockVehicleModal);
@@ -139,9 +145,11 @@ describe('VehicleTableComponent', () => {
 
       expect(component.deleteVehicle.emit).toHaveBeenCalledWith(mockVehicles[0]);
     });
+
   });
 
   describe('@for tracking', () => {
+
     it('should track rows by vehicle plate', () => {
       fixture.componentRef.setInput('vehicles', mockVehicles);
       fixture.detectChanges();
@@ -154,6 +162,7 @@ describe('VehicleTableComponent', () => {
       const rowsAfter = fixture.nativeElement.querySelectorAll('tbody tr');
       expect(rowsAfter.length).toBe(rowsBefore.length);
     });
+    
   });
 
   describe('isOwner', () => {
