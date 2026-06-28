@@ -204,9 +204,24 @@ describe('VehicleTableComponent', () => {
 
   describe('template: image', () => {
 
-    it('should render vehicle image with correct alt text');
+    beforeEach(() => {
+      fixture.componentRef.setInput('vehicles', mockVehicles);
+      fixture.componentRef.setInput('vehicleModal', mockVehicleModal);
+      fixture.detectChanges();
+    });
 
-    it('should use fallback image when vehicle has no imageUrl');
+    it('should render vehicle image with correct alt text', () => {
+      const images = fixture.nativeElement.querySelectorAll('.vehicle-table__image');
+
+      expect(images[0].getAttribute('alt')).toBe(`Image of ${mockVehicles[0].name}`);
+      expect(images[1].getAttribute('alt')).toBe(`Image of ${mockVehicles[1].name}`);
+    });
+
+    it('should use fallback image when vehicle has no imageUrl', () => {
+      const images = fixture.nativeElement.querySelectorAll('.vehicle-table__image');
+
+      expect(images[0].getAttribute('src')).toBe(component.vehicleImage);
+    });
 
   });
 
