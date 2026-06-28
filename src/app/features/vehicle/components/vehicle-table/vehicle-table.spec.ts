@@ -157,11 +157,32 @@ describe('VehicleTableComponent', () => {
 
   describe('isOwner', () => {
 
-    it('should return true when permission service returns true');
+    it('should return true when permission service returns true', () => {
+      permissionServiceMock.isOwner.and.returnValue(true);
 
-    it('should return false when permission service returns false');
+      expect(component.isOwner(mockVehicles[0])).toBeTrue();
+      expect(permissionServiceMock.isOwner).toHaveBeenCalledWith(mockVehicles[0]);
+    });
 
-    it('should not render edit and delete buttons when user is not owner');
+    it('should return false when permission service returns false', () => {
+      permissionServiceMock.isOwner.and.returnValue(false);
+
+      expect(component.isOwner(mockVehicles[0])).toBeFalse();
+    });
+
+    it('should not render edit and delete buttons when user is not owner', () => {
+      permissionServiceMock.isOwner.and.returnValue(false);
+
+      fixture.componentRef.setInput('vehicles', mockVehicles);
+      fixture.componentRef.setInput('vehicleModal', mockVehicleModal);
+      fixture.detectChanges();
+
+      const editButtons = fixture.nativeElement.querySelectorAll('app-edit-button');
+      const deleteButtons = fixture.nativeElement.querySelectorAll('app-delete-button');
+
+      expect(editButtons.length).toBe(0);
+      expect(deleteButtons.length).toBe(0);
+    });
 
   });
 
