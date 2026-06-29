@@ -1,10 +1,10 @@
-# WhereIsMyCar app
+# Fleet Manager
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge)
-![TypeScript](https://img.shields.io/badge/TypeScript-TS-blue?style=for-the-badge)
 ![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-TS-blue?style=for-the-badge)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge)
+![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 
 ![PrimeNG](https://img.shields.io/badge/PrimeNG-6C2BD9?style=for-the-badge&logo=primeng&logoColor=white)
 ![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=leaflet&logoColor=white)
@@ -15,8 +15,6 @@
 ![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Firebase Auth](https://img.shields.io/badge/Firebase_Auth-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
-
-
 
 ## Index
 
@@ -41,12 +39,12 @@ La aplicación está estructurada en módulos y componentes reutilizables, e int
 
 La funcionalidad principal se organiza en diferentes bloques:
 - **Autenticación de usuarios:** Registro y login mediante email y contraseña. Cada usuario dispone de su propio perfil y datos independientes.
-- **Gestión de vehículos (CRUD):** Creación, edición y eliminación de coches dentro del garaje personal.
-- **Gestión de ubicación en mapa:** Visualización de los vehículos en un mapa interactivo donde es posible actualizar su posición mediante drag & drop para indicar dónde se han aparcado.
+- **Gestión de vehículos (CRUD):** Creación, visualización, edición y eliminación de coches dentro del garaje personal.
+- **Gestión de ubicación en mapa:** Visualización de los vehículos en un mapa interactivo donde se muestran todos los coches por defecto. Es posible actualizar su posición mediante drag & drop para indicar dónde se han aparcado, y filtrar dinámicamente los vehículos para mostrar únicamente un coche específico al seleccionarlo desde un input.
 - **Calendario de eventos:** Planificación de eventos asociados a cada coche con fecha y hora específicas.
 - **Control de solapamientos:** El sistema impide la creación de eventos que coincidan en horario para el mismo vehículo.
 - **Filtrado dinámico:** Posibilidad de visualizar eventos de un coche concreto o de todos los vehículos.
-- **Gestión de eventos (CRUD):** Creación, edición y eliminación de eventos desde el calendario.
+- **Gestión de eventos (CRUD):** Creación, visualización, edición y eliminación de eventos desde el calendario.
 - **Sistema de comentarios:** Los usuarios pueden añadir comentarios en los eventos registrados.
 
 - Panel de estadísticas: Visualización de gráficos que muestran:
@@ -58,15 +56,15 @@ La aplicación combina gestión de datos, visualización geográfica, planificac
 
 ## Tecnologías
 
-- `HTML5`
-- `CSS3`
-- `JavaScript`
-- `TypeScript`
 - `Angular 20`
-- Angular Dependencys: `PrimeNG`, `Leaflet`, `FullCalendar`, `Chart.js`
+- `TypeScript`
+- `SCSS`
+- `HTML5`
+
+- Angular dependencies: `PrimeNG`, `Leaflet`, `FullCalendar`, `Chart.js`
 - Backend: `NestJS`, `MongoDB`
 - Autenticación:`Firebase Authentication`
-- Testing: `Jasmine`
+- Testing: `Jasmine & Karma`
 
 ---
 
@@ -74,20 +72,43 @@ La aplicación combina gestión de datos, visualización geográfica, planificac
 
 ```bash
 src/
- ├─ app/
- │   ├─ features/
- │   │   ├─ auth/ ( login, register, services )
- │   │   ├─ calendar/ ( components, modals, services, interfaces )
- │   │   ├─ graphics/ ( components, services, interfaces, enums )
- │   │   ├─ map/ ( components, services )
- │   │   └─ vehicle/ ( components, modals, services, interfaces )
- │   ├─ pages/ ( home, map, calendar, graphics )
- │   └─ shared/ ( components, layout, services )
- ├─ assets/
- ├─ environments/
- ├─ index.html
- ├─ main.ts
- └─ styles.css
+├─ app/
+│  ├─ core/                         # Infraestructura global
+│  │  ├─ guards/
+│  │  ├─ layout/                    # Header, navegación, UI global
+│  │  └─ services/                  # Servicios globales (auth, geolocation, theme)
+│  │
+│  ├─ features/                     # Módulos principales de la aplicación
+│  │  ├─ auth/                      # Login, registro e interceptores
+│  │  ├─ vehicle/                   # Gestión de vehículos (CRUD, state, modals)
+│  │  ├─ map/                       # Mapa interactivo (Leaflet)
+│  │  ├─ calendar/                  # Eventos y planificación (FullCalendar)
+│  │  └─ graphics/                  # Estadísticas y visualización de datos (Chart.js)
+│  │
+│  ├─ shared/                       # Componentes reutilizables
+│  │  ├─ ui/                        # Botones, modales, componentes genéricos
+│  │  ├─ pipes/
+│  │  ├─ directives/
+│  │  └─ models/
+│  │
+│  ├─ app.config.ts
+│  ├─ app.routes.ts
+│  ├─ main.ts
+│  └─ app.html / app.scss / app.ts
+│
+├─ assets/
+│  ├─ icons/
+│  └─ readme/
+│
+├─ environments/
+├─ styles/                          # Sistema de estilos global (SCSS)
+│  ├─ abstracts/                    # Variables y mixins
+│  ├─ base/                         # Reset y tipografía base
+│  ├─ themes/                       # Tema claro / oscuro
+│  ├─ tokens/                       # Design system (spacing, colors, radius, etc.)
+│  └─ utilities/                    # Helpers SCSS
+│
+└─ index.html
 ```
 
 ---
@@ -95,8 +116,8 @@ src/
 ## Instalación del Proyecto
 
 La aplicación está dividida en dos repositorios:
-- Frontend → Angular 20 https://github.com/JordiMiravet/WhereIsMyCarApp.git
-- Backend → NestJS https://github.com/JordiMiravet/WhereIsMyCarApp-backend.git
+- Frontend → Angular 20 https://github.com/JordiMiravet/FleetManager-Frontend.git
+- Backend → NestJS https://github.com/JordiMiravet/FleetManager-Backend.git
 
 Es necesario levantar ambos para que funcione correctamente.
 
@@ -111,8 +132,8 @@ Es necesario levantar ambos para que funcione correctamente.
 Clonar el repositorio:
 
 ```bash
-    git clone https://github.com/JordiMiravet/WhereIsMyCarApp.git
-    cd whereismycarapp
+    git clone https://github.com/JordiMiravet/FleetManager-Frontend.git
+    cd fleetmanager-frontend
     npm install
 ```
 Configuración de Firebase Authentication:
@@ -150,8 +171,8 @@ Con el siguiente contenido, reemplazando los valores por los de tu proyecto:
 
 Clonar el repositorio del backend:
 ```bash
-    git clone https://github.com/JordiMiravet/WhereIsMyCarApp-backend.git
-    cd whereismycar-backend
+    git clone https://github.com/JordiMiravet/FleetManager-Backend.git
+    cd fleetmanager-backend
     npm install
 ```
 
@@ -209,21 +230,19 @@ Notas
 
 ## Uso
 
-Aquí explicas cómo interactuar con la app una vez que está corriendo. Por ejemplo:
-
-    1. Abrir la aplicación en el navegador: http://localhost:4200
-    2. Registrar un nuevo usuario con email y contraseña.
-    3. Iniciar sesión con tus credenciales.
-    4. Crear, editar o eliminar un vehículo desde el panel de gestión de vehículos (Home).
-    5. Mover coches en el mapa para actualizar su ubicación. (Map)
-        - Por defecto se muestran todos los coches.
-        - Filtrando un vehículo concreto, solo se mostrará la localización de ese coche.
-    6. Añadir, editar o eliminar eventos al calendario para cada coche. (Calendar)
-        - La app evita conflictos de horario entre eventos de un mismo coche.
-        - Por defecto se muestran los eventos de todos los vehículos.
-        - Filtrando un vehículo concreto, solo se verán los eventos de ese coche.
-    7. Visualizar estadísticas en la sección de gráficos. (Graphics)
-        - Los gráficos permiten filtrar los datos por período de tiempo mediante los botones This Month, This Year y All Time.
+1. Abrir la aplicación en el navegador: http://localhost:4200  
+2. Registrar un nuevo usuario con email y contraseña  
+3. Iniciar sesión con tus credenciales  
+4. Crear, editar o eliminar un vehículo desde el panel de gestión de vehículos  
+5. Visualizar y gestionar vehículos en el mapa (Map)  
+   - Por defecto se muestran todos los vehículos  
+   - Es posible filtrar un vehículo concreto para ver solo su ubicación  
+6. Crear, editar o eliminar eventos en el calendario para cada vehículo (Calendar)  
+   - La aplicación evita conflictos de horario entre eventos del mismo vehículo  
+   - Por defecto se muestran los eventos de todos los vehículos  
+   - Es posible filtrar por vehículo  
+7. Visualizar estadísticas en la sección de gráficos (Graphics)  
+   - Los datos pueden filtrarse por período: This Month, This Year y All Time  
 
 ---
 
@@ -266,14 +285,14 @@ La aplicación incluye tests unitarios desarrollados con Jasmine, ejecutables me
 - Cobertura:
 
 ```markdown
-| Tipo       | Total | Cobertura |
-| ---------- | ----- | --------- |
-| Statements | 501   | 79.64%    |
-| Branches   | 99    | 71.71%    |
-| Functions  | 150   | 75.33%    |
-| Lines      | 453   | 80.13%    |
+=============================== Coverage summary ===============================
+Statements   : 96.6% ( 853/883 )
+Branches     : 89.14% ( 156/175 )
+Functions    : 95.51% ( 234/245 )
+Lines        : 97.11% ( 775/798 )
+================================================================================
 
-Total Tests : 356
+TOTAL: 691 SUCCESS
 ```
 
 #### Ejemplo destacado y explicación por líneas
@@ -342,8 +361,8 @@ También se testean casos de estado vacío y apertura/cierre de modales para ase
 Si quieres contribuir a este proyecto, puedes:
 
 1. Hacer un fork de los repositorios. 
-    - Frontend: https://github.com/JordiMiravet/WhereIsMyCarApp.git
-    - Backend: https://github.com/JordiMiravet/WhereIsMyCarApp-backend.git
+   - Frontend: https://github.com/JordiMiravet/FleetManager-Frontend.git
+   - Backend: https://github.com/JordiMiravet/FleetManager-Backend.git
 2. Crear una rama con la nueva funcionalidad o corrección de bug (`git checkout -b feature/nueva-funcionalidad`).
 3. Hacer commits claros y descriptivos.
 4. Hacer push a tu rama.
