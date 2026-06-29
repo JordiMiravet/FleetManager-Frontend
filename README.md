@@ -285,14 +285,14 @@ La aplicación incluye tests unitarios desarrollados con Jasmine, ejecutables me
 - Cobertura:
 
 ```markdown
-| Tipo       | Total | Cobertura |
-| ---------- | ----- | --------- |
-| Statements | 501   | 79.64%    |
-| Branches   | 99    | 71.71%    |
-| Functions  | 150   | 75.33%    |
-| Lines      | 453   | 80.13%    |
+=============================== Coverage summary ===============================
+Statements   : 96.6% ( 853/883 )
+Branches     : 89.14% ( 156/175 )
+Functions    : 95.51% ( 234/245 )
+Lines        : 97.11% ( 775/798 )
+================================================================================
 
-Total Tests : 356
+TOTAL: 691 SUCCESS
 ```
 
 #### Ejemplo destacado y explicación por líneas
