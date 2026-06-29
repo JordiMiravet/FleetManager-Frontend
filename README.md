@@ -132,8 +132,8 @@ Es necesario levantar ambos para que funcione correctamente.
 Clonar el repositorio:
 
 ```bash
-    git clone https://github.com/JordiMiravet/WhereIsMyCarApp.git
-    cd whereismycarapp
+    git clone https://github.com/JordiMiravet/FleetManager-Frontend.git
+    cd fleetmanager-frontend
     npm install
 ```
 Configuración de Firebase Authentication:
