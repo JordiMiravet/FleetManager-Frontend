@@ -171,8 +171,8 @@ Con el siguiente contenido, reemplazando los valores por los de tu proyecto:
 
 Clonar el repositorio del backend:
 ```bash
-    git clone https://github.com/JordiMiravet/WhereIsMyCarApp-backend.git
-    cd whereismycar-backend
+    git clone https://github.com/JordiMiravet/FleetManager-Backend.git
+    cd fleetmanager-backend
     npm install
 ```
 
