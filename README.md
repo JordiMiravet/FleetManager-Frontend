@@ -72,20 +72,43 @@ La aplicación combina gestión de datos, visualización geográfica, planificac
 
 ```bash
 src/
- ├─ app/
- │   ├─ features/
- │   │   ├─ auth/ ( login, register, services )
- │   │   ├─ calendar/ ( components, modals, services, interfaces )
- │   │   ├─ graphics/ ( components, services, interfaces, enums )
- │   │   ├─ map/ ( components, services )
- │   │   └─ vehicle/ ( components, modals, services, interfaces )
- │   ├─ pages/ ( home, map, calendar, graphics )
- │   └─ shared/ ( components, layout, services )
- ├─ assets/
- ├─ environments/
- ├─ index.html
- ├─ main.ts
- └─ styles.css
+├─ app/
+│  ├─ core/                         # Infraestructura global
+│  │  ├─ guards/
+│  │  ├─ layout/                    # Header, navegación, UI global
+│  │  └─ services/                  # Servicios globales (auth, geolocation, theme)
+│  │
+│  ├─ features/                     # Módulos principales de la aplicación
+│  │  ├─ auth/                      # Login, registro e interceptores
+│  │  ├─ vehicle/                   # Gestión de vehículos (CRUD, state, modals)
+│  │  ├─ map/                       # Mapa interactivo (Leaflet)
+│  │  ├─ calendar/                  # Eventos y planificación (FullCalendar)
+│  │  └─ graphics/                  # Estadísticas y visualización de datos (Chart.js)
+│  │
+│  ├─ shared/                       # Componentes reutilizables
+│  │  ├─ ui/                        # Botones, modales, componentes genéricos
+│  │  ├─ pipes/
+│  │  ├─ directives/
+│  │  └─ models/
+│  │
+│  ├─ app.config.ts
+│  ├─ app.routes.ts
+│  ├─ main.ts
+│  └─ app.html / app.scss / app.ts
+│
+├─ assets/
+│  ├─ icons/
+│  └─ readme/
+│
+├─ environments/
+├─ styles/                          # Sistema de estilos global (SCSS)
+│  ├─ abstracts/                    # Variables y mixins
+│  ├─ base/                         # Reset y tipografía base
+│  ├─ themes/                       # Tema claro / oscuro
+│  ├─ tokens/                       # Design system (spacing, colors, radius, etc.)
+│  └─ utilities/                    # Helpers SCSS
+│
+└─ index.html
 ```
 
 ---
