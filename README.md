@@ -116,8 +116,8 @@ src/
 ## Instalación del Proyecto
 
 La aplicación está dividida en dos repositorios:
-- Frontend → Angular 20 https://github.com/JordiMiravet/WhereIsMyCarApp.git
-- Backend → NestJS https://github.com/JordiMiravet/WhereIsMyCarApp-backend.git
+- Frontend → Angular 20 https://github.com/JordiMiravet/FleetManager-Frontend.git
+- Backend → NestJS https://github.com/JordiMiravet/FleetManager-Backend.git
 
 Es necesario levantar ambos para que funcione correctamente.
 
