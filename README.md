@@ -56,15 +56,15 @@ La aplicación combina gestión de datos, visualización geográfica, planificac
 
 ## Tecnologías
 
-- `HTML5`
-- `CSS3`
-- `JavaScript`
-- `TypeScript`
 - `Angular 20`
-- Angular Dependencys: `PrimeNG`, `Leaflet`, `FullCalendar`, `Chart.js`
+- `TypeScript`
+- `SCSS`
+- `HTML5`
+
+- Angular dependencies: `PrimeNG`, `Leaflet`, `FullCalendar`, `Chart.js`
 - Backend: `NestJS`, `MongoDB`
 - Autenticación:`Firebase Authentication`
-- Testing: `Jasmine`
+- Testing: `Jasmine & Karma`
 
 ---
 
