@@ -39,12 +39,12 @@ La aplicación está estructurada en módulos y componentes reutilizables, e int
 
 La funcionalidad principal se organiza en diferentes bloques:
 - **Autenticación de usuarios:** Registro y login mediante email y contraseña. Cada usuario dispone de su propio perfil y datos independientes.
-- **Gestión de vehículos (CRUD):** Creación, edición y eliminación de coches dentro del garaje personal.
-- **Gestión de ubicación en mapa:** Visualización de los vehículos en un mapa interactivo donde es posible actualizar su posición mediante drag & drop para indicar dónde se han aparcado.
+- **Gestión de vehículos (CRUD):** Creación, visualización, edición y eliminación de coches dentro del garaje personal.
+- **Gestión de ubicación en mapa:** Visualización de los vehículos en un mapa interactivo donde se muestran todos los coches por defecto. Es posible actualizar su posición mediante drag & drop para indicar dónde se han aparcado, y filtrar dinámicamente los vehículos para mostrar únicamente un coche específico al seleccionarlo desde un input.
 - **Calendario de eventos:** Planificación de eventos asociados a cada coche con fecha y hora específicas.
 - **Control de solapamientos:** El sistema impide la creación de eventos que coincidan en horario para el mismo vehículo.
 - **Filtrado dinámico:** Posibilidad de visualizar eventos de un coche concreto o de todos los vehículos.
-- **Gestión de eventos (CRUD):** Creación, edición y eliminación de eventos desde el calendario.
+- **Gestión de eventos (CRUD):** Creación, visualización, edición y eliminación de eventos desde el calendario.
 - **Sistema de comentarios:** Los usuarios pueden añadir comentarios en los eventos registrados.
 
 - Panel de estadísticas: Visualización de gráficos que muestran:
