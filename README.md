@@ -230,21 +230,19 @@ Notas
 
 ## Uso
 
-Aquí explicas cómo interactuar con la app una vez que está corriendo. Por ejemplo:
-
-    1. Abrir la aplicación en el navegador: http://localhost:4200
-    2. Registrar un nuevo usuario con email y contraseña.
-    3. Iniciar sesión con tus credenciales.
-    4. Crear, editar o eliminar un vehículo desde el panel de gestión de vehículos (Home).
-    5. Mover coches en el mapa para actualizar su ubicación. (Map)
-        - Por defecto se muestran todos los coches.
-        - Filtrando un vehículo concreto, solo se mostrará la localización de ese coche.
-    6. Añadir, editar o eliminar eventos al calendario para cada coche. (Calendar)
-        - La app evita conflictos de horario entre eventos de un mismo coche.
-        - Por defecto se muestran los eventos de todos los vehículos.
-        - Filtrando un vehículo concreto, solo se verán los eventos de ese coche.
-    7. Visualizar estadísticas en la sección de gráficos. (Graphics)
-        - Los gráficos permiten filtrar los datos por período de tiempo mediante los botones This Month, This Year y All Time.
+1. Abrir la aplicación en el navegador: http://localhost:4200  
+2. Registrar un nuevo usuario con email y contraseña  
+3. Iniciar sesión con tus credenciales  
+4. Crear, editar o eliminar un vehículo desde el panel de gestión de vehículos  
+5. Visualizar y gestionar vehículos en el mapa (Map)  
+   - Por defecto se muestran todos los vehículos  
+   - Es posible filtrar un vehículo concreto para ver solo su ubicación  
+6. Crear, editar o eliminar eventos en el calendario para cada vehículo (Calendar)  
+   - La aplicación evita conflictos de horario entre eventos del mismo vehículo  
+   - Por defecto se muestran los eventos de todos los vehículos  
+   - Es posible filtrar por vehículo  
+7. Visualizar estadísticas en la sección de gráficos (Graphics)  
+   - Los datos pueden filtrarse por período: This Month, This Year y All Time  
 
 ---
 
