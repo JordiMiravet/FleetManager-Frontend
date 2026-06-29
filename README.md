@@ -361,8 +361,8 @@ También se testean casos de estado vacío y apertura/cierre de modales para ase
 Si quieres contribuir a este proyecto, puedes:
 
 1. Hacer un fork de los repositorios. 
-    - Frontend: https://github.com/JordiMiravet/WhereIsMyCarApp.git
-    - Backend: https://github.com/JordiMiravet/WhereIsMyCarApp-backend.git
+   - Frontend: https://github.com/JordiMiravet/FleetManager-Frontend.git
+   - Backend: https://github.com/JordiMiravet/FleetManager-Backend.git
 2. Crear una rama con la nueva funcionalidad o corrección de bug (`git checkout -b feature/nueva-funcionalidad`).
 3. Hacer commits claros y descriptivos.
 4. Hacer push a tu rama.
