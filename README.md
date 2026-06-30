@@ -251,7 +251,7 @@ Notas
 A continuación se muestra una vista previa de la aplicación en funcionamiento:
 
 #### Registro de usuario
-![Register](src/assets/readme/register.gif)
+![Register](src/assets/readme/FM-register.gif)
 #### Login de usuario
 ![Login](src/assets/readme/login.gif)
 #### Gestión de vehículos (CRUD)
