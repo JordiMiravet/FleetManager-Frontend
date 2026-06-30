@@ -257,7 +257,7 @@ A continuación se muestra una vista previa de la aplicación en funcionamiento:
 #### Gestión de vehículos (CRUD)
 ![Create Vehicle](src/assets/readme/FM-vehicle-create.gif)
 ![Edit Vehicle](src/assets/readme/FM-vehicle-edit.gif)
-![Delete Vehicle](src/assets/readme/vehicle-delete.gif)
+![Delete Vehicle](src/assets/readme/FM-vehicle-delete.gif)
 #### Mapa interactivo (drag & drop y filtrado por coches)
 ![Drag & Drop](src/assets/readme/vehicle-map-dragdrop.gif)
 #### Calendario de eventos (CRUD)
