@@ -251,24 +251,28 @@ Notas
 A continuación se muestra una vista previa de la aplicación en funcionamiento:
 
 #### Registro de usuario
-![Register](src/assets/readme/register.gif)
+![Register](src/assets/readme/FM-register.gif)
 #### Login de usuario
-![Login](src/assets/readme/login.gif)
+![Login](src/assets/readme/FM-login.gif)
 #### Gestión de vehículos (CRUD)
-![Create Vehicle](src/assets/readme/vehicle-create.gif)
-![Edit Vehicle](src/assets/readme/vehicle-edit.gif)
-![Delete Vehicle](src/assets/readme/vehicle-delete.gif)
+![Create Vehicle](src/assets/readme/FM-vehicle-create.gif)
+![Edit Vehicle](src/assets/readme/FM-vehicle-edit.gif)
+![Delete Vehicle](src/assets/readme/FM-vehicle-delete.gif)
+#### Gestión de vehículos (Filtrado de vehiculos)
+![Vehicle Filter](src/assets/readme/FM-vehicle-filter.gif)
 #### Mapa interactivo (drag & drop y filtrado por coches)
-![Drag & Drop](src/assets/readme/vehicle-map-dragdrop.gif)
+![Drag & Drop](src/assets/readme/FM-map-dragdrop.gif)
+![Geolocation Update Button](src/assets/readme/FM-map-geolocation-button.gif)
 #### Calendario de eventos (CRUD)
-![Create Event](src/assets/readme/event-create.gif)
-![Edit Event](src/assets/readme/event-edit.gif)
-![Delete Event](src/assets/readme/event-delete.gif)
-#### Calendario de eventos (validaciones: control de solapamientos y filtrado de eventos)
-![Overlap validation](src/assets/readme/event-valid-overlap.gif)
-![Event time validation](src/assets/readme/event-valid-time.gif)
+![Create Event](src/assets/readme/FM-event-create.gif)
+![Edit Event](src/assets/readme/FM-event-edit.gif)
+#### Calendario de eventos (filtrado de eventos)
+![Event filter](src/assets/readme/FM-event-filter.gif)
+#### Calendario de eventos (validaciones: control de solapamientos)
+![Overlap validation](src/assets/readme/FM-event-valid-overlap.gif)
+![Event time validation](src/assets/readme/FM-event-valid-time.gif)
 #### Panel de estadísticas (gráficos)
-![Graphics](src/assets/readme/graphics.gif)
+![Graphics](src/assets/readme/FM-graphics.gif)
 
 ---
 
