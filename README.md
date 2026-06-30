@@ -261,7 +261,7 @@ A continuación se muestra una vista previa de la aplicación en funcionamiento:
 #### Gestión de vehículos (Filtrado de vehiculos)
 ![Vehicle Filter](src/assets/readme/FM-vehicle-filter.gif)
 #### Mapa interactivo (drag & drop y filtrado por coches)
-![Drag & Drop](src/assets/readme/vehicle-map-dragdrop.gif)
+![Drag & Drop](src/assets/readme/FM-map-dragdrop.gif)
 #### Calendario de eventos (CRUD)
 ![Create Event](src/assets/readme/event-create.gif)
 ![Edit Event](src/assets/readme/event-edit.gif)
