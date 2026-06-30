@@ -269,7 +269,7 @@ A continuación se muestra una vista previa de la aplicación en funcionamiento:
 #### Calendario de eventos (filtrado de eventos)
 ![Event filter](src/assets/readme/FM-event-filter.gif)
 #### Calendario de eventos (validaciones: control de solapamientos)
-![Overlap validation](src/assets/readme/event-valid-overlap.gif)
+![Overlap validation](src/assets/readme/FM-event-valid-overlap.gif)
 ![Event time validation](src/assets/readme/event-valid-time.gif)
 #### Panel de estadísticas (gráficos)
 ![Graphics](src/assets/readme/graphics.gif)
