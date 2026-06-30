@@ -262,6 +262,7 @@ A continuación se muestra una vista previa de la aplicación en funcionamiento:
 ![Vehicle Filter](src/assets/readme/FM-vehicle-filter.gif)
 #### Mapa interactivo (drag & drop y filtrado por coches)
 ![Drag & Drop](src/assets/readme/FM-map-dragdrop.gif)
+![Geolocation Update Button](src/assets/readme/FM-map-geolocation-button.gif)
 #### Calendario de eventos (CRUD)
 ![Create Event](src/assets/readme/event-create.gif)
 ![Edit Event](src/assets/readme/event-edit.gif)
