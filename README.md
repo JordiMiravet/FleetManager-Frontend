@@ -272,7 +272,7 @@ A continuación se muestra una vista previa de la aplicación en funcionamiento:
 ![Overlap validation](src/assets/readme/FM-event-valid-overlap.gif)
 ![Event time validation](src/assets/readme/FM-event-valid-time.gif)
 #### Panel de estadísticas (gráficos)
-![Graphics](src/assets/readme/graphics.gif)
+![Graphics](src/assets/readme/FM-graphics.gif)
 
 ---
 
