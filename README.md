@@ -264,7 +264,7 @@ A continuación se muestra una vista previa de la aplicación en funcionamiento:
 ![Drag & Drop](src/assets/readme/FM-map-dragdrop.gif)
 ![Geolocation Update Button](src/assets/readme/FM-map-geolocation-button.gif)
 #### Calendario de eventos (CRUD)
-![Create Event](src/assets/readme/event-create.gif)
+![Create Event](src/assets/readme/FM-event-create.gif)
 ![Edit Event](src/assets/readme/event-edit.gif)
 ![Delete Event](src/assets/readme/event-delete.gif)
 #### Calendario de eventos (filtrado de eventos)
