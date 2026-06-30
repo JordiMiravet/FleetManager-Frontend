@@ -266,7 +266,6 @@ A continuación se muestra una vista previa de la aplicación en funcionamiento:
 #### Calendario de eventos (CRUD)
 ![Create Event](src/assets/readme/FM-event-create.gif)
 ![Edit Event](src/assets/readme/FM-event-edit.gif)
-![Delete Event](src/assets/readme/event-delete.gif)
 #### Calendario de eventos (filtrado de eventos)
 ![Event filter](src/assets/readme/FM-event-filter.gif)
 #### Calendario de eventos (validaciones: control de solapamientos)
