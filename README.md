@@ -55,15 +55,27 @@ Fleet Manager combines vehicle management, interactive mapping, scheduling, and 
 
 ## Technologies
 
+### Frontend
 - `Angular 20`
 - `TypeScript`
 - `SCSS`
 - `HTML5`
 
-- Angular dependencies: `PrimeNG`, `Leaflet`, `FullCalendar`, `Chart.js`
-- Backend: `NestJS`, `MongoDB`
-- Autenticación:`Firebase Authentication`
-- Testing: `Jasmine & Karma`
+### UI and Visualization Libraries
+- `PrimeNG`
+- `Leaflet`
+- `FullCalendar`
+- `Chart.js`
+
+### Backend
+- `NestJS`
+- `MongoDB`
+
+### Authentication
+- `Firebase Authentication`
+
+### Testing
+- `Jasmine & Karma`
 
 ---
 
