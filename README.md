@@ -396,15 +396,15 @@ Empty state scenarios and modal opening/closing interactions are also tested to 
 
 ## Contribution
 
-Si quieres contribuir a este proyecto, puedes:
+If you want to contribute to this project, you can:
 
-1. Hacer un fork de los repositorios. 
+1. Fork the repositories:
    - Frontend: https://github.com/JordiMiravet/FleetManager-Frontend.git
    - Backend: https://github.com/JordiMiravet/FleetManager-Backend.git
-2. Crear una rama con la nueva funcionalidad o corrección de bug (`git checkout -b feature/nueva-funcionalidad`).
-3. Hacer commits claros y descriptivos.
-4. Hacer push a tu rama.
-5. Crear un Pull Request describiendo tus cambios.
+2. Create a branch for your new feature or bug fix (`git checkout -b feature/new-feature`).
+3. Make clear and descriptive commits.
+4. Push your branch.
+5. Create a Pull Request describing your changes.
 
 ---
 
