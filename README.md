@@ -37,6 +37,8 @@ Fleet Manager is an Angular 20 application designed to help users manage their p
 
 The application follows a modular architecture based on reusable components and integrates user authentication, route guards, API communication, state management, reactive forms with validation, and data persistence.
 
+### Main Features
+
 - **User Authentication:** Register and sign in using an email address and password. Each user has an independent account with their own personal data.
 - **Vehicle Management (CRUD):** Create, view, update, and delete vehicles within your personal garage. The vehicle table includes search and sorting capabilities to quickly find and organize vehicles. Vehicle owners have full control over their vehicles and their configuration.
 - **Vehicle Sharing and Permissions:** Share vehicles with other users and manage access levels. Users with granted access can view vehicle information, update locations, create and manage usage events, and access statistics, while owner-only actions such as editing or deleting the vehicle remain restricted to the owner.
@@ -52,6 +54,8 @@ The application follows a modular architecture based on reusable components and 
   - Distribution of usage hours by day of the week.
 
 Fleet Manager combines vehicle management, interactive mapping, scheduling, and statistical analysis into a single integrated platform.
+
+---
 
 ## Technologies
 
@@ -411,6 +415,8 @@ If you want to contribute to this project, you can:
 ## GitHub Pages
 
 > The application is currently not deployed on GitHub Pages.
+
+---
 
 ## Author
 
