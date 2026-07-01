@@ -84,20 +84,20 @@ Fleet Manager combines vehicle management, interactive mapping, scheduling, and 
 ```bash
 src/
 ├─ app/
-│  ├─ core/                         # Infraestructura global
+│  ├─ core/                         # Global application infrastructure
 │  │  ├─ guards/
-│  │  ├─ layout/                    # Header, navegación, UI global
-│  │  └─ services/                  # Servicios globales (auth, geolocation, theme)
+│  │  ├─ layout/                    # Header, navigation, global UI components
+│  │  └─ services/                  # Global services (auth, geolocation, theme)
 │  │
-│  ├─ features/                     # Módulos principales de la aplicación
-│  │  ├─ auth/                      # Login, registro e interceptores
-│  │  ├─ vehicle/                   # Gestión de vehículos (CRUD, state, modals)
-│  │  ├─ map/                       # Mapa interactivo (Leaflet)
-│  │  ├─ calendar/                  # Eventos y planificación (FullCalendar)
-│  │  └─ graphics/                  # Estadísticas y visualización de datos (Chart.js)
+│  ├─ features/                     # Main application features
+│  │  ├─ auth/                      # Login, registration, interceptors
+│  │  ├─ vehicle/                   # Vehicle management (CRUD, state, modals)
+│  │  ├─ map/                       # Interactive map (Leaflet)
+│  │  ├─ calendar/                  # Events and scheduling (FullCalendar)
+│  │  └─ graphics/                  # Statistics and data visualization (Chart.js)
 │  │
-│  ├─ shared/                       # Componentes reutilizables
-│  │  ├─ ui/                        # Botones, modales, componentes genéricos
+│  ├─ shared/                       # Reusable components
+│  │  ├─ ui/                        # Buttons, modals, generic UI components
 │  │  ├─ pipes/
 │  │  ├─ directives/
 │  │  └─ models/
@@ -112,12 +112,12 @@ src/
 │  └─ readme/
 │
 ├─ environments/
-├─ styles/                          # Sistema de estilos global (SCSS)
-│  ├─ abstracts/                    # Variables y mixins
-│  ├─ base/                         # Reset y tipografía base
-│  ├─ themes/                       # Tema claro / oscuro
+├─ styles/                          # Global SCSS styling system
+│  ├─ abstracts/                    # Variables and mixins
+│  ├─ base/                         # Reset and base typography
+│  ├─ themes/                       # Light / dark themes
 │  ├─ tokens/                       # Design system (spacing, colors, radius, etc.)
-│  └─ utilities/                    # Helpers SCSS
+│  └─ utilities/                    # SCSS helpers
 │
 └─ index.html
 ```
