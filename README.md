@@ -311,15 +311,15 @@ The following section shows a preview of the application in operation:
 
 ## Tests
 
-La aplicación incluye tests unitarios desarrollados con Jasmine, ejecutables mediante Angular CLI:
+The application includes unit tests developed with Jasmine, which can be executed using Angular CLI:
 
 ```bash
     ng test
 ```
-- Componentes y servicios principales testeados:
-    - Componentes: `VehicleTableComponent`, `CalendarViewComponent`, `MapViewComponent`, `GraphicsViewComponent`
-    - Servicios: `VehicleService`, `CalendarService`, `MapService`, `GraphicsService`
-- Cobertura:
+- Main tested components and services:
+  - Components: `VehicleTableComponent`, `CalendarViewComponent`, `MapViewComponent`, `GraphicsViewComponent`
+  - Services: `VehicleService`, `CalendarService`, `MapService`, `GraphicsService`
+- Coverage:
 
 ```markdown
 =============================== Coverage summary ===============================
@@ -332,48 +332,49 @@ Lines        : 97.11% ( 775/798 )
 TOTAL: 691 SUCCESS
 ```
 
-#### Ejemplo destacado y explicación por líneas
+#### Highlighted example and line-by-line explanation
 
-El siguiente test es uno de los más interesantes, ya que combina asincronía, manejo de errores y fallback logic dentro del método saveVehicle del MapComponent:
+The following test is one of the most interesting examples, as it combines asynchronous operations, error handling, and fallback logic inside the `saveVehicle` method of the `MapComponent`:
 
 ```typescript
 it('should use fallback location when geolocation fails', async () => {
 
-    // 1. Mock del vehículo que se va a guardar
+    // 1. Mock vehicle to be saved
     const vehicle = {
         name: 'Mercedes GLC Coupe',
         model: 'GLC Coupe',
         plate: '3447VHZ',
     };
 
-    // 2. Establecemos el modo de modal en 'create'
+    // 2. Set modal mode to 'create'
     vehicleModalStateServiceMock.mode.set('create');
 
-    // 3. Simulamos que la geolocalización falla
+    // 3. Simulate geolocation failure
     geolocationServiceMock.getCurrentLocation.and.rejectWith(new Error('geolocation failed'));
 
-    // 4. Reiniciamos los spies de addVehicles
+    // 4. Reset addVehicles spies
     vehicleServiceMock.addVehicles.calls.reset();
 
-    // 5. Llamamos a saveVehicle
+    // 5. Call saveVehicle
     await component.saveVehicle(vehicle as any);
 
-    // 6. Se espera que se haya intentado obtener la geolocalización
+    // 6. Verify that geolocation was requested
     expect(geolocationServiceMock.getCurrentLocation).toHaveBeenCalled();
 
-    // 7. Se espera que el vehículo se haya añadido usando la ubicación fallback
+    // 7. Verify that the vehicle was added using the fallback location
     expect(vehicleServiceMock.addVehicles).toHaveBeenCalled();
     const addedVehicle = vehicleServiceMock.addVehicles.calls.mostRecent().args[0];
     expect(addedVehicle.location).toEqual({ lat: 41.478, lng: 2.310 });
 
-    // 8. Se espera que se cierre el modal al finalizar
+    // 8. Verify that the modal was closed after completion
     expect(vehicleModalStateServiceMock.close).toHaveBeenCalled();
 });
 ```
 
-#### Ejemplo de test de template
+#### Template test example
 
-Este test asegura que el mapa se renderiza correctamente cuando la lista de vehículos no está vacía:
+This test ensures that the map is rendered correctly when the vehicle list is not empty:
+
 ```Typescript
 it('should render map view when vehicle list is not empty', () => {
     vehicleServiceMock.vehicles.set([{
@@ -389,7 +390,7 @@ it('should render map view when vehicle list is not empty', () => {
 });
 ```
 
-También se testean casos de estado vacío y apertura/cierre de modales para asegurar la correcta interacción del usuario con la interfaz.
+Empty state scenarios and modal opening/closing interactions are also tested to ensure correct user interface behavior.
 
 ---
 
