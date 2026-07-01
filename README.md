@@ -273,30 +273,38 @@ Notes
 
 ## Project Preview
 
-A continuación se muestra una vista previa de la aplicación en funcionamiento:
+The following section shows a preview of the application in operation:
 
-#### Registro de usuario
+#### User Registration
 ![Register](src/assets/readme/FM-register.gif)
-#### Login de usuario
+
+#### User Login
 ![Login](src/assets/readme/FM-login.gif)
-#### Gestión de vehículos (CRUD)
+
+#### Vehicle Management (CRUD)
 ![Create Vehicle](src/assets/readme/FM-vehicle-create.gif)
 ![Edit Vehicle](src/assets/readme/FM-vehicle-edit.gif)
 ![Delete Vehicle](src/assets/readme/FM-vehicle-delete.gif)
-#### Gestión de vehículos (Filtrado de vehiculos)
+
+#### Vehicle Management (Vehicle Filtering)
 ![Vehicle Filter](src/assets/readme/FM-vehicle-filter.gif)
-#### Mapa interactivo (drag & drop y filtrado por coches)
+
+#### Interactive Map (drag & drop and vehicle filtering)
 ![Drag & Drop](src/assets/readme/FM-map-dragdrop.gif)
 ![Geolocation Update Button](src/assets/readme/FM-map-geolocation-button.gif)
-#### Calendario de eventos (CRUD)
+
+#### Vehicle Usage Calendar (CRUD)
 ![Create Event](src/assets/readme/FM-event-create.gif)
 ![Edit Event](src/assets/readme/FM-event-edit.gif)
-#### Calendario de eventos (filtrado de eventos)
+
+#### Vehicle Usage Calendar (Event Filtering)
 ![Event filter](src/assets/readme/FM-event-filter.gif)
-#### Calendario de eventos (validaciones: control de solapamientos)
+
+#### Vehicle Usage Calendar (Validation: overlap and time consistency)
 ![Overlap validation](src/assets/readme/FM-event-valid-overlap.gif)
 ![Event time validation](src/assets/readme/FM-event-valid-time.gif)
-#### Panel de estadísticas (gráficos)
+
+#### Statistics Dashboard
 ![Graphics](src/assets/readme/FM-graphics.gif)
 
 ---
