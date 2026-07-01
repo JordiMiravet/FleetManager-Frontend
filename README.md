@@ -33,26 +33,25 @@
 
 ## Application Overview
 
-Este proyecto consiste en una aplicación desarrollada con Angular 20 orientada a la gestión personalizada de un garaje de vehículos. La aplicación permite a cada usuario administrar sus propios coches, registrar su ubicación, planificar su uso mediante un calendario y visualizar estadísticas detalladas de utilización.
+Fleet Manager is an Angular 20 application designed to help users manage their personal vehicle garage. It allows each user to organize their vehicles, track their locations, schedule vehicle usage through an interactive calendar, and visualize detailed usage statistics.
 
-La aplicación está estructurada en módulos y componentes reutilizables, e integra autenticación de usuarios, protección de rutas mediante Guards, consumo de APIs, gestión de estado, formularios reactivos con validaciones y persistencia de datos en base de datos.
+The application follows a modular architecture based on reusable components and integrates user authentication, route guards, API communication, state management, reactive forms with validation, and data persistence.
 
-La funcionalidad principal se organiza en diferentes bloques:
-- **Autenticación de usuarios:** Registro y login mediante email y contraseña. Cada usuario dispone de su propio perfil y datos independientes.
-- **Gestión de vehículos (CRUD):** Creación, visualización, edición y eliminación de coches dentro del garaje personal.
-- **Gestión de ubicación en mapa:** Visualización de los vehículos en un mapa interactivo donde se muestran todos los coches por defecto. Es posible actualizar su posición mediante drag & drop para indicar dónde se han aparcado, y filtrar dinámicamente los vehículos para mostrar únicamente un coche específico al seleccionarlo desde un input.
-- **Calendario de eventos:** Planificación de eventos asociados a cada coche con fecha y hora específicas.
-- **Control de solapamientos:** El sistema impide la creación de eventos que coincidan en horario para el mismo vehículo.
-- **Filtrado dinámico:** Posibilidad de visualizar eventos de un coche concreto o de todos los vehículos.
-- **Gestión de eventos (CRUD):** Creación, visualización, edición y eliminación de eventos desde el calendario.
-- **Sistema de comentarios:** Los usuarios pueden añadir comentarios en los eventos registrados.
+- **User Authentication:** Register and sign in using an email address and password. Each user has an independent account with their own personal data.
+- **Vehicle Management (CRUD):** Create, view, update, and delete vehicles within your personal garage. The vehicle table includes search and sorting capabilities to quickly find and organize vehicles. Vehicle owners have full control over their vehicles and their configuration.
+- **Vehicle Sharing and Permissions:** Share vehicles with other users and manage access levels. Users with granted access can view vehicle information, update locations, create and manage usage events, and access statistics, while owner-only actions such as editing or deleting the vehicle remain restricted to the owner.
+- **Interactive Map:** View all registered vehicles on an interactive map. Vehicle locations can be updated by dragging and dropping markers or by using the geolocation feature to automatically set a vehicle's location based on the user's current position. The map also supports filtering vehicles to display a specific vehicle.
+- **Vehicle Usage Calendar:** Schedule vehicle usage events with specific start and end dates and times.
+- **Event Management (CRUD):** Create, view, update, and delete usage events directly from the calendar.
+- **Usage Validation:** Prevent overlapping usage events for the same vehicle and validate that event time ranges are logically consistent, avoiding invalid schedules where the end time occurs before the start time.
+- **Dynamic Filtering:** Filter usage events by vehicle or display events from the entire garage.
+- **Comments:** Add comments to scheduled events.
+- **Statistics Dashboard:**
+  - Total accumulated usage hours per vehicle.
+  - Most-used vehicle.
+  - Distribution of usage hours by day of the week.
 
-- Panel de estadísticas: Visualización de gráficos que muestran:
-    - Total de horas acumuladas por coche.
-    - Vehículo más utilizado.
-    - Distribución de horas de uso por día de la semana.
-
-La aplicación combina gestión de datos, visualización geográfica, planificación temporal y análisis estadístico dentro de una única plataforma integrada.
+Fleet Manager combines vehicle management, interactive mapping, scheduling, and statistical analysis into a single integrated platform.
 
 ## Technologies
 
