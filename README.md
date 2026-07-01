@@ -410,7 +410,7 @@ If you want to contribute to this project, you can:
 
 ## GitHub Pages
 
-Actualmente, la aplicación no está desplegada en GitHub Pages. 
+> The application is currently not deployed on GitHub Pages.
 
 ## Author
 
