@@ -244,19 +244,30 @@ Notes
 
 ## Usage
 
-1. Abrir la aplicación en el navegador: http://localhost:4200  
-2. Registrar un nuevo usuario con email y contraseña  
-3. Iniciar sesión con tus credenciales  
-4. Crear, editar o eliminar un vehículo desde el panel de gestión de vehículos  
-5. Visualizar y gestionar vehículos en el mapa (Map)  
-   - Por defecto se muestran todos los vehículos  
-   - Es posible filtrar un vehículo concreto para ver solo su ubicación  
-6. Crear, editar o eliminar eventos en el calendario para cada vehículo (Calendar)  
-   - La aplicación evita conflictos de horario entre eventos del mismo vehículo  
-   - Por defecto se muestran los eventos de todos los vehículos  
-   - Es posible filtrar por vehículo  
-7. Visualizar estadísticas en la sección de gráficos (Graphics)  
-   - Los datos pueden filtrarse por período: This Month, This Year y All Time  
+1. Open the application in your browser: http://localhost:4200
+2. Register a new user account using an email address and password.
+3. Sign in with your credentials.
+4. Manage your vehicles from the vehicle management panel:
+   - Create, edit, and delete vehicles.
+   - Search and sort vehicles using the table controls.
+   - Share vehicles with other users and manage access permissions.
+5. View and manage vehicles on the interactive map (Map):
+   - All registered vehicles are displayed by default.
+   - Filter vehicles to display a specific vehicle on the map.
+   - Update vehicle locations by dragging and dropping map markers.
+   - Update a vehicle location automatically using the geolocation feature to set it to the user's current position.
+6. Schedule and manage vehicle usage events through the calendar (Calendar):
+   - Create, edit, and delete usage events for each vehicle.
+   - Define specific start and end dates and times for each event.
+   - The application prevents overlapping usage events for the same vehicle.
+   - The application validates that event time ranges are consistent, preventing invalid schedules where the end time occurs before the start time.
+   - Events can be filtered by vehicle or displayed for the entire garage.
+   - Add comments to scheduled events.
+7. View vehicle statistics in the dashboard (Graphics):
+   - Analyze total accumulated usage hours per vehicle.
+   - Identify the most-used vehicle.
+   - View usage hour distribution by day of the week.
+   - Filter statistics by period: This Month, This Year, and All Time.
 
 ---
 
