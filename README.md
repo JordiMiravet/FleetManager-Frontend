@@ -126,116 +126,119 @@ src/
 
 ## Installation
 
-La aplicación está dividida en dos repositorios:
+The application is divided into two repositories:
 - Frontend → Angular 20 https://github.com/JordiMiravet/FleetManager-Frontend.git
 - Backend → NestJS https://github.com/JordiMiravet/FleetManager-Backend.git
 
-Es necesario levantar ambos para que funcione correctamente.
+Both repositories need to be running for the application to work correctly.
 
-#### Requisitos previos
+#### Prerequisites
 
-- Node.js v20 o superior
+- Node.js v20 or higher
 - Angular CLI (`npm install -g @angular/cli`)
-- MongoDB en ejecución
+- MongoDB running
 
 #### 1. Frontend
 
-Clonar el repositorio:
+Clone the repository:
 
 ```bash
     git clone https://github.com/JordiMiravet/FleetManager-Frontend.git
     cd fleetmanager-frontend
     npm install
 ```
-Configuración de Firebase Authentication:
+Firebase Authentication configuration:
 
-- Configurar Firebase Authentication:
-    - Crear proyecto en Firebase Console
-    - Activar Email/Password Authentication
-    - Añadir aplicación web y copiar configuración
-    - Crear src/environments/environment.ts con tu configuración
+- Configure Firebase Authentication:
+    - Create a project in Firebase Console
+    - Enable Email/Password Authentication
+    - Add a web application and copy the configuration
+    - Create src/environments/environment.ts with your configuration
 
-Dentro de src, crear la carpeta environments y añadir el archivo:
+Inside src, create the environments folder and add the file:
 
 ```bash
     src/environments/environment.ts
 ```
 
-Con el siguiente contenido, reemplazando los valores por los de tu proyecto:
+With the following content, replacing the values with your project configuration:
 
 ```typescript
     export const environment = {
         production: true,
         firebaseConfig: {
-            apiKey: "TU_API_KEY",
-            authDomain: "TU_AUTH_DOMAIN",
-            projectId: "TU_PROJECT_ID",
-            storageBucket: "TU_STORAGE_BUCKET",
-            messagingSenderId: "TU_MESSAGING_SENDER_ID",
-            appId: "TU_APP_ID"
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
         }
     };
-
 ```
 
 #### 2. Backend
 
-Clonar el repositorio del backend:
+Clone the backend repository:
+
 ```bash
     git clone https://github.com/JordiMiravet/FleetManager-Backend.git
     cd fleetmanager-backend
     npm install
 ```
 
-Crear un archivo .env en la raíz del proyecto con el siguiente contenido:
+Create a .env file in the project root with the following content:
 
 ```env
     PORT=3000
     MONGO_URI=mongodb://localhost:27017/whereismycar
 
-    FIREBASE_PROJECT_ID=tu_project_id
-    FIREBASE_CLIENT_EMAIL=tu_client_email
-    FIREBASE_PRIVATE_KEY=tu_private_key
+    FIREBASE_PROJECT_ID=your_project_id
+    FIREBASE_CLIENT_EMAIL=your_client_email
+    FIREBASE_PRIVATE_KEY=your_private_key
 ```
 
-Las credenciales de Firebase se obtienen desde:
-Firebase Console → Configuración del Proyecto → Cuentas de servicio → Generar nueva clave privada.
-Del archivo JSON descargado necesitas:
+Firebase credentials can be obtained from:
+
+Firebase Console → Project Settings → Service Accounts → Generate new private key.
+
+From the downloaded JSON file, you need:
+
 - project_id
 - client_email
 - private_key
 
-La private_key debe mantenerse en una sola línea y conservar los \n.
+The private_key must remain on a single line and preserve the \n characters.
 
-#### 3. Ejecutar la aplicación
+#### 3. Run the application
 
-Primero levantar el backend:
+First, start the backend:
 
 ```code
     npm run start:dev
 ```
 
-Después, en otra terminal en el proyecto de frontend, levantar el frontend:
+Then, in another terminal inside the frontend project, start the frontend:
 
 ```bash
     ng serve
 ```
 
-Abrir en el navegador:
+Open the application in your browser:
 
 ```bash
     http://localhost:4200
 ```
 
 
-Notas
-- Es necesario tener Node.js instalado.
-- Angular CLI debe estar instalado globalmente:
+Notes
+- Node.js must be installed.
+- Angular CLI must be installed globally:
 ```bash
     npm install -g @angular/cli
 ```
-- Las claves reales no están incluidas en el repositorio.
-- Cada desarrollador debe usar su propio proyecto de Firebase.
+- Real credentials are not included in the repository.
+- Each developer must use their own Firebase project.
 
 ---
 
