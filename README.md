@@ -16,22 +16,22 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Firebase Auth](https://img.shields.io/badge/Firebase_Auth-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 
-## Index
+## Table of Contents
 
-- [Descripción de la Aplicación](#descripción-de-la-aplicación)
-- [Tecnologías](#tecnologías)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Instalación del Proyecto](#instalación-del-proyecto)
-- [Uso](#uso)
-- [Vista Previa del Proyecto](#vista-previa-del-proyecto)
+- [Application Overview](#application-overview)
+- [Technologies](#technologies)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Preview](#project-preview)
 - [Tests](#tests)
-- [Contribución](#Contribución)
-- [GH-Pages](#gh-pages)
-- [Autor](#autor)
+- [Contribution](#contribution)
+- [GitHub Pages](#github-pages)
+- [Author](#author)
 
 ---
 
-## Descripción de la Aplicación:
+## Application Overview
 
 Este proyecto consiste en una aplicación desarrollada con Angular 20 orientada a la gestión personalizada de un garaje de vehículos. La aplicación permite a cada usuario administrar sus propios coches, registrar su ubicación, planificar su uso mediante un calendario y visualizar estadísticas detalladas de utilización.
 
@@ -54,7 +54,7 @@ La funcionalidad principal se organiza en diferentes bloques:
 
 La aplicación combina gestión de datos, visualización geográfica, planificación temporal y análisis estadístico dentro de una única plataforma integrada.
 
-## Tecnologías
+## Technologies
 
 - `Angular 20`
 - `TypeScript`
@@ -68,7 +68,7 @@ La aplicación combina gestión de datos, visualización geográfica, planificac
 
 ---
 
-## Estructura del Proyecto
+## Project Structure
 
 ```bash
 src/
@@ -113,7 +113,7 @@ src/
 
 ---
 
-## Instalación del Proyecto
+## Installation
 
 La aplicación está dividida en dos repositorios:
 - Frontend → Angular 20 https://github.com/JordiMiravet/FleetManager-Frontend.git
@@ -228,7 +228,7 @@ Notas
 
 ---
 
-## Uso
+## Usage
 
 1. Abrir la aplicación en el navegador: http://localhost:4200  
 2. Registrar un nuevo usuario con email y contraseña  
@@ -246,7 +246,7 @@ Notas
 
 ---
 
-## Vista Previa del Proyecto
+## Project Preview
 
 A continuación se muestra una vista previa de la aplicación en funcionamiento:
 
@@ -360,7 +360,7 @@ También se testean casos de estado vacío y apertura/cierre de modales para ase
 
 ---
 
-## Contribución
+## Contribution
 
 Si quieres contribuir a este proyecto, puedes:
 
@@ -374,10 +374,10 @@ Si quieres contribuir a este proyecto, puedes:
 
 ---
 
-## GH-Pages
+## GitHub Pages
 
 Actualmente, la aplicación no está desplegada en GitHub Pages. 
 
-## Autor
+## Author
 
 [**Jordi Miravet**](https://www.linkedin.com/in/jordimiravet-dev/)
