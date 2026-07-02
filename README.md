@@ -275,6 +275,12 @@ Notes
 
 ---
 
+## Next Steps / Roadmap
+
+This project is actively evolving beyond its current scope. The following improvements are planned to progressively transform it into a more production-like, scalable application.
+
+---
+
 ## Project Preview
 
 The following section shows a preview of the application in operation:
