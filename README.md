@@ -286,6 +286,10 @@ This project is actively evolving beyond its current scope. The following improv
 - Add accept/reject flows for shared vehicle access.
 - Introduce notification bell with badge counter and dropdown panel.
 
+### 2. Internationalization (i18n)
+- Add multi-language support (starting with English and Spanish).
+- Refactor static UI text into translation files.
+- Prepare scalable architecture for future languages.
 ---
 
 ## Project Preview
