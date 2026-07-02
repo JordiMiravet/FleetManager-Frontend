@@ -296,6 +296,11 @@ This project is actively evolving beyond its current scope. The following improv
 - Create SCSS-based theme system using design tokens.
 - Persist user preference across sessions.
 
+### 4. Backend Refactor (Future Improvement)
+- Migrate from MongoDB (NoSQL) to SQL database.
+- Redesign data models for relational structure.
+- Revisit after completing NestJS and SQL learning.
+
 ---
 
 ## Project Preview
