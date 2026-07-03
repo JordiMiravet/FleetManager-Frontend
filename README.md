@@ -280,6 +280,13 @@ Notes
 
 This project is actively evolving beyond its current scope. The following improvements are planned to progressively transform it into a more production-like, scalable application.
 
+### 1. Notification & Invitation System (In Progress)
+- Implement a notification system for vehicle sharing.
+- Replace direct sharing with an invitation-based workflow.
+- Add accept/reject flows for shared vehicle access.
+- Introduce notification bell with badge counter and dropdown panel.
+
+
 ---
 
 ## Project Preview
