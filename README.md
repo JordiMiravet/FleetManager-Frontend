@@ -23,6 +23,7 @@
 - [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Next Steps / Roadmap](#next-steps--roadmap)
 - [Project Preview](#project-preview)
 - [Tests](#tests)
 - [Contribution](#contribution)
@@ -272,6 +273,38 @@ Notes
    - Identify the most-used vehicle.
    - View usage hour distribution by day of the week.
    - Filter statistics by period: This Month, This Year, and All Time.
+
+---
+
+## Next Steps / Roadmap
+
+This project is actively evolving beyond its current scope. The following improvements are planned to progressively transform it into a more production-like, scalable application.
+
+### 1. Notification & Invitation System (In Progress)
+- Implement a notification system for vehicle sharing.
+- Replace direct sharing with an invitation-based workflow.
+- Add accept/reject flows for shared vehicle access.
+- Introduce notification bell with badge counter and dropdown panel.
+
+### 2. Internationalization (i18n)
+- Add multi-language support (starting with English and Spanish).
+- Refactor static UI text into translation files.
+- Prepare scalable architecture for future languages.
+
+### 3. Dark Mode / Theming System
+- Implement light/dark mode support.
+- Create SCSS-based theme system using design tokens.
+- Persist user preference across sessions.
+
+### 4. Backend Refactor (Future Improvement)
+- Migrate from MongoDB (NoSQL) to SQL database.
+- Redesign data models for relational structure.
+- Revisit after completing NestJS and SQL learning.
+
+### 5. General Architecture Improvements
+- Improve frontend state management structure.
+- Increase reuse of UI components.
+- Continue improving test coverage and maintainability.
 
 ---
 
