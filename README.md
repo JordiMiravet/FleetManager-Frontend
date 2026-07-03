@@ -291,6 +291,10 @@ This project is actively evolving beyond its current scope. The following improv
 - Refactor static UI text into translation files.
 - Prepare scalable architecture for future languages.
 
+### 3. Dark Mode / Theming System
+- Implement light/dark mode support.
+- Create SCSS-based theme system using design tokens.
+- Persist user preference across sessions.
 
 ---
 
