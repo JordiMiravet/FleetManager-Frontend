@@ -301,6 +301,11 @@ This project is actively evolving beyond its current scope. The following improv
 - Redesign data models for relational structure.
 - Revisit after completing NestJS and SQL learning.
 
+### 5. General Architecture Improvements
+- Improve frontend state management structure.
+- Increase reuse of UI components.
+- Continue improving test coverage and maintainability.
+
 ---
 
 ## Project Preview
