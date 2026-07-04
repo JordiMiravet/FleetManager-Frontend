@@ -1,0 +1,60 @@
+import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
+
+export const MOCK_VEHICLES: VehicleInterface[] = [
+  {
+    _id: '1',
+    name: 'Mercedes GLC',
+    model: 'GLC Coupe',
+    plate: '3887-VHH',
+    location: { lat: 41.3821, lng: 2.1768 },
+    users: [],
+  },
+  {
+    _id: '2',
+    name: 'Mercedes AMG S-65',
+    model: 'AMG S-65 Final Edition',
+    plate: '4972-ZYL',
+    location: { lat: 41.4012, lng: 2.1811 },
+    users: [],
+  },
+  {
+    _id: '3',
+    name: 'Mercedes AMG GT',
+    model: 'AMG GT Black Series',
+    plate: '8841-JKL',
+    location: { lat: 41.3945, lng: 2.1705 },
+    users: [],
+  },
+  {
+    _id: '4',
+    name: 'Porsche 911',
+    model: '911 Turbo S',
+    plate: '9927-PQR',
+    location: { lat: 41.3856, lng: 2.1623 },
+    users: [],
+  },
+  {
+    _id: '5',
+    name: 'Ferrari LaFerrari',
+    model: 'LaFerrari',
+    plate: '7348-LFR',
+    location: { lat: 41.3902, lng: 2.154 },
+    users: [],
+  },
+  {
+    _id: '6',
+    name: 'Pagani Huayra',
+    model: 'Huayra BC',
+    plate: '9182-PGH',
+    location: { lat: 41.3874, lng: 2.1686 },
+    users: [],
+  },
+  {
+    _id: '7',
+    name: 'Ducati Panigale',
+    model: 'Panigale R 1299 Final Edition',
+    plate: '6124-DFG',
+    location: { lat: 41.3768, lng: 2.1492 },
+    users: [],
+  },
+];
