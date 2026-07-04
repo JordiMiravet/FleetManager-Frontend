@@ -33,10 +33,22 @@ export class VehicleService {
   }
 
   addVehicles(vehicle: VehicleInterface): void {
+
+    if (this.useMock) {
+      const newVehicle = {
+        ...vehicle,
+        _id: crypto.randomUUID(),
+        userId: this.auth.currentUser?.uid
+      };
+
+      this.vehicles.update(list => [...list, newVehicle]);
+      return;
+    }
+
     this.http.post<VehicleInterface>(this.apiUrl, vehicle)
-      .subscribe( vehicleCreated => {
+      .subscribe(vehicleCreated => {
         this.vehicles.update(list => [ ...list, vehicleCreated ]);
-      })
+      });
   }
 
   updateVehicle(oldVehicle: VehicleInterface, newVehicle: VehicleInterface): void {
