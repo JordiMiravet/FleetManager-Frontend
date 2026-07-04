@@ -107,6 +107,14 @@ export class VehicleService {
   }
 
   deleteVehicle(vehicle: VehicleInterface): void {
+
+    if (this.useMock) {
+      this.vehicles.update(list =>
+        list.filter(v => v._id !== vehicle._id)
+      );
+      return;
+    }
+
     this.http.delete<void>(`${this.apiUrl}/${vehicle._id}`)
       .subscribe(() => {
         this.vehicles.update(list =>
