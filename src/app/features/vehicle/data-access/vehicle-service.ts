@@ -18,8 +18,13 @@ export class VehicleService {
   public vehicles = signal<VehicleInterface[]>([]);
 
   private readonly useMock = true;
-  
+
   loadVehicles(): void {
+    if (this.useMock) {
+      this.vehicles.set(MOCK_VEHICLES);
+      return;
+    }
+
     this.http.get<VehicleInterface[]>(this.apiUrl)
       .subscribe({
         next: vehicles => this.vehicles.set(vehicles),
