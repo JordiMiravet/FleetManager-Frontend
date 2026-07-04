@@ -79,6 +79,18 @@ export class VehicleService {
     vehicle: VehicleInterface,
     location: { lat: number; lng: number }
   ): void {
+
+    if (this.useMock) {
+      this.vehicles.update(list =>
+        list.map(v =>
+          v._id === vehicle._id
+            ? { ...v, location }
+            : v
+        )
+      );
+      return;
+    }
+
     const updatedLocation = { location }
 
     this.http.put<VehicleInterface>(
