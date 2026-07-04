@@ -17,11 +17,20 @@ export class VehicleService {
 
   public vehicles = signal<VehicleInterface[]>([]);
 
-  private readonly useMock = true;
+  private readonly useMock = false;
 
   loadVehicles(): void {
     if (this.useMock) {
-      this.vehicles.set(MOCK_VEHICLES);
+
+      const uid = this.auth.currentUser?.uid;
+
+      this.vehicles.set(
+        MOCK_VEHICLES.map(v => ({
+          ...v,
+          userId: uid ?? v.userId
+        }))
+      );
+
       return;
     }
 
@@ -35,10 +44,12 @@ export class VehicleService {
   addVehicles(vehicle: VehicleInterface): void {
 
     if (this.useMock) {
+      const uid = this.auth.currentUser?.uid;
+
       const newVehicle = {
         ...vehicle,
         _id: crypto.randomUUID(),
-        userId: this.auth.currentUser?.uid
+        userId: uid ?? 'mock-user'
       };
 
       this.vehicles.update(list => [...list, newVehicle]);
