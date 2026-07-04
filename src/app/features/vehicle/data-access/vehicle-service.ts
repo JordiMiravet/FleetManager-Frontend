@@ -52,12 +52,22 @@ export class VehicleService {
   }
 
   updateVehicle(oldVehicle: VehicleInterface, newVehicle: VehicleInterface): void {
+
+    if (this.useMock) {
+      this.vehicles.update(list =>
+        list.map(v =>
+          v._id === oldVehicle._id ? { ...v, ...newVehicle } : v
+        )
+      );
+      return;
+    }
+
     this.http.put<VehicleInterface>(
       `${this.apiUrl}/${oldVehicle._id}`,
       newVehicle
-    ).subscribe( updatedVehicle => {
-      this.vehicles.update( list => 
-        list.map( v => v._id === oldVehicle._id 
+    ).subscribe(updatedVehicle => {
+      this.vehicles.update(list => 
+        list.map(v => v._id === oldVehicle._id 
           ? updatedVehicle
           : v
         )
