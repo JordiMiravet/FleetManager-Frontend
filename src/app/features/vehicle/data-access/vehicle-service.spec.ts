@@ -425,7 +425,17 @@ describe('VehicleService', () => {
 
   describe('updateVehicleLocation (mock)', () => {
 
-    it('should update vehicle location in signal without HTTP call when useMock is true');
+    beforeEach(() => {
+      (service as any).useMock = true;
+      service.vehicles.set([ferrariMock]);
+    });
+
+    it('should update vehicle location in signal without HTTP call when useMock is true', () => {
+      service.updateVehicleLocation(ferrariMock, { lat: 99, lng: 88 });
+
+      expect(service.vehicles()[0].location).toEqual({ lat: 99, lng: 88 });
+      expect(httpMock.match(`${API_URL}/1`).length).toBe(0);
+    });
 
   });
 
