@@ -20,25 +20,12 @@ export class VehicleService {
   private readonly useMock = false;
 
   loadVehicles(): void {
-    if (this.useMock) {
+    if (this.useMock) return this.loadMockVehicles();
 
-      const uid = this.auth.currentUser?.uid;
-
-      this.vehicles.set(
-        MOCK_VEHICLES.map(v => ({
-          ...v,
-          userId: uid ?? v.userId
-        }))
-      );
-
-      return;
-    }
-
-    this.http.get<VehicleInterface[]>(this.apiUrl)
-      .subscribe({
-        next: vehicles => this.vehicles.set(vehicles),
-        error: err => console.error('Load vehicles error', err)
-      })
+    this.http.get<VehicleInterface[]>(this.apiUrl).subscribe({
+      next: vehicles => this.vehicles.set(vehicles),
+      error: err => console.error('Load vehicles error', err)
+    });
   }
 
   addVehicles(vehicle: VehicleInterface): void {
@@ -181,6 +168,12 @@ export class VehicleService {
           );
         }
       })
+    );
+  }
+
+  private loadMockVehicles(): void {
+    this.vehicles.set(
+      MOCK_VEHICLES.map(v => ({ ...v, userId: this.auth.currentUser?.uid ?? v.userId }))
     );
   }
 
