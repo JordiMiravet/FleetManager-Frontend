@@ -112,16 +112,10 @@ export class VehicleService {
             list.filter(v => v._id !== vehicleId)
           );
         } else {
-          this.vehicles.update(list =>
-            list.map(v =>
-              v._id === vehicleId
-                ? { 
-                    ...v, 
-                    users: (v.users ?? []).filter(user => user.userId !== userId) 
-                  }
-                : v
-            )
-          );
+          this.vehicles.update(list => list.map( v => v._id === vehicleId
+            ? { ...v, users: (v.users ?? []).filter(user => user.userId !== userId)}
+            : v
+          ));
         }
       })
     );
