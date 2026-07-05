@@ -441,7 +441,18 @@ describe('VehicleService', () => {
 
   describe('deleteVehicle (mock)', () => {
 
-    it('should remove vehicle from signal without HTTP call when useMock is true');
+    beforeEach(() => {
+      (service as any).useMock = true;
+      service.vehicles.set([ferrariMock, paganiMock]);
+    });
+
+    it('should remove vehicle from signal without HTTP call when useMock is true', () => {
+      service.deleteVehicle(ferrariMock);
+
+      expect(service.vehicles().length).toBe(1);
+      expect(service.vehicles()[0]._id).toBe('2');
+      expect(httpMock.match(`${API_URL}/1`).length).toBe(0);
+    });
 
   });
 
