@@ -359,4 +359,38 @@ describe('VehicleService', () => {
 
   });
 
+  describe('loadVehicles (mock)', () => {
+
+    it('should load mock vehicles when useMock is true');
+
+    it('should assign current user uid to mock vehicles');
+
+  });
+
+  describe('addVehicles (mock)', () => {
+
+    it('should add vehicle to signal without HTTP call when useMock is true');
+
+    it('should assign current user uid to new mock vehicle');
+
+  });
+
+  describe('updateVehicle (mock)', () => {
+
+    it('should update vehicle in signal without HTTP call when useMock is true');
+
+  });
+
+  describe('updateVehicleLocation (mock)', () => {
+
+    it('should update vehicle location in signal without HTTP call when useMock is true');
+
+  });
+
+  describe('deleteVehicle (mock)', () => {
+
+    it('should remove vehicle from signal without HTTP call when useMock is true');
+
+  });
+
 });
