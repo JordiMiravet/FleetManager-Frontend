@@ -69,19 +69,11 @@ export class VehicleService {
   }
 
   deleteVehicle(vehicle: VehicleInterface): void {
-
-    if (this.useMock) {
-      this.vehicles.update(list =>
-        list.filter(v => v._id !== vehicle._id)
-      );
-      return;
-    }
+    if (this.useMock) return this.deleteMockVehicle(vehicle);
 
     this.http.delete<void>(`${this.apiUrl}/${vehicle._id}`)
       .subscribe(() => {
-        this.vehicles.update(list =>
-          list.filter(v => v._id !== vehicle._id)
-        );
+        this.vehicles.update(list => list.filter(v => v._id !== vehicle._id));
       });
   }
 
@@ -160,6 +152,10 @@ export class VehicleService {
     this.vehicles.update(list =>
       list.map(v => v._id === vehicle._id ? { ...v, location } : v)
     );
+  }
+
+  private deleteMockVehicle(vehicle: VehicleInterface): void {
+    this.vehicles.update(list => list.filter(v => v._id !== vehicle._id));
   }
 
 }
