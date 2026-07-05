@@ -28,7 +28,7 @@ export class VehicleService {
     });
   }
 
-  addVehicles(vehicle: VehicleInterface): void {
+  addVehicle(vehicle: VehicleInterface): void {
     if (this.useMock) return this.addMockVehicle(vehicle);
 
     this.http.post<VehicleInterface>(this.apiUrl, vehicle)

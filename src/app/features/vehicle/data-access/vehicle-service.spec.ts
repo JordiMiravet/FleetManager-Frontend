@@ -138,10 +138,10 @@ describe('VehicleService', () => {
 
   });
 
-  describe('addVehicles', () => {
+  describe('addVehicle', () => {
 
     it('should call POST /vehicles endpoint with vehicle payload', () => {
-      service.addVehicles(ferrariMock);
+      service.addVehicle(ferrariMock);
 
       const req = httpMock.expectOne(API_URL);
       expect(req.request.method).toBe('POST');
@@ -163,7 +163,7 @@ describe('VehicleService', () => {
         }
       };
 
-      service.addVehicles(newVehicle);
+      service.addVehicle(newVehicle);
 
       const req = httpMock.expectOne(API_URL);
       expect(req.request.body).toEqual(newVehicle);
@@ -177,7 +177,7 @@ describe('VehicleService', () => {
 
   });
 
-  describe('addVehicles (mock)', () => {
+  describe('addVehicle (mock)', () => {
 
     beforeEach(() => {
       (service as any).useMock = true;
@@ -185,14 +185,14 @@ describe('VehicleService', () => {
     });
 
     it('should add vehicle to signal without HTTP call when useMock is true', () => {
-      service.addVehicles(paganiMock);
+      service.addVehicle(paganiMock);
 
       expect(service.vehicles().length).toBe(2);
       expect(httpMock.match(API_URL).length).toBe(0);
     });
 
     it('should assign current user uid to new mock vehicle', () => {
-      service.addVehicles(paganiMock);
+      service.addVehicle(paganiMock);
 
       const added = service.vehicles().find(v => v.plate === paganiMock.plate);
       expect(added?.userId).toBe('JordiTheBest');
