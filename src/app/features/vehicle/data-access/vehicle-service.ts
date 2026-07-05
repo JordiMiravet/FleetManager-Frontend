@@ -10,7 +10,7 @@ import { MOCK_VEHICLES } from './mocks/vehicle.mock';
   providedIn: 'root',
 })
 export class VehicleService {
-  
+
   private readonly http = inject(HttpClient);
   private readonly auth = inject(Auth);
   private readonly apiUrl = 'http://localhost:3000/vehicles';
@@ -121,8 +121,7 @@ export class VehicleService {
     );
   }
 
-  // =====================================================
-  
+
   private loadMockVehicles(): void {
     this.vehicles.set(
       MOCK_VEHICLES.map(v => ({ ...v, userId: this.auth.currentUser?.uid ?? v.userId }))
