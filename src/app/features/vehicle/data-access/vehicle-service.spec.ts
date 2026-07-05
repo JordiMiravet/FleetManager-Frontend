@@ -385,9 +385,24 @@ describe('VehicleService', () => {
 
   describe('addVehicles (mock)', () => {
 
-    it('should add vehicle to signal without HTTP call when useMock is true');
+    beforeEach(() => {
+      (service as any).useMock = true;
+      service.vehicles.set([ferrariMock]);
+    });
 
-    it('should assign current user uid to new mock vehicle');
+    it('should add vehicle to signal without HTTP call when useMock is true', () => {
+      service.addVehicles(paganiMock);
+
+      expect(service.vehicles().length).toBe(2);
+      expect(httpMock.match(API_URL).length).toBe(0);
+    });
+
+    it('should assign current user uid to new mock vehicle', () => {
+      service.addVehicles(paganiMock);
+
+      const added = service.vehicles().find(v => v.plate === paganiMock.plate);
+      expect(added?.userId).toBe('JordiTheBest');
+    });
 
   });
 
