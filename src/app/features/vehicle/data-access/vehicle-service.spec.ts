@@ -114,6 +114,30 @@ describe('VehicleService', () => {
 
   });
 
+  describe('loadVehicles (mock)', () => {
+
+    beforeEach(() => {
+      (service as any).useMock = true;
+    });
+
+    it('should load mock vehicles when useMock is true', () => {
+      service.loadVehicles();
+
+      expect(service.vehicles().length).toBeGreaterThan(0);
+      expect(httpMock.match(API_URL).length).toBe(0);
+    });
+
+    it('should assign current user uid to mock vehicles', () => {
+      service.loadVehicles();
+
+      const vehicles = service.vehicles();
+      vehicles.forEach(v => {
+        expect(v.userId).toBe('JordiTheBest');
+      });
+    });
+
+  });
+
   describe('addVehicles', () => {
 
     it('should call POST /vehicles endpoint with vehicle payload', () => {
@@ -153,6 +177,29 @@ describe('VehicleService', () => {
 
   });
 
+  describe('addVehicles (mock)', () => {
+
+    beforeEach(() => {
+      (service as any).useMock = true;
+      service.vehicles.set([ferrariMock]);
+    });
+
+    it('should add vehicle to signal without HTTP call when useMock is true', () => {
+      service.addVehicles(paganiMock);
+
+      expect(service.vehicles().length).toBe(2);
+      expect(httpMock.match(API_URL).length).toBe(0);
+    });
+
+    it('should assign current user uid to new mock vehicle', () => {
+      service.addVehicles(paganiMock);
+
+      const added = service.vehicles().find(v => v.plate === paganiMock.plate);
+      expect(added?.userId).toBe('JordiTheBest');
+    });
+
+  });
+
   describe('updateVehicle', () => {
 
     it('should call PUT /vehicles/:id with updated vehicle data', () => {
@@ -178,6 +225,23 @@ describe('VehicleService', () => {
       req.flush(newVehicle);
 
       expect(service.vehicles()).toEqual([newVehicle, paganiMock]);
+    });
+
+  });
+
+    describe('updateVehicle (mock)', () => {
+
+    beforeEach(() => {
+      (service as any).useMock = true;
+      service.vehicles.set([ferrariMock]);
+    });
+
+    it('should update vehicle in signal without HTTP call when useMock is true', () => {
+      const updatedVehicle: VehicleInterface = { ...ferrariMock, model: 'F8 Spider' };
+      service.updateVehicle(ferrariMock, updatedVehicle);
+
+      expect(service.vehicles()[0].model).toBe('F8 Spider');
+      expect(httpMock.match(`${API_URL}/1`).length).toBe(0);
     });
 
   });
@@ -211,6 +275,22 @@ describe('VehicleService', () => {
 
   });
 
+  describe('updateVehicleLocation (mock)', () => {
+
+    beforeEach(() => {
+      (service as any).useMock = true;
+      service.vehicles.set([ferrariMock]);
+    });
+
+    it('should update vehicle location in signal without HTTP call when useMock is true', () => {
+      service.updateVehicleLocation(ferrariMock, { lat: 99, lng: 88 });
+
+      expect(service.vehicles()[0].location).toEqual({ lat: 99, lng: 88 });
+      expect(httpMock.match(`${API_URL}/1`).length).toBe(0);
+    });
+
+  });
+
   describe('deleteVehicle', () => {
 
     it('should call DELETE /vehicles/:id endpoint', () => {
@@ -236,6 +316,23 @@ describe('VehicleService', () => {
       expect(service.vehicles().length).toBe(1);
       expect(service.vehicles()[0]._id).toBe('2');
       expect(service.vehicles()[0].name).toBe('Pagani');
+    });
+
+  });
+
+  describe('deleteVehicle (mock)', () => {
+
+    beforeEach(() => {
+      (service as any).useMock = true;
+      service.vehicles.set([ferrariMock, paganiMock]);
+    });
+
+    it('should remove vehicle from signal without HTTP call when useMock is true', () => {
+      service.deleteVehicle(ferrariMock);
+
+      expect(service.vehicles().length).toBe(1);
+      expect(service.vehicles()[0]._id).toBe('2');
+      expect(httpMock.match(`${API_URL}/1`).length).toBe(0);
     });
 
   });
@@ -355,103 +452,6 @@ describe('VehicleService', () => {
       req.flush(null);
 
       expect(service.vehicles()[1]).toEqual(paganiMock);
-    });
-
-  });
-
-  describe('loadVehicles (mock)', () => {
-
-    beforeEach(() => {
-      (service as any).useMock = true;
-    });
-
-    it('should load mock vehicles when useMock is true', () => {
-      service.loadVehicles();
-
-      expect(service.vehicles().length).toBeGreaterThan(0);
-      expect(httpMock.match(API_URL).length).toBe(0);
-    });
-
-    it('should assign current user uid to mock vehicles', () => {
-      service.loadVehicles();
-
-      const vehicles = service.vehicles();
-      vehicles.forEach(v => {
-        expect(v.userId).toBe('JordiTheBest');
-      });
-    });
-
-  });
-
-  describe('addVehicles (mock)', () => {
-
-    beforeEach(() => {
-      (service as any).useMock = true;
-      service.vehicles.set([ferrariMock]);
-    });
-
-    it('should add vehicle to signal without HTTP call when useMock is true', () => {
-      service.addVehicles(paganiMock);
-
-      expect(service.vehicles().length).toBe(2);
-      expect(httpMock.match(API_URL).length).toBe(0);
-    });
-
-    it('should assign current user uid to new mock vehicle', () => {
-      service.addVehicles(paganiMock);
-
-      const added = service.vehicles().find(v => v.plate === paganiMock.plate);
-      expect(added?.userId).toBe('JordiTheBest');
-    });
-
-  });
-
-  describe('updateVehicle (mock)', () => {
-
-    beforeEach(() => {
-      (service as any).useMock = true;
-      service.vehicles.set([ferrariMock]);
-    });
-
-    it('should update vehicle in signal without HTTP call when useMock is true', () => {
-      const updatedVehicle: VehicleInterface = { ...ferrariMock, model: 'F8 Spider' };
-      service.updateVehicle(ferrariMock, updatedVehicle);
-
-      expect(service.vehicles()[0].model).toBe('F8 Spider');
-      expect(httpMock.match(`${API_URL}/1`).length).toBe(0);
-    });
-
-  });
-
-  describe('updateVehicleLocation (mock)', () => {
-
-    beforeEach(() => {
-      (service as any).useMock = true;
-      service.vehicles.set([ferrariMock]);
-    });
-
-    it('should update vehicle location in signal without HTTP call when useMock is true', () => {
-      service.updateVehicleLocation(ferrariMock, { lat: 99, lng: 88 });
-
-      expect(service.vehicles()[0].location).toEqual({ lat: 99, lng: 88 });
-      expect(httpMock.match(`${API_URL}/1`).length).toBe(0);
-    });
-
-  });
-
-  describe('deleteVehicle (mock)', () => {
-
-    beforeEach(() => {
-      (service as any).useMock = true;
-      service.vehicles.set([ferrariMock, paganiMock]);
-    });
-
-    it('should remove vehicle from signal without HTTP call when useMock is true', () => {
-      service.deleteVehicle(ferrariMock);
-
-      expect(service.vehicles().length).toBe(1);
-      expect(service.vehicles()[0]._id).toBe('2');
-      expect(httpMock.match(`${API_URL}/1`).length).toBe(0);
     });
 
   });
