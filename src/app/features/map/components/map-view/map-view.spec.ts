@@ -53,7 +53,7 @@ describe('MapViewComponent', () => {
     const vehicleServiceMock = {
       vehicles: signal<VehicleInterface[]>([]),
       loadVehicles: jasmine.createSpy('loadVehicles'),
-      addVehicles: jasmine.createSpy('addVehicles'),
+      addVehicle: jasmine.createSpy('addVehicle'),
       updateVehicle: jasmine.createSpy('updateVehicle'),
       deleteVehicle: jasmine.createSpy('deleteVehicle'),
       updateVehicleLocation: jasmine.createSpy('updateVehicleLocation')

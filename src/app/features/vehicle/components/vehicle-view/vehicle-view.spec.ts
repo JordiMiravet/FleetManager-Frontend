@@ -21,7 +21,7 @@ const authMock = {
 const vehicleServiceMock = {
   vehicles: signal<VehicleInterface[]>([]),
   loadVehicles: jasmine.createSpy('loadVehicles'),
-  addVehicles: jasmine.createSpy('addVehicles'),
+  addVehicle: jasmine.createSpy('addVehicle'),
   updateVehicle: jasmine.createSpy('updateVehicle'),
   deleteVehicle: jasmine.createSpy('deleteVehicle'),
   addUserToVehicle: jasmine.createSpy('addUserToVehicle'),
@@ -63,7 +63,7 @@ describe('VehicleViewComponent', () => {
 
   beforeEach(async () => {
     vehicleServiceMock.loadVehicles.calls.reset();
-    vehicleServiceMock.addVehicles.calls.reset();
+    vehicleServiceMock.addVehicle.calls.reset();
     vehicleServiceMock.updateVehicle.calls.reset();
     vehicleServiceMock.deleteVehicle.calls.reset();
     vehicleServiceMock.addUserToVehicle.calls.reset();
@@ -141,7 +141,7 @@ describe('VehicleViewComponent', () => {
       await component.saveVehicle(vehicleWithoutLocationMock);
 
       expect(geolocationServiceMock.getCurrentLocation).toHaveBeenCalled();
-      expect(vehicleServiceMock.addVehicles).toHaveBeenCalledWith({
+      expect(vehicleServiceMock.addVehicle).toHaveBeenCalledWith({
         ...vehicleWithoutLocationMock,
         location: { lat: 41.5, lng: 2.3 }
       });
@@ -153,18 +153,18 @@ describe('VehicleViewComponent', () => {
 
       await component.saveVehicle(vehicleWithoutLocationMock);
 
-      expect(vehicleServiceMock.addVehicles).toHaveBeenCalledWith({
+      expect(vehicleServiceMock.addVehicle).toHaveBeenCalledWith({
         ...vehicleWithoutLocationMock,
         location: { lat: 41.402, lng: 2.194 }
       });
     });
 
-    it('should call addVehicles when mode is create', async () => {
+    it('should call addVehicle when mode is create', async () => {
       VehicleModalServiceMock.formMode.set('create');
 
       await component.saveVehicle(vehicleMock);
 
-      expect(vehicleServiceMock.addVehicles).toHaveBeenCalledWith(vehicleMock);
+      expect(vehicleServiceMock.addVehicle).toHaveBeenCalledWith(vehicleMock);
     });
 
     it('should call updateVehicle when mode is edit', async () => {
