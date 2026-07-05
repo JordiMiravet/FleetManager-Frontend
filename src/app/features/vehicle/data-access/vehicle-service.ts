@@ -10,7 +10,7 @@ import { MOCK_VEHICLES } from './mocks/vehicle.mock';
   providedIn: 'root',
 })
 export class VehicleService {
-  
+
   private readonly http = inject(HttpClient);
   private readonly auth = inject(Auth);
   private readonly apiUrl = 'http://localhost:3000/vehicles';
@@ -20,117 +20,60 @@ export class VehicleService {
   private readonly useMock = false;
 
   loadVehicles(): void {
-    if (this.useMock) {
+    if (this.useMock) return this.loadMockVehicles();
 
-      const uid = this.auth.currentUser?.uid;
-
-      this.vehicles.set(
-        MOCK_VEHICLES.map(v => ({
-          ...v,
-          userId: uid ?? v.userId
-        }))
-      );
-
-      return;
-    }
-
-    this.http.get<VehicleInterface[]>(this.apiUrl)
-      .subscribe({
-        next: vehicles => this.vehicles.set(vehicles),
-        error: err => console.error('Load vehicles error', err)
-      })
+    this.http.get<VehicleInterface[]>(this.apiUrl).subscribe({
+      next: vehicles => this.vehicles.set(vehicles),
+      error: err => console.error('Load vehicles error', err)
+    });
   }
 
-  addVehicles(vehicle: VehicleInterface): void {
-
-    if (this.useMock) {
-      const uid = this.auth.currentUser?.uid;
-
-      const newVehicle = {
-        ...vehicle,
-        _id: crypto.randomUUID(),
-        userId: uid ?? 'mock-user'
-      };
-
-      this.vehicles.update(list => [...list, newVehicle]);
-      return;
-    }
+  addVehicle(vehicle: VehicleInterface): void {
+    if (this.useMock) return this.addMockVehicle(vehicle);
 
     this.http.post<VehicleInterface>(this.apiUrl, vehicle)
       .subscribe(vehicleCreated => {
-        this.vehicles.update(list => [ ...list, vehicleCreated ]);
+        this.vehicles.update(list => [...list, vehicleCreated]);
       });
   }
 
-  updateVehicle(oldVehicle: VehicleInterface, newVehicle: VehicleInterface): void {
+  updateVehicle(
+    oldVehicle: VehicleInterface, 
+    newVehicle: VehicleInterface
+  ): void {
+    if (this.useMock) return this.updateMockVehicle(oldVehicle, newVehicle);
 
-    if (this.useMock) {
-      this.vehicles.update(list =>
-        list.map(v =>
-          v._id === oldVehicle._id ? { ...v, ...newVehicle } : v
-        )
-      );
-      return;
-    }
-
-    this.http.put<VehicleInterface>(
-      `${this.apiUrl}/${oldVehicle._id}`,
-      newVehicle
-    ).subscribe(updatedVehicle => {
-      this.vehicles.update(list => 
-        list.map(v => v._id === oldVehicle._id 
-          ? updatedVehicle
-          : v
-        )
-      )
-    })
+    this.http.put<VehicleInterface>(`${this.apiUrl}/${oldVehicle._id}`, newVehicle)
+      .subscribe(updatedVehicle => {
+        this.vehicles.update(list =>
+          list.map(v => v._id === oldVehicle._id 
+            ? updatedVehicle 
+            : v
+          )
+        );
+      });
   }
 
   updateVehicleLocation(
     vehicle: VehicleInterface,
     location: { lat: number; lng: number }
   ): void {
+    if (this.useMock) return this.updateMockLocation(vehicle, location);
 
-    if (this.useMock) {
-      this.vehicles.update(list =>
-        list.map(v =>
-          v._id === vehicle._id
-            ? { ...v, location }
-            : v
-        )
-      );
-      return;
-    }
-
-    const updatedLocation = { location }
-
-    this.http.put<VehicleInterface>(
-      `${this.apiUrl}/${vehicle._id}`,
-      updatedLocation
-    ).subscribe(updatedVehicle => {
-      this.vehicles.update(list =>
-        list.map(v => v._id === vehicle._id 
-          ? updatedVehicle 
-          : v
-        )
-      );
-    });
+    this.http.put<VehicleInterface>(`${this.apiUrl}/${vehicle._id}`, { location })
+      .subscribe(updatedVehicle => {
+        this.vehicles.update(list =>
+          list.map(v => v._id === vehicle._id ? updatedVehicle : v)
+        );
+      });
   }
 
   deleteVehicle(vehicle: VehicleInterface): void {
-
-    if (this.useMock) {
-      this.vehicles.update(list =>
-        list.filter(v => v._id !== vehicle._id)
-      );
-      return;
-    }
+    if (this.useMock) return this.deleteMockVehicle(vehicle);
 
     this.http.delete<void>(`${this.apiUrl}/${vehicle._id}`)
       .subscribe(() => {
-        this.vehicles.update(list =>
-          list.filter(v => v._id !== vehicle._id)
-        );
+        this.vehicles.update(list => list.filter(v => v._id !== vehicle._id));
       });
   }
 
@@ -169,19 +112,45 @@ export class VehicleService {
             list.filter(v => v._id !== vehicleId)
           );
         } else {
-          this.vehicles.update(list =>
-            list.map(v =>
-              v._id === vehicleId
-                ? { 
-                    ...v, 
-                    users: (v.users ?? []).filter(user => user.userId !== userId) 
-                  }
-                : v
-            )
-          );
+          this.vehicles.update(list => list.map( v => v._id === vehicleId
+            ? { ...v, users: (v.users ?? []).filter(user => user.userId !== userId)}
+            : v
+          ));
         }
       })
     );
+  }
+
+
+  private loadMockVehicles(): void {
+    this.vehicles.set(
+      MOCK_VEHICLES.map(v => ({ ...v, userId: this.auth.currentUser?.uid ?? v.userId }))
+    );
+  }
+
+  private addMockVehicle(vehicle: VehicleInterface): void {
+    const newVehicle = { 
+      ...vehicle, 
+      _id: crypto.randomUUID(), 
+      userId: this.auth.currentUser?.uid ?? 'mock-user' 
+    };
+    this.vehicles.update(list => [...list, newVehicle]);
+  }
+
+  private updateMockVehicle(oldVehicle: VehicleInterface, newVehicle: VehicleInterface): void {
+    this.vehicles.update(list =>
+      list.map(v => v._id === oldVehicle._id ? { ...v, ...newVehicle } : v)
+    );
+  }
+
+  private updateMockLocation(vehicle: VehicleInterface, location: { lat: number; lng: number }): void {
+    this.vehicles.update(list =>
+      list.map(v => v._id === vehicle._id ? { ...v, location } : v)
+    );
+  }
+
+  private deleteMockVehicle(vehicle: VehicleInterface): void {
+    this.vehicles.update(list => list.filter(v => v._id !== vehicle._id));
   }
 
 }

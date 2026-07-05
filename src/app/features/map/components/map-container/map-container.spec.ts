@@ -41,7 +41,7 @@ const selectedVehicleMock: VehicleInterface = {
 const vehicleServiceMock = {
   vehicles: signal<VehicleInterface[]>([]),
   loadVehicles: jasmine.createSpy('loadVehicles'),
-  addVehicles: jasmine.createSpy('addVehicles'),
+  addVehicle: jasmine.createSpy('addVehicle'),
   updateVehicle: jasmine.createSpy('updateVehicle'),
 };
 
@@ -63,7 +63,7 @@ describe('MapContainerComponent', () => {
 
   beforeEach(async () => {
     vehicleServiceMock.loadVehicles.calls.reset();
-    vehicleServiceMock.addVehicles.calls.reset();
+    vehicleServiceMock.addVehicle.calls.reset();
     vehicleServiceMock.updateVehicle.calls.reset();
     VehicleModalServiceMock.openCreate.calls.reset();
     VehicleModalServiceMock.close.calls.reset();
@@ -115,12 +115,12 @@ describe('MapContainerComponent', () => {
     it('should keep provided location when vehicle already has location', async () => {
       VehicleModalServiceMock.formMode.set('create');
       geolocationServiceMock.getCurrentLocation.calls.reset();
-      vehicleServiceMock.addVehicles.calls.reset();
+      vehicleServiceMock.addVehicle.calls.reset();
 
       await component.saveVehicle(vehicleMock);
 
       expect(geolocationServiceMock.getCurrentLocation).not.toHaveBeenCalled();
-      expect(vehicleServiceMock.addVehicles).toHaveBeenCalledOnceWith(vehicleMock);
+      expect(vehicleServiceMock.addVehicle).toHaveBeenCalledOnceWith(vehicleMock);
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
     });
 
@@ -128,14 +128,14 @@ describe('MapContainerComponent', () => {
       VehicleModalServiceMock.formMode.set('create');
 
       geolocationServiceMock.getCurrentLocation.and.resolveTo([41.4, 2.1]);
-      vehicleServiceMock.addVehicles.calls.reset();
+      vehicleServiceMock.addVehicle.calls.reset();
 
       await component.saveVehicle(vehicleWithoutLocation as any);
 
       expect(geolocationServiceMock.getCurrentLocation).toHaveBeenCalled();
-      expect(vehicleServiceMock.addVehicles).toHaveBeenCalled();
+      expect(vehicleServiceMock.addVehicle).toHaveBeenCalled();
 
-      const addedVehicle = vehicleServiceMock.addVehicles.calls.mostRecent().args[0];
+      const addedVehicle = vehicleServiceMock.addVehicle.calls.mostRecent().args[0];
 
       expect(addedVehicle.location).toEqual({ lat: 41.4, lng: 2.1 });
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
@@ -146,11 +146,11 @@ describe('MapContainerComponent', () => {
       geolocationServiceMock.getCurrentLocation.and.returnValue(
         Promise.reject(new Error('geolocation failed'))
       );
-      vehicleServiceMock.addVehicles.calls.reset();
+      vehicleServiceMock.addVehicle.calls.reset();
 
       await component.saveVehicle(vehicleWithoutLocation as any);
 
-      const addedVehicle = vehicleServiceMock.addVehicles.calls.mostRecent().args[0];
+      const addedVehicle = vehicleServiceMock.addVehicle.calls.mostRecent().args[0];
 
       expect(addedVehicle.location).toEqual({ lat: 41.478, lng: 2.31 });
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
@@ -158,12 +158,12 @@ describe('MapContainerComponent', () => {
 
     it('should add vehicle when modal mode is create', async () => {
       VehicleModalServiceMock.formMode.set('create');
-      vehicleServiceMock.addVehicles.calls.reset();
+      vehicleServiceMock.addVehicle.calls.reset();
       vehicleServiceMock.updateVehicle.calls.reset();
 
       await component.saveVehicle(vehicleMock);
 
-      expect(vehicleServiceMock.addVehicles).toHaveBeenCalledOnceWith(vehicleMock);
+      expect(vehicleServiceMock.addVehicle).toHaveBeenCalledOnceWith(vehicleMock);
       expect(vehicleServiceMock.updateVehicle).not.toHaveBeenCalled();
     });
 
@@ -173,7 +173,7 @@ describe('MapContainerComponent', () => {
 
       await component.saveVehicle(vehicleMock);
 
-      expect(vehicleServiceMock.addVehicles).not.toHaveBeenCalled();
+      expect(vehicleServiceMock.addVehicle).not.toHaveBeenCalled();
       expect(vehicleServiceMock.updateVehicle).toHaveBeenCalledOnceWith(selectedVehicleMock, vehicleMock);
     });
 
@@ -185,7 +185,7 @@ describe('MapContainerComponent', () => {
       await component.saveVehicle(vehicleMock);
 
       expect(vehicleServiceMock.updateVehicle).not.toHaveBeenCalled();
-      expect(vehicleServiceMock.addVehicles).not.toHaveBeenCalled();
+      expect(vehicleServiceMock.addVehicle).not.toHaveBeenCalled();
       expect(VehicleModalServiceMock.close).toHaveBeenCalled();
     });
 

@@ -45,7 +45,7 @@ export class MapContainerComponent implements OnInit {
     const vehicle: VehicleInterface = { ...vehicleData, location };
 
     if (this.vehicleModal.formMode() === 'create') {
-      this.vehicleService.addVehicles(vehicle);
+      this.vehicleService.addVehicle(vehicle);
     } else if (this.vehicleModal.formMode() === 'edit') {
       const selectedVehicle = this.vehicleModal.selectedVehicle();
       if (selectedVehicle) {

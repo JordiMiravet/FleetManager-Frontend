@@ -110,7 +110,7 @@ export class VehicleViewComponent implements OnInit {
       location
     };
 
-    this.vehicleService.addVehicles(vehicleToSend);
+    this.vehicleService.addVehicle(vehicleToSend);
   }
 
   private updateVehicle(vehicleData: VehicleInterface): void {
