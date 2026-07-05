@@ -408,7 +408,18 @@ describe('VehicleService', () => {
 
   describe('updateVehicle (mock)', () => {
 
-    it('should update vehicle in signal without HTTP call when useMock is true');
+    beforeEach(() => {
+      (service as any).useMock = true;
+      service.vehicles.set([ferrariMock]);
+    });
+
+    it('should update vehicle in signal without HTTP call when useMock is true', () => {
+      const updatedVehicle: VehicleInterface = { ...ferrariMock, model: 'F8 Spider' };
+      service.updateVehicle(ferrariMock, updatedVehicle);
+
+      expect(service.vehicles()[0].model).toBe('F8 Spider');
+      expect(httpMock.match(`${API_URL}/1`).length).toBe(0);
+    });
 
   });
 
