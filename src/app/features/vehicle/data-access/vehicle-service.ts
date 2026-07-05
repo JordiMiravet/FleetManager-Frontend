@@ -29,23 +29,11 @@ export class VehicleService {
   }
 
   addVehicles(vehicle: VehicleInterface): void {
-
-    if (this.useMock) {
-      const uid = this.auth.currentUser?.uid;
-
-      const newVehicle = {
-        ...vehicle,
-        _id: crypto.randomUUID(),
-        userId: uid ?? 'mock-user'
-      };
-
-      this.vehicles.update(list => [...list, newVehicle]);
-      return;
-    }
+    if (this.useMock) return this.addMockVehicle(vehicle);
 
     this.http.post<VehicleInterface>(this.apiUrl, vehicle)
       .subscribe(vehicleCreated => {
-        this.vehicles.update(list => [ ...list, vehicleCreated ]);
+        this.vehicles.update(list => [...list, vehicleCreated]);
       });
   }
 
@@ -175,6 +163,15 @@ export class VehicleService {
     this.vehicles.set(
       MOCK_VEHICLES.map(v => ({ ...v, userId: this.auth.currentUser?.uid ?? v.userId }))
     );
+  }
+
+  private addMockVehicle(vehicle: VehicleInterface): void {
+    const newVehicle = { 
+      ...vehicle, 
+      _id: crypto.randomUUID(), 
+      userId: this.auth.currentUser?.uid ?? 'mock-user' 
+    };
+    this.vehicles.update(list => [...list, newVehicle]);
   }
 
 }
