@@ -19,6 +19,11 @@ export class VehicleService {
 
   private readonly useMock = false;
 
+  private get currentUserId(): string | undefined {
+    return this.auth.currentUser?.uid;
+  }
+
+
   loadVehicles(): void {
     if (this.useMock) return this.loadMockVehicles();
 
