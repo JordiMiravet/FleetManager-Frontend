@@ -137,7 +137,7 @@ export class VehicleService {
     const newVehicle = { 
       ...vehicle, 
       _id: crypto.randomUUID(), 
-      userId: this.auth.currentUser?.uid ?? 'mock-user' 
+      userId: this.currentUserId ?? 'mock-user'
     };
     this.vehicles.update(list => [...list, newVehicle]);
   }
