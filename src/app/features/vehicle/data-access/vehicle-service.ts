@@ -49,14 +49,14 @@ export class VehicleService {
     if (this.useMock) return this.updateMockVehicle(oldVehicle, newVehicle);
 
     this.http.put<VehicleInterface>(`${this.apiUrl}/${oldVehicle._id}`, newVehicle)
-      .subscribe(updatedVehicle => {
+      .subscribe(updatedVehicle => 
         this.vehicles.update(list =>
           list.map(v => v._id === oldVehicle._id 
             ? updatedVehicle 
             : v
           )
-        );
-      });
+        )
+      );
   }
 
   updateVehicleLocation(
