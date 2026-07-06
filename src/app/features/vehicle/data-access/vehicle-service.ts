@@ -37,9 +37,9 @@ export class VehicleService {
     if (this.useMock) return this.addMockVehicle(vehicle);
 
     this.http.post<VehicleInterface>(this.apiUrl, vehicle)
-      .subscribe(vehicleCreated => {
-        this.vehicles.update(list => [...list, vehicleCreated]);
-      });
+      .subscribe(vehicleCreated => 
+        this.vehicles.update(list => [...list, vehicleCreated])
+      );
   }
 
   updateVehicle(
@@ -49,14 +49,14 @@ export class VehicleService {
     if (this.useMock) return this.updateMockVehicle(oldVehicle, newVehicle);
 
     this.http.put<VehicleInterface>(`${this.apiUrl}/${oldVehicle._id}`, newVehicle)
-      .subscribe(updatedVehicle => {
+      .subscribe(updatedVehicle => 
         this.vehicles.update(list =>
           list.map(v => v._id === oldVehicle._id 
             ? updatedVehicle 
             : v
           )
-        );
-      });
+        )
+      );
   }
 
   updateVehicleLocation(
@@ -66,20 +66,20 @@ export class VehicleService {
     if (this.useMock) return this.updateMockLocation(vehicle, location);
 
     this.http.put<VehicleInterface>(`${this.apiUrl}/${vehicle._id}`, { location })
-      .subscribe(updatedVehicle => {
+      .subscribe(updatedVehicle => 
         this.vehicles.update(list =>
           list.map(v => v._id === vehicle._id ? updatedVehicle : v)
-        );
-      });
+        )
+      );
   }
 
   deleteVehicle(vehicle: VehicleInterface): void {
     if (this.useMock) return this.deleteMockVehicle(vehicle);
 
     this.http.delete<void>(`${this.apiUrl}/${vehicle._id}`)
-      .subscribe(() => {
-        this.vehicles.update(list => list.filter(v => v._id !== vehicle._id));
-      });
+      .subscribe(() => 
+        this.vehicles.update(list => list.filter(v => v._id !== vehicle._id))
+      );
   }
 
   addUserToVehicle(vehicleId: string, email: string): Observable<{ userId: string; email: string }> {
