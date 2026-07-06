@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Auth } from '@angular/fire/auth';
 
-import { MOCK_VEHICLES } from './mocks/vehicle.mock';
+import { MOCK_VEHICLES } from './mocks/vehicle-data.mock';
 
 @Injectable({
   providedIn: 'root',
