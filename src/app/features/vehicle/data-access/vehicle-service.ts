@@ -37,9 +37,9 @@ export class VehicleService {
     if (this.useMock) return this.addMockVehicle(vehicle);
 
     this.http.post<VehicleInterface>(this.apiUrl, vehicle)
-      .subscribe(vehicleCreated => {
-        this.vehicles.update(list => [...list, vehicleCreated]);
-      });
+      .subscribe(vehicleCreated => 
+        this.vehicles.update(list => [...list, vehicleCreated])
+      );
   }
 
   updateVehicle(
