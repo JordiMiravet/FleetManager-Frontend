@@ -19,6 +19,11 @@ export class VehicleService {
 
   private readonly useMock = false;
 
+  private get currentUserId(): string | undefined {
+    return this.auth.currentUser?.uid;
+  }
+
+
   loadVehicles(): void {
     if (this.useMock) return this.loadMockVehicles();
 
@@ -124,7 +129,7 @@ export class VehicleService {
 
   private loadMockVehicles(): void {
     this.vehicles.set(
-      MOCK_VEHICLES.map(v => ({ ...v, userId: this.auth.currentUser?.uid ?? v.userId }))
+      MOCK_VEHICLES.map(v => ({ ...v, userId: this.currentUserId ?? v.userId }))
     );
   }
 
@@ -132,7 +137,7 @@ export class VehicleService {
     const newVehicle = { 
       ...vehicle, 
       _id: crypto.randomUUID(), 
-      userId: this.auth.currentUser?.uid ?? 'mock-user' 
+      userId: this.currentUserId ?? 'mock-user'
     };
     this.vehicles.update(list => [...list, newVehicle]);
   }
