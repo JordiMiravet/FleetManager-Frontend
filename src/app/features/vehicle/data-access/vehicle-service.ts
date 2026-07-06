@@ -17,7 +17,7 @@ export class VehicleService {
 
   public vehicles = signal<VehicleInterface[]>([]);
 
-  private readonly useMock = false;
+  private readonly useMock = true;
 
   private get currentUserId(): string | undefined {
     return this.auth.currentUser?.uid;
@@ -129,7 +129,7 @@ export class VehicleService {
 
   private loadMockVehicles(): void {
     this.vehicles.set(
-      MOCK_VEHICLES.map(v => ({ ...v, userId: this.auth.currentUser?.uid ?? v.userId }))
+      MOCK_VEHICLES.map(v => ({ ...v, userId: this.currentUserId ?? v.userId }))
     );
   }
 
