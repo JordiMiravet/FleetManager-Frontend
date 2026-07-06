@@ -66,11 +66,11 @@ export class VehicleService {
     if (this.useMock) return this.updateMockLocation(vehicle, location);
 
     this.http.put<VehicleInterface>(`${this.apiUrl}/${vehicle._id}`, { location })
-      .subscribe(updatedVehicle => {
+      .subscribe(updatedVehicle => 
         this.vehicles.update(list =>
           list.map(v => v._id === vehicle._id ? updatedVehicle : v)
-        );
-      });
+        )
+      );
   }
 
   deleteVehicle(vehicle: VehicleInterface): void {
