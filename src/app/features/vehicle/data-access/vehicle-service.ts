@@ -77,9 +77,9 @@ export class VehicleService {
     if (this.useMock) return this.deleteMockVehicle(vehicle);
 
     this.http.delete<void>(`${this.apiUrl}/${vehicle._id}`)
-      .subscribe(() => {
-        this.vehicles.update(list => list.filter(v => v._id !== vehicle._id));
-      });
+      .subscribe(() => 
+        this.vehicles.update(list => list.filter(v => v._id !== vehicle._id))
+      );
   }
 
   addUserToVehicle(vehicleId: string, email: string): Observable<{ userId: string; email: string }> {
