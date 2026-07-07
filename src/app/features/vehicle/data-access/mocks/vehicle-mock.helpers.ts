@@ -35,3 +35,15 @@ export function updateMockVehicle(
       : vehicle
   );
 }
+
+export function updateMockLocation(
+  vehicles: VehicleInterface[],
+  vehicle: VehicleInterface,
+  location: { lat: number; lng: number }
+): VehicleInterface[] {
+  return vehicles.map(item =>
+    item._id === vehicle._id
+      ? { ...item, location }
+      : item
+  );
+}
