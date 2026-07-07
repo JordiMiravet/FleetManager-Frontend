@@ -118,9 +118,38 @@ describe('VehicleMockHelpers', () => {
   });
 
   describe('deleteMockVehicle', () => {
-    it('should delete a mock vehicle', () => {
 
+    it('should delete a mock vehicle', () => {
+      const vehicles: VehicleInterface[] = [
+        {
+          _id: '1',
+          name: 'Ferrari',
+          model: 'F8 Tributo',
+          plate: 'F123',
+          location: {
+            lat: 41,
+            lng: 2
+          }
+        },
+        {
+          _id: '2',
+          name: 'Pagani',
+          model: 'Huayra',
+          plate: 'P456',
+          location: {
+            lat: 42,
+            lng: 3
+          }
+        }
+      ];
+
+      const result = deleteMockVehicle(vehicles, vehicles[0]);
+
+      expect(result.length).toBe(1);
+      expect(result[0]._id).toBe('2');
+      expect(result[0].name).toBe('Pagani');
     });
+
   });
 
 });
