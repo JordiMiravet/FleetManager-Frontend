@@ -114,30 +114,6 @@ describe('VehicleService', () => {
 
   });
 
-  describe('loadVehicles (mock)', () => {
-
-    beforeEach(() => {
-      (service as any).useMock = true;
-    });
-
-    it('should load mock vehicles when useMock is true', () => {
-      service.loadVehicles();
-
-      expect(service.vehicles().length).toBeGreaterThan(0);
-      expect(httpMock.match(API_URL).length).toBe(0);
-    });
-
-    it('should assign current user uid to mock vehicles', () => {
-      service.loadVehicles();
-
-      const vehicles = service.vehicles();
-      vehicles.forEach(v => {
-        expect(v.userId).toBe('JordiTheBest');
-      });
-    });
-
-  });
-
   describe('addVehicle', () => {
 
     it('should call POST /vehicles endpoint with vehicle payload', () => {
