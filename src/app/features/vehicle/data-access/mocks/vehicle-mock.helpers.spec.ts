@@ -1,16 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import { VehicleMock } from './vehicle-mockhelpers';
 
-import { VehicleMockHelpers } from './vehicle-mock.helpers';
-
-describe('VehicleMockHelpers', () => {
-  let service: VehicleMockHelpers;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(VehicleMockHelpers);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+describe('VehicleMock', () => {
+  it('should create an instance', () => {
+    expect(new VehicleMock()).toBeTruthy();
   });
 });
