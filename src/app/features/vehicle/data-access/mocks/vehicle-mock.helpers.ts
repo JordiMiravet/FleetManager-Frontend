@@ -47,3 +47,10 @@ export function updateMockLocation(
       : item
   );
 }
+
+export function deleteMockVehicle(
+  vehicles: VehicleInterface[],
+  vehicle: VehicleInterface
+): VehicleInterface[] {
+  return vehicles.filter(item => item._id !== vehicle._id);
+}

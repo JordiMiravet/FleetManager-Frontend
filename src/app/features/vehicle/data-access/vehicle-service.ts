@@ -4,7 +4,7 @@ import { Observable, tap } from 'rxjs';
 import { Auth } from '@angular/fire/auth';
 
 import { VehicleInterface } from '../interfaces/vehicle/vehicle';
-import { loadMockVehicles, addMockVehicle, updateMockVehicle, updateMockLocation } from './mocks/vehicle-mock.helpers';
+import { loadMockVehicles, addMockVehicle, updateMockVehicle, updateMockLocation, deleteMockVehicle } from './mocks/vehicle-mock.helpers';
 
 @Injectable({
   providedIn: 'root',
@@ -89,7 +89,12 @@ export class VehicleService {
   }
 
   deleteVehicle(vehicle: VehicleInterface): void {
-    if (this.useMock) return this.deleteMockVehicle(vehicle);
+    if (this.useMock) {
+      this.vehicles.update(list =>
+        deleteMockVehicle(list, vehicle)
+      );
+      return;
+    }
 
     this.http.delete<void>(`${this.apiUrl}/${vehicle._id}`)
       .subscribe(() => 
@@ -139,11 +144,6 @@ export class VehicleService {
         }
       })
     );
-  }
-
-
-  private deleteMockVehicle(vehicle: VehicleInterface): void {
-    this.vehicles.update(list => list.filter(v => v._id !== vehicle._id));
   }
 
 }
