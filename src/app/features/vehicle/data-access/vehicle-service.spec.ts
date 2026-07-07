@@ -124,7 +124,7 @@ describe('VehicleService', () => {
       service.loadVehicles();
 
       expect(service.vehicles().length).toBeGreaterThan(0);
-      expect(httpMock.match(API_URL).length).toBe(0);
+      expect(httpMock.match(API_URL)).toHaveSize(0);
     });
 
     it('should assign current user uid to mock vehicles', () => {
@@ -172,7 +172,7 @@ describe('VehicleService', () => {
       req.flush(vehicleResponse);
 
       expect(service.vehicles()).toEqual([ferrariMock, vehicleResponse]);
-      expect(service.vehicles().length).toBe(2);
+      expect(service.vehicles()).toHaveSize(2);
     });
 
   });
@@ -187,8 +187,8 @@ describe('VehicleService', () => {
     it('should add vehicle to signal without HTTP call when useMock is true', () => {
       service.addVehicle(paganiMock);
 
-      expect(service.vehicles().length).toBe(2);
-      expect(httpMock.match(API_URL).length).toBe(0);
+      expect(service.vehicles()).toHaveSize(2);
+      expect(httpMock.match(API_URL)).toHaveSize(0);
     });
 
     it('should assign current user uid to new mock vehicle', () => {
@@ -241,7 +241,7 @@ describe('VehicleService', () => {
       service.updateVehicle(ferrariMock, updatedVehicle);
 
       expect(service.vehicles()[0].model).toBe('F8 Spider');
-      expect(httpMock.match(`${API_URL}/1`).length).toBe(0);
+      expect(httpMock.match(`${API_URL}/1`)).toHaveSize(0);
     });
 
   });
@@ -268,7 +268,7 @@ describe('VehicleService', () => {
       const req = httpMock.expectOne(`${API_URL}/1`);
       req.flush({ ...ferrariMock, location: { lat: 42, lng: 3 } });
 
-      expect(service.vehicles().length).toBe(1);
+      expect(service.vehicles()).toHaveSize(1);
       expect(service.vehicles()[0]._id).toBe('1');
       expect(service.vehicles()[0].name).toBe('Ferrari');
     });
@@ -286,7 +286,7 @@ describe('VehicleService', () => {
       service.updateVehicleLocation(ferrariMock, { lat: 99, lng: 88 });
 
       expect(service.vehicles()[0].location).toEqual({ lat: 99, lng: 88 });
-      expect(httpMock.match(`${API_URL}/1`).length).toBe(0);
+      expect(httpMock.match(`${API_URL}/1`)).toHaveSize(0);
     });
 
   });
@@ -313,7 +313,7 @@ describe('VehicleService', () => {
       const req = httpMock.expectOne(`${API_URL}/1`);
       req.flush(null);
 
-      expect(service.vehicles().length).toBe(1);
+      expect(service.vehicles()).toHaveSize(1);
       expect(service.vehicles()[0]._id).toBe('2');
       expect(service.vehicles()[0].name).toBe('Pagani');
     });
@@ -330,9 +330,9 @@ describe('VehicleService', () => {
     it('should remove vehicle from signal without HTTP call when useMock is true', () => {
       service.deleteVehicle(ferrariMock);
 
-      expect(service.vehicles().length).toBe(1);
+      expect(service.vehicles()).toHaveSize(1);
       expect(service.vehicles()[0]._id).toBe('2');
-      expect(httpMock.match(`${API_URL}/1`).length).toBe(0);
+      expect(httpMock.match(`${API_URL}/1`)).toHaveSize(0);
     });
 
   });
@@ -438,7 +438,7 @@ describe('VehicleService', () => {
       const req = httpMock.expectOne(`${API_URL}/1/users/other-user`);
       req.flush(null);
 
-      expect(service.vehicles().length).toBe(1);
+      expect(service.vehicles()).toHaveSize(1);
       expect(service.vehicles()[0].users).toEqual([
         { userId: 'JordiTheBest', email: 'jordi@test.com' }
       ]);
