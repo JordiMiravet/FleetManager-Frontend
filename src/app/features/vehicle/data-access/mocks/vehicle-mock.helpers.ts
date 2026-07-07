@@ -23,3 +23,15 @@ export function addMockVehicle(
 
   return [...vehicles, newVehicle];
 }
+
+export function updateMockVehicle(
+  vehicles: VehicleInterface[],
+  oldVehicle: VehicleInterface,
+  newVehicle: VehicleInterface
+): VehicleInterface[] {
+  return vehicles.map(vehicle =>
+    vehicle._id === oldVehicle._id
+      ? { ...vehicle, ...newVehicle }
+      : vehicle
+  );
+}

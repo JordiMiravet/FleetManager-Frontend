@@ -4,7 +4,7 @@ import { Observable, tap } from 'rxjs';
 import { Auth } from '@angular/fire/auth';
 
 import { VehicleInterface } from '../interfaces/vehicle/vehicle';
-import { loadMockVehicles, addMockVehicle } from './mocks/vehicle-mock.helpers';
+import { loadMockVehicles, addMockVehicle, updateMockVehicle } from './mocks/vehicle-mock.helpers';
 
 @Injectable({
   providedIn: 'root',
@@ -51,7 +51,12 @@ export class VehicleService {
     oldVehicle: VehicleInterface, 
     newVehicle: VehicleInterface
   ): void {
-    if (this.useMock) return this.updateMockVehicle(oldVehicle, newVehicle);
+    if (this.useMock) {
+      this.vehicles.update(list =>
+        updateMockVehicle(list, oldVehicle, newVehicle)
+      );
+      return;
+    }
 
     this.http.put<VehicleInterface>(`${this.apiUrl}/${oldVehicle._id}`, newVehicle)
       .subscribe(updatedVehicle => 
@@ -131,12 +136,6 @@ export class VehicleService {
     );
   }
 
-
-  private updateMockVehicle(oldVehicle: VehicleInterface, newVehicle: VehicleInterface): void {
-    this.vehicles.update(list =>
-      list.map(v => v._id === oldVehicle._id ? { ...v, ...newVehicle } : v)
-    );
-  }
 
   private updateMockLocation(vehicle: VehicleInterface, location: { lat: number; lng: number }): void {
     this.vehicles.update(list =>
