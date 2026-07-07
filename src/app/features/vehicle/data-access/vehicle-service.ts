@@ -23,7 +23,6 @@ export class VehicleService {
     return this.auth.currentUser?.uid;
   }
 
-
   loadVehicles(): void {
     if (this.useMock) return this.vehicles.set(loadMockVehicles(this.currentUserId));
 
