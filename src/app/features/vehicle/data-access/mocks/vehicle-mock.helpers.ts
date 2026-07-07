@@ -9,3 +9,17 @@ export function loadMockVehicles(
     userId: currentUserId ?? vehicle.userId,
   }));
 }
+
+export function addMockVehicle(
+  vehicles: VehicleInterface[],
+  vehicle: VehicleInterface,
+  currentUserId?: string
+): VehicleInterface[] {
+  const newVehicle = {
+    ...vehicle,
+    _id: crypto.randomUUID(),
+    userId: currentUserId ?? 'mock-user',
+  };
+
+  return [...vehicles, newVehicle];
+}

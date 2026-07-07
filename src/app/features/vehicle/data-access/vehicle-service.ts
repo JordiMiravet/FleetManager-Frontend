@@ -1,11 +1,10 @@
 import { Injectable, signal, inject } from '@angular/core';
-import { VehicleInterface } from '../interfaces/vehicle/vehicle';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Auth } from '@angular/fire/auth';
 
-import { MOCK_VEHICLES } from './mocks/vehicle-data.mock';
-import { loadMockVehicles } from './mocks/vehicle-mock.helpers';
+import { VehicleInterface } from '../interfaces/vehicle/vehicle';
+import { loadMockVehicles, addMockVehicle } from './mocks/vehicle-mock.helpers';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +17,7 @@ export class VehicleService {
 
   public vehicles = signal<VehicleInterface[]>([]);
 
-  private readonly useMock = false;
+  private readonly useMock = true;
 
   private get currentUserId(): string | undefined {
     return this.auth.currentUser?.uid;
@@ -35,7 +34,12 @@ export class VehicleService {
   }
 
   addVehicle(vehicle: VehicleInterface): void {
-    if (this.useMock) return this.addMockVehicle(vehicle);
+    if (this.useMock) {
+      this.vehicles.update(list =>
+        addMockVehicle(list, vehicle, this.currentUserId)
+      );
+      return;
+    }
 
     this.http.post<VehicleInterface>(this.apiUrl, vehicle)
       .subscribe(vehicleCreated => 
@@ -127,15 +131,6 @@ export class VehicleService {
     );
   }
 
-
-  private addMockVehicle(vehicle: VehicleInterface): void {
-    const newVehicle = { 
-      ...vehicle, 
-      _id: crypto.randomUUID(), 
-      userId: this.currentUserId ?? 'mock-user'
-    };
-    this.vehicles.update(list => [...list, newVehicle]);
-  }
 
   private updateMockVehicle(oldVehicle: VehicleInterface, newVehicle: VehicleInterface): void {
     this.vehicles.update(list =>
