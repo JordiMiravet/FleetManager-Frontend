@@ -44,7 +44,7 @@ describe('VehicleMockHelpers', () => {
 
       const result = addMockVehicle(vehicles, vehicle);
 
-      expect(result.length).toBe(1);
+      expect(result).toHaveSize(1);
       expect(result[0].name).toBe(vehicle.name);
       expect(result[0].model).toBe(vehicle.model);
       expect(result[0].plate).toBe(vehicle.plate);
@@ -69,12 +69,8 @@ describe('VehicleMockHelpers', () => {
   describe('updateMockVehicle', () => {
 
     it('should update a mock vehicle', () => {
-      const vehicles: VehicleInterface[] = [ MOCK_VEHICLES[0] ];
-
-      const updatedVehicle: VehicleInterface = {
-        ...MOCK_VEHICLES[0],
-        model: 'F8 Spider'
-      };
+      const vehicles: VehicleInterface[] = [MOCK_VEHICLES[0]];
+      const updatedVehicle: VehicleInterface = {...MOCK_VEHICLES[0], model: 'F8 Spider'};
 
       const result = updateMockVehicle(
         vehicles,
@@ -87,11 +83,8 @@ describe('VehicleMockHelpers', () => {
     });
 
     it('should not update other vehicles', () => {
-      const vehicles: VehicleInterface[] = [ MOCK_VEHICLES[0], MOCK_VEHICLES[1] ];
-      const updatedVehicle: VehicleInterface = {
-        ...MOCK_VEHICLES[0],
-        model: 'F8 Spider'
-      };
+      const vehicles: VehicleInterface[] = [MOCK_VEHICLES[0], MOCK_VEHICLES[1]];
+      const updatedVehicle: VehicleInterface = {...MOCK_VEHICLES[0], model: 'F8 Spider'};
 
       const result = updateMockVehicle(
         vehicles,
@@ -108,8 +101,8 @@ describe('VehicleMockHelpers', () => {
 
     it('should update a mock vehicle location', () => {
       const vehicle = MOCK_VEHICLES[0];
-
       const newLocation = { lat: 99, lng: 88 };
+
       const result = updateMockLocation(
         [vehicle], 
         vehicle, 
@@ -124,7 +117,7 @@ describe('VehicleMockHelpers', () => {
   describe('deleteMockVehicle', () => {
 
     it('should delete a mock vehicle', () => {
-      const vehicles: VehicleInterface[] = [ MOCK_VEHICLES[0], MOCK_VEHICLES[1] ];
+      const vehicles: VehicleInterface[] = [MOCK_VEHICLES[0], MOCK_VEHICLES[1]];
 
       const result = deleteMockVehicle(
         vehicles,
