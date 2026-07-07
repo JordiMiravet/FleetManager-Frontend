@@ -55,9 +55,36 @@ describe('VehicleMockHelpers', () => {
   });
 
   describe('updateMockVehicle', () => {
-    it('should update a mock vehicle', () => {
 
-    }); 
+    it('should update a mock vehicle', () => {
+      const vehicles: VehicleInterface[] = [
+        {
+          _id: '1',
+          name: 'Ferrari',
+          model: 'F8 Tributo',
+          plate: 'F123',
+          location: {
+            lat: 41,
+            lng: 2
+          }
+        }
+      ];
+
+      const updatedVehicle: VehicleInterface = {
+        ...vehicles[0],
+        model: 'F8 Spider'
+      };
+
+      const result = updateMockVehicle(
+        vehicles,
+        vehicles[0],
+        updatedVehicle
+      );
+
+      expect(result[0].model).toBe('F8 Spider');
+      expect(result[0]._id).toBe('1');
+    });
+
   });
 
   describe('updateMockLocation', () => {
