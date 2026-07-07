@@ -23,9 +23,35 @@ describe('VehicleMockHelpers', () => {
   });
 
   describe('addMockVehicle', () => {
-    it('should add a mock vehicle', () => {
 
+    it('should add a mock vehicle', () => {
+      const vehicles: VehicleInterface[] = [];
+      const vehicle = {
+        name: 'Ferrari',
+        model: 'F8 Tributo',
+        plate: 'F123',
+        location: {
+          lat: 41,
+          lng: 2
+        }
+      } as VehicleInterface;
+
+      const result = addMockVehicle(vehicles, vehicle);
+
+      expect(result.length).toBe(1);
+      expect(result[0].name).toBe(vehicle.name);
+      expect(result[0].model).toBe(vehicle.model);
+      expect(result[0].plate).toBe(vehicle.plate);
+      expect(result[0].location).toEqual(vehicle.location);
     });
+
+    it('should assign current user id to new mock vehicle', () => {
+      const vehicle = {} as VehicleInterface;
+      const result = addMockVehicle([], vehicle, 'JordiTheBest');
+
+      expect(result[0].userId).toBe('JordiTheBest');
+    });
+
   });
 
   describe('updateMockVehicle', () => {
