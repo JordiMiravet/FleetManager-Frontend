@@ -1,5 +1,13 @@
 import { VehicleInterface } from "../../interfaces/vehicle/vehicle";
-import { addMockVehicle, deleteMockVehicle, loadMockVehicles, updateMockLocation, updateMockVehicle } from "./vehicle-mock.helpers";
+
+import { MOCK_VEHICLES } from "./vehicle-data.mock";
+import { 
+  addMockVehicle, 
+  deleteMockVehicle, 
+  loadMockVehicles, 
+  updateMockLocation, 
+  updateMockVehicle 
+} from "./vehicle-mock.helpers";
 
 describe('VehicleMockHelpers', () => {
 
@@ -26,27 +34,16 @@ describe('VehicleMockHelpers', () => {
 
     it('should add a mock vehicle', () => {
       const vehicles: VehicleInterface[] = [];
-      const vehicle = {
-        name: 'Ferrari',
-        model: 'F8 Tributo',
-        plate: 'F123',
-        location: {
-          lat: 41,
-          lng: 2
-        }
-      } as VehicleInterface;
+      const vehicle = MOCK_VEHICLES[0];
 
       const result = addMockVehicle(vehicles, vehicle);
 
       expect(result.length).toBe(1);
-      expect(result[0].name).toBe(vehicle.name);
-      expect(result[0].model).toBe(vehicle.model);
-      expect(result[0].plate).toBe(vehicle.plate);
-      expect(result[0].location).toEqual(vehicle.location);
+      expect(result[0]).toEqual(vehicle);
     });
 
     it('should assign current user id to new mock vehicle', () => {
-      const vehicle = {} as VehicleInterface;
+      const vehicle = MOCK_VEHICLES[0];
       const result = addMockVehicle([], vehicle, 'JordiTheBest');
 
       expect(result[0].userId).toBe('JordiTheBest');
@@ -57,32 +54,21 @@ describe('VehicleMockHelpers', () => {
   describe('updateMockVehicle', () => {
 
     it('should update a mock vehicle', () => {
-      const vehicles: VehicleInterface[] = [
-        {
-          _id: '1',
-          name: 'Ferrari',
-          model: 'F8 Tributo',
-          plate: 'F123',
-          location: {
-            lat: 41,
-            lng: 2
-          }
-        }
-      ];
+      const vehicles: VehicleInterface[] = [ MOCK_VEHICLES[0] ];
 
       const updatedVehicle: VehicleInterface = {
-        ...vehicles[0],
+        ...MOCK_VEHICLES[0],
         model: 'F8 Spider'
       };
 
       const result = updateMockVehicle(
         vehicles,
-        vehicles[0],
+        MOCK_VEHICLES[0],
         updatedVehicle
       );
 
       expect(result[0].model).toBe('F8 Spider');
-      expect(result[0]._id).toBe('1');
+      expect(result[0]._id).toBe(MOCK_VEHICLES[0]._id);
     });
 
   });
@@ -90,25 +76,12 @@ describe('VehicleMockHelpers', () => {
   describe('updateMockLocation', () => {
 
     it('should update a mock vehicle location', () => {
-      const vehicle: VehicleInterface = {
-        _id: '1',
-        name: 'Ferrari',
-        model: 'F8 Tributo',
-        plate: 'F123',
-        location: {
-          lat: 41,
-          lng: 2
-        }
-      };
+      const vehicle = MOCK_VEHICLES[0];
 
-      const newLocation = {
-        lat: 99,
-        lng: 88
-      };
-
+      const newLocation = { lat: 99, lng: 88 };
       const result = updateMockLocation(
-        [vehicle],
-        vehicle,
+        [vehicle], 
+        vehicle, 
         newLocation
       );
 
@@ -120,34 +93,16 @@ describe('VehicleMockHelpers', () => {
   describe('deleteMockVehicle', () => {
 
     it('should delete a mock vehicle', () => {
-      const vehicles: VehicleInterface[] = [
-        {
-          _id: '1',
-          name: 'Ferrari',
-          model: 'F8 Tributo',
-          plate: 'F123',
-          location: {
-            lat: 41,
-            lng: 2
-          }
-        },
-        {
-          _id: '2',
-          name: 'Pagani',
-          model: 'Huayra',
-          plate: 'P456',
-          location: {
-            lat: 42,
-            lng: 3
-          }
-        }
-      ];
+      const vehicles: VehicleInterface[] = [ MOCK_VEHICLES[0], MOCK_VEHICLES[1] ];
 
-      const result = deleteMockVehicle(vehicles, vehicles[0]);
+      const result = deleteMockVehicle(
+        vehicles,
+        MOCK_VEHICLES[0]
+      );
 
       expect(result.length).toBe(1);
-      expect(result[0]._id).toBe('2');
-      expect(result[0].name).toBe('Pagani');
+      expect(result[0]._id).toBe(MOCK_VEHICLES[1]._id);
+      expect(result[0].name).toBe(MOCK_VEHICLES[1].name);
     });
 
   });
