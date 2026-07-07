@@ -88,9 +88,33 @@ describe('VehicleMockHelpers', () => {
   });
 
   describe('updateMockLocation', () => {
-    it('should update a mock vehicle location', () => {
 
+    it('should update a mock vehicle location', () => {
+      const vehicle: VehicleInterface = {
+        _id: '1',
+        name: 'Ferrari',
+        model: 'F8 Tributo',
+        plate: 'F123',
+        location: {
+          lat: 41,
+          lng: 2
+        }
+      };
+
+      const newLocation = {
+        lat: 99,
+        lng: 88
+      };
+
+      const result = updateMockLocation(
+        [vehicle],
+        vehicle,
+        newLocation
+      );
+
+      expect(result[0].location).toEqual(newLocation);
     });
+
   });
 
   describe('deleteMockVehicle', () => {
