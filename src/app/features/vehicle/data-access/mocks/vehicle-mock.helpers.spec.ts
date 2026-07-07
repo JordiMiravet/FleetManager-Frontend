@@ -1,7 +1,36 @@
-import { VehicleMock } from './vehicle-mockhelpers';
+import { VehicleInterface } from "../../interfaces/vehicle/vehicle";
+import { addMockVehicle, deleteMockVehicle, loadMockVehicles, updateMockLocation, updateMockVehicle } from "./vehicle-mock.helpers";
 
-describe('VehicleMock', () => {
-  it('should create an instance', () => {
-    expect(new VehicleMock()).toBeTruthy();
+describe('VehicleMockHelpers', () => {
+
+  describe('loadMockVehicles', () => {
+    it('should load mock vehicles', () => {
+
+    });
   });
+
+  describe('addMockVehicle', () => {
+    it('should add a mock vehicle', () => {
+
+    });
+  });
+
+  describe('updateMockVehicle', () => {
+    it('should update a mock vehicle', () => {
+
+    }); 
+  });
+
+  describe('updateMockLocation', () => {
+    it('should update a mock vehicle location', () => {
+
+    });
+  });
+
+  describe('deleteMockVehicle', () => {
+    it('should delete a mock vehicle', () => {
+
+    });
+  });
+
 });
