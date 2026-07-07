@@ -17,7 +17,7 @@ export class VehicleService {
 
   public vehicles = signal<VehicleInterface[]>([]);
 
-  private readonly useMock = true;
+  private readonly useMock = false;
 
   private get currentUserId(): string | undefined {
     return this.auth.currentUser?.uid;
