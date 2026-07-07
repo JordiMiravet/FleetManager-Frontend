@@ -28,6 +28,12 @@ describe('VehicleMockHelpers', () => {
       });
     });
 
+    it('should keep existing user id when current user id is not provided', () => {
+      const result = loadMockVehicles();
+
+      expect(result[0].userId).toBe(MOCK_VEHICLES[0].userId);
+    });
+
   });
 
   describe('addMockVehicle', () => {
@@ -52,6 +58,12 @@ describe('VehicleMockHelpers', () => {
       expect(result[0].userId).toBe('JordiTheBest');
     });
 
+    it('should assign mock user id when current user id is not provided', () => {
+      const result = addMockVehicle([], MOCK_VEHICLES[0]);
+
+      expect(result[0].userId).toBe('mock-user');
+    });
+
   });
 
   describe('updateMockVehicle', () => {
@@ -72,6 +84,22 @@ describe('VehicleMockHelpers', () => {
 
       expect(result[0].model).toBe('F8 Spider');
       expect(result[0]._id).toBe(MOCK_VEHICLES[0]._id);
+    });
+
+    it('should not update other vehicles', () => {
+      const vehicles: VehicleInterface[] = [ MOCK_VEHICLES[0], MOCK_VEHICLES[1] ];
+      const updatedVehicle: VehicleInterface = {
+        ...MOCK_VEHICLES[0],
+        model: 'F8 Spider'
+      };
+
+      const result = updateMockVehicle(
+        vehicles,
+        MOCK_VEHICLES[0],
+        updatedVehicle
+      );
+
+      expect(result[1]).toEqual(MOCK_VEHICLES[1]);
     });
 
   });
@@ -103,7 +131,7 @@ describe('VehicleMockHelpers', () => {
         MOCK_VEHICLES[0]
       );
 
-      expect(result.length).toBe(1);
+      expect(result).toHaveSize(1);
       expect(result[0]._id).toBe(MOCK_VEHICLES[1]._id);
       expect(result[0].name).toBe(MOCK_VEHICLES[1].name);
     });
