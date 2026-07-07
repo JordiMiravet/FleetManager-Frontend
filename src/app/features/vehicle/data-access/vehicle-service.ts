@@ -5,6 +5,7 @@ import { Observable, tap } from 'rxjs';
 import { Auth } from '@angular/fire/auth';
 
 import { MOCK_VEHICLES } from './mocks/vehicle-data.mock';
+import { loadMockVehicles } from './mocks/vehicle-mock.helpers';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class VehicleService {
 
 
   loadVehicles(): void {
-    if (this.useMock) return this.loadMockVehicles();
+    if (this.useMock) return this.vehicles.set(loadMockVehicles(this.currentUserId));
 
     this.http.get<VehicleInterface[]>(this.apiUrl).subscribe({
       next: vehicles => this.vehicles.set(vehicles),
@@ -126,12 +127,6 @@ export class VehicleService {
     );
   }
 
-
-  private loadMockVehicles(): void {
-    this.vehicles.set(
-      MOCK_VEHICLES.map(v => ({ ...v, userId: this.currentUserId ?? v.userId }))
-    );
-  }
 
   private addMockVehicle(vehicle: VehicleInterface): void {
     const newVehicle = { 
