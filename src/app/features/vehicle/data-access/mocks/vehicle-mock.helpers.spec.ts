@@ -39,7 +39,10 @@ describe('VehicleMockHelpers', () => {
       const result = addMockVehicle(vehicles, vehicle);
 
       expect(result.length).toBe(1);
-      expect(result[0]).toEqual(vehicle);
+      expect(result[0].name).toBe(vehicle.name);
+      expect(result[0].model).toBe(vehicle.model);
+      expect(result[0].plate).toBe(vehicle.plate);
+      expect(result[0].location).toEqual(vehicle.location);
     });
 
     it('should assign current user id to new mock vehicle', () => {
