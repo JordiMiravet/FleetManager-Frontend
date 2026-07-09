@@ -19,7 +19,7 @@
         <button
             class="navbar__auth-button"
             data-test="registerButton"
-            [routerLink]="['/register']"
+            [routerLink]="['/auth/register']"
             routerLinkActive="active"
             [attr.aria-label]="authActionsMsg.aria.register"
         >
@@ -28,7 +28,7 @@
         <button
             class="navbar__auth-button"
             data-test="loginButton"
-            [routerLink]="['/login']"
+            [routerLink]="['/auth/login']"
             routerLinkActive="active"
             [attr.aria-label]="authActionsMsg.aria.login"
         >

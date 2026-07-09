@@ -38,7 +38,7 @@ export class AuthActionsComponent {
 
   onLogout(): void {
     this.auth.logout()
-      .then(() => this.router.navigate(['login']))
+      .then(() => this.router.navigate(['/auth/login']))
       .catch(error => console.error(error));
   }
 }
