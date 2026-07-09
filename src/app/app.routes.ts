@@ -35,8 +35,8 @@ export const routes: Routes = [
       },
       {
         path: 'graphics',
-        loadComponent: () =>
-          import('./features/graphics/pages/graphics/graphics-page').then(m => m.GraphicsPageComponent)
+        loadChildren: () =>
+          import('./features/graphics/graphics.routes').then(m => m.GRAPHICS_ROUTES)
       }
     ]
   },
