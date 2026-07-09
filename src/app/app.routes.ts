@@ -20,8 +20,8 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () =>
-          import('./features/vehicle/pages/vehicle/vehicle-page').then(m => m.VehiclePageComponent)
+        loadChildren: () =>
+          import('./features/vehicle/vehicle.routes').then(m => m.VEHICLE_ROUTES)
       },
       {
         path: 'map',
