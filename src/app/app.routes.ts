@@ -30,8 +30,8 @@ export const routes: Routes = [
       },
       {
         path: 'calendar',
-        loadComponent: () =>
-          import('./features/calendar/pages/calendar/calendar-page').then(m => m.CalendarPageComponent)
+        loadChildren: () =>
+          import('./features/calendar/calendar.routes').then(m => m.CALENDAR_ROUTES)
       },
       {
         path: 'graphics',
