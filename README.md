@@ -27,7 +27,6 @@
 - [Project Preview](#project-preview)
 - [Tests](#tests)
 - [Contribution](#contribution)
-- [GitHub Pages](#github-pages)
 - [Author](#author)
 
 ---
