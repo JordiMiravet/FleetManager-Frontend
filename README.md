@@ -309,6 +309,11 @@ This project is continuously evolving to improve its scalability, maintainabilit
 - Add more integration-focused tests where multiple application layers interact.
 - Continue improving test maintainability and readability.
 
+### 7. Deployment and CI/CD
+- Deploy the application to a production environment.
+- Introduce automated checks for testing, linting, and build validation.
+- Configure a continuous integration workflow for future contributions.
+
 ---
 
 ## Project Preview
