@@ -299,10 +299,10 @@ This project is continuously evolving to improve its scalability, maintainabilit
 - Introduce clearer state ownership and separation of responsibilities.
 - Improve scalability as new application features are added.
 
-### 4. Backend Refactor (Future Improvement)
-- Migrate from MongoDB (NoSQL) to SQL database.
-- Redesign data models for relational structure.
-- Revisit after completing NestJS and SQL learning.
+### 5. Backend and Data Architecture Improvements
+- Review current data models and persistence strategy.
+- Evaluate migration from MongoDB to a relational database depending on future requirements.
+- Improve API contracts, validation and domain separation.
 
 ### 5. General Architecture Improvements
 - Improve frontend state management structure.
