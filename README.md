@@ -285,9 +285,9 @@ This project is continuously evolving to improve its scalability, maintainabilit
 - Introduce reusable notification infrastructure for future application events.
 
 ### 2. Internationalization (i18n)
-- Add multi-language support (starting with English and Spanish).
-- Refactor static UI text into translation files.
-- Prepare scalable architecture for future languages.
+- Add multi-language support starting with English and Spanish.
+- Move static application messages into translation resources.
+- Prepare the application architecture for future language extensions.
 
 ### 3. Dark Mode / Theming System
 - Implement light/dark mode support.
