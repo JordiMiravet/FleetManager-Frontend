@@ -23,7 +23,7 @@
 - [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Next Steps / Roadmap](#next-steps--roadmap)
+- [Roadmap](#roadmap)
 - [Project Preview](#project-preview)
 - [Tests](#tests)
 - [Contribution](#contribution)
@@ -275,35 +275,44 @@ Notes
 
 ---
 
-## Next Steps / Roadmap
+## Roadmap
 
-This project is actively evolving beyond its current scope. The following improvements are planned to progressively transform it into a more production-like, scalable application.
+This project is continuously evolving to improve its scalability, maintainability, and production readiness. The following roadmap outlines planned features and architectural improvements that will be introduced progressively.
 
 ### 1. Notification & Invitation System (In Progress)
-- Implement a notification system for vehicle sharing.
-- Replace direct sharing with an invitation-based workflow.
-- Add accept/reject flows for shared vehicle access.
-- Introduce notification bell with badge counter and dropdown panel.
+- Replace the current direct vehicle sharing workflow with an invitation-based system.
+- Add notification management with pending invitations and accept/reject actions.
+- Introduce reusable notification infrastructure for future application events.
 
 ### 2. Internationalization (i18n)
-- Add multi-language support (starting with English and Spanish).
-- Refactor static UI text into translation files.
-- Prepare scalable architecture for future languages.
+- Add multi-language support starting with English and Spanish.
+- Move static application messages into translation resources.
+- Prepare the application architecture for future language extensions.
 
-### 3. Dark Mode / Theming System
-- Implement light/dark mode support.
-- Create SCSS-based theme system using design tokens.
-- Persist user preference across sessions.
+### 3. Design System and Theme Improvements
+- Improve the existing SCSS architecture with a more complete design system.
+- Expand design tokens for colors, spacing, typography, and component consistency.
+- Implement persistent light/dark mode preferences.
 
-### 4. Backend Refactor (Future Improvement)
-- Migrate from MongoDB (NoSQL) to SQL database.
-- Redesign data models for relational structure.
-- Revisit after completing NestJS and SQL learning.
+### 4. State Management Improvements
+- Review current state handling patterns across features.
+- Introduce clearer state ownership and separation of responsibilities.
+- Improve scalability as new application features are added.
 
-### 5. General Architecture Improvements
-- Improve frontend state management structure.
-- Increase reuse of UI components.
-- Continue improving test coverage and maintainability.
+### 5. Backend and Data Architecture Improvements
+- Review current data models and persistence strategy.
+- Evaluate migration from MongoDB to a relational database depending on future requirements.
+- Improve API contracts, validation and domain separation.
+
+### 6. Testing Improvements
+- Increase test coverage for feature workflows and complex user interactions.
+- Add more integration-focused tests where multiple application layers interact.
+- Continue improving test maintainability and readability.
+
+### 7. Deployment and CI/CD
+- Deploy the application to a production environment.
+- Introduce automated checks for testing, linting, and build validation.
+- Configure a continuous integration workflow for future contributions.
 
 ---
 
