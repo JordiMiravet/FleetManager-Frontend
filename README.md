@@ -289,10 +289,10 @@ This project is continuously evolving to improve its scalability, maintainabilit
 - Move static application messages into translation resources.
 - Prepare the application architecture for future language extensions.
 
-### 3. Dark Mode / Theming System
-- Implement light/dark mode support.
-- Create SCSS-based theme system using design tokens.
-- Persist user preference across sessions.
+### 3. Design System and Theme Improvements
+- Improve the existing SCSS architecture with a more complete design system.
+- Expand design tokens for colors, spacing, typography, and component consistency.
+- Implement persistent light/dark mode preferences.
 
 ### 4. Backend Refactor (Future Improvement)
 - Migrate from MongoDB (NoSQL) to SQL database.
