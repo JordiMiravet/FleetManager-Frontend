@@ -445,12 +445,6 @@ If you want to contribute to this project, you can:
 
 ---
 
-## GitHub Pages
-
-> The application is currently not deployed on GitHub Pages.
-
----
-
 ## Author
 
 [**Jordi Miravet**](https://www.linkedin.com/in/jordimiravet-dev/)
