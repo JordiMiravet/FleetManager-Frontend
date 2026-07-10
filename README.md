@@ -294,6 +294,11 @@ This project is continuously evolving to improve its scalability, maintainabilit
 - Expand design tokens for colors, spacing, typography, and component consistency.
 - Implement persistent light/dark mode preferences.
 
+### 4. State Management Improvements
+- Review current state handling patterns across features.
+- Introduce clearer state ownership and separation of responsibilities.
+- Improve scalability as new application features are added.
+
 ### 4. Backend Refactor (Future Improvement)
 - Migrate from MongoDB (NoSQL) to SQL database.
 - Redesign data models for relational structure.
