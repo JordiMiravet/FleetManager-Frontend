@@ -281,7 +281,7 @@ This project is continuously evolving to improve its scalability, maintainabilit
 
 ### 1. Notification & Invitation System (In Progress)
 - Replace the current direct vehicle sharing workflow with an invitation-based system.
-- Add notification management with pending invitations and user actions.
+- Add notification management with pending invitations and accept/reject actions.
 - Introduce reusable notification infrastructure for future application events.
 
 ### 2. Internationalization (i18n)
