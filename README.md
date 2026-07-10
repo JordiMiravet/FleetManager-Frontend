@@ -304,10 +304,10 @@ This project is continuously evolving to improve its scalability, maintainabilit
 - Evaluate migration from MongoDB to a relational database depending on future requirements.
 - Improve API contracts, validation and domain separation.
 
-### 5. General Architecture Improvements
-- Improve frontend state management structure.
-- Increase reuse of UI components.
-- Continue improving test coverage and maintainability.
+### 6. Testing Improvements
+- Increase test coverage for feature workflows and complex user interactions.
+- Add more integration-focused tests where multiple application layers interact.
+- Continue improving test maintainability and readability.
 
 ---
 
