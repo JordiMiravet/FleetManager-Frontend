@@ -277,7 +277,7 @@ Notes
 
 ## Roadmap
 
-This project is actively evolving beyond its current scope. The following improvements are planned to progressively transform it into a more production-like, scalable application.
+This project is continuously evolving to improve its scalability, maintainability, and production readiness. The following roadmap outlines planned features and architectural improvements that will be introduced progressively.
 
 ### 1. Notification & Invitation System (In Progress)
 - Implement a notification system for vehicle sharing.
