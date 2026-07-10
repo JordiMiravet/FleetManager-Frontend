@@ -27,7 +27,6 @@
 - [Project Preview](#project-preview)
 - [Tests](#tests)
 - [Contribution](#contribution)
-- [GitHub Pages](#github-pages)
 - [Author](#author)
 
 ---
@@ -442,12 +441,6 @@ If you want to contribute to this project, you can:
 3. Make clear and descriptive commits.
 4. Push your branch.
 5. Create a Pull Request describing your changes.
-
----
-
-## GitHub Pages
-
-> The application is currently not deployed on GitHub Pages.
 
 ---
 
