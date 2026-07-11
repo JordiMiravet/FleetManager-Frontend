@@ -66,6 +66,14 @@ The application is divided into three main layers:
 
 ### Core
 
+The `core` folder contains application-wide infrastructure that is shared across the entire application. These elements are created once and are not tied to a specific business feature.
+
+Examples include:
+
+- Global layout components such as the header, navigation and account drawer.
+- Route guards.
+- Cross-cutting services such as authorization, geolocation and theme management.
+
 ### Features
 
 ### Shared
