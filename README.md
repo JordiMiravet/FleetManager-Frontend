@@ -62,7 +62,7 @@ Fleet Manager combines vehicle management, interactive mapping, scheduling, and 
 
 Fleet Manager follows a **feature-based architecture**, where the application is organized by business domains instead of grouping files only by their technical role. This approach keeps related functionality together, making the codebase easier to understand, maintain, and extend.
 
-The application is divided into three main layers:
+The application is divided into three main areas:
 
 ### Core
 
@@ -107,7 +107,7 @@ This includes:
 - Generic modal components.
 - Pipes.
 - Directives.
-- Shared models and utilities.
+- Shared models and utilities when required.
 
 Resources placed in `shared` are intended to be reused across multiple features without containing business-specific logic.
 
