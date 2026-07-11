@@ -57,6 +57,10 @@ Fleet Manager combines vehicle management, interactive mapping, scheduling, and 
 
 ---
 
+## Architecture
+
+---
+
 ## Technologies
 
 ### Frontend
