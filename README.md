@@ -58,6 +58,32 @@ Fleet Manager combines vehicle management, interactive mapping, scheduling, and 
 
 ---
 
+## Technologies
+
+### Frontend
+- `Angular 20`
+- `TypeScript`
+- `SCSS`
+- `HTML5`
+
+### UI and Visualization Libraries
+- `PrimeNG`
+- `Leaflet`
+- `FullCalendar`
+- `Chart.js`
+
+### Backend
+- `NestJS`
+- `MongoDB`
+
+### Authentication
+- `Firebase Authentication`
+
+### Testing
+- `Jasmine & Karma`
+
+---
+
 ## Architecture
 
 Fleet Manager follows a **feature-based architecture**, where the application is organized by business domains instead of grouping files only by their technical role. This approach keeps related functionality together, making the codebase easier to understand, maintain, and extend.
@@ -110,32 +136,6 @@ This includes:
 - Shared models and utilities when required.
 
 Resources placed in `shared` are intended to be reused across multiple features without containing business-specific logic.
-
----
-
-## Technologies
-
-### Frontend
-- `Angular 20`
-- `TypeScript`
-- `SCSS`
-- `HTML5`
-
-### UI and Visualization Libraries
-- `PrimeNG`
-- `Leaflet`
-- `FullCalendar`
-- `Chart.js`
-
-### Backend
-- `NestJS`
-- `MongoDB`
-
-### Authentication
-- `Firebase Authentication`
-
-### Testing
-- `Jasmine & Karma`
 
 ---
 
