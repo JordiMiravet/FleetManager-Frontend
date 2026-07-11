@@ -59,6 +59,9 @@ Fleet Manager combines vehicle management, interactive mapping, scheduling, and 
 
 ## Architecture
 
+Fleet Manager follows a **feature-based architecture**, where the application is organized by business domains instead of grouping files only by their technical role. This approach keeps related functionality together, making the codebase easier to understand, maintain, and extend.
+
+
 ---
 
 ## Technologies
