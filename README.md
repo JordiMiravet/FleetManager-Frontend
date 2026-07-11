@@ -20,6 +20,7 @@
 
 - [Application Overview](#application-overview)
 - [Technologies](#technologies)
+- [Architecture](#architecture)
 - [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -80,6 +81,61 @@ Fleet Manager combines vehicle management, interactive mapping, scheduling, and 
 
 ### Testing
 - `Jasmine & Karma`
+
+---
+
+## Architecture
+
+Fleet Manager follows a **feature-based architecture**, where the application is organized by business domains instead of grouping files only by their technical role. This approach keeps related functionality together, making the codebase easier to understand, maintain, and extend.
+
+The application is divided into three main areas:
+
+### Core
+
+The `core` folder contains application-wide infrastructure that is shared across the entire application. These elements are created once and are not tied to a specific business feature.
+
+Examples include:
+
+- Global layout components such as the header, navigation and account drawer.
+- Route guards.
+- Cross-cutting services such as authorization, geolocation and theme management.
+
+### Features
+
+The `features` folder contains the application's business domains. Each feature is self-contained and groups together everything required for that area of functionality.
+
+Depending on its needs, a feature owns its:
+
+- Pages.
+- Components.
+- Data-access services.
+- State management.
+- Routes.
+- Domain models, interfaces, enums and other feature-specific resources.
+
+For example:
+
+- `auth` manages authentication and registration.
+- `vehicle` contains vehicle management functionality.
+- `map` provides the interactive map experience.
+- `calendar` manages vehicle usage scheduling.
+- `graphics` contains the statistics dashboard.
+
+Keeping these resources together allows each feature to evolve independently while reducing coupling between different parts of the application.
+
+### Shared
+
+The `shared` folder contains reusable building blocks that are not specific to any single feature.
+
+This includes:
+
+- Reusable UI components.
+- Generic modal components.
+- Pipes.
+- Directives.
+- Shared models and utilities when required.
+
+Resources placed in `shared` are intended to be reused across multiple features without containing business-specific logic.
 
 ---
 
