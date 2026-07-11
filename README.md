@@ -19,8 +19,8 @@
 ## Table of Contents
 
 - [Application Overview](#application-overview)
-- [Architecture](#architecture)
 - [Technologies](#technologies)
+- [Architecture](#architecture)
 - [Project Structure](#project-structure)
 - [Installation](#installation)
 - [Usage](#usage)
