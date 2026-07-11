@@ -76,6 +76,27 @@ Examples include:
 
 ### Features
 
+The `features` folder contains the application's business domains. Each feature is self-contained and groups together everything required for that area of functionality.
+
+Depending on its needs, a feature owns its:
+
+- Pages.
+- Components.
+- Data-access services.
+- State management.
+- Routes.
+- Domain models, interfaces, enums and other feature-specific resources.
+
+For example:
+
+- `auth` manages authentication and registration.
+- `vehicle` contains vehicle management functionality.
+- `map` provides the interactive map experience.
+- `calendar` manages vehicle usage scheduling.
+- `graphics` contains the statistics dashboard.
+
+Keeping these resources together allows each feature to evolve independently while reducing coupling between different parts of the application.
+
 ### Shared
 
 ---
