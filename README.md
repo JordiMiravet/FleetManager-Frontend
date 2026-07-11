@@ -99,6 +99,18 @@ Keeping these resources together allows each feature to evolve independently whi
 
 ### Shared
 
+The `shared` folder contains reusable building blocks that are not specific to any single feature.
+
+This includes:
+
+- Reusable UI components.
+- Generic modal components.
+- Pipes.
+- Directives.
+- Shared models and utilities.
+
+Resources placed in `shared` are intended to be reused across multiple features without containing business-specific logic.
+
 ---
 
 ## Technologies
