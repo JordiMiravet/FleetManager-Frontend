@@ -531,6 +531,8 @@ Examples:
     docs(readme): document development workflow (#234)
 ```
 
+Keep commit messages concise, written in English, and focused on a single logical change.
+
 ---
 
 ## Contribution
