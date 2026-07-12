@@ -505,8 +505,16 @@ This project follows a simple Git workflow to keep contributions consistent and 
 Create a new branch from the main branch using the following convention:
 
 ```text
-<type>/<task-number>-<short-description>
+<type>/<task-number>-<short
+
+Examples:
+
+```text
+    feature/234-document-development-workflow
+    fix/198-handle-null-response
+    docs/234-update-readme
 ```
+
 ---
 
 ## Contribution
