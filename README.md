@@ -505,7 +505,8 @@ This project follows a simple Git workflow to keep contributions consistent and 
 Create a new branch from the main branch using the following convention:
 
 ```text
-<type>/<task-number>-<short
+    <type>/<task-number>-<short-description>
+```
 
 Examples:
 
@@ -520,7 +521,7 @@ Examples:
 Commits follow the following format:
 
 ```text
-<type>(<scope>): <short description in English> (#<task-number>)
+    <type>(<scope>): <short description in English> (#<task-number>)
 ```
 
 Examples:
@@ -546,14 +547,14 @@ When your work is ready:
 ### Typical workflow
 
 ```bash
-git checkout -b feature/234-document-development-workflow
+    git checkout -b feature/234-document-development-workflow
 
-# Make your changes
+    # Make your changes
 
-git add .
-git commit -m "docs(readme): document development workflow (#234)"
+    git add .
+    git commit -m "docs(readme): document development workflow (#234)"
 
-git push origin feature/234-document-development-workflow
+    git push origin feature/234-document-development-workflow
 ```
 
 ---
