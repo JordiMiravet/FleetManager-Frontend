@@ -495,6 +495,10 @@ Empty state scenarios and modal opening/closing interactions are also tested to 
 
 ---
 
+## Development Workflow
+
+---
+
 ## Contribution
 
 If you want to contribute to this project, you can:
