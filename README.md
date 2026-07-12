@@ -325,7 +325,7 @@ Examples:
 
 ### Commit messages
 
-Commits follow the following format:
+Commit messages should follow the following format:
 
 ```text
     <type>(<scope>): <short description in English> (#<task-number>)
@@ -339,7 +339,10 @@ Examples:
     docs(readme): document development workflow (#234)
 ```
 
-Keep commit messages concise, written in English, and focused on a single logical change.
+To keep commits consistent:
+- Keep commit messages concise.
+- Write them in English.
+- Focus each commit on a single logical change.
 
 ### Pull Request workflow
 
@@ -354,14 +357,14 @@ When your work is ready:
 ### Typical workflow
 
 ```bash
-    git checkout -b feature/234-document-development-workflow
+    git checkout -b docs/234-development-workflow
 
     # Make your changes
 
     git add .
     git commit -m "docs(readme): document development workflow (#234)"
 
-    git push origin feature/234-document-development-workflow
+    git push origin docs/234-development-workflow
 ```
 
 ---
