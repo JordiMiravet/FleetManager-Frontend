@@ -543,6 +543,8 @@ When your work is ready:
 4. Reference the related task in the Pull Request.
 5. Address any review feedback before the Pull Request is merged.
 
+### Typical workflow
+
 
 ---
 
