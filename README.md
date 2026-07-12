@@ -23,6 +23,7 @@
 - [Architecture](#architecture)
 - [Project Structure](#project-structure)
 - [Installation](#installation)
+- [Development Workflow](#development-workflow)
 - [Usage](#usage)
 - [Roadmap](#roadmap)
 - [Project Preview](#project-preview)
@@ -299,6 +300,72 @@ Notes
 ```
 - Real credentials are not included in the repository.
 - Each developer must use their own Firebase project.
+
+---
+
+## Development Workflow
+
+This project follows a simple Git workflow to keep contributions consistent and easy to review.
+
+### Branch naming
+
+Create a new branch from the main branch using the following convention:
+
+```text
+    <type>/<task-number>-<short-description>
+```
+
+Examples:
+
+```text
+    feature/234-document-development-workflow
+    fix/198-handle-null-response
+    docs/234-update-readme
+```
+
+### Commit messages
+
+Commit messages should follow the following format:
+
+```text
+    <type>(<scope>): <short description in English> (#<task-number>)
+```
+
+Examples:
+
+```text
+    feat(vehicle): add vehicle filtering (#145)
+    fix(calendar): prevent overlapping events (#182)
+    docs(readme): document development workflow (#234)
+```
+
+To keep commits consistent:
+- Keep commit messages concise.
+- Write them in English.
+- Focus each commit on a single logical change.
+
+### Pull Request workflow
+
+When your work is ready:
+
+1. Ensure your branch is up to date.
+2. Push your branch to the remote repository.
+3. Open a Pull Request targeting the main branch.
+4. Reference the related task in the Pull Request.
+5. Address any review feedback before the Pull Request is merged.
+
+### Typical workflow
+
+```bash
+    git checkout -b docs/234-development-workflow
+
+    # Make your changes
+
+    git add .
+    git commit -m "docs(readme): document development workflow (#234)"
+
+    git push --set-upstream origin docs/234-development-workflow
+```
 
 ---
 
