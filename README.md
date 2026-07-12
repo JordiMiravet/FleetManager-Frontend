@@ -535,6 +535,14 @@ Keep commit messages concise, written in English, and focused on a single logica
 
 ### Pull Request workflow
 
+When your work is ready:
+
+1. Ensure your branch is up to date.
+2. Push your branch to the remote repository.
+3. Open a Pull Request targeting the main branch.
+4. Reference the related task in the Pull Request.
+5. Address any review feedback before the Pull Request is merged.
+
 
 ---
 
