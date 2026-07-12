@@ -23,11 +23,11 @@
 - [Architecture](#architecture)
 - [Project Structure](#project-structure)
 - [Installation](#installation)
+- [Development Workflow](#development-workflow)
 - [Usage](#usage)
 - [Roadmap](#roadmap)
 - [Project Preview](#project-preview)
 - [Tests](#tests)
-- [Development Workflow](#development-workflow)
 - [Contribution](#contribution)
 - [Author](#author)
 
