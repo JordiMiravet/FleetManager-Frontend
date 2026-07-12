@@ -523,6 +523,14 @@ Commits follow the following format:
 <type>(<scope>): <short description in English> (#<task-number>)
 ```
 
+Examples:
+
+```text
+    feat(vehicle): add vehicle filtering (#145)
+    fix(calendar): prevent overlapping events (#182)
+    docs(readme): document development workflow (#234)
+```
+
 ---
 
 ## Contribution
