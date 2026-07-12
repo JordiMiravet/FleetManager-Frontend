@@ -364,7 +364,7 @@ When your work is ready:
     git add .
     git commit -m "docs(readme): document development workflow (#234)"
 
-    git push origin docs/234-development-workflow
+    git push --set-upstream origin docs/234-development-workflow
 ```
 
 ---
