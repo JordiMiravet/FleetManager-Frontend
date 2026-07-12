@@ -500,7 +500,13 @@ Empty state scenarios and modal opening/closing interactions are also tested to 
 
 This project follows a simple Git workflow to keep contributions consistent and easy to review.
 
+### Branch naming
 
+Create a new branch from the main branch using the following convention:
+
+```text
+<type>/<task-number>-<short-description>
+```
 ---
 
 ## Contribution
