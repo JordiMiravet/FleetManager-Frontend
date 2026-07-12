@@ -515,6 +515,14 @@ Examples:
     docs/234-update-readme
 ```
 
+### Commit messages
+
+Commits follow the following format:
+
+```text
+<type>(<scope>): <short description in English> (#<task-number>)
+```
+
 ---
 
 ## Contribution
