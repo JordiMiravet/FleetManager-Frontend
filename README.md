@@ -545,6 +545,16 @@ When your work is ready:
 
 ### Typical workflow
 
+```bash
+git checkout -b feature/234-document-development-workflow
+
+# Make your changes
+
+git add .
+git commit -m "docs(readme): document development workflow (#234)"
+
+git push origin feature/234-document-development-workflow
+```
 
 ---
 
