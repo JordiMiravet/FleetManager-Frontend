@@ -303,6 +303,69 @@ Notes
 
 ---
 
+## Development Workflow
+
+This project follows a simple Git workflow to keep contributions consistent and easy to review.
+
+### Branch naming
+
+Create a new branch from the main branch using the following convention:
+
+```text
+    <type>/<task-number>-<short-description>
+```
+
+Examples:
+
+```text
+    feature/234-document-development-workflow
+    fix/198-handle-null-response
+    docs/234-update-readme
+```
+
+### Commit messages
+
+Commits follow the following format:
+
+```text
+    <type>(<scope>): <short description in English> (#<task-number>)
+```
+
+Examples:
+
+```text
+    feat(vehicle): add vehicle filtering (#145)
+    fix(calendar): prevent overlapping events (#182)
+    docs(readme): document development workflow (#234)
+```
+
+Keep commit messages concise, written in English, and focused on a single logical change.
+
+### Pull Request workflow
+
+When your work is ready:
+
+1. Ensure your branch is up to date.
+2. Push your branch to the remote repository.
+3. Open a Pull Request targeting the main branch.
+4. Reference the related task in the Pull Request.
+5. Address any review feedback before the Pull Request is merged.
+
+### Typical workflow
+
+```bash
+    git checkout -b feature/234-document-development-workflow
+
+    # Make your changes
+
+    git add .
+    git commit -m "docs(readme): document development workflow (#234)"
+
+    git push origin feature/234-document-development-workflow
+```
+
+---
+
 ## Usage
 
 1. Open the application in your browser: http://localhost:4200
@@ -493,69 +556,6 @@ it('should render map view when vehicle list is not empty', () => {
 ```
 
 Empty state scenarios and modal opening/closing interactions are also tested to ensure correct user interface behavior.
-
----
-
-## Development Workflow
-
-This project follows a simple Git workflow to keep contributions consistent and easy to review.
-
-### Branch naming
-
-Create a new branch from the main branch using the following convention:
-
-```text
-    <type>/<task-number>-<short-description>
-```
-
-Examples:
-
-```text
-    feature/234-document-development-workflow
-    fix/198-handle-null-response
-    docs/234-update-readme
-```
-
-### Commit messages
-
-Commits follow the following format:
-
-```text
-    <type>(<scope>): <short description in English> (#<task-number>)
-```
-
-Examples:
-
-```text
-    feat(vehicle): add vehicle filtering (#145)
-    fix(calendar): prevent overlapping events (#182)
-    docs(readme): document development workflow (#234)
-```
-
-Keep commit messages concise, written in English, and focused on a single logical change.
-
-### Pull Request workflow
-
-When your work is ready:
-
-1. Ensure your branch is up to date.
-2. Push your branch to the remote repository.
-3. Open a Pull Request targeting the main branch.
-4. Reference the related task in the Pull Request.
-5. Address any review feedback before the Pull Request is merged.
-
-### Typical workflow
-
-```bash
-    git checkout -b feature/234-document-development-workflow
-
-    # Make your changes
-
-    git add .
-    git commit -m "docs(readme): document development workflow (#234)"
-
-    git push origin feature/234-document-development-workflow
-```
 
 ---
 
