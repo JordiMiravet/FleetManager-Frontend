@@ -214,9 +214,8 @@ Firebase Authentication configuration:
     - Create a project in Firebase Console
     - Enable Email/Password Authentication
     - Add a web application and copy the configuration
-    - Create src/environments/environment.ts with your configuration
 
-Inside src, create the environments folder and add the file:
+Create the file `src/environments/environment.ts` with your Firebase configuration:
 
 ```bash
     src/environments/environment.ts
