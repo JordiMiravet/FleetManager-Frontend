@@ -576,7 +576,7 @@ To contribute:
 4. Push your branch and open a Pull Request targeting the `main` branch.
 5. Open a Pull Request targeting the `main` branch and follow the expectations described in the [Development Workflow](#development-workflow).
 
-
+For complete contribution guidelines, including branch naming, commit messages and pull request expectations, see the [Development Workflow](#development-workflow) section above.
 
 ---
 
