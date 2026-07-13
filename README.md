@@ -66,7 +66,7 @@ Fleet Manager provides a centralized solution for managing vehicles, planning us
 - `SCSS`
 - `HTML5`
 
-### UI and Visualization Libraries
+### UI Libraries and Visualization
 - `PrimeNG`
 - `Leaflet`
 - `FullCalendar`
