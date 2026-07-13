@@ -572,6 +572,7 @@ To contribute:
    - Frontend: https://github.com/JordiMiravet/FleetManager-Frontend.git
    - Backend: https://github.com/JordiMiravet/FleetManager-Backend.git
 2. Create a branch following the **Branch naming** convention described in the [Development Workflow](#development-workflow).
+3. Commit your changes following the **Commit messages** convention described in the [Development Workflow](#development-workflow).
 
 
 
