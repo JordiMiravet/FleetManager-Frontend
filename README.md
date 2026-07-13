@@ -171,7 +171,8 @@ src/
 │  ├─ icons/
 │  └─ readme/
 │
-├─ environments/
+├─ environments/                    # Environment configurations
+│
 ├─ styles/                          # Global SCSS styling system
 │  ├─ abstracts/                    # Variables and mixins
 │  ├─ base/                         # Reset and base typography
