@@ -479,15 +479,55 @@ The following section shows a preview of the application in operation:
 
 ## Tests
 
-The application includes unit tests developed with Jasmine, which can be executed using Angular CLI:
+### Testing Strategy
+
+The project uses unit testing with Jasmine and Karma to verify the behavior of the application's components and services.
+
+The testing strategy focuses on validating the main application workflows and ensuring that individual parts of the system behave correctly in different scenarios.
+
+Tests cover:
+
+- **Component rendering:** Verify that components display the correct content depending on the application state, including populated and empty states.
+- **User interactions:** Ensure that user actions such as opening modals, updating data, filtering information, and interacting with UI elements trigger the expected behavior.
+- **Business logic:** Validate application rules handled by components and services, such as data processing, validations, and error handling.
+- **Fallback and edge cases:** Verify that the application behaves correctly when unexpected situations occur, such as failed geolocation requests or missing data.
+
+### Running Tests
+
+Run all unit tests:
 
 ```bash
     ng test
 ```
-- Main tested components and services:
-  - Components: `VehicleTableComponent`, `CalendarViewComponent`, `MapViewComponent`, `GraphicsViewComponent`
-  - Services: `VehicleService`, `CalendarService`, `MapService`, `GraphicsService`
-- Coverage:
+
+Run tests for a specific file or feature:
+
+```bash
+    ng test --include "src/app/features/<feature>/**/*.spec.ts"
+```
+
+This allows running tests for a specific feature or set of files without executing the complete test suite.
+
+### Tested Components and Services
+
+The main tested components and services include:
+
+**Components:**
+- `VehicleTableComponent`
+- `CalendarViewComponent`
+- `MapViewComponent`
+- `GraphicsViewComponent`
+
+**Services:**
+- `VehicleService`
+- `CalendarService`
+- `MapService`
+- `GraphicsService`
+
+
+### Coverage
+
+Current test coverage:
 
 ```markdown
 =============================== Coverage summary ===============================
@@ -500,9 +540,11 @@ Lines        : 97.11% ( 775/798 )
 TOTAL: 691 SUCCESS
 ```
 
-#### Highlighted example and line-by-line explanation
+### Testing Examples
 
-The following test is one of the most interesting examples, as it combines asynchronous operations, error handling, and fallback logic inside the `saveVehicle` method of the `MapComponent`:
+#### Business Logic and Error Handling
+
+The following test verifies that the `saveVehicle` method correctly handles a geolocation failure by using a fallback location. This scenario covers asynchronous operations, error handling and fallback behavior.
 
 ```typescript
 it('should use fallback location when geolocation fails', async () => {
@@ -539,9 +581,9 @@ it('should use fallback location when geolocation fails', async () => {
 });
 ```
 
-#### Template test example
+#### Component Rendering
 
-This test ensures that the map is rendered correctly when the vehicle list is not empty:
+This test ensures that the map component is rendered correctly when vehicles are available.
 
 ```Typescript
 it('should render map view when vehicle list is not empty', () => {
@@ -558,7 +600,7 @@ it('should render map view when vehicle list is not empty', () => {
 });
 ```
 
-Empty state scenarios and modal opening/closing interactions are also tested to ensure correct user interface behavior.
+Empty state scenarios, modal opening/closing interactions and data update flows are also tested to ensure correct user interface behavior.
 
 ---
 
