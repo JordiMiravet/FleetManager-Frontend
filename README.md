@@ -423,7 +423,7 @@ This project is continuously evolving to improve its scalability, maintainabilit
 
 ### 5. Backend and Data Architecture Improvements
 - Review current data models and persistence strategy.
-- Evaluate migration from MongoDB to a relational database depending on future requirements.
+- Evaluate database evolution strategies depending on future scalability and application requirements.
 - Improve API contracts, validation and domain separation.
 
 ### 6. Testing Improvements
