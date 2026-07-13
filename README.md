@@ -492,6 +492,22 @@ Tests cover:
 - **Business logic:** Validate application rules handled by components and services, such as data processing, validations, and error handling.
 - **Fallback and edge cases:** Verify that the application behaves correctly when unexpected situations occur, such as failed geolocation requests or missing data.
 
+### Running Tests
+
+Run all unit tests:
+
+```bash
+    ng test
+```
+
+Run tests for a specific file or feature:
+
+```bash
+    ng test --include "src/app/features/<feature>/**/*.spec.ts"
+```
+
+This allows running tests for a specific feature or set of files without executing the complete test suite.
+
 ### Tested Components and Services
 
 The main tested components and services include:
