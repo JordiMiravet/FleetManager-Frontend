@@ -568,6 +568,11 @@ Contributions are welcome.
 
 To contribute:
 
+1. Fork both repositories:
+   - Frontend: https://github.com/JordiMiravet/FleetManager-Frontend.git
+   - Backend: https://github.com/JordiMiravet/FleetManager-Backend.git
+
+
 ---
 
 ## Author
