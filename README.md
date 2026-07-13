@@ -564,15 +564,19 @@ Empty state scenarios and modal opening/closing interactions are also tested to 
 
 ## Contribution
 
-If you want to contribute to this project, you can:
+Contributions are welcome.
 
-1. Fork the repositories:
+To contribute:
+
+1. Fork both repositories:
    - Frontend: https://github.com/JordiMiravet/FleetManager-Frontend.git
    - Backend: https://github.com/JordiMiravet/FleetManager-Backend.git
-2. Create a branch for your new feature or bug fix (`git checkout -b feature/new-feature`).
-3. Make clear and descriptive commits.
-4. Push your branch.
-5. Create a Pull Request describing your changes.
+2. Create a branch following the **Branch naming** convention described in the [Development Workflow](#development-workflow).
+3. Commit your changes following the **Commit messages** convention described in the [Development Workflow](#development-workflow).
+4. Push your branch and open a Pull Request targeting the `main` branch.
+5. Open a Pull Request targeting the `main` branch and follow the expectations described in the [Development Workflow](#development-workflow).
+
+For complete contribution guidelines, including branch naming, commit messages and pull request expectations, see the [Development Workflow](#development-workflow) section above.
 
 ---
 
