@@ -492,12 +492,23 @@ Tests cover:
 - **Business logic:** Validate application rules handled by components and services, such as data processing, validations, and error handling.
 - **Fallback and edge cases:** Verify that the application behaves correctly when unexpected situations occur, such as failed geolocation requests or missing data.
 
-```bash
-    ng test
-```
-- Main tested components and services:
-  - Components: `VehicleTableComponent`, `CalendarViewComponent`, `MapViewComponent`, `GraphicsViewComponent`
-  - Services: `VehicleService`, `CalendarService`, `MapService`, `GraphicsService`
+### Tested Components and Services
+
+The main tested components and services include:
+
+**Components:**
+- `VehicleTableComponent`
+- `CalendarViewComponent`
+- `MapViewComponent`
+- `GraphicsViewComponent`
+
+**Services:**
+- `VehicleService`
+- `CalendarService`
+- `MapService`
+- `GraphicsService`
+
+
 - Coverage:
 
 ```markdown
