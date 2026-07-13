@@ -509,7 +509,9 @@ The main tested components and services include:
 - `GraphicsService`
 
 
-- Coverage:
+### Coverage
+
+Current test coverage:
 
 ```markdown
 =============================== Coverage summary ===============================
