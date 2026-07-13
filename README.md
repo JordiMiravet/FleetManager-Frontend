@@ -2,7 +2,6 @@
 
 ![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-TS-blue?style=for-the-badge)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge)
 ![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 
@@ -55,7 +54,7 @@ The application follows a modular architecture based on reusable components and 
   - Most-used vehicle.
   - Distribution of usage hours by day of the week.
 
-Fleet Manager combines vehicle management, interactive mapping, scheduling, and statistical analysis into a single integrated platform.
+Fleet Manager provides a centralized solution for managing vehicles, planning usage, and analyzing vehicle activity through an integrated platform.
 
 ---
 
@@ -67,7 +66,7 @@ Fleet Manager combines vehicle management, interactive mapping, scheduling, and 
 - `SCSS`
 - `HTML5`
 
-### UI and Visualization Libraries
+### UI Libraries and Visualization
 - `PrimeNG`
 - `Leaflet`
 - `FullCalendar`
@@ -172,7 +171,8 @@ src/
 │  ├─ icons/
 │  └─ readme/
 │
-├─ environments/
+├─ environments/                    # Environment configurations
+│
 ├─ styles/                          # Global SCSS styling system
 │  ├─ abstracts/                    # Variables and mixins
 │  ├─ base/                         # Reset and base typography
@@ -214,9 +214,8 @@ Firebase Authentication configuration:
     - Create a project in Firebase Console
     - Enable Email/Password Authentication
     - Add a web application and copy the configuration
-    - Create src/environments/environment.ts with your configuration
 
-Inside src, create the environments folder and add the file:
+Create the file `src/environments/environment.ts` with your Firebase configuration:
 
 ```bash
     src/environments/environment.ts
@@ -424,7 +423,7 @@ This project is continuously evolving to improve its scalability, maintainabilit
 
 ### 5. Backend and Data Architecture Improvements
 - Review current data models and persistence strategy.
-- Evaluate migration from MongoDB to a relational database depending on future requirements.
+- Evaluate database evolution strategies depending on future scalability and application requirements.
 - Improve API contracts, validation and domain separation.
 
 ### 6. Testing Improvements
@@ -616,7 +615,7 @@ To contribute:
 2. Create a branch following the **Branch naming** convention described in the [Development Workflow](#development-workflow).
 3. Commit your changes following the **Commit messages** convention described in the [Development Workflow](#development-workflow).
 4. Push your branch and open a Pull Request targeting the `main` branch.
-5. Open a Pull Request targeting the `main` branch and follow the expectations described in the [Development Workflow](#development-workflow).
+5. Follow the Pull Request expectations described in the [Development Workflow](#development-workflow).
 
 For complete contribution guidelines, including branch naming, commit messages and pull request expectations, see the [Development Workflow](#development-workflow) section above.
 
