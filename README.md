@@ -524,6 +524,12 @@ Lines        : 97.11% ( 775/798 )
 TOTAL: 691 SUCCESS
 ```
 
+### Testing Examples
+
+#### Business Logic and Error Handling
+
+The following test verifies that the `saveVehicle` method correctly handles a geolocation failure by using a fallback location. This scenario covers asynchronous operations, error handling and fallback behavior.
+
 #### Highlighted example and line-by-line explanation
 
 The following test is one of the most interesting examples, as it combines asynchronous operations, error handling, and fallback logic inside the `saveVehicle` method of the `MapComponent`:
