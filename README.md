@@ -574,6 +574,7 @@ To contribute:
 2. Create a branch following the **Branch naming** convention described in the [Development Workflow](#development-workflow).
 3. Commit your changes following the **Commit messages** convention described in the [Development Workflow](#development-workflow).
 4. Push your branch and open a Pull Request targeting the `main` branch.
+5. Open a Pull Request targeting the `main` branch and follow the expectations described in the [Development Workflow](#development-workflow).
 
 
 
