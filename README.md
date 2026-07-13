@@ -479,7 +479,18 @@ The following section shows a preview of the application in operation:
 
 ## Tests
 
-The application includes unit tests developed with Jasmine, which can be executed using Angular CLI:
+### Testing Strategy
+
+The project uses unit testing with Jasmine and Karma to verify the behavior of the application's components and services.
+
+The testing strategy focuses on validating the main application workflows and ensuring that individual parts of the system behave correctly in different scenarios.
+
+Tests cover:
+
+- **Component rendering:** Verify that components display the correct content depending on the application state, including populated and empty states.
+- **User interactions:** Ensure that user actions such as opening modals, updating data, filtering information, and interacting with UI elements trigger the expected behavior.
+- **Business logic:** Validate application rules handled by components and services, such as data processing, validations, and error handling.
+- **Fallback and edge cases:** Verify that the application behaves correctly when unexpected situations occur, such as failed geolocation requests or missing data.
 
 ```bash
     ng test
