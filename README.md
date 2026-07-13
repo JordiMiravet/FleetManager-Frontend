@@ -530,10 +530,6 @@ TOTAL: 691 SUCCESS
 
 The following test verifies that the `saveVehicle` method correctly handles a geolocation failure by using a fallback location. This scenario covers asynchronous operations, error handling and fallback behavior.
 
-#### Highlighted example and line-by-line explanation
-
-The following test is one of the most interesting examples, as it combines asynchronous operations, error handling, and fallback logic inside the `saveVehicle` method of the `MapComponent`:
-
 ```typescript
 it('should use fallback location when geolocation fails', async () => {
 
@@ -569,9 +565,9 @@ it('should use fallback location when geolocation fails', async () => {
 });
 ```
 
-#### Template test example
+#### Component Rendering
 
-This test ensures that the map is rendered correctly when the vehicle list is not empty:
+This test ensures that the map component is rendered correctly when vehicles are available.
 
 ```Typescript
 it('should render map view when vehicle list is not empty', () => {
