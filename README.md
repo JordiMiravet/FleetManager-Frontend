@@ -584,7 +584,7 @@ it('should render map view when vehicle list is not empty', () => {
 });
 ```
 
-Empty state scenarios and modal opening/closing interactions are also tested to ensure correct user interface behavior.
+Empty state scenarios, modal opening/closing interactions and data update flows are also tested to ensure correct user interface behavior.
 
 ---
 
