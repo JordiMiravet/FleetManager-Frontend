@@ -59,7 +59,9 @@ export class MapService {
   ): L.Marker {
     const marker = L.marker(coords, {
       draggable: draggable,
-      icon: this.locationIcon,
+      icon: vehicle
+        ? this.createVehicleIcon(vehicle)
+        : this.locationIcon,
     }).addTo(this.map);
 
     return marker;
