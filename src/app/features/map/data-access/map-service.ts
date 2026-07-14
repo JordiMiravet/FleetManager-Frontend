@@ -49,7 +49,7 @@ export class MapService {
           alt="${vehicle.name}"
         />
       `,
-      iconSize: [48, 48],
+      iconSize: [75, 75],
       iconAnchor: [24, 24],
     });
   }
