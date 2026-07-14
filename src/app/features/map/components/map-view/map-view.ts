@@ -73,7 +73,7 @@ export class MapViewComponent implements OnInit, OnDestroy {
       if (!vehicle.location) return;
 
       const coords: [number, number] = [vehicle.location.lat, vehicle.location.lng];
-      const marker = this.mapService.createMarker(coords, false);
+      const marker = this.mapService.createMarker(coords, vehicle, false);
 
       this.allVehicleMarkers.push(marker);
       bounds.extend(coords);
@@ -122,7 +122,11 @@ export class MapViewComponent implements OnInit, OnDestroy {
 
   private placeSelectedVehicleMarker(coords: [number, number] | L.LatLng, vehicleName: string): void {
     this.clearSelectedMarker();
-    this.selectedVehicleMarker = this.mapService.createMarker(coords, true);
+    this.selectedVehicleMarker = this.mapService.createMarker(
+      coords,
+      this.selectedVehicle() ?? undefined,
+      true
+    );
 
     this.selectedVehicleMarker.on('dragend', () => {
       const position = this.selectedVehicleMarker!.getLatLng();
