@@ -39,11 +39,13 @@ export class MapService {
   }
   
   private createVehicleIcon(vehicle: VehicleInterface): L.DivIcon {
+    const fallbackImage = `https://placehold.co/48x48?text=vehicle`;
+
     return L.divIcon({
       className: 'vehicle-marker',
       html: `
         <img 
-          src="${vehicle.imageUrl}" 
+          src="${vehicle.imageUrl || fallbackImage}" 
           alt="${vehicle.name}"
         />
       `,
