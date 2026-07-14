@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as L from 'leaflet';
+import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
 
 @Injectable({
   providedIn: 'root',
@@ -37,8 +38,23 @@ export class MapService {
     return this.map;
   }
   
+  private createVehicleIcon(vehicle: VehicleInterface): L.DivIcon {
+    return L.divIcon({
+      className: 'vehicle-marker',
+      html: `
+        <img 
+          src="${vehicle.imageUrl}" 
+          alt="${vehicle.name}"
+        />
+      `,
+      iconSize: [48, 48],
+      iconAnchor: [24, 24],
+    });
+  }
+
   createMarker(
     coords: L.LatLngExpression,
+    vehicle?: VehicleInterface,
     draggable: boolean = true
   ): L.Marker {
     const marker = L.marker(coords, {
