@@ -432,21 +432,14 @@ describe('MapViewComponent', () => {
       spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
       const setViewSpy = spyOn(mapService, 'setView');
 
-      const vehicle = {
-        _id: 'veh-123',
-        name: 'Ferrari',
-        model: 'F8',
-        plate: 'F123',
-        location: { lat: 41, lng: 2 }
-      } as VehicleInterface;
-
-      (component as any).placeSelectedVehicleMarker([41, 2], vehicle);
+      (component as any).placeSelectedVehicleMarker([41, 2], 'Ferrari');
 
       expect(mapService.createMarker).toHaveBeenCalledWith(
         [41, 2],
-        vehicle,
+        undefined,
         true
       );
+
       expect(mockMarker.on).toHaveBeenCalledWith('dragend', jasmine.any(Function));
       expect(setViewSpy).toHaveBeenCalledOnceWith([41, 2], 19);
     });
