@@ -105,11 +105,15 @@ describe('MapService', () => {
       expect(marker.dragging?.enabled()).toBeTrue();
     });
 
-    it('should create a marker with draggable set to true', () => {
-      const marker = service.createMarker([41.3851, 2.1734], true);
+  it('should create a marker with draggable set to true', () => {
+    const marker = service.createMarker(
+      [41.3851, 2.1734],
+      mockVehicle,
+      true
+    );
 
-      expect(marker.dragging?.enabled()).toBeTrue();
-    });
+    expect(marker.dragging?.enabled()).toBeTrue();
+  });
 
     it('should create a marker with draggable set to false', () => {
       const marker = service.createMarker([41.3851, 2.1734], false);
