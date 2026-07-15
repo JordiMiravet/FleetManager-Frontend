@@ -54,7 +54,7 @@ describe('MapService', () => {
       const map = service.initMap('map', [41.3851, 2.1734], 13);
       const tileLayers = Object.values((map as any)._layers).filter(layer => layer instanceof L.TileLayer);
 
-      expect(tileLayers.length).toBe(1);
+      expect(tileLayers).toHaveSize(1);
     });
 
     it('should return the created map', () => {
