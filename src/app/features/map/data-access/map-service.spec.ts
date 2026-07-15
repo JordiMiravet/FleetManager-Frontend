@@ -2,12 +2,20 @@ import { TestBed } from '@angular/core/testing';
 import * as L from 'leaflet';
 
 import { MapService } from './map-service';
+import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
 
 function createMapDom() {
   const div = document.createElement('div');
   div.id = 'map';
   document.body.appendChild(div);
 }
+
+const mockVehicle: VehicleInterface = {
+  name: 'Ferrari LaFerrari',
+  model: 'LaFerrari',
+  plate: 'F1234ABC',
+  imageUrl: 'https://example.com/ferrari-laferrari.png',
+};
 
 describe('MapService', () => {
   let service: MapService;
