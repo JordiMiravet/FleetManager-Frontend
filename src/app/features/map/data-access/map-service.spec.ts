@@ -116,7 +116,11 @@ describe('MapService', () => {
   });
 
     it('should create a marker with draggable set to false', () => {
-      const marker = service.createMarker([41.3851, 2.1734], false);
+      const marker = service.createMarker(
+        [41.3851, 2.1734],
+        mockVehicle,
+        false
+      );
 
       expect(marker.dragging?.enabled()).toBeFalse();
     });
