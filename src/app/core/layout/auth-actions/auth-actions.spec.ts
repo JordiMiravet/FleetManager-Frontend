@@ -117,13 +117,13 @@ describe('AuthActionsComponent', () => {
       const loginButton = fixture.nativeElement.querySelector('[data-test="loginButton"]');
       loginButton.click();
 
-      await harness.navigateByUrl('/login');
+      await harness.navigateByUrl('/auth/login');
       expect(harness.routeNativeElement?.textContent).toContain('Login Page');
 
       const registerButton = fixture.nativeElement.querySelector('[data-test="registerButton"]');
       registerButton.click();
 
-      await harness.navigateByUrl('/register');
+      await harness.navigateByUrl('/auth/register');
       expect(harness.routeNativeElement?.textContent).toContain('Register Page');
     });
 
