@@ -423,7 +423,7 @@ describe('MapViewComponent', () => {
       (component as any).clearAllMarkers();
 
       expect(removeLayerSpy).toHaveBeenCalledTimes(markers.length);
-      expect((component as any).allVehicleMarkers.length).toBe(0);
+      expect((component as any).allVehicleMarkers).toHaveSize(0);
     });
 
     it('should place selected vehicle marker', () => {
