@@ -144,7 +144,12 @@ describe('MapViewComponent', () => {
 
       component.showVehicle(selectedVehicleMock);
 
-      expect(mapService.createMarker).toHaveBeenCalledWith([41, 2], true);
+      expect(mapService.createMarker).toHaveBeenCalledWith(
+        [41, 2],
+        selectedVehicleMock,
+        true
+      );
+
       expect(mockMarker.on).toHaveBeenCalledWith('dragend', jasmine.any(Function));
     });
 
