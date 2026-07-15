@@ -2,12 +2,20 @@ import { TestBed } from '@angular/core/testing';
 import * as L from 'leaflet';
 
 import { MapService } from './map-service';
+import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
 
 function createMapDom() {
   const div = document.createElement('div');
   div.id = 'map';
   document.body.appendChild(div);
 }
+
+const mockVehicle: VehicleInterface = {
+  name: 'Ferrari LaFerrari',
+  model: 'LaFerrari',
+  plate: 'F1234ABC',
+  imageUrl: 'https://example.com/ferrari-laferrari.png',
+};
 
 describe('MapService', () => {
   let service: MapService;
@@ -46,7 +54,7 @@ describe('MapService', () => {
       const map = service.initMap('map', [41.3851, 2.1734], 13);
       const tileLayers = Object.values((map as any)._layers).filter(layer => layer instanceof L.TileLayer);
 
-      expect(tileLayers.length).toBe(1);
+      expect(tileLayers).toHaveSize(1);
     });
 
     it('should return the created map', () => {
@@ -98,13 +106,21 @@ describe('MapService', () => {
     });
 
     it('should create a marker with draggable set to true', () => {
-      const marker = service.createMarker([41.3851, 2.1734], true);
+      const marker = service.createMarker(
+        [41.3851, 2.1734],
+        mockVehicle,
+        true
+      );
 
       expect(marker.dragging?.enabled()).toBeTrue();
     });
 
     it('should create a marker with draggable set to false', () => {
-      const marker = service.createMarker([41.3851, 2.1734], false);
+      const marker = service.createMarker(
+        [41.3851, 2.1734],
+        mockVehicle,
+        false
+      );
 
       expect(marker.dragging?.enabled()).toBeFalse();
     });

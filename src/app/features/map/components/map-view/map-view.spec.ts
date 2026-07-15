@@ -144,7 +144,12 @@ describe('MapViewComponent', () => {
 
       component.showVehicle(selectedVehicleMock);
 
-      expect(mapService.createMarker).toHaveBeenCalledWith([41, 2], true);
+      expect(mapService.createMarker).toHaveBeenCalledWith(
+        [41, 2],
+        selectedVehicleMock,
+        true
+      );
+
       expect(mockMarker.on).toHaveBeenCalledWith('dragend', jasmine.any(Function));
     });
 
@@ -418,7 +423,7 @@ describe('MapViewComponent', () => {
       (component as any).clearAllMarkers();
 
       expect(removeLayerSpy).toHaveBeenCalledTimes(markers.length);
-      expect((component as any).allVehicleMarkers.length).toBe(0);
+      expect((component as any).allVehicleMarkers).toHaveSize(0);
     });
 
     it('should place selected vehicle marker', () => {
@@ -429,7 +434,12 @@ describe('MapViewComponent', () => {
 
       (component as any).placeSelectedVehicleMarker([41, 2], 'Ferrari');
 
-      expect(mapService.createMarker).toHaveBeenCalledWith([41, 2], true);
+      expect(mapService.createMarker).toHaveBeenCalledWith(
+        [41, 2],
+        undefined,
+        true
+      );
+
       expect(mockMarker.on).toHaveBeenCalledWith('dragend', jasmine.any(Function));
       expect(setViewSpy).toHaveBeenCalledOnceWith([41, 2], 19);
     });
