@@ -34,8 +34,8 @@ describe('AuthActionsComponent', () => {
       imports: [AuthActionsComponent],
       providers: [
         provideRouter([
-          { path: 'login', component: LoginComponent },
-          { path: 'register', component: RegisterComponent }
+          { path: 'auth/login', component: LoginComponent },
+          { path: 'auth/register', component: RegisterComponent }
         ]),
         { provide: AuthService, useClass: MockAuthService },
         LayoutMessagesService,
@@ -108,8 +108,9 @@ describe('AuthActionsComponent', () => {
       expect(drawer).toBeTruthy();
     });
 
-    it('should navigate to correct routes when buttons are clicked', async () => {
-      const harness = await RouterTestingHarness.create();
+    it('should navigate to correct routes when buttons are clicked', () => {
+      const router = TestBed.inject(Router);
+      const navigateByUrlSpy = spyOn(router, 'navigateByUrl').and.callThrough();
 
       component.isLogged = signal(false);
       fixture.detectChanges();
@@ -117,14 +118,12 @@ describe('AuthActionsComponent', () => {
       const loginButton = fixture.nativeElement.querySelector('[data-test="loginButton"]');
       loginButton.click();
 
-      await harness.navigateByUrl('/login');
-      expect(harness.routeNativeElement?.textContent).toContain('Login Page');
+      expect(navigateByUrlSpy.calls.mostRecent().args[0].toString()).toBe('/auth/login');
 
       const registerButton = fixture.nativeElement.querySelector('[data-test="registerButton"]');
       registerButton.click();
 
-      await harness.navigateByUrl('/register');
-      expect(harness.routeNativeElement?.textContent).toContain('Register Page');
+      expect(navigateByUrlSpy.calls.mostRecent().args[0].toString()).toBe('/auth/register');
     });
 
   });
@@ -187,7 +186,7 @@ describe('AuthActionsComponent', () => {
 
   describe('Interactions', () => {
 
-    it('should call logout and navigate when onLogout is called', async () => {
+    it('should call logout and navigate to login when onLogout is called', async () => {
       const router = TestBed.inject(Router);
       spyOn(router, 'navigate');
 
@@ -196,7 +195,7 @@ describe('AuthActionsComponent', () => {
       expect(authService.logout).toHaveBeenCalled();
       await authService.logout.calls.mostRecent().returnValue;
 
-      expect(router.navigate).toHaveBeenCalledWith(['login']);
+      expect(router.navigate).toHaveBeenCalledWith(['/auth/login']);
     });
 
     it('should call onLogout when drawer emits logout event', () => {
