@@ -187,7 +187,7 @@ describe('AuthActionsComponent', () => {
 
   describe('Interactions', () => {
 
-    it('should call logout and navigate when onLogout is called', async () => {
+    it('should call logout and navigate to login when onLogout is called', async () => {
       const router = TestBed.inject(Router);
       spyOn(router, 'navigate');
 
@@ -196,7 +196,7 @@ describe('AuthActionsComponent', () => {
       expect(authService.logout).toHaveBeenCalled();
       await authService.logout.calls.mostRecent().returnValue;
 
-      expect(router.navigate).toHaveBeenCalledWith(['login']);
+      expect(router.navigate).toHaveBeenCalledWith(['/auth/login']);
     });
 
     it('should call onLogout when drawer emits logout event', () => {
