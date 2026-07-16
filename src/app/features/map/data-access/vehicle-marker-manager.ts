@@ -7,7 +7,7 @@ const ICON_ANCHOR: [number, number] = [24, 24];
 @Injectable({
   providedIn: 'root',
 })
-export class VehicleMarkerMount {
+export class VehicleMarkerManager {
 
   createIcon(): L.DivIcon {
     return L.divIcon({

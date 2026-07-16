@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { VehicleMarkerMount } from './vehicle-marker-mount';
+import { VehicleMarkerManager } from './vehicle-marker-manager';
 
-describe('VehicleMarkerMount', () => {
-  let service: VehicleMarkerMount;
+describe('VehicleMarkerManager', () => {
+  let service: VehicleMarkerManager;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(VehicleMarkerMount);
+    service = TestBed.inject(VehicleMarkerManager);
   });
 
   it('should be created', () => {
