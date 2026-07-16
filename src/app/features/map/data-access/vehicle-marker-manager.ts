@@ -38,5 +38,4 @@ export class VehicleMarkerManager {
     return () => componentRef.destroy();
   }
 
-  constructor() { }
 }
