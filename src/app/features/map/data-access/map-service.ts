@@ -32,7 +32,7 @@ export class MapService {
       attribution: '© OpenStreetMap contributors'
     }).addTo(this.map);
 
-    return this.map
+    return this.map;
   }
 
   getMap(): L.Map {
