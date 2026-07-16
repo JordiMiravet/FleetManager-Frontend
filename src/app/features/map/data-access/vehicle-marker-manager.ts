@@ -12,15 +12,6 @@ const ICON_ANCHOR: [number, number] = [24, 24];
 })
 export class VehicleMarkerManager {
 
-  createIcon(): L.DivIcon {
-    return L.divIcon({
-      className: 'vehicle-marker-host',
-      html: '',
-      iconSize: ICON_SIZE,
-      iconAnchor: ICON_ANCHOR,
-    });
-  }
-
   mountComponent(
     marker: L.Marker,
     vehicle: VehicleInterface,
@@ -36,6 +27,15 @@ export class VehicleMarkerManager {
     });
 
     return () => componentRef.destroy();
+  }
+
+  createIcon(): L.DivIcon {
+    return L.divIcon({
+      className: 'vehicle-marker-host',
+      html: '',
+      iconSize: ICON_SIZE,
+      iconAnchor: ICON_ANCHOR,
+    });
   }
 
 }
