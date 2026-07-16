@@ -30,6 +30,10 @@ export class VehicleMarkerManager {
     componentRef.setInput('vehicle', vehicle);
     componentRef.changeDetectorRef.detectChanges();
 
+    marker.on('add', () => {
+      marker.getElement()?.appendChild(componentRef.location.nativeElement);
+    });
+
     return () => {};
   }
 
