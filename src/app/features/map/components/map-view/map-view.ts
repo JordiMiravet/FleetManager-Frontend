@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnDestroy, OnInit, signal, ViewContainerRef } from '@angular/core';
 import * as L from 'leaflet';
 
 import { MapService } from '../../data-access/map-service';
@@ -9,6 +9,7 @@ import { VehicleSelectorComponent } from '../../../vehicle/components/vehicle-se
 import { DetailsPanelComponent } from "../details-panel/details-panel";
 import { ConfirmModalComponent } from "../../../../shared/ui/modals/confirm-modal/confirm-modal";
 import { MapMessagesService } from '../../i18n/map-messages';
+import { VehicleMarkerManager } from '../../data-access/vehicle-marker-manager';
 
 @Component({
   selector: 'app-map-view',
@@ -27,6 +28,8 @@ export class MapViewComponent implements OnInit, OnDestroy {
   private readonly geo = inject(GeolocationService);
   private readonly vehicleService = inject(VehicleService);
   private readonly messagesService = inject(MapMessagesService)
+  private readonly vehicleMarkerManager = inject(VehicleMarkerManager);
+  private readonly viewContainerRef = inject(ViewContainerRef);
 
   public readonly vehicles = this.vehicleService.vehicles;
 
