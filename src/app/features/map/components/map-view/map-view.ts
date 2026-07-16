@@ -36,6 +36,7 @@ export class MapViewComponent implements OnInit, OnDestroy {
   private map!: L.Map;
   private allVehicleMarkers: L.Marker[] = [];
   private selectedVehicleMarker?: L.Marker;
+  private selectedMarkerCleanup?: () => void;
   private readonly markerCleanups = new Map<L.Marker, () => void>();
 
   public readonly selectedVehicle = signal<VehicleInterface | null>(null);
