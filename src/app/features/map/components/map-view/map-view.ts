@@ -168,6 +168,9 @@ export class MapViewComponent implements OnInit, OnDestroy {
 
   private clearSelectedMarker(): void {
     if (this.selectedVehicleMarker) {
+      this.selectedMarkerCleanup?.();
+      this.selectedMarkerCleanup = undefined;
+
       this.mapService.removeLayer(this.selectedVehicleMarker);
       this.selectedVehicleMarker = undefined;
     }
