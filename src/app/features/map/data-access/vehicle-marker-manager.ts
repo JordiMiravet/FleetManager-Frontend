@@ -27,10 +27,11 @@ export class VehicleMarkerManager {
     viewContainerRef: ViewContainerRef
   ): () => void {
     const componentRef = viewContainerRef.createComponent(VehicleMarkerComponent);
+
     componentRef.setInput('vehicle', vehicle);
     componentRef.changeDetectorRef.detectChanges();
 
-    marker.on('add', () => {
+    queueMicrotask(() => {
       marker.getElement()?.appendChild(componentRef.location.nativeElement);
     });
 
