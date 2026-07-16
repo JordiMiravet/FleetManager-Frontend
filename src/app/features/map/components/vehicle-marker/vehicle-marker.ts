@@ -10,5 +10,6 @@ import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 })
 export class VehicleMarkerComponent {
   public readonly vehicle = input.required<VehicleInterface>();
+  public readonly fallbackImage = 'https://placehold.co/48x48?text=vehicle';
 
 }
