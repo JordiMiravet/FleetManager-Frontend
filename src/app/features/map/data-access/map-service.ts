@@ -13,7 +13,7 @@ export class MapService {
 
   private map!: L.Map;
 
-  public locationIcon = L.icon({
+  private readonly locationIcon = L.icon({
     iconUrl: '/assets/icons/marker-icon.png',
     iconRetinaUrl: '/assets/icons/marker-icon-2x.png',
     shadowUrl: '/assets/icons/marker-shadow.png',
