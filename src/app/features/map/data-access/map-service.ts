@@ -1,11 +1,15 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import * as L from 'leaflet';
+
 import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleMarkerManager } from './vehicle-marker-manager';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MapService {
+
+  private readonly vehicleMarkerManager = inject(VehicleMarkerManager);
 
   private map!: L.Map;
 
