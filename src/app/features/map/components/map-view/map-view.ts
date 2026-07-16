@@ -79,6 +79,9 @@ export class MapViewComponent implements OnInit, OnDestroy {
       const coords: [number, number] = [vehicle.location.lat, vehicle.location.lng];
       const marker = this.mapService.createMarker(coords, vehicle, false);
 
+      const destroy = this.vehicleMarkerManager.mountComponent(marker, vehicle, this.viewContainerRef);
+      this.markerCleanups.set(marker, destroy);
+
       this.allVehicleMarkers.push(marker);
       bounds.extend(coords);
     });
