@@ -1,15 +1,19 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import * as L from 'leaflet';
+
 import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleMarkerManager } from './vehicle-marker-manager';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MapService {
 
+  private readonly vehicleMarkerManager = inject(VehicleMarkerManager);
+
   private map!: L.Map;
 
-  public locationIcon = L.icon({
+  private readonly locationIcon = L.icon({
     iconUrl: '/assets/icons/marker-icon.png',
     iconRetinaUrl: '/assets/icons/marker-icon-2x.png',
     shadowUrl: '/assets/icons/marker-shadow.png',
@@ -28,7 +32,7 @@ export class MapService {
       attribution: '© OpenStreetMap contributors'
     }).addTo(this.map);
 
-    return this.map
+    return this.map;
   }
 
   getMap(): L.Map {
@@ -36,22 +40,6 @@ export class MapService {
       throw new Error('Map not initialized');
     }
     return this.map;
-  }
-  
-  private createVehicleIcon(vehicle: VehicleInterface): L.DivIcon {
-    const fallbackImage = `https://placehold.co/48x48?text=vehicle`;
-
-    return L.divIcon({
-      className: 'vehicle-marker',
-      html: `
-        <img 
-          src="${vehicle.imageUrl || fallbackImage}" 
-          alt="${vehicle.name}"
-        />
-      `,
-      iconSize: [75, 75],
-      iconAnchor: [24, 24],
-    });
   }
 
   createMarker(
@@ -62,7 +50,7 @@ export class MapService {
     const marker = L.marker(coords, {
       draggable: draggable,
       icon: vehicle
-        ? this.createVehicleIcon(vehicle)
+        ? this.vehicleMarkerManager.createIcon()
         : this.locationIcon,
     }).addTo(this.map);
 

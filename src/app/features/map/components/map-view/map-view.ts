@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnDestroy, OnInit, signal, ViewContainerRef } from '@angular/core';
 import * as L from 'leaflet';
 
 import { MapService } from '../../data-access/map-service';
@@ -9,6 +9,7 @@ import { VehicleSelectorComponent } from '../../../vehicle/components/vehicle-se
 import { DetailsPanelComponent } from "../details-panel/details-panel";
 import { ConfirmModalComponent } from "../../../../shared/ui/modals/confirm-modal/confirm-modal";
 import { MapMessagesService } from '../../i18n/map-messages';
+import { VehicleMarkerManager } from '../../data-access/vehicle-marker-manager';
 
 @Component({
   selector: 'app-map-view',
@@ -26,19 +27,25 @@ export class MapViewComponent implements OnInit, OnDestroy {
   private readonly mapService = inject(MapService);
   private readonly geo = inject(GeolocationService);
   private readonly vehicleService = inject(VehicleService);
-  private readonly messagesService = inject(MapMessagesService)
+  private readonly messagesService = inject(MapMessagesService);
+  private readonly vehicleMarkerManager = inject(VehicleMarkerManager);
+  private readonly viewContainerRef = inject(ViewContainerRef);
 
   public readonly vehicles = this.vehicleService.vehicles;
-
-  private map!: L.Map;
-  private allVehicleMarkers: L.Marker[] = [];
-  private selectedVehicleMarker?: L.Marker;
 
   public readonly selectedVehicle = signal<VehicleInterface | null>(null);
   public readonly newPosition = signal<L.LatLng | null>(null);
   public readonly showConfirmModal = signal(false);
 
   public readonly mapViewMsg = this.messagesService.mapView;
+
+  private map!: L.Map;
+
+  private allVehicleMarkers: L.Marker[] = [];
+  private selectedVehicleMarker?: L.Marker;
+
+  private selectedMarkerCleanup?: () => void;
+  private readonly markerCleanups = new Map<L.Marker, () => void>();
 
   private readonly DEFAULT_CENTER: [number, number] = [41.478, 2.31];
   private readonly DEFAULT_ZOOM = 10;
@@ -75,6 +82,9 @@ export class MapViewComponent implements OnInit, OnDestroy {
       const coords: [number, number] = [vehicle.location.lat, vehicle.location.lng];
       const marker = this.mapService.createMarker(coords, vehicle, false);
 
+      const destroy = this.vehicleMarkerManager.mountComponent(marker, vehicle, this.viewContainerRef);
+      this.markerCleanups.set(marker, destroy);
+
       this.allVehicleMarkers.push(marker);
       bounds.extend(coords);
     });
@@ -96,36 +106,24 @@ export class MapViewComponent implements OnInit, OnDestroy {
     if (!vehicle.location) return;
 
     const coords: [number, number] = [vehicle.location.lat, vehicle.location.lng];
-    this.placeSelectedVehicleMarker(coords, vehicle.name);
+    this.placeSelectedVehicleMarker(coords);
   }
 
-  async onUserLocationClick(): Promise<void> {
-    const vehicle = this.selectedVehicle();
-    if (!vehicle) return;
-
-    try {
-      const coords = await this.geo.getCurrentLocation();
-      const position = L.latLng(coords);
-
-      this.placeSelectedVehicleMarker(coords, vehicle.name);
-      this.vehicleService.updateVehicleLocation(vehicle, position);
-
-      this.selectedVehicle.set({
-        ...vehicle,
-        location: { lat: position.lat, lng: position.lng }
-      });
-
-    } catch (error) {
-      console.error('Error getting location:', error);
-    }
-  }
-
-  private placeSelectedVehicleMarker(coords: [number, number] | L.LatLng, vehicleName: string): void {
+  private placeSelectedVehicleMarker(
+    coords: [number, number] | L.LatLng
+  ): void {
     this.clearSelectedMarker();
+
     this.selectedVehicleMarker = this.mapService.createMarker(
       coords,
       this.selectedVehicle() ?? undefined,
       true
+    );
+
+    this.selectedMarkerCleanup = this.vehicleMarkerManager.mountComponent(
+      this.selectedVehicleMarker,
+      this.selectedVehicle()!,
+      this.viewContainerRef
     );
 
     this.selectedVehicleMarker.on('dragend', () => {
@@ -138,14 +136,44 @@ export class MapViewComponent implements OnInit, OnDestroy {
   }
 
   private clearAllMarkers(): void {
-    this.allVehicleMarkers.forEach(marker => this.mapService.removeLayer(marker));
+    this.allVehicleMarkers.forEach(marker => {
+      this.markerCleanups.get(marker)?.();
+      this.markerCleanups.delete(marker);
+
+      this.mapService.removeLayer(marker);
+    });
+
     this.allVehicleMarkers = [];
   }
 
   private clearSelectedMarker(): void {
     if (this.selectedVehicleMarker) {
+      this.selectedMarkerCleanup?.();
+      this.selectedMarkerCleanup = undefined;
+
       this.mapService.removeLayer(this.selectedVehicleMarker);
       this.selectedVehicleMarker = undefined;
+    }
+  }
+
+  async onUserLocationClick(): Promise<void> {
+    const vehicle = this.selectedVehicle();
+    if (!vehicle) return;
+
+    try {
+      const coords = await this.geo.getCurrentLocation();
+      const position = L.latLng(coords);
+
+      this.placeSelectedVehicleMarker(coords);
+      this.vehicleService.updateVehicleLocation(vehicle, position);
+
+      this.selectedVehicle.set({
+        ...vehicle,
+        location: { lat: position.lat, lng: position.lng }
+      });
+
+    } catch (error) {
+      console.error('Error getting location:', error);
     }
   }
 
