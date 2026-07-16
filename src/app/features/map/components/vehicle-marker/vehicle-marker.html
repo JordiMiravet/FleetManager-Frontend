@@ -1,4 +1,4 @@
 <img
-    [src]="vehicle().imageUrl"
+    [src]="vehicle().imageUrl || fallbackImage"
     [alt]="vehicle().name"
 />
