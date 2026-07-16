@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewContainerRef } from '@angular/core';
 import * as L from 'leaflet';
+import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
 
 const ICON_SIZE: [number, number] = [75, 75];
 const ICON_ANCHOR: [number, number] = [24, 24];
@@ -16,6 +17,14 @@ export class VehicleMarkerManager {
       iconSize: ICON_SIZE,
       iconAnchor: ICON_ANCHOR,
     });
+  }
+
+  mountComponent(
+    marker: L.Marker,
+    vehicle: VehicleInterface,
+    viewContainerRef: ViewContainerRef
+  ): () => void {
+    return () => {};
   }
 
   constructor() { }
