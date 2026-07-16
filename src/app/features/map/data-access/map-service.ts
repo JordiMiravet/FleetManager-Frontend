@@ -41,7 +41,7 @@ export class MapService {
     }
     return this.map;
   }
-  
+
   private createVehicleIcon(vehicle: VehicleInterface): L.DivIcon {
     const fallbackImage = `https://placehold.co/48x48?text=vehicle`;
 
@@ -66,7 +66,7 @@ export class MapService {
     const marker = L.marker(coords, {
       draggable: draggable,
       icon: vehicle
-        ? this.createVehicleIcon(vehicle)
+        ? this.vehicleMarkerManager.createIcon()
         : this.locationIcon,
     }).addTo(this.map);
 
