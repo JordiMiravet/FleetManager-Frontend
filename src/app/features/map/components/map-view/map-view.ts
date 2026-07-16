@@ -128,12 +128,22 @@ export class MapViewComponent implements OnInit, OnDestroy {
     }
   }
 
-  private placeSelectedVehicleMarker(coords: [number, number] | L.LatLng, vehicleName: string): void {
+  private placeSelectedVehicleMarker(
+    coords: [number, number] | L.LatLng,
+    vehicleName: string
+  ): void {
     this.clearSelectedMarker();
+
     this.selectedVehicleMarker = this.mapService.createMarker(
       coords,
       this.selectedVehicle() ?? undefined,
       true
+    );
+
+    this.selectedMarkerCleanup = this.vehicleMarkerManager.mountComponent(
+      this.selectedVehicleMarker,
+      this.selectedVehicle()!,
+      this.viewContainerRef
     );
 
     this.selectedVehicleMarker.on('dragend', () => {
