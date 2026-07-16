@@ -145,7 +145,13 @@ export class MapViewComponent implements OnInit, OnDestroy {
   }
 
   private clearAllMarkers(): void {
-    this.allVehicleMarkers.forEach(marker => this.mapService.removeLayer(marker));
+    this.allVehicleMarkers.forEach(marker => {
+      this.markerCleanups.get(marker)?.();
+      this.markerCleanups.delete(marker);
+
+      this.mapService.removeLayer(marker);
+    });
+
     this.allVehicleMarkers = [];
   }
 
