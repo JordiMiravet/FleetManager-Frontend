@@ -42,22 +42,6 @@ export class MapService {
     return this.map;
   }
 
-  private createVehicleIcon(vehicle: VehicleInterface): L.DivIcon {
-    const fallbackImage = `https://placehold.co/48x48?text=vehicle`;
-
-    return L.divIcon({
-      className: 'vehicle-marker',
-      html: `
-        <img 
-          src="${vehicle.imageUrl || fallbackImage}" 
-          alt="${vehicle.name}"
-        />
-      `,
-      iconSize: [75, 75],
-      iconAnchor: [24, 24],
-    });
-  }
-
   createMarker(
     coords: L.LatLngExpression,
     vehicle?: VehicleInterface,
