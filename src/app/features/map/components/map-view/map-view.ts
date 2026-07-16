@@ -104,7 +104,7 @@ export class MapViewComponent implements OnInit, OnDestroy {
     if (!vehicle.location) return;
 
     const coords: [number, number] = [vehicle.location.lat, vehicle.location.lng];
-    this.placeSelectedVehicleMarker(coords, vehicle.name);
+    this.placeSelectedVehicleMarker(coords);
   }
 
   async onUserLocationClick(): Promise<void> {
@@ -115,7 +115,7 @@ export class MapViewComponent implements OnInit, OnDestroy {
       const coords = await this.geo.getCurrentLocation();
       const position = L.latLng(coords);
 
-      this.placeSelectedVehicleMarker(coords, vehicle.name);
+      this.placeSelectedVehicleMarker(coords);
       this.vehicleService.updateVehicleLocation(vehicle, position);
 
       this.selectedVehicle.set({
@@ -129,8 +129,7 @@ export class MapViewComponent implements OnInit, OnDestroy {
   }
 
   private placeSelectedVehicleMarker(
-    coords: [number, number] | L.LatLng,
-    vehicleName: string
+    coords: [number, number] | L.LatLng
   ): void {
     this.clearSelectedMarker();
 
