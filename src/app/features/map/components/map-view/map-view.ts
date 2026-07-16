@@ -27,23 +27,25 @@ export class MapViewComponent implements OnInit, OnDestroy {
   private readonly mapService = inject(MapService);
   private readonly geo = inject(GeolocationService);
   private readonly vehicleService = inject(VehicleService);
-  private readonly messagesService = inject(MapMessagesService)
+  private readonly messagesService = inject(MapMessagesService);
   private readonly vehicleMarkerManager = inject(VehicleMarkerManager);
   private readonly viewContainerRef = inject(ViewContainerRef);
 
   public readonly vehicles = this.vehicleService.vehicles;
-
-  private map!: L.Map;
-  private allVehicleMarkers: L.Marker[] = [];
-  private selectedVehicleMarker?: L.Marker;
-  private selectedMarkerCleanup?: () => void;
-  private readonly markerCleanups = new Map<L.Marker, () => void>();
 
   public readonly selectedVehicle = signal<VehicleInterface | null>(null);
   public readonly newPosition = signal<L.LatLng | null>(null);
   public readonly showConfirmModal = signal(false);
 
   public readonly mapViewMsg = this.messagesService.mapView;
+
+  private map!: L.Map;
+
+  private allVehicleMarkers: L.Marker[] = [];
+  private selectedVehicleMarker?: L.Marker;
+
+  private selectedMarkerCleanup?: () => void;
+  private readonly markerCleanups = new Map<L.Marker, () => void>();
 
   private readonly DEFAULT_CENTER: [number, number] = [41.478, 2.31];
   private readonly DEFAULT_ZOOM = 10;
@@ -107,27 +109,6 @@ export class MapViewComponent implements OnInit, OnDestroy {
     this.placeSelectedVehicleMarker(coords);
   }
 
-  async onUserLocationClick(): Promise<void> {
-    const vehicle = this.selectedVehicle();
-    if (!vehicle) return;
-
-    try {
-      const coords = await this.geo.getCurrentLocation();
-      const position = L.latLng(coords);
-
-      this.placeSelectedVehicleMarker(coords);
-      this.vehicleService.updateVehicleLocation(vehicle, position);
-
-      this.selectedVehicle.set({
-        ...vehicle,
-        location: { lat: position.lat, lng: position.lng }
-      });
-
-    } catch (error) {
-      console.error('Error getting location:', error);
-    }
-  }
-
   private placeSelectedVehicleMarker(
     coords: [number, number] | L.LatLng
   ): void {
@@ -172,6 +153,27 @@ export class MapViewComponent implements OnInit, OnDestroy {
 
       this.mapService.removeLayer(this.selectedVehicleMarker);
       this.selectedVehicleMarker = undefined;
+    }
+  }
+
+  async onUserLocationClick(): Promise<void> {
+    const vehicle = this.selectedVehicle();
+    if (!vehicle) return;
+
+    try {
+      const coords = await this.geo.getCurrentLocation();
+      const position = L.latLng(coords);
+
+      this.placeSelectedVehicleMarker(coords);
+      this.vehicleService.updateVehicleLocation(vehicle, position);
+
+      this.selectedVehicle.set({
+        ...vehicle,
+        location: { lat: position.lat, lng: position.lng }
+      });
+
+    } catch (error) {
+      console.error('Error getting location:', error);
     }
   }
 
