@@ -34,7 +34,7 @@ export class VehicleMarkerManager {
       marker.getElement()?.appendChild(componentRef.location.nativeElement);
     });
 
-    return () => {};
+    return () => componentRef.destroy();
   }
 
   constructor() { }
