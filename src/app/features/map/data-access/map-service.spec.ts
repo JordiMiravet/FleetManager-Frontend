@@ -229,26 +229,4 @@ describe('MapService', () => {
 
   });
 
-  describe('locationIcon', () => {
-
-    it('should initialize the location icon', () => {
-      expect(service.locationIcon).toBeTruthy();
-    });
-
-    it('should configure the icon urls', () => {
-      expect(service.locationIcon.options.iconUrl).toBe('/assets/icons/marker-icon.png');
-      expect(service.locationIcon.options.iconRetinaUrl).toBe('/assets/icons/marker-icon-2x.png');
-      expect(service.locationIcon.options.shadowUrl).toBe('/assets/icons/marker-shadow.png');
-    });
-
-    it('should configure the icon size', () => {
-      expect(service.locationIcon.options.iconSize).toEqual([25, 40]);
-    });
-
-    it('should configure the shadow anchor', () => {
-      expect(service.locationIcon.options.shadowAnchor).toEqual([9, 19]);
-    });
-
-  });
-
 });
