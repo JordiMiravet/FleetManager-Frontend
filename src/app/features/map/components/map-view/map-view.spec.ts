@@ -12,12 +12,18 @@ import { MapService } from '../../data-access/map-service';
 import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleMarkerManager } from '../../data-access/vehicle-marker-manager';
 
 export const authMock = {
   currentUser: {
     uid: 'JordiTheBest',
     getIdToken: () => Promise.resolve('MyToken')
   }
+};
+
+const vehicleMarkerManagerMock = {
+  mountComponent: jasmine.createSpy('mountComponent')
+    .and.returnValue(() => {})
 };
 
 const mockVehicle1: VehicleInterface = {
@@ -64,6 +70,7 @@ describe('MapViewComponent', () => {
       providers: [
         { provide: Auth, useValue: authMock },
         { provide: VehicleService, useValue: vehicleServiceMock },
+        { provide: VehicleMarkerManager, useValue: vehicleMarkerManagerMock },
         provideHttpClient(),
         provideHttpClientTesting(),
       ]
