@@ -45,7 +45,7 @@ const vehicleServiceMock = {
   updateVehicle: jasmine.createSpy('updateVehicle'),
 };
 
-const VehicleModalServiceMock = {
+const vehicleModalServiceMock = {
   activeModal: signal<VehicleModalState>(VehicleModalState.Closed),
   formMode: signal<'create' | 'edit'>('create'),
   selectedVehicle: signal<VehicleInterface | null>(null),
@@ -65,13 +65,13 @@ describe('MapContainerComponent', () => {
     vehicleServiceMock.loadVehicles.calls.reset();
     vehicleServiceMock.addVehicle.calls.reset();
     vehicleServiceMock.updateVehicle.calls.reset();
-    VehicleModalServiceMock.openCreate.calls.reset();
-    VehicleModalServiceMock.close.calls.reset();
+    vehicleModalServiceMock.openCreate.calls.reset();
+    vehicleModalServiceMock.close.calls.reset();
     geolocationServiceMock.getCurrentLocation.calls.reset();
 
-    VehicleModalServiceMock.activeModal.set(VehicleModalState.Closed);
-    VehicleModalServiceMock.formMode.set('create');
-    VehicleModalServiceMock.selectedVehicle.set(null);
+    vehicleModalServiceMock.activeModal.set(VehicleModalState.Closed);
+    vehicleModalServiceMock.formMode.set('create');
+    vehicleModalServiceMock.selectedVehicle.set(null);
 
     await TestBed.configureTestingModule({
       imports: [
@@ -79,7 +79,7 @@ describe('MapContainerComponent', () => {
       ],
       providers: [
         { provide: VehicleService, useValue: vehicleServiceMock },
-        { provide: VehicleModalService, useValue: VehicleModalServiceMock },
+        { provide: VehicleModalService, useValue: vehicleModalServiceMock },
         { provide: GeolocationService, useValue: geolocationServiceMock },
         provideHttpClient()
       ],
@@ -113,7 +113,7 @@ describe('MapContainerComponent', () => {
   describe('Save vehicle', () => {
 
     it('should keep provided location when vehicle already has location', async () => {
-      VehicleModalServiceMock.formMode.set('create');
+      vehicleModalServiceMock.formMode.set('create');
       geolocationServiceMock.getCurrentLocation.calls.reset();
       vehicleServiceMock.addVehicle.calls.reset();
 
@@ -121,11 +121,11 @@ describe('MapContainerComponent', () => {
 
       expect(geolocationServiceMock.getCurrentLocation).not.toHaveBeenCalled();
       expect(vehicleServiceMock.addVehicle).toHaveBeenCalledOnceWith(vehicleMock);
-      expect(VehicleModalServiceMock.close).toHaveBeenCalled();
+      expect(vehicleModalServiceMock.close).toHaveBeenCalled();
     });
 
     it('should request geolocation when vehicle has no location', async () => {
-      VehicleModalServiceMock.formMode.set('create');
+      vehicleModalServiceMock.formMode.set('create');
 
       geolocationServiceMock.getCurrentLocation.and.resolveTo([41.4, 2.1]);
       vehicleServiceMock.addVehicle.calls.reset();
@@ -138,11 +138,11 @@ describe('MapContainerComponent', () => {
       const addedVehicle = vehicleServiceMock.addVehicle.calls.mostRecent().args[0];
 
       expect(addedVehicle.location).toEqual({ lat: 41.4, lng: 2.1 });
-      expect(VehicleModalServiceMock.close).toHaveBeenCalled();
+      expect(vehicleModalServiceMock.close).toHaveBeenCalled();
     });
 
     it('should use fallback location when geolocation fails', async () => {
-      VehicleModalServiceMock.formMode.set('create');
+      vehicleModalServiceMock.formMode.set('create');
       geolocationServiceMock.getCurrentLocation.and.returnValue(
         Promise.reject(new Error('geolocation failed'))
       );
@@ -153,11 +153,11 @@ describe('MapContainerComponent', () => {
       const addedVehicle = vehicleServiceMock.addVehicle.calls.mostRecent().args[0];
 
       expect(addedVehicle.location).toEqual({ lat: 41.478, lng: 2.31 });
-      expect(VehicleModalServiceMock.close).toHaveBeenCalled();
+      expect(vehicleModalServiceMock.close).toHaveBeenCalled();
     });
 
     it('should add vehicle when modal mode is create', async () => {
-      VehicleModalServiceMock.formMode.set('create');
+      vehicleModalServiceMock.formMode.set('create');
       vehicleServiceMock.addVehicle.calls.reset();
       vehicleServiceMock.updateVehicle.calls.reset();
 
@@ -168,8 +168,8 @@ describe('MapContainerComponent', () => {
     });
 
     it('should update vehicle when modal mode is edit and selected vehicle exists', async () => {
-      VehicleModalServiceMock.formMode.set('edit');
-      VehicleModalServiceMock.selectedVehicle.set(selectedVehicleMock);
+      vehicleModalServiceMock.formMode.set('edit');
+      vehicleModalServiceMock.selectedVehicle.set(selectedVehicleMock);
 
       await component.saveVehicle(vehicleMock);
 
@@ -179,23 +179,23 @@ describe('MapContainerComponent', () => {
 
 
     it('should not update vehicle when modal mode is edit but no selected vehicle', async () => {
-      VehicleModalServiceMock.formMode.set('edit');
-      VehicleModalServiceMock.selectedVehicle.set(null);
+      vehicleModalServiceMock.formMode.set('edit');
+      vehicleModalServiceMock.selectedVehicle.set(null);
 
       await component.saveVehicle(vehicleMock);
 
       expect(vehicleServiceMock.updateVehicle).not.toHaveBeenCalled();
       expect(vehicleServiceMock.addVehicle).not.toHaveBeenCalled();
-      expect(VehicleModalServiceMock.close).toHaveBeenCalled();
+      expect(vehicleModalServiceMock.close).toHaveBeenCalled();
     });
 
     it('should close modal after saving vehicle', async () => {
-      VehicleModalServiceMock.formMode.set('create');
-      VehicleModalServiceMock.close.calls.reset();
+      vehicleModalServiceMock.formMode.set('create');
+      vehicleModalServiceMock.close.calls.reset();
 
       await component.saveVehicle(vehicleMock);
 
-      expect(VehicleModalServiceMock.close).toHaveBeenCalled();
+      expect(vehicleModalServiceMock.close).toHaveBeenCalled();
     });
 
   });
@@ -215,7 +215,7 @@ describe('MapContainerComponent', () => {
       fixture.detectChanges();
 
       expect(vehicleServiceMock.vehicles()).toHaveSize(0);
-         
+
       const vehicleEmptyStateComponent = fixture.nativeElement.querySelector('app-vehicle-empty-state');
       expect(vehicleEmptyStateComponent).toBeTruthy();
     });
@@ -226,11 +226,11 @@ describe('MapContainerComponent', () => {
 
       component.vehicleModal.openCreate();
 
-      expect(VehicleModalServiceMock.openCreate).toHaveBeenCalled();
+      expect(vehicleModalServiceMock.openCreate).toHaveBeenCalled();
     });
 
     it('should render vehicle form modal when modal is open', () => {
-      VehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
+      vehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
       fixture.detectChanges();
 
       const vehicleFormModalComponent = fixture.nativeElement.querySelector('app-vehicle-form-modal');
@@ -238,7 +238,7 @@ describe('MapContainerComponent', () => {
     });
 
     it('should call saveVehicle when form modal emits submit', () => {
-      VehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
+      vehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
       fixture.detectChanges();
 
       const spy = spyOn(component, 'saveVehicle');
@@ -250,12 +250,12 @@ describe('MapContainerComponent', () => {
     });
 
     it('should close modal when form modal emits cancel', () => {
-      VehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
+      vehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
       fixture.detectChanges();
 
       component.vehicleModal.close();
 
-      expect(VehicleModalServiceMock.close).toHaveBeenCalled();
+      expect(vehicleModalServiceMock.close).toHaveBeenCalled();
     });
 
   });
@@ -263,14 +263,14 @@ describe('MapContainerComponent', () => {
   describe('isModalOpen computed', () => {
 
     it('should return true when modal state is VehicleForm', () => {
-      VehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
+      vehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
       fixture.detectChanges();
 
       expect(component.isModalOpen()).toBeTrue();
     });
 
     it('should return false when modal state is Closed', () => {
-      VehicleModalServiceMock.activeModal.set(VehicleModalState.Closed);
+      vehicleModalServiceMock.activeModal.set(VehicleModalState.Closed);
       fixture.detectChanges();
 
       expect(component.isModalOpen()).toBeFalse();
