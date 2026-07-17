@@ -23,7 +23,9 @@ export const authMock = {
 
 const vehicleMarkerManagerMock = {
   mountComponent: jasmine.createSpy('mountComponent')
-    .and.returnValue(() => {})
+    .and.returnValue(() => {}),
+  createIcon: jasmine.createSpy('createIcon')
+    .and.returnValue(L.divIcon())
 };
 
 const mockVehicle1: VehicleInterface = {
@@ -436,17 +438,14 @@ describe('MapViewComponent', () => {
     it('should place selected vehicle marker', () => {
       const mapService = TestBed.inject(MapService);
       const mockMarker: any = { on: jasmine.createSpy('on') };
+
       spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
       const setViewSpy = spyOn(mapService, 'setView');
 
-      (component as any).placeSelectedVehicleMarker([41, 2], 'Ferrari');
+      component.selectedVehicle.set(mockVehicle1);
+      (component as any).placeSelectedVehicleMarker([41, 2]);
 
-      expect(mapService.createMarker).toHaveBeenCalledWith(
-        [41, 2],
-        undefined,
-        true
-      );
-
+      expect(mapService.createMarker).toHaveBeenCalledWith([41, 2], mockVehicle1, true);
       expect(mockMarker.on).toHaveBeenCalledWith('dragend', jasmine.any(Function));
       expect(setViewSpy).toHaveBeenCalledOnceWith([41, 2], 19);
     });
