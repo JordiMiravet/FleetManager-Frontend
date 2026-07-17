@@ -125,10 +125,10 @@ describe('MapService', () => {
       expect(marker.dragging?.enabled()).toBeFalse();
     });
 
-    it('should use the configured location icon', () => {
+    it('should create a marker with a Leaflet icon when no vehicle is provided', () => {
       const marker = service.createMarker([41.3851, 2.1734]);
 
-      expect((marker.options as any).icon).toBe(service.locationIcon);
+      expect((marker.options as any).icon).toEqual(jasmine.any(L.Icon));
     });
 
     it('should add the marker to the map', () => {
