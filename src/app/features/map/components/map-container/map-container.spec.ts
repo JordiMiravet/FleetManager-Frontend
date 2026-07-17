@@ -214,8 +214,8 @@ describe('MapContainerComponent', () => {
       vehicleServiceMock.vehicles.set([]);
       fixture.detectChanges();
 
-      expect(vehicleServiceMock.vehicles().length).toBe(0);
-      
+      expect(vehicleServiceMock.vehicles()).toHaveSize(0);
+         
       const vehicleEmptyStateComponent = fixture.nativeElement.querySelector('app-vehicle-empty-state');
       expect(vehicleEmptyStateComponent).toBeTruthy();
     });
