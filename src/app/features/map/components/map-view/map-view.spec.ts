@@ -12,12 +12,20 @@ import { MapService } from '../../data-access/map-service';
 import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleMarkerManager } from '../../data-access/vehicle-marker-manager';
 
 export const authMock = {
   currentUser: {
     uid: 'JordiTheBest',
     getIdToken: () => Promise.resolve('MyToken')
   }
+};
+
+const vehicleMarkerManagerMock = {
+  mountComponent: jasmine.createSpy('mountComponent')
+    .and.returnValue(() => {}),
+  createIcon: jasmine.createSpy('createIcon')
+    .and.returnValue(L.divIcon())
 };
 
 const mockVehicle1: VehicleInterface = {
@@ -64,6 +72,7 @@ describe('MapViewComponent', () => {
       providers: [
         { provide: Auth, useValue: authMock },
         { provide: VehicleService, useValue: vehicleServiceMock },
+        { provide: VehicleMarkerManager, useValue: vehicleMarkerManagerMock },
         provideHttpClient(),
         provideHttpClientTesting(),
       ]
@@ -429,17 +438,14 @@ describe('MapViewComponent', () => {
     it('should place selected vehicle marker', () => {
       const mapService = TestBed.inject(MapService);
       const mockMarker: any = { on: jasmine.createSpy('on') };
+
       spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
       const setViewSpy = spyOn(mapService, 'setView');
 
-      (component as any).placeSelectedVehicleMarker([41, 2], 'Ferrari');
+      component.selectedVehicle.set(mockVehicle1);
+      (component as any).placeSelectedVehicleMarker([41, 2]);
 
-      expect(mapService.createMarker).toHaveBeenCalledWith(
-        [41, 2],
-        undefined,
-        true
-      );
-
+      expect(mapService.createMarker).toHaveBeenCalledWith([41, 2], mockVehicle1, true);
       expect(mockMarker.on).toHaveBeenCalledWith('dragend', jasmine.any(Function));
       expect(setViewSpy).toHaveBeenCalledOnceWith([41, 2], 19);
     });

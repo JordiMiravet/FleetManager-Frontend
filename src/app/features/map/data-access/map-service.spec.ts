@@ -125,10 +125,10 @@ describe('MapService', () => {
       expect(marker.dragging?.enabled()).toBeFalse();
     });
 
-    it('should use the configured location icon', () => {
+    it('should create a marker with a Leaflet icon when no vehicle is provided', () => {
       const marker = service.createMarker([41.3851, 2.1734]);
 
-      expect((marker.options as any).icon).toBe(service.locationIcon);
+      expect((marker.options as any).icon).toEqual(jasmine.any(L.Icon));
     });
 
     it('should add the marker to the map', () => {
@@ -225,28 +225,6 @@ describe('MapService', () => {
 
     it('should not throw when map is not initialized', () => {
       expect(() => service.destroy()).not.toThrow();
-    });
-
-  });
-
-  describe('locationIcon', () => {
-
-    it('should initialize the location icon', () => {
-      expect(service.locationIcon).toBeTruthy();
-    });
-
-    it('should configure the icon urls', () => {
-      expect(service.locationIcon.options.iconUrl).toBe('/assets/icons/marker-icon.png');
-      expect(service.locationIcon.options.iconRetinaUrl).toBe('/assets/icons/marker-icon-2x.png');
-      expect(service.locationIcon.options.shadowUrl).toBe('/assets/icons/marker-shadow.png');
-    });
-
-    it('should configure the icon size', () => {
-      expect(service.locationIcon.options.iconSize).toEqual([25, 40]);
-    });
-
-    it('should configure the shadow anchor', () => {
-      expect(service.locationIcon.options.shadowAnchor).toEqual([9, 19]);
     });
 
   });
