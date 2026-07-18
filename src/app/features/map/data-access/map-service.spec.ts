@@ -156,6 +156,10 @@ describe('MapService', () => {
       expect(marker instanceof L.Marker).toBeTrue();
     });
 
+    it('should delegate icon creation to vehicle marker manager when vehicle is provided', () => {
+
+    });
+
   });
 
   describe('setView', () => {
