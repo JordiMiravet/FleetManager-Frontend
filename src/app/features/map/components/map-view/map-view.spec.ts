@@ -516,4 +516,16 @@ describe('MapViewComponent', () => {
 
   });
 
+  describe('marker cleanup', () => {
+
+    it('should invoke cleanup functions from markerCleanups when clearing all markers');
+
+    it('should remove cleanup from markerCleanups after invoking it');
+
+    it('should invoke selectedMarkerCleanup when clearing selected marker');
+
+    it('should reset selectedMarkerCleanup to undefined after clearing');
+
+  });
+
 });
