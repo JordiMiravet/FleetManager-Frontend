@@ -438,37 +438,6 @@ describe('MapViewComponent', () => {
 
   });
 
-  describe('template integration', () => {
-
-    it('should render the map container', () => {
-      const mapContainer = fixture.nativeElement.querySelector('#map');
-      expect(mapContainer).toBeTruthy();
-    });
-
-    it('should render vehicle selector component', () => {
-      const vehicleSelectorComponent = fixture.nativeElement.querySelector('app-vehicle-selector');
-      expect(vehicleSelectorComponent).toBeTruthy();
-    });
-
-    it('should render user location button when vehicle is selected', () => {
-      component.selectedVehicle.set(mockVehicle1);
-      fixture.detectChanges();
-
-      const userLocationButtonComponent = fixture.nativeElement.querySelector('app-details-panel');
-      expect(userLocationButtonComponent).toBeTruthy();
-    });
-
-    it('should show confirm modal when showConfirmModal is true', () => {
-      component.showConfirmModal.set(true);
-      fixture.detectChanges();
-
-      const confirmModalComponent = fixture.nativeElement.querySelector('app-confirm-modal');
-
-      expect(confirmModalComponent).toBeTruthy();
-    });
-
-  });
-
   describe('marker mounting', () => {
 
     it('should call mountComponent for each vehicle when showing all vehicles', () => {
@@ -595,4 +564,37 @@ describe('MapViewComponent', () => {
 
   });
 
+
+  describe('template integration', () => {
+
+    it('should render the map container', () => {
+      const mapContainer = fixture.nativeElement.querySelector('#map');
+      expect(mapContainer).toBeTruthy();
+    });
+
+    it('should render vehicle selector component', () => {
+      const vehicleSelectorComponent = fixture.nativeElement.querySelector('app-vehicle-selector');
+      expect(vehicleSelectorComponent).toBeTruthy();
+    });
+
+    it('should render user location button when vehicle is selected', () => {
+      component.selectedVehicle.set(mockVehicle1);
+      fixture.detectChanges();
+
+      const userLocationButtonComponent = fixture.nativeElement.querySelector('app-details-panel');
+      expect(userLocationButtonComponent).toBeTruthy();
+    });
+
+    it('should show confirm modal when showConfirmModal is true', () => {
+      component.showConfirmModal.set(true);
+      fixture.detectChanges();
+
+      const confirmModalComponent = fixture.nativeElement.querySelector('app-confirm-modal');
+
+      expect(confirmModalComponent).toBeTruthy();
+    });
+
+  });
+
+  
 });
