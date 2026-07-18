@@ -67,6 +67,9 @@ describe('MapViewComponent', () => {
       updateVehicleLocation: jasmine.createSpy('updateVehicleLocation')
     };
 
+    vehicleMarkerManagerMock.mountComponent.calls.reset();
+    vehicleMarkerManagerMock.createIcon.calls.reset();
+
     await TestBed.configureTestingModule({
       imports: [MapViewComponent],
       providers: [
@@ -120,17 +123,9 @@ describe('MapViewComponent', () => {
 
   describe('vehicle selection', () => {
 
-    const selectedVehicleMock: VehicleInterface = {
-      _id: 'veh-123',
-      name: 'Ferrari',
-      model: 'F8',
-      plate: 'F123',
-      location: { lat: 41, lng: 2 }
-    };
-
     it('should set selectedVehicle when showVehicle is called', () => {
-      component.showVehicle(selectedVehicleMock);
-      expect(component.selectedVehicle()).toBe(selectedVehicleMock);
+      component.showVehicle(mockVehicle1);
+      expect(component.selectedVehicle()).toBe(mockVehicle1);
     });
 
     it('should remove previous vehicle marker if it exists', () => {
@@ -140,7 +135,7 @@ describe('MapViewComponent', () => {
       (component as any).selectedVehicleMarker = mockMarker;
       const removeLayerSpy = spyOn(mapService, 'removeLayer');
 
-      component.showVehicle(selectedVehicleMock);
+      component.showVehicle(mockVehicle1);
 
       expect(removeLayerSpy).toHaveBeenCalledOnceWith(mockMarker);
     });
@@ -151,11 +146,11 @@ describe('MapViewComponent', () => {
 
       spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
 
-      component.showVehicle(selectedVehicleMock);
+      component.showVehicle(mockVehicle1);
 
       expect(mapService.createMarker).toHaveBeenCalledWith(
         [41, 2],
-        selectedVehicleMock,
+        mockVehicle1,
         true
       );
 
@@ -166,7 +161,7 @@ describe('MapViewComponent', () => {
       const mapService = TestBed.inject(MapService);
       const setViewSpy = spyOn(mapService, 'setView');
 
-      component.showVehicle(selectedVehicleMock);
+      component.showVehicle(mockVehicle1);
 
       expect(setViewSpy).toHaveBeenCalledOnceWith([41, 2], 19);
     });
@@ -238,13 +233,6 @@ describe('MapViewComponent', () => {
 
   describe('confirm location change', () => {
 
-    const selectedVehicleMock: VehicleInterface = {
-      name: 'Ferrari',
-      model: 'F8',
-      plate: 'F123',
-      location: { lat: 41, lng: 2 }
-    };
-
     it('should not update if there is no selected vehicle', () => {
       component.selectedVehicle.set(null);
       component.onConfirmLocationChange();
@@ -253,7 +241,7 @@ describe('MapViewComponent', () => {
     });
 
     it('should not update if there is no new position', () => {
-      component.selectedVehicle.set(selectedVehicleMock);
+      component.selectedVehicle.set(mockVehicle1);
       component.newPosition.set(null);
       component.onConfirmLocationChange();
 
@@ -263,7 +251,7 @@ describe('MapViewComponent', () => {
     it('should update vehicle location when confirmed', () => {
       const newPos = { lat: 50, lng: 8 } as any;
 
-      component.selectedVehicle.set(selectedVehicleMock);
+      component.selectedVehicle.set(mockVehicle1);
       component.newPosition.set(newPos);
       component.onConfirmLocationChange();
 
@@ -273,7 +261,7 @@ describe('MapViewComponent', () => {
     it('should update selectedVehicle with the new location', () => {
       const newPos = { lat: 50, lng: 8 } as any;
 
-      component.selectedVehicle.set(selectedVehicleMock);
+      component.selectedVehicle.set(mockVehicle1);
       component.newPosition.set(newPos);
 
       component.onConfirmLocationChange();
@@ -284,7 +272,7 @@ describe('MapViewComponent', () => {
     it('should hide confirmation modal after confirming', () => {
       const newPos = { lat: 50, lng: 8 } as any;
 
-      component.selectedVehicle.set(selectedVehicleMock);
+      component.selectedVehicle.set(mockVehicle1);
       component.newPosition.set(newPos);
       component.showConfirmModal.set(true);
 
@@ -299,7 +287,7 @@ describe('MapViewComponent', () => {
 
       const newPos = { lat: 50, lng: 8 } as any;
 
-      component.selectedVehicle.set(selectedVehicleMock);
+      component.selectedVehicle.set(mockVehicle1);
       component.newPosition.set(newPos);
 
       component.onConfirmLocationChange();
@@ -311,18 +299,10 @@ describe('MapViewComponent', () => {
 
   describe('cancel location change', () => {
 
-    const selectedVehicleMock: VehicleInterface = {
-      _id: '123',
-      name: 'Ferrari',
-      model: 'F8',
-      plate: 'F123',
-      location: { lat: 41, lng: 2 }
-    };
-
     it('should reset marker position to original vehicle location', () => {
       const mockMarker: any = { setLatLng: jasmine.createSpy('setLatLng') };
 
-      component.selectedVehicle.set(selectedVehicleMock);
+      component.selectedVehicle.set(mockVehicle1);
       (component as any).selectedVehicleMarker = mockMarker;
 
       component.onCancelLocationChange();
@@ -333,7 +313,7 @@ describe('MapViewComponent', () => {
     it('should hide confirmation modal after cancelling', () => {
       const mockMarker: any = { setLatLng: jasmine.createSpy('setLatLng') };
 
-      component.selectedVehicle.set(selectedVehicleMock);
+      component.selectedVehicle.set(mockVehicle1);
       (component as any).selectedVehicleMarker = mockMarker;
       component.showConfirmModal.set(true);
 
@@ -349,7 +329,7 @@ describe('MapViewComponent', () => {
     });
 
     it('should do nothing when there is no marker', () => {
-      component.selectedVehicle.set(selectedVehicleMock);
+      component.selectedVehicle.set(mockVehicle1);
       (component as any).selectedVehicleMarker = undefined;
 
       expect(() => component.onCancelLocationChange()).not.toThrow();
@@ -358,14 +338,6 @@ describe('MapViewComponent', () => {
   });
 
   describe('user location', () => {
-
-    const selectedVehicleMock: VehicleInterface = {
-      _id: '123',
-      name: 'Ferrari',
-      model: 'F8',
-      plate: 'F123',
-      location: { lat: 41, lng: 2 }
-    };
 
     it('should not request geolocation if no vehicle selected', async () => {
       const geo = TestBed.inject(GeolocationService);
@@ -381,7 +353,7 @@ describe('MapViewComponent', () => {
       const geo = TestBed.inject(GeolocationService);
       spyOn(geo, 'getCurrentLocation').and.returnValue(Promise.resolve([50, 8]));
 
-      component.selectedVehicle.set(selectedVehicleMock);
+      component.selectedVehicle.set(mockVehicle1);
 
       await component.onUserLocationClick();
 
@@ -398,7 +370,7 @@ describe('MapViewComponent', () => {
       } as any);
       spyOn(mapService, 'setView');
 
-      component.selectedVehicle.set(selectedVehicleMock);
+      component.selectedVehicle.set(mockVehicle1);
 
       await component.onUserLocationClick();
 
@@ -412,7 +384,7 @@ describe('MapViewComponent', () => {
       spyOn(geo, 'getCurrentLocation').and.returnValue(Promise.reject('error'));
       spyOn(console, 'error');
 
-      component.selectedVehicle.set(selectedVehicleMock);
+      component.selectedVehicle.set(mockVehicle1);
 
       await component.onUserLocationClick();
 
@@ -479,14 +451,7 @@ describe('MapViewComponent', () => {
     });
 
     it('should render user location button when vehicle is selected', () => {
-      component.selectedVehicle.set({
-        _id: '123',
-        name: 'Ferrari',
-        model: 'F8',
-        plate: 'F123',
-        location: { lat: 41, lng: 2 }
-      });
-  
+      component.selectedVehicle.set(mockVehicle1);
       fixture.detectChanges();
 
       const userLocationButtonComponent = fixture.nativeElement.querySelector('app-details-panel');
