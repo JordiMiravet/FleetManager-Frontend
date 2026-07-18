@@ -504,4 +504,16 @@ describe('MapViewComponent', () => {
 
   });
 
+  describe('marker mounting', () => {
+
+    it('should call mountComponent for each vehicle when showing all vehicles');
+
+    it('should store cleanup function in markerCleanups for each vehicle marker');
+
+    it('should call mountComponent for selected vehicle marker');
+
+    it('should store cleanup function in selectedMarkerCleanup');
+
+  });
+
 });
