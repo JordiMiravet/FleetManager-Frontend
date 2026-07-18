@@ -568,13 +568,65 @@ describe('MapViewComponent', () => {
 
   describe('marker cleanup', () => {
 
-    it('should invoke cleanup functions from markerCleanups when clearing all markers');
+    it('should invoke cleanup functions from markerCleanups when clearing all markers', () => {
+      const mapService = TestBed.inject(MapService);
+      spyOn(mapService, 'removeLayer');
 
-    it('should remove cleanup from markerCleanups after invoking it');
+      const cleanupFn = jasmine.createSpy('cleanup');
+      const mockMarker = {} as L.Marker;
 
-    it('should invoke selectedMarkerCleanup when clearing selected marker');
+      (component as any).allVehicleMarkers = [mockMarker];
+      (component as any).markerCleanups.set(mockMarker, cleanupFn);
 
-    it('should reset selectedMarkerCleanup to undefined after clearing');
+      (component as any).clearAllMarkers();
+
+      expect(cleanupFn).toHaveBeenCalled();
+    });
+
+    it('should remove cleanup from markerCleanups after invoking it', () => {
+      const mapService = TestBed.inject(MapService);
+      spyOn(mapService, 'removeLayer');
+
+      const cleanupFn = jasmine.createSpy('cleanup');
+      const mockMarker = {} as L.Marker;
+
+      (component as any).allVehicleMarkers = [mockMarker];
+      (component as any).markerCleanups.set(mockMarker, cleanupFn);
+
+      (component as any).clearAllMarkers();
+
+      expect((component as any).markerCleanups.has(mockMarker)).toBeFalse();
+    });
+
+    it('should invoke selectedMarkerCleanup when clearing selected marker', () => {
+      const mapService = TestBed.inject(MapService);
+      spyOn(mapService, 'removeLayer');
+
+      const cleanupFn = jasmine.createSpy('cleanup');
+      const mockMarker = {} as L.Marker;
+
+      (component as any).selectedVehicleMarker = mockMarker;
+      (component as any).selectedMarkerCleanup = cleanupFn;
+
+      (component as any).clearSelectedMarker();
+
+      expect(cleanupFn).toHaveBeenCalled();
+    });
+
+    it('should reset selectedMarkerCleanup to undefined after clearing', () => {
+      const mapService = TestBed.inject(MapService);
+      spyOn(mapService, 'removeLayer');
+
+      const cleanupFn = jasmine.createSpy('cleanup');
+      const mockMarker = {} as L.Marker;
+
+      (component as any).selectedVehicleMarker = mockMarker;
+      (component as any).selectedMarkerCleanup = cleanupFn;
+
+      (component as any).clearSelectedMarker();
+
+      expect((component as any).selectedMarkerCleanup).toBeUndefined();
+    });
 
   });
 
