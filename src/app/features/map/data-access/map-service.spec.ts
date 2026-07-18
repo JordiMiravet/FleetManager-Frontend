@@ -3,6 +3,7 @@ import * as L from 'leaflet';
 
 import { MapService } from './map-service';
 import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleMarkerManager } from './vehicle-marker-manager';
 
 function createMapDom() {
   const div = document.createElement('div');
@@ -11,10 +12,15 @@ function createMapDom() {
 }
 
 const mockVehicle: VehicleInterface = {
-  name: 'Ferrari LaFerrari',
+  name: 'Ferrari',
   model: 'LaFerrari',
   plate: 'F1234ABC',
   imageUrl: 'https://example.com/ferrari-laferrari.png',
+};
+
+const vehicleMarkerManagerMock = {
+  createIcon: jasmine.createSpy('createIcon')
+    .and.returnValue(L.divIcon())
 };
 
 describe('MapService', () => {
@@ -26,7 +32,14 @@ describe('MapService', () => {
   }
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: VehicleMarkerManager, useValue: vehicleMarkerManagerMock }
+      ]
+    });
+
+    vehicleMarkerManagerMock.createIcon.calls.reset();
+
     service = TestBed.inject(MapService);
   });
 
@@ -141,6 +154,12 @@ describe('MapService', () => {
       const marker = service.createMarker([41.3851, 2.1734]);
 
       expect(marker instanceof L.Marker).toBeTrue();
+    });
+
+    it('should delegate icon creation to vehicle marker manager when vehicle is provided', () => {
+      service.createMarker([41.3851, 2.1734], mockVehicle);
+
+      expect(vehicleMarkerManagerMock.createIcon).toHaveBeenCalled();
     });
 
   });
