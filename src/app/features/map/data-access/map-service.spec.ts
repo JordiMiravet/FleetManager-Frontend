@@ -3,6 +3,7 @@ import * as L from 'leaflet';
 
 import { MapService } from './map-service';
 import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleMarkerManager } from './vehicle-marker-manager';
 
 function createMapDom() {
   const div = document.createElement('div');
@@ -17,6 +18,11 @@ const mockVehicle: VehicleInterface = {
   imageUrl: 'https://example.com/ferrari-laferrari.png',
 };
 
+const vehicleMarkerManagerMock = {
+  createIcon: jasmine.createSpy('createIcon')
+    .and.returnValue(L.divIcon())
+};
+
 describe('MapService', () => {
   let service: MapService;
 
@@ -26,7 +32,14 @@ describe('MapService', () => {
   }
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: VehicleMarkerManager, useValue: vehicleMarkerManagerMock }
+      ]
+    });
+
+    vehicleMarkerManagerMock.createIcon.calls.reset();
+
     service = TestBed.inject(MapService);
   });
 
