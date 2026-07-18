@@ -157,7 +157,9 @@ describe('MapService', () => {
     });
 
     it('should delegate icon creation to vehicle marker manager when vehicle is provided', () => {
+      service.createMarker([41.3851, 2.1734], mockVehicle);
 
+      expect(vehicleMarkerManagerMock.createIcon).toHaveBeenCalled();
     });
 
   });
