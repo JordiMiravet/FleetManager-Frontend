@@ -12,7 +12,7 @@ function createMapDom() {
 }
 
 const mockVehicle: VehicleInterface = {
-  name: 'Ferrari LaFerrari',
+  name: 'Ferrari',
   model: 'LaFerrari',
   plate: 'F1234ABC',
   imageUrl: 'https://example.com/ferrari-laferrari.png',
