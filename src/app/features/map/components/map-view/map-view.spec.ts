@@ -506,13 +506,63 @@ describe('MapViewComponent', () => {
 
   describe('marker mounting', () => {
 
-    it('should call mountComponent for each vehicle when showing all vehicles');
+    it('should call mountComponent for each vehicle when showing all vehicles', () => {
+      const mapService = TestBed.inject(MapService);
+      const mockMarker: any = { on: jasmine.createSpy('on') };
 
-    it('should store cleanup function in markerCleanups for each vehicle marker');
+      spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
+      vehicleMarkerManagerMock.mountComponent.calls.reset();
 
-    it('should call mountComponent for selected vehicle marker');
+      vehicleService.vehicles.set([mockVehicle1, mockVehicle2]);
+      (component as any).showAllVehicles();
 
-    it('should store cleanup function in selectedMarkerCleanup');
+      expect(vehicleMarkerManagerMock.mountComponent).toHaveBeenCalledTimes(2);
+    });
+
+    it('should store cleanup function in markerCleanups for each vehicle marker', () => {
+      const mapService = TestBed.inject(MapService);
+      const mockMarker: any = { on: jasmine.createSpy('on') };
+      const cleanupFn = jasmine.createSpy('cleanup');
+
+      spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
+      vehicleMarkerManagerMock.mountComponent.and.returnValue(cleanupFn);
+
+      vehicleService.vehicles.set([mockVehicle1]);
+      (component as any).showAllVehicles();
+
+      expect((component as any).markerCleanups.get(mockMarker)).toBe(cleanupFn);
+    });
+
+    it('should call mountComponent for selected vehicle marker', () => {
+      const mapService = TestBed.inject(MapService);
+      const mockMarker: any = { on: jasmine.createSpy('on') };
+
+      spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
+      vehicleMarkerManagerMock.mountComponent.calls.reset();
+
+      component.selectedVehicle.set(mockVehicle1);
+      (component as any).placeSelectedVehicleMarker([41, 2]);
+
+      expect(vehicleMarkerManagerMock.mountComponent).toHaveBeenCalledWith(
+        mockMarker,
+        mockVehicle1,
+        jasmine.any(Object)
+      );
+    });
+
+    it('should store cleanup function in selectedMarkerCleanup', () => {
+      const mapService = TestBed.inject(MapService);
+      const mockMarker: any = { on: jasmine.createSpy('on') };
+      const cleanupFn = jasmine.createSpy('cleanup');
+
+      spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
+      vehicleMarkerManagerMock.mountComponent.and.returnValue(cleanupFn);
+
+      component.selectedVehicle.set(mockVehicle1);
+      (component as any).placeSelectedVehicleMarker([41, 2]);
+
+      expect((component as any).selectedMarkerCleanup).toBe(cleanupFn);
+    });
 
   });
 
