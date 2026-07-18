@@ -31,24 +31,24 @@ const vehicleMarkerManagerMock = {
 const mockVehicle1: VehicleInterface = {
   _id: 'veh-123',
   name: 'Ferrari',
-  model: 'F8',
+  model: 'Laferrari',
   plate: 'F123',
   location: { lat: 41, lng: 2 }
 };
 
 const mockVehicle2: VehicleInterface = {
-  _id: 'veh-999',
-  name: 'Porsche',
-  model: '911',
-  plate: 'BBB',
+  _id: 'veh-456',
+  name: 'Koenigsegg',
+  model: 'Regera',
+  plate: 'R123',
   location: { lat: 42, lng: 3 }
 };
 
 const mockVehicleWithoutLocation: VehicleInterface = {
-  _id: 'veh-456',
-  name: 'Ferrari',
-  model: 'LaFerrari',
-  plate: '123456',
+  _id: 'veh-789',
+  name: 'Pagani',
+  model: 'Huayra',
+  plate: 'P123',
   location: undefined
 };
 
