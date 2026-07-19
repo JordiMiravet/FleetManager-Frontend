@@ -29,6 +29,10 @@ const viewContainerRefMock = {
     .and.returnValue(componentRefMock),
 };
 
+const markerMock = {
+  getElement: jasmine.createSpy('getElement'),
+};
+
 describe('VehicleMarkerManager', () => {
   let service: VehicleMarkerManager;
 
@@ -40,6 +44,7 @@ describe('VehicleMarkerManager', () => {
     componentRefMock.changeDetectorRef.detectChanges.calls.reset();
     componentRefMock.destroy.calls.reset();
     viewContainerRefMock.createComponent.calls.reset();
+    markerMock.getElement.calls.reset();
   });
 
   it('should be created', () => {
@@ -86,12 +91,10 @@ describe('VehicleMarkerManager', () => {
       const markerElement = document.createElement('div');
       const appendChildSpy = spyOn(markerElement, 'appendChild');
 
-      const marker = {
-        getElement: jasmine.createSpy('getElement').and.returnValue(markerElement),
-      } as unknown as L.Marker;
+      markerMock.getElement.and.returnValue(markerElement);
 
       service.mountComponent(
-        marker,
+        markerMock as unknown as L.Marker,
         mockVehicle,
         viewContainerRefMock as unknown as ViewContainerRef
       );
