@@ -56,7 +56,7 @@ describe('VehicleMarkerComponent', () => {
     it('should use the vehicle name as image alt text', () => {
       const vehicleImage: HTMLImageElement = fixture.nativeElement.querySelector('img');
 
-      expect(vehicleImage.alt).toContain(component.vehicle().name);
+      expect(vehicleImage.alt).toBe(component.vehicle().name);
     });
 
   });
