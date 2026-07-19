@@ -1,7 +1,9 @@
 import { TestBed } from '@angular/core/testing';
+import { ViewContainerRef } from '@angular/core';
 import L from 'leaflet';
 
 import { VehicleMarkerManager } from './vehicle-marker-manager';
+import { VehicleMarkerComponent } from '../components/vehicle-marker/vehicle-marker';
 import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
 
 const mockVehicle: VehicleInterface = {
@@ -60,19 +62,52 @@ describe('VehicleMarkerManager', () => {
   describe('mountComponent', () => {
 
     it('should create a VehicleMarkerComponent instance', () => {
+      service.mountComponent(
+        {} as L.Marker,
+        mockVehicle,
+        viewContainerRefMock as unknown as ViewContainerRef
+      );
 
+      expect(viewContainerRefMock.createComponent).toHaveBeenCalledWith(VehicleMarkerComponent);
     });
 
     it('should set the vehicle input on the created component', () => {
+      service.mountComponent(
+        {} as L.Marker,
+        mockVehicle,
+        viewContainerRefMock as unknown as ViewContainerRef
+      );
 
+      expect(componentRefMock.setInput).toHaveBeenCalledWith('vehicle', mockVehicle);
     });
 
-    it('should append the component native element to the marker element', () => {
+    it('should append the component native element to the marker element', async () => {
+      const markerElement = document.createElement('div');
+      const appendChildSpy = spyOn(markerElement, 'appendChild');
 
+      const marker = {
+        getElement: jasmine.createSpy('getElement').and.returnValue(markerElement),
+      } as unknown as L.Marker;
+
+      service.mountComponent(
+        marker,
+        mockVehicle,
+        viewContainerRefMock as unknown as ViewContainerRef
+      );
+      await Promise.resolve();
+
+      expect(appendChildSpy).toHaveBeenCalledWith(componentRefMock.location.nativeElement);
     });
 
     it('should destroy the component when cleanup is called', () => {
+      const cleanup = service.mountComponent(
+        {} as L.Marker,
+        mockVehicle,
+        viewContainerRefMock as unknown as ViewContainerRef
+      );
+      cleanup();
 
+      expect(componentRefMock.destroy).toHaveBeenCalled();
     });
 
   });
