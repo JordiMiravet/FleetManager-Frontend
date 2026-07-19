@@ -30,11 +30,20 @@ describe('VehicleMarkerComponent', () => {
   describe('image rendering', () => {
 
     it('should render the vehicle image when imageUrl is available', () => {
+      const vehicleImage: HTMLImageElement = fixture.nativeElement.querySelector('img');
 
+      expect(vehicleImage.src).toContain('test-image.jpg')
     });
 
     it('should render the fallback image when imageUrl is missing', () => {
+      fixture.componentRef.setInput('vehicle', {
+        ...component.vehicle(),
+        imageUrl: '',
+      });
+      fixture.detectChanges();
 
+      const vehicleImage: HTMLImageElement = fixture.nativeElement.querySelector('img');
+      expect(vehicleImage.src).toContain(component.fallbackImage);
     });
 
   });
