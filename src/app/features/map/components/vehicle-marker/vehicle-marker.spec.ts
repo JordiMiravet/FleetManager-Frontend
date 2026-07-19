@@ -27,4 +27,25 @@ describe('VehicleMarkerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('image rendering', () => {
+
+    it('should render the vehicle image when imageUrl is available', () => {
+
+    });
+
+    it('should render the fallback image when imageUrl is missing', () => {
+
+    });
+
+  });
+
+  describe('alt attribute', () => {
+
+    it('should use the vehicle name as image alt text', () => {
+
+    });
+
+  });
+
 });
