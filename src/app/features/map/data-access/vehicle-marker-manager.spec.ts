@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import L from 'leaflet';
 
 import { VehicleMarkerManager } from './vehicle-marker-manager';
 import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
@@ -46,7 +47,12 @@ describe('VehicleMarkerManager', () => {
   describe('createIcon', () => {
 
     it('should return a Leaflet DivIcon with the expected configuration', () => {
+      const icon = service.createIcon();
 
+      expect(icon).toEqual(jasmine.any(L.DivIcon));
+      expect(icon.options.className).toBe('vehicle-marker-host');
+      expect(icon.options.iconSize).toEqual([75, 75]);
+      expect(icon.options.iconAnchor).toEqual([24, 24]);
     });
 
   });
