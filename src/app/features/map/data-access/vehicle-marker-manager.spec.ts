@@ -10,8 +10,20 @@ const mockVehicle: VehicleInterface = {
   imageUrl: 'test-image.jpg',
 };
 
+const componentRefMock = {
+  setInput: jasmine.createSpy('setInput'),
+  changeDetectorRef: {
+    detectChanges: jasmine.createSpy('detectChanges'),
+  },
+  location: {
+    nativeElement: document.createElement('div'),
+  },
+  destroy: jasmine.createSpy('destroy'),
+};
+
 const viewContainerRefMock = {
-  createComponent: jasmine.createSpy('createComponent'),
+  createComponent: jasmine.createSpy('createComponent')
+    .and.returnValue(componentRefMock),
 };
 
 describe('VehicleMarkerManager', () => {
@@ -20,6 +32,11 @@ describe('VehicleMarkerManager', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(VehicleMarkerManager);
+
+    componentRefMock.setInput.calls.reset();
+    componentRefMock.changeDetectorRef.detectChanges.calls.reset();
+    componentRefMock.destroy.calls.reset();
+    viewContainerRefMock.createComponent.calls.reset();
   });
 
   it('should be created', () => {
