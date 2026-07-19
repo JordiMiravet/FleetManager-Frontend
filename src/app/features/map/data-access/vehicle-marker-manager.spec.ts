@@ -10,6 +10,10 @@ const mockVehicle: VehicleInterface = {
   imageUrl: 'test-image.jpg',
 };
 
+const viewContainerRefMock = {
+  createComponent: jasmine.createSpy('createComponent'),
+};
+
 describe('VehicleMarkerManager', () => {
   let service: VehicleMarkerManager;
 
