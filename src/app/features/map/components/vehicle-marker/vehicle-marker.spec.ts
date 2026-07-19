@@ -7,9 +7,8 @@ describe('VehicleMarkerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleMarkerComponent]
-    })
-    .compileComponents();
+      imports: [VehicleMarkerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(VehicleMarkerComponent);
     component = fixture.componentInstance;
@@ -18,7 +17,7 @@ describe('VehicleMarkerComponent', () => {
       name: 'Ferrari',
       model: 'LaFerrari',
       plate: '1234ABC',
-      imageUrl: 'test-image.jpg'
+      imageUrl: 'test-image.jpg',
     });
 
     fixture.detectChanges();
