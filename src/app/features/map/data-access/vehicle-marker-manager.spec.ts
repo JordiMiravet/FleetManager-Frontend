@@ -69,6 +69,7 @@ describe('VehicleMarkerManager', () => {
       );
 
       expect(viewContainerRefMock.createComponent).toHaveBeenCalledWith(VehicleMarkerComponent);
+      expect(componentRefMock.changeDetectorRef.detectChanges).toHaveBeenCalled();
     });
 
     it('should set the vehicle input on the created component', () => {
