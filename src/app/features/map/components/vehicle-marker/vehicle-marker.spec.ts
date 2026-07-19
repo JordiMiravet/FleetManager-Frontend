@@ -32,7 +32,7 @@ describe('VehicleMarkerComponent', () => {
     it('should render the vehicle image when imageUrl is available', () => {
       const vehicleImage: HTMLImageElement = fixture.nativeElement.querySelector('img');
 
-      expect(vehicleImage.src).toContain('test-image.jpg')
+      expect(vehicleImage.src).toContain('test-image.jpg');
     });
 
     it('should render the fallback image when imageUrl is missing', () => {
@@ -53,7 +53,7 @@ describe('VehicleMarkerComponent', () => {
     it('should use the vehicle name as image alt text', () => {
       const vehicleImage: HTMLImageElement = fixture.nativeElement.querySelector('img');
 
-      expect(vehicleImage.alt).toContain(component.vehicle().name)
+      expect(vehicleImage.alt).toContain(component.vehicle().name);
     });
 
   });
