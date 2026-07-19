@@ -1,6 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
 import { VehicleMarkerManager } from './vehicle-marker-manager';
+import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
+
+const mockVehicle: VehicleInterface = {
+  name: 'Ferrari',
+  model: 'LaFerrari',
+  plate: '1234ABC',
+  imageUrl: 'test-image.jpg',
+};
 
 describe('VehicleMarkerManager', () => {
   let service: VehicleMarkerManager;
