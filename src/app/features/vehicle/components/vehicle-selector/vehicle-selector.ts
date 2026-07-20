@@ -18,13 +18,13 @@ export class VehicleSelectorComponent {
   vehicles = input<VehicleInterface[]>([]);
   selectedPlate = input<string | null>(null);
 
-  vehicleSelected = output<VehicleInterface>();
+  public vehicleSelected = output<VehicleInterface | null>();
 
   onVehicleChange(event: Event): void {
     const plate = (event.target as HTMLSelectElement).value;
 
     if (!plate) {
-      this.vehicleSelected.emit(null as any);
+      this.vehicleSelected.emit(null);
       return;
     }
 

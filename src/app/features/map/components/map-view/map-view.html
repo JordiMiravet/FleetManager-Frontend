@@ -3,6 +3,7 @@
     <app-vehicle-selector
         class="map-view__vehicle-selector"
         [vehicles]="vehicles()"
+        [selectedPlate]="selectedVehicle()?.plate ?? null"
         (vehicleSelected)="showVehicle($event)"
     />
 
