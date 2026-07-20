@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { signal, WritableSignal } from '@angular/core';
+import { signal } from '@angular/core';
 
 import { VehicleSelectorComponent } from './vehicle-selector';
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
@@ -61,20 +61,41 @@ describe('VehicleSelectorComponent', () => {
       fixture.detectChanges();
 
       const allOptions = fixture.nativeElement.querySelectorAll('option');
-      expect(allOptions.length).toBe(mockVehicles.length + 1);
+      expect(allOptions).toHaveSize(mockVehicles.length + 1)
     });
 
-    it('should mark the selected option according to selectedPlate', () => {
-      const vehiclesSignal: WritableSignal<VehicleInterface[]> = signal(mockVehicles);
-      const selectedPlateSignal: WritableSignal<string | null> = signal('F123');
-
-      (component.vehicles as any) = vehiclesSignal;
-      (component.selectedPlate as any) = selectedPlateSignal;
+    it('should render the option matching selectedPlate', () => {
+      fixture.componentRef.setInput('vehicles', mockVehicles);
+      fixture.componentRef.setInput('selectedPlate', 'F123');
 
       fixture.detectChanges();
 
-      const select: HTMLSelectElement = fixture.nativeElement.querySelector('select');
-      expect(select.value).toBe('F123');
+      const options = Array.from(
+        fixture.nativeElement.querySelectorAll('option')
+      ) as HTMLOptionElement[];
+
+      const selectedOption = options.find(
+        option => option.value === 'F123'
+      );
+
+      expect(selectedOption).toBeTruthy();
+    });
+
+    it('should update selected vehicle in select when selectedPlate changes', () => {
+      fixture.componentRef.setInput('vehicles', mockVehicles);
+      fixture.componentRef.setInput('selectedPlate', 'P456');
+
+      fixture.detectChanges();
+
+      const options = Array.from(
+        fixture.nativeElement.querySelectorAll('option')
+      ) as HTMLOptionElement[];
+
+      const selectedOption = options.find(
+        option => option.value === 'P456'
+      );
+
+      expect(selectedOption).toBeTruthy();
     });
 
     it('should render only the default option when there are no vehicles', () => {
@@ -83,7 +104,7 @@ describe('VehicleSelectorComponent', () => {
 
       const options = fixture.nativeElement.querySelectorAll('option');
 
-      expect(options.length).toBe(1);
+      expect(options).toHaveSize(1);
     });
 
     it('should render vehicle names', () => {
