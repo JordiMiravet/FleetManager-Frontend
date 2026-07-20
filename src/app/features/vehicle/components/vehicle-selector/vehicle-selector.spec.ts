@@ -88,7 +88,7 @@ describe('VehicleSelectorComponent', () => {
 
       const options = fixture.nativeElement.querySelectorAll('option');
 
-      expect(options.length).toBe(1);
+      expect(options).toHaveSize(1);
     });
 
     it('should render vehicle names', () => {
