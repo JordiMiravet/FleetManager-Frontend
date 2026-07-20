@@ -98,6 +98,7 @@ export class MapViewComponent implements OnInit, OnDestroy {
 
       this.markerCleanups.set(marker, destroy);
       this.allVehicleMarkers.push(marker);
+
       bounds.extend(coords);
     });
 
