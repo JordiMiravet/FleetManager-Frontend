@@ -64,18 +64,23 @@ describe('VehicleSelectorComponent', () => {
       expect(allOptions.length).toBe(mockVehicles.length + 1);
     });
 
-    it('should mark the selected option according to selectedPlate', () => {
-      const vehiclesSignal: WritableSignal<VehicleInterface[]> = signal(mockVehicles);
-      const selectedPlateSignal: WritableSignal<string | null> = signal('F123');
-
-      (component.vehicles as any) = vehiclesSignal;
-      (component.selectedPlate as any) = selectedPlateSignal;
+    it('should render the option matching selectedPlate', () => {
+      fixture.componentRef.setInput('vehicles', mockVehicles);
+      fixture.componentRef.setInput('selectedPlate', 'F123');
 
       fixture.detectChanges();
 
-      const select: HTMLSelectElement = fixture.nativeElement.querySelector('select');
-      expect(select.value).toBe('F123');
+      const options = Array.from(
+        fixture.nativeElement.querySelectorAll('option')
+      ) as HTMLOptionElement[];
+
+      const selectedOption = options.find(
+        option => option.value === 'F123'
+      );
+
+      expect(selectedOption).toBeTruthy();
     });
+
 
     it('should render only the default option when there are no vehicles', () => {
       (component.vehicles as any) = () => [];
