@@ -82,7 +82,14 @@ describe('VehicleSelectorComponent', () => {
     });
 
     it('should update selected vehicle in select when selectedPlate changes', () => {
+      fixture.componentRef.setInput('vehicles', mockVehicles);
+      fixture.componentRef.setInput('selectedPlate', 'P456');
 
+      fixture.detectChanges();
+
+      const select: HTMLSelectElement = fixture.nativeElement.querySelector('#vehicle-select');
+
+      expect(select.value).toBe('P456');
     });
 
     it('should render only the default option when there are no vehicles', () => {
