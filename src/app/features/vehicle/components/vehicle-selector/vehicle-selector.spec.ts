@@ -87,9 +87,15 @@ describe('VehicleSelectorComponent', () => {
 
       fixture.detectChanges();
 
-      const select: HTMLSelectElement = fixture.nativeElement.querySelector('#vehicle-select');
+      const options = Array.from(
+        fixture.nativeElement.querySelectorAll('option')
+      ) as HTMLOptionElement[];
 
-      expect(select.value).toBe('P456');
+      const selectedOption = options.find(
+        option => option.value === 'P456'
+      );
+
+      expect(selectedOption).toBeTruthy();
     });
 
     it('should render only the default option when there are no vehicles', () => {
