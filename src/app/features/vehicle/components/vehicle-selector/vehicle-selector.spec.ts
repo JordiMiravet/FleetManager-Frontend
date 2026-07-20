@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { signal, WritableSignal } from '@angular/core';
+import { signal } from '@angular/core';
 
 import { VehicleSelectorComponent } from './vehicle-selector';
 import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
