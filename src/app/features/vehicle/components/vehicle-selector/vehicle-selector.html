@@ -2,17 +2,17 @@
 <select
   id="vehicle-select"
   class="vehicle-select"
+  [value]="selectedPlate() ?? ''"
   (change)="onVehicleChange($event)"
   aria-required="true"
 >
-  <option class="vehicle-select__option" value="" selected>
+  <option class="vehicle-select__option" value="">
     {{ selectorMsg.allVehiclesOption }}
   </option>
   @for (vehicle of vehicles(); track vehicle.plate) {
     <option
       class="vehicle-select__option"
       [value]="vehicle.plate"
-      [selected]="vehicle.plate === selectedPlate()"
     >
       {{ vehicle.name }}
     </option>
