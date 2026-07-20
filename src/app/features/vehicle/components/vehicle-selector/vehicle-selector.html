@@ -1,4 +1,7 @@
-<label for="vehicle-select" class="sr-only">{{ selectorMsg.label }}</label>
+<label for="vehicle-select" class="sr-only">
+  {{ selectorMsg.label }}
+</label>
+
 <select
   id="vehicle-select"
   class="vehicle-select"
@@ -6,9 +9,13 @@
   (change)="onVehicleChange($event)"
   aria-required="true"
 >
-  <option class="vehicle-select__option" value="">
+  <option 
+    class="vehicle-select__option" 
+    value=""
+  >
     {{ selectorMsg.allVehiclesOption }}
   </option>
+
   @for (vehicle of vehicles(); track vehicle.plate) {
     <option
       class="vehicle-select__option"
@@ -17,4 +24,5 @@
       {{ vehicle.name }}
     </option>
   }
+  
 </select>
