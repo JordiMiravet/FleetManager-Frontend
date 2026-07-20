@@ -81,6 +81,9 @@ describe('VehicleSelectorComponent', () => {
       expect(selectedOption).toBeTruthy();
     });
 
+    it('should update selected vehicle in select when selectedPlate changes', () => {
+
+    });
 
     it('should render only the default option when there are no vehicles', () => {
       (component.vehicles as any) = () => [];
