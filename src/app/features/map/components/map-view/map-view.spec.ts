@@ -237,6 +237,10 @@ describe('MapViewComponent', () => {
       expect(component.showConfirmModal()).toBe(true);
     });
 
+    it('should register dragend handler for the selected marker', () => {
+
+    });
+
   });
 
   describe('confirm location change', () => {
