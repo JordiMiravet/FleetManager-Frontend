@@ -261,7 +261,18 @@ describe('MapViewComponent', () => {
     });
 
     it('should register dragend handler for the selected marker', () => {
+      const mapService = TestBed.inject(MapService);
+      const onSpy = jasmine.createSpy('on');
+      const mockMarker = {
+        on: onSpy,
+      } as unknown as L.Marker;
 
+      spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
+      
+      component.selectedVehicle.set(mockVehicle1);
+      (component as any).placeSelectedVehicleMarker([41, 2]);
+
+      expect(onSpy).toHaveBeenCalledWith('dragend', jasmine.any(Function));
     });
 
   });
