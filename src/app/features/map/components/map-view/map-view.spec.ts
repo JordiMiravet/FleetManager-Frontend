@@ -68,7 +68,9 @@ describe('MapViewComponent', () => {
 
   beforeEach(async () => {
     vehicleMarkerManagerMock.mountComponent.calls.reset();
+    vehicleMarkerManagerMock.mountComponent.and.returnValue(() => {});
     vehicleMarkerManagerMock.createIcon.calls.reset();
+    vehicleMarkerManagerMock.createIcon.and.returnValue(L.divIcon());
 
     vehicleServiceMock.vehicles.set([]);
     vehicleServiceMock.loadVehicles.calls.reset();
