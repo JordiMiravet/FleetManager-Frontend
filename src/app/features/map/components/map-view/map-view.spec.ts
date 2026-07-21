@@ -185,7 +185,10 @@ describe('MapViewComponent', () => {
 
     it('should create markers for all vehicles with location', () => {
       const mapService = TestBed.inject(MapService);
-      const markerMock = {} as L.Marker;
+
+      const markerMock = {
+        on: jasmine.createSpy('on'),
+      } as unknown as L.Marker;
 
       spyOn(mapService, 'createMarker').and.returnValue(markerMock);
 
@@ -596,5 +599,4 @@ describe('MapViewComponent', () => {
 
   });
 
-  
 });
