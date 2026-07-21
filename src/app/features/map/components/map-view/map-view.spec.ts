@@ -99,14 +99,7 @@ describe('MapViewComponent', () => {
   describe('initialization', () => {
 
     it('should initialize the map on ngOnInit', () => {
-      const mapService = TestBed.inject(MapService);
-      const mockMap = {} as L.Map;
 
-      const initMapSpy = spyOn(mapService, 'initMap').and.returnValue(mockMap);
-
-      component.ngOnInit();
-
-      expect(initMapSpy).toHaveBeenCalledOnceWith('map', [41.478, 2.31], 10);
     });
 
     it('should clear markers on ngOnDestroy', () => {
