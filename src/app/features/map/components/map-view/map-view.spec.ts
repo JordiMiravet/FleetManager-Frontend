@@ -52,23 +52,32 @@ const mockVehicleWithoutLocation: VehicleInterface = {
   location: undefined
 };
 
+const vehicleServiceMock = {
+  vehicles: signal<VehicleInterface[]>([]),
+  loadVehicles: jasmine.createSpy('loadVehicles'),
+  addVehicle: jasmine.createSpy('addVehicle'),
+  updateVehicle: jasmine.createSpy('updateVehicle'),
+  deleteVehicle: jasmine.createSpy('deleteVehicle'),
+  updateVehicleLocation: jasmine.createSpy('updateVehicleLocation')
+};
+
 describe('MapViewComponent', () => {
   let component: MapViewComponent;
   let fixture: ComponentFixture<MapViewComponent>;
   let vehicleService: any;
 
   beforeEach(async () => {
-    const vehicleServiceMock = {
-      vehicles: signal<VehicleInterface[]>([]),
-      loadVehicles: jasmine.createSpy('loadVehicles'),
-      addVehicle: jasmine.createSpy('addVehicle'),
-      updateVehicle: jasmine.createSpy('updateVehicle'),
-      deleteVehicle: jasmine.createSpy('deleteVehicle'),
-      updateVehicleLocation: jasmine.createSpy('updateVehicleLocation')
-    };
-
     vehicleMarkerManagerMock.mountComponent.calls.reset();
+    vehicleMarkerManagerMock.mountComponent.and.returnValue(() => {});
     vehicleMarkerManagerMock.createIcon.calls.reset();
+    vehicleMarkerManagerMock.createIcon.and.returnValue(L.divIcon());
+
+    vehicleServiceMock.vehicles.set([]);
+    vehicleServiceMock.loadVehicles.calls.reset();
+    vehicleServiceMock.addVehicle.calls.reset();
+    vehicleServiceMock.updateVehicle.calls.reset();
+    vehicleServiceMock.deleteVehicle.calls.reset();
+    vehicleServiceMock.updateVehicleLocation.calls.reset();
 
     await TestBed.configureTestingModule({
       imports: [MapViewComponent],
@@ -185,7 +194,10 @@ describe('MapViewComponent', () => {
 
     it('should create markers for all vehicles with location', () => {
       const mapService = TestBed.inject(MapService);
-      const markerMock = {} as L.Marker;
+
+      const markerMock = {
+        on: jasmine.createSpy('on'),
+      } as unknown as L.Marker;
 
       spyOn(mapService, 'createMarker').and.returnValue(markerMock);
 
@@ -205,6 +217,34 @@ describe('MapViewComponent', () => {
       (component as any).showAllVehicles();
 
       expect(mapService.createMarker).not.toHaveBeenCalled();
+    });
+
+    it('should clear all vehicle markers before showing the selected vehicle', () => {
+      const clearAllMarkersSpy = spyOn<any>(component, 'clearAllMarkers');
+
+      component.showVehicle(mockVehicle1);
+
+      expect(clearAllMarkersSpy).toHaveBeenCalled();
+    });
+
+    it('should clear all vehicle markers when clearing the selection', () => {
+      const clearAllMarkersSpy = spyOn<any>(component, 'clearAllMarkers');
+
+      component.showVehicle(null);
+
+      expect(clearAllMarkersSpy).toHaveBeenCalled();
+    });
+
+    it('should replace the previous selected marker when selecting another vehicle', () => {
+      const mapService = TestBed.inject(MapService);
+      const removeLayerSpy = spyOn(mapService, 'removeLayer');
+
+      const previousMarker = {} as L.Marker;
+      (component as any).selectedVehicleMarker = previousMarker;
+
+      component.showVehicle(mockVehicle1);
+
+      expect(removeLayerSpy).toHaveBeenCalledOnceWith(previousMarker);
     });
 
   });
@@ -227,6 +267,21 @@ describe('MapViewComponent', () => {
       component.showConfirmModal.set(true);
 
       expect(component.showConfirmModal()).toBe(true);
+    });
+
+    it('should register dragend handler for the selected marker', () => {
+      const mapService = TestBed.inject(MapService);
+      const onSpy = jasmine.createSpy('on');
+      const mockMarker = {
+        on: onSpy,
+      } as unknown as L.Marker;
+
+      spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
+      
+      component.selectedVehicle.set(mockVehicle1);
+      (component as any).placeSelectedVehicleMarker([41, 2]);
+
+      expect(onSpy).toHaveBeenCalledWith('dragend', jasmine.any(Function));
     });
 
   });
@@ -391,6 +446,26 @@ describe('MapViewComponent', () => {
       expect(console.error).toHaveBeenCalled();
     });
 
+    it('should center the map after updating to the user location', async () => {
+      const geo = TestBed.inject(GeolocationService);
+      const mapService = TestBed.inject(MapService);
+
+      spyOn(geo, 'getCurrentLocation').and.returnValue(
+        Promise.resolve([50, 8])
+      );
+      spyOn(mapService, 'createMarker').and.returnValue({
+        on: jasmine.createSpy('on')
+      } as any);
+
+      const setViewSpy = spyOn(mapService, 'setView');
+
+      component.selectedVehicle.set(mockVehicle1);
+
+      await component.onUserLocationClick();
+
+      expect(setViewSpy).toHaveBeenCalledWith([50, 8], 19);
+    });
+
   });
 
   describe('private helper methods', () => {
@@ -498,6 +573,22 @@ describe('MapViewComponent', () => {
       expect((component as any).selectedMarkerCleanup).toBe(cleanupFn);
     });
 
+    it('should register click handler for each vehicle marker', () => {
+      const mapService = TestBed.inject(MapService);
+      const onSpy = jasmine.createSpy('on');
+      const mockMarker = {
+        on: onSpy,
+      } as unknown as L.Marker;
+
+      spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
+
+      vehicleService.vehicles.set([mockVehicle1, mockVehicle2]);
+
+      (component as any).showAllVehicles();
+
+      expect(onSpy).toHaveBeenCalledWith('click', jasmine.any(Function));
+    });
+
   });
 
   describe('marker cleanup', () => {
@@ -564,6 +655,22 @@ describe('MapViewComponent', () => {
 
   });
 
+  describe('vehicle selection synchronization', () => {
+
+    it('should keep selectedVehicle synchronized after selecting a vehicle', () => {
+      component.showVehicle(mockVehicle1);
+
+      expect(component.selectedVehicle()).toBe(mockVehicle1);
+    });
+
+    it('should clear selectedVehicle when selection is cleared', () => {
+      component.selectedVehicle.set(mockVehicle1);
+      component.showVehicle(null);
+
+      expect(component.selectedVehicle()).toBeNull();
+    });
+
+  });
 
   describe('template integration', () => {
 
@@ -596,5 +703,4 @@ describe('MapViewComponent', () => {
 
   });
 
-  
 });
