@@ -565,7 +565,19 @@ describe('MapViewComponent', () => {
     });
 
     it('should register click handler for each vehicle marker', () => {
+      const mapService = TestBed.inject(MapService);
+      const onSpy = jasmine.createSpy('on');
+      const mockMarker = {
+        on: onSpy,
+      } as unknown as L.Marker;
 
+      spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
+
+      vehicleService.vehicles.set([mockVehicle1, mockVehicle2]);
+
+      (component as any).showAllVehicles();
+
+      expect(onSpy).toHaveBeenCalledWith('click', jasmine.any(Function));
     });
 
   });
