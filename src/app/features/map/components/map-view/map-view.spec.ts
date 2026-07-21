@@ -438,7 +438,23 @@ describe('MapViewComponent', () => {
     });
 
     it('should center the map after updating to the user location', async () => {
+      const geo = TestBed.inject(GeolocationService);
+      const mapService = TestBed.inject(MapService);
 
+      spyOn(geo, 'getCurrentLocation').and.returnValue(
+        Promise.resolve([50, 8])
+      );
+      spyOn(mapService, 'createMarker').and.returnValue({
+        on: jasmine.createSpy('on')
+      } as any);
+
+      const setViewSpy = spyOn(mapService, 'setView');
+
+      component.selectedVehicle.set(mockVehicle1);
+
+      await component.onUserLocationClick();
+
+      expect(setViewSpy).toHaveBeenCalledWith([50, 8], 19);
     });
 
   });
