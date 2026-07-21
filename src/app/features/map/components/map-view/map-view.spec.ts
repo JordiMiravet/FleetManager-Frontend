@@ -403,6 +403,10 @@ describe('MapViewComponent', () => {
       expect(console.error).toHaveBeenCalled();
     });
 
+    it('should center the map after updating to the user location', async () => {
+
+    });
+
   });
 
   describe('private helper methods', () => {
