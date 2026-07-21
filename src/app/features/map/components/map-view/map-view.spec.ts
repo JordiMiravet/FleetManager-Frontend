@@ -649,11 +649,16 @@ describe('MapViewComponent', () => {
   describe('vehicle selection synchronization', () => {
 
     it('should keep selectedVehicle synchronized after selecting a vehicle', () => {
+      component.showVehicle(mockVehicle1);
 
+      expect(component.selectedVehicle()).toBe(mockVehicle1);
     });
 
     it('should clear selectedVehicle when selection is cleared', () => {
+      component.selectedVehicle.set(mockVehicle1);
+      component.showVehicle(null);
 
+      expect(component.selectedVehicle()).toBeNull();
     });
 
   });
