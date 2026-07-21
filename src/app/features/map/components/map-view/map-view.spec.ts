@@ -584,6 +584,17 @@ describe('MapViewComponent', () => {
 
   });
 
+  describe('vehicle selection synchronization', () => {
+
+    it('should keep selectedVehicle synchronized after selecting a vehicle', () => {
+
+    });
+
+    it('should clear selectedVehicle when selection is cleared', () => {
+
+    });
+
+  });
 
   describe('template integration', () => {
 
