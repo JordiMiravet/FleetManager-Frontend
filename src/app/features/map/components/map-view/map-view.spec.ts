@@ -203,6 +203,18 @@ describe('MapViewComponent', () => {
       expect(mapService.createMarker).not.toHaveBeenCalled();
     });
 
+    it('should clear all vehicle markers before showing the selected vehicle', () => {
+
+    });
+
+    it('should clear all vehicle markers when clearing the selection', () => {
+
+    });
+
+    it('should replace the previous selected marker when selecting another vehicle', () => {
+
+    });
+
   });
 
   describe('vehicle marker drag behaviour', () => {
