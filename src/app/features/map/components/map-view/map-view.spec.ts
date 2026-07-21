@@ -52,23 +52,30 @@ const mockVehicleWithoutLocation: VehicleInterface = {
   location: undefined
 };
 
+const vehicleServiceMock = {
+  vehicles: signal<VehicleInterface[]>([]),
+  loadVehicles: jasmine.createSpy('loadVehicles'),
+  addVehicle: jasmine.createSpy('addVehicle'),
+  updateVehicle: jasmine.createSpy('updateVehicle'),
+  deleteVehicle: jasmine.createSpy('deleteVehicle'),
+  updateVehicleLocation: jasmine.createSpy('updateVehicleLocation')
+};
+
 describe('MapViewComponent', () => {
   let component: MapViewComponent;
   let fixture: ComponentFixture<MapViewComponent>;
   let vehicleService: any;
 
   beforeEach(async () => {
-    const vehicleServiceMock = {
-      vehicles: signal<VehicleInterface[]>([]),
-      loadVehicles: jasmine.createSpy('loadVehicles'),
-      addVehicle: jasmine.createSpy('addVehicle'),
-      updateVehicle: jasmine.createSpy('updateVehicle'),
-      deleteVehicle: jasmine.createSpy('deleteVehicle'),
-      updateVehicleLocation: jasmine.createSpy('updateVehicleLocation')
-    };
-
     vehicleMarkerManagerMock.mountComponent.calls.reset();
     vehicleMarkerManagerMock.createIcon.calls.reset();
+
+    vehicleServiceMock.vehicles.set([]);
+    vehicleServiceMock.loadVehicles.calls.reset();
+    vehicleServiceMock.addVehicle.calls.reset();
+    vehicleServiceMock.updateVehicle.calls.reset();
+    vehicleServiceMock.deleteVehicle.calls.reset();
+    vehicleServiceMock.updateVehicleLocation.calls.reset();
 
     await TestBed.configureTestingModule({
       imports: [MapViewComponent],
