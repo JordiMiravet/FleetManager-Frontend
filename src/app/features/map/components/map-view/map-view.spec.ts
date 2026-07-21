@@ -514,6 +514,10 @@ describe('MapViewComponent', () => {
       expect((component as any).selectedMarkerCleanup).toBe(cleanupFn);
     });
 
+    it('should register click handler for each vehicle marker', () => {
+
+    });
+
   });
 
   describe('marker cleanup', () => {
