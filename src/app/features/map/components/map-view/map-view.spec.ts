@@ -211,15 +211,31 @@ describe('MapViewComponent', () => {
     });
 
     it('should clear all vehicle markers before showing the selected vehicle', () => {
+      const clearAllMarkersSpy = spyOn<any>(component, 'clearAllMarkers');
 
+      component.showVehicle(mockVehicle1);
+
+      expect(clearAllMarkersSpy).toHaveBeenCalled();
     });
 
     it('should clear all vehicle markers when clearing the selection', () => {
+      const clearAllMarkersSpy = spyOn<any>(component, 'clearAllMarkers');
 
+      component.showVehicle(null);
+
+      expect(clearAllMarkersSpy).toHaveBeenCalled();
     });
 
     it('should replace the previous selected marker when selecting another vehicle', () => {
+      const mapService = TestBed.inject(MapService);
+      const removeLayerSpy = spyOn(mapService, 'removeLayer');
 
+      const previousMarker = {} as L.Marker;
+      (component as any).selectedVehicleMarker = previousMarker;
+
+      component.showVehicle(mockVehicle1);
+
+      expect(removeLayerSpy).toHaveBeenCalledOnceWith(previousMarker);
     });
 
   });
