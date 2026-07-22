@@ -135,7 +135,7 @@ describe('DayEventsModalComponent', () => {
       fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
-      expect(component.events().length).toBe(mockEvents.length);
+      expect(component.events()).toHaveSize(mockEvents.length);
     });
 
     it('should render one <li> per event', () => {
@@ -143,7 +143,7 @@ describe('DayEventsModalComponent', () => {
       fixture.detectChanges();
 
       const items = fixture.nativeElement.querySelectorAll('li');
-      expect(items.length).toBe(mockEvents.length);
+      expect(items).toHaveSize(mockEvents.length);
     });
 
     it('should render event title correctly', () => {
@@ -151,7 +151,7 @@ describe('DayEventsModalComponent', () => {
       fixture.detectChanges();
 
       const title = fixture.nativeElement.querySelectorAll('.event-card__title');
-      expect(title.length).toBe(mockEvents.length);
+      expect(title).toHaveSize(mockEvents.length);
       expect(title[0].textContent).toContain(mockEvents[0].title);
     });
 
@@ -160,7 +160,7 @@ describe('DayEventsModalComponent', () => {
       fixture.detectChanges();
 
       const time = fixture.nativeElement.querySelectorAll('.event-card__time-value');
-      expect(time.length).toBe(mockEvents.length);
+      expect(time).toHaveSize(mockEvents.length);
       expect(time[0].textContent).toContain(`${mockEvents[0].hourStart} - ${mockEvents[0].hourEnd}`);
     });
 
@@ -178,7 +178,7 @@ describe('DayEventsModalComponent', () => {
       fixture.detectChanges();
 
       const comments = fixture.nativeElement.querySelectorAll('.event-card__comment');
-      expect(comments.length).toBe(1);
+      expect(comments).toHaveSize(1);
       expect(comments[0].textContent).toContain(mockEvents[0].comment);
     });
 
@@ -226,7 +226,7 @@ describe('DayEventsModalComponent', () => {
       fixture.detectChanges();
 
       const cards = fixture.nativeElement.querySelectorAll('.event-card');
-      expect(cards.length).toBe(0);
+      expect(cards).toHaveSize(0);
     });
 
   });
