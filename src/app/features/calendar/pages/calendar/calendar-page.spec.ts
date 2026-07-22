@@ -47,7 +47,7 @@ describe('CalendarPageComponent', () => {
   it('should contain only the calendar view component', () => {
     const element = fixture.nativeElement;
 
-    expect(element.children.length).toBe(1);
+    expect(element.children).toHaveSize(1);
     expect(element.children[0].tagName.toLowerCase()).toBe('app-calendar-view');
   });
 

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { provideHttpClient} from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 
 import { EventService } from './event-service';
@@ -38,10 +38,12 @@ describe('EventService', () => {
     httpMock.expectOne(API_URL).flush(events);
   }
 
-  describe('Creación del servicio', () => {
+  describe('Service creation', () => {
+
     it('should be created', () => {
       expect(service).toBeTruthy();
     });
+
   });
 
   describe('loadEvents', () => {
@@ -59,6 +61,14 @@ describe('EventService', () => {
       loadMockEvents();
 
       expect(service.calendarEvents()).toEqual(mockEvents);
+    });
+
+    it('should set empty events when API returns empty array', () => {
+      service.loadEvents();
+
+      httpMock.expectOne(API_URL).flush([]);
+
+      expect(service.calendarEvents()).toEqual([]);
     });
 
   });
@@ -85,6 +95,22 @@ describe('EventService', () => {
       req.flush(mockEvent);
 
       expect(result).toEqual(mockEvent);
+    });
+
+    it('should propagate request errors', () => {
+      let errorResponse: unknown;
+
+      service.getEventById('999').subscribe({
+        error: error => errorResponse = error
+      });
+
+      const req = httpMock.expectOne(`${API_URL}/999`);
+      req.flush('Not found', {
+        status: 404,
+        statusText: 'Not Found'
+      });
+
+      expect(errorResponse).toBeTruthy();
     });
 
   });
@@ -243,7 +269,7 @@ describe('EventService', () => {
     });
 
     it('should send empty string when comment is undefined', () => {
-      const updatedEvent: EventInterface = { ...mockEvents[1], comment: undefined as any };
+      const updatedEvent: EventInterface = { ...mockEvents[1], comment: undefined };
 
       service.updateEvent(updatedEvent);
 

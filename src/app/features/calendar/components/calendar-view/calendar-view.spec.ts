@@ -345,7 +345,7 @@ describe('CalendarViewComponent', () => {
 
       const events = (component as any).getCalendarEvents();
 
-      expect(events.length).toBe(1);
+      expect(events).toHaveSize(1);
       expect(events[0].id).toBe('1');
       expect(events[0].title).toBe('Test Event');
       expect(events[0].date).toBe('2026-02-13');
@@ -358,6 +358,7 @@ describe('CalendarViewComponent', () => {
       mockEventService.calendarEvents.and.returnValue([]);
 
       const events = (component as any).getCalendarEvents();
+
       expect(events).toEqual([]);
     });
 
