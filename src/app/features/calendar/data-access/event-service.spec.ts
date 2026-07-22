@@ -39,9 +39,11 @@ describe('EventService', () => {
   }
 
   describe('Service creation', () => {
+
     it('should be created', () => {
       expect(service).toBeTruthy();
     });
+    
   });
 
   describe('loadEvents', () => {
@@ -59,6 +61,14 @@ describe('EventService', () => {
       loadMockEvents();
 
       expect(service.calendarEvents()).toEqual(mockEvents);
+    });
+
+    it('should set empty events when API returns empty array', () => {
+      service.loadEvents();
+
+      httpMock.expectOne(API_URL).flush([]);
+
+      expect(service.calendarEvents()).toEqual([]);
     });
 
   });
