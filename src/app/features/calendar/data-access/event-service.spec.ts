@@ -269,7 +269,7 @@ describe('EventService', () => {
     });
 
     it('should send empty string when comment is undefined', () => {
-      const updatedEvent: EventInterface = { ...mockEvents[1], comment: undefined as any };
+      const updatedEvent: EventInterface = { ...mockEvents[1], comment: undefined };
 
       service.updateEvent(updatedEvent);
 
