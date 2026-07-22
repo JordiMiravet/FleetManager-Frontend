@@ -43,7 +43,7 @@ describe('EventService', () => {
     it('should be created', () => {
       expect(service).toBeTruthy();
     });
-    
+
   });
 
   describe('loadEvents', () => {
@@ -95,6 +95,22 @@ describe('EventService', () => {
       req.flush(mockEvent);
 
       expect(result).toEqual(mockEvent);
+    });
+
+    it('should propagate request errors', () => {
+      let errorResponse: unknown;
+
+      service.getEventById('999').subscribe({
+        error: error => errorResponse = error
+      });
+
+      const req = httpMock.expectOne(`${API_URL}/999`);
+      req.flush('Not found', {
+        status: 404,
+        statusText: 'Not Found'
+      });
+
+      expect(errorResponse).toBeTruthy();
     });
 
   });
