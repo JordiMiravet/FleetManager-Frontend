@@ -358,6 +358,7 @@ describe('CalendarViewComponent', () => {
       mockEventService.calendarEvents.and.returnValue([]);
 
       const events = (component as any).getCalendarEvents();
+
       expect(events).toEqual([]);
     });
 
