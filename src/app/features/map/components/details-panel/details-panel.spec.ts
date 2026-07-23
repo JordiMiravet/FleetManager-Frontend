@@ -66,17 +66,10 @@ describe('DetailsPanelComponent', () => {
 
     it('should emit click event when button is clicked', () => {
       spyOn(component.click, 'emit');
+
       const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
-
       button.click();
-      expect(component.click.emit).toHaveBeenCalled();
-    });
 
-    it('should emit click event only once per click', () => {
-      spyOn(component.click, 'emit');
-      const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
-
-      button.click();
       expect(component.click.emit).toHaveBeenCalledTimes(1);
     });
 
