@@ -198,6 +198,19 @@ describe('MapContainerComponent', () => {
       expect(vehicleModalServiceMock.close).toHaveBeenCalled();
     });
 
+    it('should keep existing location when editing a vehicle with location', async () => {
+      vehicleModalServiceMock.formMode.set('edit');
+      vehicleModalServiceMock.selectedVehicle.set(selectedVehicleMock);
+
+      geolocationServiceMock.getCurrentLocation.calls.reset();
+
+      await component.saveVehicle(vehicleMock);
+
+      expect(geolocationServiceMock.getCurrentLocation).not.toHaveBeenCalled();
+      expect(vehicleServiceMock.updateVehicle)
+        .toHaveBeenCalledWith(selectedVehicleMock, vehicleMock);
+    });
+
   });
 
   describe('Template rendering', () => {
