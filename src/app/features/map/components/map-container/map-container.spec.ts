@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 
 import { MapContainerComponent } from './map-container';
@@ -81,7 +80,6 @@ describe('MapContainerComponent', () => {
         { provide: VehicleService, useValue: vehicleServiceMock },
         { provide: VehicleModalService, useValue: vehicleModalServiceMock },
         { provide: GeolocationService, useValue: geolocationServiceMock },
-        provideHttpClient()
       ],
     }).compileComponents();
 
