@@ -66,23 +66,22 @@ describe('VehicleMarkerManager', () => {
 
   describe('mountComponent', () => {
 
-    it('should create a VehicleMarkerComponent instance', () => {
+    const mountComponent = (marker = {} as L.Marker) =>
       service.mountComponent(
-        {} as L.Marker,
+        marker,
         mockVehicle,
         viewContainerRefMock as unknown as ViewContainerRef
       );
+
+    it('should create a VehicleMarkerComponent instance', () => {
+      mountComponent();
 
       expect(viewContainerRefMock.createComponent).toHaveBeenCalledWith(VehicleMarkerComponent);
       expect(componentRefMock.changeDetectorRef.detectChanges).toHaveBeenCalled();
     });
 
     it('should set the vehicle input on the created component', () => {
-      service.mountComponent(
-        {} as L.Marker,
-        mockVehicle,
-        viewContainerRefMock as unknown as ViewContainerRef
-      );
+      mountComponent();
 
       expect(componentRefMock.setInput).toHaveBeenCalledWith('vehicle', mockVehicle);
     });
@@ -93,22 +92,14 @@ describe('VehicleMarkerManager', () => {
 
       markerMock.getElement.and.returnValue(markerElement);
 
-      service.mountComponent(
-        markerMock as unknown as L.Marker,
-        mockVehicle,
-        viewContainerRefMock as unknown as ViewContainerRef
-      );
+      mountComponent(markerMock as unknown as L.Marker);
       await Promise.resolve();
 
       expect(appendChildSpy).toHaveBeenCalledWith(componentRefMock.location.nativeElement);
     });
 
     it('should destroy the component when cleanup is called', () => {
-      const cleanup = service.mountComponent(
-        {} as L.Marker,
-        mockVehicle,
-        viewContainerRefMock as unknown as ViewContainerRef
-      );
+      const cleanup = mountComponent();
       cleanup();
 
       expect(componentRefMock.destroy).toHaveBeenCalled();
