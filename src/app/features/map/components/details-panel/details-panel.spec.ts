@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { DetailsPanelComponent } from './details-panel';
+
+import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 import { MapMessagesService } from '../../i18n/map-messages';
 
 const MockDetailsPanel = {
@@ -23,7 +26,7 @@ const MockDetailsPanel = {
   }
 };
 
-const MockVehicle = {
+const MockVehicle :VehicleInterface = {
   _id: '1',
   name: 'Ferrari',
   model: 'F8',
@@ -63,17 +66,10 @@ describe('DetailsPanelComponent', () => {
 
     it('should emit click event when button is clicked', () => {
       spyOn(component.click, 'emit');
+
       const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
-
       button.click();
-      expect(component.click.emit).toHaveBeenCalled();
-    });
 
-    it('should emit click event only once per click', () => {
-      spyOn(component.click, 'emit');
-      const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
-
-      button.click();
       expect(component.click.emit).toHaveBeenCalledTimes(1);
     });
 
@@ -85,6 +81,11 @@ describe('DetailsPanelComponent', () => {
   });
 
   describe('Vehicle rendering', () => {
+
+    it('should have null vehicle by default', () => {
+      expect(component.vehicle()).toBeNull();
+    });
+
     it('should render vehicle data when provided', () => {
       fixture.componentRef.setInput('vehicle', MockVehicle);
       fixture.detectChanges();

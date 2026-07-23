@@ -40,7 +40,7 @@ describe('VehicleMarkerComponent', () => {
 
     it('should render the fallback image when imageUrl is missing', () => {
       fixture.componentRef.setInput('vehicle', {
-        ...component.vehicle(),
+        ...mockVehicle,
         imageUrl: '',
       });
       fixture.detectChanges();

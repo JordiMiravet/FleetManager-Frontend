@@ -45,11 +45,6 @@ describe('MapPageComponent', () => {
 
   describe('child components rendering', () => {
 
-    it('should render graphics-view component', () => {
-      const graphicsComponent = fixture.nativeElement.querySelector('app-map-container');
-      expect(graphicsComponent).toBeTruthy();
-    });
-
     it('should render GraphicsViewComponent', () => {
       const child = fixture.debugElement.query(
         By.directive(MapContainerComponent)

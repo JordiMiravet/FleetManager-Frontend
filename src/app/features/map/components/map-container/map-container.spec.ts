@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 
 import { MapContainerComponent } from './map-container';
@@ -81,7 +80,6 @@ describe('MapContainerComponent', () => {
         { provide: VehicleService, useValue: vehicleServiceMock },
         { provide: VehicleModalService, useValue: vehicleModalServiceMock },
         { provide: GeolocationService, useValue: geolocationServiceMock },
-        provideHttpClient()
       ],
     }).compileComponents();
 
@@ -90,7 +88,7 @@ describe('MapContainerComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('Component creation', () => {
+  describe('component creation', () => {
 
     it('should create', () => {
       expect(component).toBeTruthy();
@@ -98,7 +96,7 @@ describe('MapContainerComponent', () => {
 
   });
 
-  describe('Initial state', () => {
+  describe('initial state', () => {
 
     it('should expose vehicle list from VehicleService', () => {
       expect(component.vehicleList).toEqual(vehicleServiceMock.vehicles);
@@ -110,7 +108,7 @@ describe('MapContainerComponent', () => {
 
   });
 
-  describe('Save vehicle', () => {
+  describe('save vehicle', () => {
 
     it('should keep provided location when vehicle already has location', async () => {
       vehicleModalServiceMock.formMode.set('create');
@@ -198,9 +196,22 @@ describe('MapContainerComponent', () => {
       expect(vehicleModalServiceMock.close).toHaveBeenCalled();
     });
 
+    it('should keep existing location when editing a vehicle with location', async () => {
+      vehicleModalServiceMock.formMode.set('edit');
+      vehicleModalServiceMock.selectedVehicle.set(selectedVehicleMock);
+
+      geolocationServiceMock.getCurrentLocation.calls.reset();
+
+      await component.saveVehicle(vehicleMock);
+
+      expect(geolocationServiceMock.getCurrentLocation).not.toHaveBeenCalled();
+      expect(vehicleServiceMock.updateVehicle)
+        .toHaveBeenCalledWith(selectedVehicleMock, vehicleMock);
+    });
+
   });
 
-  describe('Template rendering', () => {
+  describe('template rendering', () => {
 
     it('should render map view when vehicle list is not empty', () => {
       vehicleServiceMock.vehicles.set([vehicleMock]);
@@ -224,7 +235,11 @@ describe('MapContainerComponent', () => {
       vehicleServiceMock.vehicles.set([]);
       fixture.detectChanges();
 
-      component.vehicleModal.openCreate();
+      const emptyStateComponent = fixture.debugElement.query(
+        By.css('app-vehicle-empty-state')
+      );
+
+      emptyStateComponent.triggerEventHandler('createVehicle');
 
       expect(vehicleModalServiceMock.openCreate).toHaveBeenCalled();
     });
@@ -253,7 +268,11 @@ describe('MapContainerComponent', () => {
       vehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
       fixture.detectChanges();
 
-      component.vehicleModal.close();
+      const vehicleFormModalComponent = fixture.debugElement.query(
+        By.directive(VehicleFormModalComponent)
+      );
+
+      vehicleFormModalComponent.triggerEventHandler('cancel');
 
       expect(vehicleModalServiceMock.close).toHaveBeenCalled();
     });
