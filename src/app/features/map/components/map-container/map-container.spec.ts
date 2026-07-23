@@ -88,7 +88,7 @@ describe('MapContainerComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('Component creation', () => {
+  describe('component creation', () => {
 
     it('should create', () => {
       expect(component).toBeTruthy();
@@ -96,7 +96,7 @@ describe('MapContainerComponent', () => {
 
   });
 
-  describe('Initial state', () => {
+  describe('initial state', () => {
 
     it('should expose vehicle list from VehicleService', () => {
       expect(component.vehicleList).toEqual(vehicleServiceMock.vehicles);
@@ -108,7 +108,7 @@ describe('MapContainerComponent', () => {
 
   });
 
-  describe('Save vehicle', () => {
+  describe('save vehicle', () => {
 
     it('should keep provided location when vehicle already has location', async () => {
       vehicleModalServiceMock.formMode.set('create');
@@ -211,7 +211,7 @@ describe('MapContainerComponent', () => {
 
   });
 
-  describe('Template rendering', () => {
+  describe('template rendering', () => {
 
     it('should render map view when vehicle list is not empty', () => {
       vehicleServiceMock.vehicles.set([vehicleMock]);
