@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { DetailsPanelComponent } from './details-panel';
+
+import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 import { MapMessagesService } from '../../i18n/map-messages';
 
 const MockDetailsPanel = {
@@ -23,7 +26,7 @@ const MockDetailsPanel = {
   }
 };
 
-const MockVehicle = {
+const MockVehicle :VehicleInterface = {
   _id: '1',
   name: 'Ferrari',
   model: 'F8',
