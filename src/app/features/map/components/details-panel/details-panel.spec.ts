@@ -88,6 +88,11 @@ describe('DetailsPanelComponent', () => {
   });
 
   describe('Vehicle rendering', () => {
+
+    it('should have null vehicle by default', () => {
+      expect(component.vehicle()).toBeNull();
+    });
+
     it('should render vehicle data when provided', () => {
       fixture.componentRef.setInput('vehicle', MockVehicle);
       fixture.detectChanges();
