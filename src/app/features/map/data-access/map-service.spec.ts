@@ -31,6 +31,11 @@ describe('MapService', () => {
     service.destroy();
   }
 
+  function initializeMap() {
+    createMapDom();
+    service.initMap('map', [41.3851, 2.1734], 13);
+  }
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
