@@ -235,11 +235,11 @@ describe('MapContainerComponent', () => {
       vehicleServiceMock.vehicles.set([]);
       fixture.detectChanges();
 
-      const emptyState = fixture.debugElement.query(
+      const emptyStateComponent = fixture.debugElement.query(
         By.css('app-vehicle-empty-state')
       );
 
-      emptyState.triggerEventHandler('createVehicle');
+      emptyStateComponent.triggerEventHandler('createVehicle');
 
       expect(vehicleModalServiceMock.openCreate).toHaveBeenCalled();
     });
