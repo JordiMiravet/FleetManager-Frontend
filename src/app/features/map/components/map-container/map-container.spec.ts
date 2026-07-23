@@ -268,11 +268,11 @@ describe('MapContainerComponent', () => {
       vehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
       fixture.detectChanges();
 
-      const modal = fixture.debugElement.query(
+      const vehicleFormModalComponent = fixture.debugElement.query(
         By.directive(VehicleFormModalComponent)
       );
 
-      modal.triggerEventHandler('cancel');
+      vehicleFormModalComponent.triggerEventHandler('cancel');
 
       expect(vehicleModalServiceMock.close).toHaveBeenCalled();
     });
