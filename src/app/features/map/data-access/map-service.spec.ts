@@ -109,8 +109,7 @@ describe('MapService', () => {
   describe('createMarker', () => {
 
     beforeEach(() => {
-      createMapDom();
-      service.initMap('map', [41.3851, 2.1734], 13);
+      initializeMap();
     });
 
     afterEach(() => {
@@ -172,8 +171,7 @@ describe('MapService', () => {
   describe('setView', () => {
 
     beforeEach(() => {
-      createMapDom();
-      service.initMap('map', [41.3851, 2.1734], 13);
+      initializeMap();
     });
 
     afterEach(() => {
@@ -206,8 +204,7 @@ describe('MapService', () => {
   describe('removeLayer', () => {
 
     beforeEach(() => {
-      createMapDom();
-      service.initMap('map', [41.3851, 2.1734], 13);
+      initializeMap();
     });
 
     afterEach(() => {
