@@ -66,12 +66,17 @@ describe('AuthService', () => {
     });
 
     it('login should call signInWithEmailAndPassword', async () => {
-      const result = service.login({
+      const credentials = {
         email: 'IHateTestsXD@hotmail.com',
         password: '123456'
-      });
+      };
 
-      expect(mockSignIn).toHaveBeenCalled();
+      const result = service.login(credentials);
+
+      expect(mockSignIn).toHaveBeenCalledWith(
+        credentials.email,
+        credentials.password
+      );
       await expectAsync(result).toBeResolved();
     });
 
