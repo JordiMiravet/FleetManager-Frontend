@@ -18,6 +18,7 @@ describe('authInterceptor', () => {
   });
 
   describe('When user is not authenticated', () => {
+
     it('should forward the original request', () => {
       const authMock = {
         currentUser: null
@@ -36,9 +37,11 @@ describe('authInterceptor', () => {
 
       expect(next).toHaveBeenCalledWith(request);
     });
+
   });
 
   describe('When user is authenticated', () => {
+
     it('should add authorization header with user token', async () => {
       const authMock = {
         currentUser: {
@@ -62,6 +65,7 @@ describe('authInterceptor', () => {
       expect(authMock.currentUser.getIdToken).toHaveBeenCalled();
       expect(interceptedRequest.headers.get('Authorization')).toBe('Bearer test-token');
     });
+    
   });
 
 });
