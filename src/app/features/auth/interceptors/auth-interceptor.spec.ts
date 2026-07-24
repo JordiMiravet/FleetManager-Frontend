@@ -14,4 +14,13 @@ describe('authInterceptor', () => {
   it('should be created', () => {
     expect(interceptor).toBeTruthy();
   });
+
+  describe('When user is not authenticated', () => {
+
+  });
+
+  describe('When user is authenticated', () => {
+
+  });
+
 });
