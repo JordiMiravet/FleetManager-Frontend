@@ -11,7 +11,7 @@ const mockAuth = {
 };
 
 const validCredentials = {
-  email: 'itacademy@gmail.com',
+  email: 'test@example.com',
   password: '123456'
 };
 
