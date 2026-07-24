@@ -95,11 +95,21 @@ describe('LoginPageComponent', () => {
     });
 
     it('should invalidate email when empty', () => {
+      const emailControl = component.formLogin.get('email');
 
+      emailControl?.setValue('');
+
+      expect(emailControl?.invalid).toBeTrue();
+      expect(emailControl?.errors?.['required']).toBeTrue();
     });
 
     it('should invalidate password when empty', () => {
+      const passwordControl = component.formLogin.get('password');
 
+      passwordControl?.setValue('');
+
+      expect(passwordControl?.invalid).toBeTrue();
+      expect(passwordControl?.errors?.['required']).toBeTrue();
     });
 
   });
