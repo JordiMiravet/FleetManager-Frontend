@@ -33,12 +33,15 @@ describe('AuthService', () => {
   });
 
   describe('Service creation', () => {
+
     it('should be created', () => {
       expect(service).toBeTruthy();
     });
+
   });
 
   describe('Initial state', () => {
+
     it('should initialize isLogged signal as false', () => {
       expect(service.isLogged()).toBe(false);
     });
@@ -54,9 +57,11 @@ describe('AuthService', () => {
         email: 'itacademy@gmail.com'
       } as any)
     });
+
   });
 
   describe('Auth actions', () => {
+
     it('register should call createUserWithEmailAndPassword', async () => {
       const credentials = {
         email: 'IHateTestsXD@hotmail.com',
@@ -93,9 +98,11 @@ describe('AuthService', () => {
       expect(authActionsMock.signOut).toHaveBeenCalled();
       await expectAsync(result).toBeResolved();
     });
+
   });
 
   describe('Auth state reactions', () => {
+
     it('should set isLogged to true when user is authenticated', () => {
       (service as any).userSignal.set({ uid: '123', email: 'test@test.com' } as any);
       expect(service.isLogged()).toBeTrue();
@@ -115,5 +122,7 @@ describe('AuthService', () => {
       (service as any).userSignal.set(null);
       expect(service.isLogged()).toBeFalse();
     });
+
   });
+  
 });
