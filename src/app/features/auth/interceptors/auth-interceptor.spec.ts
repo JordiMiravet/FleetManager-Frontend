@@ -16,7 +16,9 @@ describe('authInterceptor', () => {
   });
 
   describe('When user is not authenticated', () => {
+    it('should forward the original request', () => {
 
+    });
   });
 
   describe('When user is authenticated', () => {
