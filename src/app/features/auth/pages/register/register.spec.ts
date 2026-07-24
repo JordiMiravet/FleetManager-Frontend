@@ -100,11 +100,21 @@ describe('RegisterPageComponent', () => {
     });
 
     it('should invalidate email when empty', () => {
+      const emailControl = component.formReg.get('email');
 
+      emailControl?.setValue('');
+
+      expect(emailControl?.invalid).toBeTrue();
+      expect(emailControl?.errors?.['required']).toBeTrue();
     });
 
     it('should invalidate password when empty', () => {
+      const passwordControl = component.formReg.get('password');
 
+      passwordControl?.setValue('');
+
+      expect(passwordControl?.invalid).toBeTrue();
+      expect(passwordControl?.errors?.['required']).toBeTrue();
     });
 
   });
