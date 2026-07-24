@@ -4,9 +4,11 @@ import { AuthService } from './auth-service';
 
 const mockAuth = { onAuthStateChanged: () => {}};
 
-const mockCreateUser = jasmine.createSpy('createUserWithEmailAndPassword').and.returnValue(Promise.resolve('usuario creado'));
-const mockSignIn = jasmine.createSpy('signInWithEmailAndPassword').and.returnValue(Promise.resolve('usuario logueado'));
-const mockSignOut = jasmine.createSpy('signOut').and.returnValue(Promise.resolve('usuario desconectado'));
+const authActionsMock = {
+  createUser: jasmine.createSpy('createUserWithEmailAndPassword').and.returnValue(Promise.resolve('usuario creado')),
+  signIn: jasmine.createSpy('signInWithEmailAndPassword').and.returnValue(Promise.resolve('usuario logueado')),
+  signOut: jasmine.createSpy('signOut').and.returnValue(Promise.resolve('usuario desconectado'))
+};
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -20,18 +22,26 @@ describe('AuthService', () => {
     });
 
     service = TestBed.inject(AuthService);
-    (service as any).register = ({ email, password }: any) => mockCreateUser(email, password);
-    (service as any).login = ({ email, password }: any) => mockSignIn(email, password);
-    (service as any).logout = () => mockSignOut();
+
+    authActionsMock.createUser.calls.reset();
+    authActionsMock.signIn.calls.reset();
+    authActionsMock.signOut.calls.reset();
+
+    (service as any).register = ({ email, password }: any) => authActionsMock.createUser(email, password);
+    (service as any).login = ({ email, password }: any) => authActionsMock.signIn(email, password);
+    (service as any).logout = () => authActionsMock.signOut();
   });
 
   describe('Service creation', () => {
+
     it('should be created', () => {
       expect(service).toBeTruthy();
     });
+
   });
 
   describe('Initial state', () => {
+
     it('should initialize isLogged signal as false', () => {
       expect(service.isLogged()).toBe(false);
     });
@@ -47,61 +57,52 @@ describe('AuthService', () => {
         email: 'itacademy@gmail.com'
       } as any)
     });
+
   });
 
   describe('Auth actions', () => {
+
     it('register should call createUserWithEmailAndPassword', async () => {
-      const result = service.register({
+      const credentials = {
         email: 'IHateTestsXD@hotmail.com',
         password: '123456'
-      });
+      };
 
-      expect(mockCreateUser).toHaveBeenCalled();
+      const result = service.register(credentials);
+
+      expect(authActionsMock.createUser).toHaveBeenCalledWith(
+        credentials.email,
+        credentials.password
+      );
       await expectAsync(result).toBeResolved();
     });
 
     it('login should call signInWithEmailAndPassword', async () => {
-      const result = service.login({
+      const credentials = {
         email: 'IHateTestsXD@hotmail.com',
         password: '123456'
-      });
+      };
 
-      expect(mockSignIn).toHaveBeenCalled();
+      const result = service.login(credentials);
+
+      expect(authActionsMock.signIn).toHaveBeenCalledWith(
+        credentials.email,
+        credentials.password
+      );
       await expectAsync(result).toBeResolved();
     });
 
     it('logout should call signOut and return a promise', async () => {
       const result = service.logout();
 
-      expect(mockSignOut).toHaveBeenCalled();
+      expect(authActionsMock.signOut).toHaveBeenCalled();
       await expectAsync(result).toBeResolved();
     });
 
-    it('register should call Firebase createUserWithEmailAndPassword with correct arguments', async () => {
-      const email = 'testuser@gmail.com';
-      const password = '123456';
-
-      await service.register({ email, password });
-
-      expect(mockCreateUser).toHaveBeenCalledWith(email, password);
-    });
-
-    it('login should call Firebase signInWithEmailAndPassword with correct arguments', async () => {
-      const email = 'testuser@gmail.com';
-      const password = '123456';
-
-      await service.login({ email, password });
-
-      expect(mockSignIn).toHaveBeenCalledWith(email, password);
-    });
-
-    it('logout should call Firebase signOut', async () => {
-      await service.logout();
-      expect(mockSignOut).toHaveBeenCalled();
-    });
   });
 
   describe('Auth state reactions', () => {
+
     it('should set isLogged to true when user is authenticated', () => {
       (service as any).userSignal.set({ uid: '123', email: 'test@test.com' } as any);
       expect(service.isLogged()).toBeTrue();
@@ -121,5 +122,7 @@ describe('AuthService', () => {
       (service as any).userSignal.set(null);
       expect(service.isLogged()).toBeFalse();
     });
+
   });
+  
 });

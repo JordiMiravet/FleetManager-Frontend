@@ -10,6 +10,11 @@ const mockAuth = {
   onAuthStateChanged: () => {}
 };
 
+const validCredentials = {
+  email: 'test@example.com',
+  password: '123456'
+};
+
 describe('RegisterPageComponent', () => {
   let component: RegisterPageComponent;
   let fixture: ComponentFixture<RegisterPageComponent>;
@@ -94,6 +99,24 @@ describe('RegisterPageComponent', () => {
       expect(component.formReg.valid).toBeFalse();
     });
 
+    it('should invalidate email when empty', () => {
+      const emailControl = component.formReg.get('email');
+
+      emailControl?.setValue('');
+
+      expect(emailControl?.invalid).toBeTrue();
+      expect(emailControl?.errors?.['required']).toBeTrue();
+    });
+
+    it('should invalidate password when empty', () => {
+      const passwordControl = component.formReg.get('password');
+
+      passwordControl?.setValue('');
+
+      expect(passwordControl?.invalid).toBeTrue();
+      expect(passwordControl?.errors?.['required']).toBeTrue();
+    });
+
   });
 
   describe('Template rendering', () => {
@@ -101,8 +124,8 @@ describe('RegisterPageComponent', () => {
     it('should enable submit button when form is valid', () => {
       const button = fixture.nativeElement.querySelector('button');
 
-      component.formReg.get('email')?.setValue('itacademy@gmail.com');
-      component.formReg.get('password')?.setValue('123456');
+      component.formReg.get('email')?.setValue(validCredentials.email);
+      component.formReg.get('password')?.setValue(validCredentials.password);
       fixture.detectChanges();
 
       expect(button.disabled).toBeFalse();
@@ -140,8 +163,8 @@ describe('RegisterPageComponent', () => {
       const emailControl = component.formReg.get('email');
       const passwordControl = component.formReg.get('password');
       
-      emailControl?.setValue('itacademy@gmail.com');
-      passwordControl?.setValue('123456');
+      emailControl?.setValue(validCredentials.email);
+      passwordControl?.setValue(validCredentials.password);
 
       emailControl?.markAsTouched();
       passwordControl?.markAsTouched();
@@ -170,24 +193,21 @@ describe('RegisterPageComponent', () => {
   describe('Interactions', () => {
 
     it('should call authService.register when form is valid', () => {
-      component.formReg.get('email')?.setValue('gohan@gmail.com');
-      component.formReg.get('password')?.setValue('123456');
+      component.formReg.get('email')?.setValue(validCredentials.email);
+      component.formReg.get('password')?.setValue(validCredentials.password);
 
       expect(component.formReg.valid).toBeTrue();
 
       component.onSubmit();
-      expect(registerSpy).toHaveBeenCalledWith({
-        email: 'gohan@gmail.com',
-        password: '123456'
-      });
+      expect(registerSpy).toHaveBeenCalledWith(validCredentials);
     });
 
     it('should navigate to home on successful register', async () => {
       const router = TestBed.inject(Router);
       const navigateSpy = spyOn(router, 'navigate');
 
-      component.formReg.get('email')?.setValue('itacademy@gmail.com');
-      component.formReg.get('password')?.setValue('123456');
+      component.formReg.get('email')?.setValue(validCredentials.email);
+      component.formReg.get('password')?.setValue(validCredentials.password);
 
       const mockUserCredential = {} as UserCredential;
       registerSpy.and.returnValue(Promise.resolve(mockUserCredential));
@@ -217,8 +237,8 @@ describe('RegisterPageComponent', () => {
     it('should set errorSubmit to emailAlreadyExists when email is already in use', fakeAsync(() => {
       registerSpy.and.returnValue(Promise.reject({ code: 'auth/email-already-in-use' }));
 
-      component.formReg.get('email')?.setValue('gohan@gmail.com');
-      component.formReg.get('password')?.setValue('123456');
+      component.formReg.get('email')?.setValue(validCredentials.email);
+      component.formReg.get('password')?.setValue(validCredentials.password);
 
       component.onSubmit();
       tick();
@@ -229,14 +249,23 @@ describe('RegisterPageComponent', () => {
     it('should set errorSubmit to invalidCredentials when register fails with unknown error', fakeAsync(() => {
       registerSpy.and.returnValue(Promise.reject({ code: 'auth/unknown-error' }));
 
-      component.formReg.get('email')?.setValue('gohan@gmail.com');
-      component.formReg.get('password')?.setValue('123456');
+      component.formReg.get('email')?.setValue(validCredentials.email);
+      component.formReg.get('password')?.setValue(validCredentials.password);
 
       component.onSubmit();
       tick();
 
       expect(component.errorSubmit).toBe(component.formMsg.errors.invalidCredentials);
     }));
+
+    it('should not call register service when form is invalid', () => {
+      component.formReg.get('email')?.setValue('');
+      component.formReg.get('password')?.setValue('');
+
+      component.onSubmit();
+
+      expect(registerSpy).not.toHaveBeenCalled();
+    });
 
   });
 
