@@ -236,7 +236,12 @@ describe('LoginPageComponent', () => {
     }));
 
     it('should not call login service when form is invalid', () => {
+      component.formLogin.get('email')?.setValue('');
+      component.formLogin.get('password')?.setValue('');
 
+      component.onSubmit();
+
+      expect(loginSpy).not.toHaveBeenCalled();
     });
 
   });
