@@ -51,12 +51,17 @@ describe('AuthService', () => {
 
   describe('Auth actions', () => {
     it('register should call createUserWithEmailAndPassword', async () => {
-      const result = service.register({
+      const credentials = {
         email: 'IHateTestsXD@hotmail.com',
         password: '123456'
-      });
+      };
 
-      expect(mockCreateUser).toHaveBeenCalled();
+      const result = service.register(credentials);
+
+      expect(mockCreateUser).toHaveBeenCalledWith(
+        credentials.email,
+        credentials.password
+      );
       await expectAsync(result).toBeResolved();
     });
 
