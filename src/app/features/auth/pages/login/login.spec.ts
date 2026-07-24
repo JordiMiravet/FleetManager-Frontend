@@ -10,6 +10,11 @@ const mockAuth = {
   onAuthStateChanged: () => {}
 };
 
+const validCredentials = {
+  email: 'itacademy@gmail.com',
+  password: '123456'
+};
+
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
   let fixture: ComponentFixture<LoginPageComponent>;
@@ -119,8 +124,8 @@ describe('LoginPageComponent', () => {
     it('should enable submit button when form is valid', () => {
       const button = fixture.nativeElement.querySelector('button');
 
-      component.formLogin.get('email')?.setValue('itacademy@gmail.com');
-      component.formLogin.get('password')?.setValue('123456');
+      component.formLogin.get('email')?.setValue(validCredentials.email);
+      component.formLogin.get('password')?.setValue(validCredentials.password);
       fixture.detectChanges();
 
       expect(button.disabled).toBeFalse();
@@ -158,8 +163,8 @@ describe('LoginPageComponent', () => {
       const emailControl = component.formLogin.get('email');
       const passwordControl = component.formLogin.get('password');
       
-      emailControl?.setValue('itacademy@gmail.com');
-      passwordControl?.setValue('123456');
+      emailControl?.setValue(validCredentials.email);
+      passwordControl?.setValue(validCredentials.password);
 
       emailControl?.markAsTouched();
       passwordControl?.markAsTouched();
@@ -189,24 +194,21 @@ describe('LoginPageComponent', () => {
   describe('Interactions', () => {
 
     it('should call authService.login when form is valid', () => {
-      component.formLogin.get('email')?.setValue('gohan@gmail.com');
-      component.formLogin.get('password')?.setValue('123456');
+      component.formLogin.get('email')?.setValue(validCredentials.email);
+      component.formLogin.get('password')?.setValue(validCredentials.password);
 
       expect(component.formLogin.valid).toBeTrue();
 
       component.onSubmit();
-      expect(loginSpy).toHaveBeenCalledWith({
-        email: 'gohan@gmail.com',
-        password: '123456'
-      });
+      expect(loginSpy).toHaveBeenCalledWith(validCredentials);
     });
 
     it('should navigate to home on successful login', async () => {
       const router = TestBed.inject(Router);
       const navigateSpy = spyOn(router, 'navigate');
 
-      component.formLogin.get('email')?.setValue('itacademy@gmail.com');
-      component.formLogin.get('password')?.setValue('123456');
+      component.formLogin.get('email')?.setValue(validCredentials.email);
+      component.formLogin.get('password')?.setValue(validCredentials.password);
 
       const mockUserCredential = {} as UserCredential;
       loginSpy.and.returnValue(Promise.resolve(mockUserCredential));
@@ -236,8 +238,8 @@ describe('LoginPageComponent', () => {
     it('should set errorSubmit when login fails', fakeAsync(() => {
         loginSpy.and.returnValue(Promise.reject('error'));
 
-        component.formLogin.get('email')?.setValue('gohan@gmail.com');
-        component.formLogin.get('password')?.setValue('123456');
+        component.formLogin.get('email')?.setValue(validCredentials.email);
+        component.formLogin.get('password')?.setValue(validCredentials.password);
 
         component.onSubmit();
         tick();
