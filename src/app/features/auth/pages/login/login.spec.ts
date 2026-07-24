@@ -94,6 +94,14 @@ describe('LoginPageComponent', () => {
       expect(component.formLogin.valid).toBeFalse();
     });
 
+    it('should invalidate email when empty', () => {
+
+    });
+
+    it('should invalidate password when empty', () => {
+
+    });
+
   });
 
   describe('Template rendering', () => {
