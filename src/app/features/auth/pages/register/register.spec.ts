@@ -259,7 +259,12 @@ describe('RegisterPageComponent', () => {
     }));
 
     it('should not call register service when form is invalid', () => {
+      component.formReg.get('email')?.setValue('');
+      component.formReg.get('password')?.setValue('');
 
+      component.onSubmit();
+
+      expect(registerSpy).not.toHaveBeenCalled();
     });
 
   });
