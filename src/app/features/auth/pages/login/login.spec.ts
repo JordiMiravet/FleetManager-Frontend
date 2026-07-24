@@ -235,6 +235,10 @@ describe('LoginPageComponent', () => {
         expect(component.errorSubmit).toBe(component.formMsg.errors.invalidCredentials);
     }));
 
+    it('should not call login service when form is invalid', () => {
+
+    });
+
   });
 
 });
