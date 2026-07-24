@@ -10,6 +10,11 @@ const mockAuth = {
   onAuthStateChanged: () => {}
 };
 
+const validCredentials = {
+  email: 'itacademy@gmail.com',
+  password: '123456'
+};
+
 describe('RegisterPageComponent', () => {
   let component: RegisterPageComponent;
   let fixture: ComponentFixture<RegisterPageComponent>;
