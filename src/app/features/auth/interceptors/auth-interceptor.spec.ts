@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpInterceptorFn } from '@angular/common/http';
+import { HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { of } from 'rxjs';
+import { Auth } from '@angular/fire/auth';
 
 import { authInterceptor } from './auth-interceptor';
 
@@ -17,7 +19,22 @@ describe('authInterceptor', () => {
 
   describe('When user is not authenticated', () => {
     it('should forward the original request', () => {
+      const authMock = {
+        currentUser: null
+      };
 
+      const request = new HttpRequest('GET', '/test');
+      const next = jasmine.createSpy().and.returnValue(of(request));
+
+      TestBed.configureTestingModule({
+        providers: [
+          { provide: Auth, useValue: authMock }
+        ]
+      });
+
+      interceptor(request, next);
+
+      expect(next).toHaveBeenCalledWith(request);
     });
   });
 
