@@ -4,9 +4,11 @@ import { AuthService } from './auth-service';
 
 const mockAuth = { onAuthStateChanged: () => {}};
 
-const mockCreateUser = jasmine.createSpy('createUserWithEmailAndPassword').and.returnValue(Promise.resolve('usuario creado'));
-const mockSignIn = jasmine.createSpy('signInWithEmailAndPassword').and.returnValue(Promise.resolve('usuario logueado'));
-const mockSignOut = jasmine.createSpy('signOut').and.returnValue(Promise.resolve('usuario desconectado'));
+const authActionsMock = {
+  createUser: jasmine.createSpy('createUserWithEmailAndPassword').and.returnValue(Promise.resolve('usuario creado')),
+  signIn: jasmine.createSpy('signInWithEmailAndPassword').and.returnValue(Promise.resolve('usuario logueado')),
+  signOut: jasmine.createSpy('signOut').and.returnValue(Promise.resolve('usuario desconectado'))
+};
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -21,13 +23,13 @@ describe('AuthService', () => {
 
     service = TestBed.inject(AuthService);
 
-    mockCreateUser.calls.reset();
-    mockSignIn.calls.reset();
-    mockSignOut.calls.reset();
+    authActionsMock.createUser.calls.reset();
+    authActionsMock.signIn.calls.reset();
+    authActionsMock.signOut.calls.reset();
 
-    (service as any).register = ({ email, password }: any) => mockCreateUser(email, password);
-    (service as any).login = ({ email, password }: any) => mockSignIn(email, password);
-    (service as any).logout = () => mockSignOut();
+    (service as any).register = ({ email, password }: any) => authActionsMock.createUser(email, password);
+    (service as any).login = ({ email, password }: any) => authActionsMock.signIn(email, password);
+    (service as any).logout = () => authActionsMock.signOut();
   });
 
   describe('Service creation', () => {
@@ -63,7 +65,7 @@ describe('AuthService', () => {
 
       const result = service.register(credentials);
 
-      expect(mockCreateUser).toHaveBeenCalledWith(
+      expect(authActionsMock.createUser).toHaveBeenCalledWith(
         credentials.email,
         credentials.password
       );
@@ -78,7 +80,7 @@ describe('AuthService', () => {
 
       const result = service.login(credentials);
 
-      expect(mockSignIn).toHaveBeenCalledWith(
+      expect(authActionsMock.signIn).toHaveBeenCalledWith(
         credentials.email,
         credentials.password
       );
@@ -88,7 +90,7 @@ describe('AuthService', () => {
     it('logout should call signOut and return a promise', async () => {
       const result = service.logout();
 
-      expect(mockSignOut).toHaveBeenCalled();
+      expect(authActionsMock.signOut).toHaveBeenCalled();
       await expectAsync(result).toBeResolved();
     });
   });
