@@ -20,6 +20,11 @@ describe('AuthService', () => {
     });
 
     service = TestBed.inject(AuthService);
+
+    mockCreateUser.calls.reset();
+    mockSignIn.calls.reset();
+    mockSignOut.calls.reset();
+
     (service as any).register = ({ email, password }: any) => mockCreateUser(email, password);
     (service as any).login = ({ email, password }: any) => mockSignIn(email, password);
     (service as any).logout = () => mockSignOut();
