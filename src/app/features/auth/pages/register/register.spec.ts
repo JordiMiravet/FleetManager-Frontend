@@ -99,6 +99,14 @@ describe('RegisterPageComponent', () => {
       expect(component.formReg.valid).toBeFalse();
     });
 
+    it('should invalidate email when empty', () => {
+
+    });
+
+    it('should invalidate password when empty', () => {
+
+    });
+
   });
 
   describe('Template rendering', () => {
@@ -239,6 +247,10 @@ describe('RegisterPageComponent', () => {
 
       expect(component.errorSubmit).toBe(component.formMsg.errors.invalidCredentials);
     }));
+
+    it('should not call register service when form is invalid', () => {
+
+    });
 
   });
 
