@@ -86,29 +86,6 @@ describe('AuthService', () => {
       expect(mockSignOut).toHaveBeenCalled();
       await expectAsync(result).toBeResolved();
     });
-
-    it('register should call Firebase createUserWithEmailAndPassword with correct arguments', async () => {
-      const email = 'testuser@gmail.com';
-      const password = '123456';
-
-      await service.register({ email, password });
-
-      expect(mockCreateUser).toHaveBeenCalledWith(email, password);
-    });
-
-    it('login should call Firebase signInWithEmailAndPassword with correct arguments', async () => {
-      const email = 'testuser@gmail.com';
-      const password = '123456';
-
-      await service.login({ email, password });
-
-      expect(mockSignIn).toHaveBeenCalledWith(email, password);
-    });
-
-    it('logout should call Firebase signOut', async () => {
-      await service.logout();
-      expect(mockSignOut).toHaveBeenCalled();
-    });
   });
 
   describe('Auth state reactions', () => {
