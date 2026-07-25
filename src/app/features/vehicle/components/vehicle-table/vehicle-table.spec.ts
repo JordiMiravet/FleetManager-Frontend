@@ -99,7 +99,7 @@ describe('VehicleTableComponent', () => {
 
     it('should render one table row per vehicle', () => {
       const rows = fixture.nativeElement.querySelectorAll('tbody tr');
-      expect(rows.length).toBe(mockVehicles.length);
+      expect(rows).toHaveSize(mockVehicles.length);
     });
 
     it('should render vehicle name, model and plate in each row', () => {
@@ -118,8 +118,8 @@ describe('VehicleTableComponent', () => {
       const editButtons = fixture.nativeElement.querySelectorAll('app-edit-button');
       const deleteButtons = fixture.nativeElement.querySelectorAll('app-delete-button');
 
-      expect(editButtons.length).toBe(mockVehicles.length);
-      expect(deleteButtons.length).toBe(mockVehicles.length);
+      expect(editButtons).toHaveSize(mockVehicles.length);
+      expect(deleteButtons).toHaveSize(mockVehicles.length);
     });
 
   });
@@ -160,7 +160,7 @@ describe('VehicleTableComponent', () => {
       fixture.detectChanges();
 
       const rowsAfter = fixture.nativeElement.querySelectorAll('tbody tr');
-      expect(rowsAfter.length).toBe(rowsBefore.length);
+      expect(rowsAfter).toHaveSize(rowsBefore.length);
     });
     
   });
@@ -190,8 +190,8 @@ describe('VehicleTableComponent', () => {
       const editButtons = fixture.nativeElement.querySelectorAll('app-edit-button');
       const deleteButtons = fixture.nativeElement.querySelectorAll('app-delete-button');
 
-      expect(editButtons.length).toBe(0);
-      expect(deleteButtons.length).toBe(0);
+      expect(editButtons).toHaveSize(0);
+      expect(deleteButtons).toHaveSize(0);
     });
 
   });
@@ -230,7 +230,8 @@ describe('VehicleTableComponent', () => {
     it('should use fallback image when vehicle has no imageUrl', () => {
       const images = fixture.nativeElement.querySelectorAll('.vehicle-table__image');
 
-      expect(images[0].getAttribute('src')).toBe(component.vehicleImage);
+      expect(images).toHaveSize(mockVehicles.length);
+      expect(images[0].src).toContain(component.vehicleImage);
     });
 
   });

@@ -67,18 +67,21 @@ describe('VehicleTablePaginationComponent', () => {
       fixture.detectChanges();
 
       const values = fixture.nativeElement.querySelectorAll('.vehicle-pagination__value');
+
       expect(values[0].textContent.trim()).toBe('2');
       expect(values[1].textContent.trim()).toBe('2');
     });
 
     it('should render previous page button', () => {
       const button = fixture.nativeElement.querySelector('.vehicle-pagination__button:first-of-type');
+
       expect(button).toBeTruthy();
     });
 
     it('should render next page button', () => {
       const buttons = fixture.nativeElement.querySelectorAll('.vehicle-pagination__button');
-      expect(buttons.length).toBe(2);
+
+      expect(buttons).toHaveSize(2);
     });
 
   });
@@ -87,11 +90,13 @@ describe('VehicleTablePaginationComponent', () => {
 
     it('should have aria-label on previous page button', () => {
       const button = fixture.nativeElement.querySelector('.vehicle-pagination__button:first-of-type');
+
       expect(button.getAttribute('aria-label')).toBe(component.paginationMsg.aria.previousPage);
     });
 
     it('should have aria-label on next page button', () => {
       const buttons = fixture.nativeElement.querySelectorAll('.vehicle-pagination__button');
+      
       expect(buttons[1].getAttribute('aria-label')).toBe(component.paginationMsg.aria.nextPage);
     });
 

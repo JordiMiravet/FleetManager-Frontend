@@ -326,7 +326,7 @@ describe('VehicleViewComponent', () => {
       component.onFilterChange({ query: 'ferrari', sortField: 'name', sortDir: 'asc' });
 
       const result = component.filteredVehicles();
-      expect(result.length).toBe(1);
+      expect(result).toHaveSize(1); 
       expect(result[0].name).toBe('Ferrari');
     });
 
@@ -334,7 +334,7 @@ describe('VehicleViewComponent', () => {
       component.onFilterChange({ query: 'aventador', sortField: 'name', sortDir: 'asc' });
 
       const result = component.filteredVehicles();
-      expect(result.length).toBe(1);
+      expect(result).toHaveSize(1);
       expect(result[0].model).toBe('Aventador');
     });
 
@@ -342,7 +342,7 @@ describe('VehicleViewComponent', () => {
       component.onFilterChange({ query: 'pag0001', sortField: 'name', sortDir: 'asc' });
 
       const result = component.filteredVehicles();
-      expect(result.length).toBe(1);
+      expect(result).toHaveSize(1);
       expect(result[0].plate).toBe('PAG0001');
     });
 
@@ -350,7 +350,7 @@ describe('VehicleViewComponent', () => {
       component.onFilterChange({ query: '', sortField: 'name', sortDir: 'asc' });
 
       const result = component.filteredVehicles();
-      expect(result.length).toBe(3);
+      expect(result).toHaveSize(3);
     });
 
     it('should sort vehicles ascending by default field', () => {
@@ -367,6 +367,18 @@ describe('VehicleViewComponent', () => {
       const result = component.filteredVehicles();
       expect(result[0].name).toBe('Pagani');
       expect(result[2].name).toBe('Ferrari');
+    });
+
+    it('should update filterState with new filter values', () => {
+      const newState = { 
+        query: 'ferrari', 
+        sortField: 'name' as const, 
+        sortDir: 'asc' as const 
+      };
+
+      component.onFilterChange(newState);
+
+      expect(component.filterState()).toEqual(newState);
     });
 
   });

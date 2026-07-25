@@ -49,6 +49,7 @@ describe('VehicleEmptyStateComponent', () => {
 
     it('should render the create button', () => {
       const button = fixture.debugElement.query(By.css('app-create-button'));
+      
       expect(button).toBeTruthy();
     });
 
@@ -61,7 +62,7 @@ describe('VehicleEmptyStateComponent', () => {
     it('should pass create text to create button', () => {
       const button = fixture.debugElement.query(By.css('app-create-button'));
 
-      expect(button.componentInstance.createText).toBeTruthy();
+      expect(button.componentInstance.createText()).toBe(component.emptyStateMsg.button);
     });
 
   });

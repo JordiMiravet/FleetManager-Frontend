@@ -109,11 +109,13 @@ describe('VehicleTableActionsComponent', () => {
 
     it('should render search input', () => {
       const input = fixture.nativeElement.querySelector('.vehicle-actions__search-input');
+
       expect(input).toBeTruthy();
     });
 
     it('should render sort direction button', () => {
       const button = fixture.nativeElement.querySelector('.vehicle-actions__sort-button');
+
       expect(button).toBeTruthy();
     });
 
@@ -122,7 +124,7 @@ describe('VehicleTableActionsComponent', () => {
       const options = select.querySelectorAll('option');
 
       expect(select).toBeTruthy();
-      expect(options.length).toBe(3);
+      expect(options).toHaveSize(3);
     });
 
     it('should show asc icon when sortDir is asc', () => {
@@ -130,6 +132,7 @@ describe('VehicleTableActionsComponent', () => {
       fixture.detectChanges();
 
       const icon = fixture.nativeElement.querySelector('.vehicle-actions__sort-button i');
+
       expect(icon.classList).toContain('pi-sort-amount-down');
     });
 
@@ -138,6 +141,7 @@ describe('VehicleTableActionsComponent', () => {
       fixture.detectChanges();
 
       const icon = fixture.nativeElement.querySelector('.vehicle-actions__sort-button i');
+
       expect(icon.classList).toContain('pi-sort-amount-up');
     });
 
@@ -178,21 +182,25 @@ describe('VehicleTableActionsComponent', () => {
 
     it('should have aria-label on search input', () => {
       const input = fixture.nativeElement.querySelector('.vehicle-actions__search-input');
+
       expect(input.getAttribute('aria-label')).toBe(component.actionsMsg.aria.searchInput);
     });
 
     it('should have aria-label on sort direction button', () => {
       const button = fixture.nativeElement.querySelector('.vehicle-actions__sort-button');
+
       expect(button.getAttribute('aria-label')).toBe(component.actionsMsg.aria.sortDirButton);
     });
 
     it('should have aria-label on sort field select', () => {
       const select = fixture.nativeElement.querySelector('.vehicle-actions__sort-select');
+
       expect(select.getAttribute('aria-label')).toBe(component.actionsMsg.aria.sortFieldSelect);
     });
 
     it('should have aria-hidden on search icon', () => {
       const icon = fixture.nativeElement.querySelector('.vehicle-actions__search-icon');
+      
       expect(icon.getAttribute('aria-hidden')).toBe('true');
     });
 
