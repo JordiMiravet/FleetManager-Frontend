@@ -271,7 +271,7 @@ describe('ManageVehicleUsersModalComponent', () => {
 
       const users = fixture.nativeElement.querySelectorAll('.modal__user');
 
-      expect(users.length).toBe(1);
+      expect(users).toHaveSize(1);
       expect(users[0].textContent).toContain('test@gmail.com');
     });
 
