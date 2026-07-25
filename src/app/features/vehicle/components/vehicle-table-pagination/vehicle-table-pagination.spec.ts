@@ -78,7 +78,8 @@ describe('VehicleTablePaginationComponent', () => {
 
     it('should render next page button', () => {
       const buttons = fixture.nativeElement.querySelectorAll('.vehicle-pagination__button');
-      expect(buttons.length).toBe(2);
+
+      expect(buttons).toHaveSize(2);
     });
 
   });
