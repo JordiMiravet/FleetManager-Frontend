@@ -49,6 +49,7 @@ describe('VehicleEmptyStateComponent', () => {
 
     it('should render the create button', () => {
       const button = fixture.debugElement.query(By.css('app-create-button'));
+      
       expect(button).toBeTruthy();
     });
 
