@@ -122,7 +122,7 @@ describe('VehicleTableActionsComponent', () => {
       const options = select.querySelectorAll('option');
 
       expect(select).toBeTruthy();
-      expect(options.length).toBe(3);
+      expect(options).toHaveSize(3);
     });
 
     it('should show asc icon when sortDir is asc', () => {
