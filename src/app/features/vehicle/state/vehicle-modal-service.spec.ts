@@ -65,7 +65,7 @@ describe('VehicleModalService', () => {
     });
 
     it('should initialize selectedVehicle as null', () => {
-      expect(service.selectedVehicle()).toBe(null);
+      expect(service.selectedVehicle()).toBeNull();
     });
 
   });
@@ -76,7 +76,7 @@ describe('VehicleModalService', () => {
       service.openCreate();
 
       expect(service.formMode()).toBe('create');
-      expect(service.selectedVehicle()).toBe(null);
+      expect(service.selectedVehicle()).toBeNull();
       expect(service.activeModal()).toBe(VehicleModalState.VehicleForm);
     });
 
@@ -87,7 +87,7 @@ describe('VehicleModalService', () => {
       service.openCreate();
 
       expect(service.formMode()).toBe('create');
-      expect(service.selectedVehicle()).toBe(null);
+      expect(service.selectedVehicle()).toBeNull();
       expect(service.activeModal()).toBe(VehicleModalState.VehicleForm);
     });
 
@@ -148,7 +148,7 @@ describe('VehicleModalService', () => {
       service.openEdit(mockVehicle);
       service.close();
 
-      expect(service.selectedVehicle()).toBe(null);
+      expect(service.selectedVehicle()).toBeNull();
     });
 
     it('should reset formMode to create when closing modal', () => {
@@ -174,7 +174,7 @@ describe('VehicleModalService', () => {
     it('should correctly switch from create to edit mode', () => {
       service.openCreate();
       expect(service.formMode()).toBe('create');
-      expect(service.selectedVehicle()).toBe(null);
+      expect(service.selectedVehicle()).toBeNull();
       expect(service.activeModal()).toBe(VehicleModalState.VehicleForm);
 
       service.openEdit(mockVehicle);
