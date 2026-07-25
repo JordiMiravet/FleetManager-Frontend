@@ -369,6 +369,18 @@ describe('VehicleViewComponent', () => {
       expect(result[2].name).toBe('Ferrari');
     });
 
+    it('should update filterState with new filter values', () => {
+      const newState = { 
+        query: 'ferrari', 
+        sortField: 'name' as const, 
+        sortDir: 'asc' as const 
+      };
+
+      component.onFilterChange(newState);
+
+      expect(component.filterState()).toEqual(newState);
+    });
+
   });
 
   describe('Add user to vehicle', () => {
