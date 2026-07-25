@@ -230,7 +230,8 @@ describe('VehicleTableComponent', () => {
     it('should use fallback image when vehicle has no imageUrl', () => {
       const images = fixture.nativeElement.querySelectorAll('.vehicle-table__image');
 
-      expect(images[0].getAttribute('src')).toBe(component.vehicleImage);
+      expect(images).toHaveSize(mockVehicles.length);
+      expect(images[0].src).toContain(component.vehicleImage);
     });
 
   });
