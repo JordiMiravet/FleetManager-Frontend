@@ -62,7 +62,7 @@ describe('GraphicsServices', () => {
       mockEvents([{ _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' }]);
       const result = service.getVehicleUsageHours(TimePeriod.Month);
 
-      expect(result.length).toBe(1);
+      expect(result).toHaveSize(1);
       expect(result[0].vehicleId).toBe('ferrari-1');
       expect(result[0].totalHours).toBe(2);
     });
@@ -71,7 +71,7 @@ describe('GraphicsServices', () => {
       mockEvents([{ _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' }]);
       const result = service.getVehicleUsageHours(TimePeriod.Year);
 
-      expect(result.length).toBe(1);
+      expect(result).toHaveSize(1);
       expect(result[0].totalHours).toBe(2);
     });
 
@@ -79,7 +79,7 @@ describe('GraphicsServices', () => {
       mockEvents([{ _id: '1', vehicleId: 'ferrari-1', date: lastYear, hourStart: '10:00', hourEnd: '12:00' }]);
       const result = service.getVehicleUsageHours(TimePeriod.AllTime);
 
-      expect(result.length).toBe(1);
+      expect(result).toHaveSize(1);
       expect(result[0].totalHours).toBe(2);
     });
 
@@ -87,14 +87,14 @@ describe('GraphicsServices', () => {
       mockEvents([{ _id: '1', vehicleId: 'ferrari-1', date: thisMonth, hourStart: null, hourEnd: null }]);
       const result = service.getVehicleUsageHours(TimePeriod.Month);
 
-      expect(result.length).toBe(0);
+      expect(result).toHaveSize(0);
     });
 
     it('should ignore events from other vehicles', () => {
       mockEvents([{ _id: '1', vehicleId: 'ghost-vehicle', date: thisMonth, hourStart: '09:00', hourEnd: '11:00' }]);
       const result = service.getVehicleUsageHours(TimePeriod.Month);
 
-      expect(result.length).toBe(0);
+      expect(result).toHaveSize(0);
     });
 
     it('should return empty array when no vehicle has usage', () => {
@@ -154,7 +154,7 @@ describe('GraphicsServices', () => {
       ]);
       const result = service.getMostUsedVehicle(TimePeriod.Month);
 
-      expect(result.length).toBe(3);
+      expect(result).toHaveSize(3);
     });
 
   });
