@@ -91,17 +91,17 @@ describe('GraphicsViewComponent', () => {
 
     it('should render VehicleUsageHoursChartComponent', () => {
       const chart = fixture.nativeElement.querySelector('app-vehicle-usage-hours-chart');
-      expect(chart).toBeTruthy();
+      expect(chart).not.toBeNull();
     });
 
     it('should render MostUsedVehicleChartComponent', () => {
       const chart = fixture.nativeElement.querySelector('app-most-used-vehicle-chart');
-      expect(chart).toBeTruthy();
+      expect(chart).not.toBeNull();
     });
 
     it('should render HoursByWeekdayVehicleChartComponent', () => {
       const chart = fixture.nativeElement.querySelector('app-hours-by-weekday-vehicle-chart');
-      expect(chart).toBeTruthy();
+      expect(chart).not.toBeNull(); 
     });
 
   });
