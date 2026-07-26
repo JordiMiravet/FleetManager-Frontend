@@ -79,7 +79,7 @@ describe('VehicleUsageHoursChartComponent', () => {
       component['vehicleUsageHours'] = { nativeElement: document.createElement('canvas') } as any;
       component['createVehicleUsageHours']();
 
-      expect(component['chart']).toBeFalsy();
+      expect(component['chart']).toBeUndefined();
     });
 
     it('should destroy previous chart before creating a new one', () => {
