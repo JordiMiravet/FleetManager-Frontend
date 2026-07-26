@@ -120,7 +120,7 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
     it('should render the canvas element', () => {
       const canvas = fixture.nativeElement.querySelector('canvas');
 
-      expect(canvas).toBeTruthy();
+      expect(canvas).not.toBeNull();
     });
 
     it('should have role="img" on the figure', () => {
