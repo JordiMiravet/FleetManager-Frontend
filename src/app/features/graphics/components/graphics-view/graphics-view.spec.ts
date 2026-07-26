@@ -64,14 +64,11 @@ describe('GraphicsViewComponent', () => {
 
   describe('lifecycle', () => {
 
-    it('should call loadVehicles on ngAfterViewInit', () => {
-      component.ngAfterViewInit();
-      expect(vehicleServiceMock.loadVehicles).toHaveBeenCalled();
-    });
+    it('should load vehicles and events on init', () => {
+        component.ngAfterViewInit();
 
-    it('should call loadEvents on ngAfterViewInit', () => {
-      component.ngAfterViewInit();
-      expect(eventServiceMock.loadEvents).toHaveBeenCalled();
+        expect(vehicleServiceMock.loadVehicles).toHaveBeenCalledTimes(1);
+        expect(eventServiceMock.loadEvents).toHaveBeenCalledTimes(1);
     });
 
   });
