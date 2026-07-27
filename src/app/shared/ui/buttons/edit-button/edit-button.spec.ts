@@ -6,7 +6,7 @@ describe('EditButtonComponent', () => {
   let fixture: ComponentFixture<EditButtonComponent>;
 
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button');
-  
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [EditButtonComponent]
@@ -24,7 +24,7 @@ describe('EditButtonComponent', () => {
   describe('Template rendering', () => {
 
     it('should render button with correct attributes', () => {
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
 
       expect(button).toBeTruthy();
       expect(button.getAttribute('type')).toBe('button');
@@ -55,7 +55,7 @@ describe('EditButtonComponent', () => {
     it('should emit edit when button is clicked', () => {
       const emitSpy = spyOn(component.edit, 'emit');
 
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
       button.click();
 
       expect(emitSpy).toHaveBeenCalled();
