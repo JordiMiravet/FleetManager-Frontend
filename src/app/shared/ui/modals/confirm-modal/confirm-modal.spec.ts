@@ -9,7 +9,7 @@ describe('ConfirmModalComponent', () => {
   const getForm = (): HTMLFormElement => fixture.nativeElement.querySelector('.modal__form');
 
   const getConfirmButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--confirm');
-  
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ConfirmModalComponent]
@@ -52,7 +52,7 @@ describe('ConfirmModalComponent', () => {
     it('should call onConfirm when Confirm button is clicked', () => {
       const spyConfirm = spyOn(component, 'onConfirm');
 
-      const confirmButton = fixture.nativeElement.querySelector('.modal__button--confirm');
+      const confirmButton = getConfirmButton();
       confirmButton.click();
 
       expect(spyConfirm).toHaveBeenCalled();
@@ -100,7 +100,7 @@ describe('ConfirmModalComponent', () => {
     it('should emit confirm event when Confirm button is clicked', () => {
       const spyConfirm = spyOn(component.confirm, 'emit');
 
-      const confirmButton = fixture.nativeElement.querySelector('.modal__button--confirm');
+      const confirmButton = getConfirmButton();
       confirmButton.click();
 
       expect(spyConfirm).toHaveBeenCalled();
