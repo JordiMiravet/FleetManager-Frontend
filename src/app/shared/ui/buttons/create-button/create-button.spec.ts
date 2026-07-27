@@ -1,9 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CreateButtonComponent } from './create-button';
 
+
 describe('CreateButtonComponent', () => {
   let component: CreateButtonComponent;
   let fixture: ComponentFixture<CreateButtonComponent>;
+
+  const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button');
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
