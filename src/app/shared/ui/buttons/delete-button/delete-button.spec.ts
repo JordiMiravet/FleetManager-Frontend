@@ -5,6 +5,9 @@ describe('DeleteButtonComponent', () => {
   let component: DeleteButtonComponent;
   let fixture: ComponentFixture<DeleteButtonComponent>;
 
+  const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button');
+  const getIcon = (): HTMLElement => fixture.nativeElement.querySelector('i');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DeleteButtonComponent]
@@ -22,7 +25,7 @@ describe('DeleteButtonComponent', () => {
   describe('Template rendering', () => {
 
     it('should render button with correct attributes', () => {
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
 
       expect(button).toBeTruthy();
       expect(button.getAttribute('type')).toBe('button');
@@ -31,14 +34,14 @@ describe('DeleteButtonComponent', () => {
     });
 
     it('should render trash icon', () => {
-      const icon = fixture.nativeElement.querySelector('i');
+      const icon = getIcon();
 
       expect(icon.classList).toContain('pi');
       expect(icon.classList).toContain('pi-trash');
     });
 
     it('should render trash icon with correct class', () => {
-      const icon = fixture.nativeElement.querySelector('i');
+      const icon = getIcon();
 
       expect(icon.classList).toContain('delete-button__icon');
     });
@@ -51,16 +54,16 @@ describe('DeleteButtonComponent', () => {
 
       component.onClick();
 
-      expect(emitSpy).toHaveBeenCalled();
+      expect(emitSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should emit delete when button is clicked', () => {
       const emitSpy = spyOn(component.delete, 'emit');
 
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
       button.click();
 
-      expect(emitSpy).toHaveBeenCalled();
+      expect(emitSpy).toHaveBeenCalledTimes(1);
     });
 
   });

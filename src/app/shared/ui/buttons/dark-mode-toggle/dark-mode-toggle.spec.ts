@@ -7,6 +7,14 @@ describe('DarkModeToggleComponent', () => {
   let fixture: ComponentFixture<DarkModeToggleComponent>;
   let mockThemeService: jasmine.SpyObj<ThemeService>;
 
+  const getToggle = (): HTMLButtonElement => fixture.nativeElement.querySelector('.toggle');
+  const getIcon = (): HTMLElement => fixture.nativeElement.querySelector('i');
+
+  const setDarkMode = (isDark: boolean) => {
+    mockThemeService.isDark.and.returnValue(isDark);
+    fixture.detectChanges();
+  };
+
   beforeEach(async () => {
     mockThemeService = jasmine.createSpyObj('ThemeService', ['toggle', 'isDark']);
     mockThemeService.isDark.and.returnValue(false);
@@ -31,63 +39,57 @@ describe('DarkModeToggleComponent', () => {
   describe('Template rendering', () => {
 
     it('should render the toggle container', () => {
-      const toggle = fixture.nativeElement.querySelector('.toggle');
+      const toggle = getToggle();
+
       expect(toggle).toBeTruthy();
     });
 
     it('should not have active class when isDark is false', () => {
-      mockThemeService.isDark.and.returnValue(false);
-      fixture.detectChanges();
+      setDarkMode(false);
+      const toggle = getToggle();
 
-      const toggle = fixture.nativeElement.querySelector('.toggle');
       expect(toggle.classList.contains('toggle--active')).toBeFalse();
     });
 
     it('should have active class when isDark is true', () => {
-      mockThemeService.isDark.and.returnValue(true);
-      fixture.detectChanges();
+      setDarkMode(true);
+      const toggle = getToggle();
 
-      const toggle = fixture.nativeElement.querySelector('.toggle');
       expect(toggle.classList.contains('toggle--active')).toBeTrue();
     });
 
     it('should set correct aria-checked attribute', () => {
-      mockThemeService.isDark.and.returnValue(true);
-      fixture.detectChanges();
+      setDarkMode(true);
+      const toggle = getToggle();
 
-      const toggle = fixture.nativeElement.querySelector('.toggle');
       expect(toggle.getAttribute('aria-checked')).toBe('true');
     });
 
     it('should set correct aria-label when dark mode is enabled', () => {
-      mockThemeService.isDark.and.returnValue(true);
-      fixture.detectChanges();
+      setDarkMode(true);
+      const toggle = getToggle();
 
-      const toggle = fixture.nativeElement.querySelector('.toggle');
       expect(toggle.getAttribute('aria-label')).toBe('Disable dark mode');
     });
 
     it('should set correct aria-label when dark mode is disabled', () => {
-      mockThemeService.isDark.and.returnValue(false);
-      fixture.detectChanges();
+      setDarkMode(false);
+      const toggle = getToggle();
 
-      const toggle = fixture.nativeElement.querySelector('.toggle');
       expect(toggle.getAttribute('aria-label')).toBe('Enable dark mode');
     });
 
     it('should render moon icon when dark mode is active', () => {
-      mockThemeService.isDark.and.returnValue(true);
-      fixture.detectChanges();
+      setDarkMode(true);
+      const icon = getIcon();
 
-      const icon = fixture.nativeElement.querySelector('i');
       expect(icon.classList.contains('pi-moon')).toBeTrue();
     });
 
     it('should render sun icon when dark mode is inactive', () => {
-      mockThemeService.isDark.and.returnValue(false);
-      fixture.detectChanges();
+      setDarkMode(false);
+      const icon = getIcon();
 
-      const icon = fixture.nativeElement.querySelector('i');
       expect(icon.classList.contains('pi-sun')).toBeTrue();
     });
 
@@ -98,7 +100,7 @@ describe('DarkModeToggleComponent', () => {
     it('should call toggle() when clicked', () => {
       spyOn(component, 'toggle');
 
-      const toggle = fixture.nativeElement.querySelector('.toggle');
+      const toggle = getToggle();
       toggle.click();
 
       expect(component.toggle).toHaveBeenCalled();
@@ -111,7 +113,7 @@ describe('DarkModeToggleComponent', () => {
     });
 
     it('should call theme.toggle() when clicking the toggle', () => {
-      const toggle = fixture.nativeElement.querySelector('.toggle');
+      const toggle = getToggle();
       toggle.click();
 
       expect(mockThemeService.toggle).toHaveBeenCalled();
@@ -122,7 +124,8 @@ describe('DarkModeToggleComponent', () => {
   describe('Accessibility', () => {
 
     it('should have role="switch"', () => {
-      const toggle = fixture.nativeElement.querySelector('.toggle');
+      const toggle = getToggle();
+
       expect(toggle.getAttribute('role')).toBe('switch');
     });
 

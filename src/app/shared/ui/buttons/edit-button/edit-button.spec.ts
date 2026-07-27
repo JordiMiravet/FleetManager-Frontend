@@ -5,6 +5,9 @@ describe('EditButtonComponent', () => {
   let component: EditButtonComponent;
   let fixture: ComponentFixture<EditButtonComponent>;
 
+  const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button');
+  const getIcon = (): HTMLElement => fixture.nativeElement.querySelector('i');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [EditButtonComponent]
@@ -22,7 +25,7 @@ describe('EditButtonComponent', () => {
   describe('Template rendering', () => {
 
     it('should render button with correct attributes', () => {
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
 
       expect(button).toBeTruthy();
       expect(button.getAttribute('type')).toBe('button');
@@ -31,7 +34,7 @@ describe('EditButtonComponent', () => {
     });
 
     it('should render edit icon with correct classes', () => {
-      const icon = fixture.nativeElement.querySelector('i');
+      const icon = getIcon();
 
       expect(icon.classList).toContain('pi');
       expect(icon.classList).toContain('pi-pen-to-square');
@@ -47,16 +50,16 @@ describe('EditButtonComponent', () => {
 
       component.onClick();
 
-      expect(emitSpy).toHaveBeenCalled();
+      expect(emitSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should emit edit when button is clicked', () => {
       const emitSpy = spyOn(component.edit, 'emit');
 
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
       button.click();
 
-      expect(emitSpy).toHaveBeenCalled();
+      expect(emitSpy).toHaveBeenCalledTimes(1);
     });
 
   });
