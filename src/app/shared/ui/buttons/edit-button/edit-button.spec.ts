@@ -6,7 +6,8 @@ describe('EditButtonComponent', () => {
   let fixture: ComponentFixture<EditButtonComponent>;
 
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button');
-
+  const getIcon = (): HTMLElement => fixture.nativeElement.querySelector('i');
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [EditButtonComponent]
