@@ -93,7 +93,7 @@ describe('DarkModeToggleComponent', () => {
       mockThemeService.isDark.and.returnValue(true);
       fixture.detectChanges();
 
-      const icon = fixture.nativeElement.querySelector('i');
+      const icon = getIcon();
 
       expect(icon.classList.contains('pi-moon')).toBeTrue();
     });
@@ -102,7 +102,7 @@ describe('DarkModeToggleComponent', () => {
       mockThemeService.isDark.and.returnValue(false);
       fixture.detectChanges();
 
-      const icon = fixture.nativeElement.querySelector('i');
+      const icon = getIcon();
 
       expect(icon.classList.contains('pi-sun')).toBeTrue();
     });
