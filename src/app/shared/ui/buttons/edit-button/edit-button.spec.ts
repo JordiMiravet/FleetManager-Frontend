@@ -50,7 +50,7 @@ describe('EditButtonComponent', () => {
 
       component.onClick();
 
-      expect(emitSpy).toHaveBeenCalled();
+      expect(emitSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should emit edit when button is clicked', () => {
@@ -59,7 +59,7 @@ describe('EditButtonComponent', () => {
       const button = getButton();
       button.click();
 
-      expect(emitSpy).toHaveBeenCalled();
+      expect(emitSpy).toHaveBeenCalledTimes(1);
     });
 
   });
