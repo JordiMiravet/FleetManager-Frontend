@@ -62,7 +62,7 @@ describe('ConfirmModalComponent', () => {
     it('should call onCancel when Cancel button is clicked', () => {
       const spyCancel = spyOn(component, 'onCancel');
 
-      const cancelButton = fixture.nativeElement.querySelector('.modal__button--cancel');
+      const cancelButton = getCancelButton();
       cancelButton.click();
 
       expect(spyCancel).toHaveBeenCalled();
