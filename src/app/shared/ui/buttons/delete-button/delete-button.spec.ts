@@ -25,7 +25,7 @@ describe('DeleteButtonComponent', () => {
   describe('Template rendering', () => {
 
     it('should render button with correct attributes', () => {
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
 
       expect(button).toBeTruthy();
       expect(button.getAttribute('type')).toBe('button');
@@ -60,7 +60,7 @@ describe('DeleteButtonComponent', () => {
     it('should emit delete when button is clicked', () => {
       const emitSpy = spyOn(component.delete, 'emit');
 
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
       button.click();
 
       expect(emitSpy).toHaveBeenCalledTimes(1);
