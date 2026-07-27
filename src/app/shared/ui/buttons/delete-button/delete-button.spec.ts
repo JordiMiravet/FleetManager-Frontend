@@ -34,14 +34,14 @@ describe('DeleteButtonComponent', () => {
     });
 
     it('should render trash icon', () => {
-      const icon = fixture.nativeElement.querySelector('i');
+      const icon = getIcon();
 
       expect(icon.classList).toContain('pi');
       expect(icon.classList).toContain('pi-trash');
     });
 
     it('should render trash icon with correct class', () => {
-      const icon = fixture.nativeElement.querySelector('i');
+      const icon = getIcon();
 
       expect(icon.classList).toContain('delete-button__icon');
     });
