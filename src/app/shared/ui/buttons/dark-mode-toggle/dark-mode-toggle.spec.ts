@@ -39,7 +39,8 @@ describe('DarkModeToggleComponent', () => {
   describe('Template rendering', () => {
 
     it('should render the toggle container', () => {
-      const toggle = fixture.nativeElement.querySelector('.toggle');
+      const toggle = getToggle();
+
       expect(toggle).toBeTruthy();
     });
 
@@ -47,7 +48,8 @@ describe('DarkModeToggleComponent', () => {
       mockThemeService.isDark.and.returnValue(false);
       fixture.detectChanges();
 
-      const toggle = fixture.nativeElement.querySelector('.toggle');
+      const toggle = getToggle();
+
       expect(toggle.classList.contains('toggle--active')).toBeFalse();
     });
 
@@ -55,7 +57,8 @@ describe('DarkModeToggleComponent', () => {
       mockThemeService.isDark.and.returnValue(true);
       fixture.detectChanges();
 
-      const toggle = fixture.nativeElement.querySelector('.toggle');
+      const toggle = getToggle();
+
       expect(toggle.classList.contains('toggle--active')).toBeTrue();
     });
 
@@ -63,7 +66,8 @@ describe('DarkModeToggleComponent', () => {
       mockThemeService.isDark.and.returnValue(true);
       fixture.detectChanges();
 
-      const toggle = fixture.nativeElement.querySelector('.toggle');
+      const toggle = getToggle();
+
       expect(toggle.getAttribute('aria-checked')).toBe('true');
     });
 
@@ -71,7 +75,8 @@ describe('DarkModeToggleComponent', () => {
       mockThemeService.isDark.and.returnValue(true);
       fixture.detectChanges();
 
-      const toggle = fixture.nativeElement.querySelector('.toggle');
+      const toggle = getToggle();
+
       expect(toggle.getAttribute('aria-label')).toBe('Disable dark mode');
     });
 
@@ -79,7 +84,8 @@ describe('DarkModeToggleComponent', () => {
       mockThemeService.isDark.and.returnValue(false);
       fixture.detectChanges();
 
-      const toggle = fixture.nativeElement.querySelector('.toggle');
+      const toggle = getToggle();
+
       expect(toggle.getAttribute('aria-label')).toBe('Enable dark mode');
     });
 
@@ -88,6 +94,7 @@ describe('DarkModeToggleComponent', () => {
       fixture.detectChanges();
 
       const icon = fixture.nativeElement.querySelector('i');
+
       expect(icon.classList.contains('pi-moon')).toBeTrue();
     });
 
@@ -96,6 +103,7 @@ describe('DarkModeToggleComponent', () => {
       fixture.detectChanges();
 
       const icon = fixture.nativeElement.querySelector('i');
+
       expect(icon.classList.contains('pi-sun')).toBeTrue();
     });
 
@@ -106,7 +114,7 @@ describe('DarkModeToggleComponent', () => {
     it('should call toggle() when clicked', () => {
       spyOn(component, 'toggle');
 
-      const toggle = fixture.nativeElement.querySelector('.toggle');
+      const toggle = getToggle();
       toggle.click();
 
       expect(component.toggle).toHaveBeenCalled();
@@ -119,7 +127,7 @@ describe('DarkModeToggleComponent', () => {
     });
 
     it('should call theme.toggle() when clicking the toggle', () => {
-      const toggle = fixture.nativeElement.querySelector('.toggle');
+      const toggle = getToggle();
       toggle.click();
 
       expect(mockThemeService.toggle).toHaveBeenCalled();
@@ -130,7 +138,8 @@ describe('DarkModeToggleComponent', () => {
   describe('Accessibility', () => {
 
     it('should have role="switch"', () => {
-      const toggle = fixture.nativeElement.querySelector('.toggle');
+      const toggle = getToggle();
+
       expect(toggle.getAttribute('role')).toBe('switch');
     });
 
