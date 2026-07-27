@@ -8,6 +8,8 @@ describe('ConfirmModalComponent', () => {
   const getModal = (): HTMLDialogElement => fixture.nativeElement.querySelector('.modal__backdrop');
   const getForm = (): HTMLFormElement => fixture.nativeElement.querySelector('.modal__form');
 
+  const getConfirmButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--confirm');
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ConfirmModalComponent]
