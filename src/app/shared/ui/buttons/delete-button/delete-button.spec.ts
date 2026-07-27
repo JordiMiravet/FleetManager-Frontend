@@ -6,6 +6,7 @@ describe('DeleteButtonComponent', () => {
   let fixture: ComponentFixture<DeleteButtonComponent>;
 
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button');
+  const getIcon = (): HTMLElement => fixture.nativeElement.querySelector('i');
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
