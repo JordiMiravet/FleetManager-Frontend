@@ -7,7 +7,7 @@ describe('UserButtonComponent', () => {
   let fixture: ComponentFixture<UserButtonComponent>;
 
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button');
-  
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [UserButtonComponent]
@@ -26,7 +26,7 @@ describe('UserButtonComponent', () => {
   describe('Template rendering', () => {
 
     it('should render button with correct attributes', () => {
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
 
       expect(button).toBeTruthy();
       expect(button.getAttribute('type')).toBe('button');
@@ -57,7 +57,7 @@ describe('UserButtonComponent', () => {
     it('should emit user when button is clicked', () => {
       const emitSpy = spyOn(component.user, 'emit');
 
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
       button.click();
 
       expect(emitSpy).toHaveBeenCalled();
