@@ -45,8 +45,7 @@ describe('DarkModeToggleComponent', () => {
     });
 
     it('should not have active class when isDark is false', () => {
-      mockThemeService.isDark.and.returnValue(false);
-      fixture.detectChanges();
+      setDarkMode(false);
 
       const toggle = getToggle();
 
@@ -54,8 +53,7 @@ describe('DarkModeToggleComponent', () => {
     });
 
     it('should have active class when isDark is true', () => {
-      mockThemeService.isDark.and.returnValue(true);
-      fixture.detectChanges();
+      setDarkMode(true);
 
       const toggle = getToggle();
 
@@ -63,8 +61,7 @@ describe('DarkModeToggleComponent', () => {
     });
 
     it('should set correct aria-checked attribute', () => {
-      mockThemeService.isDark.and.returnValue(true);
-      fixture.detectChanges();
+      setDarkMode(true);
 
       const toggle = getToggle();
 
@@ -72,8 +69,7 @@ describe('DarkModeToggleComponent', () => {
     });
 
     it('should set correct aria-label when dark mode is enabled', () => {
-      mockThemeService.isDark.and.returnValue(true);
-      fixture.detectChanges();
+      setDarkMode(true);
 
       const toggle = getToggle();
 
@@ -81,8 +77,7 @@ describe('DarkModeToggleComponent', () => {
     });
 
     it('should set correct aria-label when dark mode is disabled', () => {
-      mockThemeService.isDark.and.returnValue(false);
-      fixture.detectChanges();
+      setDarkMode(false);
 
       const toggle = getToggle();
 
@@ -90,8 +85,7 @@ describe('DarkModeToggleComponent', () => {
     });
 
     it('should render moon icon when dark mode is active', () => {
-      mockThemeService.isDark.and.returnValue(true);
-      fixture.detectChanges();
+      setDarkMode(true);
 
       const icon = getIcon();
 
@@ -99,8 +93,7 @@ describe('DarkModeToggleComponent', () => {
     });
 
     it('should render sun icon when dark mode is inactive', () => {
-      mockThemeService.isDark.and.returnValue(false);
-      fixture.detectChanges();
+      setDarkMode(false);
 
       const icon = getIcon();
 
