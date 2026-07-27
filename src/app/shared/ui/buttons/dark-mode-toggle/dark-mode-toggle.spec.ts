@@ -10,6 +10,11 @@ describe('DarkModeToggleComponent', () => {
   const getToggle = (): HTMLButtonElement => fixture.nativeElement.querySelector('.toggle');
   const getIcon = (): HTMLElement => fixture.nativeElement.querySelector('i');
 
+  const setDarkMode = (isDark: boolean) => {
+    mockThemeService.isDark.and.returnValue(isDark);
+    fixture.detectChanges();
+  };
+
   beforeEach(async () => {
     mockThemeService = jasmine.createSpyObj('ThemeService', ['toggle', 'isDark']);
     mockThemeService.isDark.and.returnValue(false);
