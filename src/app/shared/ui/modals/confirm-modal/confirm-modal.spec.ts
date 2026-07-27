@@ -6,7 +6,8 @@ describe('ConfirmModalComponent', () => {
   let fixture: ComponentFixture<ConfirmModalComponent>;
 
   const getModal = (): HTMLDialogElement => fixture.nativeElement.querySelector('.modal__backdrop');
-
+  const getForm = (): HTMLFormElement => fixture.nativeElement.querySelector('.modal__form');
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ConfirmModalComponent]
