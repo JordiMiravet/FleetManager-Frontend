@@ -9,7 +9,8 @@ describe('ConfirmModalComponent', () => {
   const getForm = (): HTMLFormElement => fixture.nativeElement.querySelector('.modal__form');
 
   const getConfirmButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--confirm');
-
+  const getCancelButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--cancel');
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ConfirmModalComponent]
