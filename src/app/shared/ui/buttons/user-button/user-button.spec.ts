@@ -6,6 +6,8 @@ describe('UserButtonComponent', () => {
   let component: UserButtonComponent;
   let fixture: ComponentFixture<UserButtonComponent>;
 
+  const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button');
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [UserButtonComponent]
