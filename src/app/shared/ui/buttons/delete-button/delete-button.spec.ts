@@ -5,6 +5,8 @@ describe('DeleteButtonComponent', () => {
   let component: DeleteButtonComponent;
   let fixture: ComponentFixture<DeleteButtonComponent>;
 
+  const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DeleteButtonComponent]
