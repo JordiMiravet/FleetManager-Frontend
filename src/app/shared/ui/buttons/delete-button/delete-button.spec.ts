@@ -54,7 +54,7 @@ describe('DeleteButtonComponent', () => {
 
       component.onClick();
 
-      expect(emitSpy).toHaveBeenCalled();
+      expect(emitSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should emit delete when button is clicked', () => {
@@ -63,7 +63,7 @@ describe('DeleteButtonComponent', () => {
       const button = fixture.nativeElement.querySelector('button');
       button.click();
 
-      expect(emitSpy).toHaveBeenCalled();
+      expect(emitSpy).toHaveBeenCalledTimes(1);
     });
 
   });
