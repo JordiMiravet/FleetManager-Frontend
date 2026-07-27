@@ -7,6 +7,8 @@ describe('DarkModeToggleComponent', () => {
   let fixture: ComponentFixture<DarkModeToggleComponent>;
   let mockThemeService: jasmine.SpyObj<ThemeService>;
 
+  const getToggle = (): HTMLButtonElement => fixture.nativeElement.querySelector('.toggle');
+
   beforeEach(async () => {
     mockThemeService = jasmine.createSpyObj('ThemeService', ['toggle', 'isDark']);
     mockThemeService.isDark.and.returnValue(false);
