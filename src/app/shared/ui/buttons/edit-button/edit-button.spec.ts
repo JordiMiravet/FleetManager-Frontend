@@ -7,7 +7,7 @@ describe('EditButtonComponent', () => {
 
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button');
   const getIcon = (): HTMLElement => fixture.nativeElement.querySelector('i');
-  
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [EditButtonComponent]
@@ -34,7 +34,7 @@ describe('EditButtonComponent', () => {
     });
 
     it('should render edit icon with correct classes', () => {
-      const icon = fixture.nativeElement.querySelector('i');
+      const icon = getIcon();
 
       expect(icon.classList).toContain('pi');
       expect(icon.classList).toContain('pi-pen-to-square');
