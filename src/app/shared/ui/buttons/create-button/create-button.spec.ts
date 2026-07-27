@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CreateButtonComponent } from './create-button';
 
+import { CreateButtonComponent } from './create-button';
 
 describe('CreateButtonComponent', () => {
   let component: CreateButtonComponent;
@@ -26,7 +26,7 @@ describe('CreateButtonComponent', () => {
   describe('Template rendering', () => {
 
     it('should render a button element with correct attributes', () => {
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
 
       expect(button).toBeTruthy();
       expect(button.getAttribute('type')).toBe('button');
@@ -37,25 +37,25 @@ describe('CreateButtonComponent', () => {
       fixture.componentRef.setInput('createText', 'Add vehicle');
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
 
-      expect(button.textContent.trim()).toBe('Add vehicle');
+      expect(button.textContent?.trim()).toBe('Add vehicle');
     });
 
     it('should render empty text when input is null', () => {
       fixture.componentRef.setInput('createText', null);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
 
-      expect(button.textContent.trim()).toBe('');
+      expect(button.textContent?.trim()).toBe('');
     });
 
     it('should set aria-label from input', () => {
       fixture.componentRef.setInput('createText', 'Add vehicle');
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
 
       expect(button.getAttribute('aria-label')).toBe('Add vehicle');
     });
@@ -75,7 +75,7 @@ describe('CreateButtonComponent', () => {
     it('should emit create when button is clicked', () => {
       spyOn(component.create, 'emit');
 
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
       button.click();
 
       expect(component.create.emit).toHaveBeenCalled();
