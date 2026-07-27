@@ -46,7 +46,6 @@ describe('DarkModeToggleComponent', () => {
 
     it('should not have active class when isDark is false', () => {
       setDarkMode(false);
-
       const toggle = getToggle();
 
       expect(toggle.classList.contains('toggle--active')).toBeFalse();
@@ -54,7 +53,6 @@ describe('DarkModeToggleComponent', () => {
 
     it('should have active class when isDark is true', () => {
       setDarkMode(true);
-
       const toggle = getToggle();
 
       expect(toggle.classList.contains('toggle--active')).toBeTrue();
@@ -62,7 +60,6 @@ describe('DarkModeToggleComponent', () => {
 
     it('should set correct aria-checked attribute', () => {
       setDarkMode(true);
-
       const toggle = getToggle();
 
       expect(toggle.getAttribute('aria-checked')).toBe('true');
@@ -70,7 +67,6 @@ describe('DarkModeToggleComponent', () => {
 
     it('should set correct aria-label when dark mode is enabled', () => {
       setDarkMode(true);
-
       const toggle = getToggle();
 
       expect(toggle.getAttribute('aria-label')).toBe('Disable dark mode');
@@ -78,7 +74,6 @@ describe('DarkModeToggleComponent', () => {
 
     it('should set correct aria-label when dark mode is disabled', () => {
       setDarkMode(false);
-
       const toggle = getToggle();
 
       expect(toggle.getAttribute('aria-label')).toBe('Enable dark mode');
@@ -86,7 +81,6 @@ describe('DarkModeToggleComponent', () => {
 
     it('should render moon icon when dark mode is active', () => {
       setDarkMode(true);
-
       const icon = getIcon();
 
       expect(icon.classList.contains('pi-moon')).toBeTrue();
@@ -94,7 +88,6 @@ describe('DarkModeToggleComponent', () => {
 
     it('should render sun icon when dark mode is inactive', () => {
       setDarkMode(false);
-
       const icon = getIcon();
 
       expect(icon.classList.contains('pi-sun')).toBeTrue();
