@@ -8,7 +8,7 @@ describe('UserButtonComponent', () => {
 
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button');
   const getIcon = (): HTMLElement => fixture.nativeElement.querySelector('i');
-  
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [UserButtonComponent]
@@ -35,7 +35,7 @@ describe('UserButtonComponent', () => {
     });
 
     it('should render user icon with correct classes', () => {
-      const icon = fixture.nativeElement.querySelector('i');
+      const icon = getIcon();
 
       expect(icon.classList).toContain('fa-solid');
       expect(icon.classList).toContain('fa-user-group');
