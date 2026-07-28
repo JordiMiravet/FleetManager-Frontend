@@ -31,6 +31,7 @@ describe('AuthActionsComponent', () => {
 
   const getSettingsButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.navbar__auth-button');
   const getLoginButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('[data-test="loginButton"]');
+  const getRegisterButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('[data-test="registerButton"]');
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
