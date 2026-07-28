@@ -65,7 +65,7 @@ describe('NavigationComponent', () => {
       setLoggedIn(true);
 
       const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
-      expect(links.length).toBe(4);
+      expect(links).toHaveSize(4);
     });
 
     it('should have correct routerLink for each navigation link', () => {
