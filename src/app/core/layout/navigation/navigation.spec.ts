@@ -14,6 +14,11 @@ describe('NavigationComponent', () => {
   let fixture: ComponentFixture<NavigationComponent>;
   let authService: MockAuthService;
 
+  const getNav = (): HTMLElement | null => fixture.nativeElement.querySelector('nav');
+  const getLinksList = (): HTMLElement | null => fixture.nativeElement.querySelector('.navbar__links');
+  const getLinks = (): NodeListOf<HTMLAnchorElement> => fixture.nativeElement.querySelectorAll('.navbar__links li a');
+  const getIcons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.navbar__links li a i');
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NavigationComponent],
