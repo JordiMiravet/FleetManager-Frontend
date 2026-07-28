@@ -85,7 +85,7 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(true);
       fixture.detectChanges();
 
-      const settingsButton = fixture.nativeElement.querySelector('.navbar__auth-button');
+      const settingsButton = getSettingsButton();
       expect(settingsButton).toBeTruthy();
     });
 
@@ -143,7 +143,7 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(true);
       fixture.detectChanges();
 
-      const settingsButton = fixture.nativeElement.querySelector('.navbar__auth-button');
+      const settingsButton = getSettingsButton();
       settingsButton.click();
       fixture.detectChanges();
 
@@ -272,7 +272,7 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(true);
       fixture.detectChanges();
 
-      const settingsButton = fixture.nativeElement.querySelector('.navbar__auth-button');
+      const settingsButton = getSettingsButton();
 
       expect(settingsButton).toBeTruthy();
     });
@@ -285,7 +285,7 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(true);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('.navbar__auth-button');
+      const button = getSettingsButton();
 
       expect(button.getAttribute('aria-label')).toBe(component.drawerMsg.aria.openButton);
     });
