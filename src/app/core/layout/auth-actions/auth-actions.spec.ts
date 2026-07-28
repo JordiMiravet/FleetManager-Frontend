@@ -94,7 +94,7 @@ describe('AuthActionsComponent', () => {
       fixture.detectChanges();
 
       const loginButton = getLoginButton();
-      const registerButton = fixture.nativeElement.querySelector('[data-test="registerButton"]');
+      const registerButton = getRegisterButton();
 
       expect(loginButton).toBeTruthy();
       expect(registerButton).toBeTruthy();
@@ -129,7 +129,7 @@ describe('AuthActionsComponent', () => {
 
       expect(navigateByUrlSpy.calls.mostRecent().args[0].toString()).toBe('/auth/login');
 
-      const registerButton = fixture.nativeElement.querySelector('[data-test="registerButton"]');
+      const registerButton = getRegisterButton();
       registerButton.click();
 
       expect(navigateByUrlSpy.calls.mostRecent().args[0].toString()).toBe('/auth/register');
@@ -303,9 +303,9 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(false);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('[data-test="registerButton"]');
+      const registerButton = getRegisterButton();
 
-      expect(button.getAttribute('aria-label')).toBe(component.authActionsMsg.aria.register);
+      expect(registerButton.getAttribute('aria-label')).toBe(component.authActionsMsg.aria.register);
     });
 
   });
