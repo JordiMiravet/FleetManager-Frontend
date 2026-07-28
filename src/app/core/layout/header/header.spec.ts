@@ -13,7 +13,7 @@ describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
-  const getHeader = (): HTMLElement => fixture.nativeElement.querySelector('header');
+  const getHeader = (): HTMLElement => fixture.nativeElement.querySelector('header')!;
   const getNavigation = (): HTMLElement => fixture.nativeElement.querySelector('app-navigation')!;
   const getAuthActions = (): HTMLElement => fixture.nativeElement.querySelector('app-auth-actions')!;
 
