@@ -93,7 +93,7 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(false);
       fixture.detectChanges();
 
-      const loginButton = fixture.nativeElement.querySelector('[data-test="loginButton"]');
+      const loginButton = getLoginButton();
       const registerButton = fixture.nativeElement.querySelector('[data-test="registerButton"]');
 
       expect(loginButton).toBeTruthy();
@@ -124,7 +124,7 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(false);
       fixture.detectChanges();
 
-      const loginButton = fixture.nativeElement.querySelector('[data-test="loginButton"]');
+      const loginButton = getLoginButton();
       loginButton.click();
 
       expect(navigateByUrlSpy.calls.mostRecent().args[0].toString()).toBe('/auth/login');
@@ -285,18 +285,18 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(true);
       fixture.detectChanges();
 
-      const button = getSettingsButton();
+      const settingsButton = getSettingsButton();
 
-      expect(button.getAttribute('aria-label')).toBe(component.drawerMsg.aria.openButton);
+      expect(settingsButton.getAttribute('aria-label')).toBe(component.drawerMsg.aria.openButton);
     });
 
     it('should have aria-label on login button', () => {
       component.isLogged = signal(false);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('[data-test="loginButton"]');
+      const loginButton = getLoginButton();
 
-      expect(button.getAttribute('aria-label')).toBe(component.authActionsMsg.aria.login);
+      expect(loginButton.getAttribute('aria-label')).toBe(component.authActionsMsg.aria.login);
     });
 
     it('should have aria-label on register button', () => {
