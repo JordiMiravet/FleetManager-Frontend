@@ -148,7 +148,7 @@ describe('NavigationComponent', () => {
     it('should have aria-hidden on all nav icons', () => {
       setLoggedIn(true);
 
-      const icons = fixture.nativeElement.querySelectorAll('.navbar__links li a i');
+      const icons = getIcons();
 
       icons.forEach((icon: HTMLElement) => {
         expect(icon.getAttribute('aria-hidden')).toBe('true');
