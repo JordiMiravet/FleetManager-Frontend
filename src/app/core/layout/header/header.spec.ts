@@ -52,7 +52,7 @@ describe('HeaderComponent', () => {
     });
 
     it('should render NavigationComponent', () => {
-      const navigation = fixture.nativeElement.querySelector('app-navigation');
+      const navigation = getNavigation();
       expect(navigation).toBeTruthy();
     });
 
@@ -67,7 +67,7 @@ describe('HeaderComponent', () => {
 
     it('should contain app-navigation before app-auth-actions', () => {
       const header = getHeader();
-      const navigation = header.querySelector('app-navigation')!;
+      const navigation = getNavigation()!;
       const authActions = header.querySelector('app-auth-actions')!;
 
       expect(navigation).toBeTruthy();
