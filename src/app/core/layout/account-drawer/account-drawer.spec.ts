@@ -8,6 +8,7 @@ describe('AccountDrawerComponent', () => {
   let fixture: ComponentFixture<AccountDrawerComponent>;
 
   const mockThemeService = jasmine.createSpyObj('ThemeService', ['toggle', 'isDark']);
+  const getTitle = (): HTMLElement => fixture.nativeElement.querySelector('.drawer__title');
 
   beforeEach(async () => {
     mockThemeService.isDark.and.returnValue(false);
