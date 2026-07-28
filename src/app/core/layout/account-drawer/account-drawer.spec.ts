@@ -41,7 +41,7 @@ describe('AccountDrawerComponent', () => {
     });
 
     it('should render the aside with role dialog', () => {
-      const aside = fixture.nativeElement.querySelector('aside.drawer');
+      const aside = getAside();
 
       expect(aside).toBeTruthy();
       expect(aside.getAttribute('role')).toBe('dialog');
@@ -153,7 +153,7 @@ describe('AccountDrawerComponent', () => {
     });
 
     it('should have aria-label on the aside', () => {
-      const aside = fixture.nativeElement.querySelector('aside.drawer');
+      const aside = getAside();
 
       expect(aside.getAttribute('aria-label')).toBe(component.drawerMsg.aria.drawer);
     });
