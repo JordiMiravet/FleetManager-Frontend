@@ -15,6 +15,7 @@ describe('HeaderComponent', () => {
 
   const getHeader = (): HTMLElement => fixture.nativeElement.querySelector('header');
   const getNavigation = (): HTMLElement => fixture.nativeElement.querySelector('app-navigation')!;
+  const getAuthActions = (): HTMLElement => fixture.nativeElement.querySelector('app-auth-actions')!;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -57,7 +58,7 @@ describe('HeaderComponent', () => {
     });
 
     it('should render AuthActionsComponent', () => {
-      const authActions = fixture.nativeElement.querySelector('app-auth-actions');
+      const authActions = getAuthActions();
       expect(authActions).toBeTruthy();
     });
 
@@ -67,8 +68,8 @@ describe('HeaderComponent', () => {
 
     it('should contain app-navigation before app-auth-actions', () => {
       const header = getHeader();
-      const navigation = getNavigation()!;
-      const authActions = header.querySelector('app-auth-actions')!;
+      const navigation = getNavigation();
+      const authActions = getAuthActions();
 
       expect(navigation).toBeTruthy();
       expect(authActions).toBeTruthy();
