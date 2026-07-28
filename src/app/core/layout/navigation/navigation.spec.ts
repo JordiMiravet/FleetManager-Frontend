@@ -14,6 +14,11 @@ describe('NavigationComponent', () => {
   let fixture: ComponentFixture<NavigationComponent>;
   let authService: MockAuthService;
 
+  const getNav = (): HTMLElement | null => fixture.nativeElement.querySelector('nav');
+  const getLinksList = (): HTMLElement | null => fixture.nativeElement.querySelector('.navbar__links');
+  const getLinks = (): NodeListOf<HTMLAnchorElement> => fixture.nativeElement.querySelectorAll('.navbar__links li a');
+  const getIcons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.navbar__links li a i');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NavigationComponent],
@@ -41,37 +46,37 @@ describe('NavigationComponent', () => {
   describe('Template rendering', () => {
 
     it('should render the nav element with correct role and aria-label', () => {
-      const navElement = fixture.nativeElement.querySelector('nav');
+      const navElement = getNav();
 
-      expect(navElement.getAttribute('role')).toBe('navigation');
-      expect(navElement.getAttribute('aria-label')).toBe(component.navigationMsg.aria.nav);
+      expect(navElement?.getAttribute('role')).toBe('navigation');
+      expect(navElement?.getAttribute('aria-label')).toBe(component.navigationMsg.aria.nav);
     });
 
     it('should render the links list when user is logged', () => {
       setLoggedIn(true);
 
-      const unorderListElement = fixture.nativeElement.querySelector('.navbar__links');
+      const unorderListElement = getLinksList();
       expect(unorderListElement).toBeTruthy();
     });
 
     it('should NOT render links list when user is not logged', () => {
       setLoggedIn(false);
 
-      const unorderListElement = fixture.nativeElement.querySelector('.navbar__links');
+      const unorderListElement = getLinksList();
       expect(unorderListElement).toBeFalsy();
     });
 
     it('should render all navigation links when user is logged', () => {
       setLoggedIn(true);
 
-      const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
-      expect(links.length).toBe(4);
+      const links = getLinks();
+      expect(links).toHaveSize(4);
     });
 
     it('should have correct routerLink for each navigation link', () => {
       setLoggedIn(true);
 
-      const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
+      const links = getLinks();
       const expectedLinks = ['/', '/map', '/calendar', '/graphics'];
 
       links.forEach((link: HTMLElement, index: number) => {
@@ -84,7 +89,7 @@ describe('NavigationComponent', () => {
     it('should render correct icons and labels for each link', () => {
       setLoggedIn(true);
 
-      const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
+      const links = getLinks();
       const expectedIcons = ['pi-home', 'pi-map', 'pi-calendar', 'pi-chart-bar'];
       const expectedLabels = [
         component.navigationMsg.links.home,
@@ -114,15 +119,11 @@ describe('NavigationComponent', () => {
     });
 
     it('should react to isLogged changes', () => {
-      setLoggedIn(true);
-
-      let linksList = fixture.nativeElement.querySelector('.navbar__links');
-      expect(linksList).toBeTruthy();
-
       setLoggedIn(false);
+      expect(getLinksList()).toBeFalsy();
 
-      linksList = fixture.nativeElement.querySelector('.navbar__links');
-      expect(linksList).toBeFalsy();
+      setLoggedIn(true);
+      expect(getLinksList()).toBeTruthy();
     });
 
   });
@@ -132,7 +133,7 @@ describe('NavigationComponent', () => {
     it('should set aria-current to null on inactive links', () => {
       setLoggedIn(true);
 
-      const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
+      const links = getLinks();
 
       links.forEach((link: HTMLElement) => {
         const ariaCurrent = link.getAttribute('aria-current');
@@ -143,7 +144,7 @@ describe('NavigationComponent', () => {
     it('should have aria-hidden on all nav icons', () => {
       setLoggedIn(true);
 
-      const icons = fixture.nativeElement.querySelectorAll('.navbar__links li a i');
+      const icons = getIcons();
 
       icons.forEach((icon: HTMLElement) => {
         expect(icon.getAttribute('aria-hidden')).toBe('true');

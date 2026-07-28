@@ -9,6 +9,14 @@ describe('AccountDrawerComponent', () => {
 
   const mockThemeService = jasmine.createSpyObj('ThemeService', ['toggle', 'isDark']);
 
+  const getTitle = (): HTMLElement => fixture.nativeElement.querySelector('.drawer__title');
+  const getBackdrop = (): HTMLElement => fixture.nativeElement.querySelector('.drawer__backdrop');
+  const getAside = (): HTMLElement => fixture.nativeElement.querySelector('aside.drawer');
+  const getCloseButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.drawer__close');
+  const getMenuItems = (): NodeListOf<HTMLButtonElement> => fixture.nativeElement.querySelectorAll('.drawer__section:first-of-type .drawer__item');
+  const getDarkModeToggle = (): HTMLElement => fixture.nativeElement.querySelector('app-dark-mode-toggle');
+  const getLogoutButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.drawer__item--danger');
+
   beforeEach(async () => {
     mockThemeService.isDark.and.returnValue(false);
 
@@ -31,35 +39,35 @@ describe('AccountDrawerComponent', () => {
   describe('Template rendering', () => {
 
     it('should render the backdrop', () => {
-      const backdrop = fixture.nativeElement.querySelector('.drawer__backdrop');
+      const backdrop = getBackdrop();
 
       expect(backdrop).toBeTruthy();
     });
 
     it('should render the aside with role dialog', () => {
-      const aside = fixture.nativeElement.querySelector('aside.drawer');
+      const aside = getAside();
 
       expect(aside).toBeTruthy();
       expect(aside.getAttribute('role')).toBe('dialog');
     });
 
     it('should render the drawer title', () => {
-      const title = fixture.nativeElement.querySelector('.drawer__title');
+      const title = getTitle();
 
       expect(title).toBeTruthy();
       expect(title.textContent.trim()).toBe(component.drawerMsg.title);
     });
 
     it('should render the close button', () => {
-      const button = fixture.nativeElement.querySelector('.drawer__close');
+      const button = getCloseButton();
 
       expect(button).toBeTruthy();
     });
 
     it('should render all menu items', () => {
-      const items = fixture.nativeElement.querySelectorAll('.drawer__section:first-of-type .drawer__item');
+      const items = getMenuItems();
 
-      expect(items.length).toBe(4);
+      expect(items).toHaveSize(4);
       expect(items[0].textContent).toContain(component.drawerMsg.items.editProfile);
       expect(items[1].textContent).toContain(component.drawerMsg.items.settings);
       expect(items[2].textContent).toContain(component.drawerMsg.items.language);
@@ -67,13 +75,13 @@ describe('AccountDrawerComponent', () => {
     });
 
     it('should render the dark mode toggle', () => {
-      const toggle = fixture.nativeElement.querySelector('app-dark-mode-toggle');
+      const toggle = getDarkModeToggle();
 
       expect(toggle).toBeTruthy();
     });
 
     it('should render the logout button', () => {
-      const button = fixture.nativeElement.querySelector('.drawer__item--danger');
+      const button = getLogoutButton();
 
       expect(button).toBeTruthy();
       expect(button.textContent).toContain(component.drawerMsg.buttons.logout);
@@ -92,7 +100,7 @@ describe('AccountDrawerComponent', () => {
 
     it('should emit close when backdrop is clicked', () => {
       spyOn(component.close, 'emit');
-      const backdrop = fixture.nativeElement.querySelector('.drawer__backdrop');
+      const backdrop = getBackdrop();
       backdrop.click();
 
       expect(component.close.emit).toHaveBeenCalled();
@@ -100,7 +108,7 @@ describe('AccountDrawerComponent', () => {
 
     it('should emit close when close button is clicked', () => {
       spyOn(component.close, 'emit');
-      const button = fixture.nativeElement.querySelector('.drawer__close');
+      const button = getCloseButton();
       button.click();
 
       expect(component.close.emit).toHaveBeenCalled();
@@ -119,7 +127,8 @@ describe('AccountDrawerComponent', () => {
 
     it('should emit logout when logout button is clicked', () => {
       spyOn(component.logout, 'emit');
-      const logoutButton = fixture.nativeElement.querySelector('.drawer__item--danger');
+
+      const logoutButton = getLogoutButton();
       logoutButton.click();
 
       expect(component.logout.emit).toHaveBeenCalled();
@@ -143,19 +152,19 @@ describe('AccountDrawerComponent', () => {
   describe('Accessibility', () => {
 
     it('should have aria-hidden on backdrop', () => {
-      const backdrop = fixture.nativeElement.querySelector('.drawer__backdrop');
+      const backdrop = getBackdrop()
 
       expect(backdrop.getAttribute('aria-hidden')).toBe('true');
     });
 
     it('should have aria-label on the aside', () => {
-      const aside = fixture.nativeElement.querySelector('aside.drawer');
+      const aside = getAside();
 
       expect(aside.getAttribute('aria-label')).toBe(component.drawerMsg.aria.drawer);
     });
 
     it('should have aria-label on the close button', () => {
-      const button = fixture.nativeElement.querySelector('.drawer__close');
+      const button = getCloseButton();
 
       expect(button.getAttribute('aria-label')).toBe(component.drawerMsg.aria.closeButton);
     });

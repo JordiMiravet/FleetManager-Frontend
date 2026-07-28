@@ -29,6 +29,12 @@ describe('AuthActionsComponent', () => {
   let fixture: ComponentFixture<AuthActionsComponent>;
   let authService: MockAuthService;
 
+  const getSettingsButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.navbar__auth-button');
+  const getLoginButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('[data-test="loginButton"]');
+  const getRegisterButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('[data-test="registerButton"]');
+  const getDrawer = (): HTMLElement => fixture.nativeElement.querySelector('app-account-drawer');
+  const getDrawerDebugElement = () => fixture.debugElement.query(sel => sel.name === 'app-account-drawer');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AuthActionsComponent],
@@ -76,7 +82,7 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(true);
       fixture.detectChanges();
 
-      const settingsButton = fixture.nativeElement.querySelector('.navbar__auth-button');
+      const settingsButton = getSettingsButton();
       expect(settingsButton).toBeTruthy();
     });
 
@@ -84,8 +90,8 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(false);
       fixture.detectChanges();
 
-      const loginButton = fixture.nativeElement.querySelector('[data-test="loginButton"]');
-      const registerButton = fixture.nativeElement.querySelector('[data-test="registerButton"]');
+      const loginButton = getLoginButton();
+      const registerButton = getRegisterButton();
 
       expect(loginButton).toBeTruthy();
       expect(registerButton).toBeTruthy();
@@ -95,7 +101,7 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(true);
       fixture.detectChanges();
 
-      const drawer = fixture.nativeElement.querySelector('app-account-drawer');
+      const drawer = getDrawer();
       expect(drawer).toBeFalsy();
     });
 
@@ -104,7 +110,7 @@ describe('AuthActionsComponent', () => {
       component.isDrawerOpen.set(true);
       fixture.detectChanges();
 
-      const drawer = fixture.nativeElement.querySelector('app-account-drawer');
+      const drawer = getDrawer();
       expect(drawer).toBeTruthy();
     });
 
@@ -115,12 +121,12 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(false);
       fixture.detectChanges();
 
-      const loginButton = fixture.nativeElement.querySelector('[data-test="loginButton"]');
+      const loginButton = getLoginButton();
       loginButton.click();
 
       expect(navigateByUrlSpy.calls.mostRecent().args[0].toString()).toBe('/auth/login');
 
-      const registerButton = fixture.nativeElement.querySelector('[data-test="registerButton"]');
+      const registerButton = getRegisterButton();
       registerButton.click();
 
       expect(navigateByUrlSpy.calls.mostRecent().args[0].toString()).toBe('/auth/register');
@@ -134,7 +140,7 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(true);
       fixture.detectChanges();
 
-      const settingsButton = fixture.nativeElement.querySelector('.navbar__auth-button');
+      const settingsButton = getSettingsButton();
       settingsButton.click();
       fixture.detectChanges();
 
@@ -156,7 +162,7 @@ describe('AuthActionsComponent', () => {
       component.closeDrawer();
       fixture.detectChanges();
 
-      const drawer = fixture.nativeElement.querySelector('app-account-drawer');
+      const drawer = getDrawer();
       expect(drawer).toBeFalsy();
     });
 
@@ -205,10 +211,8 @@ describe('AuthActionsComponent', () => {
 
       spyOn(component, 'onLogout');
 
-      const drawer = fixture.debugElement.query(
-        sel => sel.name === 'app-account-drawer'
-      );
-      drawer.triggerEventHandler('logout');
+      const drawerDebugElement = getDrawerDebugElement();
+      drawerDebugElement.triggerEventHandler('logout');
 
       expect(component.onLogout).toHaveBeenCalled();
     });
@@ -222,8 +226,8 @@ describe('AuthActionsComponent', () => {
       component.isDrawerOpen.set(true);
       fixture.detectChanges();
 
-      const drawer = fixture.debugElement.query(sel => sel.name === 'app-account-drawer');
-      drawer.triggerEventHandler('close');
+      const drawerDebugElement = getDrawerDebugElement();
+      drawerDebugElement.triggerEventHandler('close');
 
       expect(component.isDrawerOpen()).toBeFalse();
     });
@@ -263,7 +267,7 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(true);
       fixture.detectChanges();
 
-      const settingsButton = fixture.nativeElement.querySelector('.navbar__auth-button');
+      const settingsButton = getSettingsButton();
 
       expect(settingsButton).toBeTruthy();
     });
@@ -276,27 +280,27 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(true);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('.navbar__auth-button');
+      const settingsButton = getSettingsButton();
 
-      expect(button.getAttribute('aria-label')).toBe(component.drawerMsg.aria.openButton);
+      expect(settingsButton.getAttribute('aria-label')).toBe(component.drawerMsg.aria.openButton);
     });
 
     it('should have aria-label on login button', () => {
       component.isLogged = signal(false);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('[data-test="loginButton"]');
+      const loginButton = getLoginButton();
 
-      expect(button.getAttribute('aria-label')).toBe(component.authActionsMsg.aria.login);
+      expect(loginButton.getAttribute('aria-label')).toBe(component.authActionsMsg.aria.login);
     });
 
     it('should have aria-label on register button', () => {
       component.isLogged = signal(false);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('[data-test="registerButton"]');
+      const registerButton = getRegisterButton();
 
-      expect(button.getAttribute('aria-label')).toBe(component.authActionsMsg.aria.register);
+      expect(registerButton.getAttribute('aria-label')).toBe(component.authActionsMsg.aria.register);
     });
 
   });

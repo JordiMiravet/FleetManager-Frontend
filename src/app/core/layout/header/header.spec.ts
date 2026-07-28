@@ -13,17 +13,18 @@ describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
+  const getHeader = (): HTMLElement => fixture.nativeElement.querySelector('header')!;
+  const getNavigation = (): HTMLElement => fixture.nativeElement.querySelector('app-navigation')!;
+  const getAuthActions = (): HTMLElement => fixture.nativeElement.querySelector('app-auth-actions')!;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HeaderComponent,
-      ],
+      imports: [HeaderComponent],
       providers: [
         provideRouter([]),
         { provide: AuthService, useClass: MockAuthService},
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
@@ -41,7 +42,7 @@ describe('HeaderComponent', () => {
   describe('Template rendering', () => {
 
     it('should render the header element with correct role and class', () => {
-      const header = fixture.nativeElement.querySelector('header');
+      const header = getHeader();
 
       expect(header).toBeTruthy();
       expect(header.getAttribute('role')).toBe('banner');
@@ -49,12 +50,14 @@ describe('HeaderComponent', () => {
     });
 
     it('should render NavigationComponent', () => {
-      const navigation = fixture.nativeElement.querySelector('app-navigation');
+      const navigation = getNavigation();
+
       expect(navigation).toBeTruthy();
     });
 
     it('should render AuthActionsComponent', () => {
-      const authActions = fixture.nativeElement.querySelector('app-auth-actions');
+      const authActions = getAuthActions();
+      
       expect(authActions).toBeTruthy();
     });
 
@@ -63,9 +66,9 @@ describe('HeaderComponent', () => {
   describe('Layout structure', () => {
 
     it('should contain app-navigation before app-auth-actions', () => {
-      const header = fixture.nativeElement.querySelector('header');
-      const navigation = header.querySelector('app-navigation');
-      const authActions = header.querySelector('app-auth-actions');
+      const header = getHeader();
+      const navigation = getNavigation();
+      const authActions = getAuthActions();
 
       expect(navigation).toBeTruthy();
       expect(authActions).toBeTruthy();
