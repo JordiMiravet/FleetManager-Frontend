@@ -66,8 +66,8 @@ describe('HeaderComponent', () => {
 
     it('should contain app-navigation before app-auth-actions', () => {
       const header = getHeader();
-      const navigation = header.querySelector('app-navigation');
-      const authActions = header.querySelector('app-auth-actions');
+      const navigation = header.querySelector('app-navigation')!;
+      const authActions = header.querySelector('app-auth-actions')!;
 
       expect(navigation).toBeTruthy();
       expect(authActions).toBeTruthy();
