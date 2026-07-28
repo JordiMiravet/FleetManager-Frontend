@@ -74,7 +74,7 @@ describe('AccountDrawerComponent', () => {
     });
 
     it('should render the dark mode toggle', () => {
-      const toggle = fixture.nativeElement.querySelector('app-dark-mode-toggle');
+      const toggle = getDarkModeToggle();
 
       expect(toggle).toBeTruthy();
     });
