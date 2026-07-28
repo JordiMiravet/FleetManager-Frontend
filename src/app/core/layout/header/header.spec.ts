@@ -14,6 +14,7 @@ describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;
 
   const getHeader = (): HTMLElement => fixture.nativeElement.querySelector('header');
+  const getNavigation = (): HTMLElement => fixture.nativeElement.querySelector('app-navigation')!;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
