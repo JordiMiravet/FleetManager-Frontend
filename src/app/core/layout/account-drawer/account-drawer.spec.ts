@@ -16,7 +16,7 @@ describe('AccountDrawerComponent', () => {
   const getMenuItems = (): NodeListOf<HTMLButtonElement> => fixture.nativeElement.querySelectorAll('.drawer__section:first-of-type .drawer__item');
   const getDarkModeToggle = (): HTMLElement => fixture.nativeElement.querySelector('app-dark-mode-toggle');
   const getLogoutButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.drawer__item--danger');
-  
+
   beforeEach(async () => {
     mockThemeService.isDark.and.returnValue(false);
 
@@ -81,7 +81,7 @@ describe('AccountDrawerComponent', () => {
     });
 
     it('should render the logout button', () => {
-      const button = fixture.nativeElement.querySelector('.drawer__item--danger');
+      const button = getLogoutButton();
 
       expect(button).toBeTruthy();
       expect(button.textContent).toContain(component.drawerMsg.buttons.logout);
@@ -127,7 +127,8 @@ describe('AccountDrawerComponent', () => {
 
     it('should emit logout when logout button is clicked', () => {
       spyOn(component.logout, 'emit');
-      const logoutButton = fixture.nativeElement.querySelector('.drawer__item--danger');
+
+      const logoutButton = getLogoutButton();
       logoutButton.click();
 
       expect(component.logout.emit).toHaveBeenCalled();
