@@ -36,7 +36,8 @@ describe('AuthActionsComponent', () => {
   const getDrawerDebugElement = () => fixture.debugElement.query(sel => sel.name === 'app-account-drawer');
 
   const getRouter = (): Router => TestBed.inject(Router);
-  
+  const getAuthService = (): MockAuthService => TestBed.inject(AuthService) as unknown as MockAuthService;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AuthActionsComponent],
