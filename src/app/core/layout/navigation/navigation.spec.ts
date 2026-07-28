@@ -69,14 +69,14 @@ describe('NavigationComponent', () => {
     it('should render all navigation links when user is logged', () => {
       setLoggedIn(true);
 
-      const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
+      const links = getLinks();
       expect(links).toHaveSize(4);
     });
 
     it('should have correct routerLink for each navigation link', () => {
       setLoggedIn(true);
 
-      const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
+      const links = getLinks();
       const expectedLinks = ['/', '/map', '/calendar', '/graphics'];
 
       links.forEach((link: HTMLElement, index: number) => {
@@ -89,7 +89,7 @@ describe('NavigationComponent', () => {
     it('should render correct icons and labels for each link', () => {
       setLoggedIn(true);
 
-      const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
+      const links = getLinks();
       const expectedIcons = ['pi-home', 'pi-map', 'pi-calendar', 'pi-chart-bar'];
       const expectedLabels = [
         component.navigationMsg.links.home,
@@ -137,7 +137,7 @@ describe('NavigationComponent', () => {
     it('should set aria-current to null on inactive links', () => {
       setLoggedIn(true);
 
-      const links = fixture.nativeElement.querySelectorAll('.navbar__links li a');
+      const links = getLinks();
 
       links.forEach((link: HTMLElement) => {
         const ariaCurrent = link.getAttribute('aria-current');
