@@ -56,7 +56,7 @@ describe('AccountDrawerComponent', () => {
     });
 
     it('should render the close button', () => {
-      const button = fixture.nativeElement.querySelector('.drawer__close');
+      const button = getCloseButton();
 
       expect(button).toBeTruthy();
     });
@@ -105,7 +105,7 @@ describe('AccountDrawerComponent', () => {
 
     it('should emit close when close button is clicked', () => {
       spyOn(component.close, 'emit');
-      const button = fixture.nativeElement.querySelector('.drawer__close');
+      const button = getCloseButton();
       button.click();
 
       expect(component.close.emit).toHaveBeenCalled();
@@ -160,7 +160,7 @@ describe('AccountDrawerComponent', () => {
     });
 
     it('should have aria-label on the close button', () => {
-      const button = fixture.nativeElement.querySelector('.drawer__close');
+      const button = getCloseButton();
 
       expect(button.getAttribute('aria-label')).toBe(component.drawerMsg.aria.closeButton);
     });
