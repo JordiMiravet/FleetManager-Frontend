@@ -55,14 +55,14 @@ describe('NavigationComponent', () => {
     it('should render the links list when user is logged', () => {
       setLoggedIn(true);
 
-      const unorderListElement = fixture.nativeElement.querySelector('.navbar__links');
+      const unorderListElement = getLinksList();
       expect(unorderListElement).toBeTruthy();
     });
 
     it('should NOT render links list when user is not logged', () => {
       setLoggedIn(false);
 
-      const unorderListElement = fixture.nativeElement.querySelector('.navbar__links');
+      const unorderListElement = getLinksList();
       expect(unorderListElement).toBeFalsy();
     });
 
