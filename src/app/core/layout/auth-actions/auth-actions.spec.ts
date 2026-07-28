@@ -34,7 +34,7 @@ describe('AuthActionsComponent', () => {
   const getRegisterButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('[data-test="registerButton"]');
   const getDrawer = (): HTMLElement => fixture.nativeElement.querySelector('app-account-drawer');
   const getDrawerDebugElement = () => fixture.debugElement.query(sel => sel.name === 'app-account-drawer');
-
+  
   const getRouter = (): Router => TestBed.inject(Router);
   const getAuthService = (): MockAuthService => TestBed.inject(AuthService) as unknown as MockAuthService;
 
@@ -104,7 +104,7 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(true);
       fixture.detectChanges();
 
-      const drawer = fixture.nativeElement.querySelector('app-account-drawer');
+      const drawer = getDrawer();
       expect(drawer).toBeFalsy();
     });
 
@@ -113,7 +113,7 @@ describe('AuthActionsComponent', () => {
       component.isDrawerOpen.set(true);
       fixture.detectChanges();
 
-      const drawer = fixture.nativeElement.querySelector('app-account-drawer');
+      const drawer = getDrawer();
       expect(drawer).toBeTruthy();
     });
 
@@ -165,7 +165,7 @@ describe('AuthActionsComponent', () => {
       component.closeDrawer();
       fixture.detectChanges();
 
-      const drawer = fixture.nativeElement.querySelector('app-account-drawer');
+      const drawer = getDrawer();
       expect(drawer).toBeFalsy();
     });
 
