@@ -34,7 +34,7 @@ describe('AuthActionsComponent', () => {
   const getRegisterButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('[data-test="registerButton"]');
   const getDrawer = (): HTMLElement => fixture.nativeElement.querySelector('app-account-drawer');
   const getDrawerDebugElement = () => fixture.debugElement.query(sel => sel.name === 'app-account-drawer');
-  
+
   const getRouter = (): Router => TestBed.inject(Router);
   const getAuthService = (): MockAuthService => TestBed.inject(AuthService) as unknown as MockAuthService;
 
@@ -214,10 +214,8 @@ describe('AuthActionsComponent', () => {
 
       spyOn(component, 'onLogout');
 
-      const drawer = fixture.debugElement.query(
-        sel => sel.name === 'app-account-drawer'
-      );
-      drawer.triggerEventHandler('logout');
+      const drawerDebugElement = getDrawerDebugElement();
+      drawerDebugElement.triggerEventHandler('logout');
 
       expect(component.onLogout).toHaveBeenCalled();
     });
@@ -231,8 +229,8 @@ describe('AuthActionsComponent', () => {
       component.isDrawerOpen.set(true);
       fixture.detectChanges();
 
-      const drawer = fixture.debugElement.query(sel => sel.name === 'app-account-drawer');
-      drawer.triggerEventHandler('close');
+      const drawerDebugElement = getDrawerDebugElement();
+      drawerDebugElement.triggerEventHandler('close');
 
       expect(component.isDrawerOpen()).toBeFalse();
     });
