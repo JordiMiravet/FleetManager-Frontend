@@ -33,6 +33,7 @@ describe('AuthActionsComponent', () => {
   const getLoginButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('[data-test="loginButton"]');
   const getRegisterButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('[data-test="registerButton"]');
   const getDrawer = (): HTMLElement => fixture.nativeElement.querySelector('app-account-drawer');
+  const getDrawerDebugElement = () => fixture.debugElement.query(sel => sel.name === 'app-account-drawer');
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
