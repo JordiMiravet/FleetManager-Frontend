@@ -59,7 +59,7 @@ describe('AccountDrawerComponent', () => {
     it('should render all menu items', () => {
       const items = fixture.nativeElement.querySelectorAll('.drawer__section:first-of-type .drawer__item');
 
-      expect(items.length).toBe(4);
+      expect(items).toHaveSize(4);
       expect(items[0].textContent).toContain(component.drawerMsg.items.editProfile);
       expect(items[1].textContent).toContain(component.drawerMsg.items.settings);
       expect(items[2].textContent).toContain(component.drawerMsg.items.language);
