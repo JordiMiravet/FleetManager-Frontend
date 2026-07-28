@@ -29,6 +29,8 @@ describe('AuthActionsComponent', () => {
   let fixture: ComponentFixture<AuthActionsComponent>;
   let authService: MockAuthService;
 
+  const getSettingsButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.navbar__auth-button');
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AuthActionsComponent],
