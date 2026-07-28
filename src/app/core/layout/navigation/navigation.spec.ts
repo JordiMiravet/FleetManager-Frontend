@@ -121,12 +121,12 @@ describe('NavigationComponent', () => {
     it('should react to isLogged changes', () => {
       setLoggedIn(true);
 
-      let linksList = fixture.nativeElement.querySelector('.navbar__links');
+      let linksList = getLinksList();
       expect(linksList).toBeTruthy();
 
       setLoggedIn(false);
 
-      linksList = fixture.nativeElement.querySelector('.navbar__links');
+      linksList = getLinksList();
       expect(linksList).toBeFalsy();
     });
 
