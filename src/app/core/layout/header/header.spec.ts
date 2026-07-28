@@ -19,15 +19,12 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HeaderComponent,
-      ],
+      imports: [HeaderComponent],
       providers: [
         provideRouter([]),
         { provide: AuthService, useClass: MockAuthService},
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
@@ -54,11 +51,13 @@ describe('HeaderComponent', () => {
 
     it('should render NavigationComponent', () => {
       const navigation = getNavigation();
+
       expect(navigation).toBeTruthy();
     });
 
     it('should render AuthActionsComponent', () => {
       const authActions = getAuthActions();
+      
       expect(authActions).toBeTruthy();
     });
 
