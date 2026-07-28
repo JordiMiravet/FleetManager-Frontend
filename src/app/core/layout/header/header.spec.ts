@@ -43,7 +43,7 @@ describe('HeaderComponent', () => {
   describe('Template rendering', () => {
 
     it('should render the header element with correct role and class', () => {
-      const header = fixture.nativeElement.querySelector('header');
+      const header = getHeader();
 
       expect(header).toBeTruthy();
       expect(header.getAttribute('role')).toBe('banner');
@@ -65,7 +65,7 @@ describe('HeaderComponent', () => {
   describe('Layout structure', () => {
 
     it('should contain app-navigation before app-auth-actions', () => {
-      const header = fixture.nativeElement.querySelector('header');
+      const header = getHeader();
       const navigation = header.querySelector('app-navigation');
       const authActions = header.querySelector('app-auth-actions');
 
