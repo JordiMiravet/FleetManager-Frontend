@@ -45,7 +45,7 @@ describe('AccountDrawerComponent', () => {
     });
 
     it('should render the drawer title', () => {
-      const title = fixture.nativeElement.querySelector('.drawer__title');
+      const title = getTitle();
 
       expect(title).toBeTruthy();
       expect(title.textContent.trim()).toBe(component.drawerMsg.title);
