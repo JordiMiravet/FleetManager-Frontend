@@ -11,6 +11,7 @@ describe('AccountDrawerComponent', () => {
 
   const getTitle = (): HTMLElement => fixture.nativeElement.querySelector('.drawer__title');
   const getBackdrop = (): HTMLElement => fixture.nativeElement.querySelector('.drawer__backdrop');
+  const getAside = (): HTMLElement => fixture.nativeElement.querySelector('aside.drawer');
 
   beforeEach(async () => {
     mockThemeService.isDark.and.returnValue(false);
