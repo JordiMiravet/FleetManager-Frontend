@@ -34,7 +34,7 @@ describe('AccountDrawerComponent', () => {
   describe('Template rendering', () => {
 
     it('should render the backdrop', () => {
-      const backdrop = fixture.nativeElement.querySelector('.drawer__backdrop');
+      const backdrop = getBackdrop();
 
       expect(backdrop).toBeTruthy();
     });
@@ -95,7 +95,7 @@ describe('AccountDrawerComponent', () => {
 
     it('should emit close when backdrop is clicked', () => {
       spyOn(component.close, 'emit');
-      const backdrop = fixture.nativeElement.querySelector('.drawer__backdrop');
+      const backdrop = getBackdrop();
       backdrop.click();
 
       expect(component.close.emit).toHaveBeenCalled();
@@ -146,7 +146,7 @@ describe('AccountDrawerComponent', () => {
   describe('Accessibility', () => {
 
     it('should have aria-hidden on backdrop', () => {
-      const backdrop = fixture.nativeElement.querySelector('.drawer__backdrop');
+      const backdrop = getBackdrop()
 
       expect(backdrop.getAttribute('aria-hidden')).toBe('true');
     });
