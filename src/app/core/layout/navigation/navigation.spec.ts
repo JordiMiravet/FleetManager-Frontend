@@ -18,7 +18,7 @@ describe('NavigationComponent', () => {
   const getLinksList = (): HTMLElement | null => fixture.nativeElement.querySelector('.navbar__links');
   const getLinks = (): NodeListOf<HTMLAnchorElement> => fixture.nativeElement.querySelectorAll('.navbar__links li a');
   const getIcons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.navbar__links li a i');
-  
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NavigationComponent],
@@ -46,10 +46,10 @@ describe('NavigationComponent', () => {
   describe('Template rendering', () => {
 
     it('should render the nav element with correct role and aria-label', () => {
-      const navElement = fixture.nativeElement.querySelector('nav');
+      const navElement = getNav();
 
-      expect(navElement.getAttribute('role')).toBe('navigation');
-      expect(navElement.getAttribute('aria-label')).toBe(component.navigationMsg.aria.nav);
+      expect(navElement?.getAttribute('role')).toBe('navigation');
+      expect(navElement?.getAttribute('aria-label')).toBe(component.navigationMsg.aria.nav);
     });
 
     it('should render the links list when user is logged', () => {
