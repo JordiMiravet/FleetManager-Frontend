@@ -119,15 +119,11 @@ describe('NavigationComponent', () => {
     });
 
     it('should react to isLogged changes', () => {
-      setLoggedIn(true);
-
-      let linksList = getLinksList();
-      expect(linksList).toBeTruthy();
-
       setLoggedIn(false);
+      expect(getLinksList()).toBeFalsy();
 
-      linksList = getLinksList();
-      expect(linksList).toBeFalsy();
+      setLoggedIn(true);
+      expect(getLinksList()).toBeTruthy();
     });
 
   });
