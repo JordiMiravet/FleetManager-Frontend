@@ -13,6 +13,8 @@ describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
+  const getHeader = (): HTMLElement => fixture.nativeElement.querySelector('header');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
