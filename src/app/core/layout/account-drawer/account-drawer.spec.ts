@@ -14,7 +14,7 @@ describe('AccountDrawerComponent', () => {
   const getAside = (): HTMLElement => fixture.nativeElement.querySelector('aside.drawer');
   const getCloseButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.drawer__close');
   const getMenuItems = (): NodeListOf<HTMLButtonElement> => fixture.nativeElement.querySelectorAll('.drawer__section:first-of-type .drawer__item');
-  
+
   beforeEach(async () => {
     mockThemeService.isDark.and.returnValue(false);
 
@@ -63,7 +63,7 @@ describe('AccountDrawerComponent', () => {
     });
 
     it('should render all menu items', () => {
-      const items = fixture.nativeElement.querySelectorAll('.drawer__section:first-of-type .drawer__item');
+      const items = getMenuItems();
 
       expect(items).toHaveSize(4);
       expect(items[0].textContent).toContain(component.drawerMsg.items.editProfile);
