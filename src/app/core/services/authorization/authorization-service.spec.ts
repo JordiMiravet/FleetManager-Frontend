@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { Auth } from '@angular/fire/auth';
+
 import { AuthorizationService } from './authorization-service';
 
 describe('Permission', () => {
   let service: AuthorizationService;
-  
+
   let authMock: {
     currentUser: {
       uid: string;
@@ -34,6 +35,7 @@ describe('Permission', () => {
   });
 
   describe('isOwner', () => {
+
     it('should return true when the current user owns the vehicle', () => {
       const vehicle = {
         userId: authMock.currentUser!.uid,
@@ -53,9 +55,11 @@ describe('Permission', () => {
     it('should return false when vehicle is null', () => {
       expect(service.isOwner(null)).toBeFalse();
     });
+
   });
 
   describe('canRemove', () => {
+
     it('should return true when the current user owns the vehicle', () => {
       const vehicle = {
         userId: authMock.currentUser!.uid,
@@ -93,5 +97,7 @@ describe('Permission', () => {
 
       expect(service.canRemove(vehicle, 'another-user')).toBeFalse();
     });
+
   });
+
 });
