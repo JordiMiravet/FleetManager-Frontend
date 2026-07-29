@@ -25,4 +25,10 @@ describe('ThemeService', () => {
       expect(service.isDark()).toBe(!initialValue);
     });
   });
+
+  describe('initialization', () => {
+    it('should initialize dark mode from local storage', () => {
+
+    });
+  });
 });
