@@ -49,23 +49,47 @@ describe('Permission', () => {
 
   describe('canRemove', () => {
     it('should return true when the current user owns the vehicle', () => {
+      const vehicle = {
+        userId: authMock.currentUser.uid,
+      } as any;
 
+      expect(service.canRemove(vehicle, 'another-user')).toBeTrue();
     });
 
     it('should return true when the current user matches the provided user id', () => {
+      const vehicle = {
+        userId: 'vehicle-owner',
+      } as any;
 
+      expect(service.canRemove(vehicle, authMock.currentUser.uid)).toBeTrue();
     });
 
     it('should return false when the current user is not allowed to remove the vehicle', () => {
+      const vehicle = {
+        userId: 'vehicle-owner',
+      } as any;
 
+      expect(service.canRemove(vehicle, 'another-user')).toBeFalse();
     });
 
     it('should return false when vehicle is null', () => {
-
+      expect(service.canRemove(null, authMock.currentUser.uid)).toBeFalse();
     });
 
     it('should return false when there is no authenticated user', () => {
+      authMock.currentUser = null as any;
 
+      const vehicle = {
+        userId: 'vehicle-owner',
+      } as any;
+
+      expect(service.canRemove(vehicle, 'another-user')).toBeFalse();
+
+      authMock.currentUser = {
+        uid: 'JordiTheBest',
+        getIdToken: () => Promise.resolve('MyToken')
+      };
     });
   });
+
 });
