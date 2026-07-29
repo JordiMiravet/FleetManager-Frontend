@@ -28,7 +28,14 @@ describe('ThemeService', () => {
 
   describe('initialization', () => {
     it('should initialize dark mode from local storage', () => {
+      localStorage.setItem('darkMode', 'false');
 
+      TestBed.resetTestingModule();
+      TestBed.configureTestingModule({});
+
+      service = TestBed.inject(ThemeService);
+
+      expect(service.isDark()).toBeFalse();
     });
   });
 });
