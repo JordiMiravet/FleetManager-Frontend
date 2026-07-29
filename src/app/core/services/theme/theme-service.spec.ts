@@ -6,6 +6,8 @@ describe('ThemeService', () => {
   let service: ThemeService;
 
   beforeEach(() => {
+    localStorage.clear();
+
     TestBed.configureTestingModule({});
     service = TestBed.inject(ThemeService);
   });
@@ -16,7 +18,11 @@ describe('ThemeService', () => {
 
   describe('toggle', () => {
     it('should toggle dark mode state', () => {
+      const initialValue = service.isDark();
 
+      service.toggle();
+
+      expect(service.isDark()).toBe(!initialValue);
     });
   });
 });
