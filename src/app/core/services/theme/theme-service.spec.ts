@@ -13,4 +13,10 @@ describe('ThemeService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  describe('toggle', () => {
+    it('should toggle dark mode state', () => {
+
+    });
+  });
 });
