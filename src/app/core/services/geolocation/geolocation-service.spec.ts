@@ -22,12 +22,24 @@ describe('GeolocationService', () => {
         },
       };
 
-      spyOn(navigator.geolocation, 'getCurrentPosition')
-        .and.callFake((success: any) => {
-          success(mockPosition);
-        });
+      const getCurrentPositionSpy = spyOn(
+        navigator.geolocation,
+        'getCurrentPosition'
+      ).and.callFake((success: any) => {
+        success(mockPosition);
+      });
 
       const result = await service.getCurrentLocation();
+
+      expect(getCurrentPositionSpy).toHaveBeenCalledWith(
+        jasmine.any(Function),
+        jasmine.any(Function),
+        {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 60000,
+        }
+      );
 
       expect(result).toEqual([40.4168, -3.7038]);
     });
@@ -64,5 +76,5 @@ describe('GeolocationService', () => {
       expect(result).toEqual([41.3851, 2.1734]);
     });
   });
-
+  
 });
