@@ -2,22 +2,30 @@ import { TestBed } from '@angular/core/testing';
 import { Auth } from '@angular/fire/auth';
 import { AuthorizationService } from './authorization-service';
 
-export const authMock = {
-  currentUser: {
-    uid: 'JordiTheBest',
-    getIdToken: () => Promise.resolve('MyToken')
-  }
-};
-
 describe('Permission', () => {
   let service: AuthorizationService;
+  
+  let authMock: {
+    currentUser: {
+      uid: string;
+      getIdToken: () => Promise<string>;
+    } | null;
+  };
 
   beforeEach(() => {
+    authMock = {
+      currentUser: {
+        uid: 'JordiTheBest',
+        getIdToken: () => Promise.resolve('MyToken'),
+      },
+    };
+
     TestBed.configureTestingModule({
       providers: [
         { provide: Auth, useValue: authMock },
-      ]
+      ],
     });
+
     service = TestBed.inject(AuthorizationService);
   });
 
@@ -28,7 +36,7 @@ describe('Permission', () => {
   describe('isOwner', () => {
     it('should return true when the current user owns the vehicle', () => {
       const vehicle = {
-        userId: authMock.currentUser.uid,
+        userId: authMock.currentUser!.uid,
       } as any;
 
       expect(service.isOwner(vehicle)).toBeTrue();
@@ -50,7 +58,7 @@ describe('Permission', () => {
   describe('canRemove', () => {
     it('should return true when the current user owns the vehicle', () => {
       const vehicle = {
-        userId: authMock.currentUser.uid,
+        userId: authMock.currentUser!.uid,
       } as any;
 
       expect(service.canRemove(vehicle, 'another-user')).toBeTrue();
@@ -61,7 +69,7 @@ describe('Permission', () => {
         userId: 'vehicle-owner',
       } as any;
 
-      expect(service.canRemove(vehicle, authMock.currentUser.uid)).toBeTrue();
+      expect(service.canRemove(vehicle, authMock.currentUser!.uid)).toBeTrue();
     });
 
     it('should return false when the current user is not allowed to remove the vehicle', () => {
@@ -73,23 +81,17 @@ describe('Permission', () => {
     });
 
     it('should return false when vehicle is null', () => {
-      expect(service.canRemove(null, authMock.currentUser.uid)).toBeFalse();
+      expect(service.canRemove(null, authMock.currentUser!.uid)).toBeFalse();
     });
 
     it('should return false when there is no authenticated user', () => {
-      authMock.currentUser = null as any;
+      authMock.currentUser = null;
 
       const vehicle = {
         userId: 'vehicle-owner',
       } as any;
 
       expect(service.canRemove(vehicle, 'another-user')).toBeFalse();
-
-      authMock.currentUser = {
-        uid: 'JordiTheBest',
-        getIdToken: () => Promise.resolve('MyToken')
-      };
     });
   });
-
 });
