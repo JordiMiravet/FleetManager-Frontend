@@ -3,7 +3,7 @@ import { Auth } from '@angular/fire/auth';
 
 import { AuthorizationService } from './authorization-service';
 
-describe('Permission', () => {
+describe('AuthorizationService', () => {
   let service: AuthorizationService;
 
   let authMock: {
