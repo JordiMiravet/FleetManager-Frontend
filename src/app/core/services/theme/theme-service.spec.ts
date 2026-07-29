@@ -7,9 +7,15 @@ describe('ThemeService', () => {
 
   beforeEach(() => {
     localStorage.clear();
+    document.body.classList.remove('dark-mode');
 
     TestBed.configureTestingModule({});
     service = TestBed.inject(ThemeService);
+  });
+
+  afterEach(() => {
+    document.body.classList.remove('dark-mode');
+    localStorage.clear();
   });
 
   it('should be created', () => {
@@ -36,6 +42,12 @@ describe('ThemeService', () => {
       service = TestBed.inject(ThemeService);
 
       expect(service.isDark()).toBeFalse();
+    });
+  });
+
+  describe('dark mode effect', () => {
+    it('should persist dark mode state and update body class', () => {
+
     });
   });
 });
