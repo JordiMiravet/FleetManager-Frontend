@@ -23,6 +23,7 @@ describe('ThemeService', () => {
   });
 
   describe('toggle', () => {
+
     it('should toggle dark mode state', () => {
       const initialValue = service.isDark();
 
@@ -30,9 +31,11 @@ describe('ThemeService', () => {
 
       expect(service.isDark()).toBe(!initialValue);
     });
+
   });
 
   describe('initialization', () => {
+
     it('should initialize dark mode from local storage', () => {
       localStorage.setItem('darkMode', 'false');
 
@@ -43,9 +46,11 @@ describe('ThemeService', () => {
 
       expect(service.isDark()).toBeFalse();
     });
+
   });
 
   describe('dark mode effect', () => {
+
     it('should persist dark mode state and update body class', () => {
       service.isDark.set(false);
 
@@ -57,5 +62,7 @@ describe('ThemeService', () => {
       expect(localStorage.getItem('darkMode')).toBe('true');
       expect(document.body.classList.contains('dark-mode')).toBeTrue();
     });
+
   });
+
 });
