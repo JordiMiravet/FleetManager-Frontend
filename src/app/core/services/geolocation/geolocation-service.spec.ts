@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+
 import { GeolocationService } from './geolocation-service';
 
 describe('GeolocationService', () => {
@@ -14,6 +15,7 @@ describe('GeolocationService', () => {
   });
 
   describe('getCurrentLocation', () => {
+
     it('should resolve with latitude and longitude when GPS works', async () => {
       const mockPosition = {
         coords: {
@@ -40,7 +42,6 @@ describe('GeolocationService', () => {
           maximumAge: 60000,
         }
       );
-
       expect(result).toEqual([40.4168, -3.7038]);
     });
 
@@ -68,13 +69,13 @@ describe('GeolocationService', () => {
         .and.callFake((_: any, error: any) => {
           error();
         });
-
       spyOn(window, 'fetch').and.rejectWith('IP error');
 
       const result = await service.getCurrentLocation();
 
       expect(result).toEqual([41.3851, 2.1734]);
     });
+
   });
   
 });
