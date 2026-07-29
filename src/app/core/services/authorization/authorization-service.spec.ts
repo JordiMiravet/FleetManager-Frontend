@@ -46,4 +46,26 @@ describe('Permission', () => {
       expect(service.isOwner(null)).toBeFalse();
     });
   });
+
+  describe('canRemove', () => {
+    it('should return true when the current user owns the vehicle', () => {
+
+    });
+
+    it('should return true when the current user matches the provided user id', () => {
+
+    });
+
+    it('should return false when the current user is not allowed to remove the vehicle', () => {
+
+    });
+
+    it('should return false when vehicle is null', () => {
+
+    });
+
+    it('should return false when there is no authenticated user', () => {
+
+    });
+  });
 });
