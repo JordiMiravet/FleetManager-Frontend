@@ -38,7 +38,7 @@ describe('GeolocationService', () => {
           error();
         });
 
-      spyOn(window, 'fetch').and.resolveTo(
+      const fetchSpy = spyOn(window, 'fetch').and.resolveTo(
         new Response(JSON.stringify({
           latitude: 41.3874,
           longitude: 2.1686,
@@ -47,6 +47,7 @@ describe('GeolocationService', () => {
 
       const result = await service.getCurrentLocation();
 
+      expect(fetchSpy).toHaveBeenCalledWith('https://ipapi.co/json/');
       expect(result).toEqual([41.3874, 2.1686]);
     });
 
