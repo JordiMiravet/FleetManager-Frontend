@@ -51,13 +51,17 @@ describe('ThemeService', () => {
 
   describe('dark mode effect', () => {
 
-    it('should persist dark mode state and update body class', () => {
+    it('should persist dark mode state and update body class', async () => {
       service.isDark.set(false);
+
+      await new Promise(resolve => setTimeout(resolve));
 
       expect(localStorage.getItem('darkMode')).toBe('false');
       expect(document.body.classList.contains('dark-mode')).toBeFalse();
 
       service.isDark.set(true);
+
+      await new Promise(resolve => setTimeout(resolve));
 
       expect(localStorage.getItem('darkMode')).toBe('true');
       expect(document.body.classList.contains('dark-mode')).toBeTrue();
