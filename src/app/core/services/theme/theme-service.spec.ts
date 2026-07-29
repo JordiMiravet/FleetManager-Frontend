@@ -47,7 +47,15 @@ describe('ThemeService', () => {
 
   describe('dark mode effect', () => {
     it('should persist dark mode state and update body class', () => {
+      service.isDark.set(false);
 
+      expect(localStorage.getItem('darkMode')).toBe('false');
+      expect(document.body.classList.contains('dark-mode')).toBeFalse();
+
+      service.isDark.set(true);
+
+      expect(localStorage.getItem('darkMode')).toBe('true');
+      expect(document.body.classList.contains('dark-mode')).toBeTrue();
     });
   });
 });
