@@ -24,4 +24,18 @@ describe('Permission', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  describe('isOwner', () => {
+    it('should return true when the current user owns the vehicle', () => {
+
+    });
+
+    it('should return false when the current user does not own the vehicle', () => {
+
+    });
+
+    it('should return false when vehicle is null', () => {
+
+    });
+  });
 });
