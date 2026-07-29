@@ -27,15 +27,23 @@ describe('Permission', () => {
 
   describe('isOwner', () => {
     it('should return true when the current user owns the vehicle', () => {
+      const vehicle = {
+        userId: authMock.currentUser.uid,
+      } as any;
 
+      expect(service.isOwner(vehicle)).toBeTrue();
     });
 
     it('should return false when the current user does not own the vehicle', () => {
+      const vehicle = {
+        userId: 'another-user',
+      } as any;
 
+      expect(service.isOwner(vehicle)).toBeFalse();
     });
 
     it('should return false when vehicle is null', () => {
-
+      expect(service.isOwner(null)).toBeFalse();
     });
   });
 });
