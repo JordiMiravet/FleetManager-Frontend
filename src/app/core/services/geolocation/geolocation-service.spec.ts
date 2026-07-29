@@ -13,8 +13,7 @@ describe('GeolocationService', () => {
     expect(service).toBeTruthy();
   });
 
-
-  describe('Successful GPS geolocation', () => {
+  describe('getCurrentLocation', () => {
     it('should resolve with latitude and longitude when GPS works', async () => {
       const mockPosition = {
         coords: {
@@ -32,9 +31,7 @@ describe('GeolocationService', () => {
 
       expect(result).toEqual([40.4168, -3.7038]);
     });
-  });
 
-  describe('Fallback to IP location', () => {
     it('should use IP location when GPS fails', async () => {
       spyOn(navigator.geolocation, 'getCurrentPosition')
         .and.callFake((_: any, error: any) => {
@@ -44,7 +41,7 @@ describe('GeolocationService', () => {
       spyOn(window, 'fetch').and.resolveTo(
         new Response(JSON.stringify({
           latitude: 41.3874,
-          longitude: 2.1686
+          longitude: 2.1686,
         }))
       );
 
@@ -52,9 +49,7 @@ describe('GeolocationService', () => {
 
       expect(result).toEqual([41.3874, 2.1686]);
     });
-  });
 
-  describe('Fallback to default coordinates', () => {
     it('should return default coordinates when GPS and IP fail', async () => {
       spyOn(navigator.geolocation, 'getCurrentPosition')
         .and.callFake((_: any, error: any) => {
