@@ -9,11 +9,10 @@ describe('GeolocationService', () => {
     service = TestBed.inject(GeolocationService);
   });
 
-  describe('Service creation', () => {
-    it('should be created', () => {
-      expect(service).toBeTruthy();
-    });
+  it('should be created', () => {
+    expect(service).toBeTruthy();
   });
+
 
   describe('Successful GPS geolocation', () => {
     it('should resolve with latitude and longitude when GPS works', async () => {
