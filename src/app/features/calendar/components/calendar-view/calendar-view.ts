@@ -183,12 +183,13 @@ export class CalendarViewComponent implements AfterViewInit {
     }));
   }
 
-  handleVehicleSelected(vehicle: VehicleInterface): void {
+  handleVehicleSelected(vehicle: VehicleInterface | null): void {
     if (!vehicle) {
       this.eventService.selectedVehicleId.set(null);
-    } else {
-      this.eventService.selectedVehicleId.set(vehicle._id!);
+      return;
     }
+
+    this.eventService.selectedVehicleId.set(vehicle._id!);
   }
 
 }
