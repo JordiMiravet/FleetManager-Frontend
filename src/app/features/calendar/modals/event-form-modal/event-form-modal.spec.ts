@@ -7,7 +7,7 @@ import { EventFormModalComponent } from './event-form-modal';
 
 import { EventService } from '../../data-access/event-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
-import { EventInterface } from '../../interfaces/event';
+import { EventInterface } from '../../models/event';
 
 const authMock = {
   currentUser: {
