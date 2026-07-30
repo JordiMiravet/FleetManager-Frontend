@@ -4,7 +4,7 @@ import { Auth } from '@angular/fire/auth';
 
 import { DayEventsModalComponent } from './day-events-modal';
 
-import { EventInterface } from '../../interfaces/event';
+import { EventInterface } from '../../models/event';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 
 describe('DayEventsModalComponent', () => {

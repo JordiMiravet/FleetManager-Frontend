@@ -2,7 +2,7 @@ import { Component, inject, input, OnInit, output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { EventInterface } from '../../interfaces/event';
+import { EventInterface } from '../../models/event';
 import { EventMessagesService } from '../../i18n/event-messages';
 
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';

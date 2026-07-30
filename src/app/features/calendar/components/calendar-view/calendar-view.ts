@@ -9,7 +9,7 @@ import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
 import { EventService } from '../../data-access/event-service';
-import { EventInterface } from '../../interfaces/event';
+import { EventInterface } from '../../models/event';
 import { EventMessagesService } from '../../i18n/event-messages';
 import { DayEventsModalComponent } from '../../modals/day-events-modal/day-events-modal';
 import { EventFormModalComponent } from "../../modals/event-form-modal/event-form-modal";
@@ -183,12 +183,13 @@ export class CalendarViewComponent implements AfterViewInit {
     }));
   }
 
-  handleVehicleSelected(vehicle: VehicleInterface): void {
+  handleVehicleSelected(vehicle: VehicleInterface | null): void {
     if (!vehicle) {
       this.eventService.selectedVehicleId.set(null);
-    } else {
-      this.eventService.selectedVehicleId.set(vehicle._id!);
+      return;
     }
+
+    this.eventService.selectedVehicleId.set(vehicle._id!);
   }
 
 }

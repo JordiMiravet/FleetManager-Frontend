@@ -3,7 +3,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 
 import { EventService } from './event-service';
-import { EventInterface } from '../interfaces/event';
+import { EventInterface } from '../models/event';
 
 const API_URL = 'http://localhost:3000/events';
 

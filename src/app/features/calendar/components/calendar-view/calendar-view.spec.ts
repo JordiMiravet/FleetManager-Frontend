@@ -7,7 +7,7 @@ import { CalendarViewComponent } from './calendar-view';
 
 import { EventService } from '../../data-access/event-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
-import { EventInterface } from '../../interfaces/event';
+import { EventInterface } from '../../models/event';
 import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
 import { CalendarModalState } from '../../enums/calendar-modal-state.enum';
 
