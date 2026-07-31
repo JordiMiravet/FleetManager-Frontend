@@ -7,7 +7,7 @@ import { MapContainerComponent } from './map-container';
 import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { VehicleModalService } from '../../../vehicle/state/vehicle-modal-service';
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../../vehicle/models/vehicle';
 import { VehicleModalState } from '../../../vehicle/enums/vehicle-modal-state.enum';
 import { VehicleFormModalComponent } from '../../../vehicle/modals/vehicle-form-modal/vehicle-form-modal';
 

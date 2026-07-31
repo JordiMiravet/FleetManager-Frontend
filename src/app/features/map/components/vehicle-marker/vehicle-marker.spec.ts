@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VehicleMarkerComponent } from './vehicle-marker';
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../../vehicle/models/vehicle';
 
 const mockVehicle: VehicleInterface = {
   name: 'Ferrari',

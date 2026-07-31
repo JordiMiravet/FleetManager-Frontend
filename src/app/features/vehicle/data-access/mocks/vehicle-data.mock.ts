@@ -1,4 +1,4 @@
-import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../models/vehicle';
 
 export const MOCK_VEHICLES: VehicleInterface[] = [
   {

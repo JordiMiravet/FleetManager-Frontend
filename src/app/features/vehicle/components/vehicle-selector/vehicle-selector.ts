@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
-import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../models/vehicle';
 import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 
 @Component({

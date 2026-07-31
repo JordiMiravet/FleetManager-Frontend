@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { VehicleInterface } from '../../../features/vehicle/interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../../features/vehicle/models/vehicle';
 
 @Injectable({
   providedIn: 'root',

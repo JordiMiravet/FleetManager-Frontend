@@ -1,4 +1,4 @@
-import { VehicleInterface } from "../../interfaces/vehicle/vehicle";
+import { VehicleInterface } from "../../models/vehicle";
 
 import { MOCK_VEHICLES } from "./vehicle-data.mock";
 import { 

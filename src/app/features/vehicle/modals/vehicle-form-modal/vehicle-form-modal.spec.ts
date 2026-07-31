@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Auth } from '@angular/fire/auth';
 
 import { VehicleFormModalComponent } from './vehicle-form-modal';
-import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../models/vehicle';
 
 describe('VehicleFormModalComponent', () => {
   let component: VehicleFormModalComponent;

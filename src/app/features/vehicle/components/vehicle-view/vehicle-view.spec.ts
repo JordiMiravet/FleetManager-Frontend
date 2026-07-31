@@ -5,7 +5,7 @@ import { Auth } from '@angular/fire/auth';
 import { VehicleViewComponent } from './vehicle-view';
 
 import { VehicleService } from '../../data-access/vehicle-service';
-import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../models/vehicle';
 import { VehicleModalService } from '../../state/vehicle-modal-service';
 import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';
 import { VehicleModalState } from '../../enums/vehicle-modal-state.enum';

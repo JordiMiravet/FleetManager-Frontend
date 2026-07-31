@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
-import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 
+import { VehicleInterface } from '../../models/vehicle';
+import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 
 @Component({
   selector: 'app-vehicle-form-modal',

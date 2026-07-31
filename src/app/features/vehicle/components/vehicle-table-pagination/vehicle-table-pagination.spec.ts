@@ -5,7 +5,7 @@ import { signal } from '@angular/core';
 
 import { VehicleTablePaginationComponent } from './vehicle-table-pagination';
 import { VehicleService } from '../../data-access/vehicle-service';
-import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../models/vehicle';
 
 const authMock = {
   currentUser: {

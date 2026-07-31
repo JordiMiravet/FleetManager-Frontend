@@ -5,7 +5,7 @@ import { ManageVehicleUsersModalComponent } from './manage-vehicle-users-modal';
 
 import { AuthorizationService } from '../../../../core/services/authorization/authorization-service';
 import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
-import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../models/vehicle';
 
 const vehicleMock: VehicleInterface = {
   _id: '1',

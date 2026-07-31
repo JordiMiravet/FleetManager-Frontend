@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DetailsPanelComponent } from './details-panel';
 
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../../vehicle/models/vehicle';
 import { MapMessagesService } from '../../i18n/map-messages';
 
 const MockDetailsPanel = {

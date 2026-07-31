@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../../vehicle/models/vehicle';
 
 @Component({
   selector: 'app-vehicle-marker',

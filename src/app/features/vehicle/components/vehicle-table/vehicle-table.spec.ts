@@ -4,7 +4,7 @@ import { Auth } from '@angular/fire/auth';
 import { VehicleTableComponent } from './vehicle-table';
 
 import { AuthorizationService } from '../../../../core/services/authorization/authorization-service';
-import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../models/vehicle';
 
 const authMock = {
   currentUser: {

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Auth } from '@angular/fire/auth';
 
-import { VehicleInterface } from '../interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../models/vehicle';
 import { loadMockVehicles, addMockVehicle, updateMockVehicle, updateMockLocation, deleteMockVehicle } from './mocks/vehicle-mock.helpers';
 
 @Injectable({

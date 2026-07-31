@@ -1,6 +1,6 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
 
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../../vehicle/models/vehicle';
 
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';

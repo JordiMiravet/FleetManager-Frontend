@@ -11,7 +11,7 @@ import { MapViewComponent } from './map-view';
 import { MapService } from '../../data-access/map-service';
 import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../../vehicle/models/vehicle';
 import { VehicleMarkerManager } from '../../data-access/vehicle-marker-manager';
 
 export const authMock = {

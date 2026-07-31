@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
-import { VehicleInterface } from '../interfaces/vehicle/vehicle';
+
+import { VehicleInterface } from '../models/vehicle';
 import { VehicleModalState } from '../enums/vehicle-modal-state.enum';
 
 @Injectable({
