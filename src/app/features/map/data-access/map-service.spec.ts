@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import * as L from 'leaflet';
 
 import { MapService } from './map-service';
-import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../vehicle/models/vehicle';
 import { VehicleMarkerManager } from './vehicle-marker-manager';
 
 function createMapDom() {

@@ -1,7 +1,7 @@
 import { Injectable, ViewContainerRef } from '@angular/core';
 import * as L from 'leaflet';
 
-import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../vehicle/models/vehicle';
 import { VehicleMarkerComponent } from '../components/vehicle-marker/vehicle-marker';
 
 const ICON_SIZE: [number, number] = [75, 75];

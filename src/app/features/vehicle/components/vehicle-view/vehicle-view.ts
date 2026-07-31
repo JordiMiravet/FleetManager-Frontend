@@ -1,7 +1,7 @@
 import { Component, computed, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 
-import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../models/vehicle';
 import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';
 import { VehicleService } from '../../data-access/vehicle-service';
 import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';

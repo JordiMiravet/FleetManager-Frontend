@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import * as L from 'leaflet';
 
-import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../vehicle/models/vehicle';
 import { VehicleMarkerManager } from './vehicle-marker-manager';
 
 @Injectable({

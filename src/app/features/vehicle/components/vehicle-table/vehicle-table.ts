@@ -1,7 +1,7 @@
 import { Component, inject, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../models/vehicle';
 
 import { EditButtonComponent } from '../../../../shared/ui/buttons/edit-button/edit-button';
 import { DeleteButtonComponent } from '../../../../shared/ui/buttons/delete-button/delete-button';

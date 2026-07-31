@@ -15,7 +15,7 @@ import { DayEventsModalComponent } from '../../modals/day-events-modal/day-event
 import { EventFormModalComponent } from "../../modals/event-form-modal/event-form-modal";
 
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
-import { VehicleInterface } from '../../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../../vehicle/models/vehicle';
 import { VehicleSelectorComponent } from "../../../vehicle/components/vehicle-selector/vehicle-selector";
 
 import { ConfirmModalComponent } from '../../../../shared/ui/modals/confirm-modal/confirm-modal';

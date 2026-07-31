@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
 
 import { VehicleSelectorComponent } from './vehicle-selector';
-import { VehicleInterface } from '../../interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../models/vehicle';
 
 describe('VehicleSelectorComponent', () => {
   let component: VehicleSelectorComponent;

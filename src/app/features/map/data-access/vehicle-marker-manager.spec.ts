@@ -3,8 +3,9 @@ import { ViewContainerRef } from '@angular/core';
 import L from 'leaflet';
 
 import { VehicleMarkerManager } from './vehicle-marker-manager';
+
 import { VehicleMarkerComponent } from '../components/vehicle-marker/vehicle-marker';
-import { VehicleInterface } from '../../vehicle/interfaces/vehicle/vehicle';
+import { VehicleInterface } from '../../vehicle/models/vehicle';
 
 const mockVehicle: VehicleInterface = {
   name: 'Ferrari',
