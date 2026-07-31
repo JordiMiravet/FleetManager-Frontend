@@ -15,7 +15,7 @@ import { ManageVehicleUsersModalComponent } from '../../modals/manage-vehicle-us
 import { VehicleTableComponent } from "../vehicle-table/vehicle-table";
 import { VehicleEmptyStateComponent } from "../vehicle-empty-state/vehicle-empty-state";
 import { VehicleTableActionsComponent } from '../vehicle-table-actions/vehicle-table-actions';
-import { VehicleFilterState } from '../../interfaces/vehicle-filter-state/vehicle-filter-state';
+import { VehicleFilterState } from '../../types/vehicle-filter-state';
 import { VehicleTablePaginationComponent } from "../vehicle-table-pagination/vehicle-table-pagination";
 import { CreateButtonComponent } from "../../../../shared/ui/buttons/create-button/create-button";
 

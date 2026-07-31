@@ -1,5 +1,6 @@
 import { Component, inject, output, signal } from '@angular/core';
-import { SortDir, SortField, VehicleFilterState } from '../../interfaces/vehicle-filter-state/vehicle-filter-state';
+
+import { SortDir, SortField, VehicleFilterState } from '../../types/vehicle-filter-state';
 import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 
 @Component({
