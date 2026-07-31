@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 
-import { VehicleMetrics } from '../interfaces/VehicleMetrics';
+import { VehicleMetrics } from '../models/VehicleMetrics';
 import { TimePeriod } from '../enums/time-period.enum';
 
 import { EventService } from '../../calendar/data-access/event-service';
