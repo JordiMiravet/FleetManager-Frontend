@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
-import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
-const redirectUnauthorizedToAuth = () => redirectUnauthorizedTo(['/auth']);
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -11,7 +10,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    ...canActivate(redirectUnauthorizedToAuth),
+    ...authGuard,
     children: [
       {
         path: '',
