@@ -1,6 +1,6 @@
-import { inject } from "@angular/core";
-import { Router } from "@angular/router";
 import { Auth, authState } from "@angular/fire/auth";
+import { Router } from "@angular/router";
+import { inject } from "@angular/core";
 import { map, take } from "rxjs";
 
 export const guestGuard = () => {
