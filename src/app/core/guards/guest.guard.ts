@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 
 import { AuthService } from "../../features/auth/data-access/auth-service";
 
-const guestGuard = () => {
+export const guestGuard = () => {
     const authService = inject(AuthService);
     const router = inject(Router)
 
