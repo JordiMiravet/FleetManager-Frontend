@@ -1,13 +1,14 @@
 import { inject } from "@angular/core";
 import { Router } from "@angular/router";
-
-import { AuthService } from "../../features/auth/data-access/auth-service";
+import { Auth, authState } from "@angular/fire/auth";
+import { map, take } from "rxjs";
 
 export const guestGuard = () => {
-    const authService = inject(AuthService);
-    const router = inject(Router)
+    const auth = inject(Auth);
+    const router = inject(Router);
 
-    return authService.isLogged()
-        ? router.createUrlTree([''])
-        : true;
+    return authState(auth).pipe(
+        take(1),
+        map(user => user ? router.createUrlTree(['']) : true)
+    );
 };
