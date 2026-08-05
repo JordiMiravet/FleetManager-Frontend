@@ -29,6 +29,14 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
+        title: 'Dinner reservation',
+        date: '2026-08-04',
+        hourStart: '19:30',
+        hourEnd: '22:00',
+        comment: 'Dinner reservation at Four Seasons Hotel Tokyo at Otemachi with a luxury tasting menu experience.',
+        vehicleId: '3',
+    },
+    {
         _id: '4',
         title: 'Work session',
         date: '2026-08-05',
@@ -65,6 +73,14 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
+        title: 'Dinner reservation',
+        date: '2026-08-07',
+        hourStart: '19:30',
+        hourEnd: '22:00',
+        comment: 'Dinner reservation at Leffervescence in Tokyo for a refined contemporary French cuisine experience.',
+        vehicleId: '3',
+    },
+    {
         _id: '8',
         title: 'Work session',
         date: '2026-08-10',
@@ -84,11 +100,11 @@ export const MOCK_EVENTS: EventInterface[] = [
     },
     {
         _id: '10',
-        title: 'Date',
-        date: '2026-08-10',
-        hourStart: '19:00',
-        hourEnd: '21:00',
-        comment: 'Dinner reservation and evening plans with someone special after finishing daily activities.',
+        title: 'Dinner reservation',
+        date: '2026-08-11',
+        hourStart: '20:00',
+        hourEnd: '22:30',
+        comment: 'Dinner reservation at Ginza Kojyu in Tokyo for a traditional kaiseki dining experience.',
         vehicleId: '3',
     },
     {
@@ -137,6 +153,14 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
+        title: 'Dinner reservation',
+        date: '2026-08-14',
+        hourStart: '20:00',
+        hourEnd: '22:30',
+        comment: 'Dinner reservation at Den in Tokyo for an innovative Japanese dining experience.',
+        vehicleId: '3',
+    },
+    {
         _id: '16',
         title: 'Work session',
         date: '2026-08-17',
@@ -162,6 +186,14 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourEnd: '16:30',
         comment: 'Coordinate team priorities and discuss blockers affecting development.',
         vehicleId: '2',
+    },
+    {
+        title: 'Dinner reservation',
+        date: '2026-08-18',
+        hourStart: '19:30',
+        hourEnd: '22:00',
+        comment: 'Dinner reservation at Sukiyabashi Jiro in Tokyo for a premium sushi experience.',
+        vehicleId: '3',
     },
     {
         _id: '19',
@@ -191,6 +223,14 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
+        title: 'Dinner reservation',
+        date: '2026-08-21',
+        hourStart: '19:30',
+        hourEnd: '22:00',
+        comment: 'Dinner reservation at Florilège in Tokyo for a high-end seasonal tasting menu.',
+        vehicleId: '3',
+    },
+    {
         _id: '22',
         title: 'Work session',
         date: '2026-08-24',
@@ -216,6 +256,14 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourEnd: '16:30',
         comment: 'Discuss project evolution and define next important milestones.',
         vehicleId: '2',
+    },
+    {
+        title: 'Dinner reservation',
+        date: '2026-08-25',
+        hourStart: '20:00',
+        hourEnd: '22:30',
+        comment: 'Dinner reservation at Narisawa in Tokyo for an exclusive fine dining evening.',
+        vehicleId: '3',
     },
     {
         _id: '25',
@@ -261,6 +309,14 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourEnd: '16:30',
         comment: 'Discuss client feedback and agree on future improvements.',
         vehicleId: '2',
+    },
+    {
+        title: 'Dinner reservation',
+        date: '2026-08-28',
+        hourStart: '20:00',
+        hourEnd: '22:30',
+        comment: 'Dinner reservation at Azabu Kadowaki in Tokyo for an exclusive Japanese cuisine experience.',
+        vehicleId: '3',
     },
     {
         _id: '30',
