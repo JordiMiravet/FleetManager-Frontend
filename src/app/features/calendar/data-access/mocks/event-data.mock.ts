@@ -3,93 +3,123 @@ import { EventInterface } from "../../models/event";
 export const MOCK_EVENTS: EventInterface[] = [
   {
     _id: '1',
+    title: 'Work session',
   },
   {
     _id: '2',
+    title: 'Work session',
   },
   {
     _id: '3',
+    title: 'Work session',
   },
   {
     _id: '4',
+    title: 'Work session',
   },
   {
     _id: '5',
+    title: 'Team meeting',
   },
   {
     _id: '6',
+    title: 'Work session',
   },
   {
     _id: '7',
+    title: 'Work session',
   },
   {
     _id: '8',
+    title: 'Work session',
   },
   {
     _id: '9',
+    title: 'Work session',
   },
   {
     _id: '10',
+    title: 'Project review meeting',
   },
   {
     _id: '11',
+    title: 'Work session',
   },
   {
     _id: '12',
+    title: 'Work session',
   },
   {
     _id: '13',
+    title: 'Work session',
   },
   {
     _id: '14',
+    title: 'Client meeting',
   },
   {
     _id: '15',
+    title: 'Work session',
   },
   {
     _id: '16',
+    title: 'Work session',
   },
   {
     _id: '17',
+    title: 'Work session',
   },
   {
     _id: '18',
+    title: 'Team meeting',
   },
   {
     _id: '19',
+    title: 'Work session',
   },
   {
     _id: '20',
+    title: 'Work session',
   },
   {
     _id: '21',
+    title: 'Work session',
   },
   {
     _id: '22',
+    title: 'Work session',
   },
   {
     _id: '23',
+    title: 'Project meeting',
   },
   {
     _id: '24',
+    title: 'Work session',
   },
   {
     _id: '25',
+    title: 'Work session',
   },
   {
     _id: '26',
+    title: 'Work session',
   },
   {
     _id: '27',
+    title: 'Team meeting',
   },
   {
     _id: '28',
+    title: 'Work session',
   },
   {
     _id: '29',
+    title: 'Client meeting',
   },
   {
     _id: '30',
+    title: 'Work session',
   },
   {
     _id: '31',
