@@ -1,6 +1,6 @@
 import { EventInterface } from "../../models/event";
 
-export const MOCK_EVENTS_DATA:  Omit<EventInterface, '_id'>[] = [
+const MOCK_EVENTS_DATA:  Omit<EventInterface, '_id'>[] = [
     {
         title: 'Work session',
         date: '2026-08-03',
