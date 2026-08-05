@@ -7,6 +7,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-03',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Complete assigned development tasks and review pending project requirements.',
     },
     {
         _id: '2',
@@ -14,6 +15,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-03',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Implement new calendar improvements and fix reported application issues.',
     },
     {
         _id: '3',
@@ -21,6 +23,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-04',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Prepare technical documentation and organize upcoming sprint activities.',
     },
     {
         _id: '4',
@@ -28,6 +31,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-05',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Develop requested features and review code quality with development standards.',
     },
     {
         _id: '5',
@@ -35,6 +39,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-06',
         hourStart: '15:30',
         hourEnd: '16:30',
+        comment: 'Discuss sprint progress and coordinate tasks with the development team.',
     },
     {
         _id: '6',
@@ -42,6 +47,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-06',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Continue implementation tasks and analyze possible improvements for the application.',
     },
     {
         _id: '7',
@@ -49,6 +55,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-07',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Finalize weekly objectives and prepare deliverables before the weekend.',
     },
     {
         _id: '8',
@@ -56,6 +63,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-10',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Start new weekly tasks and review priorities with project planning.',
     },
     {
         _id: '9',
@@ -63,6 +71,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-10',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Analyze previous changes and continue improving application functionality.',
     },
     {
         _id: '10',
@@ -70,6 +79,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-11',
         hourStart: '15:30',
         hourEnd: '16:30',
+        comment: 'Review project milestones and discuss upcoming development objectives.',
     },
     {
         _id: '11',
@@ -77,6 +87,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-11',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Work on assigned tickets and validate current implementation progress.',
     },
     {
         _id: '12',
@@ -84,6 +95,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-12',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Refactor existing components and improve application maintainability.',
     },
     {
         _id: '13',
@@ -91,6 +103,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-13',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Test recent changes and investigate possible unexpected behaviors.',
     },
     {
         _id: '14',
@@ -98,6 +111,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-14',
         hourStart: '15:30',
         hourEnd: '16:30',
+        comment: 'Present current progress and collect feedback from the client.',
     },
     {
         _id: '15',
@@ -105,6 +119,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-14',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Complete remaining tasks and prepare updates for the next review.',
     },
     {
         _id: '16',
@@ -112,6 +127,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-17',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Start sprint objectives and organize pending development activities.',
     },
     {
         _id: '17',
@@ -119,6 +135,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-18',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Implement requested changes and review technical documentation updates.',
     },
     {
         _id: '18',
@@ -126,6 +143,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-18',
         hourStart: '15:30',
         hourEnd: '16:30',
+        comment: 'Coordinate team priorities and discuss blockers affecting development.',
     },
     {
         _id: '19',
@@ -133,6 +151,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-19',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Review open tasks and continue improving existing application features.',
     },
     {
         _id: '20',
@@ -140,6 +159,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-20',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Develop new functionality and verify integration between different modules.',
     },
     {
         _id: '21',
@@ -147,6 +167,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-21',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Complete weekly objectives and prepare project status updates.',
     },
     {
         _id: '22',
@@ -154,6 +175,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-24',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Review requirements and begin implementation of planned improvements.',
     },
     {
         _id: '23',
@@ -161,6 +183,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-25',
         hourStart: '15:30',
         hourEnd: '16:30',
+        comment: 'Discuss project evolution and define next important milestones.',
     },
     {
         _id: '24',
@@ -168,6 +191,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-25',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Continue development tasks and solve pending technical challenges.',
     },
     {
         _id: '25',
@@ -175,6 +199,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-26',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Improve application performance and review recent code changes.',
     },
     {
         _id: '26',
@@ -182,6 +207,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-27',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Prepare final adjustments and validate implemented features.',
     },
     {
         _id: '27',
@@ -189,6 +215,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-28',
         hourStart: '15:30',
         hourEnd: '16:30',
+        comment: 'Review weekly results and coordinate upcoming team activities.',
     },
     {
         _id: '28',
@@ -196,6 +223,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-28',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Finish pending tasks and prepare changes for deployment.',
     },
     {
         _id: '29',
@@ -203,6 +231,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-28',
         hourStart: '15:30',
         hourEnd: '16:30',
+        comment: 'Discuss client feedback and agree on future improvements.',
     },
     {
         _id: '30',
@@ -210,5 +239,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         date: '2026-08-31',
         hourStart: '08:00',
         hourEnd: '15:00',
+        comment: 'Plan new sprint activities and organize upcoming development tasks.',
     },
 ];
