@@ -8,6 +8,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Complete assigned development tasks and review pending project requirements.',
+        vehicleId: '1',
     },
     {
         _id: '2',
@@ -16,6 +17,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Implement new calendar improvements and fix reported application issues.',
+        vehicleId: '1',
     },
     {
         _id: '3',
@@ -24,6 +26,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Prepare technical documentation and organize upcoming sprint activities.',
+        vehicleId: '1',
     },
     {
         _id: '4',
@@ -32,6 +35,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Develop requested features and review code quality with development standards.',
+        vehicleId: '1',
     },
     {
         _id: '5',
@@ -40,6 +44,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '15:30',
         hourEnd: '16:30',
         comment: 'Discuss sprint progress and coordinate tasks with the development team.',
+        vehicleId: '2',
     },
     {
         _id: '6',
@@ -48,6 +53,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Continue implementation tasks and analyze possible improvements for the application.',
+        vehicleId: '1',
     },
     {
         _id: '7',
@@ -56,6 +62,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Finalize weekly objectives and prepare deliverables before the weekend.',
+        vehicleId: '1',
     },
     {
         _id: '8',
@@ -64,6 +71,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Start new weekly tasks and review priorities with project planning.',
+        vehicleId: '1',
     },
     {
         _id: '9',
@@ -72,6 +80,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Analyze previous changes and continue improving application functionality.',
+        vehicleId: '1',
     },
     {
         _id: '10',
@@ -80,6 +89,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '15:30',
         hourEnd: '16:30',
         comment: 'Review project milestones and discuss upcoming development objectives.',
+        vehicleId: '2',
     },
     {
         _id: '11',
@@ -88,6 +98,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Work on assigned tickets and validate current implementation progress.',
+        vehicleId: '1',
     },
     {
         _id: '12',
@@ -96,6 +107,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Refactor existing components and improve application maintainability.',
+        vehicleId: '1',
     },
     {
         _id: '13',
@@ -104,6 +116,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Test recent changes and investigate possible unexpected behaviors.',
+        vehicleId: '1',
     },
     {
         _id: '14',
@@ -112,6 +125,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '15:30',
         hourEnd: '16:30',
         comment: 'Present current progress and collect feedback from the client.',
+        vehicleId: '2',
     },
     {
         _id: '15',
@@ -120,6 +134,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Complete remaining tasks and prepare updates for the next review.',
+        vehicleId: '1',
     },
     {
         _id: '16',
@@ -128,6 +143,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Start sprint objectives and organize pending development activities.',
+        vehicleId: '1',
     },
     {
         _id: '17',
@@ -136,6 +152,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Implement requested changes and review technical documentation updates.',
+        vehicleId: '1',
     },
     {
         _id: '18',
@@ -144,6 +161,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '15:30',
         hourEnd: '16:30',
         comment: 'Coordinate team priorities and discuss blockers affecting development.',
+        vehicleId: '2',
     },
     {
         _id: '19',
@@ -152,6 +170,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Review open tasks and continue improving existing application features.',
+        vehicleId: '1',
     },
     {
         _id: '20',
@@ -160,6 +179,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Develop new functionality and verify integration between different modules.',
+        vehicleId: '1',
     },
     {
         _id: '21',
@@ -168,6 +188,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Complete weekly objectives and prepare project status updates.',
+        vehicleId: '1',
     },
     {
         _id: '22',
@@ -176,6 +197,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Review requirements and begin implementation of planned improvements.',
+        vehicleId: '1',
     },
     {
         _id: '23',
@@ -184,6 +206,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '15:30',
         hourEnd: '16:30',
         comment: 'Discuss project evolution and define next important milestones.',
+        vehicleId: '2',
     },
     {
         _id: '24',
@@ -192,6 +215,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Continue development tasks and solve pending technical challenges.',
+        vehicleId: '1',
     },
     {
         _id: '25',
@@ -200,6 +224,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Improve application performance and review recent code changes.',
+        vehicleId: '1',
     },
     {
         _id: '26',
@@ -208,6 +233,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Prepare final adjustments and validate implemented features.',
+        vehicleId: '1',
     },
     {
         _id: '27',
@@ -216,6 +242,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '15:30',
         hourEnd: '16:30',
         comment: 'Review weekly results and coordinate upcoming team activities.',
+        vehicleId: '2',
     },
     {
         _id: '28',
@@ -224,6 +251,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Finish pending tasks and prepare changes for deployment.',
+        vehicleId: '1',
     },
     {
         _id: '29',
@@ -232,6 +260,7 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '15:30',
         hourEnd: '16:30',
         comment: 'Discuss client feedback and agree on future improvements.',
+        vehicleId: '2',
     },
     {
         _id: '30',
@@ -240,5 +269,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         hourStart: '08:00',
         hourEnd: '15:00',
         comment: 'Plan new sprint activities and organize upcoming development tasks.',
+        vehicleId: '1',
     },
 ];
