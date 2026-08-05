@@ -1,8 +1,7 @@
 import { EventInterface } from "../../models/event";
 
-export const MOCK_EVENTS: EventInterface[] = [
+export const MOCK_EVENTS_DATA:  Omit<EventInterface, '_id'>[] = [
     {
-        _id: '1',
         title: 'Work session',
         date: '2026-08-03',
         hourStart: '08:00',
@@ -11,7 +10,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '2',
         title: 'Client meeting',
         date: '2026-08-03',
         hourStart: '15:30',
@@ -20,7 +18,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '2',
     },
     {
-        _id: '3',
         title: 'Work session',
         date: '2026-08-04',
         hourStart: '08:00',
@@ -29,7 +26,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '4',
         title: 'Dinner reservation',
         date: '2026-08-04',
         hourStart: '19:30',
@@ -38,7 +34,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '3',
     },
     {
-        _id: '5',
         title: 'Work session',
         date: '2026-08-05',
         hourStart: '08:00',
@@ -47,7 +42,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '6',
         title: 'Team meeting',
         date: '2026-08-06',
         hourStart: '15:30',
@@ -56,7 +50,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '2',
     },
     {
-        _id: '7',
         title: 'Work session',
         date: '2026-08-06',
         hourStart: '08:00',
@@ -65,7 +58,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '8',
         title: 'Work session',
         date: '2026-08-07',
         hourStart: '08:00',
@@ -74,7 +66,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '9',
         title: 'Dinner reservation',
         date: '2026-08-07',
         hourStart: '19:30',
@@ -83,7 +74,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '3',
     },
     {
-        _id: '10',
         title: 'Work session',
         date: '2026-08-10',
         hourStart: '08:00',
@@ -92,7 +82,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '11',
         title: 'Project review meeting',
         date: '2026-08-10',
         hourStart: '15:30',
@@ -101,7 +90,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '2',
     },
     {
-        _id: '12',
         title: 'Dinner reservation',
         date: '2026-08-11',
         hourStart: '20:00',
@@ -110,7 +98,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '3',
     },
     {
-        _id: '13',
         title: 'Work session',
         date: '2026-08-11',
         hourStart: '08:00',
@@ -119,7 +106,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '14',
         title: 'Work session',
         date: '2026-08-12',
         hourStart: '08:00',
@@ -128,7 +114,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '15',
         title: 'Work session',
         date: '2026-08-13',
         hourStart: '08:00',
@@ -137,7 +122,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '16',
         title: 'Client meeting',
         date: '2026-08-14',
         hourStart: '15:30',
@@ -146,7 +130,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '2',
     },
     {
-        _id: '17',
         title: 'Work session',
         date: '2026-08-14',
         hourStart: '08:00',
@@ -155,7 +138,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '18',
         title: 'Dinner reservation',
         date: '2026-08-14',
         hourStart: '20:00',
@@ -164,7 +146,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '3',
     },
     {
-        _id: '19',
         title: 'Work session',
         date: '2026-08-17',
         hourStart: '08:00',
@@ -173,7 +154,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '20',
         title: 'Work session',
         date: '2026-08-18',
         hourStart: '08:00',
@@ -182,7 +162,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '21',
         title: 'Team meeting',
         date: '2026-08-18',
         hourStart: '15:30',
@@ -191,7 +170,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '2',
     },
     {
-        _id: '22',
         title: 'Dinner reservation',
         date: '2026-08-18',
         hourStart: '19:30',
@@ -200,7 +178,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '3',
     },
     {
-        _id: '23',
         title: 'Work session',
         date: '2026-08-19',
         hourStart: '08:00',
@@ -209,7 +186,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '24',
         title: 'Work session',
         date: '2026-08-20',
         hourStart: '08:00',
@@ -218,7 +194,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '25',
         title: 'Work session',
         date: '2026-08-21',
         hourStart: '08:00',
@@ -227,7 +202,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '26',
         title: 'Dinner reservation',
         date: '2026-08-21',
         hourStart: '19:30',
@@ -236,7 +210,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '3',
     },
     {
-        _id: '27',
         title: 'Work session',
         date: '2026-08-24',
         hourStart: '08:00',
@@ -245,7 +218,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '28',
         title: 'Work session',
         date: '2026-08-25',
         hourStart: '08:00',
@@ -254,7 +226,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '29',
         title: 'Project meeting',
         date: '2026-08-25',
         hourStart: '15:30',
@@ -263,7 +234,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '2',
     },
     {
-        _id: '30',
         title: 'Dinner reservation',
         date: '2026-08-25',
         hourStart: '20:00',
@@ -272,7 +242,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '3',
     },
     {
-        _id: '31',
         title: 'Work session',
         date: '2026-08-26',
         hourStart: '08:00',
@@ -281,7 +250,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '32',
         title: 'Work session',
         date: '2026-08-27',
         hourStart: '08:00',
@@ -290,7 +258,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '33',
         title: 'Team meeting',
         date: '2026-08-27',
         hourStart: '15:30',
@@ -299,7 +266,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '2',
     },
     {
-        _id: '34',
         title: 'Work session',
         date: '2026-08-28',
         hourStart: '08:00',
@@ -308,7 +274,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
     {
-        _id: '35',
         title: 'Client meeting',
         date: '2026-08-28',
         hourStart: '15:30',
@@ -317,7 +282,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '2',
     },
     {
-        _id: '36',
         title: 'Dinner reservation',
         date: '2026-08-28',
         hourStart: '20:00',
@@ -326,7 +290,6 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '3',
     },
     {
-        _id: '37',
         title: 'Work session',
         date: '2026-08-31',
         hourStart: '08:00',
@@ -335,3 +298,8 @@ export const MOCK_EVENTS: EventInterface[] = [
         vehicleId: '1',
     },
 ];
+
+export const MOCK_EVENTS: EventInterface[] = MOCK_EVENTS_DATA.map((event, index) => ({
+    _id: String(index + 1),
+    ...event,
+}));
