@@ -12,9 +12,15 @@ export function getMockEventById(id: string): EventInterface | undefined {
 export function addMockEvent(
     event: Omit<EventInterface, '_id'>
 ): EventInterface {
+    let id = crypto.randomUUID();
+
+    while (MOCK_EVENTS.some(event => event._id === id)) {
+        id = crypto.randomUUID();
+    }
+
     const newEvent: EventInterface = {
         ...event,
-        _id: crypto.randomUUID(),
+        _id: id,
     };
 
     MOCK_EVENTS.push(newEvent);
