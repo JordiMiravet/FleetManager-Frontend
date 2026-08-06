@@ -32,6 +32,8 @@ export function updateMockEvent(
     );
 }
 
-export function deleteMockEvent(id: string): EventInterface[] {
-
+export function deleteMockEvent(
+    id: string
+): EventInterface[] {
+    return MOCK_EVENTS.filter( event => event._id !== id)
 }
