@@ -2,7 +2,7 @@ import { EventInterface } from '../../models/event';
 import { MOCK_EVENTS } from './event-data.mock';
 
 export function loadMockEvents(): EventInterface[] {
-
+    return [...MOCK_EVENTS];
 }
 
 export function getMockEventById(id: string): EventInterface | undefined {
