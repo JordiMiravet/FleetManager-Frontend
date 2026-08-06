@@ -6,7 +6,7 @@ export function loadMockEvents(): EventInterface[] {
 }
 
 export function getMockEventById(id: string): EventInterface | undefined {
-
+    return MOCK_EVENTS.find(event => event._id === id);
 }
 
 export function addMockEvent(event: Omit<EventInterface, '_id'>): EventInterface {
