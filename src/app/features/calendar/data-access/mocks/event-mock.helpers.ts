@@ -22,8 +22,14 @@ export function addMockEvent(
     return newEvent;
 }
 
-export function updateMockEvent(updatedEvent: EventInterface): EventInterface[] {
-
+export function updateMockEvent(
+    updatedEvent: EventInterface
+): EventInterface[] {
+    return MOCK_EVENTS.map( event =>
+        event._id === updatedEvent._id
+            ? {...event, ...updatedEvent}
+            : event
+    );
 }
 
 export function deleteMockEvent(id: string): EventInterface[] {
