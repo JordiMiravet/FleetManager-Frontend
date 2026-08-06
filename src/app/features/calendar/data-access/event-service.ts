@@ -12,7 +12,7 @@ export class EventService {
   private readonly http = inject(HttpClient);
   private readonly apiUrl = 'http://localhost:3000/events';
 
-  private _allEvents = signal<EventInterface[]>([]);
+  private readonly _allEvents = signal<EventInterface[]>([]);
   public selectedVehicleId = signal<string | null>(null);
 
   public calendarEvents = computed(() => {
