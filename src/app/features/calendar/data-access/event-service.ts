@@ -69,6 +69,13 @@ export class EventService {
   }
 
   updateEvent(updatedEvent: EventInterface): void {
+    if (this.useMock) {
+      this._allEvents.update(events =>
+        updateMockEvent(events, updatedEvent)
+      );
+      return;
+    }
+
     const eventData = {
       title: updatedEvent.title,
       date: updatedEvent.date,
