@@ -55,6 +55,13 @@ export class EventService {
   }
 
   addEvent(event: Omit<EventInterface, '_id'>): void {
+    if (this.useMock) {
+      this._allEvents.update(events =>
+        addMockEvent(events, event)
+      );
+      return;
+    }
+
     this.http.post<EventInterface>(this.apiUrl, event)
       .subscribe(newEvent => {
         this._allEvents.update(events => [...events, newEvent]);
