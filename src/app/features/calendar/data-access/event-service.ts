@@ -3,13 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { EventInterface } from '../models/event';
-import {
-  loadMockEvents,
-  getMockEventById,
-  addMockEvent,
-  updateMockEvent,
-  deleteMockEvent,
-} from './mocks/event-mock.helpers';
+import { loadMockEvents, getMockEventById, addMockEvent, updateMockEvent, deleteMockEvent } from './mocks/event-mock.helpers';
 
 @Injectable({
   providedIn: 'root',
