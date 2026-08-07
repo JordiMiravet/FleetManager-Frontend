@@ -1,8 +1,9 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { EventInterface } from '../models/event';
+import { loadMockEvents, getMockEventById, addMockEvent, updateMockEvent, deleteMockEvent } from './mocks/event-mock.helpers';
 
 @Injectable({
   providedIn: 'root',
@@ -21,12 +22,23 @@ export class EventService {
     return this._allEvents().filter(event => event.vehicleId === vehicleId);
   });
 
+  private readonly useMock = false;
+
   loadEvents(): void {
+    if (this.useMock) {
+      this._allEvents.set(loadMockEvents());
+      return;
+    }
+
     this.http.get<EventInterface[]>(this.apiUrl)
       .subscribe(events => this._allEvents.set(events));
   }
 
   getEventById(id: string): Observable<EventInterface> {
+    if (this.useMock) {
+      return of(getMockEventById(id)!);
+    }
+
     return this.http.get<EventInterface>(`${this.apiUrl}/${id}`);
   }
 
@@ -37,6 +49,13 @@ export class EventService {
   }
 
   addEvent(event: Omit<EventInterface, '_id'>): void {
+    if (this.useMock) {
+      this._allEvents.update(events =>
+        addMockEvent(events, event)
+      );
+      return;
+    }
+
     this.http.post<EventInterface>(this.apiUrl, event)
       .subscribe(newEvent => {
         this._allEvents.update(events => [...events, newEvent]);
@@ -44,6 +63,13 @@ export class EventService {
   }
 
   updateEvent(updatedEvent: EventInterface): void {
+    if (this.useMock) {
+      this._allEvents.update(events =>
+        updateMockEvent(events, updatedEvent)
+      );
+      return;
+    }
+
     const eventData = {
       title: updatedEvent.title,
       date: updatedEvent.date,
@@ -65,6 +91,13 @@ export class EventService {
   }
 
   deleteEvent(id: string): void {
+    if (this.useMock) {
+      this._allEvents.update(events =>
+        deleteMockEvent(events, id)
+      );
+      return;
+    }
+
     this.http.delete<void>(`${this.apiUrl}/${id}`)
       .subscribe(() => {
         this._allEvents.update(events =>
