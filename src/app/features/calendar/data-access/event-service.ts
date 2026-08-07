@@ -1,6 +1,7 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 import { EventInterface } from '../models/event';
 import { loadMockEvents, getMockEventById, addMockEvent, updateMockEvent, deleteMockEvent } from './mocks/event-mock.helpers';
@@ -11,7 +12,7 @@ import { loadMockEvents, getMockEventById, addMockEvent, updateMockEvent, delete
 export class EventService {
   
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:3000/events';
+  private readonly apiUrl = `${environment.apiUrl}/events`;
 
   private readonly _allEvents = signal<EventInterface[]>([]);
   public selectedVehicleId = signal<string | null>(null);
