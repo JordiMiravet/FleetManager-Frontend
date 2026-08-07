@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
+import { environment } from '../../../../environments/environment';
 
 import { EventService } from './event-service';
 import { EventInterface } from '../models/event';
 
-const API_URL = 'http://localhost:3000/events';
+const API_URL = `${environment.apiUrl}/events`;
 
 const mockEvents: EventInterface[] = [
   { _id: '1', title: 'Date', date: '2026-03-26', hourStart: '09:00', hourEnd: '10:00', vehicleId: 'Ferrari-1', comment: '' },

@@ -2,11 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Auth } from '@angular/fire/auth';
+import { environment } from '../../../../environments/environment';
 
 import { VehicleService } from './vehicle-service';
 import { VehicleInterface } from '../models/vehicle';
 
-const API_URL = 'http://localhost:3000/vehicles';
+const API_URL = `${environment.apiUrl}/vehicles`;
 
 const ferrariMock: VehicleInterface = {
   _id: '1', 

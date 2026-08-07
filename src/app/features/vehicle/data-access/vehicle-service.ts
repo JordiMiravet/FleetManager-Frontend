@@ -2,6 +2,7 @@ import { Injectable, signal, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Auth } from '@angular/fire/auth';
+import { environment } from '../../../../environments/environment';
 
 import { VehicleInterface } from '../models/vehicle';
 import { loadMockVehicles, addMockVehicle, updateMockVehicle, updateMockLocation, deleteMockVehicle } from './mocks/vehicle-mock.helpers';
@@ -13,7 +14,7 @@ export class VehicleService {
 
   private readonly http = inject(HttpClient);
   private readonly auth = inject(Auth);
-  private readonly apiUrl = 'http://localhost:3000/vehicles';
+  private readonly apiUrl = `${environment.apiUrl}/vehicles`;
 
   public vehicles = signal<VehicleInterface[]>([]);
 
