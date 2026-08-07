@@ -5,16 +5,19 @@ export function loadMockEvents(): EventInterface[] {
     return [...MOCK_EVENTS];
 }
 
-export function getMockEventById(id: string): EventInterface | undefined {
+export function getMockEventById(
+    id: string
+): EventInterface | undefined {
     return MOCK_EVENTS.find(event => event._id === id);
 }
 
 export function addMockEvent(
+    events: EventInterface[],
     event: Omit<EventInterface, '_id'>
-): EventInterface {
+): EventInterface[] {
     let id = crypto.randomUUID();
 
-    while (MOCK_EVENTS.some(event => event._id === id)) {
+    while (events.some(event => event._id === id)) {
         id = crypto.randomUUID();
     }
 
@@ -23,23 +26,23 @@ export function addMockEvent(
         _id: id,
     };
 
-    MOCK_EVENTS.push(newEvent);
-
-    return newEvent;
+    return [...events, newEvent];
 }
 
 export function updateMockEvent(
+    events: EventInterface[],
     updatedEvent: EventInterface
 ): EventInterface[] {
-    return MOCK_EVENTS.map( event =>
+    return events.map(event =>
         event._id === updatedEvent._id
-            ? {...event, ...updatedEvent}
+            ? { ...event, ...updatedEvent }
             : event
     );
 }
 
 export function deleteMockEvent(
+    events: EventInterface[],
     id: string
 ): EventInterface[] {
-    return MOCK_EVENTS.filter( event => event._id !== id)
+    return events.filter(event => event._id !== id);
 }
