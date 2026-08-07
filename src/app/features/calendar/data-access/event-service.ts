@@ -28,7 +28,14 @@ export class EventService {
     return this._allEvents().filter(event => event.vehicleId === vehicleId);
   });
 
+  private readonly useMock = false;
+
   loadEvents(): void {
+    if (this.useMock) {
+      this._allEvents.set(loadMockEvents());
+      return;
+    }
+
     this.http.get<EventInterface[]>(this.apiUrl)
       .subscribe(events => this._allEvents.set(events));
   }
