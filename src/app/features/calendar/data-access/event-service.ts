@@ -97,6 +97,13 @@ export class EventService {
   }
 
   deleteEvent(id: string): void {
+    if (this.useMock) {
+      this._allEvents.update(events =>
+        deleteMockEvent(events, id)
+      );
+      return;
+    }
+
     this.http.delete<void>(`${this.apiUrl}/${id}`)
       .subscribe(() => {
         this._allEvents.update(events =>
