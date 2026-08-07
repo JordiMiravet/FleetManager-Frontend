@@ -41,6 +41,10 @@ export class EventService {
   }
 
   getEventById(id: string): Observable<EventInterface> {
+    if (this.useMock) {
+      return of(getMockEventById(id)!);
+    }
+
     return this.http.get<EventInterface>(`${this.apiUrl}/${id}`);
   }
 
