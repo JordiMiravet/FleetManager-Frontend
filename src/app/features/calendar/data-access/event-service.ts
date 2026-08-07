@@ -1,8 +1,15 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { EventInterface } from '../models/event';
+import {
+  loadMockEvents,
+  getMockEventById,
+  addMockEvent,
+  updateMockEvent,
+  deleteMockEvent,
+} from './mocks/event-mock.helpers';
 
 @Injectable({
   providedIn: 'root',
