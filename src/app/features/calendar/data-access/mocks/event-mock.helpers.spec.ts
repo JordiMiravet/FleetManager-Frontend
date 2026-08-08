@@ -71,6 +71,31 @@ describe('event-mock.helpers', () => {
             });
         });
 
+        it('should generate a new id when the generated id already exists', () => {
+            const events = [...MOCK_EVENTS];
+            const newEvent = {
+                title: 'Test event',
+                date: '2026-08-30',
+                hourStart: '10:00',
+                hourEnd: '11:00',
+                comment: 'Test event comment',
+                vehicleId: '1',
+            };
+
+            spyOn(crypto, 'randomUUID').and.returnValues(
+                '1' as `${string}-${string}-${string}-${string}-${string}`,
+                '999' as `${string}-${string}-${string}-${string}-${string}`,
+            );
+
+            const result = addMockEvent(events, newEvent);
+
+            expect(result).toHaveSize(events.length + 1);
+            expect(result[result.length - 1]).toEqual({
+                ...newEvent,
+                _id: '999',
+            });
+            expect(crypto.randomUUID).toHaveBeenCalledTimes(2);
+        });
     });
 
     describe('updateMockEvent', () => {
