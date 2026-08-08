@@ -103,7 +103,7 @@ describe('event-mock.helpers', () => {
             expect(result[0]).toEqual(updatedEvent);
         });
 
-        it('should not modify events when the id does not exist', () => {
+        it('should not update events when the id does not exist', () => {
             const events = [...MOCK_EVENTS];
             const updatedEvent = {
                 ...MOCK_EVENTS[0],
@@ -141,7 +141,7 @@ describe('event-mock.helpers', () => {
             expect(result.some(event => event._id === '1')).toBeFalse();
         });
 
-        it('should not modify events when the id does not exist', () => {
+        it('should not delete events when the id does not exist', () => {
             const events = [...MOCK_EVENTS];
             const result = deleteMockEvent(events, '999');
 
