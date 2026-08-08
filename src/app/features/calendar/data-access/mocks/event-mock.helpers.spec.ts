@@ -42,5 +42,22 @@ describe('event-mock.helpers', () => {
             expect(result[result.length - 1]).toMatchObject(newEvent);
             expect(result[result.length - 1]._id).toEqual(expect.any(String));
         });
+
+        it('should add an event to an empty array', () => {
+            const newEvent = {
+                title: 'Test event',
+                date: '2026-08-30',
+                hourStart: '10:00',
+                hourEnd: '11:00',
+                comment: 'Test event comment',
+                vehicleId: '1',
+            };
+
+            const result = addMockEvent([], newEvent);
+
+            expect(result).toHaveLength(1);
+            expect(result[0]).toMatchObject(newEvent);
+            expect(result[0]._id).toEqual(expect.any(String));
+        });
     });
 });
