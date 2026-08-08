@@ -16,5 +16,11 @@ describe('event-mock.helpers', () => {
 
             expect(event).toEqual(MOCK_EVENTS[0]);
         });
+
+        it('should return undefined for a non-existing id', () => {
+            const event = getMockEventById('999');
+
+            expect(event).toBeUndefined();
+        });
     });
 });
