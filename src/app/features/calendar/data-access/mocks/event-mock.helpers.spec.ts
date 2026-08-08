@@ -44,7 +44,7 @@ describe('event-mock.helpers', () => {
 
             const result = addMockEvent(events, newEvent);
 
-            expect(result).toHaveLength(events.length + 1);
+            expect(result).toHaveSize(events.length + 1);
             expect(result[result.length - 1]).toMatchObject(newEvent);
             expect(result[result.length - 1]._id).toEqual(expect.any(String));
         });
@@ -61,7 +61,7 @@ describe('event-mock.helpers', () => {
 
             const result = addMockEvent([], newEvent);
 
-            expect(result).toHaveLength(1);
+            expect(result).toHaveSize(1);
             expect(result[0]).toMatchObject(newEvent);
             expect(result[0]._id).toEqual(expect.any(String));
         });
@@ -104,7 +104,7 @@ describe('event-mock.helpers', () => {
 
             const result = deleteMockEvent(events, '1');
 
-            expect(result).toHaveLength(events.length - 1);
+            expect(result).toHaveSize(events.length - 1);
             expect(result.some(event => event._id === '1')).toBeFalse();
         });
 
