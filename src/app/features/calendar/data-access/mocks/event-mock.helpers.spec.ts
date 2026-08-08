@@ -1,4 +1,10 @@
-import { addMockEvent, deleteMockEvent, getMockEventById, loadMockEvents, updateMockEvent } from './event-mock.helpers';
+import { 
+    addMockEvent, 
+    deleteMockEvent, 
+    getMockEventById, 
+    loadMockEvents, 
+    updateMockEvent 
+} from './event-mock.helpers';
 import { MOCK_EVENTS } from './event-data.mock';
 
 describe('event-mock.helpers', () => {
