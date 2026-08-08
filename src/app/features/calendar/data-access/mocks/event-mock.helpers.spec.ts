@@ -125,6 +125,18 @@ describe('event-mock.helpers', () => {
             expect(result).toEqual(events);
         });
 
+        it('should preserve other events when updating an event', () => {
+            const events = [...MOCK_EVENTS];
+            const updatedEvent = {
+                ...events[0],
+                title: 'Updated event',
+            };
+
+            const result = updateMockEvent(events, updatedEvent);
+
+            expect(result.slice(1)).toEqual(events.slice(1));
+        });
+
     });
 
     describe('deleteMockEvent', () => {
