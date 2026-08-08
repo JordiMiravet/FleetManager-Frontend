@@ -226,6 +226,7 @@ With the following content, replacing the values with your project configuration
 ```typescript
     export const environment = {
         production: true,
+        apiUrl: 'http://localhost:3000',
         firebaseConfig: {
             apiKey: "YOUR_API_KEY",
             authDomain: "YOUR_AUTH_DOMAIN",
@@ -236,6 +237,16 @@ With the following content, replacing the values with your project configuration
         }
     };
 ```
+
+Replace the placeholder values with your Firebase project configuration.
+
+The `apiUrl` property must contain the URL where the backend API is running. For local development, use:
+
+```
+apiUrl: 'http://localhost:3000'
+```
+
+> If the backend is running on a different host or port, update apiUrl accordingly.
 
 #### 2. Backend
 
