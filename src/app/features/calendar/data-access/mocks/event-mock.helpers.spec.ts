@@ -5,10 +5,11 @@ describe('event-mock.helpers', () => {
 
     describe('loadMockEvents', () => {
 
-        it('should return all mock events', () => {
+        it('should return a copy of all mock events', () => {
             const events = loadMockEvents();
 
             expect(events).toEqual(MOCK_EVENTS);
+            expect(events).not.toBe(MOCK_EVENTS);
         });
 
     });
