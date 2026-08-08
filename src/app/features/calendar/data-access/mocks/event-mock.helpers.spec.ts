@@ -1,4 +1,4 @@
-import { addMockEvent, getMockEventById, loadMockEvents, updateMockEvent } from './event-mock.helpers';
+import { addMockEvent, deleteMockEvent, getMockEventById, loadMockEvents, updateMockEvent } from './event-mock.helpers';
 import { MOCK_EVENTS } from './event-data.mock';
 
 describe('event-mock.helpers', () => {
@@ -85,6 +85,17 @@ describe('event-mock.helpers', () => {
             const result = updateMockEvent(events, updatedEvent);
 
             expect(result).toEqual(events);
+        });
+    });
+
+    describe('deleteMockEvent', () => {
+        it('should remove the event with the given id', () => {
+            const events = [...MOCK_EVENTS];
+
+            const result = deleteMockEvent(events, '1');
+
+            expect(result).toHaveLength(events.length - 1);
+            expect(result.some(event => event._id === '1')).toBeFalse();
         });
     });
 });
