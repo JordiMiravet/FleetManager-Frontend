@@ -1,4 +1,4 @@
-import { getMockEventById, loadMockEvents } from './event-mock.helpers';
+import { addMockEvent, getMockEventById, loadMockEvents } from './event-mock.helpers';
 import { MOCK_EVENTS } from './event-data.mock';
 
 describe('event-mock.helpers', () => {
@@ -21,6 +21,26 @@ describe('event-mock.helpers', () => {
             const event = getMockEventById('999');
 
             expect(event).toBeUndefined();
+        });
+    });
+
+    describe('addMockEvent', () => {
+        it('should add a new event with a generated id', () => {
+            const events = [...MOCK_EVENTS];
+            const newEvent = {
+                title: 'Test event',
+                date: '2026-08-30',
+                hourStart: '10:00',
+                hourEnd: '11:00',
+                comment: 'Test event comment',
+                vehicleId: '1',
+            };
+
+            const result = addMockEvent(events, newEvent);
+
+            expect(result).toHaveLength(events.length + 1);
+            expect(result[result.length - 1]).toMatchObject(newEvent);
+            expect(result[result.length - 1]._id).toEqual(expect.any(String));
         });
     });
 });
