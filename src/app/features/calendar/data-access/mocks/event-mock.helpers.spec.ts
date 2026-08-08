@@ -2,15 +2,19 @@ import { addMockEvent, deleteMockEvent, getMockEventById, loadMockEvents, update
 import { MOCK_EVENTS } from './event-data.mock';
 
 describe('event-mock.helpers', () => {
+
     describe('loadMockEvents', () => {
+
         it('should return all mock events', () => {
             const events = loadMockEvents();
 
             expect(events).toEqual(MOCK_EVENTS);
         });
+
     });
 
     describe('getMockEventById', () => {
+
         it('should return the event with the given id', () => {
             const event = getMockEventById('1');
 
@@ -22,9 +26,11 @@ describe('event-mock.helpers', () => {
 
             expect(event).toBeUndefined();
         });
+
     });
 
     describe('addMockEvent', () => {
+
         it('should add a new event with a generated id', () => {
             const events = [...MOCK_EVENTS];
             const newEvent = {
@@ -59,9 +65,11 @@ describe('event-mock.helpers', () => {
             expect(result[0]).toMatchObject(newEvent);
             expect(result[0]._id).toEqual(expect.any(String));
         });
+
     });
 
     describe('updateMockEvent', () => {
+
         it('should update the event with the given id', () => {
             const events = [...MOCK_EVENTS];
             const updatedEvent = {
@@ -86,9 +94,11 @@ describe('event-mock.helpers', () => {
 
             expect(result).toEqual(events);
         });
+
     });
 
     describe('deleteMockEvent', () => {
+
         it('should remove the event with the given id', () => {
             const events = [...MOCK_EVENTS];
 
@@ -110,5 +120,7 @@ describe('event-mock.helpers', () => {
 
             expect(result).toEqual([]);
         });
+
     });
+
 });
