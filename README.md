@@ -226,6 +226,7 @@ With the following content, replacing the values with your project configuration
 ```typescript
     export const environment = {
         production: true,
+        apiUrl: 'http://localhost:3000',
         firebaseConfig: {
             apiKey: "YOUR_API_KEY",
             authDomain: "YOUR_AUTH_DOMAIN",
