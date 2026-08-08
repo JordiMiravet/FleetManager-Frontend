@@ -104,5 +104,11 @@ describe('event-mock.helpers', () => {
 
             expect(result).toEqual(events);
         });
+
+        it('should return an empty array when deleting from an empty array', () => {
+            const result = deleteMockEvent([], '1');
+
+            expect(result).toEqual([]);
+        });
     });
 });
