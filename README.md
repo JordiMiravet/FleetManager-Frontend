@@ -238,6 +238,16 @@ With the following content, replacing the values with your project configuration
     };
 ```
 
+Replace the placeholder values with your Firebase project configuration.
+
+The `apiUrl` property must contain the URL where the backend API is running. For local development, use:
+
+```
+apiUrl: 'http://localhost:3000'
+```
+
+> If the backend is running on a different host or port, update apiUrl accordingly.
+
 #### 2. Backend
 
 Clone the backend repository:
