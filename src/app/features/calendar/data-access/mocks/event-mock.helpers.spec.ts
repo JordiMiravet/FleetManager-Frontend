@@ -49,7 +49,7 @@ describe('event-mock.helpers', () => {
                 ...newEvent,
                 _id: jasmine.any(String),
             });
-            expect(result[result.length - 1]._id).toEqual(expect.any(String));
+            expect(result[result.length - 1]._id).toEqual(jasmine.any(String));
         });
 
         it('should add an event to an empty array', () => {
@@ -69,7 +69,7 @@ describe('event-mock.helpers', () => {
                 ...newEvent,
                 _id: jasmine.any(String),
             });
-            expect(result[0]._id).toEqual(expect.any(String));
+            expect(result[0]._id).toEqual(jasmine.any(String));
         });
 
     });
