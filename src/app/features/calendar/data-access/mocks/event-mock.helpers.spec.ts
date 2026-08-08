@@ -49,8 +49,6 @@ describe('event-mock.helpers', () => {
 
         it('should add a new event with a generated id', () => {
             const events = [...MOCK_EVENTS];
-
-
             const result = addMockEvent(events, newEvent);
 
             expect(result).toHaveSize(events.length + 1);
@@ -97,7 +95,6 @@ describe('event-mock.helpers', () => {
                 ...events[0],
                 title: 'Updated event',
             };
-
             const result = updateMockEvent(events, updatedEvent);
 
             expect(result[0]).toEqual(updatedEvent);
@@ -110,7 +107,6 @@ describe('event-mock.helpers', () => {
                 _id: '999',
                 title: 'Updated event',
             };
-
             const result = updateMockEvent(events, updatedEvent);
 
             expect(result).toEqual(events);
@@ -122,7 +118,6 @@ describe('event-mock.helpers', () => {
                 ...events[0],
                 title: 'Updated event',
             };
-
             const result = updateMockEvent(events, updatedEvent);
 
             expect(result.slice(1)).toEqual(events.slice(1));
@@ -134,7 +129,6 @@ describe('event-mock.helpers', () => {
 
         it('should remove the event with the given id', () => {
             const events = [...MOCK_EVENTS];
-
             const result = deleteMockEvent(events, '1');
 
             expect(result).toHaveSize(events.length - 1);
