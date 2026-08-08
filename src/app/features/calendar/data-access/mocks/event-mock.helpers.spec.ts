@@ -97,5 +97,12 @@ describe('event-mock.helpers', () => {
             expect(result).toHaveLength(events.length - 1);
             expect(result.some(event => event._id === '1')).toBeFalse();
         });
+
+        it('should not modify events when the id does not exist', () => {
+            const events = [...MOCK_EVENTS];
+            const result = deleteMockEvent(events, '999');
+
+            expect(result).toEqual(events);
+        });
     });
 });
