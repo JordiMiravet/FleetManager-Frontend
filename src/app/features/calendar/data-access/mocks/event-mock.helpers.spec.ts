@@ -1,4 +1,4 @@
-import { addMockEvent, getMockEventById, loadMockEvents } from './event-mock.helpers';
+import { addMockEvent, getMockEventById, loadMockEvents, updateMockEvent } from './event-mock.helpers';
 import { MOCK_EVENTS } from './event-data.mock';
 
 describe('event-mock.helpers', () => {
@@ -58,6 +58,20 @@ describe('event-mock.helpers', () => {
             expect(result).toHaveLength(1);
             expect(result[0]).toMatchObject(newEvent);
             expect(result[0]._id).toEqual(expect.any(String));
+        });
+    });
+
+    describe('updateMockEvent', () => {
+        it('should update the event with the given id', () => {
+            const events = [...MOCK_EVENTS];
+            const updatedEvent = {
+                ...events[0],
+                title: 'Updated event',
+            };
+
+            const result = updateMockEvent(events, updatedEvent);
+
+            expect(result[0]).toEqual(updatedEvent);
         });
     });
 });
