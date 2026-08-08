@@ -45,7 +45,10 @@ describe('event-mock.helpers', () => {
             const result = addMockEvent(events, newEvent);
 
             expect(result).toHaveSize(events.length + 1);
-            expect(result[result.length - 1]).toMatchObject(newEvent);
+            expect(result[result.length - 1]).toEqual({
+                ...newEvent,
+                _id: jasmine.any(String),
+            });
             expect(result[result.length - 1]._id).toEqual(expect.any(String));
         });
 
@@ -62,7 +65,10 @@ describe('event-mock.helpers', () => {
             const result = addMockEvent([], newEvent);
 
             expect(result).toHaveSize(1);
-            expect(result[0]).toMatchObject(newEvent);
+            expect(result[0]).toEqual({
+                ...newEvent,
+                _id: jasmine.any(String),
+            });
             expect(result[0]._id).toEqual(expect.any(String));
         });
 
