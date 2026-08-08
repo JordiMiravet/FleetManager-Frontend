@@ -38,16 +38,18 @@ describe('event-mock.helpers', () => {
 
     describe('addMockEvent', () => {
 
+        const newEvent = {
+            title: 'Test event',
+            date: '2026-08-30',
+            hourStart: '10:00',
+            hourEnd: '11:00',
+            comment: 'Test event comment',
+            vehicleId: '1',
+        };
+
         it('should add a new event with a generated id', () => {
             const events = [...MOCK_EVENTS];
-            const newEvent = {
-                title: 'Test event',
-                date: '2026-08-30',
-                hourStart: '10:00',
-                hourEnd: '11:00',
-                comment: 'Test event comment',
-                vehicleId: '1',
-            };
+
 
             const result = addMockEvent(events, newEvent);
 
@@ -59,15 +61,6 @@ describe('event-mock.helpers', () => {
         });
 
         it('should add an event to an empty array', () => {
-            const newEvent = {
-                title: 'Test event',
-                date: '2026-08-30',
-                hourStart: '10:00',
-                hourEnd: '11:00',
-                comment: 'Test event comment',
-                vehicleId: '1',
-            };
-
             const result = addMockEvent([], newEvent);
 
             expect(result).toHaveSize(1);
@@ -79,14 +72,6 @@ describe('event-mock.helpers', () => {
 
         it('should generate a new id when the generated id already exists', () => {
             const events = [...MOCK_EVENTS];
-            const newEvent = {
-                title: 'Test event',
-                date: '2026-08-30',
-                hourStart: '10:00',
-                hourEnd: '11:00',
-                comment: 'Test event comment',
-                vehicleId: '1',
-            };
 
             spyOn(crypto, 'randomUUID').and.returnValues(
                 '1' as `${string}-${string}-${string}-${string}-${string}`,
