@@ -64,6 +64,22 @@ describe('VehicleMockHelpers', () => {
       expect(result[0].userId).toBe('mock-user');
     });
 
+    it('should generate a new id when the generated id already exists', () => {
+      const vehicles = [...MOCK_VEHICLES];
+      const vehicle = MOCK_VEHICLES[0];
+
+      spyOn(crypto, 'randomUUID').and.returnValues(
+        '1' as `${string}-${string}-${string}-${string}-${string}`,
+        '999' as `${string}-${string}-${string}-${string}-${string}`,
+      );
+
+      const result = addMockVehicle(vehicles, vehicle);
+
+      expect(result).toHaveSize(vehicles.length + 1);
+      expect(result[result.length - 1]._id).toBe('999');
+      expect(crypto.randomUUID).toHaveBeenCalledTimes(2);
+    });
+
   });
 
   describe('updateMockVehicle', () => {
