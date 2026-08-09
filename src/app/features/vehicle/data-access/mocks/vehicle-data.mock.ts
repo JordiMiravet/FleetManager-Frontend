@@ -1,6 +1,6 @@
 import { VehicleInterface } from '../../models/vehicle';
 
-export const MOCK_VEHICLES: VehicleInterface[] = [
+export const MOCK_VEHICLES_DATA: VehicleInterface[] = [
   {
     _id: '1',
     name: 'Mercedes GLC',
@@ -65,3 +65,10 @@ export const MOCK_VEHICLES: VehicleInterface[] = [
     users: [],
   },
 ];
+
+export const MOCK_VEHICLES: VehicleInterface[] = MOCK_VEHICLES_DATA.map(
+  (vehicle, index) => ({
+    _id: String(index + 1),
+    ...vehicle,
+  }),
+);
