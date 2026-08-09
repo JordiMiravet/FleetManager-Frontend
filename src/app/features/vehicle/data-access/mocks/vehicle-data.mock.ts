@@ -1,8 +1,7 @@
 import { VehicleInterface } from '../../models/vehicle';
 
-export const MOCK_VEHICLES: VehicleInterface[] = [
+const MOCK_VEHICLES_DATA: Omit<VehicleInterface, '_id'>[] = [
   {
-    _id: '1',
     name: 'Mercedes GLC',
     model: 'GLC Coupe',
     plate: '3887-VHH',
@@ -11,7 +10,6 @@ export const MOCK_VEHICLES: VehicleInterface[] = [
     users: [],
   },
   {
-    _id: '2',
     name: 'Mercedes AMG S-65',
     model: 'AMG S-65 Final Edition',
     imageUrl: 'https://placehold.co/400x250?text=Mercedes+AMG+S65',
@@ -20,7 +18,6 @@ export const MOCK_VEHICLES: VehicleInterface[] = [
     users: [],
   },
   {
-    _id: '3',
     name: 'Mercedes AMG GT',
     model: 'AMG GT Black Series',
     imageUrl: 'https://placehold.co/400x250?text=Mercedes+AMG+GT',
@@ -29,7 +26,6 @@ export const MOCK_VEHICLES: VehicleInterface[] = [
     users: [],
   },
   {
-    _id: '4',
     name: 'Porsche 911',
     model: '911 Turbo S',
     imageUrl: 'https://placehold.co/400x250?text=Porsche+911',
@@ -38,7 +34,6 @@ export const MOCK_VEHICLES: VehicleInterface[] = [
     users: [],
   },
   {
-    _id: '5',
     name: 'Ferrari LaFerrari',
     model: 'LaFerrari',
     imageUrl: 'https://placehold.co/400x250?text=Ferrari+LaFerrari',
@@ -47,7 +42,6 @@ export const MOCK_VEHICLES: VehicleInterface[] = [
     users: [],
   },
   {
-    _id: '6',
     name: 'Pagani Huayra',
     model: 'Huayra BC',
     imageUrl: 'https://placehold.co/400x250?text=Pagani+Huayra',
@@ -56,7 +50,6 @@ export const MOCK_VEHICLES: VehicleInterface[] = [
     users: [],
   },
   {
-    _id: '7',
     name: 'Ducati Panigale',
     model: 'Panigale R 1299 Final Edition',
     imageUrl: 'https://placehold.co/400x250?text=Ducati+Panigale',
@@ -65,3 +58,10 @@ export const MOCK_VEHICLES: VehicleInterface[] = [
     users: [],
   },
 ];
+
+export const MOCK_VEHICLES: VehicleInterface[] = MOCK_VEHICLES_DATA.map(
+  (vehicle, index) => ({
+    _id: String(index + 1),
+    ...vehicle,
+  }),
+);

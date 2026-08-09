@@ -15,9 +15,15 @@ export function addMockVehicle(
   vehicle: VehicleInterface,
   currentUserId?: string
 ): VehicleInterface[] {
+  let id = crypto.randomUUID();
+
+  while (vehicles.some(vehicle => vehicle._id === id)) {
+    id = crypto.randomUUID();
+  }
+
   const newVehicle = {
     ...vehicle,
-    _id: crypto.randomUUID(),
+    _id: id,
     userId: currentUserId ?? 'mock-user',
   };
 
