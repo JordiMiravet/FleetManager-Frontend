@@ -468,8 +468,8 @@ The following section shows a preview of the application in operation:
 ![Vehicle Filter](src/assets/readme/FM-vehicle-filter.gif)
 
 #### Interactive Map (drag & drop and vehicle filtering)
-![Drag & Drop](src/assets/readme/FM-map-dragdrop.gif)
-![Geolocation Update Button](src/assets/readme/FM-map-geolocation-button.gif)
+![Drag & Drop](src/assets/readme/FM-map_drag-drop.gif)
+![Geolocation Update Button](src/assets/readme/FM-map_geolocation-button.gif)
 
 #### Vehicle Usage Calendar (CRUD)
 ![Create Event](src/assets/readme/FM-event-create.gif)
