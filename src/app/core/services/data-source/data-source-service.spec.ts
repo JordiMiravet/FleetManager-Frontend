@@ -22,7 +22,7 @@ describe('DataSourceService', () => {
 
   describe('isMock()', () => {
     it('should return true when current dataSource is mock', () => {
-
+      expect(service.isMock()).toBe(service.current() === 'mock');
     });
   });
 
