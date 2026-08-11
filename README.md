@@ -227,6 +227,7 @@ With the following content, replacing the values with your project configuration
     export const environment = {
         production: true,
         apiUrl: 'http://localhost:3000',
+        dataSource: 'api', // 'mock' | 'api'
         firebaseConfig: {
             apiKey: "YOUR_API_KEY",
             authDomain: "YOUR_AUTH_DOMAIN",
@@ -247,6 +248,8 @@ apiUrl: 'http://localhost:3000'
 ```
 
 > If the backend is running on a different host or port, update apiUrl accordingly.
+
+The `dataSource` property controls whether the application uses mock data or communicates with the backend API. Use `'mock'` for local development without a running backend, or `'api'` to use the real backend.
 
 #### 2. Backend
 
