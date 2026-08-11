@@ -20,20 +20,16 @@ describe('DataSourceService', () => {
     });
   });
 
-  describe('isMock()', () => {
-    it('should return true when current dataSource is mock', () => {
+  describe('data source type checks', () => {
+    it('should report isMock() consistently with current()', () => {
       expect(service.isMock()).toBe(service.current() === 'mock');
     });
-  });
 
-  describe('isApi()', () => {
-    it('should return true when current dataSource is api', () => {
+    it('should report isApi() consistently with current()', () => {
       expect(service.isApi()).toBe(service.current() === 'api');
     });
-  });
 
-  describe('isMock() and isApi()', () => {
-    it('should be mutually exclusive', () => {
+    it('should ensure isMock() and isApi() are mutually exclusive', () => {
       expect(service.isMock()).not.toBe(service.isApi());
     });
   });
