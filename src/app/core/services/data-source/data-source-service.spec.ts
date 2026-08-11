@@ -16,7 +16,7 @@ describe('DataSourceService', () => {
 
   describe('current()', () => {
     it('should return the environment dataSource value', () => {
-
+      expect(service.current()).toBe(environment.dataSource);
     });
   });
 
