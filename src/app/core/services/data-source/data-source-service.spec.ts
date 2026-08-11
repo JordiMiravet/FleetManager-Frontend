@@ -28,7 +28,7 @@ describe('DataSourceService', () => {
 
   describe('isApi()', () => {
     it('should return true when current dataSource is api', () => {
-
+      expect(service.isApi()).toBe(service.current() === 'api');
     });
   });
 
