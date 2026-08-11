@@ -34,7 +34,7 @@ describe('DataSourceService', () => {
 
   describe('isMock() and isApi()', () => {
     it('should be mutually exclusive', () => {
-
+      expect(service.isMock()).not.toBe(service.isApi());
     });
   });
 });
