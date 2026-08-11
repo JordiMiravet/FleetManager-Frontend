@@ -14,19 +14,27 @@ describe('DataSourceService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should initialize current() with the environment dataSource value', () => {
+  describe('current()', () => {
+    it('should return the environment dataSource value', () => {
 
+    });
   });
 
-  it('should report isMock() consistently with current()', () => {
+  describe('isMock()', () => {
+    it('should return true when current dataSource is mock', () => {
 
+    });
   });
 
-  it('should report isApi() consistently with current()', () => {
+  describe('isApi()', () => {
+    it('should return true when current dataSource is api', () => {
 
+    });
   });
 
-  it('isMock() and isApi() should be mutually exclusive', () => {
+  describe('isMock() and isApi()', () => {
+    it('should be mutually exclusive', () => {
 
+    });
   });
 });
