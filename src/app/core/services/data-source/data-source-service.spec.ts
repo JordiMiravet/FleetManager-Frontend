@@ -15,12 +15,15 @@ describe('DataSourceService', () => {
   });
 
   describe('current()', () => {
+
     it('should return the environment dataSource value', () => {
       expect(service.current()).toBe(environment.dataSource);
     });
+
   });
 
   describe('data source type checks', () => {
+
     it('should report isMock() consistently with current()', () => {
       expect(service.isMock()).toBe(service.current() === 'mock');
     });
@@ -32,5 +35,7 @@ describe('DataSourceService', () => {
     it('should ensure isMock() and isApi() are mutually exclusive', () => {
       expect(service.isMock()).not.toBe(service.isApi());
     });
+
   });
+
 });
