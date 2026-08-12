@@ -25,10 +25,8 @@ export class EventService {
     return this._allEvents().filter(event => event.vehicleId === vehicleId);
   });
 
-  private readonly useMock = false;
-
   loadEvents(): void {
-    if (this.useMock) {
+    if (this.dataSource.isMock()) {
       this._allEvents.set(loadMockEvents());
       return;
     }
@@ -38,7 +36,7 @@ export class EventService {
   }
 
   getEventById(id: string): Observable<EventInterface> {
-    if (this.useMock) {
+    if (this.dataSource.isMock()) {
       return of(getMockEventById(id)!);
     }
 
@@ -52,7 +50,7 @@ export class EventService {
   }
 
   addEvent(event: Omit<EventInterface, '_id'>): void {
-    if (this.useMock) {
+    if (this.dataSource.isMock()) {
       this._allEvents.update(events =>
         addMockEvent(events, event)
       );
@@ -66,7 +64,7 @@ export class EventService {
   }
 
   updateEvent(updatedEvent: EventInterface): void {
-    if (this.useMock) {
+    if (this.dataSource.isMock()) {
       this._allEvents.update(events =>
         updateMockEvent(events, updatedEvent)
       );
@@ -94,7 +92,7 @@ export class EventService {
   }
 
   deleteEvent(id: string): void {
-    if (this.useMock) {
+    if (this.dataSource.isMock()) {
       this._allEvents.update(events =>
         deleteMockEvent(events, id)
       );
