@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment';
 
 import { EventInterface } from '../models/event';
 import { loadMockEvents, getMockEventById, addMockEvent, updateMockEvent, deleteMockEvent } from './mocks/event-mock.helpers';
+import { DataSourceService } from '../../../core/services/data-source/data-source-service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,7 @@ import { loadMockEvents, getMockEventById, addMockEvent, updateMockEvent, delete
 export class EventService {
   
   private readonly http = inject(HttpClient);
+  private readonly dataSource = inject(DataSourceService);
   private readonly apiUrl = `${environment.apiUrl}/events`;
 
   private readonly _allEvents = signal<EventInterface[]>([]);
