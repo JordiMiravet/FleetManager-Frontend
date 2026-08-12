@@ -6,6 +6,7 @@ import { environment } from '../../../../environments/environment';
 import { EventService } from './event-service';
 import { EventInterface } from '../models/event';
 import { DataSourceService } from '../../../core/services/data-source/data-source-service';
+import { loadMockEvents as loadMockEventsHelper, getMockEventById } from './mocks/event-mock.helpers';
 
 const API_URL = `${environment.apiUrl}/events`;
 
@@ -316,6 +317,32 @@ describe('EventService', () => {
 
       expect(service.calendarEvents()).toContain(mockEvents[1]);
       expect(service.calendarEvents()).toContain(mockEvents[2]);
+    });
+
+  });
+
+  describe('when dataSource is mock', () => {
+
+
+
+    it('should load events from mock helper without calling the API', () => {
+
+    });
+
+    it('should get event by id from mock helper without calling the API', done => {
+
+    });
+
+    it('should add event using mock helper without calling the API', () => {
+
+    });
+
+    it('should update event using mock helper without calling the API', () => {
+
+    });
+
+    it('should delete event using mock helper without calling the API', () => {
+
     });
 
   });
