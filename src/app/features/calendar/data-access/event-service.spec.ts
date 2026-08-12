@@ -334,8 +334,10 @@ describe('EventService', () => {
     });
 
     it('should get event by id from mock helper without calling the API', done => {
+      const expectedEvent = getMockEventById('1')!;
+
       service.getEventById('1').subscribe(event => {
-        expect(event).toEqual(getMockEventById('1'));
+        expect(event).toEqual(expectedEvent);
         done();
       });
     });
