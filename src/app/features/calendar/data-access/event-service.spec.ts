@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment';
 
 import { EventService } from './event-service';
 import { EventInterface } from '../models/event';
+import { DataSourceService } from '../../../core/services/data-source/data-source-service';
 
 const API_URL = `${environment.apiUrl}/events`;
 
@@ -17,12 +18,17 @@ const mockEvents: EventInterface[] = [
 describe('EventService', () => {
   let service: EventService;
   let httpMock: HttpTestingController;
+  let dataSourceServiceMock: jasmine.SpyObj<DataSourceService>;
 
   beforeEach(() => {
+    dataSourceServiceMock = jasmine.createSpyObj<DataSourceService>('DataSourceService', ['isMock']);
+    dataSourceServiceMock.isMock.and.returnValue(false);
+
     TestBed.configureTestingModule({
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
+        { provide: DataSourceService, useValue: dataSourceServiceMock },
       ],
     });
 
