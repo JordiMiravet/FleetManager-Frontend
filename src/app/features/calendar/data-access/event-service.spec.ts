@@ -323,26 +323,58 @@ describe('EventService', () => {
 
   describe('when dataSource is mock', () => {
 
-
+    beforeEach(() => {
+      dataSourceServiceMock.isMock.and.returnValue(true);
+    });
 
     it('should load events from mock helper without calling the API', () => {
+      service.loadEvents();
 
+      expect(service.calendarEvents()).toEqual(loadMockEventsHelper());
     });
 
     it('should get event by id from mock helper without calling the API', done => {
-
+      service.getEventById('1').subscribe(event => {
+        expect(event).toEqual(getMockEventById('1'));
+        done();
+      });
     });
 
     it('should add event using mock helper without calling the API', () => {
+      const newEvent: Omit<EventInterface, '_id'> = {
+        title: 'Mock Event',
+        date: '2026-05-01',
+        hourStart: '09:00',
+        hourEnd: '10:00',
+        vehicleId: '1',
+        comment: '',
+      };
 
+      service.loadEvents();
+      service.addEvent(newEvent);
+
+      expect(service.calendarEvents().some(e => e.title === 'Mock Event')).toBeTrue();
     });
 
     it('should update event using mock helper without calling the API', () => {
+      service.loadEvents();
 
+      const [firstEvent] = service.calendarEvents();
+      const updatedEvent: EventInterface = { ...firstEvent, title: 'Updated by mock' };
+
+      service.updateEvent(updatedEvent);
+
+      expect(service.calendarEvents()).toContain(updatedEvent);
     });
 
     it('should delete event using mock helper without calling the API', () => {
+      service.loadEvents();
 
+      const [firstEvent] = service.calendarEvents();
+
+      service.deleteEvent(firstEvent._id);
+
+      expect(service.calendarEvents()).not.toContain(firstEvent);
     });
 
   });
