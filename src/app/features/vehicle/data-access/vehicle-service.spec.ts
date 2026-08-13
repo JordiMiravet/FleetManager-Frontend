@@ -6,6 +6,7 @@ import { environment } from '../../../../environments/environment';
 
 import { VehicleService } from './vehicle-service';
 import { VehicleInterface } from '../models/vehicle';
+import { DataSourceService } from '../../../core/services/data-source/data-source-service';
 
 const API_URL = `${environment.apiUrl}/vehicles`;
 
@@ -43,13 +44,18 @@ const authMock = {
 describe('VehicleService', () => {
   let service: VehicleService;
   let httpMock: HttpTestingController;
+  let dataSourceServiceMock: jasmine.SpyObj<DataSourceService>;
 
   beforeEach(() => {
+    dataSourceServiceMock = jasmine.createSpyObj<DataSourceService>('DataSourceService', ['isMock']);
+    dataSourceServiceMock.isMock.and.returnValue(false);
+
     TestBed.configureTestingModule({
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
-        { provide: Auth, useValue: authMock }
+        { provide: Auth, useValue: authMock },
+        { provide: DataSourceService, useValue: dataSourceServiceMock },
       ]
     });
     service = TestBed.inject(VehicleService);
