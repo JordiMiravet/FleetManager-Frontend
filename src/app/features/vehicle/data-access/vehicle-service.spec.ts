@@ -236,10 +236,10 @@ describe('VehicleService', () => {
 
   });
 
-    describe('updateVehicle (mock)', () => {
+  describe('updateVehicle (mock)', () => {
 
     beforeEach(() => {
-      (service as any).useMock = true;
+      dataSourceServiceMock.isMock.and.returnValue(true);
       service.vehicles.set([ferrariMock]);
     });
 
