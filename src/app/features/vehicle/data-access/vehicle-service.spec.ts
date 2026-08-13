@@ -124,7 +124,7 @@ describe('VehicleService', () => {
   describe('loadVehicles (mock)', () => {
 
     beforeEach(() => {
-      (service as any).useMock = true;
+      dataSourceServiceMock.isMock.and.returnValue(true);
     });
 
     it('should load mock vehicles when useMock is true', () => {
