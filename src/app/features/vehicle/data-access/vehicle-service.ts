@@ -6,6 +6,7 @@ import { environment } from '../../../../environments/environment';
 
 import { VehicleInterface } from '../models/vehicle';
 import { loadMockVehicles, addMockVehicle, updateMockVehicle, updateMockLocation, deleteMockVehicle } from './mocks/vehicle-mock.helpers';
+import { DataSourceService } from '../../../core/services/data-source/data-source-service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class VehicleService {
 
   private readonly http = inject(HttpClient);
   private readonly auth = inject(Auth);
+  private readonly dataSource = inject(DataSourceService);
   private readonly apiUrl = `${environment.apiUrl}/vehicles`;
 
   public vehicles = signal<VehicleInterface[]>([]);
