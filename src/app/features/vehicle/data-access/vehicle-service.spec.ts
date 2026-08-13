@@ -6,6 +6,7 @@ import { environment } from '../../../../environments/environment';
 
 import { VehicleService } from './vehicle-service';
 import { VehicleInterface } from '../models/vehicle';
+import { DataSourceService } from '../../../core/services/data-source/data-source-service';
 
 const API_URL = `${environment.apiUrl}/vehicles`;
 
@@ -43,13 +44,18 @@ const authMock = {
 describe('VehicleService', () => {
   let service: VehicleService;
   let httpMock: HttpTestingController;
+  let dataSourceServiceMock: jasmine.SpyObj<DataSourceService>;
 
   beforeEach(() => {
+    dataSourceServiceMock = jasmine.createSpyObj<DataSourceService>('DataSourceService', ['isMock']);
+    dataSourceServiceMock.isMock.and.returnValue(false);
+
     TestBed.configureTestingModule({
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
-        { provide: Auth, useValue: authMock }
+        { provide: Auth, useValue: authMock },
+        { provide: DataSourceService, useValue: dataSourceServiceMock },
       ]
     });
     service = TestBed.inject(VehicleService);
@@ -118,7 +124,7 @@ describe('VehicleService', () => {
   describe('loadVehicles (mock)', () => {
 
     beforeEach(() => {
-      (service as any).useMock = true;
+      dataSourceServiceMock.isMock.and.returnValue(true);
     });
 
     it('should load mock vehicles when useMock is true', () => {
@@ -181,7 +187,7 @@ describe('VehicleService', () => {
   describe('addVehicle (mock)', () => {
 
     beforeEach(() => {
-      (service as any).useMock = true;
+      dataSourceServiceMock.isMock.and.returnValue(true);
       service.vehicles.set([ferrariMock]);
     });
 
@@ -230,10 +236,10 @@ describe('VehicleService', () => {
 
   });
 
-    describe('updateVehicle (mock)', () => {
+  describe('updateVehicle (mock)', () => {
 
     beforeEach(() => {
-      (service as any).useMock = true;
+      dataSourceServiceMock.isMock.and.returnValue(true);
       service.vehicles.set([ferrariMock]);
     });
 
@@ -279,7 +285,7 @@ describe('VehicleService', () => {
   describe('updateVehicleLocation (mock)', () => {
 
     beforeEach(() => {
-      (service as any).useMock = true;
+      dataSourceServiceMock.isMock.and.returnValue(true);
       service.vehicles.set([ferrariMock]);
     });
 
@@ -324,7 +330,7 @@ describe('VehicleService', () => {
   describe('deleteVehicle (mock)', () => {
 
     beforeEach(() => {
-      (service as any).useMock = true;
+      dataSourceServiceMock.isMock.and.returnValue(true);
       service.vehicles.set([ferrariMock, paganiMock]);
     });
 

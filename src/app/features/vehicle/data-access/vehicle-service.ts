@@ -6,6 +6,7 @@ import { environment } from '../../../../environments/environment';
 
 import { VehicleInterface } from '../models/vehicle';
 import { loadMockVehicles, addMockVehicle, updateMockVehicle, updateMockLocation, deleteMockVehicle } from './mocks/vehicle-mock.helpers';
+import { DataSourceService } from '../../../core/services/data-source/data-source-service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,18 +15,17 @@ export class VehicleService {
 
   private readonly http = inject(HttpClient);
   private readonly auth = inject(Auth);
+  private readonly dataSource = inject(DataSourceService);
   private readonly apiUrl = `${environment.apiUrl}/vehicles`;
 
   public vehicles = signal<VehicleInterface[]>([]);
-
-  private readonly useMock = false;
 
   private get currentUserId(): string | undefined {
     return this.auth.currentUser?.uid;
   }
 
   loadVehicles(): void {
-    if (this.useMock) return this.vehicles.set(loadMockVehicles(this.currentUserId));
+    if (this.dataSource.isMock()) return this.vehicles.set(loadMockVehicles(this.currentUserId));
 
     this.http.get<VehicleInterface[]>(this.apiUrl).subscribe({
       next: vehicles => this.vehicles.set(vehicles),
@@ -34,7 +34,7 @@ export class VehicleService {
   }
 
   addVehicle(vehicle: VehicleInterface): void {
-    if (this.useMock) {
+    if (this.dataSource.isMock()) {
       this.vehicles.update(list =>
         addMockVehicle(list, vehicle, this.currentUserId)
       );
@@ -51,7 +51,7 @@ export class VehicleService {
     oldVehicle: VehicleInterface, 
     newVehicle: VehicleInterface
   ): void {
-    if (this.useMock) {
+    if (this.dataSource.isMock()) {
       this.vehicles.update(list =>
         updateMockVehicle(list, oldVehicle, newVehicle)
       );
@@ -73,7 +73,7 @@ export class VehicleService {
     vehicle: VehicleInterface,
     location: { lat: number; lng: number }
   ): void {
-    if (this.useMock) {
+    if (this.dataSource.isMock()) {
       this.vehicles.update(list =>
         updateMockLocation(list, vehicle, location)
       );
@@ -89,7 +89,7 @@ export class VehicleService {
   }
 
   deleteVehicle(vehicle: VehicleInterface): void {
-    if (this.useMock) {
+    if (this.dataSource.isMock()) {
       this.vehicles.update(list =>
         deleteMockVehicle(list, vehicle)
       );
