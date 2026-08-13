@@ -285,7 +285,7 @@ describe('VehicleService', () => {
   describe('updateVehicleLocation (mock)', () => {
 
     beforeEach(() => {
-      (service as any).useMock = true;
+      dataSourceServiceMock.isMock.and.returnValue(true);
       service.vehicles.set([ferrariMock]);
     });
 
