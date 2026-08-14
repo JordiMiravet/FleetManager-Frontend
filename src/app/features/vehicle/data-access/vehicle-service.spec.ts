@@ -145,6 +145,34 @@ describe('VehicleService', () => {
 
   });
 
+  describe('loadVehicles (fallback on API failure)', () => {
+
+    it('should call reportApiFailure when the backend request fails', () => {
+      service.loadVehicles();
+
+      const req = httpMock.expectOne(API_URL);
+      req.flush(
+        { message: 'Server error' },
+        { status: 500, statusText: 'Internal Server Error' }
+      );
+
+      expect(dataSourceServiceMock.reportApiFailure).toHaveBeenCalled();
+    });
+
+    it('should load mock vehicles into the signal when the backend request fails', () => {
+      service.loadVehicles();
+
+      const req = httpMock.expectOne(API_URL);
+      req.flush(
+        { message: 'Server error' },
+        { status: 500, statusText: 'Internal Server Error' }
+      );
+
+      expect(service.vehicles().length).toBeGreaterThan(0);
+    });
+
+  });
+
   describe('addVehicle', () => {
 
     it('should call POST /vehicles endpoint with vehicle payload', () => {
