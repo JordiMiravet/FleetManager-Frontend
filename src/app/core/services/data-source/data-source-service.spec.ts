@@ -39,4 +39,20 @@ describe('DataSourceService', () => {
 
   });
 
+  describe('reportApiFailure', () => {
+
+    it('should set current to mock', () => {
+
+    });
+
+    it('should make isMock() true and isApi() false', () => {
+
+    });
+
+    it('should remain mock if called multiple times', () => {
+
+    });
+
+  });
+
 });
