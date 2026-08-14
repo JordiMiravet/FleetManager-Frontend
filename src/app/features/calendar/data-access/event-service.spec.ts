@@ -84,11 +84,27 @@ describe('EventService', () => {
   describe('loadEvents (fallback on API failure)', () => {
 
     it('should call reportApiFailure when the backend request fails', () => {
+      service.loadEvents();
 
+      const req = httpMock.expectOne(API_URL);
+      req.flush(
+        { message: 'Server error' },
+        { status: 500, statusText: 'Internal Server Error' }
+      );
+
+      expect(dataSourceServiceMock.reportApiFailure).toHaveBeenCalled();
     });
 
     it('should load mock events into calendarEvents when the backend request fails', () => {
+      service.loadEvents();
 
+      const req = httpMock.expectOne(API_URL);
+      req.flush(
+        { message: 'Server error' },
+        { status: 500, statusText: 'Internal Server Error' }
+      );
+
+      expect(service.calendarEvents().length).toBeGreaterThan(0);
     });
 
   });
