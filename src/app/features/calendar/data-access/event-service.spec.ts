@@ -81,6 +81,18 @@ describe('EventService', () => {
 
   });
 
+  describe('loadEvents (fallback on API failure)', () => {
+
+    it('should call reportApiFailure when the backend request fails', () => {
+
+    });
+
+    it('should load mock events into calendarEvents when the backend request fails', () => {
+
+    });
+
+  });
+
   describe('getEventById', () => {
 
     const mockEvent = mockEvents[0];
