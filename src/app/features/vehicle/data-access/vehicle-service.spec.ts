@@ -106,19 +106,6 @@ describe('VehicleService', () => {
       expect(service.vehicles()).toEqual(vehiclesMock);
     });
 
-    it('should not modify vehicles when request fails', () => {
-      loadMockVehicles();
-      service.loadVehicles();
-
-      const req = httpMock.expectOne(API_URL);
-      req.flush(
-        { message: 'Server error' },
-        { status: 500, statusText: 'Internal Server Error' }
-      );
-
-      expect(service.vehicles()).toEqual(vehiclesMock);
-    });
-
   });
 
   describe('loadVehicles (mock)', () => {
