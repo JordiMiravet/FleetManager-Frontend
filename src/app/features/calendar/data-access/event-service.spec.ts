@@ -22,7 +22,7 @@ describe('EventService', () => {
   let dataSourceServiceMock: jasmine.SpyObj<DataSourceService>;
 
   beforeEach(() => {
-    dataSourceServiceMock = jasmine.createSpyObj<DataSourceService>('DataSourceService', ['isMock']);
+    dataSourceServiceMock = jasmine.createSpyObj<DataSourceService>('DataSourceService', ['isMock', 'reportApiFailure']);
     dataSourceServiceMock.isMock.and.returnValue(false);
 
     TestBed.configureTestingModule({
@@ -77,6 +77,34 @@ describe('EventService', () => {
       httpMock.expectOne(API_URL).flush([]);
 
       expect(service.calendarEvents()).toEqual([]);
+    });
+
+  });
+
+  describe('loadEvents (fallback on API failure)', () => {
+
+    it('should call reportApiFailure when the backend request fails', () => {
+      service.loadEvents();
+
+      const req = httpMock.expectOne(API_URL);
+      req.flush(
+        { message: 'Server error' },
+        { status: 500, statusText: 'Internal Server Error' }
+      );
+
+      expect(dataSourceServiceMock.reportApiFailure).toHaveBeenCalled();
+    });
+
+    it('should load mock events into calendarEvents when the backend request fails', () => {
+      service.loadEvents();
+
+      const req = httpMock.expectOne(API_URL);
+      req.flush(
+        { message: 'Server error' },
+        { status: 500, statusText: 'Internal Server Error' }
+      );
+
+      expect(service.calendarEvents().length).toBeGreaterThan(0);
     });
 
   });

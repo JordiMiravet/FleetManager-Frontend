@@ -31,8 +31,14 @@ export class EventService {
       return;
     }
 
-    this.http.get<EventInterface[]>(this.apiUrl)
-      .subscribe(events => this._allEvents.set(events));
+    this.http.get<EventInterface[]>(this.apiUrl).subscribe({
+      next: events => this._allEvents.set(events),
+      error: err => {
+        console.error('Load events error', err);
+        this.dataSource.reportApiFailure();
+        this._allEvents.set(loadMockEvents());
+      }
+    });
   }
 
   getEventById(id: string): Observable<EventInterface> {

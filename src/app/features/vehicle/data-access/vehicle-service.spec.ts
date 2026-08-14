@@ -47,7 +47,7 @@ describe('VehicleService', () => {
   let dataSourceServiceMock: jasmine.SpyObj<DataSourceService>;
 
   beforeEach(() => {
-    dataSourceServiceMock = jasmine.createSpyObj<DataSourceService>('DataSourceService', ['isMock']);
+    dataSourceServiceMock = jasmine.createSpyObj<DataSourceService>('DataSourceService', ['isMock', 'reportApiFailure']);
     dataSourceServiceMock.isMock.and.returnValue(false);
 
     TestBed.configureTestingModule({
@@ -106,19 +106,6 @@ describe('VehicleService', () => {
       expect(service.vehicles()).toEqual(vehiclesMock);
     });
 
-    it('should not modify vehicles when request fails', () => {
-      loadMockVehicles();
-      service.loadVehicles();
-
-      const req = httpMock.expectOne(API_URL);
-      req.flush(
-        { message: 'Server error' },
-        { status: 500, statusText: 'Internal Server Error' }
-      );
-
-      expect(service.vehicles()).toEqual(vehiclesMock);
-    });
-
   });
 
   describe('loadVehicles (mock)', () => {
@@ -141,6 +128,34 @@ describe('VehicleService', () => {
       vehicles.forEach(v => {
         expect(v.userId).toBe('JordiTheBest');
       });
+    });
+
+  });
+
+  describe('loadVehicles (fallback on API failure)', () => {
+
+    it('should call reportApiFailure when the backend request fails', () => {
+      service.loadVehicles();
+
+      const req = httpMock.expectOne(API_URL);
+      req.flush(
+        { message: 'Server error' },
+        { status: 500, statusText: 'Internal Server Error' }
+      );
+
+      expect(dataSourceServiceMock.reportApiFailure).toHaveBeenCalled();
+    });
+
+    it('should load mock vehicles into the signal when the backend request fails', () => {
+      service.loadVehicles();
+
+      const req = httpMock.expectOne(API_URL);
+      req.flush(
+        { message: 'Server error' },
+        { status: 500, statusText: 'Internal Server Error' }
+      );
+
+      expect(service.vehicles().length).toBeGreaterThan(0);
     });
 
   });

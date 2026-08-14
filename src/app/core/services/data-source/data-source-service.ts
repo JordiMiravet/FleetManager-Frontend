@@ -19,4 +19,11 @@ export class DataSourceService {
     return this._current() === 'api';
   }
 
+  reportApiFailure(): void {
+    if (this._current() === 'api') {
+      console.warn('[DataSourceService] Backend unavailable, falling back to mock data.');
+      this._current.set('mock');
+    }
+  }
+
 }
