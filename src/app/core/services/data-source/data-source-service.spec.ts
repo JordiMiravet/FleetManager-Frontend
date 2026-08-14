@@ -42,15 +42,23 @@ describe('DataSourceService', () => {
   describe('reportApiFailure', () => {
 
     it('should set current to mock', () => {
+      service.reportApiFailure();
 
+      expect(service.current()).toBe('mock');
     });
 
     it('should make isMock() true and isApi() false', () => {
+      service.reportApiFailure();
 
+      expect(service.isMock()).toBeTrue();
+      expect(service.isApi()).toBeFalse();
     });
 
     it('should remain mock if called multiple times', () => {
+      service.reportApiFailure();
+      service.reportApiFailure();
 
+      expect(service.current()).toBe('mock');
     });
 
   });
