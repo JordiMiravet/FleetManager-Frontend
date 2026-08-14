@@ -29,7 +29,11 @@ export class VehicleService {
 
     this.http.get<VehicleInterface[]>(this.apiUrl).subscribe({
       next: vehicles => this.vehicles.set(vehicles),
-      error: err => console.error('Load vehicles error', err)
+      error: err => {
+        console.error('Load vehicles error', err);
+        this.dataSource.reportApiFailure();
+        this.vehicles.set(loadMockVehicles(this.currentUserId));
+      }
     });
   }
 
