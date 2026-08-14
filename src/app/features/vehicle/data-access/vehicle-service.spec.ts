@@ -47,7 +47,7 @@ describe('VehicleService', () => {
   let dataSourceServiceMock: jasmine.SpyObj<DataSourceService>;
 
   beforeEach(() => {
-    dataSourceServiceMock = jasmine.createSpyObj<DataSourceService>('DataSourceService', ['isMock']);
+    dataSourceServiceMock = jasmine.createSpyObj<DataSourceService>('DataSourceService', ['isMock', 'reportApiFailure']);
     dataSourceServiceMock.isMock.and.returnValue(false);
 
     TestBed.configureTestingModule({
