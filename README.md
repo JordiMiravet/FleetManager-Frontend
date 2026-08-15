@@ -147,7 +147,7 @@ src/
 │  ├─ core/                         # Global application infrastructure
 │  │  ├─ guards/
 │  │  ├─ layout/                    # Header, navigation, global UI components
-│  │  └─ services/                  # Global services (auth, geolocation, theme)
+│  │  └─ services/                  # Global services (auth, data-source, geolocation, theme)
 │  │
 │  ├─ features/                     # Main application features
 │  │  ├─ auth/                      # Login, registration, interceptors
@@ -249,7 +249,7 @@ apiUrl: 'http://localhost:3000'
 
 > If the backend is running on a different host or port, update apiUrl accordingly.
 
-The `dataSource` property controls whether the application uses mock data or communicates with the backend API. Use `'mock'` for local development without a running backend, or `'api'` to use the real backend.
+The `dataSource` property controls whether the application uses mock data or communicates with the backend API. Use `'mock'` for local development without a running backend, or `'api'` to use the real backend. If `dataSource` is set to `'api'` and the backend becomes unavailable, the application automatically falls back to mock data without requiring manual configuration changes.
 
 #### 2. Backend
 
@@ -544,13 +544,13 @@ Current test coverage:
 
 ```markdown
 =============================== Coverage summary ===============================
-Statements   : 97.04% ( 954/983 )
-Branches     : 89.39% ( 177/198 )
-Functions    : 96.41% ( 269/279 )
-Lines        : 97.17% ( 861/886 )
+Statements   : 98.29% ( 980/997 )
+Branches     : 91.95% ( 183/199 )
+Functions    : 97.52% ( 276/283 )
+Lines        : 98.55% ( 886/899 )
 ================================================================================
 
-TOTAL: 764 SUCCESS
+TOTAL: 780 SUCCESS
 ```
 
 ### Testing Examples
