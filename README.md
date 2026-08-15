@@ -147,7 +147,7 @@ src/
 │  ├─ core/                         # Global application infrastructure
 │  │  ├─ guards/
 │  │  ├─ layout/                    # Header, navigation, global UI components
-│  │  └─ services/                  # Global services (auth, geolocation, theme)
+│  │  └─ services/                  # Global services (auth, data-source, geolocation, theme)
 │  │
 │  ├─ features/                     # Main application features
 │  │  ├─ auth/                      # Login, registration, interceptors
