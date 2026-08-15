@@ -249,7 +249,7 @@ apiUrl: 'http://localhost:3000'
 
 > If the backend is running on a different host or port, update apiUrl accordingly.
 
-The `dataSource` property controls whether the application uses mock data or communicates with the backend API. Use `'mock'` for local development without a running backend, or `'api'` to use the real backend.
+The `dataSource` property controls whether the application uses mock data or communicates with the backend API. Use `'mock'` for local development without a running backend, or `'api'` to use the real backend. If `dataSource` is set to `'api'` and the backend becomes unavailable, the application automatically falls back to mock data without requiring manual configuration changes.
 
 #### 2. Backend
 
