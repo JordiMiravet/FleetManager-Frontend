@@ -533,7 +533,7 @@ The main tested components and services include:
 
 **Services:**
 - `VehicleService`
-- `CalendarService`
+- `EventService`
 - `MapService`
 - `GraphicsService`
 
