@@ -2,7 +2,7 @@ import { Component, effect, ElementRef, inject, input, OnDestroy, ViewChild } fr
 import Chart from 'chart.js/auto';
 import { TimePeriod } from '../../enums/time-period.enum';
 
-import { GraphicsServices } from '../../data-access/graphics-service';
+import { GraphicsService } from '../../data-access/graphics-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 
 @Component({
@@ -19,7 +19,7 @@ export class HoursByWeekdayVehicleChartComponent implements OnDestroy {
 
   public period = input<TimePeriod>(TimePeriod.Month);
   
-  private readonly graphicsService = inject(GraphicsServices);
+  private readonly graphicsService = inject(GraphicsService);
   private readonly vehicleService = inject(VehicleService);
   
   private chart!: Chart;
