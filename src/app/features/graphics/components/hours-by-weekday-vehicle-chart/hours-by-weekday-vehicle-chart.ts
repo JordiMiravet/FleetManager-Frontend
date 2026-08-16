@@ -2,7 +2,7 @@ import { Component, effect, ElementRef, inject, input, OnDestroy, ViewChild } fr
 import Chart from 'chart.js/auto';
 import { TimePeriod } from '../../enums/time-period.enum';
 
-import { GraphicsServices } from '../../data-access/graphics-services';
+import { GraphicsServices } from '../../data-access/graphics-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 
 @Component({

@@ -9,7 +9,7 @@ import { VehicleService } from '../../vehicle/data-access/vehicle-service';
 @Injectable({
   providedIn: 'root',
 })
-export class GraphicsServices {
+export class GraphicsService {
 
   private readonly eventService = inject(EventService);
   private readonly vehicleService = inject(VehicleService);
