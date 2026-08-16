@@ -4,7 +4,7 @@ import { Auth } from '@angular/fire/auth';
 
 import { VehicleUsageHoursChartComponent } from './vehicle-usage-hours-chart';
 
-import { GraphicsServices } from '../../data-access/graphics-services';
+import { GraphicsService } from '../../data-access/graphics-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { TimePeriod } from '../../enums/time-period.enum';
 
@@ -18,7 +18,7 @@ export const authMock = {
 describe('VehicleUsageHoursChartComponent', () => {
   let component: VehicleUsageHoursChartComponent;
   let fixture: ComponentFixture<VehicleUsageHoursChartComponent>;
-  let graphicsService: GraphicsServices;
+  let graphicsService: GraphicsService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -26,14 +26,14 @@ describe('VehicleUsageHoursChartComponent', () => {
       providers: [
         provideHttpClient(),
         { provide: Auth, useValue: authMock },
-        GraphicsServices,
+        GraphicsService,
         VehicleService
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(VehicleUsageHoursChartComponent);
     component = fixture.componentInstance;
-    graphicsService = TestBed.inject(GraphicsServices);
+    graphicsService = TestBed.inject(GraphicsService);
     fixture.detectChanges();
   });
 
