@@ -3,7 +3,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { Auth } from '@angular/fire/auth';
 
-import { GraphicsServices } from './graphics-services';
+import { GraphicsService } from './graphics-service';
 
 import { VehicleService } from '../../vehicle/data-access/vehicle-service';
 import { TimePeriod } from '../enums/time-period.enum';
@@ -16,7 +16,7 @@ export const authMock = {
 };
 
 describe('GraphicsServices', () => {
-  let service: GraphicsServices;
+  let service: GraphicsService;
   let vehicleService: VehicleService;
 
   const currentDate = new Date();
@@ -35,7 +35,7 @@ describe('GraphicsServices', () => {
       ]
     });
 
-    service = TestBed.inject(GraphicsServices);
+    service = TestBed.inject(GraphicsService);
     vehicleService = TestBed.inject(VehicleService);
   });
 
