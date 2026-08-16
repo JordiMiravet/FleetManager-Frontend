@@ -4,7 +4,7 @@ import { Auth } from '@angular/fire/auth';
 
 import { HoursByWeekdayVehicleChartComponent } from './hours-by-weekday-vehicle-chart';
 
-import { GraphicsServices } from '../../data-access/graphics-services';
+import { GraphicsService } from '../../data-access/graphics-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { TimePeriod } from '../../enums/time-period.enum';
 
@@ -27,8 +27,7 @@ const mockChartData = {
 describe('HoursByWeekdayVehicleChartComponent', () => {
   let component: HoursByWeekdayVehicleChartComponent;
   let fixture: ComponentFixture<HoursByWeekdayVehicleChartComponent>;
-  let graphicsService: GraphicsServices;
-  let vehicleService: VehicleService;
+  let graphicsService: GraphicsService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -36,14 +35,14 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
       providers: [
         provideHttpClient(),
         { provide: Auth, useValue: authMock },
-        GraphicsServices,
+        GraphicsService,
         VehicleService
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HoursByWeekdayVehicleChartComponent);
     component = fixture.componentInstance;
-    graphicsService = TestBed.inject(GraphicsServices);
+    graphicsService = TestBed.inject(GraphicsService);
 
     spyOn(graphicsService, 'getHoursByWeekdayPerVehicle').and.returnValue(mockChartData);
 
