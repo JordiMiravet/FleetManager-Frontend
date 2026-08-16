@@ -28,7 +28,6 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
   let component: HoursByWeekdayVehicleChartComponent;
   let fixture: ComponentFixture<HoursByWeekdayVehicleChartComponent>;
   let graphicsService: GraphicsService;
-  let vehicleService: VehicleService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
