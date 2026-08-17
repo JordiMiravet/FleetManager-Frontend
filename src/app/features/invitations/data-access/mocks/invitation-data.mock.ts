@@ -2,11 +2,22 @@ import { MOCK_VEHICLES } from '../../../vehicle/data-access/mocks/vehicle-data.m
 import { InvitationStatus } from '../../enums/invitation-status.enum';
 import { VehicleInvitation } from '../../models/invitation';
 
+const getVehicle = (vehicleId: string) => {
+    const vehicle = MOCK_VEHICLES.find(
+        vehicle => vehicle._id === vehicleId,
+    );
+
+    if (!vehicle) {
+        throw new Error(`Vehicle with id ${vehicleId} not found`);
+    }
+
+    return vehicle;
+};
 
 const MOCK_INVITATIONS_DATA: Omit<VehicleInvitation, '_id'>[] = [
     {
-        vehicleId: MOCK_VEHICLES[0]._id!,
-        vehicleName: MOCK_VEHICLES[0].name,
+        vehicleId: '1',
+        vehicleName: getVehicle('1').name,
         ownerId: 'owner-1',
         ownerEmail: 'carlos@fleetmanager.dev',
         invitedEmail: 'you@fleetmanager.dev',
@@ -14,8 +25,8 @@ const MOCK_INVITATIONS_DATA: Omit<VehicleInvitation, '_id'>[] = [
         invitedAt: '2026-08-10',
     },
     {
-        vehicleId: MOCK_VEHICLES[3]._id!,
-        vehicleName: MOCK_VEHICLES[3].name,
+        vehicleId: '4',
+        vehicleName: getVehicle('4').name,
         ownerId: 'owner-2',
         ownerEmail: 'laura@fleetmanager.dev',
         invitedEmail: 'you@fleetmanager.dev',
@@ -23,8 +34,8 @@ const MOCK_INVITATIONS_DATA: Omit<VehicleInvitation, '_id'>[] = [
         invitedAt: '2026-08-14',
     },
     {
-        vehicleId: MOCK_VEHICLES[4]._id!,
-        vehicleName: MOCK_VEHICLES[4].name,
+        vehicleId: '5',
+        vehicleName: getVehicle('5').name,
         ownerId: 'owner-3',
         ownerEmail: 'marc@fleetmanager.dev',
         invitedEmail: 'you@fleetmanager.dev',
@@ -32,8 +43,8 @@ const MOCK_INVITATIONS_DATA: Omit<VehicleInvitation, '_id'>[] = [
         invitedAt: '2026-08-02',
     },
     {
-        vehicleId: MOCK_VEHICLES[5]._id!,
-        vehicleName: MOCK_VEHICLES[5].name,
+        vehicleId: '6',
+        vehicleName: getVehicle('6').name,
         ownerId: 'owner-2',
         ownerEmail: 'laura@fleetmanager.dev',
         invitedEmail: 'you@fleetmanager.dev',
