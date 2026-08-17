@@ -2,22 +2,24 @@ import { MOCK_VEHICLES } from '../../../vehicle/data-access/mocks/vehicle-data.m
 import { InvitationStatus } from '../../enums/invitation-status.enum';
 import { VehicleInvitation } from '../../models/invitation';
 
-const getVehicle = (vehicleId: string) => {
+const getVehicleData = (vehicleId: string) => {
     const vehicle = MOCK_VEHICLES.find(
         vehicle => vehicle._id === vehicleId,
     );
 
-    if (!vehicle) {
+    if (!vehicle || !vehicle._id) {
         throw new Error(`Vehicle with id ${vehicleId} not found`);
     }
 
-    return vehicle;
+    return {
+        vehicleId: vehicle._id,
+        vehicleName: vehicle.name,
+    };
 };
 
 const MOCK_INVITATIONS_DATA: Omit<VehicleInvitation, '_id'>[] = [
     {
-        vehicleId: '1',
-        vehicleName: getVehicle('1').name,
+        ...getVehicleData('1'),
         ownerId: 'owner-1',
         ownerEmail: 'carlos@fleetmanager.dev',
         invitedEmail: 'you@fleetmanager.dev',
@@ -25,8 +27,7 @@ const MOCK_INVITATIONS_DATA: Omit<VehicleInvitation, '_id'>[] = [
         invitedAt: '2026-08-10',
     },
     {
-        vehicleId: '4',
-        vehicleName: getVehicle('4').name,
+        ...getVehicleData('4'),
         ownerId: 'owner-2',
         ownerEmail: 'laura@fleetmanager.dev',
         invitedEmail: 'you@fleetmanager.dev',
@@ -34,8 +35,7 @@ const MOCK_INVITATIONS_DATA: Omit<VehicleInvitation, '_id'>[] = [
         invitedAt: '2026-08-14',
     },
     {
-        vehicleId: '5',
-        vehicleName: getVehicle('5').name,
+        ...getVehicleData('5'),
         ownerId: 'owner-3',
         ownerEmail: 'marc@fleetmanager.dev',
         invitedEmail: 'you@fleetmanager.dev',
@@ -43,8 +43,7 @@ const MOCK_INVITATIONS_DATA: Omit<VehicleInvitation, '_id'>[] = [
         invitedAt: '2026-08-02',
     },
     {
-        vehicleId: '6',
-        vehicleName: getVehicle('6').name,
+        ...getVehicleData('6'),
         ownerId: 'owner-2',
         ownerEmail: 'laura@fleetmanager.dev',
         invitedEmail: 'you@fleetmanager.dev',
