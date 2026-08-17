@@ -21,7 +21,7 @@ const MOCK_INVITATIONS_DATA: Omit<VehicleInvitation, '_id'>[] = [
     {
         ...getVehicleData('1'),
         ownerId: 'owner-1',
-        ownerEmail: 'carlos@fleetmanager.dev',
+        ownerEmail: 'owner1@fleetmanager.dev',
         invitedEmail: 'you@fleetmanager.dev',
         status: InvitationStatus.Pending,
         invitedAt: '2026-08-10',
@@ -29,7 +29,7 @@ const MOCK_INVITATIONS_DATA: Omit<VehicleInvitation, '_id'>[] = [
     {
         ...getVehicleData('4'),
         ownerId: 'owner-2',
-        ownerEmail: 'laura@fleetmanager.dev',
+        ownerEmail: 'owner2@fleetmanager.dev',
         invitedEmail: 'you@fleetmanager.dev',
         status: InvitationStatus.Pending,
         invitedAt: '2026-08-14',
@@ -37,7 +37,7 @@ const MOCK_INVITATIONS_DATA: Omit<VehicleInvitation, '_id'>[] = [
     {
         ...getVehicleData('5'),
         ownerId: 'owner-3',
-        ownerEmail: 'marc@fleetmanager.dev',
+        ownerEmail: 'owner3@fleetmanager.dev',
         invitedEmail: 'you@fleetmanager.dev',
         status: InvitationStatus.Accepted,
         invitedAt: '2026-08-02',
@@ -45,7 +45,7 @@ const MOCK_INVITATIONS_DATA: Omit<VehicleInvitation, '_id'>[] = [
     {
         ...getVehicleData('6'),
         ownerId: 'owner-2',
-        ownerEmail: 'laura@fleetmanager.dev',
+        ownerEmail: 'owner2@fleetmanager.dev',
         invitedEmail: 'you@fleetmanager.dev',
         status: InvitationStatus.Declined,
         invitedAt: '2026-07-28',
