@@ -50,4 +50,12 @@ describe('InvitationService', () => {
 
   });
 
+  describe('declinedInvitations', () => {
+
+    it('should only include invitations with declined status', () => {
+
+    });
+
+  });
+
 });
