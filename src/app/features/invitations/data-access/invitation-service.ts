@@ -27,5 +27,24 @@ export class InvitationService {
 
     public readonly pendingCount = computed(() => this.pendingInvitations().length);
 
+    acceptInvitation(id: string): void {
+        this._invitations.update(invitations =>
+            invitations.map(invitation =>
+                invitation._id === id
+                ? { ...invitation, status: InvitationStatus.Accepted }
+                : invitation
+            )
+        );
+    }
+
+    declineInvitation(id: string): void {
+        this._invitations.update(invitations =>
+            invitations.map(invitation =>
+                invitation._id === id
+                ? { ...invitation, status: InvitationStatus.Declined }
+                : invitation
+            )
+        );
+    }
 
 }
