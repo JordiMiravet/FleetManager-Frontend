@@ -53,7 +53,9 @@ describe('InvitationService', () => {
   describe('declinedInvitations', () => {
 
     it('should only include invitations with declined status', () => {
+      const result = service.declinedInvitations();
 
+      expect(result.every(invitation => invitation.status === InvitationStatus.Declined)).toBeTrue();
     });
 
   });
