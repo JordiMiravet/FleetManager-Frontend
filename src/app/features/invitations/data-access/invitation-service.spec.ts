@@ -123,4 +123,28 @@ describe('InvitationService', () => {
 
   });
 
+  describe('declineInvitation', () => {
+
+    it('should change the invitation status to declined', () => {
+      
+    });
+
+    it('should remove the invitation from pendingInvitations', () => {
+      
+    });
+
+    it('should add the invitation to declinedInvitations', () => {
+      
+    });
+
+    it('should decrease pendingCount by one', () => {
+      
+    });
+
+    it('should do nothing when id does not match any invitation', () => {
+      
+    });
+
+  });
+
 });
