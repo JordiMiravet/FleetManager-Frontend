@@ -60,4 +60,12 @@ describe('InvitationService', () => {
 
   });
 
+  describe('pendingCount', () => {
+
+    it('should match the length of pendingInvitations', () => {
+
+    });
+
+  });
+
 });
