@@ -40,4 +40,12 @@ describe('InvitationService', () => {
 
   });
 
+  describe('acceptedInvitations', () => {
+
+    it('should only include invitations with accepted status', () => {
+
+    });
+
+  });
+
 });
