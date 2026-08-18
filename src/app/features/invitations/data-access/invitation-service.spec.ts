@@ -63,7 +63,7 @@ describe('InvitationService', () => {
   describe('pendingCount', () => {
 
     it('should match the length of pendingInvitations', () => {
-
+      expect(service.pendingCount()).toBe(service.pendingInvitations().length);
     });
 
   });
