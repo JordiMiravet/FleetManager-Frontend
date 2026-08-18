@@ -71,27 +71,54 @@ describe('InvitationService', () => {
   describe('acceptInvitation', () => {
 
     it('should change the invitation status to accepted', () => {
-      
+      const target = service.pendingInvitations()[0];
+
+      service.acceptInvitation(target._id);
+
+      const updated = service.invitations().find(i => i._id === target._id);
+      expect(updated?.status).toBe(InvitationStatus.Accepted);
     });
 
     it('should remove the invitation from pendingInvitations', () => {
-      
+      const target = service.pendingInvitations()[0];
+
+      service.acceptInvitation(target._id);
+
+      expect(service.pendingInvitations().some(i => i._id === target._id)).toBeFalse();
     });
 
     it('should add the invitation to acceptedInvitations', () => {
-      
+      const target = service.pendingInvitations()[0];
+
+      service.acceptInvitation(target._id);
+
+      expect(service.acceptedInvitations().some(i => i._id === target._id)).toBeTrue();
     });
 
     it('should decrease pendingCount by one', () => {
-      
+      const target = service.pendingInvitations()[0];
+      const initialCount = service.pendingCount();
+
+      service.acceptInvitation(target._id);
+
+      expect(service.pendingCount()).toBe(initialCount - 1);
     });
 
     it('should not modify other invitations', () => {
-      
+      const [target, other] = service.pendingInvitations();
+
+      service.acceptInvitation(target._id);
+
+      const untouched = service.invitations().find(i => i._id === other._id);
+      expect(untouched?.status).toBe(other.status);
     });
 
     it('should do nothing when id does not match any invitation', () => {
-      
+      const before = service.invitations();
+
+      service.acceptInvitation('non-existent-id');
+
+      expect(service.invitations()).toEqual(before);
     });
 
   });
