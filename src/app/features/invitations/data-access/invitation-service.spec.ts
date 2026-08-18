@@ -43,7 +43,9 @@ describe('InvitationService', () => {
   describe('acceptedInvitations', () => {
 
     it('should only include invitations with accepted status', () => {
+      const result = service.acceptedInvitations();
 
+      expect(result.every(invitation => invitation.status === InvitationStatus.Accepted)).toBeTrue();
     });
 
   });
