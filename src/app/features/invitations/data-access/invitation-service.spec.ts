@@ -27,11 +27,15 @@ describe('InvitationService', () => {
   describe('pendingInvitations', () => {
 
     it('should only include invitations with pending status', () => {
+      const result = service.pendingInvitations();
 
+      expect(result.every(invitation => invitation.status === InvitationStatus.Pending)).toBeTrue();
     });
 
     it('should match the number of pending invitations in mock data', () => {
+      const expectedCount = MOCK_INVITATIONS.filter(i => i.status === InvitationStatus.Pending).length;
 
+      expect(service.pendingInvitations()).toHaveSize(expectedCount);
     });
 
   });
