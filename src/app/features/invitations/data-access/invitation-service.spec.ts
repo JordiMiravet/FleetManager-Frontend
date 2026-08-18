@@ -24,5 +24,16 @@ describe('InvitationService', () => {
 
   });
 
+  describe('pendingInvitations', () => {
+
+    it('should only include invitations with pending status', () => {
+
+    });
+
+    it('should match the number of pending invitations in mock data', () => {
+
+    });
+
+  });
 
 });
