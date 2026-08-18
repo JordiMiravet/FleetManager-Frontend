@@ -126,23 +126,45 @@ describe('InvitationService', () => {
   describe('declineInvitation', () => {
 
     it('should change the invitation status to declined', () => {
-      
+      const target = service.pendingInvitations()[0];
+
+      service.declineInvitation(target._id);
+
+      const updated = service.invitations().find(i => i._id === target._id);
+      expect(updated?.status).toBe(InvitationStatus.Declined);
     });
 
     it('should remove the invitation from pendingInvitations', () => {
-      
+      const target = service.pendingInvitations()[0];
+
+      service.declineInvitation(target._id);
+
+      expect(service.pendingInvitations().some(i => i._id === target._id)).toBeFalse();
     });
 
     it('should add the invitation to declinedInvitations', () => {
-      
+      const target = service.pendingInvitations()[0];
+
+      service.declineInvitation(target._id);
+
+      expect(service.declinedInvitations().some(i => i._id === target._id)).toBeTrue();
     });
 
     it('should decrease pendingCount by one', () => {
-      
+      const target = service.pendingInvitations()[0];
+      const initialCount = service.pendingCount();
+
+      service.declineInvitation(target._id);
+
+      expect(service.pendingCount()).toBe(initialCount - 1);
     });
 
     it('should do nothing when id does not match any invitation', () => {
-      
+      const before = service.invitations();
+
+      service.declineInvitation('non-existent-id');
+
+      expect(service.invitations()).toEqual(before);
     });
 
   });
