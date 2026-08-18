@@ -31,8 +31,8 @@ export class InvitationService {
         this._invitations.update(invitations =>
             invitations.map(invitation =>
                 invitation._id === id
-                ? { ...invitation, status: InvitationStatus.Accepted }
-                : invitation
+                    ? { ...invitation, status: InvitationStatus.Accepted }
+                    : invitation
             )
         );
     }
@@ -41,8 +41,8 @@ export class InvitationService {
         this._invitations.update(invitations =>
             invitations.map(invitation =>
                 invitation._id === id
-                ? { ...invitation, status: InvitationStatus.Declined }
-                : invitation
+                    ? { ...invitation, status: InvitationStatus.Declined }
+                    : invitation
             )
         );
     }
