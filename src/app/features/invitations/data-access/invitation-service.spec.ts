@@ -68,4 +68,32 @@ describe('InvitationService', () => {
 
   });
 
+  describe('acceptInvitation', () => {
+
+    it('should change the invitation status to accepted', () => {
+      
+    });
+
+    it('should remove the invitation from pendingInvitations', () => {
+      
+    });
+
+    it('should add the invitation to acceptedInvitations', () => {
+      
+    });
+
+    it('should decrease pendingCount by one', () => {
+      
+    });
+
+    it('should not modify other invitations', () => {
+      
+    });
+
+    it('should do nothing when id does not match any invitation', () => {
+      
+    });
+
+  });
+
 });
