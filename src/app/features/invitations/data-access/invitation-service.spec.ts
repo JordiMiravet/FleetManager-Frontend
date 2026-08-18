@@ -19,7 +19,7 @@ describe('InvitationService', () => {
   describe('initial state', () => {
 
     it('should initialize invitations with mock data', () => {
-
+      expect(service.invitations()).toEqual(MOCK_INVITATIONS);
     });
 
   });
