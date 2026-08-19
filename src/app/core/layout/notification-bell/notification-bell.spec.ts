@@ -20,4 +20,13 @@ describe('NotificationBellComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render a bell icon', () => {
+
+  });
+
+  it('should have an accessible label on the button', () => {
+
+  });
+  
 });
