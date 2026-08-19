@@ -1,18 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from '../header/header';
-import { signal } from '@angular/core';
+import { signal, WritableSignal } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { AuthService } from '../../../features/auth/data-access/auth-service';
 
-class MockAuthService {
-  isLogged = signal(false);
-}
-
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
-  let authService: MockAuthService;
+  let authServiceMock: { isLogged: WritableSignal<boolean> };
 
   const getHeader = (): HTMLElement => fixture.nativeElement.querySelector('header')!;
   const getNavigation = (): HTMLElement => fixture.nativeElement.querySelector('app-navigation')!;
@@ -20,13 +16,15 @@ describe('HeaderComponent', () => {
   const getNotificationBell = (): HTMLElement | null => fixture.nativeElement.querySelector('app-notification-bell');
 
   beforeEach(async () => {
-    authService = new MockAuthService();
+    authServiceMock = {
+      isLogged: signal(false),
+    };
 
     await TestBed.configureTestingModule({
       imports: [HeaderComponent],
       providers: [
         provideRouter([]),
-        { provide: AuthService, useValue: authService},
+        { provide: AuthService, useValue: authServiceMock},
       ]
     }).compileComponents();
 
@@ -70,7 +68,7 @@ describe('HeaderComponent', () => {
     });
 
     it('should render NotificationBellComponent when user is logged in', () => {
-      authService.isLogged.set(true);
+      authServiceMock.isLogged.set(true);
       fixture.detectChanges();
 
       expect(getNotificationBell()).toBeTruthy();
@@ -95,7 +93,7 @@ describe('HeaderComponent', () => {
     });
 
     it('should contain NotificationBellComponent before AuthActionsComponent', () => {
-      authService.isLogged.set(true);
+      authServiceMock.isLogged.set(true);
       fixture.detectChanges();
 
       const actions = fixture.nativeElement.querySelector('.header__actions') as HTMLElement;
