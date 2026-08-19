@@ -16,6 +16,7 @@ describe('HeaderComponent', () => {
   const getHeader = (): HTMLElement => fixture.nativeElement.querySelector('header')!;
   const getNavigation = (): HTMLElement => fixture.nativeElement.querySelector('app-navigation')!;
   const getAuthActions = (): HTMLElement => fixture.nativeElement.querySelector('app-auth-actions')!;
+  const getNotificationBell = (): HTMLElement => fixture.nativeElement.querySelector('app-notification-bell')!;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -65,18 +66,33 @@ describe('HeaderComponent', () => {
 
   describe('Layout structure', () => {
 
-    it('should contain app-navigation before app-auth-actions', () => {
+    it('should contain NavigationComponent before the header actions', () => {
       const header = getHeader();
       const navigation = getNavigation();
-      const authActions = getAuthActions();
+      const actions = header.querySelector('.header__actions');
 
       expect(navigation).toBeTruthy();
-      expect(authActions).toBeTruthy();
+      expect(actions).toBeTruthy();
 
       const navigationIndex = Array.from(header.children).indexOf(navigation);
-      const authActionsIndex = Array.from(header.children).indexOf(authActions);
+      const actionsIndex = Array.from(header.children).indexOf(actions!);
 
-      expect(navigationIndex).toBeLessThan(authActionsIndex);
+      expect(navigationIndex).toBeLessThan(actionsIndex);
+    });
+
+    it('should contain NotificationBellComponent before AuthActionsComponent', () => {
+      const actions = fixture.nativeElement.querySelector('.header__actions') as HTMLElement;
+
+      const notificationBell = getNotificationBell();
+      const authActions = getAuthActions();
+
+      expect(notificationBell).toBeTruthy();
+      expect(authActions).toBeTruthy();
+
+      const notificationBellIndex = Array.from(actions.children).indexOf(notificationBell);
+      const authActionsIndex = Array.from(actions.children).indexOf(authActions);
+
+      expect(notificationBellIndex).toBeLessThan(authActionsIndex);
     });
 
   });
