@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LayoutMessagesService } from '../i18n/layout-messages-service';
 
 @Component({
   selector: 'app-notification-bell',
@@ -8,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class NotificationBellComponent {
 
+  private readonly messagesService = inject(LayoutMessagesService);
+
+  public readonly notificationBellMsg = this.messagesService.notificationBell;
 }
