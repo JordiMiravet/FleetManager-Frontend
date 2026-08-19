@@ -1,7 +1,9 @@
 <header class="header" role="banner">
     <app-navigation/>
     <div class="header__actions">
-        <app-notification-bell/>
+        @if (isLogged()){
+            <app-notification-bell/>
+        }
         <app-auth-actions/>
     </div>
 </header>

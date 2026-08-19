@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, Signal } from '@angular/core';
 import { NavigationComponent } from "../navigation/navigation";
 import { AuthActionsComponent } from "../auth-actions/auth-actions";
 import { NotificationBellComponent } from '../notification-bell/notification-bell';
+import { AuthService } from '../../../features/auth/data-access/auth-service';
 
 @Component({
   selector: 'app-header',
@@ -15,5 +16,9 @@ import { NotificationBellComponent } from '../notification-bell/notification-bel
   styleUrl: './header.scss',
 })
 export class HeaderComponent {
+
+  private readonly auth = inject(AuthService)
+  
+  public isLogged: Signal<boolean> = this.auth.isLogged;
   
 }
