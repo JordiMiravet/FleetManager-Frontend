@@ -22,11 +22,15 @@ describe('NotificationBellComponent', () => {
   });
 
   it('should render a bell icon', () => {
+    const icon = fixture.nativeElement.querySelector('i.pi-bell');
 
+    expect(icon).not.toBeNull();
   });
 
   it('should have an accessible label on the button', () => {
+    const button = fixture.nativeElement.querySelector('button.notification-bell');
 
+    expect(button.getAttribute('aria-label')).toBe(component.notificationBellMsg.aria.button);
   });
   
 });
