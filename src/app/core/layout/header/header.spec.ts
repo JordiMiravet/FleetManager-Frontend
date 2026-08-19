@@ -66,11 +66,14 @@ describe('HeaderComponent', () => {
     });
 
     it('should not render NotificationBellComponent when user is not logged in', () => {
-
+      expect(getNotificationBell()).toBeNull();
     });
 
     it('should render NotificationBellComponent when user is logged in', () => {
+      authService.isLogged.set(true);
+      fixture.detectChanges();
 
+      expect(getNotificationBell()).toBeTruthy();
     });
 
   });
