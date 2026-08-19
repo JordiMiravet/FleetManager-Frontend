@@ -12,18 +12,21 @@ class MockAuthService {
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
+  let authService: MockAuthService;
 
   const getHeader = (): HTMLElement => fixture.nativeElement.querySelector('header')!;
   const getNavigation = (): HTMLElement => fixture.nativeElement.querySelector('app-navigation')!;
   const getAuthActions = (): HTMLElement => fixture.nativeElement.querySelector('app-auth-actions')!;
-  const getNotificationBell = (): HTMLElement => fixture.nativeElement.querySelector('app-notification-bell')!;
+  const getNotificationBell = (): HTMLElement | null => fixture.nativeElement.querySelector('app-notification-bell');
 
   beforeEach(async () => {
+    authService = new MockAuthService();
+
     await TestBed.configureTestingModule({
       imports: [HeaderComponent],
       providers: [
         provideRouter([]),
-        { provide: AuthService, useClass: MockAuthService},
+        { provide: AuthService, useValue: authService},
       ]
     }).compileComponents();
 
@@ -62,6 +65,14 @@ describe('HeaderComponent', () => {
       expect(authActions).toBeTruthy();
     });
 
+    it('should not render NotificationBellComponent when user is not logged in', () => {
+
+    });
+
+    it('should render NotificationBellComponent when user is logged in', () => {
+
+    });
+
   });
 
   describe('Layout structure', () => {
@@ -81,6 +92,9 @@ describe('HeaderComponent', () => {
     });
 
     it('should contain NotificationBellComponent before AuthActionsComponent', () => {
+      authService.isLogged.set(true);
+      fixture.detectChanges();
+
       const actions = fixture.nativeElement.querySelector('.header__actions') as HTMLElement;
 
       const notificationBell = getNotificationBell();
@@ -89,7 +103,7 @@ describe('HeaderComponent', () => {
       expect(notificationBell).toBeTruthy();
       expect(authActions).toBeTruthy();
 
-      const notificationBellIndex = Array.from(actions.children).indexOf(notificationBell);
+      const notificationBellIndex = Array.from(actions.children).indexOf(notificationBell!);
       const authActionsIndex = Array.from(actions.children).indexOf(authActions);
 
       expect(notificationBellIndex).toBeLessThan(authActionsIndex);
