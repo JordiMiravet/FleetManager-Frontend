@@ -48,4 +48,10 @@ export class LayoutMessagesService {
     }
   };
 
+  readonly notificationBell = {
+    aria: {
+      button: 'View notifications'
+    }
+  };
+
 }
