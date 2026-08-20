@@ -4,4 +4,13 @@
     [attr.aria-label]="notificationBellMsg.aria.button"
 >
     <i class="pi pi-bell" aria-hidden="true"></i>
+
+    @if (pendingCount() > 0) {
+        <span
+            class="notification-bell__badge"
+            aria-hidden="true"
+        >
+            {{ pendingCount() }}
+        </span>
+    }
 </button>
