@@ -7,7 +7,7 @@ import { InvitationService } from '../../../features/invitations/data-access/inv
   standalone: true,
   imports: [],
   templateUrl: './notification-bell.html',
-  styleUrl: './notification-bell.css',
+  styleUrl: './notification-bell.scss',
 })
 export class NotificationBellComponent {
 
