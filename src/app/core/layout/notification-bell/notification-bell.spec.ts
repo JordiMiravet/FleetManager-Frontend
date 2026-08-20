@@ -11,7 +11,9 @@ describe('NotificationBellComponent', () => {
   let fixture: ComponentFixture<NotificationBellComponent>;
   let invitationService: InvitationService;
 
-  const buildInvitation = (status: InvitationStatus): VehicleInvitation => ({
+  const buildInvitation = (
+    status: InvitationStatus
+  ): VehicleInvitation => ({
     _id: crypto.randomUUID(),
     vehicleId: '1',
     vehicleName: 'Ferrari LaFerrari',
