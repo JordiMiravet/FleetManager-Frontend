@@ -87,4 +87,16 @@ describe('NotificationBellComponent', () => {
 
   });
 
+  describe('aria-label', () => {
+
+    it('should mention pending count when there are pending invitations', () => {
+
+    });
+
+    it('should not mention pending count when there are no pending invitations', () => {
+
+    });
+
+  });
+
 });
