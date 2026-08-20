@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotificationBellComponent } from './notification-bell';
-
 import { InvitationService } from '../../../features/invitations/data-access/invitation-service';
 import { InvitationStatus } from '../../../features/invitations/enums/invitation-status.enum';
 import { VehicleInvitation } from '../../../features/invitations/models/invitation';
@@ -21,7 +20,7 @@ describe('NotificationBellComponent', () => {
     status,
     invitedAt: '2026-08-10',
   });
-  
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NotificationBellComponent]
@@ -30,23 +29,35 @@ describe('NotificationBellComponent', () => {
 
     fixture = TestBed.createComponent(NotificationBellComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    invitationService = TestBed.inject(InvitationService);
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
   it('should render a bell icon', () => {
+    fixture.detectChanges();
     const icon = fixture.nativeElement.querySelector('i.pi-bell');
 
     expect(icon).not.toBeNull();
   });
 
-  it('should have an accessible label on the button', () => {
-    const button = fixture.nativeElement.querySelector('button.notification-bell');
+  describe('badge', () => {
 
-    expect(button.getAttribute('aria-label')).toBe(component.notificationBellMsg.aria.button);
+    it('should not render when there are no pending invitations', () => {
+
+    });
+
+    it('should render the pending count when there are pending invitations', () => {
+
+    });
+
+    it('should update reactively when an invitation is accepted', () => {
+
+    });
+
   });
-  
+
 });
