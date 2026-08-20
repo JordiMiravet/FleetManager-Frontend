@@ -50,7 +50,10 @@ export class LayoutMessagesService {
 
   readonly notificationBell = {
     aria: {
-      button: 'View notifications'
+      button: (pendingCount: number) =>
+        pendingCount > 0
+          ? `View notifications, ${pendingCount} pending`
+          : 'View notifications'
     }
   };
 

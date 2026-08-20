@@ -1,7 +1,7 @@
 <button
     class="notification-bell"
     type="button"
-    [attr.aria-label]="notificationBellMsg.aria.button"
+    [attr.aria-label]="notificationBellMsg.aria.button(pendingCount())"
 >
     <i class="pi pi-bell" aria-hidden="true"></i>
 
