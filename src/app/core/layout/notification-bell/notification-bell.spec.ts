@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotificationBellComponent } from './notification-bell';
+
 import { InvitationService } from '../../../features/invitations/data-access/invitation-service';
 import { InvitationStatus } from '../../../features/invitations/enums/invitation-status.enum';
 import { VehicleInvitation } from '../../../features/invitations/models/invitation';
@@ -20,6 +21,9 @@ describe('NotificationBellComponent', () => {
     status,
     invitedAt: '2026-08-10',
   });
+
+  const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button.notification-bell');
+  const getBadge = (): HTMLElement | null => fixture.nativeElement.querySelector('.notification-bell__badge');
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -46,15 +50,14 @@ describe('NotificationBellComponent', () => {
 
   describe('badge', () => {
 
-    it('should not render when there are no pending invitations', () => {
+    it('should not render when all invitations are non-pending', () => {
       (invitationService as any)._invitations.set([
         buildInvitation(InvitationStatus.Accepted),
         buildInvitation(InvitationStatus.Declined),
       ]);
       fixture.detectChanges();
 
-      const badge = fixture.nativeElement.querySelector('.notification-bell__badge');
-      expect(badge).toBeNull();
+      expect(getBadge()).toBeNull();
     });
 
     it('should render the pending count when there are pending invitations', () => {
@@ -64,8 +67,7 @@ describe('NotificationBellComponent', () => {
       ]);
       fixture.detectChanges();
 
-      const badge = fixture.nativeElement.querySelector('.notification-bell__badge');
-      expect(badge.textContent.trim()).toBe('2');
+      expect(getBadge()?.textContent?.trim()).toBe('2');
     });
 
     it('should update reactively when an invitation is accepted', () => {
@@ -74,15 +76,13 @@ describe('NotificationBellComponent', () => {
       ]);
       fixture.detectChanges();
 
-      let badge = fixture.nativeElement.querySelector('.notification-bell__badge');
-      expect(badge.textContent.trim()).toBe('1');
+      expect(getBadge()?.textContent?.trim()).toBe('1');
 
       const [pending] = invitationService.pendingInvitations();
       invitationService.acceptInvitation(pending._id);
       fixture.detectChanges();
 
-      badge = fixture.nativeElement.querySelector('.notification-bell__badge');
-      expect(badge).toBeNull();
+      expect(getBadge()).toBeNull();
     });
 
   });
@@ -95,16 +95,14 @@ describe('NotificationBellComponent', () => {
       ]);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('button.notification-bell');
-      expect(button.getAttribute('aria-label')).toContain('1 pending');
+      expect(getButton().getAttribute('aria-label')).toContain('1 pending');
     });
 
     it('should not mention pending count when there are no pending invitations', () => {
       (invitationService as any)._invitations.set([]);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('button.notification-bell');
-      expect(button.getAttribute('aria-label')).not.toContain('pending');
+      expect(getButton().getAttribute('aria-label')).not.toContain('pending');
     });
 
   });
