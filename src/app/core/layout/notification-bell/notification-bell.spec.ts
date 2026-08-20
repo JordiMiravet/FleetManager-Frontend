@@ -47,15 +47,42 @@ describe('NotificationBellComponent', () => {
   describe('badge', () => {
 
     it('should not render when there are no pending invitations', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Accepted),
+        buildInvitation(InvitationStatus.Declined),
+      ]);
+      fixture.detectChanges();
 
+      const badge = fixture.nativeElement.querySelector('.notification-bell__badge');
+      expect(badge).toBeNull();
     });
 
     it('should render the pending count when there are pending invitations', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
 
+      const badge = fixture.nativeElement.querySelector('.notification-bell__badge');
+      expect(badge.textContent.trim()).toBe('2');
     });
 
     it('should update reactively when an invitation is accepted', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
 
+      let badge = fixture.nativeElement.querySelector('.notification-bell__badge');
+      expect(badge.textContent.trim()).toBe('1');
+
+      const [pending] = invitationService.pendingInvitations();
+      invitationService.acceptInvitation(pending._id);
+      fixture.detectChanges();
+
+      badge = fixture.nativeElement.querySelector('.notification-bell__badge');
+      expect(badge).toBeNull();
     });
 
   });
