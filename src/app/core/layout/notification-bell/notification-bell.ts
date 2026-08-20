@@ -4,6 +4,7 @@ import { InvitationService } from '../../../features/invitations/data-access/inv
 
 @Component({
   selector: 'app-notification-bell',
+  standalone: true,
   imports: [],
   templateUrl: './notification-bell.html',
   styleUrl: './notification-bell.css',
