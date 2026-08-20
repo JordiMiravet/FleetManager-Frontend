@@ -90,11 +90,21 @@ describe('NotificationBellComponent', () => {
   describe('aria-label', () => {
 
     it('should mention pending count when there are pending invitations', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
 
+      const button = fixture.nativeElement.querySelector('button.notification-bell');
+      expect(button.getAttribute('aria-label')).toContain('1 pending');
     });
 
     it('should not mention pending count when there are no pending invitations', () => {
+      (invitationService as any)._invitations.set([]);
+      fixture.detectChanges();
 
+      const button = fixture.nativeElement.querySelector('button.notification-bell');
+      expect(button.getAttribute('aria-label')).not.toContain('pending');
     });
 
   });
