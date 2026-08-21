@@ -114,32 +114,27 @@ describe('NotificationBellComponent', () => {
     it('should not render the dropdown by default', () => {
       fixture.detectChanges();
 
-      const dropdown = fixture.nativeElement.querySelector('app-notification-dropdown');
-      expect(dropdown).toBeNull();
+      expect(getDropdown()).toBeNull();
     });
 
     it('should render the dropdown after clicking the bell', () => {
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('button.notification-bell');
-      button.click();
+      getButton().click();
       fixture.detectChanges();
 
-      const dropdown = fixture.nativeElement.querySelector('app-notification-dropdown');
-      expect(dropdown).not.toBeNull();
+      expect(getDropdown()).not.toBeNull();
     });
 
     it('should close the dropdown when clicking the bell again', () => {
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('button.notification-bell');
-      button.click();
+      getButton().click();
       fixture.detectChanges();
-      button.click();
+      getButton().click();
       fixture.detectChanges();
 
-      const dropdown = fixture.nativeElement.querySelector('app-notification-dropdown');
-      expect(dropdown).toBeNull();
+      expect(getDropdown()).toBeNull();
     });
 
     it('should close the dropdown when it emits close', () => {
@@ -150,20 +145,18 @@ describe('NotificationBellComponent', () => {
       component.closePanel();
       fixture.detectChanges();
 
-      const dropdown = fixture.nativeElement.querySelector('app-notification-dropdown');
-      expect(dropdown).toBeNull();
+      expect(getDropdown()).toBeNull();
     });
 
     it('should set aria-expanded based on panel state', () => {
       fixture.detectChanges();
-      const button = fixture.nativeElement.querySelector('button.notification-bell');
 
-      expect(button.getAttribute('aria-expanded')).toBe('false');
+      expect(getButton().getAttribute('aria-expanded')).toBe('false');
 
-      button.click();
+      getButton().click();
       fixture.detectChanges();
 
-      expect(button.getAttribute('aria-expanded')).toBe('true');
+      expect(getButton().getAttribute('aria-expanded')).toBe('true');
     });
 
   });
