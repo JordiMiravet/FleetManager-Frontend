@@ -26,6 +26,7 @@ describe('NotificationBellComponent', () => {
 
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button.notification-bell');
   const getBadge = (): HTMLElement | null => fixture.nativeElement.querySelector('.notification-bell__badge');
+  const getDropdown = (): HTMLElement | null => fixture.nativeElement.querySelector('app-notification-dropdown');
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
