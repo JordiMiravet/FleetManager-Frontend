@@ -1,1 +1,12 @@
-<p>notification-dropdown works!</p>
+<div
+    class="notification-dropdown__backdrop"
+    (click)="onBackdropClick()"
+    aria-hidden="true"
+></div>
+
+<section
+    class="notification-dropdown"
+    role="region"
+    (click)="$event.stopPropagation()"
+>
+</section>
