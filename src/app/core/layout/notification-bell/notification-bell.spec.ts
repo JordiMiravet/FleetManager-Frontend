@@ -108,4 +108,28 @@ describe('NotificationBellComponent', () => {
 
   });
 
+  describe('panel toggle', () => {
+
+    it('should not render the dropdown by default', () => {
+
+    });
+
+    it('should render the dropdown after clicking the bell', () => {
+
+    });
+
+    it('should close the dropdown when clicking the bell again', () => {
+
+    });
+
+    it('should close the dropdown when it emits close', () => {
+
+    });
+
+    it('should set aria-expanded based on panel state', () => {
+
+    });
+
+  });
+
 });
