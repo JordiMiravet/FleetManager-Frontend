@@ -6,6 +6,10 @@ describe('NotificationDropdownComponent', () => {
   let component: NotificationDropdownComponent;
   let fixture: ComponentFixture<NotificationDropdownComponent>;
 
+  const getEmptyMessage = (): HTMLElement | null => fixture.nativeElement.querySelector('.notification-dropdown__empty');
+  const getBackdrop = (): HTMLElement | null => fixture.nativeElement.querySelector('.notification-dropdown__backdrop');
+  const getPanel = (): HTMLElement | null => fixture.nativeElement.querySelector('.notification-dropdown');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NotificationDropdownComponent],
