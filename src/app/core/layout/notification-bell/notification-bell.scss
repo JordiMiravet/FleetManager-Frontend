@@ -50,4 +50,12 @@
         color: var(--btn-danger-text);
         background-color: var(--btn-danger-bg);
     }
+
+    &__placeholder {
+        padding: 1.5rem 1rem;
+        text-align: center;
+
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+    }
 }
