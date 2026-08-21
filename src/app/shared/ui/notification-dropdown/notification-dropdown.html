@@ -1,0 +1,19 @@
+<div
+    class="notification-dropdown__backdrop"
+    (click)="onBackdropClick()"
+    aria-hidden="true"
+></div>
+
+<section
+    class="notification-dropdown"
+    role="region"
+    (click)="$event.stopPropagation()"
+>
+    @if (isEmpty()) {
+        <p class="notification-dropdown__empty" role="status">
+            {{ emptyMessage() }}
+        </p>
+    } @else {
+        <ng-content></ng-content>
+    }
+</section>

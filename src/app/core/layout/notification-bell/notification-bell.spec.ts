@@ -26,6 +26,7 @@ describe('NotificationBellComponent', () => {
 
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button.notification-bell');
   const getBadge = (): HTMLElement | null => fixture.nativeElement.querySelector('.notification-bell__badge');
+  const getDropdown = (): HTMLElement | null => fixture.nativeElement.querySelector('app-notification-dropdown');
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -104,6 +105,58 @@ describe('NotificationBellComponent', () => {
       fixture.detectChanges();
 
       expect(getButton().getAttribute('aria-label')).not.toContain('pending');
+    });
+
+  });
+
+  describe('panel toggle', () => {
+
+    it('should not render the dropdown by default', () => {
+      fixture.detectChanges();
+
+      expect(getDropdown()).toBeNull();
+    });
+
+    it('should render the dropdown after clicking the bell', () => {
+      fixture.detectChanges();
+
+      getButton().click();
+      fixture.detectChanges();
+
+      expect(getDropdown()).not.toBeNull();
+    });
+
+    it('should close the dropdown when clicking the bell again', () => {
+      fixture.detectChanges();
+
+      getButton().click();
+      fixture.detectChanges();
+      getButton().click();
+      fixture.detectChanges();
+
+      expect(getDropdown()).toBeNull();
+    });
+
+    it('should close the dropdown when it emits close', () => {
+      fixture.detectChanges();
+      component.isPanelOpen.set(true);
+      fixture.detectChanges();
+
+      component.closePanel();
+      fixture.detectChanges();
+
+      expect(getDropdown()).toBeNull();
+    });
+
+    it('should set aria-expanded based on panel state', () => {
+      fixture.detectChanges();
+
+      expect(getButton().getAttribute('aria-expanded')).toBe('false');
+
+      getButton().click();
+      fixture.detectChanges();
+
+      expect(getButton().getAttribute('aria-expanded')).toBe('true');
     });
 
   });

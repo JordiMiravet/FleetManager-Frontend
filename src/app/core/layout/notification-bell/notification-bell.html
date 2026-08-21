@@ -1,16 +1,29 @@
-<button
-    class="notification-bell"
-    type="button"
-    [attr.aria-label]="notificationBellMsg.aria.button(pendingCount())"
->
-    <i class="pi pi-bell" aria-hidden="true"></i>
+<div class="notification-bell-wrapper">
+    <button
+        class="notification-bell"
+        type="button"
+        [attr.aria-label]="notificationBellMsg.aria.button(pendingCount())"
+        [attr.aria-expanded]="isPanelOpen()"
+        (click)="togglePanel()"
+    >
+        <i class="pi pi-bell" aria-hidden="true"></i>
 
-    @if (pendingCount() > 0) {
-        <span
-            class="notification-bell__badge"
-            aria-hidden="true"
+        @if (pendingCount() > 0) {
+            <span
+                class="notification-bell__badge"
+                aria-hidden="true"
+            >
+                {{ pendingCount() }}
+            </span>
+        }
+    </button>
+
+    @if (isPanelOpen()) {
+        <app-notification-dropdown
+            [isEmpty]="pendingCount() === 0"
+            (close)="closePanel()"
         >
-            {{ pendingCount() }}
-        </span>
+            <p class="notification-bell__placeholder">Invitation cards coming soon</p>
+        </app-notification-dropdown>
     }
-</button>
+</div>
