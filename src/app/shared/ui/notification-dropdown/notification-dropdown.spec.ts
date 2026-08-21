@@ -48,4 +48,21 @@ describe('NotificationDropdownComponent', () => {
     });
 
   });
+
+  describe('closing behavior', () => {
+
+    it('should emit close when the backdrop is clicked', () => {
+
+    });
+
+    it('should emit close when Escape is pressed', () => {
+
+    });
+
+    it('should not emit close when clicking inside the panel content', () => {
+
+    });
+
+  });
+
 });
