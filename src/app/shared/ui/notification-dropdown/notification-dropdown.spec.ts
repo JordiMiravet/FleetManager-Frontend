@@ -52,15 +52,32 @@ describe('NotificationDropdownComponent', () => {
   describe('closing behavior', () => {
 
     it('should emit close when the backdrop is clicked', () => {
+      fixture.detectChanges();
+      spyOn(component.close, 'emit');
 
+      const backdrop = fixture.nativeElement.querySelector('.notification-dropdown__backdrop');
+      backdrop.click();
+
+      expect(component.close.emit).toHaveBeenCalled();
     });
 
     it('should emit close when Escape is pressed', () => {
+      fixture.detectChanges();
+      spyOn(component.close, 'emit');
 
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+      expect(component.close.emit).toHaveBeenCalled();
     });
 
     it('should not emit close when clicking inside the panel content', () => {
+      fixture.detectChanges();
+      spyOn(component.close, 'emit');
 
+      const panel = fixture.nativeElement.querySelector('.notification-dropdown');
+      panel.click();
+
+      expect(component.close.emit).not.toHaveBeenCalled();
     });
 
   });
