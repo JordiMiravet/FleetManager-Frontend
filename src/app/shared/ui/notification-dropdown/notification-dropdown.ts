@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, HostListener, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-notification-dropdown',
@@ -13,5 +13,14 @@ export class NotificationDropdownComponent {
   emptyMessage = input<string>('Nothing to show here');
 
   close = output<void>();
+
+  @HostListener('document:keydown.escape')
+  onEscapeKey(): void {
+    this.close.emit();
+  }
+
+  onBackdropClick(): void {
+    this.close.emit();
+  }
 
 }
