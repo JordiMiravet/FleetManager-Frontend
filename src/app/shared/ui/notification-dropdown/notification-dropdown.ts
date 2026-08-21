@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './notification-dropdown.html',
   styleUrl: './notification-dropdown.css',
 })
-export class NotificationDropdown {
+export class NotificationDropdownComponent {
 
 }
