@@ -9,4 +9,11 @@
     role="region"
     (click)="$event.stopPropagation()"
 >
+    @if (isEmpty()) {
+        <p class="notification-dropdown__empty" role="status">
+            {{ emptyMessage() }}
+        </p>
+    } @else {
+        <ng-content></ng-content>
+    }
 </section>
