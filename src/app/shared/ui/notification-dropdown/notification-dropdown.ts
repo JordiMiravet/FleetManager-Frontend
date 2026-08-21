@@ -2,6 +2,7 @@ import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-notification-dropdown',
+  standalone: true,
   imports: [],
   templateUrl: './notification-dropdown.html',
   styleUrl: './notification-dropdown.css',
