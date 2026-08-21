@@ -29,25 +29,22 @@ describe('NotificationDropdownComponent', () => {
     it('should show the empty message by default', () => {
       fixture.detectChanges();
 
-      const empty = fixture.nativeElement.querySelector('.notification-dropdown__empty');
-      expect(empty).not.toBeNull();
-      expect(empty.textContent.trim()).toBe('Nothing to show here');
+      expect(getEmptyMessage()).not.toBeNull();
+      expect(getEmptyMessage()?.textContent.trim()).toBe('Nothing to show here');
     });
 
     it('should show a custom empty message when provided', () => {
       fixture.componentRef.setInput('emptyMessage', 'No pending invitations');
       fixture.detectChanges();
 
-      const empty = fixture.nativeElement.querySelector('.notification-dropdown__empty');
-      expect(empty.textContent.trim()).toBe('No pending invitations');
+      expect(getEmptyMessage()?.textContent.trim()).toBe('No pending invitations');
     });
 
     it('should not render the empty message when isEmpty is false', () => {
       fixture.componentRef.setInput('isEmpty', false);
       fixture.detectChanges();
 
-      const empty = fixture.nativeElement.querySelector('.notification-dropdown__empty');
-      expect(empty).toBeNull();
+      expect(getEmptyMessage()).toBeNull();
     });
 
   });
@@ -58,8 +55,7 @@ describe('NotificationDropdownComponent', () => {
       fixture.detectChanges();
       spyOn(component.close, 'emit');
 
-      const backdrop = fixture.nativeElement.querySelector('.notification-dropdown__backdrop');
-      backdrop.click();
+      getBackdrop()?.click();
 
       expect(component.close.emit).toHaveBeenCalled();
     });
@@ -77,8 +73,7 @@ describe('NotificationDropdownComponent', () => {
       fixture.detectChanges();
       spyOn(component.close, 'emit');
 
-      const panel = fixture.nativeElement.querySelector('.notification-dropdown');
-      panel.click();
+      getPanel()?.click();
 
       expect(component.close.emit).not.toHaveBeenCalled();
     });
