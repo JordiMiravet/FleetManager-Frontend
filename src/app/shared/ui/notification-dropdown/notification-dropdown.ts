@@ -5,7 +5,7 @@ import { Component, HostListener, input, output } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './notification-dropdown.html',
-  styleUrl: './notification-dropdown.css',
+  styleUrl: './notification-dropdown.scss',
 })
 export class NotificationDropdownComponent {
 
