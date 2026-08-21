@@ -14,10 +14,26 @@ describe('NotificationDropdownComponent', () => {
 
     fixture = TestBed.createComponent(NotificationDropdownComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
+  });
+
+  describe('empty state', () => {
+
+    it('should show the empty message by default', () => {
+
+    });
+
+    it('should show a custom empty message when provided', () => {
+
+    });
+
+    it('should not render the empty message when isEmpty is false', () => {
+
+    });
+
   });
 });
