@@ -37,23 +37,31 @@ describe('InvitationCardComponent', () => {
   describe('rendering', () => {
 
     it('should display the vehicle name', () => {
-
+      const name = fixture.nativeElement.querySelector('.invitation-card__vehicle-name');
+      expect(name.textContent.trim()).toBe('Ferrari LaFerrari');
     });
 
     it('should display the owner email', () => {
-
+      const owner = fixture.nativeElement.querySelector('.invitation-card__owner span');
+      expect(owner.textContent.trim()).toBe('owner1@fleetmanager.dev');
     });
 
     it('should display the invitation date', () => {
-
+      const date = fixture.nativeElement.querySelector('.invitation-card__date');
+      expect(date.getAttribute('datetime')).toBe('2026-08-10');
+      expect(date.textContent.trim().length).toBeGreaterThan(0);
     });
 
     it('should render an Accept button', () => {
-
+      const button = fixture.nativeElement.querySelector('.invitation-card__button--accept');
+      expect(button).not.toBeNull();
+      expect(button.textContent).toContain('Accept');
     });
 
     it('should render a Decline button', () => {
-
+      const button = fixture.nativeElement.querySelector('.invitation-card__button--decline');
+      expect(button).not.toBeNull();
+      expect(button.textContent).toContain('Decline');
     });
 
   });
