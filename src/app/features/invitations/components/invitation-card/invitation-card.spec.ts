@@ -22,9 +22,9 @@ describe('InvitationCardComponent', () => {
   const getButtonAccept = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--accept');
   const getButtonDecline = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--decline');
 
-  const getName = (): HTMLElement | null =>  fixture.nativeElement.querySelector('.invitation-card__vehicle-name');
-  const getOwner = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__owner span');
-  const getDate = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__date');
+  const getVehicleName = (): HTMLElement | null =>  fixture.nativeElement.querySelector('.invitation-card__vehicle-name');
+  const getOwnerEmail = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__owner span');
+  const getInvitationDate = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__date');
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -44,16 +44,16 @@ describe('InvitationCardComponent', () => {
   describe('rendering', () => {
 
     it('should display the vehicle name', () => {
-      expect(getName()?.textContent.trim()).toBe('Ferrari LaFerrari');
+      expect(getVehicleName()?.textContent.trim()).toBe('Ferrari LaFerrari');
     });
 
     it('should display the owner email', () => {
-      expect(getOwner()?.textContent.trim()).toBe('owner1@fleetmanager.dev');
+      expect(getOwnerEmail()?.textContent.trim()).toBe('owner1@fleetmanager.dev');
     });
 
     it('should display the invitation date', () => {
-      expect(getDate()?.getAttribute('datetime')).toBe('2026-08-10');
-      expect(getDate()?.textContent.trim().length).toBeGreaterThan(0);
+      expect(getInvitationDate()?.getAttribute('datetime')).toBe('2026-08-10');
+      expect(getInvitationDate()?.textContent.trim().length).toBeGreaterThan(0);
     });
 
     it('should render an Accept button', () => {
