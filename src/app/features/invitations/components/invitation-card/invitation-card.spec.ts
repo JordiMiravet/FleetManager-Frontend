@@ -19,6 +19,12 @@ describe('InvitationCardComponent', () => {
     invitedAt: '2026-08-10',
   };
 
+  const getButton = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--decline');
+
+  const getName = (): HTMLElement | null =>  fixture.nativeElement.querySelector('.invitation-card__vehicle-name');
+  const getOwner = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__owner span');
+  const getDate = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__date');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [InvitationCardComponent],
