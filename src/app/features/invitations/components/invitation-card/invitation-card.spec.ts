@@ -19,7 +19,8 @@ describe('InvitationCardComponent', () => {
     invitedAt: '2026-08-10',
   };
 
-  const getButton = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--decline');
+  const getButtonAccept = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--accept');
+  const getButtonDecline = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--decline');
 
   const getName = (): HTMLElement | null =>  fixture.nativeElement.querySelector('.invitation-card__vehicle-name');
   const getOwner = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__owner span');
