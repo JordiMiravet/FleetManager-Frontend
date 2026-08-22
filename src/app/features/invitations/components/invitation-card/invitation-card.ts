@@ -22,4 +22,12 @@ export class InvitationCardComponent {
   accept = output<string>();
   decline = output<string>();
 
+  onAccept(): void {
+    this.accept.emit(this.invitation()._id);
+  }
+
+  onDecline(): void {
+    this.decline.emit(this.invitation()._id);
+  }
+
 }
