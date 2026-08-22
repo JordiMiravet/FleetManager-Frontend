@@ -69,11 +69,13 @@ describe('InvitationCardComponent', () => {
   describe('accessibility', () => {
 
     it('should have an aria-label on Accept mentioning the vehicle name', () => {
-
+      const button = fixture.nativeElement.querySelector('.invitation-card__button--accept');
+      expect(button.getAttribute('aria-label')).toContain('Ferrari LaFerrari');
     });
 
     it('should have an aria-label on Decline mentioning the vehicle name', () => {
-
+      const button = fixture.nativeElement.querySelector('.invitation-card__button--decline');
+      expect(button.getAttribute('aria-label')).toContain('Ferrari LaFerrari');
     });
 
   });
