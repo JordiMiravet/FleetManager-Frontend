@@ -66,6 +66,22 @@ describe('InvitationCardComponent', () => {
 
   });
 
+  describe('actions', () => {
+
+    it('should emit accept with the invitation id when Accept is clicked', () => {
+
+    });
+
+    it('should emit decline with the invitation id when Decline is clicked', () => {
+
+    });
+
+    it('should not emit decline when Accept is clicked', () => {
+
+    });
+
+  });
+
   describe('accessibility', () => {
 
     it('should have an aria-label on Accept mentioning the vehicle name', () => {
