@@ -66,4 +66,16 @@ describe('InvitationCardComponent', () => {
 
   });
 
+  describe('accessibility', () => {
+
+    it('should have an aria-label on Accept mentioning the vehicle name', () => {
+
+    });
+
+    it('should have an aria-label on Decline mentioning the vehicle name', () => {
+
+    });
+
+  });
+
 });
