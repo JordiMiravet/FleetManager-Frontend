@@ -33,4 +33,29 @@ describe('InvitationCardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('rendering', () => {
+
+    it('should display the vehicle name', () => {
+
+    });
+
+    it('should display the owner email', () => {
+
+    });
+
+    it('should display the invitation date', () => {
+
+    });
+
+    it('should render an Accept button', () => {
+
+    });
+
+    it('should render a Decline button', () => {
+
+    });
+
+  });
+
 });
