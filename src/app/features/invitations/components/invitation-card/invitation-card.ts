@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-invitation-card',
   imports: [],
   templateUrl: './invitation-card.html',
-  styleUrl: './invitation-card.css',
+  styleUrl: './invitation-card.scss',
 })
 export class InvitationCard {
 
