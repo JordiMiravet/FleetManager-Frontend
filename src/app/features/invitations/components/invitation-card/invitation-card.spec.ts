@@ -69,15 +69,30 @@ describe('InvitationCardComponent', () => {
   describe('actions', () => {
 
     it('should emit accept with the invitation id when Accept is clicked', () => {
+      spyOn(component.accept, 'emit');
 
+      const button = fixture.nativeElement.querySelector('.invitation-card__button--accept');
+      button.click();
+
+      expect(component.accept.emit).toHaveBeenCalledWith('inv-1');
     });
 
     it('should emit decline with the invitation id when Decline is clicked', () => {
+      spyOn(component.decline, 'emit');
 
+      const button = fixture.nativeElement.querySelector('.invitation-card__button--decline');
+      button.click();
+
+      expect(component.decline.emit).toHaveBeenCalledWith('inv-1');
     });
 
     it('should not emit decline when Accept is clicked', () => {
+      spyOn(component.decline, 'emit');
 
+      const button = fixture.nativeElement.querySelector('.invitation-card__button--accept');
+      button.click();
+
+      expect(component.decline.emit).not.toHaveBeenCalled();
     });
 
   });
