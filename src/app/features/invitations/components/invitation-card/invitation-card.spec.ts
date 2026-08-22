@@ -44,31 +44,26 @@ describe('InvitationCardComponent', () => {
   describe('rendering', () => {
 
     it('should display the vehicle name', () => {
-      const name = fixture.nativeElement.querySelector('.invitation-card__vehicle-name');
-      expect(name.textContent.trim()).toBe('Ferrari LaFerrari');
+      expect(getName()?.textContent.trim()).toBe('Ferrari LaFerrari');
     });
 
     it('should display the owner email', () => {
-      const owner = fixture.nativeElement.querySelector('.invitation-card__owner span');
-      expect(owner.textContent.trim()).toBe('owner1@fleetmanager.dev');
+      expect(getOwner()?.textContent.trim()).toBe('owner1@fleetmanager.dev');
     });
 
     it('should display the invitation date', () => {
-      const date = fixture.nativeElement.querySelector('.invitation-card__date');
-      expect(date.getAttribute('datetime')).toBe('2026-08-10');
-      expect(date.textContent.trim().length).toBeGreaterThan(0);
+      expect(getDate()?.getAttribute('datetime')).toBe('2026-08-10');
+      expect(getDate()?.textContent.trim().length).toBeGreaterThan(0);
     });
 
     it('should render an Accept button', () => {
-      const button = fixture.nativeElement.querySelector('.invitation-card__button--accept');
-      expect(button).not.toBeNull();
-      expect(button.textContent).toContain('Accept');
+      expect(getButtonAccept()).not.toBeNull();
+      expect(getButtonAccept()?.textContent).toContain('Accept');
     });
 
     it('should render a Decline button', () => {
-      const button = fixture.nativeElement.querySelector('.invitation-card__button--decline');
-      expect(button).not.toBeNull();
-      expect(button.textContent).toContain('Decline');
+      expect(getButtonDecline()).not.toBeNull();
+      expect(getButtonDecline()?.textContent).toContain('Decline');
     });
 
   });
@@ -78,8 +73,7 @@ describe('InvitationCardComponent', () => {
     it('should emit accept with the invitation id when Accept is clicked', () => {
       spyOn(component.accept, 'emit');
 
-      const button = fixture.nativeElement.querySelector('.invitation-card__button--accept');
-      button.click();
+      getButtonAccept()?.click();
 
       expect(component.accept.emit).toHaveBeenCalledWith('inv-1');
     });
@@ -87,8 +81,7 @@ describe('InvitationCardComponent', () => {
     it('should emit decline with the invitation id when Decline is clicked', () => {
       spyOn(component.decline, 'emit');
 
-      const button = fixture.nativeElement.querySelector('.invitation-card__button--decline');
-      button.click();
+      getButtonDecline()?.click();
 
       expect(component.decline.emit).toHaveBeenCalledWith('inv-1');
     });
@@ -96,8 +89,7 @@ describe('InvitationCardComponent', () => {
     it('should not emit decline when Accept is clicked', () => {
       spyOn(component.decline, 'emit');
 
-      const button = fixture.nativeElement.querySelector('.invitation-card__button--accept');
-      button.click();
+      getButtonAccept()?.click();
 
       expect(component.decline.emit).not.toHaveBeenCalled();
     });
@@ -107,13 +99,11 @@ describe('InvitationCardComponent', () => {
   describe('accessibility', () => {
 
     it('should have an aria-label on Accept mentioning the vehicle name', () => {
-      const button = fixture.nativeElement.querySelector('.invitation-card__button--accept');
-      expect(button.getAttribute('aria-label')).toContain('Ferrari LaFerrari');
+      expect(getButtonAccept()?.getAttribute('aria-label')).toContain('Ferrari LaFerrari');
     });
 
     it('should have an aria-label on Decline mentioning the vehicle name', () => {
-      const button = fixture.nativeElement.querySelector('.invitation-card__button--decline');
-      expect(button.getAttribute('aria-label')).toContain('Ferrari LaFerrari');
+      expect(getButtonDecline()?.getAttribute('aria-label')).toContain('Ferrari LaFerrari');
     });
 
   });
