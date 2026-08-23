@@ -176,7 +176,7 @@ describe('NotificationBellComponent', () => {
       fixture.detectChanges();
 
       const cards = fixture.nativeElement.querySelectorAll('app-invitation-card');
-      expect(cards.length).toBe(2);
+      expect(cards.length).toHaveSize(2);
     });
 
     it('should not render accepted or declined invitations', () => {
@@ -191,7 +191,7 @@ describe('NotificationBellComponent', () => {
       fixture.detectChanges();
 
       const cards = fixture.nativeElement.querySelectorAll('app-invitation-card');
-      expect(cards.length).toBe(0);
+      expect(cards.length).toHaveSize(0);
     });
 
     it('should show the dropdown empty state when there are no pending invitations', () => {
