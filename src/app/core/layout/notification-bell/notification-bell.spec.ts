@@ -27,7 +27,7 @@ describe('NotificationBellComponent', () => {
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button.notification-bell');
   const getBadge = (): HTMLElement | null => fixture.nativeElement.querySelector('.notification-bell__badge');
   const getDropdown = (): HTMLElement | null => fixture.nativeElement.querySelector('app-notification-dropdown');
-  const getCards = (): HTMLElement | null => fixture.nativeElement.querySelectorAll('app-invitation-card');
+  const getCards = (): NodeListOf<Element> => fixture.nativeElement.querySelectorAll('app-invitation-card');
   const getEmptyMessage = (): HTMLElement | null => fixture.nativeElement.querySelector('.notification-dropdown__empty');
 
   beforeEach(async () => {
@@ -176,8 +176,7 @@ describe('NotificationBellComponent', () => {
       getButton().click();
       fixture.detectChanges();
 
-      const cards = fixture.nativeElement.querySelectorAll('app-invitation-card');
-      expect(cards.length).toHaveSize(2);
+      expect(getCards()?.length).toHaveSize(2);
     });
 
     it('should not render accepted or declined invitations', () => {
@@ -190,8 +189,7 @@ describe('NotificationBellComponent', () => {
       getButton().click();
       fixture.detectChanges();
 
-      const cards = fixture.nativeElement.querySelectorAll('app-invitation-card');
-      expect(cards.length).toHaveSize(0);
+      expect(getCards()?.length).toHaveSize(0);
     });
 
     it('should show the dropdown empty state when there are no pending invitations', () => {
@@ -203,8 +201,7 @@ describe('NotificationBellComponent', () => {
       getButton().click();
       fixture.detectChanges();
 
-      const emptyMessage = fixture.nativeElement.querySelector('.notification-dropdown__empty');
-      expect(emptyMessage.textContent.trim()).toBe('No pending invitations');
+      expect(getEmptyMessage()?.textContent?.trim()).toBe('No pending invitations');
     });
 
   });
