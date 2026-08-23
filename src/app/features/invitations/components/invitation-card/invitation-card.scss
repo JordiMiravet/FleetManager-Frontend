@@ -59,10 +59,10 @@
 
         &--accept {
             color: var(--btn-primary-text);
-            background-color: var(--btn-primary-outline-bg);
+            background-color: var(--btn-primary-bg);
 
             &:hover {
-                background-color: var(--btn-primary-outline-bg-hover, var(--btn-primary-outline-bg));
+                background-color: var(--btn-primary-bg-hover);
             }
         }
 
