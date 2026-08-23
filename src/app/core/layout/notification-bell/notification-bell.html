@@ -24,7 +24,7 @@
             emptyMessage="No pending invitations"
             (close)="closePanel()"
         >
-            <ul class="notification-bell__list" role="list">
+            <ul class="notification-bell__list">
                 @for (invitation of pendingInvitations(); track invitation._id) {
                     <li>
                         <app-invitation-card [invitation]="invitation" />
