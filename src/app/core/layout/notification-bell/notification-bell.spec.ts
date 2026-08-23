@@ -164,15 +164,48 @@ describe('NotificationBellComponent', () => {
   describe('invitation list rendering', () => {
 
     it('should render one card per pending invitation', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+        buildInvitation(InvitationStatus.Pending),
+        buildInvitation(InvitationStatus.Accepted),
+      ]);
+      fixture.detectChanges();
 
+      const button = fixture.nativeElement.querySelector('button.notification-bell');
+      button.click();
+      fixture.detectChanges();
+
+      const cards = fixture.nativeElement.querySelectorAll('app-invitation-card');
+      expect(cards.length).toBe(2);
     });
 
     it('should not render accepted or declined invitations', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Accepted),
+        buildInvitation(InvitationStatus.Declined),
+      ]);
+      fixture.detectChanges();
 
+      const button = fixture.nativeElement.querySelector('button.notification-bell');
+      button.click();
+      fixture.detectChanges();
+
+      const cards = fixture.nativeElement.querySelectorAll('app-invitation-card');
+      expect(cards.length).toBe(0);
     });
 
     it('should show the dropdown empty state when there are no pending invitations', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Accepted),
+      ]);
+      fixture.detectChanges();
 
+      const button = fixture.nativeElement.querySelector('button.notification-bell');
+      button.click();
+      fixture.detectChanges();
+
+      const emptyMessage = fixture.nativeElement.querySelector('.notification-dropdown__empty');
+      expect(emptyMessage.textContent.trim()).toBe('No pending invitations');
     });
 
   });
