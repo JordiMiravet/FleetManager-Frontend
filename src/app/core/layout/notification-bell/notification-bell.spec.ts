@@ -161,4 +161,20 @@ describe('NotificationBellComponent', () => {
 
   });
 
+  describe('invitation list rendering', () => {
+
+    it('should render one card per pending invitation', () => {
+
+    });
+
+    it('should not render accepted or declined invitations', () => {
+
+    });
+
+    it('should show the dropdown empty state when there are no pending invitations', () => {
+
+    });
+
+  });
+
 });
