@@ -171,8 +171,7 @@ describe('NotificationBellComponent', () => {
       ]);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('button.notification-bell');
-      button.click();
+      getButton().click();
       fixture.detectChanges();
 
       const cards = fixture.nativeElement.querySelectorAll('app-invitation-card');
@@ -186,8 +185,7 @@ describe('NotificationBellComponent', () => {
       ]);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('button.notification-bell');
-      button.click();
+      getButton().click();
       fixture.detectChanges();
 
       const cards = fixture.nativeElement.querySelectorAll('app-invitation-card');
@@ -200,8 +198,7 @@ describe('NotificationBellComponent', () => {
       ]);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('button.notification-bell');
-      button.click();
+      getButton().click();
       fixture.detectChanges();
 
       const emptyMessage = fixture.nativeElement.querySelector('.notification-dropdown__empty');
