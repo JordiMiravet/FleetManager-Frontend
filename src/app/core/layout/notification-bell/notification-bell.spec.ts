@@ -176,7 +176,7 @@ describe('NotificationBellComponent', () => {
       getButton().click();
       fixture.detectChanges();
 
-      expect(getCards()?.length).toHaveSize(2);
+      expect(getCards()).toHaveSize(2);
     });
 
     it('should not render accepted or declined invitations', () => {
@@ -189,7 +189,7 @@ describe('NotificationBellComponent', () => {
       getButton().click();
       fixture.detectChanges();
 
-      expect(getCards()?.length).toHaveSize(0);
+      expect(getCards()).toHaveSize(0);
     });
 
     it('should show the dropdown empty state when there are no pending invitations', () => {
