@@ -31,4 +31,7 @@ export class NotificationBellComponent {
     this.isPanelOpen.set(false);
   }
 
+  acceptInvitation(id: string): void {
+    this.invitationService.acceptInvitation(id);
+  }
 }
