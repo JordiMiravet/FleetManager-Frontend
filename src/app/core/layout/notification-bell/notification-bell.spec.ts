@@ -216,15 +216,13 @@ describe('NotificationBellComponent', () => {
       ]);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('button.notification-bell');
-      button.click();
+      getButton().click();
       fixture.detectChanges();
 
       spyOn(invitationService, 'acceptInvitation').and.callThrough();
 
-      const card = fixture.nativeElement.querySelector('app-invitation-card');
-      const acceptButton = card.querySelector('.invitation-card__button--accept');
-      acceptButton.click();
+
+      acceptButton()?.click();
 
       const [pending] = invitationService.pendingInvitations();
       expect(invitationService.acceptInvitation).toHaveBeenCalledWith(pending._id);
@@ -236,13 +234,10 @@ describe('NotificationBellComponent', () => {
       ]);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('button.notification-bell');
-      button.click();
+      getButton().click();
       fixture.detectChanges();
 
-      const card = fixture.nativeElement.querySelector('app-invitation-card');
-      const acceptButton = card.querySelector('.invitation-card__button--accept');
-      acceptButton.click();
+      acceptButton()?.click();
       fixture.detectChanges();
 
       const cards = fixture.nativeElement.querySelectorAll('app-invitation-card');
@@ -255,17 +250,13 @@ describe('NotificationBellComponent', () => {
       ]);
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('button.notification-bell');
-      button.click();
+      getButton().click();
       fixture.detectChanges();
 
-      const card = fixture.nativeElement.querySelector('app-invitation-card');
-      const acceptButton = card.querySelector('.invitation-card__button--accept');
-      acceptButton.click();
+      acceptButton()?.click();
       fixture.detectChanges();
 
-      const badge = fixture.nativeElement.querySelector('.notification-bell__badge');
-      expect(badge).toBeNull();
+      expect(getBadge()).toBeNull();
     });
 
   });
