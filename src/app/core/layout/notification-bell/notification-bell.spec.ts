@@ -24,7 +24,7 @@ describe('NotificationBellComponent', () => {
     invitedAt: '2026-08-10',
   });
 
-  const acceptButton = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--accept');
+  const getAcceptButton = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--accept');
 
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button.notification-bell');
   const getBadge = (): HTMLElement | null => fixture.nativeElement.querySelector('.notification-bell__badge');
@@ -222,7 +222,7 @@ describe('NotificationBellComponent', () => {
       spyOn(invitationService, 'acceptInvitation').and.callThrough();
 
       const [pending] = invitationService.pendingInvitations();
-      acceptButton()?.click();
+      getAcceptButton()?.click();
 
       expect(invitationService.acceptInvitation).toHaveBeenCalledWith(pending._id);
     });
@@ -236,7 +236,7 @@ describe('NotificationBellComponent', () => {
       getButton().click();
       fixture.detectChanges();
 
-      acceptButton()?.click();
+      getAcceptButton()?.click();
       fixture.detectChanges();
 
       expect(getCards().length).toHaveSize(0);
@@ -251,7 +251,7 @@ describe('NotificationBellComponent', () => {
       getButton().click();
       fixture.detectChanges();
 
-      acceptButton()?.click();
+      getAcceptButton()?.click();
       fixture.detectChanges();
 
       expect(getBadge()).toBeNull();
