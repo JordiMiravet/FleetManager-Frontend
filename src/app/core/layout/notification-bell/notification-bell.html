@@ -27,7 +27,10 @@
             <ul class="notification-bell__list">
                 @for (invitation of pendingInvitations(); track invitation._id) {
                     <li>
-                        <app-invitation-card [invitation]="invitation" />
+                        <app-invitation-card 
+                            [invitation]="invitation" 
+                            (accept)="acceptInvitation($event)"
+                        />
                     </li>
                 }
             </ul>
