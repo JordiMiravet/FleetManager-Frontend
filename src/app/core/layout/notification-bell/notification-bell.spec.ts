@@ -209,15 +209,61 @@ describe('NotificationBellComponent', () => {
   describe('accepting an invitation', () => {
 
     it('should call acceptInvitation on the service when a card emits accept', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
 
+      const button = fixture.nativeElement.querySelector('button.notification-bell');
+      button.click();
+      fixture.detectChanges();
+
+      spyOn(invitationService, 'acceptInvitation').and.callThrough();
+
+      const card = fixture.nativeElement.querySelector('app-invitation-card');
+      const acceptButton = card.querySelector('.invitation-card__button--accept');
+      acceptButton.click();
+
+      const [pending] = invitationService.pendingInvitations();
+      expect(invitationService.acceptInvitation).toHaveBeenCalledWith(pending._id);
     });
 
     it('should remove the invitation from the rendered list after accepting', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
 
+      const button = fixture.nativeElement.querySelector('button.notification-bell');
+      button.click();
+      fixture.detectChanges();
+
+      const card = fixture.nativeElement.querySelector('app-invitation-card');
+      const acceptButton = card.querySelector('.invitation-card__button--accept');
+      acceptButton.click();
+      fixture.detectChanges();
+
+      const cards = fixture.nativeElement.querySelectorAll('app-invitation-card');
+      expect(cards.length).toBe(0);
     });
 
     it('should update the badge count after accepting', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
 
+      const button = fixture.nativeElement.querySelector('button.notification-bell');
+      button.click();
+      fixture.detectChanges();
+
+      const card = fixture.nativeElement.querySelector('app-invitation-card');
+      const acceptButton = card.querySelector('.invitation-card__button--accept');
+      acceptButton.click();
+      fixture.detectChanges();
+
+      const badge = fixture.nativeElement.querySelector('.notification-bell__badge');
+      expect(badge).toBeNull();
     });
 
   });
