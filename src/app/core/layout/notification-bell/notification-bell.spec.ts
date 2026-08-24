@@ -40,15 +40,15 @@ describe('NotificationBellComponent', () => {
     fixture = TestBed.createComponent(NotificationBellComponent);
     component = fixture.componentInstance;
     invitationService = TestBed.inject(InvitationService);
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {
-    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
   it('should render a bell icon', () => {
-    fixture.detectChanges();
     const icon = fixture.nativeElement.querySelector('i.pi-bell');
 
     expect(icon).not.toBeNull();
@@ -116,14 +116,10 @@ describe('NotificationBellComponent', () => {
   describe('panel toggle', () => {
 
     it('should not render the dropdown by default', () => {
-      fixture.detectChanges();
-
       expect(getDropdown()).toBeNull();
     });
 
     it('should render the dropdown after clicking the bell', () => {
-      fixture.detectChanges();
-
       getButton().click();
       fixture.detectChanges();
 
@@ -131,8 +127,6 @@ describe('NotificationBellComponent', () => {
     });
 
     it('should close the dropdown when clicking the bell again', () => {
-      fixture.detectChanges();
-
       getButton().click();
       fixture.detectChanges();
       getButton().click();
@@ -142,7 +136,6 @@ describe('NotificationBellComponent', () => {
     });
 
     it('should close the dropdown when it emits close', () => {
-      fixture.detectChanges();
       component.isPanelOpen.set(true);
       fixture.detectChanges();
 
@@ -153,8 +146,6 @@ describe('NotificationBellComponent', () => {
     });
 
     it('should set aria-expanded based on panel state', () => {
-      fixture.detectChanges();
-
       expect(getButton().getAttribute('aria-expanded')).toBe('false');
 
       getButton().click();
