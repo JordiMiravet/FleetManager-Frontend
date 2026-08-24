@@ -244,7 +244,7 @@ describe('NotificationBellComponent', () => {
       fixture.detectChanges();
 
       const cards = fixture.nativeElement.querySelectorAll('app-invitation-card');
-      expect(cards.length).toBe(0);
+      expect(cards.length).toHaveSize(0);
     });
 
     it('should update the badge count after accepting', () => {
