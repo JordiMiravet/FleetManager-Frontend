@@ -221,10 +221,9 @@ describe('NotificationBellComponent', () => {
 
       spyOn(invitationService, 'acceptInvitation').and.callThrough();
 
-
+      const [pending] = invitationService.pendingInvitations();
       acceptButton()?.click();
 
-      const [pending] = invitationService.pendingInvitations();
       expect(invitationService.acceptInvitation).toHaveBeenCalledWith(pending._id);
     });
 
