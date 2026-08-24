@@ -206,4 +206,20 @@ describe('NotificationBellComponent', () => {
 
   });
 
+  describe('accepting an invitation', () => {
+
+    it('should call acceptInvitation on the service when a card emits accept', () => {
+
+    });
+
+    it('should remove the invitation from the rendered list after accepting', () => {
+
+    });
+
+    it('should update the badge count after accepting', () => {
+
+    });
+
+  });
+
 });
