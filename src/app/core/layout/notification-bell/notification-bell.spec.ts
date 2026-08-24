@@ -24,6 +24,8 @@ describe('NotificationBellComponent', () => {
     invitedAt: '2026-08-10',
   });
 
+  const getAcceptButton = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--accept');
+
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button.notification-bell');
   const getBadge = (): HTMLElement | null => fixture.nativeElement.querySelector('.notification-bell__badge');
   const getDropdown = (): HTMLElement | null => fixture.nativeElement.querySelector('app-notification-dropdown');
@@ -38,15 +40,15 @@ describe('NotificationBellComponent', () => {
     fixture = TestBed.createComponent(NotificationBellComponent);
     component = fixture.componentInstance;
     invitationService = TestBed.inject(InvitationService);
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {
-    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
   it('should render a bell icon', () => {
-    fixture.detectChanges();
     const icon = fixture.nativeElement.querySelector('i.pi-bell');
 
     expect(icon).not.toBeNull();
@@ -114,14 +116,10 @@ describe('NotificationBellComponent', () => {
   describe('panel toggle', () => {
 
     it('should not render the dropdown by default', () => {
-      fixture.detectChanges();
-
       expect(getDropdown()).toBeNull();
     });
 
     it('should render the dropdown after clicking the bell', () => {
-      fixture.detectChanges();
-
       getButton().click();
       fixture.detectChanges();
 
@@ -129,8 +127,6 @@ describe('NotificationBellComponent', () => {
     });
 
     it('should close the dropdown when clicking the bell again', () => {
-      fixture.detectChanges();
-
       getButton().click();
       fixture.detectChanges();
       getButton().click();
@@ -140,7 +136,6 @@ describe('NotificationBellComponent', () => {
     });
 
     it('should close the dropdown when it emits close', () => {
-      fixture.detectChanges();
       component.isPanelOpen.set(true);
       fixture.detectChanges();
 
@@ -151,8 +146,6 @@ describe('NotificationBellComponent', () => {
     });
 
     it('should set aria-expanded based on panel state', () => {
-      fixture.detectChanges();
-
       expect(getButton().getAttribute('aria-expanded')).toBe('false');
 
       getButton().click();
@@ -202,6 +195,57 @@ describe('NotificationBellComponent', () => {
       fixture.detectChanges();
 
       expect(getEmptyMessage()?.textContent?.trim()).toBe('No pending invitations');
+    });
+
+  });
+
+  describe('accepting an invitation', () => {
+
+    it('should call acceptInvitation on the service when a card emits accept', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
+
+      getButton().click();
+      fixture.detectChanges();
+
+      spyOn(invitationService, 'acceptInvitation').and.callThrough();
+
+      const [pending] = invitationService.pendingInvitations();
+      getAcceptButton()?.click();
+
+      expect(invitationService.acceptInvitation).toHaveBeenCalledWith(pending._id);
+    });
+
+    it('should remove the invitation from the rendered list after accepting', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
+
+      getButton().click();
+      fixture.detectChanges();
+
+      getAcceptButton()?.click();
+      fixture.detectChanges();
+
+      expect(getCards().length).toHaveSize(0);
+    });
+
+    it('should update the badge count after accepting', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
+
+      getButton().click();
+      fixture.detectChanges();
+
+      getAcceptButton()?.click();
+      fixture.detectChanges();
+
+      expect(getBadge()).toBeNull();
     });
 
   });
