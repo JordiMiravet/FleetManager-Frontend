@@ -34,4 +34,9 @@ export class NotificationBellComponent {
   acceptInvitation(id: string): void {
     this.invitationService.acceptInvitation(id);
   }
+
+  declineInvitation(id: string): void {
+    this.invitationService.declineInvitation(id);
+  }
+
 }
