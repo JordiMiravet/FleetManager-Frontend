@@ -264,9 +264,9 @@ describe('NotificationBellComponent', () => {
 
       spyOn(invitationService, 'declineInvitation').and.callThrough();
 
+      const [pending] = invitationService.pendingInvitations();
       getDeclineButton()?.click();
 
-      const [pending] = invitationService.pendingInvitations();
       expect(invitationService.declineInvitation).toHaveBeenCalledWith(pending._id);
     });
 
