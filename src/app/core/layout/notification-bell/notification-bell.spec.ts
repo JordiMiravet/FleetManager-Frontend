@@ -25,6 +25,7 @@ describe('NotificationBellComponent', () => {
   });
 
   const getAcceptButton = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--accept');
+  const getDeclineButton = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--decline');
 
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button.notification-bell');
   const getBadge = (): HTMLElement | null => fixture.nativeElement.querySelector('.notification-bell__badge');
@@ -246,6 +247,72 @@ describe('NotificationBellComponent', () => {
       fixture.detectChanges();
 
       expect(getBadge()).toBeNull();
+    });
+
+  });
+
+  describe('declining an invitation', () => {
+
+    it('should call declineInvitation on the service when a card emits decline', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
+
+      getButton().click();
+      fixture.detectChanges();
+
+      spyOn(invitationService, 'declineInvitation').and.callThrough();
+
+      const [pending] = invitationService.pendingInvitations();
+      getDeclineButton()?.click();
+
+      expect(invitationService.declineInvitation).toHaveBeenCalledWith(pending._id);
+    });
+
+    it('should remove the invitation from the rendered list after declining', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
+
+      getButton().click();
+      fixture.detectChanges();
+
+      getDeclineButton()?.click();
+      fixture.detectChanges();
+
+      expect(getCards().length).toHaveSize(0);
+    });
+
+    it('should update the badge count after declining', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
+
+      getButton().click();
+      fixture.detectChanges();
+
+      getDeclineButton()?.click();
+      fixture.detectChanges();
+
+      expect(getBadge()).toBeNull();
+    });
+
+    it('should not have changed the invitation status to accepted', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
+
+      getButton().click();
+      fixture.detectChanges();
+
+      const [pending] = invitationService.pendingInvitations();
+      getDeclineButton()?.click();
+
+      expect(invitationService.acceptedInvitations().some(i => i._id === pending._id)).toBeFalse();
     });
 
   });

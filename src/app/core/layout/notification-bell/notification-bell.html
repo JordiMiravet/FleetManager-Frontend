@@ -30,6 +30,7 @@
                         <app-invitation-card 
                             [invitation]="invitation" 
                             (accept)="acceptInvitation($event)"
+                            (decline)="declineInvitation($event)"
                         />
                     </li>
                 }
