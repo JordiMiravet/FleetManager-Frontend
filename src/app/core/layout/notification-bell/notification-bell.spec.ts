@@ -282,8 +282,7 @@ describe('NotificationBellComponent', () => {
       getDeclineButton()?.click();
       fixture.detectChanges();
 
-      const cards = fixture.nativeElement.querySelectorAll('app-invitation-card');
-      expect(cards.length).toBe(0);
+      expect(getCards().length).toHaveSize(0);
     });
 
     it('should update the badge count after declining', () => {
