@@ -253,19 +253,79 @@ describe('NotificationBellComponent', () => {
   describe('declining an invitation', () => {
 
     it('should call declineInvitation on the service when a card emits decline', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
 
+      const button = fixture.nativeElement.querySelector('button.notification-bell');
+      button.click();
+      fixture.detectChanges();
+
+      spyOn(invitationService, 'declineInvitation').and.callThrough();
+
+      const card = fixture.nativeElement.querySelector('app-invitation-card');
+      const declineButton = card.querySelector('.invitation-card__button--decline');
+      declineButton.click();
+
+      const [pending] = invitationService.pendingInvitations();
+      expect(invitationService.declineInvitation).toHaveBeenCalledWith(pending._id);
     });
 
     it('should remove the invitation from the rendered list after declining', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
 
+      const button = fixture.nativeElement.querySelector('button.notification-bell');
+      button.click();
+      fixture.detectChanges();
+
+      const card = fixture.nativeElement.querySelector('app-invitation-card');
+      const declineButton = card.querySelector('.invitation-card__button--decline');
+      declineButton.click();
+      fixture.detectChanges();
+
+      const cards = fixture.nativeElement.querySelectorAll('app-invitation-card');
+      expect(cards.length).toBe(0);
     });
 
     it('should update the badge count after declining', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
 
+      const button = fixture.nativeElement.querySelector('button.notification-bell');
+      button.click();
+      fixture.detectChanges();
+
+      const card = fixture.nativeElement.querySelector('app-invitation-card');
+      const declineButton = card.querySelector('.invitation-card__button--decline');
+      declineButton.click();
+      fixture.detectChanges();
+
+      const badge = fixture.nativeElement.querySelector('.notification-bell__badge');
+      expect(badge).toBeNull();
     });
 
     it('should not have changed the invitation status to accepted', () => {
+      (invitationService as any)._invitations.set([
+        buildInvitation(InvitationStatus.Pending),
+      ]);
+      fixture.detectChanges();
 
+      const button = fixture.nativeElement.querySelector('button.notification-bell');
+      button.click();
+      fixture.detectChanges();
+
+      const [pending] = invitationService.pendingInvitations();
+      const card = fixture.nativeElement.querySelector('app-invitation-card');
+      const declineButton = card.querySelector('.invitation-card__button--decline');
+      declineButton.click();
+
+      expect(invitationService.acceptedInvitations().some(i => i._id === pending._id)).toBeFalse();
     });
 
   });
