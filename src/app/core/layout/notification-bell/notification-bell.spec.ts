@@ -264,9 +264,7 @@ describe('NotificationBellComponent', () => {
 
       spyOn(invitationService, 'declineInvitation').and.callThrough();
 
-      const card = fixture.nativeElement.querySelector('app-invitation-card');
-      const declineButton = card.querySelector('.invitation-card__button--decline');
-      declineButton.click();
+      declineButton()?.click();
 
       const [pending] = invitationService.pendingInvitations();
       expect(invitationService.declineInvitation).toHaveBeenCalledWith(pending._id);
@@ -281,9 +279,7 @@ describe('NotificationBellComponent', () => {
       getButton().click();
       fixture.detectChanges();
 
-      const card = fixture.nativeElement.querySelector('app-invitation-card');
-      const declineButton = card.querySelector('.invitation-card__button--decline');
-      declineButton.click();
+      declineButton()?.click();
       fixture.detectChanges();
 
       const cards = fixture.nativeElement.querySelectorAll('app-invitation-card');
@@ -299,9 +295,7 @@ describe('NotificationBellComponent', () => {
       getButton().click();
       fixture.detectChanges();
 
-      const card = fixture.nativeElement.querySelector('app-invitation-card');
-      const declineButton = card.querySelector('.invitation-card__button--decline');
-      declineButton.click();
+      declineButton()?.click();
       fixture.detectChanges();
 
       expect(getBadge()).toBeNull();
@@ -317,9 +311,7 @@ describe('NotificationBellComponent', () => {
       fixture.detectChanges();
 
       const [pending] = invitationService.pendingInvitations();
-      const card = fixture.nativeElement.querySelector('app-invitation-card');
-      const declineButton = card.querySelector('.invitation-card__button--decline');
-      declineButton.click();
+      declineButton()?.click();
 
       expect(invitationService.acceptedInvitations().some(i => i._id === pending._id)).toBeFalse();
     });
