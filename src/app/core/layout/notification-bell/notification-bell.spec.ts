@@ -250,4 +250,24 @@ describe('NotificationBellComponent', () => {
 
   });
 
+  describe('declining an invitation', () => {
+
+    it('should call declineInvitation on the service when a card emits decline', () => {
+
+    });
+
+    it('should remove the invitation from the rendered list after declining', () => {
+
+    });
+
+    it('should update the badge count after declining', () => {
+
+    });
+
+    it('should not have changed the invitation status to accepted', () => {
+
+    });
+
+  });
+
 });
