@@ -25,6 +25,7 @@ describe('NotificationBellComponent', () => {
   });
 
   const getAcceptButton = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--accept');
+  const declineButton = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--decline');
 
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button.notification-bell');
   const getBadge = (): HTMLElement | null => fixture.nativeElement.querySelector('.notification-bell__badge');
