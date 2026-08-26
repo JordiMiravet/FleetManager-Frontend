@@ -9,6 +9,7 @@ import { VehicleInterface } from '../../models/vehicle';
 import { VehicleModalService } from '../../state/vehicle-modal-service';
 import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';
 import { VehicleModalState } from '../../enums/vehicle-modal-state.enum';
+import { VehicleAccessService } from '../../../../core/services/vehicle-access/vehicle-access-service';
 
 const authMock = {
   isLoggedIn: jasmine.createSpy('isLoggedIn').and.returnValue(true),
@@ -16,6 +17,10 @@ const authMock = {
   currentUser: { 
     uid: 'JordiTheBest' 
   } as { uid: string } | null
+};
+
+const vehicleAccessServiceMock = {
+  visibleVehicles: signal<VehicleInterface[]>([])
 };
 
 const vehicleServiceMock = {
@@ -68,6 +73,7 @@ describe('VehicleViewComponent', () => {
     vehicleServiceMock.deleteVehicle.calls.reset();
     vehicleServiceMock.addUserToVehicle.calls.reset();
     vehicleServiceMock.removeUserFromVehicle.calls.reset();
+    vehicleAccessServiceMock.visibleVehicles.set([]);
     VehicleModalServiceMock.openCreate.calls.reset();
     VehicleModalServiceMock.close.calls.reset();
     VehicleModalServiceMock.openConfirmDelete.calls.reset();
@@ -87,6 +93,7 @@ describe('VehicleViewComponent', () => {
         { provide: VehicleService, useValue: vehicleServiceMock },
         { provide: VehicleModalService, useValue: VehicleModalServiceMock },
         { provide: GeolocationService, useValue: geolocationServiceMock },
+        { provide: VehicleAccessService, useValue: vehicleAccessServiceMock },
       ]
     }).compileComponents();
 
@@ -105,8 +112,11 @@ describe('VehicleViewComponent', () => {
 
   describe('Initial state', () => {
 
-    it('should expose the vehicle list from VehicleService', () => {
-      expect(component.vehicleList).toBe(vehicleServiceMock.vehicles);
+    it('should expose the vehicle list from VehicleAccessService', () => {
+      const vehicles = [vehicleMock];
+      vehicleAccessServiceMock.visibleVehicles.set(vehicles);
+
+      expect(component.vehicleList()).toEqual(vehicleAccessServiceMock.visibleVehicles());
     });
 
     it('should call loadVehicles on init', () => {
@@ -249,7 +259,7 @@ describe('VehicleViewComponent', () => {
   describe('Template rendering', () => {
 
     it('should render vehicle table when vehicle list is not empty', () => {
-      vehicleServiceMock.vehicles.set([
+      vehicleAccessServiceMock.visibleVehicles.set([
         { name: 'Lamborghini', model: 'Aventador', plate: 'LMB2026' },
         { name: 'Ferrari', model: 'F8 Tributo', plate: 'F8X2019' }
       ]);
@@ -261,7 +271,7 @@ describe('VehicleViewComponent', () => {
     });
 
     it('should render empty state when vehicle list is empty', () => {
-      vehicleServiceMock.vehicles.set([]);
+      vehicleAccessServiceMock.visibleVehicles.set([]);
       fixture.detectChanges();
 
       const emptyStateElement = fixture.nativeElement.querySelector('app-vehicle-empty-state');
@@ -307,7 +317,7 @@ describe('VehicleViewComponent', () => {
   describe('Filter vehicles', () => {
 
     beforeEach(() => {
-      vehicleServiceMock.vehicles.set([
+      vehicleAccessServiceMock.visibleVehicles.set([
         { _id: '1', name: 'Ferrari', model: 'F8', plate: '12345XC' },
         { _id: '2', name: 'Lamborghini', model: 'Aventador', plate: 'LMB2026' },
         { _id: '3', name: 'Pagani', model: 'Huayra', plate: 'PAG0001' }
@@ -326,7 +336,7 @@ describe('VehicleViewComponent', () => {
       component.onFilterChange({ query: 'ferrari', sortField: 'name', sortDir: 'asc' });
 
       const result = component.filteredVehicles();
-      expect(result).toHaveSize(1); 
+      expect(result).toHaveSize(1);
       expect(result[0].name).toBe('Ferrari');
     });
 
@@ -358,6 +368,7 @@ describe('VehicleViewComponent', () => {
 
       const result = component.filteredVehicles();
       expect(result[0].name).toBe('Ferrari');
+      expect(result[1].name).toBe('Lamborghini');
       expect(result[2].name).toBe('Pagani');
     });
 
@@ -461,7 +472,7 @@ describe('VehicleViewComponent', () => {
 
     it('should update selectedVehicle when removed user is not current user', () => {
       const updatedVehicle: VehicleInterface = { ...vehicleMock, name: 'Ferrari Updated' };
-      vehicleServiceMock.vehicles.set([updatedVehicle]);
+      vehicleAccessServiceMock.visibleVehicles.set([updatedVehicle]);
       vehicleServiceMock.removeUserFromVehicle.and.returnValue({ subscribe: ({ next }: any) => next() });
       authMock.currentUser = { uid: 'someone-else' };
 
