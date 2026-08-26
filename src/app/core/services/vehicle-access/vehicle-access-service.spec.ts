@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { VehicleAccessService } from './vehicle-access-service';
+
 import { VehicleService } from '../../../features/vehicle/data-access/vehicle-service';
 import { InvitationService } from '../../../features/invitations/data-access/invitation-service';
 import { InvitationStatus } from '../../../features/invitations/enums/invitation-status.enum';
@@ -43,15 +44,18 @@ describe('VehicleAccessService', () => {
   });
 
   describe('when vehicles have no invitation', () => {
+
     it('should show vehicles without any associated invitation', () => {
       vehicleService.vehicles.set([buildVehicle('1')]);
       (invitationService as any)._invitations.set([]);
 
       expect(service.visibleVehicles()).toEqual([buildVehicle('1')]);
     });
+
   });
 
   describe('when vehicles have an invitation', () => {
+
     it('should show vehicles with an accepted invitation', () => {
       vehicleService.vehicles.set([buildVehicle('1')]);
       (invitationService as any)._invitations.set([
@@ -78,9 +82,11 @@ describe('VehicleAccessService', () => {
 
       expect(service.visibleVehicles()).toEqual([]);
     });
+
   });
 
   describe('when vehicles have mixed access states', () => {
+
     it('should handle a mix of owned, accepted, pending and declined vehicles', () => {
       vehicleService.vehicles.set([
         buildVehicle('1'),
@@ -97,9 +103,11 @@ describe('VehicleAccessService', () => {
       const result = service.visibleVehicles().map(v => v._id);
       expect(result).toEqual(['1', '2']);
     });
+
   });
 
   describe('when an invitation changes', () => {
+
     it('should update reactively when an invitation is accepted', () => {
       vehicleService.vehicles.set([buildVehicle('1')]);
       (invitationService as any)._invitations.set([
@@ -113,7 +121,7 @@ describe('VehicleAccessService', () => {
 
       expect(service.visibleVehicles()).toEqual([buildVehicle('1')]);
     });
-  });
 
+  });
 
 });
