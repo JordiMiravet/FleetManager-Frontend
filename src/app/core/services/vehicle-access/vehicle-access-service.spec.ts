@@ -15,11 +15,11 @@ describe('VehicleAccessService', () => {
   let vehicleService: VehicleService;
   let invitationService: InvitationService;
 
-  let authMock: {
+  const authMock = {
     currentUser: {
-      uid: string;
-      getIdToken: () => Promise<string>;
-    } | null;
+      uid: 'test-user',
+      getIdToken: () => Promise.resolve('MyToken'),
+    },
   };
 
   const buildVehicle = (id: string): VehicleInterface => ({
@@ -41,13 +41,6 @@ describe('VehicleAccessService', () => {
   });
   
   beforeEach(() => {
-    authMock = {
-      currentUser: {
-        uid: 'JordiTheBest',
-        getIdToken: () => Promise.resolve('MyToken'),
-      },
-    };
-
     TestBed.configureTestingModule({
       providers: [
         provideHttpClient(),
