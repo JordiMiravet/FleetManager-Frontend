@@ -51,5 +51,18 @@ describe('VehicleAccessService', () => {
     });
   });
 
+  describe('when vehicles have an invitation', () => {
+    it('should show vehicles with an accepted invitation', () => {
+
+    });
+
+    it('should hide vehicles with a pending invitation', () => {
+
+    });
+
+    it('should hide vehicles with a declined invitation', () => {
+
+    });
+  });
 
 });
