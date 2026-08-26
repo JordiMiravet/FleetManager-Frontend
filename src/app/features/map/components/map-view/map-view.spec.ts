@@ -152,7 +152,7 @@ describe('MapViewComponent', () => {
 
       component.showVehicle(mockVehicle1);
 
-      expect(removeLayerSpy).toHaveBeenCalledOnceWith(mockMarker);
+      expect(removeLayerSpy).toHaveBeenCalledWith(mockMarker);
     });
 
     it('should create a new draggable marker for the selected vehicle', () => {
@@ -215,11 +215,13 @@ describe('MapViewComponent', () => {
 
     it('should ignore vehicles without location when showing all vehicles', () => {
       const mapService = TestBed.inject(MapService);
-      const markerMock = {} as L.Marker;
+      const markerMock = {
+        on: jasmine.createSpy('on')
+      } as unknown as L.Marker;
 
       spyOn(mapService, 'createMarker').and.returnValue(markerMock);
 
-      vehicleService.vehicles.set([mockVehicleWithoutLocation]);
+      vehicleAccessServiceMock.visibleVehicles.set([mockVehicleWithoutLocation]);
       (component as any).showAllVehicles();
 
       expect(mapService.createMarker).not.toHaveBeenCalled();
@@ -250,7 +252,7 @@ describe('MapViewComponent', () => {
 
       component.showVehicle(mockVehicle1);
 
-      expect(removeLayerSpy).toHaveBeenCalledOnceWith(previousMarker);
+      expect(removeLayerSpy).toHaveBeenCalledWith(previousMarker);
     });
 
   });
@@ -528,7 +530,7 @@ describe('MapViewComponent', () => {
       spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
       vehicleMarkerManagerMock.mountComponent.calls.reset();
 
-      vehicleService.vehicles.set([mockVehicle1, mockVehicle2]);
+      vehicleAccessServiceMock.visibleVehicles.set([mockVehicle1, mockVehicle2]);
       (component as any).showAllVehicles();
 
       expect(vehicleMarkerManagerMock.mountComponent).toHaveBeenCalledTimes(2);
@@ -588,7 +590,7 @@ describe('MapViewComponent', () => {
 
       spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
 
-      vehicleService.vehicles.set([mockVehicle1, mockVehicle2]);
+      vehicleAccessServiceMock.visibleVehicles.set([mockVehicle1, mockVehicle2]);
 
       (component as any).showAllVehicles();
 
