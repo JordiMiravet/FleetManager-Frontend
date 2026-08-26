@@ -7,11 +7,20 @@ import { InvitationService } from '../../../features/invitations/data-access/inv
 import { InvitationStatus } from '../../../features/invitations/enums/invitation-status.enum';
 import { VehicleInterface } from '../../../features/vehicle/models/vehicle';
 import { VehicleInvitation } from '../../../features/invitations/models/invitation';
+import { provideHttpClient } from '@angular/common/http';
+import { Auth } from '@angular/fire/auth';
 
 describe('VehicleAccessService', () => {
   let service: VehicleAccessService;
   let vehicleService: VehicleService;
   let invitationService: InvitationService;
+
+  let authMock: {
+    currentUser: {
+      uid: string;
+      getIdToken: () => Promise<string>;
+    } | null;
+  };
 
   const buildVehicle = (id: string): VehicleInterface => ({
     _id: id,
@@ -32,7 +41,19 @@ describe('VehicleAccessService', () => {
   });
   
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    authMock = {
+      currentUser: {
+        uid: 'JordiTheBest',
+        getIdToken: () => Promise.resolve('MyToken'),
+      },
+    };
+
+    TestBed.configureTestingModule({
+      providers: [
+        provideHttpClient(),
+        { provide: Auth, useValue: authMock },
+      ]
+    });
 
     service = TestBed.inject(VehicleAccessService);
     vehicleService = TestBed.inject(VehicleService);
