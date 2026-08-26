@@ -10,6 +10,7 @@ import { DetailsPanelComponent } from "../details-panel/details-panel";
 import { ConfirmModalComponent } from "../../../../shared/ui/modals/confirm-modal/confirm-modal";
 import { MapMessagesService } from '../../i18n/map-messages';
 import { VehicleMarkerManager } from '../../data-access/vehicle-marker-manager';
+import { VehicleAccessService } from '../../../../core/services/vehicle-access/vehicle-access-service';
 
 @Component({
   selector: 'app-map-view',
@@ -27,11 +28,12 @@ export class MapViewComponent implements OnInit, OnDestroy {
   private readonly mapService = inject(MapService);
   private readonly geo = inject(GeolocationService);
   private readonly vehicleService = inject(VehicleService);
+  private readonly vehicleAccessService = inject(VehicleAccessService);
   private readonly messagesService = inject(MapMessagesService);
   private readonly vehicleMarkerManager = inject(VehicleMarkerManager);
   private readonly viewContainerRef = inject(ViewContainerRef);
 
-  public readonly vehicles = this.vehicleService.vehicles;
+  public readonly vehicles = this.vehicleAccessService.visibleVehicles;
 
   public readonly selectedVehicle = signal<VehicleInterface | null>(null);
   public readonly newPosition = signal<L.LatLng | null>(null);
