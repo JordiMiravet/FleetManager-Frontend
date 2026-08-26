@@ -53,15 +53,30 @@ describe('VehicleAccessService', () => {
 
   describe('when vehicles have an invitation', () => {
     it('should show vehicles with an accepted invitation', () => {
+      vehicleService.vehicles.set([buildVehicle('1')]);
+      (invitationService as any)._invitations.set([
+        buildInvitation('1', InvitationStatus.Accepted),
+      ]);
 
+      expect(service.visibleVehicles()).toEqual([buildVehicle('1')]);
     });
 
     it('should hide vehicles with a pending invitation', () => {
+      vehicleService.vehicles.set([buildVehicle('1')]);
+      (invitationService as any)._invitations.set([
+        buildInvitation('1', InvitationStatus.Pending),
+      ]);
 
+      expect(service.visibleVehicles()).toEqual([]);
     });
 
     it('should hide vehicles with a declined invitation', () => {
+      vehicleService.vehicles.set([buildVehicle('1')]);
+      (invitationService as any)._invitations.set([
+        buildInvitation('1', InvitationStatus.Declined),
+      ]);
 
+      expect(service.visibleVehicles()).toEqual([]);
     });
   });
 
