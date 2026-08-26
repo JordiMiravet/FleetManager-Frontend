@@ -80,4 +80,12 @@ describe('VehicleAccessService', () => {
     });
   });
 
+  describe('when vehicles have mixed access states', () => {
+    it('should handle a mix of owned, accepted, pending and declined vehicles', () => {
+
+    });
+  });
+
+
+
 });
