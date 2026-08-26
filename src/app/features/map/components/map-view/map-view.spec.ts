@@ -13,12 +13,17 @@ import { GeolocationService } from '../../../../core/services/geolocation/geoloc
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { VehicleInterface } from '../../../vehicle/models/vehicle';
 import { VehicleMarkerManager } from '../../data-access/vehicle-marker-manager';
+import { VehicleAccessService } from '../../../../core/services/vehicle-access/vehicle-access-service';
 
 export const authMock = {
   currentUser: {
     uid: 'JordiTheBest',
     getIdToken: () => Promise.resolve('MyToken')
   }
+};
+
+const vehicleAccessServiceMock = {
+  visibleVehicles: signal<VehicleInterface[]>([])
 };
 
 const vehicleMarkerManagerMock = {
@@ -85,6 +90,7 @@ describe('MapViewComponent', () => {
         { provide: Auth, useValue: authMock },
         { provide: VehicleService, useValue: vehicleServiceMock },
         { provide: VehicleMarkerManager, useValue: vehicleMarkerManagerMock },
+        { provide: VehicleAccessService, useValue: vehicleAccessServiceMock },
         provideHttpClient(),
         provideHttpClientTesting(),
       ]
@@ -201,7 +207,7 @@ describe('MapViewComponent', () => {
 
       spyOn(mapService, 'createMarker').and.returnValue(markerMock);
 
-      vehicleService.vehicles.set([mockVehicle1, mockVehicle2]);
+      vehicleAccessServiceMock.visibleVehicles.set([mockVehicle1, mockVehicle2]);
       (component as any).showAllVehicles();
 
       expect(mapService.createMarker).toHaveBeenCalledTimes(2);
