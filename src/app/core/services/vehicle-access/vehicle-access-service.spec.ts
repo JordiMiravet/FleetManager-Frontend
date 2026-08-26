@@ -82,7 +82,20 @@ describe('VehicleAccessService', () => {
 
   describe('when vehicles have mixed access states', () => {
     it('should handle a mix of owned, accepted, pending and declined vehicles', () => {
+      vehicleService.vehicles.set([
+        buildVehicle('1'),
+        buildVehicle('2'),
+        buildVehicle('3'),
+        buildVehicle('4'),
+      ]);
+      (invitationService as any)._invitations.set([
+        buildInvitation('2', InvitationStatus.Accepted),
+        buildInvitation('3', InvitationStatus.Pending),
+        buildInvitation('4', InvitationStatus.Declined),
+      ]);
 
+      const result = service.visibleVehicles().map(v => v._id);
+      expect(result).toEqual(['1', '2']);
     });
   });
 
