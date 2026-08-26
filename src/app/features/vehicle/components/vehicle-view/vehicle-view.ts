@@ -4,6 +4,7 @@ import { Auth } from '@angular/fire/auth';
 import { VehicleInterface } from '../../models/vehicle';
 import { GeolocationService } from '../../../../core/services/geolocation/geolocation-service';
 import { VehicleService } from '../../data-access/vehicle-service';
+import { VehicleAccessService } from '../../../../core/services/vehicle-access/vehicle-access-service';
 import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
 
 import { VehicleModalService} from '../../state/vehicle-modal-service';
@@ -42,11 +43,12 @@ export class VehicleViewComponent implements OnInit {
   private readonly auth = inject(Auth);
   private readonly geo = inject(GeolocationService);
   private readonly vehicleService = inject(VehicleService);
+  private readonly vehicleAccessService = inject(VehicleAccessService);
   private readonly messagesService = inject(VehicleMessagesService);
 
   public modalState = inject(VehicleModalService);
 
-  public vehicleList = this.vehicleService.vehicles;
+  public vehicleList = this.vehicleAccessService.visibleVehicles;
   public selectedVehicle = signal<VehicleInterface | null>(null);
   public VehicleModalState = VehicleModalState;
 
@@ -58,7 +60,7 @@ export class VehicleViewComponent implements OnInit {
 
   public filteredVehicles = computed(() => {
     const { query, sortField, sortDir } = this.filterState();
-    let list = [...this.vehicleService.vehicles()];
+    let list = [...this.vehicleAccessService.visibleVehicles()];
 
     if (query.trim()) {
       const searchText = query.toLowerCase();
