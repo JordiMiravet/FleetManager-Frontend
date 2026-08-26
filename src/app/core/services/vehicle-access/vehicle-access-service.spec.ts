@@ -99,6 +99,11 @@ describe('VehicleAccessService', () => {
     });
   });
 
+  describe('when an invitation changes', () => {
+    it('should update reactively when an invitation is accepted', () => {
+
+    });
+  });
 
 
 });
