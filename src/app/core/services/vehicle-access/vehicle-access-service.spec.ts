@@ -101,7 +101,17 @@ describe('VehicleAccessService', () => {
 
   describe('when an invitation changes', () => {
     it('should update reactively when an invitation is accepted', () => {
+      vehicleService.vehicles.set([buildVehicle('1')]);
+      (invitationService as any)._invitations.set([
+        buildInvitation('1', InvitationStatus.Pending),
+      ]);
 
+      expect(service.visibleVehicles()).toEqual([]);
+
+      const [invitation] = invitationService.invitations();
+      invitationService.acceptInvitation(invitation._id);
+
+      expect(service.visibleVehicles()).toEqual([buildVehicle('1')]);
     });
   });
 
