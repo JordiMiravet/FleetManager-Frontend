@@ -44,7 +44,10 @@ describe('VehicleAccessService', () => {
 
   describe('when vehicles have no invitation', () => {
     it('should show vehicles without any associated invitation', () => {
+      vehicleService.vehicles.set([buildVehicle('1')]);
+      (invitationService as any)._invitations.set([]);
 
+      expect(service.visibleVehicles()).toEqual([buildVehicle('1')]);
     });
   });
 
