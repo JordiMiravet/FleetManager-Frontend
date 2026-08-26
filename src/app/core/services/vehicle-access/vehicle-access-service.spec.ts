@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { VehicleAccessService } from './vehicle-access-service';
 import { VehicleService } from '../../../features/vehicle/data-access/vehicle-service';
 import { InvitationService } from '../../../features/invitations/data-access/invitation-service';
-import { VehicleInterface } from '../../../features/vehicle/models/vehicle';
 import { InvitationStatus } from '../../../features/invitations/enums/invitation-status.enum';
+import { VehicleInterface } from '../../../features/vehicle/models/vehicle';
 import { VehicleInvitation } from '../../../features/invitations/models/invitation';
 
 describe('VehicleAccessService', () => {
@@ -41,4 +41,12 @@ describe('VehicleAccessService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  describe('when vehicles have no invitation', () => {
+    it('should show vehicles without any associated invitation', () => {
+
+    });
+  });
+
+
 });
