@@ -6,10 +6,11 @@ import { VehicleInterface } from '../../../vehicle/models/vehicle';
   standalone: true,
   imports: [],
   templateUrl: './vehicle-marker.html',
-  styleUrl: './vehicle-marker.css',
+  styleUrl: './vehicle-marker.scss',
 })
 export class VehicleMarkerComponent {
+
   public readonly vehicle = input.required<VehicleInterface>();
   public readonly fallbackImage = 'https://placehold.co/48x48?text=vehicle';
-
+  
 }
