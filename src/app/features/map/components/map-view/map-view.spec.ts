@@ -688,30 +688,25 @@ describe('MapViewComponent', () => {
   describe('template integration', () => {
 
     it('should render the map container', () => {
-      const mapContainer = fixture.nativeElement.querySelector('#map');
-      expect(mapContainer).toBeTruthy();
+      expect(getMapContainer()).toBeTruthy();
     });
 
     it('should render vehicle selector component', () => {
-      const vehicleSelectorComponent = fixture.nativeElement.querySelector('app-vehicle-selector');
-      expect(vehicleSelectorComponent).toBeTruthy();
+      expect(getVehicleSelectorComponent()).toBeTruthy();
     });
 
     it('should render user location button when vehicle is selected', () => {
       component.selectedVehicle.set(mockVehicle1);
       fixture.detectChanges();
 
-      const userLocationButtonComponent = fixture.nativeElement.querySelector('app-details-panel');
-      expect(userLocationButtonComponent).toBeTruthy();
+      expect(getUserLocationButtonComponent()).toBeTruthy();
     });
 
     it('should show confirm modal when showConfirmModal is true', () => {
       component.showConfirmModal.set(true);
       fixture.detectChanges();
 
-      const confirmModalComponent = fixture.nativeElement.querySelector('app-confirm-modal');
-
-      expect(confirmModalComponent).toBeTruthy();
+      expect(getConfirmModalComponent()).toBeTruthy();
     });
 
   });
