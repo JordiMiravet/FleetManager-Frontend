@@ -71,6 +71,11 @@ describe('MapViewComponent', () => {
   let fixture: ComponentFixture<MapViewComponent>;
   let vehicleService: any;
 
+  const getMapContainer = () => fixture.nativeElement.querySelector('#map');
+  const getVehicleSelectorComponent = () => fixture.nativeElement.querySelector('app-vehicle-selector');
+  const getUserLocationButtonComponent = () => fixture.nativeElement.querySelector('app-details-panel');
+  const getConfirmModalComponent = () => fixture.nativeElement.querySelector('app-confirm-modal');
+
   beforeEach(async () => {
     vehicleMarkerManagerMock.mountComponent.calls.reset();
     vehicleMarkerManagerMock.mountComponent.and.returnValue(() => {});
