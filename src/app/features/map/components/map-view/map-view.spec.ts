@@ -544,7 +544,7 @@ describe('MapViewComponent', () => {
       spyOn(mapService, 'createMarker').and.returnValue(mockMarker);
       vehicleMarkerManagerMock.mountComponent.and.returnValue(cleanupFn);
 
-      vehicleService.vehicles.set([mockVehicle1]);
+      vehicleAccessServiceMock.visibleVehicles.set([mockVehicle1]);
       (component as any).showAllVehicles();
 
       expect((component as any).markerCleanups.get(mockMarker)).toBe(cleanupFn);
