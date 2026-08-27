@@ -4,9 +4,12 @@ import { HeaderComponent } from './core/layout/header/header';
 
 @Component({
   selector: 'app-root',
-  imports: [ RouterOutlet, HeaderComponent ],
+  imports: [ 
+    RouterOutlet, 
+    HeaderComponent 
+  ],
   templateUrl: './app.html',
-  styleUrls: ['./app.css']
+  styleUrls: ['./app.scss']
 })
 export class App {
   protected readonly title = signal('WhereIsMyCarApp');
