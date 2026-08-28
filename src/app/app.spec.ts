@@ -14,10 +14,9 @@ describe('App', () => {
         App,
         RouterTestingModule
       ],
-      providers: [{
-        provide: Auth,
-        useValue: mockAuth
-      }]
+      providers: [
+        { provide: Auth, useValue: mockAuth}
+      ]
     }).compileComponents();
   });
 
