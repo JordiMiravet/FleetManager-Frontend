@@ -11,6 +11,10 @@ describe('App', () => {
   let fixture: ComponentFixture<App>;
   let component: App;
 
+  const getHeader = (): HTMLElement | null => fixture.nativeElement.querySelector('app-header');
+  const getAppContent = (): HTMLElement | null => fixture.nativeElement.querySelector('main.app-content');
+  const routerOutlet = (): HTMLElement | null => getAppContent()?.querySelector('router-outlet') ?? null;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
