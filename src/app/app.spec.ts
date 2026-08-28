@@ -26,15 +26,31 @@ describe('App', () => {
 
   describe('Template rendering', () => {
     it('should render the header', () => {
+      const fixture = TestBed.createComponent(App);
+      fixture.detectChanges();
 
+      const header = fixture.nativeElement.querySelector('app-header');
+
+      expect(header).toBeTruthy();
     });
 
     it('should render the app content container', () => {
+      const fixture = TestBed.createComponent(App);
+      fixture.detectChanges();
 
+      const appContent = fixture.nativeElement.querySelector('main.app-content');
+
+      expect(appContent).toBeTruthy();
     });
 
     it('should render the router outlet inside the app content container', () => {
+      const fixture = TestBed.createComponent(App);
+      fixture.detectChanges();
 
+      const appContent = fixture.nativeElement.querySelector('main.app-content');
+      const routerOutlet = appContent?.querySelector('router-outlet');
+
+      expect(routerOutlet).toBeTruthy();
     });
   });
 });
