@@ -24,4 +24,17 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
+  describe('Template rendering', () => {
+    it('should render the header', () => {
+
+    });
+
+    it('should render the app content container', () => {
+
+    });
+
+    it('should render the router outlet inside the app content container', () => {
+
+    });
+  });
 });
