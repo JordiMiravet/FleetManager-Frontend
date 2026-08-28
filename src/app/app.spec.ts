@@ -13,7 +13,7 @@ describe('App', () => {
 
   const getHeader = (): HTMLElement | null => fixture.nativeElement.querySelector('app-header');
   const getAppContent = (): HTMLElement | null => fixture.nativeElement.querySelector('main.app-content');
-  const routerOutlet = (): HTMLElement | null => getAppContent()?.querySelector('router-outlet') ?? null;
+  const getRouterOutlet = (): HTMLElement | null => getAppContent()?.querySelector('router-outlet') ?? null;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -55,7 +55,7 @@ describe('App', () => {
       const fixture = TestBed.createComponent(App);
       fixture.detectChanges();
 
-      expect(routerOutlet()).toBeTruthy();
+      expect(getRouterOutlet()).toBeTruthy();
     });
   });
 });
