@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
 import { Auth } from '@angular/fire/auth';
-import { RouterTestingModule } from '@angular/router/testing';
 
 const mockAuth = {
   onAuthStateChanged: (callback: any) => callback(null)
@@ -11,8 +10,7 @@ describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        App,
-        RouterTestingModule
+        App, 
       ],
       providers: [
         { provide: Auth, useValue: mockAuth}
