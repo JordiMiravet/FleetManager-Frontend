@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
 import { Auth } from '@angular/fire/auth';
+import { provideRouter } from '@angular/router';
 
 const mockAuth = {
   onAuthStateChanged: (callback: any) => callback(null)
@@ -13,7 +14,8 @@ describe('App', () => {
         App, 
       ],
       providers: [
-        { provide: Auth, useValue: mockAuth}
+        { provide: Auth, useValue: mockAuth},
+        provideRouter([])
       ]
     }).compileComponents();
   });
