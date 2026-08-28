@@ -27,6 +27,8 @@ describe('App', () => {
 
     fixture = TestBed.createComponent(App);
     component = fixture.componentInstance;
+
+    fixture.detectChanges();
   });
 
   it('should create the app', () => {
@@ -38,26 +40,17 @@ describe('App', () => {
   describe('Template rendering', () => {
 
     it('should render the header', () => {
-      const fixture = TestBed.createComponent(App);
-      fixture.detectChanges();
-
       expect(getHeader()).toBeTruthy();
     });
 
     it('should render the app content container', () => {
-      const fixture = TestBed.createComponent(App);
-      fixture.detectChanges();
-
       expect(getAppContent()).toBeTruthy();
     });
 
     it('should render the router outlet inside the app content container', () => {
-      const fixture = TestBed.createComponent(App);
-      fixture.detectChanges();
-
       expect(getRouterOutlet()).toBeTruthy();
     });
 
   });
-  
+
 });
