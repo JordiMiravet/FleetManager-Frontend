@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { App } from './app';
 import { Auth } from '@angular/fire/auth';
 import { provideRouter } from '@angular/router';
+
+import { App } from './app';
 
 const mockAuth = {
   onAuthStateChanged: (callback: any) => callback(null)
@@ -17,9 +18,7 @@ describe('App', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        App, 
-      ],
+      imports: [ App ],
       providers: [
         { provide: Auth, useValue: mockAuth},
         provideRouter([])
@@ -37,6 +36,7 @@ describe('App', () => {
   });
 
   describe('Template rendering', () => {
+
     it('should render the header', () => {
       const fixture = TestBed.createComponent(App);
       fixture.detectChanges();
@@ -57,5 +57,7 @@ describe('App', () => {
 
       expect(getRouterOutlet()).toBeTruthy();
     });
+
   });
+  
 });
