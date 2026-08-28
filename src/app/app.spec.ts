@@ -41,28 +41,21 @@ describe('App', () => {
       const fixture = TestBed.createComponent(App);
       fixture.detectChanges();
 
-      const header = fixture.nativeElement.querySelector('app-header');
-
-      expect(header).toBeTruthy();
+      expect(getHeader()).toBeTruthy();
     });
 
     it('should render the app content container', () => {
       const fixture = TestBed.createComponent(App);
       fixture.detectChanges();
 
-      const appContent = fixture.nativeElement.querySelector('main.app-content');
-
-      expect(appContent).toBeTruthy();
+      expect(getAppContent()).toBeTruthy();
     });
 
     it('should render the router outlet inside the app content container', () => {
       const fixture = TestBed.createComponent(App);
       fixture.detectChanges();
 
-      const appContent = fixture.nativeElement.querySelector('main.app-content');
-      const routerOutlet = appContent?.querySelector('router-outlet');
-
-      expect(routerOutlet).toBeTruthy();
+      expect(routerOutlet()).toBeTruthy();
     });
   });
 });
