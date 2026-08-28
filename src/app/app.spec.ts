@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { App } from './app';
 import { Auth } from '@angular/fire/auth';
 import { provideRouter } from '@angular/router';
@@ -8,6 +8,9 @@ const mockAuth = {
 } as unknown as Auth;
 
 describe('App', () => {
+  let fixture: ComponentFixture<App>;
+  let component: App;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -18,6 +21,9 @@ describe('App', () => {
         provideRouter([])
       ]
     }).compileComponents();
+
+    fixture = TestBed.createComponent(App);
+    component = fixture.componentInstance;
   });
 
   it('should create the app', () => {
