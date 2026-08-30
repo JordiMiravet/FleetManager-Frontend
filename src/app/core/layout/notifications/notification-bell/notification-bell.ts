@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 
 import { InvitationService } from '../../../../features/invitations/data-access/invitation-service';
-import { NotificationDropdownComponent } from '../../../../shared/ui/notification-dropdown/notification-dropdown';
+import { NotificationDropdownComponent } from '../notification-dropdown/notification-dropdown';
 import { InvitationCardComponent } from '../../../../features/invitations/components/invitation-card/invitation-card';
 import { LayoutMessagesService } from '../../i18n/layout-messages-service';
 
