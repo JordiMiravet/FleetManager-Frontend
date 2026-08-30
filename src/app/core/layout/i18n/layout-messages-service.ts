@@ -54,7 +54,8 @@ export class LayoutMessagesService {
         pendingCount > 0
           ? `View notifications, ${pendingCount} pending`
           : 'View notifications'
-    }
+    },
+    emptyState: 'No pending invitations'
   };
 
 }
