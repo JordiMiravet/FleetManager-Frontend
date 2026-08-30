@@ -53,29 +53,29 @@ describe('NotificationDropdownComponent', () => {
 
     it('should emit close when the backdrop is clicked', () => {
       fixture.detectChanges();
-      spyOn(component.close, 'emit');
+      spyOn(component.panelClose, 'emit');
 
       getBackdrop()?.click();
 
-      expect(component.close.emit).toHaveBeenCalled();
+      expect(component.panelClose.emit).toHaveBeenCalled();
     });
 
     it('should emit close when Escape is pressed', () => {
       fixture.detectChanges();
-      spyOn(component.close, 'emit');
+      spyOn(component.panelClose, 'emit');
 
       document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 
-      expect(component.close.emit).toHaveBeenCalled();
+      expect(component.panelClose.emit).toHaveBeenCalled();
     });
 
     it('should not emit close when clicking inside the panel content', () => {
       fixture.detectChanges();
-      spyOn(component.close, 'emit');
+      spyOn(component.panelClose, 'emit');
 
       getPanel()?.click();
 
-      expect(component.close.emit).not.toHaveBeenCalled();
+      expect(component.panelClose.emit).not.toHaveBeenCalled();
     });
 
   });
