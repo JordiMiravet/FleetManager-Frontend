@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotificationBellComponent } from './notification-bell';
 
-import { InvitationService } from '../../../features/invitations/data-access/invitation-service';
-import { InvitationStatus } from '../../../features/invitations/enums/invitation-status.enum';
-import { VehicleInvitation } from '../../../features/invitations/models/invitation';
+import { InvitationService } from '../../../../features/invitations/data-access/invitation-service';
+import { InvitationStatus } from '../../../../features/invitations/enums/invitation-status.enum';
+import { VehicleInvitation } from '../../../../features/invitations/models/invitation';
 
 describe('NotificationBellComponent', () => {
   let component: NotificationBellComponent;
