@@ -21,7 +21,7 @@
     @if (isPanelOpen()) {
         <app-notification-dropdown
             [isEmpty]="pendingCount() === 0"
-            emptyMessage="No pending invitations"
+            [emptyMessage]="notificationBellMsg.emptyState"
             (close)="closePanel()"
         >
             <ul class="notification-bell__list">
