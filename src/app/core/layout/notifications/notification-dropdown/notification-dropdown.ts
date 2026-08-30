@@ -12,15 +12,15 @@ export class NotificationDropdownComponent {
   isEmpty = input<boolean>(true);
   emptyMessage = input<string>('Nothing to show here');
 
-  close = output<void>();
+  panelClose = output<void>();
 
   @HostListener('document:keydown.escape')
   onEscapeKey(): void {
-    this.close.emit();
+    this.panelClose.emit();
   }
 
   onBackdropClick(): void {
-    this.close.emit();
+    this.panelClose.emit();
   }
 
 }
