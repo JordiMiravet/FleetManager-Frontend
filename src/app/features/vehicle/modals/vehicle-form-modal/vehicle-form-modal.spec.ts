@@ -156,12 +156,12 @@ describe('VehicleFormModalComponent', () => {
   describe('cancel behavior', () => {
 
     it('should emit cancel event on onCancel()', () => {
-      spyOn(component.cancel, 'emit');
+      spyOn(component.modalCancel, 'emit');
 
       component.onCancel();
       fixture.detectChanges();
 
-      expect(component.cancel.emit).toHaveBeenCalled();
+      expect(component.modalCancel.emit).toHaveBeenCalled();
     });
 
   });
