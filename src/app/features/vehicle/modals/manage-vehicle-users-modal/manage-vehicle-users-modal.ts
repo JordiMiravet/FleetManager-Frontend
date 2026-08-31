@@ -33,7 +33,7 @@ export class ManageVehicleUsersModalComponent {
 
   addUser = output<string>();
   removeUser = output<string>();
-  cancel = output<void>();
+  modalCancel = output<void>();
 
   isOwner(): boolean {
     return this.permission.isOwner(this.vehicle());
@@ -70,7 +70,7 @@ export class ManageVehicleUsersModalComponent {
   }
 
   onCancel(): void {
-    this.cancel.emit();
+    this.modalCancel.emit();
     this.resetModal();
   }
 
