@@ -64,13 +64,13 @@ describe('DetailsPanelComponent', () => {
 
   describe('Button functionality', () => {
 
-    it('should emit click event when button is clicked', () => {
-      spyOn(component.click, 'emit');
+    it('should emit locationRequest event when button is clicked', () => {
+      spyOn(component.locationRequest, 'emit');
 
       const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
       button.click();
 
-      expect(component.click.emit).toHaveBeenCalledTimes(1);
+      expect(component.locationRequest.emit).toHaveBeenCalledTimes(1);
     });
 
     it('should not be disabled by default', () => {
