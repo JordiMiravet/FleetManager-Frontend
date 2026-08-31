@@ -242,7 +242,7 @@ describe('ManageVehicleUsersModalComponent', () => {
   describe('cancel behavior', () => {
 
     it('should emit cancel and reset modal', () => {
-      const emitSpy = spyOn(component.cancel, 'emit');
+      const emitSpy = spyOn(component.modalCancel, 'emit');
       const resetSpy = spyOn(component, 'resetModal');
 
       component.onCancel();
