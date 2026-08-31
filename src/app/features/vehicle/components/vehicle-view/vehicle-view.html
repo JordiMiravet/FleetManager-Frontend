@@ -35,7 +35,7 @@
         [mode]="modalState.formMode()"
         [vehicle]="modalState.selectedVehicle()"
         (formSubmit)="saveVehicle($event)"
-        (cancel)="modalState.close()"
+        (modalCancel)="modalState.close()"
     />
 }
 

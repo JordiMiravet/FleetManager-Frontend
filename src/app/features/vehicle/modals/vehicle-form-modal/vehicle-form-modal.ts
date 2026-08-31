@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, input, OnChanges, output } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { VehicleInterface } from '../../models/vehicle';
@@ -12,7 +12,7 @@ import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
   templateUrl: './vehicle-form-modal.html',
   styleUrls: ['./vehicle-form-modal.scss'],
 })
-export class VehicleFormModalComponent {
+export class VehicleFormModalComponent implements OnChanges {
 
   private readonly messagesService = inject(VehicleMessagesService);
 
