@@ -13,7 +13,7 @@
     <app-vehicle-form-modal
         [mode]="vehicleModal.formMode()"
         [vehicle]="vehicleModal.selectedVehicle()"
-        (submit)="saveVehicle($event)"
+        (formSubmit)="saveVehicle($event)"
         (cancel)="vehicleModal.close()"
     />
 }
