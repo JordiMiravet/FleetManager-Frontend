@@ -125,21 +125,21 @@ describe('VehicleFormModalComponent', () => {
   describe('submit behavior', () => {
 
     it('should emit submit event when form is valid', () => {
-      spyOn(component.submit, 'emit');
+      spyOn(component.formSubmit, 'emit');
 
       component.form.setValue({ name: 'R34', model: 'GT-R', plate: '12345', imageUrl: 'Skyline-001.jpg' });
       component.onSubmit();
 
-      expect(component.submit.emit).toHaveBeenCalledWith({ name: 'R34', model: 'GT-R', plate: '12345', imageUrl: 'Skyline-001.jpg' });
+      expect(component.formSubmit.emit).toHaveBeenCalledWith({ name: 'R34', model: 'GT-R', plate: '12345', imageUrl: 'Skyline-001.jpg' });
     });
 
     it('should not emit submit when form is invalid', () => {
-      spyOn(component.submit, 'emit');
+      spyOn(component.formSubmit, 'emit');
 
       component.form.setValue({ name: '', model: '', plate: '', imageUrl: '' });
       component.onSubmit();
 
-      expect(component.submit.emit).not.toHaveBeenCalled();
+      expect(component.formSubmit.emit).not.toHaveBeenCalled();
     });
 
     it('should mark all fields as touched when form is invalid on submit', () => {
