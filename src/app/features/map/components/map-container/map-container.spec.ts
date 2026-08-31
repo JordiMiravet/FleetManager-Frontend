@@ -259,7 +259,7 @@ describe('MapContainerComponent', () => {
       const spy = spyOn(component, 'saveVehicle');
 
       const modal = fixture.debugElement.query(By.directive(VehicleFormModalComponent));
-      modal.triggerEventHandler('submit', vehicleMock);
+      modal.triggerEventHandler('formSubmit', vehicleMock);
 
       expect(spy).toHaveBeenCalledWith(vehicleMock);
     });
@@ -272,7 +272,7 @@ describe('MapContainerComponent', () => {
         By.directive(VehicleFormModalComponent)
       );
 
-      vehicleFormModalComponent.triggerEventHandler('cancel');
+      vehicleFormModalComponent.triggerEventHandler('modalCancel');
 
       expect(vehicleModalServiceMock.close).toHaveBeenCalled();
     });
