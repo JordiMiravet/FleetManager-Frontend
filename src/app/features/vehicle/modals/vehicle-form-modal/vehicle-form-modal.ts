@@ -21,7 +21,7 @@ export class VehicleFormModalComponent {
   mode = input<'create' | 'edit'>('create');
   vehicle = input<VehicleInterface | null>(null);
 
-  submit = output<VehicleInterface>();
+  formSubmit = output<VehicleInterface>();
   cancel = output<void>();
 
   form: FormGroup;
@@ -70,7 +70,7 @@ export class VehicleFormModalComponent {
       this.form.markAllAsTouched();
       return;
     }
-    this.submit.emit({ ...this.form.value });
+    this.formSubmit.emit({ ...this.form.value });
   }
 
   onCancel() {
