@@ -10,7 +10,7 @@
     </div>
     <button 
         class="map-card__button" 
-        (locationRequest)="locationRequest.emit()" 
+        (click)="locationRequest.emit()" 
         [aria-label]="detailsPanelMsg.aria.button" 
         [title]="detailsPanelMsg.aria.buttonTitle" 
     >

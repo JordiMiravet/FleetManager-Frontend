@@ -23,7 +23,7 @@
     @if(selectedVehicle()){
         <app-details-panel
             class="map-view__details-panel"
-            (locationRequest)="onUserLocationClick()"
+            (click)="onUserLocationClick()"
             [vehicle]="selectedVehicle()"
         />
     }
