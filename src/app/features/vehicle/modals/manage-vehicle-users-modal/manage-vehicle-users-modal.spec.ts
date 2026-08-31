@@ -113,7 +113,7 @@ describe('ManageVehicleUsersModalComponent', () => {
     });
 
     it('should emit submit event when email is valid', () => {
-      const emitSpy = spyOn(component.submit, 'emit');
+      const emitSpy = spyOn(component.addUser, 'emit');
 
       component.email.set('jordithebest@gmail.com');
       component.onSubmit();
