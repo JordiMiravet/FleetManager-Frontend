@@ -34,7 +34,7 @@
         [preselectedDate]="selectedDate()"
         [mode]="formMode()"
         [event]="selectedEvent()"
-        (close)="activeModal.set(CalendarModalState.Closed)"
+        (modalClose)="activeModal.set(CalendarModalState.Closed)"
     ></app-event-form-modal>
 }
 
