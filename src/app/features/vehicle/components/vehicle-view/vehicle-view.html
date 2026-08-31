@@ -42,7 +42,7 @@
 @if (modalState.activeModal() === VehicleModalState.UserManagement) {
     <app-manage-vehicle-users-modal
         [vehicle]="selectedVehicle()"
-        (submit)="addUserToVehicle($event)"
+        (addUser)="addUserToVehicle($event)"
         (removeUser)="removeUserFromVehicle($event)"
         (cancel)="modalState.close()"
     />
