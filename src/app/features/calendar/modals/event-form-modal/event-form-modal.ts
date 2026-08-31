@@ -32,7 +32,7 @@ export class EventFormModalComponent implements OnInit {
   public mode = input<'create' | 'edit'>('create');
   public event = input<EventInterface | null>(null);
   
-  public close = output<void>();
+  public modalClose = output<void>();
 
   public formEvent: FormGroup;
 
@@ -139,6 +139,6 @@ export class EventFormModalComponent implements OnInit {
 
   handleClose(): void {
     this.formEvent.reset();
-    this.close.emit();
+    this.modalClose.emit();
   }
 }
