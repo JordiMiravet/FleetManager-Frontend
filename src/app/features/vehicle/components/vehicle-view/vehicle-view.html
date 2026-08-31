@@ -34,7 +34,7 @@
     <app-vehicle-form-modal
         [mode]="modalState.formMode()"
         [vehicle]="modalState.selectedVehicle()"
-        (submit)="saveVehicle($event)"
+        (formSubmit)="saveVehicle($event)"
         (cancel)="modalState.close()"
     />
 }
