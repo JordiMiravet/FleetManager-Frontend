@@ -22,7 +22,7 @@ export class VehicleFormModalComponent {
   vehicle = input<VehicleInterface | null>(null);
 
   formSubmit = output<VehicleInterface>();
-  cancel = output<void>();
+  modalCancel = output<void>();
 
   form: FormGroup;
 
@@ -74,7 +74,7 @@ export class VehicleFormModalComponent {
   }
 
   onCancel() {
-    this.cancel.emit();
+    this.modalCancel.emit();
   }
 
   getFieldError(field: string): string | null {
