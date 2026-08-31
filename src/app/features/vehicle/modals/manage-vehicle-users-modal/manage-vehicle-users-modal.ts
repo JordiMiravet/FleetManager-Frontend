@@ -31,7 +31,7 @@ export class ManageVehicleUsersModalComponent {
   loading = signal(false);
   error = signal('');
 
-  submit = output<string>();
+  addUser = output<string>();
   removeUser = output<string>();
   cancel = output<void>();
 
@@ -51,7 +51,7 @@ export class ManageVehicleUsersModalComponent {
 
     this.error.set('');
     this.loading.set(true);
-    this.submit.emit(emailValue);
+    this.addUser.emit(emailValue);
   }
   
   onRemoveUser(userId: string): void {
