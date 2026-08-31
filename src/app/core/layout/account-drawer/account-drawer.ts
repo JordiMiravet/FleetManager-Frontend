@@ -18,16 +18,16 @@ export class AccountDrawerComponent {
 
   public readonly drawerMsg = this.messagesService.drawer;
 
-  close = output<void>();
+  drawerClose = output<void>();
   logout = output<void>();
 
   onLogout(): void {
     this.logout.emit();
-    this.close.emit();
+    this.drawerClose.emit();
   }
 
   onClose(): void {
-    this.close.emit();
+    this.drawerClose.emit();
   }
 
 }

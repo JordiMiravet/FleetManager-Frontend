@@ -92,26 +92,26 @@ describe('AccountDrawerComponent', () => {
   describe('Output: close', () => {
 
     it('should emit close when onClose is called', () => {
-      spyOn(component.close, 'emit');
+      spyOn(component.drawerClose, 'emit');
       component.onClose();
 
-      expect(component.close.emit).toHaveBeenCalled();
+      expect(component.drawerClose.emit).toHaveBeenCalled();
     });
 
     it('should emit close when backdrop is clicked', () => {
-      spyOn(component.close, 'emit');
+      spyOn(component.drawerClose, 'emit');
       const backdrop = getBackdrop();
       backdrop.click();
 
-      expect(component.close.emit).toHaveBeenCalled();
+      expect(component.drawerClose.emit).toHaveBeenCalled();
     });
 
     it('should emit close when close button is clicked', () => {
-      spyOn(component.close, 'emit');
+      spyOn(component.drawerClose, 'emit');
       const button = getCloseButton();
       button.click();
 
-      expect(component.close.emit).toHaveBeenCalled();
+      expect(component.drawerClose.emit).toHaveBeenCalled();
     });
 
   });
@@ -140,11 +140,11 @@ describe('AccountDrawerComponent', () => {
 
     it('should emit both logout and close when onLogout is called', () => {
       spyOn(component.logout, 'emit');
-      spyOn(component.close, 'emit');
+      spyOn(component.drawerClose, 'emit');
       component.onLogout();
 
       expect(component.logout.emit).toHaveBeenCalledTimes(1);
-      expect(component.close.emit).toHaveBeenCalledTimes(1);
+      expect(component.drawerClose.emit).toHaveBeenCalledTimes(1);
     });
 
   });

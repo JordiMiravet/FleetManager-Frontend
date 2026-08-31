@@ -10,7 +10,7 @@
 
         @if (isDrawerOpen()) {
             <app-account-drawer
-                (close)="closeDrawer()"
+                (drawerClose)="closeDrawer()"
                 (logout)="onLogout()"
             />
         }

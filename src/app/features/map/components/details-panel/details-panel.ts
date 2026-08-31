@@ -14,7 +14,7 @@ export class DetailsPanelComponent {
   private readonly messagesService = inject(MapMessagesService);
   public readonly detailsPanelMsg = this.messagesService.detailsPanel;
 
-  public click = output<void>();
+  public locationRequest = output<void>();
   public vehicle = input<VehicleInterface | null>(null);
 
 }

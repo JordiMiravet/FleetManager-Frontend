@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, input, OnChanges, output } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { VehicleInterface } from '../../models/vehicle';
@@ -12,7 +12,7 @@ import { VehicleMessagesService } from '../../i18n/vehicle-messages-service';
   templateUrl: './vehicle-form-modal.html',
   styleUrls: ['./vehicle-form-modal.scss'],
 })
-export class VehicleFormModalComponent {
+export class VehicleFormModalComponent implements OnChanges {
 
   private readonly messagesService = inject(VehicleMessagesService);
 
@@ -21,8 +21,8 @@ export class VehicleFormModalComponent {
   mode = input<'create' | 'edit'>('create');
   vehicle = input<VehicleInterface | null>(null);
 
-  submit = output<VehicleInterface>();
-  cancel = output<void>();
+  formSubmit = output<VehicleInterface>();
+  modalCancel = output<void>();
 
   form: FormGroup;
 
@@ -70,11 +70,11 @@ export class VehicleFormModalComponent {
       this.form.markAllAsTouched();
       return;
     }
-    this.submit.emit({ ...this.form.value });
+    this.formSubmit.emit({ ...this.form.value });
   }
 
   onCancel() {
-    this.cancel.emit();
+    this.modalCancel.emit();
   }
 
   getFieldError(field: string): string | null {

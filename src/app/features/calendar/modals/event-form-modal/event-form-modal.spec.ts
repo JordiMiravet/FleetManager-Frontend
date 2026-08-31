@@ -321,13 +321,13 @@ describe('EventFormModalComponent', () => {
 
       spyOn(eventService, 'addEvent');
       spyOn(eventService, 'updateEvent');
-      spyOn(component.close, 'emit');
+      spyOn(component.modalClose, 'emit');
 
       component.onSubmit();
 
       expect(eventService.addEvent).not.toHaveBeenCalled();
       expect(eventService.updateEvent).not.toHaveBeenCalled();
-      expect(component.close.emit).not.toHaveBeenCalled();
+      expect(component.modalClose.emit).not.toHaveBeenCalled();
     });
 
     it('should call addEvent if mode is "create"', () => {
@@ -335,12 +335,12 @@ describe('EventFormModalComponent', () => {
       patchForm();
 
       spyOn(eventService, 'addEvent');
-      spyOn(component.close, 'emit');
+      spyOn(component.modalClose, 'emit');
 
       component.onSubmit();
 
       expect(eventService.addEvent).toHaveBeenCalled();
-      expect(component.close.emit).toHaveBeenCalled();
+      expect(component.modalClose.emit).toHaveBeenCalled();
     });
 
     it('should call updateEvent if mode is "edit"', () => {
@@ -352,11 +352,11 @@ describe('EventFormModalComponent', () => {
       patchForm({ title: 'XBOX Direct', hourEnd: '12:00' });
 
       spyOn(eventService, 'updateEvent');
-      spyOn(component.close, 'emit');
+      spyOn(component.modalClose, 'emit');
       component.onSubmit();
 
       expect(eventService.updateEvent).toHaveBeenCalled();
-      expect(component.close.emit).toHaveBeenCalled();
+      expect(component.modalClose.emit).toHaveBeenCalled();
     });
 
     it('should call handleClose after successful submit', () => {
@@ -432,10 +432,10 @@ describe('EventFormModalComponent', () => {
     });
 
     it('should emit close event', () => {
-      spyOn(component.close, 'emit');
+      spyOn(component.modalClose, 'emit');
       component.handleClose();
 
-      expect(component.close.emit).toHaveBeenCalled();
+      expect(component.modalClose.emit).toHaveBeenCalled();
     });
 
   });

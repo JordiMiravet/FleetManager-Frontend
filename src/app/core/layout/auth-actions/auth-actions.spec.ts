@@ -227,7 +227,7 @@ describe('AuthActionsComponent', () => {
       fixture.detectChanges();
 
       const drawerDebugElement = getDrawerDebugElement();
-      drawerDebugElement.triggerEventHandler('close');
+      drawerDebugElement.triggerEventHandler('drawerClose');
 
       expect(component.isDrawerOpen()).toBeFalse();
     });

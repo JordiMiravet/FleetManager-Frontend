@@ -113,7 +113,7 @@ describe('ManageVehicleUsersModalComponent', () => {
     });
 
     it('should emit submit event when email is valid', () => {
-      const emitSpy = spyOn(component.submit, 'emit');
+      const emitSpy = spyOn(component.addUser, 'emit');
 
       component.email.set('jordithebest@gmail.com');
       component.onSubmit();
@@ -242,7 +242,7 @@ describe('ManageVehicleUsersModalComponent', () => {
   describe('cancel behavior', () => {
 
     it('should emit cancel and reset modal', () => {
-      const emitSpy = spyOn(component.cancel, 'emit');
+      const emitSpy = spyOn(component.modalCancel, 'emit');
       const resetSpy = spyOn(component, 'resetModal');
 
       component.onCancel();

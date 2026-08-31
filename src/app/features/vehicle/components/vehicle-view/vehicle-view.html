@@ -34,17 +34,17 @@
     <app-vehicle-form-modal
         [mode]="modalState.formMode()"
         [vehicle]="modalState.selectedVehicle()"
-        (submit)="saveVehicle($event)"
-        (cancel)="modalState.close()"
+        (formSubmit)="saveVehicle($event)"
+        (modalCancel)="modalState.close()"
     />
 }
 
 @if (modalState.activeModal() === VehicleModalState.UserManagement) {
     <app-manage-vehicle-users-modal
         [vehicle]="selectedVehicle()"
-        (submit)="addUserToVehicle($event)"
+        (addUser)="addUserToVehicle($event)"
         (removeUser)="removeUserFromVehicle($event)"
-        (cancel)="modalState.close()"
+        (modalCancel)="modalState.close()"
     />
 }
 
