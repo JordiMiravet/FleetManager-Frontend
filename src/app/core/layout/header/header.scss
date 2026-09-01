@@ -1,17 +1,19 @@
 :host {
-    height: 7.5vh;
     display: block;
+    height: 7.5vh;
     background-color: var(--bg-surface-600);
 
     .header {
-        width: 95%;
-        margin: 0 auto;
-
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-direction: row;
-        
+
+        width: 95%;
+        margin: 0 auto;
+
+        // Actions
+
         &__actions {
             display: flex;
             align-items: center;
