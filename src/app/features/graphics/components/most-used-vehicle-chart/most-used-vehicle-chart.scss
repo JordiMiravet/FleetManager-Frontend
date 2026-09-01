@@ -1,3 +1,5 @@
+// Container
+
 .chart-wrapper {
     position: relative;
     width: 100%;
@@ -9,6 +11,8 @@
     background-color: var(--bg-base);
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
+// Responsive
 
 @media(min-width: 768px) {
     .chart-wrapper {
