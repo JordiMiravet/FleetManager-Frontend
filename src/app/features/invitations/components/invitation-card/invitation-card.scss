@@ -11,6 +11,8 @@
         border-bottom: none;
     }
 
+    // Content
+
     &__vehicle-name {
         margin: 0;
         font-size: var(--font-size-base);
@@ -33,6 +35,8 @@
         font-size: var(--font-size-sm);
         color: var(--text-secondary);
     }
+
+    // Actions
 
     &__actions {
         display: flex;
