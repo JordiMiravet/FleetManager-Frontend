@@ -1,6 +1,7 @@
-/* Backdrop */
+// Backdrop
 
 .backdrop {
+    
     position: fixed;
     top: 0;
     left: 0;
@@ -18,12 +19,14 @@
     animation: fadeIn 0.2s ease forwards;
 }
 
+// Effects
+
 @keyframes fadeIn {
     from { background-color: var(--overlay-backdrop-transparent); }
     to { background-color: var(--overlay-backdrop); }
 }
 
-/* Modal */
+// Modal container
 
 .modal {
     position: relative;
@@ -71,6 +74,8 @@
         padding: 0;
     }
 
+    // Empty message
+
     &__empty {
         width: 100%;
         margin: 0;
@@ -88,6 +93,8 @@
     }
 }
 
+// Responsive modal
+
 @media (min-width: 576px) {
     .modal {
         margin: 2rem auto;
@@ -96,7 +103,7 @@
     }
 }
 
-/* Event Card */
+// Event cards
 
 .event-card {
     padding: 0;
@@ -108,6 +115,8 @@
     background-color: var(--bg-surface-100);
     transition: all 0.2s ease-in-out;
 
+    // Card states
+
     &:hover,
     &[open] {
         border-left-color: var(--accent-hover);
@@ -117,6 +126,8 @@
         transform: translateX(0.5rem);
     }
 
+    // Card header
+
     &__summary {
         display: flex;
         justify-content: space-between;
@@ -125,6 +136,8 @@
         font-weight: 600;
         cursor: pointer;
     }
+
+    // Event information
 
     &__info {
         display: flex;
@@ -168,6 +181,8 @@
         padding: 0.5rem 1rem;
         font-size: var(--font-size-sm);
     }
+
+    // Card actions
 
     &__actions {
         display: flex;
