@@ -1,4 +1,6 @@
 .calendar {
+    // Actions
+
     &__actions {
         display: flex;
         align-items: center;
@@ -8,14 +10,20 @@
         padding: 1rem;
         margin: 0 auto;
 
+        // Create Button
+
         app-create-button {
             flex: 0 0 auto;
         }
+
+        // Vehicle Selector
 
         app-vehicle-selector {
             flex: 1 1 auto;
             min-width: 0;
         }
+
+        // Responsive
 
         @media (min-width: 768px) {
             padding: 1rem 0;
@@ -27,13 +35,15 @@
         }
     }
 
+    // Calendar
+
     &__container {
         padding: 1.5rem;
         max-width: 75rem;
         margin: 0 auto 2rem;
         background-color: var(--bg-base);
 
-        /* Month Title */
+        // Month Title
 
         .fc-toolbar-title {
             font-size: var(--font-size-xl);
@@ -41,7 +51,7 @@
             font-weight: 600;
         }
 
-        /* Navigation Buttons */
+        // Navigation Buttons
 
         .fc-button-group {
             gap: var(--space-1-00);
@@ -77,7 +87,7 @@
             }
         }
 
-        /* Weekly Header */
+        // Weekly Header
 
         .fc-col-header-cell {
             background-color: var(--bg-surface-600);
@@ -92,7 +102,7 @@
             font-size: var(--font-size-xs);
         }
 
-        /* Day Cells */
+        // Day Cells
 
         .fc-daygrid-day {
             background-color: var(--bg-base);
@@ -123,12 +133,14 @@
             color: var(--text-secondary);
             font-weight: 700;
 
+            // Responsive
+
             @media (min-width: 768px) {
                 text-align: right;
             }
         }
 
-        /* Dots Container */
+        // Event Indicators
 
         .fc-daygrid-day-events {
             display: flex;
@@ -138,6 +150,8 @@
             gap: var(--space-0-25);
             padding: var(--space-0-25);
             min-height: unset;
+
+            // Responsive
 
             @media (min-width: 768px) {
                 gap: var(--space-0-50);
@@ -163,13 +177,15 @@
             border-radius: 50%;
             background-color: var(--bg-surface-600);
 
+            // Responsive
+
             @media (min-width: 768px) {
                 width: var(--space-1-00);
                 height: var(--space-1-00);
             }
         }
 
-        /* More Link */
+        // More Link
 
         .fc-daygrid-more-link {
             font-size: var(--font-size-xs);
@@ -185,7 +201,7 @@
             }
         }
 
-        /* Remove Vertical Scroll */
+        // Scroll
 
         .fc-scroller,
         .fc-scroller-liquid-absolute {
@@ -196,6 +212,8 @@
             height: auto;
         }
     }
+
+    // Empty State
 
     &__day-events-empty {
         margin: 2rem auto;
