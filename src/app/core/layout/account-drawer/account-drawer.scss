@@ -14,6 +14,8 @@
     background-color: var(--bg-base);
     animation: slideIn 0.25s ease;
 
+    // Backdrop
+
     &__backdrop {
         position: fixed;
         inset: 0;
@@ -23,6 +25,8 @@
         background-color: var(--overlay-backdrop-transparent);
         animation: fadeIn 0.2s ease forwards;
     }
+
+    // Content
 
     &__header {
         display: flex;
@@ -39,6 +43,27 @@
         font-weight: 600;
         color: var(--text-primary);
     }
+
+    &__body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &__section {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1-00);
+
+        padding: 1rem;
+
+        &:last-child {
+            margin-top: auto;
+        }
+    }
+
+    // Actions
 
     &__close {
         display: flex;
@@ -65,31 +90,12 @@
         }
     }
 
-    &__body {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    &__section {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-1-00);
-
-        padding: 1rem;
-        
-        &:last-child {
-            margin-top: auto;
-        }
-    }
-
     &__item {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: var(--space-1-00);
-
+        
         width: 100%;
         padding: 1rem;
         border: none;
@@ -98,7 +104,7 @@
         font-size: var(--font-size-sm);
         font-weight: 500;
         text-align: start;
-                
+        
         color: var(--text-primary);
         background-color: transparent;
 
@@ -136,12 +142,16 @@
         gap: var(--space-1-00);
     }
 
+    // Divider
+
     &__divider {
         height: 1px;
         margin: 0;
         background-color: var(--border-color-default);
     }
 }
+
+// Effects
 
 @keyframes fadeIn {
     from { background-color: var(--overlay-backdrop-transparent); }
