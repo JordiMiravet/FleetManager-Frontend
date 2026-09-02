@@ -38,10 +38,10 @@
     &__option {
         font-weight: 500;
     }
-}
 
-@media (min-width: 768px) {
-    .vehicle-select {
+    // Responsive
+
+    @media (min-width: 768px) {
         max-width: 30rem;
     }
 }
