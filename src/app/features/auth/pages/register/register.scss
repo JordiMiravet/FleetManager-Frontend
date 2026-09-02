@@ -1,6 +1,7 @@
 :host {
     display: flex;
     justify-content: center;
+
     margin: 10vh 5vw;
     padding: 0;
 }
@@ -8,7 +9,10 @@
 // Auth
 
 .auth {
-    
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-0-25);
+
     width: 100%;
     max-width: 50rem;
     padding: 2rem;
@@ -18,10 +22,6 @@
 
     background-color: var(--bg-surface-0);
     box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.5);
-
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-0-25);
 
     // Navigation
 
@@ -40,7 +40,9 @@
 
     &__note {
         margin: 0;
+
         text-align: end;
+
         font-weight: 700;
         color: var(--text-secondary);
     }
@@ -49,12 +51,12 @@
 // Form
 
 .form {
-
     width: 100%;
 
     &__fieldset {
         margin: 0;
         padding: 0;
+
         border: none;
     }
 
@@ -67,6 +69,7 @@
         width: 100%;
         padding: 1rem;
         margin-bottom: 2.5rem;
+
         border-bottom: 2px solid var(--bg-surface-100);
 
         color: var(--text-secondary);
@@ -78,11 +81,13 @@
     &__group {
         display: flex;
         flex-direction: column;
+
         margin-bottom: var(--space-1-50);
     }
 
     &__label {
         margin: 0 auto 0.5rem 0.5rem;
+
         color: var(--text-secondary);
         font-weight: 700;
         font-size: var(--font-size-lg);
@@ -91,6 +96,7 @@
     &__input {
         width: 100%;
         padding: var(--space-1-25);
+
         border: none;
         border-radius: var(--radius-sm);
         outline: none;
@@ -105,18 +111,18 @@
         }
 
         &.ng-invalid.ng-touched {
-            box-shadow: 0 0 0 2px var(--border-color-error);  
+            box-shadow: 0 0 0 2px var(--border-color-error);
         }
-
     }
 
     // Errors
 
     &__error--field {
-        
         margin: 0;
         padding: 0.5rem;
+
         border-radius: 0 0 0.5rem 0.5rem;
+
         color: var(--text-error);
         font-size: var(--font-size-sm);
         opacity: 0.9;
@@ -129,12 +135,13 @@
         gap: var(--space-0-50);
 
         padding: 0.5rem;
-        margin: 1rem 0 0 0;
-        border-radius: var(--radius-sm);
-        opacity: 0.9;
+        margin: 1rem 0 0;
 
-        color: var(--text-inverse);
+        border-radius: var(--radius-sm);
+
         font-size: var(--font-size-sm);
+        color: var(--text-inverse);
+        opacity: 0.9;
 
         background-color: var(--btn-danger-bg);
     }
@@ -144,13 +151,14 @@
     &__submit {
         width: 100%;
         padding: var(--space-1-50);
+
         border: none;
         border-radius: var(--radius-sm);
 
         color: var(--text-inverse);
         font-weight: 700;
         font-size: var(--font-size-lg);
-        
+
         background-color: var(--btn-primary-bg);
 
         cursor: pointer;
@@ -163,6 +171,7 @@
         &[disabled] {
             cursor: not-allowed;
             opacity: 0.9;
+
             background-color: var(--btn-primary-bg-disabled);
             color: var(--text-primary);
         }
