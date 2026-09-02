@@ -1,7 +1,7 @@
 <div 
     class="drawer__backdrop" 
     (click)="onClose()"
-    [attr.aria-hidden]="true"
+    aria-hidden="true"
 ></div>
 
 <aside 
@@ -12,7 +12,9 @@
 
     <div class="drawer__header">
         <span class="drawer__title">{{ drawerMsg.title }}</span>
+
         <button 
+            type="button"
             class="drawer__close"
             (click)="onClose()"
             [attr.aria-label]="drawerMsg.aria.closeButton"
@@ -24,51 +26,60 @@
     <div class="drawer__body">
 
         <section class="drawer__section">
-            <button class="drawer__item" >
+            <button 
+                type="button"
+                class="drawer__item"
+            >
                 <div class="drawer__item-content">
                     <i class="pi pi-user" aria-hidden="true"></i>
                     {{ drawerMsg.items.editProfile }}
                 </div>
-
             </button>
 
-            <button class="drawer__item">
+            <button 
+                type="button"
+                class="drawer__item"
+            >
                 <div class="drawer__item-content">
                     <i class="pi pi-sliders-h" aria-hidden="true"></i>
                     {{ drawerMsg.items.settings }}
                 </div>
-                
             </button>
 
-            <button class="drawer__item">
+            <button 
+                type="button"
+                class="drawer__item"
+            >
                 <div class="drawer__item-content">
                     <i class="pi pi-globe" aria-hidden="true"></i>
                     {{ drawerMsg.items.language }}
                 </div>
             </button>
 
-            <button class="drawer__item">
+            <div class="drawer__item drawer__item--toggle">
                 <div class="drawer__item-content">
-                    <i class="pi pi-moon"></i>
+                    <i class="pi pi-moon" aria-hidden="true"></i>
 
                     <span class="drawer__label">
                         {{ drawerMsg.items.darkMode }}
                     </span>
                 </div>
 
-                <app-dark-mode-toggle
-                ></app-dark-mode-toggle>
-            </button>
+                <app-dark-mode-toggle></app-dark-mode-toggle>
+            </div>
 
         </section>
         
         <section class="drawer__section">
             <div class="drawer__divider"></div>
+
             <button 
+                type="button"
                 class="drawer__item drawer__item--danger"
                 (click)="onLogout()"
             >
                 {{ drawerMsg.buttons.logout }}
+
                 <i class="pi pi-sign-out" aria-hidden="true"></i>   
             </button>
         </section>

@@ -124,6 +124,14 @@
             cursor: not-allowed;
         }
 
+        &--toggle {
+            cursor: default;
+
+            &:hover {
+                background-color: transparent;
+            }
+        }
+
         &--danger {
             background-color: var(--btn-danger-bg);
             color: var(--btn-danger-text);
@@ -154,11 +162,21 @@
 // Effects
 
 @keyframes fadeIn {
-    from { background-color: var(--overlay-backdrop-transparent); }
-    to { background-color: var(--overlay-backdrop); }
+    from { 
+        background-color: var(--overlay-backdrop-transparent); 
+    }
+
+    to { 
+        background-color: var(--overlay-backdrop); 
+    }
 }
 
 @keyframes slideIn {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
+    from { 
+        transform: translateX(100%); 
+    }
+
+    to { 
+        transform: translateX(0); 
+    }
 }
