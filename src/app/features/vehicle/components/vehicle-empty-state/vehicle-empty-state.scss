@@ -1,9 +1,8 @@
 .vehicle-empty {
-    
     &__container {
         display: flex;
         flex-direction: column;
-        align-items: center; 
+        align-items: center;
         justify-content: center;
         gap: var(--space-1-00);
 
@@ -20,6 +19,12 @@
             flex: 1 1 auto;
             width: 100%;
             min-width: 0;
+
+            @media (min-width: 576px) {
+                flex: 0 0 auto;
+                width: auto;
+                margin-bottom: 1rem;
+            }
         }
     }
 
@@ -33,17 +38,5 @@
 
         color: var(--text-primary);
         opacity: 0.75;
-    }
-}
-
-@media (min-width: 576px) {
-    .vehicle-empty {
-        &__container {
-            app-create-button {
-                flex: 0 0 auto;
-                width: auto;
-                margin-bottom: 1rem;
-            }
-        }
     }
 }
