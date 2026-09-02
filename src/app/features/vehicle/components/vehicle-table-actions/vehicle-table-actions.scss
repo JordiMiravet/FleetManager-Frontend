@@ -12,7 +12,7 @@
 
     background-color: var(--bg-base);
 
-    /* Search */
+    // Search
 
     &__search {
         position: relative;
@@ -45,7 +45,7 @@
         transition: border 0.15s ease;
     }
 
-    /* Sort */
+    // Sort
 
     &__sort {
         display: flex;
@@ -68,7 +68,7 @@
         transition: all 0.05s ease-in-out;
     }
 
-    /* States */
+    // States
 
     &__search-input:hover {
         border-color: var(--border-color-hover);

@@ -1,19 +1,17 @@
 :host {
     width: 100%;
     margin: 0 auto;
-
 }
 
 .vehicle-table {
     border-collapse: collapse;
     table-layout: fixed;
 
-
     width: 100%;
     min-width: 35rem;
     padding: 0;
 
-    /* Structure */
+    // Structure
 
     &__header {
         padding: 0;
@@ -38,7 +36,6 @@
             font-weight: 700;
             letter-spacing: 0.05rem;
             color: var(--text-primary);
-
 
             &.vehicle-table__header-image {
                 width: 7rem;
@@ -78,7 +75,7 @@
         height: 100%;
     }
 
-    /* Cells */
+    // Cells
 
     &__cell {
         padding: 1rem 1rem;
@@ -138,7 +135,7 @@
         }
     }
 
-    /* Vehicle Info*/
+    // Vehicle info
 
     &__name,
     &__model {
@@ -171,7 +168,7 @@
         color: var(--text-primary);
     }
 
-    /* Column Widths */
+    // Column widths
 
     &__header-image,
     &__cell--img {
@@ -179,7 +176,6 @@
         min-width: var(--space-3-00);
         padding: 0.75rem 0.75rem;
         margin: 0;
-
     }
 
     &__header-name,
@@ -197,8 +193,9 @@
         width: auto;
     }
 
-    @media (min-width: 576px) {
+    // Responsive
 
+    @media (min-width: 576px) {
         &__cell--name {
             .vehicle-table__cell-content {
                 gap: 0;
@@ -243,5 +240,4 @@
             width: 22.5%;
         }
     }
-
 }

@@ -1,4 +1,4 @@
-/* Header */
+ // Header
 
 .home {
     &__header {
@@ -27,7 +27,7 @@
     }
 }
 
-/* Table Container */
+// Table container
 
 .table {
     &__container {
@@ -46,9 +46,11 @@
     }
 }
 
-@media(min-width: 576px) {
+// Responsive
+
+@media (min-width: 576px) {
     .table {
-            &__container {
+        &__container {
             max-width: 75rem;
         }
     }

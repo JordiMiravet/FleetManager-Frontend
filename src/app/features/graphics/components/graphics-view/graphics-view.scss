@@ -1,3 +1,5 @@
+// Metrics toolbar
+
 .vehicle-metrics-toolbar {
     display: flex;
     justify-content: space-between;
@@ -7,6 +9,8 @@
     padding: 0.5rem 1rem;
 
     background-color: var(--bg-base);
+
+    // Toolbar title
 
     &__title {
         display: flex;
@@ -21,10 +25,14 @@
         opacity: 0.9;
     }
 
+    // Period filter
+
     &__period {
         display: flex;
         gap: var(--space-0-50);
     }
+
+    // Period buttons
 
     &__period-button {
         padding: 0.5rem 1rem;
@@ -49,14 +57,14 @@
             color: var(--btn-primary-text);
             border-color: var(--btn-primary-bg);
 
-
             &:hover {
                 border-color: var(--btn-primary-bg);
             }
         }
     }
-
 }
+
+// Metrics charts
 
 .vehicle-metrics {
     display: flex;
@@ -70,6 +78,8 @@
         flex: 1 1 auto;
     }
 }
+
+// Responsive layout
 
 @media (min-width: 768px) {
     .vehicle-metrics {

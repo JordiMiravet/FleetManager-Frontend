@@ -16,6 +16,8 @@
     background-color: var(--bg-base);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 
+    // Content
+
     &__empty {
         padding: 1.5rem 1rem;
         text-align: center;
@@ -24,11 +26,13 @@
         color: var(--text-secondary);
     }
 
+    // Backdrop
+
     &__backdrop {
         position: fixed;
         inset: 0;
         z-index: 1000;
+
         background-color: transparent;
     }
-    
 }

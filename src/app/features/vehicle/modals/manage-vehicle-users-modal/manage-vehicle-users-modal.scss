@@ -1,6 +1,14 @@
 .modal {
+    width: 95%;
+    max-width: 50rem;
+    padding: 2rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    border-left: 0.5rem solid var(--accent-default);
 
-    /* Backdrop */
+    background: var(--bg-surface-0);
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
+
+    // Backdrop
 
     &__backdrop {
         position: fixed;
@@ -20,16 +28,7 @@
         animation: fadeIn 0.2s ease forwards;
     }
 
-    /* Modal */
-
-    width: 95%;
-    max-width: 50rem;
-    padding: 2rem;
-    border-radius: 0 0.5rem 0.5rem 0;
-    border-left: 0.5rem solid var(--accent-default);
-
-    background: var(--bg-surface-0);
-    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
+    // Content
 
     &__title {
         display: flex;
@@ -105,7 +104,7 @@
         font-size: var(--font-size-sm);
     }
 
-    /* Form */
+    // Form
 
     &__form {
         margin-bottom: 1.5rem;
@@ -133,7 +132,7 @@
         }
     }
 
-    /* Error Message */
+    // Error
 
     &__error-text {
         display: flex;
@@ -146,7 +145,7 @@
         color: var(--text-error);
     }
 
-    /* Actions & Buttons */
+    // Actions
 
     &__actions {
         display: flex;
@@ -192,7 +191,7 @@
         }
     }
 
-    /* Note */
+    // Note
 
     &__note {
         margin: 0;
@@ -202,6 +201,8 @@
         color: var(--text-secondary);
     }
 }
+
+// Effects
 
 @keyframes fadeIn {
     from {
