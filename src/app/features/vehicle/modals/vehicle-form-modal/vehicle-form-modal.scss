@@ -1,6 +1,5 @@
 .modal {
-
-    /* Backdrop */
+    // Backdrop
 
     &__backdrop {
         margin: 0;
@@ -21,7 +20,7 @@
         animation: fadeIn 0.2s ease forwards;
     }
 
-    /* Form */
+    // Form
 
     &__form {
         position: absolute;
@@ -36,7 +35,6 @@
 
         background-color: var(--bg-surface-0);
         box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-
     }
 
     &__fieldset {
@@ -78,7 +76,7 @@
     &__label {
         width: 100%;
         padding-left: var(--space-0-50);
-        
+
         font-size: var(--font-size-sm);
         font-weight: 600;
         text-align: left;
@@ -113,7 +111,7 @@
         color: var(--text-error);
     }
 
-    /* Actions & Buttons */
+    // Actions
 
     &__actions {
         display: flex;
@@ -166,7 +164,7 @@
         }
     }
 
-    /* Modal Note */
+    // Note
 
     &__note {
         margin: 0;
@@ -177,6 +175,8 @@
     }
 }
 
+// Effects
+
 @keyframes fadeIn {
     from {
         background-color: var(--overlay-backdrop-transparent);
@@ -186,6 +186,8 @@
         background-color: var(--overlay-backdrop);
     }
 }
+
+// Responsive
 
 @media (min-width: 576px) {
     .modal {
