@@ -1,6 +1,6 @@
 .create-button {
-    width: 100%; 
-    padding: 1rem 2rem; 
+    width: 100%;
+    padding: 1rem 2rem;
 
     border: none;
     border-radius: var(--radius-sm);
@@ -15,7 +15,7 @@
 
     cursor: pointer;
 
-    transition: 
+    transition:
         background-color 0.25s ease,
         transform 0.1s ease,
         box-shadow 0.25s ease;
@@ -24,12 +24,13 @@
         background-color: var(--btn-primary-bg-hover);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
+
     &:active {
         transform: translateY(1px);
     }
+
     &:focus-visible {
         outline: 2px solid var(--btn-primary-bg-active);
         outline-offset: 2px;
     }
-
 }
