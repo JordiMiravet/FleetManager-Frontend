@@ -8,11 +8,13 @@
     border-radius: 10rem;
 
     background: var(--toggle-bg);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
-    
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+
     cursor: pointer;
-    
+
     transition: background-color 0.25s ease, color 0.25s ease;
+
+    // Thumb
 
     &__thumb {
         position: absolute;
@@ -28,15 +30,19 @@
         border-radius: 50%;
 
         background: var(--toggle-thumb-bg);
-        box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 
         transition: transform 0.25s ease;
     }
+
+    // Icon
 
     &__icon-inner {
         color: var(--toggle-icon);
         transition: color 0.25s ease;
     }
+
+    // Active state
 
     &--active {
         background-color: var(--toggle-bg-active);
@@ -50,6 +56,4 @@
             transition-delay: 0.05s;
         }
     }
-
 }
-
