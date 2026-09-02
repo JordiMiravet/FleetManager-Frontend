@@ -15,6 +15,8 @@
     margin: 0;
     padding: 0;
 
+    // Map
+
     &__map {
         position: relative;
 
@@ -22,6 +24,8 @@
 
         z-index: 1;
     }
+
+    // Vehicle selector
 
     &__vehicle-selector {
         position: absolute;
@@ -37,6 +41,8 @@
 
         z-index: 100;
     }
+
+    // Details panel
 
     &__details-panel {
         display: flex;
@@ -56,9 +62,10 @@
     }
 }
 
+// Responsive
+
 @media (min-width: 576px) {
     .map-view {
-
         &__vehicle-selector {
             min-width: 250px;
             left: auto;
@@ -70,6 +77,8 @@
         }
     }
 }
+
+// Vehicle marker
 
 ::ng-deep .vehicle-marker {
     width: 7.5rem;
@@ -85,7 +94,6 @@
         height: 7.5rem;
 
         object-fit: cover;
-
         aspect-ratio: 1 / 1;
 
         border-radius: 50%;
