@@ -18,8 +18,8 @@
 
     padding: 2rem;
 
-    border-radius: 0 0.5rem 0.5rem 0;
     border-left: 0.5rem solid var(--accent-default);
+    border-radius: 0 0.5rem 0.5rem 0;
 
     background-color: var(--bg-surface-0);
     box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.5);
@@ -56,6 +56,7 @@
     &__fieldset {
         margin: 0;
         padding: 0;
+
         border: none;
     }
 
@@ -67,8 +68,8 @@
 
         width: 100%;
 
-        padding: 1rem;
         margin-bottom: 2.5rem;
+        padding: 1rem;
 
         border-bottom: 2px solid var(--bg-surface-100);
 
@@ -136,8 +137,8 @@
         align-items: center;
         gap: var(--space-0-50);
 
-        padding: 0.5rem;
         margin: 1rem 0 0 0;
+        padding: 0.5rem;
 
         border-radius: var(--radius-sm);
 
