@@ -28,15 +28,15 @@
 
         cursor: pointer;
         transition: border-color 0.25s ease;
-    }
 
-    &__auth-button:hover {
-        border-color: var(--btn-primary-outline-bg);
-    }
-
-    &__auth-button.active {
-        color: var(--btn-primary-outline-text-hover);
-        background-color: var(--btn-primary-outline-bg);
-        border-color: var(--btn-primary-outline-bg);
+        &:hover {
+            border-color: var(--btn-primary-outline-bg);
+        }
+        
+        &.active {
+            color: var(--btn-primary-outline-text-hover);
+            background-color: var(--btn-primary-outline-bg);
+            border-color: var(--btn-primary-outline-bg);
+        }
     }
 }
