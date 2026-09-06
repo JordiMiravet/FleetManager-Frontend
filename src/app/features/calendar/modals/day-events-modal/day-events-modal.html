@@ -26,9 +26,9 @@
         </header>
 
         @if(events().length > 0) {
-            <ul class="modal__events-list" id="eventsListDesc" role="list">
+            <ul class="modal__events-list" id="eventsListDesc">
                 @for (event of events(); track $index) {
-                    <li role="listitem" class="modal__event-item">
+                    <li class="modal__event-item">
                         <details class="event-card" [attr.id]="'eventDetails' + $index">
                             <summary
                                 class="event-card__summary"
