@@ -91,5 +91,4 @@ export class MostUsedVehicleChartComponent implements OnDestroy {
     });
   }
 
-  
 }
