@@ -48,6 +48,12 @@ describe('InvitationService', () => {
       expect(result.every(invitation => invitation.status === InvitationStatus.Accepted)).toBeTrue();
     });
 
+    it('should match the number of accepted invitations in mock data', () => {
+      const expectedCount = MOCK_INVITATIONS.filter(i => i.status === InvitationStatus.Accepted).length;
+
+      expect(service.acceptedInvitations()).toHaveSize(expectedCount);
+    });
+
   });
 
   describe('declinedInvitations', () => {
