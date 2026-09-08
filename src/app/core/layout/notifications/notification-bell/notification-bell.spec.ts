@@ -31,6 +31,7 @@ describe('NotificationBellComponent', () => {
   const getBadge = (): HTMLElement | null => fixture.nativeElement.querySelector('.notification-bell__badge');
   const getDropdown = (): HTMLElement | null => fixture.nativeElement.querySelector('app-notification-dropdown');
   const getCards = (): NodeListOf<Element> => fixture.nativeElement.querySelectorAll('app-invitation-card');
+  const getIcon = (): HTMLElement | null => fixture.nativeElement.querySelector('i.pi-bell');
   const getEmptyMessage = (): HTMLElement | null => fixture.nativeElement.querySelector('.notification-dropdown__empty');
 
   beforeEach(async () => {
