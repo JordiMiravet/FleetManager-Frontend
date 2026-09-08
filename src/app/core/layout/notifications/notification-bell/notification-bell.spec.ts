@@ -51,9 +51,7 @@ describe('NotificationBellComponent', () => {
   });
 
   it('should render a bell icon', () => {
-    const icon = fixture.nativeElement.querySelector('i.pi-bell');
-
-    expect(icon).not.toBeNull();
+    expect(getIcon()).not.toBeNull();
   });
 
   describe('badge', () => {
