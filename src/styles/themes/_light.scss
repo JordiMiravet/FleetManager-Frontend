@@ -1,7 +1,7 @@
 :root {
 
     // --------------------------------------------------
-    // SEMANTIC COLORS
+    // Semantic Colors
     // --------------------------------------------------
 
     --color-primary-300: var(--color-blue-300);
@@ -16,7 +16,7 @@
     --color-toggle-night: var(--color-blue-500);
 
     // -------------------------
-    // BACKGROUND / SURFACES
+    // Background / Surfaces
     // -------------------------
 
     --bg-base: var(--color-neutral-50);
@@ -31,7 +31,7 @@
     --bg-surface-600: var(--color-neutral-600);
 
     // -------------------------
-    // TEXT
+    // Text
     // -------------------------
 
     --text-primary: var(--color-neutral-800);
@@ -42,7 +42,7 @@
     --text-error: var(--color-danger-500);
 
     // -------------------------
-    // BORDERS
+    // Borders
     // -------------------------
 
     --border-color-default: var(--color-neutral-300);
@@ -51,14 +51,14 @@
     --border-color-error: var(--color-danger-500);
 
     // -------------------------
-    // ACCENT / EMPHASIS
+    // Accent / Emphasis
     // -------------------------
 
     --accent-default: var(--color-primary-500);
     --accent-hover: var(--color-primary-700);
 
     // -------------------------
-    // BUTTONS
+    // Buttons
     // -------------------------
 
     // Primary
@@ -97,7 +97,7 @@
     --btn-danger-outline-text-hover: var(--color-danger-700);
 
     // -------------------------
-    // THEME SWITCH
+    // Theme switch
     // -------------------------
 
     --toggle-bg: var(--color-toggle-day);
@@ -109,7 +109,7 @@
     --toggle-icon-active: var(--color-toggle-night);
 
     // -------------------------
-    // OVERLAY
+    // Overlay
     // -------------------------
 
     --overlay-backdrop: rgba(0, 0, 0, 0.5);
