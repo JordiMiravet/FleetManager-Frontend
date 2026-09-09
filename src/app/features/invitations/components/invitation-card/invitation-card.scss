@@ -4,8 +4,9 @@
     gap: var(--space-0-50);
 
     padding: 1rem;
-    border-radius: var(--radius-md);
+
     border-bottom: 1px solid var(--border-color-default);
+    border-radius: var(--radius-md);
 
     &:last-child {
         border-bottom: none;
@@ -15,6 +16,7 @@
 
     &__vehicle-name {
         margin: 0;
+
         font-size: var(--font-size-base);
         font-weight: 600;
         color: var(--text-primary);
@@ -22,6 +24,7 @@
 
     &__owner {
         margin: 0;
+
         font-size: var(--font-size-sm);
         color: var(--text-secondary);
 
@@ -45,13 +48,14 @@
     }
 
     &__button {
-        flex: 1;
         display: flex;
+        flex: 1;
         align-items: center;
         justify-content: center;
         gap: var(--space-0-50);
 
         padding: 0.5rem;
+
         border: none;
         border-radius: var(--radius-sm);
 
