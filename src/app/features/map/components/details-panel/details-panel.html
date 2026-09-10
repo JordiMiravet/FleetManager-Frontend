@@ -9,6 +9,7 @@
         <h3 class="map-card__plate" id="vehicle-plate">{{ vehicle()?.plate }}</h3>
     </div>
     <button 
+        type="button"
         class="map-card__button" 
         (click)="locationRequest.emit()" 
         [aria-label]="detailsPanelMsg.aria.button" 
