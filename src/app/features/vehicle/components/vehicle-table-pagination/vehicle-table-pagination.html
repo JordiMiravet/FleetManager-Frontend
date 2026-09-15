@@ -1,6 +1,5 @@
 <nav 
     class="vehicle-pagination" 
-    role="navigation" 
     [aria-label]="paginationMsg.aria.navigation"
 >
     <p class="vehicle-pagination__info">
@@ -13,6 +12,7 @@
 
     <div class="vehicle-pagination__controls">
         <button 
+            type="button"
             class="vehicle-pagination__button"
             [aria-label]="paginationMsg.aria.previousPage"
         >
@@ -20,6 +20,7 @@
         </button>
 
         <button 
+            type="button"
             class="vehicle-pagination__button"
             [aria-label]="paginationMsg.aria.nextPage"
         >

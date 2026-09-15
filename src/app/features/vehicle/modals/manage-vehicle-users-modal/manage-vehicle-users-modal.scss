@@ -2,8 +2,10 @@
     width: 95%;
     max-width: 50rem;
     padding: 2rem;
+
+    border: 0.5rem solid transparent;
+    border-left-color: var(--accent-default);
     border-radius: 0 0.5rem 0.5rem 0;
-    border-left: 0.5rem solid var(--accent-default);
 
     background: var(--bg-surface-0);
     box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
@@ -11,15 +13,17 @@
     // Backdrop
 
     &__backdrop {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+
+        position: fixed;
+        top: 0;
+        left: 0;
         z-index: 1000;
+
+        width: 100%;
+        height: 100%;
 
         border: none;
         outline: none;
@@ -38,6 +42,7 @@
 
         margin: 0 0 1rem;
         padding-bottom: 0.5rem;
+
         border-bottom: 2px solid var(--border-color-default);
 
         font-size: var(--font-size-lg);
@@ -55,6 +60,7 @@
     &__section-title,
     &__label {
         display: block;
+
         margin: 0 0 0.5rem;
 
         font-weight: 700;
@@ -75,6 +81,7 @@
         width: auto;
         padding: 0.5rem 1rem;
         margin-bottom: 0.5rem;
+
         border-left: 3px solid var(--accent-default);
         border-radius: 0;
 
@@ -113,6 +120,7 @@
     &__input {
         width: 100%;
         padding: 1rem;
+
         border: 2px solid transparent;
         border-radius: var(--radius-sm);
 
@@ -159,6 +167,7 @@
         gap: var(--space-0-50);
 
         padding: 1rem 2rem;
+
         border: none;
         border-radius: var(--radius-sm);
 

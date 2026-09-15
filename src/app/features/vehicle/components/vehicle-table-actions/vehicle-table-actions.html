@@ -13,6 +13,7 @@
 
   <div class="vehicle-actions__sort">
     <button
+      type="button"
       class="vehicle-actions__sort-button"
       [attr.aria-label]="actionsMsg.aria.sortDirButton"
       (click)="toggleSortDir()"
@@ -23,6 +24,7 @@
         [class.pi-sort-amount-up]="sortDir() === 'desc'"
       ></i>
     </button>
+    
     <select
       class="vehicle-actions__sort-select"
       [attr.aria-label]="actionsMsg.aria.sortFieldSelect"

@@ -9,6 +9,7 @@
 
     width: 100%;
     min-width: 35rem;
+
     padding: 0;
 
     // Structure
@@ -35,6 +36,7 @@
             font-size: var(--font-size-xs);
             font-weight: 700;
             letter-spacing: 0.05rem;
+
             color: var(--text-primary);
 
             &.vehicle-table__header-image {
@@ -52,7 +54,7 @@
             }
 
             &.vehicle-table__header-actions {
-                padding: 1.5rem 1.5rem;
+                padding: 1.5rem;
                 text-align: end;
             }
         }
@@ -78,7 +80,7 @@
     // Cells
 
     &__cell {
-        padding: 1rem 1rem;
+        padding: 1rem;
 
         font-size: var(--font-size-sm);
         font-weight: 500;
@@ -89,14 +91,18 @@
         &--img {
             .vehicle-table__image {
                 display: block;
+                
                 width: 100%;
                 height: 100%;
-                border-radius: 50%;
-                border: 2px solid var(--bg-surface-200);
-                margin: 0 auto;
                 aspect-ratio: 1 / 1;
-                object-fit: cover;
+
+                margin: 0 auto;
+
                 box-sizing: border-box;
+                border: 2px solid var(--bg-surface-200);
+                border-radius: 50%;
+
+                object-fit: cover;
             }
         }
 

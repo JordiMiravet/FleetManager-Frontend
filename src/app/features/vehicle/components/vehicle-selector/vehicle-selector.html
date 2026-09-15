@@ -7,10 +7,9 @@
   class="vehicle-select"
   [value]="selectedPlate() ?? ''"
   (change)="onVehicleChange($event)"
-  aria-required="true"
 >
-  <option 
-    class="vehicle-select__option" 
+  <option
+    class="vehicle-select__option"
     value=""
   >
     {{ selectorMsg.allVehiclesOption }}
@@ -24,5 +23,4 @@
       {{ vehicle.name }}
     </option>
   }
-  
 </select>
