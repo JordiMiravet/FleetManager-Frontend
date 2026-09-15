@@ -42,7 +42,7 @@
         font-size: var(--font-size-sm);
         color: var(--text-secondary);
 
-        transition: border 0.15s ease;
+        transition: border-color 0.15s ease;
     }
 
     // Sort
@@ -65,7 +65,7 @@
         background-color: var(--btn-secondary-muted-bg);
 
         cursor: pointer;
-        transition: all 0.05s ease-in-out;
+        transition: background-color 0.05s ease-in-out;
     }
 
     // States
