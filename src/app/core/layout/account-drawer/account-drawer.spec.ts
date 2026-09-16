@@ -45,11 +45,10 @@ describe('AccountDrawerComponent', () => {
       expect(backdrop).toBeTruthy();
     });
 
-    it('should render the aside with role dialog', () => {
-      const aside = getAside();
+    it('should render the dialog', () => {
+      const dialog = getDialog();
 
-      expect(aside).toBeTruthy();
-      expect(aside.getAttribute('role')).toBe('dialog');
+      expect(dialog).toBeTruthy();
     });
 
     it('should render the drawer title', () => {
@@ -158,10 +157,10 @@ describe('AccountDrawerComponent', () => {
       expect(backdrop.getAttribute('aria-hidden')).toBe('true');
     });
 
-    it('should have aria-label on the aside', () => {
-      const aside = getAside();
+    it('should have aria-label on the dialog', () => {
+      const dialog = getDialog();
 
-      expect(aside.getAttribute('aria-label')).toBe(component.drawerMsg.aria.drawer);
+      expect(dialog.getAttribute('aria-label')).toBe(component.drawerMsg.aria.drawer);
     });
 
     it('should have aria-label on the close button', () => {
@@ -171,12 +170,12 @@ describe('AccountDrawerComponent', () => {
     });
 
     it('should have aria-hidden on icons', () => {
-      const hiddenIcons = fixture.nativeElement.querySelectorAll('i[aria-hidden="true"]');
+      const hiddenIcons = getHiddenIcons();
 
       expect(hiddenIcons.length).toBeGreaterThan(0);
 
       hiddenIcons.forEach((icon: HTMLElement) => {
-        expect(icon.getAttribute('aria-hidden')).toBe('true')
+        expect(icon.getAttribute('aria-hidden')).toBe('true');
       });
     });
 
