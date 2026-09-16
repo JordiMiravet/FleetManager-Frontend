@@ -18,6 +18,8 @@ describe('NavigationComponent', () => {
   const getLinksList = (): HTMLElement | null => fixture.nativeElement.querySelector('.navbar__links');
   const getLinks = (): NodeListOf<HTMLAnchorElement> => fixture.nativeElement.querySelectorAll('.navbar__links li a');
   const getIcons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.navbar__links li a i');
+  const getLinkIcon = (link: HTMLAnchorElement): HTMLElement | null => link.querySelector('i');
+  const getLinkLabel = (link: HTMLAnchorElement): HTMLElement | null => link.querySelector('.navbar__label');
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
