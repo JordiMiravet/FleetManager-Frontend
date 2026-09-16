@@ -14,6 +14,7 @@ describe('HeaderComponent', () => {
   const getNavigation = (): HTMLElement => fixture.nativeElement.querySelector('app-navigation')!;
   const getAuthActions = (): HTMLElement => fixture.nativeElement.querySelector('app-auth-actions')!;
   const getNotificationBell = (): HTMLElement | null => fixture.nativeElement.querySelector('app-notification-bell');
+  const getHeaderActions = (): HTMLElement => fixture.nativeElement.querySelector('.header__actions')!;
 
   beforeEach(async () => {
     authServiceMock = {
