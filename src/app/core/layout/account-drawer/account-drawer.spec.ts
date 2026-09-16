@@ -11,11 +11,12 @@ describe('AccountDrawerComponent', () => {
 
   const getTitle = (): HTMLElement => fixture.nativeElement.querySelector('.drawer__title');
   const getBackdrop = (): HTMLElement => fixture.nativeElement.querySelector('.drawer__backdrop');
-  const getAside = (): HTMLElement => fixture.nativeElement.querySelector('aside.drawer');
+  const getDialog = (): HTMLDialogElement => fixture.nativeElement.querySelector('dialog.drawer');
   const getCloseButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.drawer__close');
   const getMenuItems = (): NodeListOf<HTMLButtonElement> => fixture.nativeElement.querySelectorAll('.drawer__section:first-of-type .drawer__item');
   const getDarkModeToggle = (): HTMLElement => fixture.nativeElement.querySelector('app-dark-mode-toggle');
   const getLogoutButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.drawer__item--danger');
+  const getHiddenIcons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('i[aria-hidden="true"]');
 
   beforeEach(async () => {
     mockThemeService.isDark.and.returnValue(false);
@@ -44,11 +45,10 @@ describe('AccountDrawerComponent', () => {
       expect(backdrop).toBeTruthy();
     });
 
-    it('should render the aside with role dialog', () => {
-      const aside = getAside();
+    it('should render the dialog', () => {
+      const dialog = getDialog();
 
-      expect(aside).toBeTruthy();
-      expect(aside.getAttribute('role')).toBe('dialog');
+      expect(dialog).toBeTruthy();
     });
 
     it('should render the drawer title', () => {
@@ -157,10 +157,10 @@ describe('AccountDrawerComponent', () => {
       expect(backdrop.getAttribute('aria-hidden')).toBe('true');
     });
 
-    it('should have aria-label on the aside', () => {
-      const aside = getAside();
+    it('should have aria-label on the dialog', () => {
+      const dialog = getDialog();
 
-      expect(aside.getAttribute('aria-label')).toBe(component.drawerMsg.aria.drawer);
+      expect(dialog.getAttribute('aria-label')).toBe(component.drawerMsg.aria.drawer);
     });
 
     it('should have aria-label on the close button', () => {
@@ -170,12 +170,12 @@ describe('AccountDrawerComponent', () => {
     });
 
     it('should have aria-hidden on icons', () => {
-      const hiddenIcons = fixture.nativeElement.querySelectorAll('i[aria-hidden="true"]');
+      const hiddenIcons = getHiddenIcons();
 
       expect(hiddenIcons.length).toBeGreaterThan(0);
 
       hiddenIcons.forEach((icon: HTMLElement) => {
-        expect(icon.getAttribute('aria-hidden')).toBe('true')
+        expect(icon.getAttribute('aria-hidden')).toBe('true');
       });
     });
 

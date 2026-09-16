@@ -230,7 +230,7 @@ describe('NotificationBellComponent', () => {
       getAcceptButton()?.click();
       fixture.detectChanges();
 
-      expect(getCards().length).toHaveSize(0);
+      expect(getCards()).toHaveSize(0);
     });
 
     it('should update the badge count after accepting', () => {
