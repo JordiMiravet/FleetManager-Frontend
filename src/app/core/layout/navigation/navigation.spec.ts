@@ -81,7 +81,7 @@ describe('NavigationComponent', () => {
       const links = getLinks();
       const expectedLinks = ['/', '/map', '/calendar', '/graphics'];
 
-      links.forEach((link: HTMLElement, index: number) => {
+      links.forEach((link: HTMLAnchorElement, index: number) => {
         expect(
           link.getAttribute('ng-reflect-router-link') || link.getAttribute('href')
         ).toBe(expectedLinks[index]);
@@ -137,7 +137,7 @@ describe('NavigationComponent', () => {
 
       const links = getLinks();
 
-      links.forEach((link: HTMLElement) => {
+      links.forEach((link: HTMLAnchorElement) => {
         const ariaCurrent = link.getAttribute('aria-current');
         expect(ariaCurrent === 'page' || ariaCurrent === null).toBeTrue();
       });
