@@ -100,13 +100,13 @@ describe('NavigationComponent', () => {
         component.navigationMsg.links.graphics
       ];
 
-      links.forEach((link: HTMLElement, index: number) => {
-        const icon = link.querySelector('i');
+      links.forEach((link: HTMLAnchorElement, index: number) => {
+        const icon = getLinkIcon(link);
         expect(icon).toBeTruthy();
         expect(icon?.className).toContain('pi');
         expect(icon?.className).toContain(expectedIcons[index]);
 
-        const span = link.querySelector('.navbar__label');
+        const span = getLinkLabel(link);
         expect(span?.textContent?.trim()).toBe(expectedLabels[index]);
       });
     });
