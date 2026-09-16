@@ -82,7 +82,7 @@ describe('HeaderComponent', () => {
     it('should contain NavigationComponent before the header actions', () => {
       const header = getHeader();
       const navigation = getNavigation();
-      const actions = header.querySelector('.header__actions');
+      const actions = getHeaderActions();
 
       expect(navigation).toBeTruthy();
       expect(actions).toBeTruthy();
@@ -97,7 +97,7 @@ describe('HeaderComponent', () => {
       authServiceMock.isLogged.set(true);
       fixture.detectChanges();
 
-      const actions = fixture.nativeElement.querySelector('.header__actions') as HTMLElement;
+      const actions = getHeaderActions();
 
       const notificationBell = getNotificationBell();
       const authActions = getAuthActions();
