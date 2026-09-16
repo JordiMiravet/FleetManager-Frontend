@@ -29,7 +29,7 @@ describe('NotificationDropdownComponent', () => {
     it('should show the empty message by default', () => {
       fixture.detectChanges();
 
-      expect(getEmptyMessage()).not.toBeNull();
+      expect(getEmptyMessage()).toBeTruthy();
       expect(getEmptyMessage()?.textContent.trim()).toBe('Nothing to show here');
     });
 
