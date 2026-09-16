@@ -258,8 +258,8 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(false);
       fixture.detectChanges();
 
-      let loginButton = fixture.nativeElement.querySelector('[data-test="loginButton"]');
-      let registerButton = fixture.nativeElement.querySelector('[data-test="registerButton"]');
+      let loginButton = getLoginButton();
+      let registerButton = getRegisterButton(); 
 
       expect(loginButton).toBeTruthy();
       expect(registerButton).toBeTruthy();
