@@ -257,8 +257,8 @@ describe('AuthActionsComponent', () => {
       component.isLogged = signal(false);
       fixture.detectChanges();
 
-      let loginButton = getLoginButton();
-      let registerButton = getRegisterButton(); 
+      const loginButton = getLoginButton();
+      const registerButton = getRegisterButton(); 
 
       expect(loginButton).toBeTruthy();
       expect(registerButton).toBeTruthy();
