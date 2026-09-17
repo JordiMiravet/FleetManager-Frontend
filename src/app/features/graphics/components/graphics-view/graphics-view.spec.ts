@@ -99,17 +99,17 @@ describe('GraphicsViewComponent', () => {
   describe('rendering', () => {
 
     it('should render VehicleUsageHoursChartComponent', () => {
-      const chart = fixture.nativeElement.querySelector('app-vehicle-usage-hours-chart');
+      const chart = getVehicleUsageHoursChart();
       expect(chart).not.toBeNull();
     });
 
     it('should render MostUsedVehicleChartComponent', () => {
-      const chart = fixture.nativeElement.querySelector('app-most-used-vehicle-chart');
+      const chart = getMostUsedVehicleChart();
       expect(chart).not.toBeNull();
     });
 
     it('should render HoursByWeekdayVehicleChartComponent', () => {
-      const chart = fixture.nativeElement.querySelector('app-hours-by-weekday-vehicle-chart');
+      const chart = getHoursByWeekdayVehicleChart();
       expect(chart).not.toBeNull(); 
     });
 
@@ -118,7 +118,7 @@ describe('GraphicsViewComponent', () => {
   describe('user interactions', () => {
 
     it('should update selectedPeriod when clicking This Year button', () => {
-      const buttons = fixture.nativeElement.querySelectorAll('.vehicle-metrics-toolbar__period-button');
+      const buttons = getPeriodButtons();
 
       buttons[1].click();
       fixture.detectChanges();
@@ -127,7 +127,7 @@ describe('GraphicsViewComponent', () => {
     });
 
     it('should update selectedPeriod when clicking All Time button', () => {
-      const buttons = fixture.nativeElement.querySelectorAll('.vehicle-metrics-toolbar__period-button');
+      const buttons = getPeriodButtons();
 
       buttons[2].click();
       fixture.detectChanges();
