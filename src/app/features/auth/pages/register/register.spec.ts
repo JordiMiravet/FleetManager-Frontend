@@ -21,6 +21,11 @@ describe('RegisterPageComponent', () => {
   let authService: AuthService;
   let registerSpy: jasmine.Spy;
 
+  const getSubmitButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button');
+  const getEmailError = (): HTMLElement => fixture.nativeElement.querySelector('#register-email-error');
+  const getPasswordError = (): HTMLElement => fixture.nativeElement.querySelector('#register-password-error');
+  const getSubmitError = (): HTMLElement => fixture.nativeElement.querySelector('.form__error--submit');
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
