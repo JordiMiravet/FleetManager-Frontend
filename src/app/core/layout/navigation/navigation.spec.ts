@@ -18,6 +18,8 @@ describe('NavigationComponent', () => {
   const getLinksList = (): HTMLElement | null => fixture.nativeElement.querySelector('.navbar__links');
   const getLinks = (): NodeListOf<HTMLAnchorElement> => fixture.nativeElement.querySelectorAll('.navbar__links li a');
   const getIcons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.navbar__links li a i');
+  const getLinkIcon = (link: HTMLAnchorElement): HTMLElement | null => link.querySelector('i');
+  const getLinkLabel = (link: HTMLAnchorElement): HTMLElement | null => link.querySelector('.navbar__label');
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -79,7 +81,7 @@ describe('NavigationComponent', () => {
       const links = getLinks();
       const expectedLinks = ['/', '/map', '/calendar', '/graphics'];
 
-      links.forEach((link: HTMLElement, index: number) => {
+      links.forEach((link: HTMLAnchorElement, index: number) => {
         expect(
           link.getAttribute('ng-reflect-router-link') || link.getAttribute('href')
         ).toBe(expectedLinks[index]);
@@ -98,13 +100,13 @@ describe('NavigationComponent', () => {
         component.navigationMsg.links.graphics
       ];
 
-      links.forEach((link: HTMLElement, index: number) => {
-        const icon = link.querySelector('i');
+      links.forEach((link: HTMLAnchorElement, index: number) => {
+        const icon = getLinkIcon(link);
         expect(icon).toBeTruthy();
         expect(icon?.className).toContain('pi');
         expect(icon?.className).toContain(expectedIcons[index]);
 
-        const span = link.querySelector('.navbar__label');
+        const span = getLinkLabel(link);
         expect(span?.textContent?.trim()).toBe(expectedLabels[index]);
       });
     });
@@ -135,7 +137,7 @@ describe('NavigationComponent', () => {
 
       const links = getLinks();
 
-      links.forEach((link: HTMLElement) => {
+      links.forEach((link: HTMLAnchorElement) => {
         const ariaCurrent = link.getAttribute('aria-current');
         expect(ariaCurrent === 'page' || ariaCurrent === null).toBeTrue();
       });

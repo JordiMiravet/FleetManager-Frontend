@@ -16,6 +16,7 @@ describe('AccountDrawerComponent', () => {
   const getMenuItems = (): NodeListOf<HTMLButtonElement> => fixture.nativeElement.querySelectorAll('.drawer__section:first-of-type .drawer__item');
   const getDarkModeToggle = (): HTMLElement => fixture.nativeElement.querySelector('app-dark-mode-toggle');
   const getLogoutButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.drawer__item--danger');
+  const getHiddenIcons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('i[aria-hidden="true"]');
 
   beforeEach(async () => {
     mockThemeService.isDark.and.returnValue(false);
@@ -170,12 +171,12 @@ describe('AccountDrawerComponent', () => {
     });
 
     it('should have aria-hidden on icons', () => {
-      const hiddenIcons = fixture.nativeElement.querySelectorAll('i[aria-hidden="true"]');
+      const hiddenIcons = getHiddenIcons();
 
       expect(hiddenIcons.length).toBeGreaterThan(0);
 
       hiddenIcons.forEach((icon: HTMLElement) => {
-        expect(icon.getAttribute('aria-hidden')).toBe('true')
+        expect(icon.getAttribute('aria-hidden')).toBe('true');
       });
     });
 
