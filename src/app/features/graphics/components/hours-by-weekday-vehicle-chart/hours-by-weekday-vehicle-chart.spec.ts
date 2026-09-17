@@ -142,9 +142,9 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
 
     it('should have aria-describedby pointing to the description', () => {
       const figure = getFigure();
-      const desc = getDescription();
+      const description = getDescription();
 
-      expect(figure.getAttribute('aria-describedby')).toBe(desc.getAttribute('id'));
+      expect(figure.getAttribute('aria-describedby')).toBe(description.getAttribute('id'));
     });
 
   });
