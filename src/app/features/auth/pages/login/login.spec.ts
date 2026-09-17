@@ -127,7 +127,7 @@ describe('LoginPageComponent', () => {
   describe('Template rendering', () => {
 
     it('should enable submit button when form is valid', () => {
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getSubmitButton();
 
       component.formLogin.get('email')?.setValue(validCredentials.email);
       component.formLogin.get('password')?.setValue(validCredentials.password);
@@ -138,7 +138,7 @@ describe('LoginPageComponent', () => {
 
     it('should show email error message when email is invalid and touched', () => {
       const emailControl = component.formLogin.get('email');
-      const errorMessageElement : HTMLElement = fixture.nativeElement.querySelector('#login-email-error');
+      const errorMessageElement = getEmailError();
 
       emailControl?.setValue('invalid-email');
       emailControl?.markAsTouched();
@@ -152,7 +152,7 @@ describe('LoginPageComponent', () => {
 
     it('should show password error message when password is invalid and touched', () => {
       const passwordControl = component.formLogin.get('password');
-      const errorMessageElement : HTMLElement = fixture.nativeElement.querySelector('#login-password-error');
+      const errorMessageElement = getPasswordError();
 
       passwordControl?.setValue('12345');
       passwordControl?.markAsTouched();
@@ -176,8 +176,8 @@ describe('LoginPageComponent', () => {
 
       fixture.detectChanges();
 
-      const emailErrorElement: HTMLElement = fixture.nativeElement.querySelector('#login-email-error');
-      const passwordErrorElement: HTMLElement = fixture.nativeElement.querySelector('#login-password-error');
+      const emailErrorElement = getEmailError();
+      const passwordErrorElement = getPasswordError();
 
       expect(emailErrorElement.hidden).toBeTrue();
       expect(passwordErrorElement.hidden).toBeTrue();
@@ -187,7 +187,7 @@ describe('LoginPageComponent', () => {
       component.errorSubmit = 'This email or password is invalid';
       fixture.detectChanges();
 
-      const errorElement: HTMLElement = fixture.nativeElement.querySelector('.form__error--submit');
+      const errorElement = getSubmitError();
 
       expect(errorElement).toBeTruthy();
       expect(errorElement.textContent).toContain('This email or password is invalid')
