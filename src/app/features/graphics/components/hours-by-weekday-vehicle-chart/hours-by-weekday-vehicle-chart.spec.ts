@@ -29,6 +29,11 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
   let fixture: ComponentFixture<HoursByWeekdayVehicleChartComponent>;
   let graphicsService: GraphicsService;
 
+  const getCanvas = (): HTMLCanvasElement => fixture.nativeElement.querySelector('canvas');
+  const getFigure = (): HTMLElement => fixture.nativeElement.querySelector('figure');
+  const getTitle = (): HTMLElement => fixture.nativeElement.querySelector('#hours-by-weekday-title');
+  const getDescription = (): HTMLElement => fixture.nativeElement.querySelector('#hours-by-weekday-desc');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HoursByWeekdayVehicleChartComponent],
