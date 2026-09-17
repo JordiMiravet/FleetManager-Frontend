@@ -11,7 +11,7 @@ describe('AccountDrawerComponent', () => {
 
   const getTitle = (): HTMLElement => fixture.nativeElement.querySelector('.drawer__title');
   const getBackdrop = (): HTMLElement => fixture.nativeElement.querySelector('.drawer__backdrop');
-  const getDialog = (): HTMLDialogElement => fixture.nativeElement.querySelector('dialog.drawer');
+  const getDialog = (): HTMLElement => fixture.nativeElement.querySelector('dialog.drawer');
   const getCloseButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.drawer__close');
   const getMenuItems = (): NodeListOf<HTMLButtonElement> => fixture.nativeElement.querySelectorAll('.drawer__section:first-of-type .drawer__item');
   const getDarkModeToggle = (): HTMLElement => fixture.nativeElement.querySelector('app-dark-mode-toggle');
@@ -45,10 +45,11 @@ describe('AccountDrawerComponent', () => {
       expect(backdrop).toBeTruthy();
     });
 
-    it('should render the dialog', () => {
+    it('should render the dialog with role dialog', () => {
       const dialog = getDialog();
 
       expect(dialog).toBeTruthy();
+      expect(dialog.getAttribute('role')).toBe('dialog');
     });
 
     it('should render the drawer title', () => {

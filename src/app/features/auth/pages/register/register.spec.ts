@@ -21,6 +21,11 @@ describe('RegisterPageComponent', () => {
   let authService: AuthService;
   let registerSpy: jasmine.Spy;
 
+  const getSubmitButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button');
+  const getEmailError = (): HTMLElement => fixture.nativeElement.querySelector('#register-email-error');
+  const getPasswordError = (): HTMLElement => fixture.nativeElement.querySelector('#register-password-error');
+  const getSubmitError = (): HTMLElement => fixture.nativeElement.querySelector('.form__error--submit');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -133,7 +138,7 @@ describe('RegisterPageComponent', () => {
 
     it('should show email error message when email is invalid and touched', () => {
       const emailControl = component.formReg.get('email');
-      const errorMessageElement : HTMLElement = fixture.nativeElement.querySelector('#register-email-error');
+      const errorMessageElement = getEmailError();
 
       emailControl?.setValue('invalid-email');
       emailControl?.markAsTouched();
@@ -147,7 +152,7 @@ describe('RegisterPageComponent', () => {
 
     it('should show password error message when password is invalid and touched', () => {
       const passwordControl = component.formReg.get('password');
-      const errorMessageElement : HTMLElement = fixture.nativeElement.querySelector('#register-password-error');
+      const errorMessageElement = getPasswordError();
 
       passwordControl?.setValue('12345');
       passwordControl?.markAsTouched();
@@ -162,7 +167,7 @@ describe('RegisterPageComponent', () => {
     it('should not show error messages when inputs are valid', () => {
       const emailControl = component.formReg.get('email');
       const passwordControl = component.formReg.get('password');
-      
+
       emailControl?.setValue(validCredentials.email);
       passwordControl?.setValue(validCredentials.password);
 
@@ -171,8 +176,8 @@ describe('RegisterPageComponent', () => {
 
       fixture.detectChanges();
 
-      const emailErrorElement: HTMLElement = fixture.nativeElement.querySelector('#register-email-error');
-      const passwordErrorElement: HTMLElement = fixture.nativeElement.querySelector('#register-password-error');
+      const emailErrorElement = getEmailError();
+      const passwordErrorElement = getPasswordError();
 
       expect(emailErrorElement.hidden).toBeTrue();
       expect(passwordErrorElement.hidden).toBeTrue();
@@ -182,7 +187,7 @@ describe('RegisterPageComponent', () => {
       component.errorSubmit = 'This email or password is invalid';
       fixture.detectChanges();
 
-      const errorElement: HTMLElement = fixture.nativeElement.querySelector('.form__error--submit');
+      const errorElement = getSubmitError();
 
       expect(errorElement).toBeTruthy();
       expect(errorElement.textContent).toContain('This email or password is invalid');
