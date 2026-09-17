@@ -20,6 +20,11 @@ describe('MostUsedVehicleChartComponent', () => {
   let fixture: ComponentFixture<MostUsedVehicleChartComponent>;
   let graphicsService: GraphicsService;
 
+  const getCanvas = (): HTMLCanvasElement => fixture.nativeElement.querySelector('canvas');
+  const getFigure = (): HTMLElement => fixture.nativeElement.querySelector('figure');
+  const getTitle = (): HTMLElement => fixture.nativeElement.querySelector('#most-used-vehicle-title');
+  const getDescription = (): HTMLElement => fixture.nativeElement.querySelector('#most-used-vehicle-desc');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MostUsedVehicleChartComponent],
