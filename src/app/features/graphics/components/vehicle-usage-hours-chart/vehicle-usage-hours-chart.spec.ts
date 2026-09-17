@@ -20,6 +20,11 @@ describe('VehicleUsageHoursChartComponent', () => {
   let fixture: ComponentFixture<VehicleUsageHoursChartComponent>;
   let graphicsService: GraphicsService;
 
+  const getCanvas = (): HTMLCanvasElement => fixture.nativeElement.querySelector('canvas');
+  const getFigure = (): HTMLElement => fixture.nativeElement.querySelector('figure');
+  const getTitle = (): HTMLElement => fixture.nativeElement.querySelector('#vehicle-usage-hours-title');
+  const getDescription = (): HTMLElement => fixture.nativeElement.querySelector('#vehicle-usage-hours-desc');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [VehicleUsageHoursChartComponent],
@@ -132,29 +137,29 @@ describe('VehicleUsageHoursChartComponent', () => {
   describe('template', () => {
 
     it('should render the canvas element', () => {
-      const canvas = fixture.nativeElement.querySelector('canvas');
+      const canvas = getCanvas();
 
       expect(canvas).not.toBeNull();
     });
 
     it('should have role="img" on the figure', () => {
-      const figure = fixture.nativeElement.querySelector('figure');
+      const figure = getFigure();
 
       expect(figure.getAttribute('role')).toBe('img');
     });
 
     it('should have aria-labelledby pointing to the title', () => {
-      const figure = fixture.nativeElement.querySelector('figure');
-      const title = fixture.nativeElement.querySelector('#vehicle-usage-hours-title');
+      const figure = getFigure();
+      const title = getTitle();
 
       expect(figure.getAttribute('aria-labelledby')).toBe(title.getAttribute('id'));
     });
 
     it('should have aria-describedby pointing to the description', () => {
-      const figure = fixture.nativeElement.querySelector('figure');
-      const desc = fixture.nativeElement.querySelector('#vehicle-usage-hours-desc');
+      const figure = getFigure();
+      const description = getDescription();
 
-      expect(figure.getAttribute('aria-describedby')).toBe(desc.getAttribute('id'));
+      expect(figure.getAttribute('aria-describedby')).toBe(description.getAttribute('id'));
     });
 
   });

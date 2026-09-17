@@ -18,11 +18,11 @@ describe('GraphicsPageComponent', () => {
   let component: GraphicsPageComponent;
   let fixture: ComponentFixture<GraphicsPageComponent>;
 
+  const getGraphicsComponent = (): HTMLElement => fixture.nativeElement.querySelector('app-graphics-view');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        GraphicsPageComponent,
-      ],
+      imports: [ GraphicsPageComponent ],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
@@ -43,7 +43,7 @@ describe('GraphicsPageComponent', () => {
   describe('child components rendering', () => {
 
     it('should render graphics-view component', () => {
-      const graphicsComponent = fixture.nativeElement.querySelector('app-graphics-view');
+      const graphicsComponent = getGraphicsComponent()
       expect(graphicsComponent).toBeTruthy();
     });
 
