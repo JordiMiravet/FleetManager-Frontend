@@ -22,9 +22,7 @@ describe('GraphicsPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        GraphicsPageComponent,
-      ],
+      imports: [ GraphicsPageComponent ],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
