@@ -18,6 +18,8 @@ describe('GraphicsPageComponent', () => {
   let component: GraphicsPageComponent;
   let fixture: ComponentFixture<GraphicsPageComponent>;
 
+  const getGraphicsComponent = (): HTMLElement => fixture.nativeElement.querySelector('app-graphics-view');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
