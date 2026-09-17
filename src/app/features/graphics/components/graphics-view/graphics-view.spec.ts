@@ -34,6 +34,12 @@ describe('GraphicsViewComponent', () => {
   let component: GraphicsViewComponent;
   let fixture: ComponentFixture<GraphicsViewComponent>;
 
+  const getVehicleUsageHoursChart = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-usage-hours-chart');
+  const getMostUsedVehicleChart = (): HTMLElement => fixture.nativeElement.querySelector('app-most-used-vehicle-chart');
+  const getHoursByWeekdayVehicleChart = (): HTMLElement => fixture.nativeElement.querySelector('app-hours-by-weekday-vehicle-chart');
+
+  const getPeriodButtons = (): NodeListOf<HTMLButtonElement> => fixture.nativeElement.querySelectorAll('.vehicle-metrics-toolbar__period-button');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [GraphicsViewComponent],
