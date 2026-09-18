@@ -15,6 +15,10 @@ describe('CalendarViewComponent', () => {
   let component: CalendarViewComponent;
   let fixture: ComponentFixture<CalendarViewComponent>;
 
+  const getEventFormModal = (): HTMLElement | null => fixture.nativeElement.querySelector('app-event-form-modal');
+  const getDayEventsModal = (): HTMLElement | null => fixture.nativeElement.querySelector('app-day-events-modal');
+  const getConfirmModal = (): HTMLElement | null => fixture.nativeElement.querySelector('app-confirm-modal');
+
   const mockEventService = {
     calendarEvents: jasmine.createSpy('calendarEvents').and.returnValue([]),
     getEventsByDate: jasmine.createSpy('getEventsByDate').and.returnValue([]),
@@ -176,7 +180,7 @@ describe('CalendarViewComponent', () => {
       component.handleCreateEvent();
       fixture.detectChanges();
 
-      const formModal = fixture.nativeElement.querySelector('app-event-form-modal');
+      const formModal = getEventFormModal();
       expect(formModal).toBeTruthy();
     });
 
@@ -237,7 +241,7 @@ describe('CalendarViewComponent', () => {
       component.handleDeleteEvent('123');
       fixture.detectChanges();
 
-      const confirmModal = fixture.nativeElement.querySelector('app-confirm-modal');
+      const confirmModal = getConfirmModal();
       expect(confirmModal).toBeTruthy();
     });
 
@@ -381,7 +385,7 @@ describe('CalendarViewComponent', () => {
       component.activeModal.set(CalendarModalState.DayEvents);
       fixture.detectChanges();
 
-      const modal = fixture.nativeElement.querySelector('app-day-events-modal');
+      const modal = getDayEventsModal();
       expect(modal).toBeTruthy();
     });
 
@@ -389,7 +393,7 @@ describe('CalendarViewComponent', () => {
       component.activeModal.set(CalendarModalState.Closed);
       fixture.detectChanges();
 
-      const modal = fixture.nativeElement.querySelector('app-day-events-modal');
+      const modal = getDayEventsModal();
       expect(modal).toBeNull();
     });
 

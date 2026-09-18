@@ -11,8 +11,8 @@ import { EventInterface } from '../../models/event';
 
 const authMock = {
   currentUser: {
-    uid: 'JordiTheBest',
-    getIdToken: () => Promise.resolve('Mytoken')
+    uid: 'test-user',
+    getIdToken: () => Promise.resolve('test-token')
   }
 };
 
@@ -47,6 +47,12 @@ describe('EventFormModalComponent', () => {
   let eventService: EventService;
   let vehicleService: VehicleService;
 
+  const getModal = (): HTMLDialogElement => fixture.nativeElement.querySelector('dialog')!;
+  const getModalText = (): string => fixture.nativeElement.textContent;
+  const getForm = (): HTMLFormElement => fixture.nativeElement.querySelector('.event-form')!;
+  const getSaveButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.event-form__button--Save')!;
+  const getTitleError = (): HTMLElement => fixture.nativeElement.querySelector('#titleError')!;
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [EventFormModalComponent],
@@ -446,7 +452,8 @@ describe('EventFormModalComponent', () => {
       patchForm({ title: 'Quedada JDM', hourStart: '17:00', hourEnd: '22:00', vehicleId: 'R34-123456', comment: 'Wrap wraaap!' });
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('.event-form__button--Save');
+      const button = getSaveButton();
+
       expect(button.disabled).toBe(false);
     });
 
@@ -454,7 +461,7 @@ describe('EventFormModalComponent', () => {
       const close = spyOn(component, 'handleClose');
       fixture.detectChanges();
 
-      const overlay = fixture.nativeElement.querySelector('dialog');
+      const overlay = getModal();
       overlay.click();
 
       expect(close).toHaveBeenCalled();
@@ -464,7 +471,7 @@ describe('EventFormModalComponent', () => {
       const close = spyOn(component, 'handleClose');
       fixture.detectChanges();
 
-      const form = fixture.nativeElement.querySelector('.event-form');
+      const form = getForm();
       form.click();
 
       expect(close).not.toHaveBeenCalled();
@@ -474,14 +481,18 @@ describe('EventFormModalComponent', () => {
       fixture.componentRef.setInput('mode', 'create');
       fixture.detectChanges();
 
-      expect(fixture.nativeElement.textContent).toContain(component.formMsg.title.create);
+      const modalText = getModalText();
+
+      expect(modalText).toContain(component.formMsg.title.create);
     });
 
     it('should show edit title when mode is edit', () => {
       fixture.componentRef.setInput('mode', 'edit');
       fixture.detectChanges();
 
-      expect(fixture.nativeElement.textContent).toContain(component.formMsg.title.edit);
+      const modalText = getModalText();
+
+      expect(modalText).toContain(component.formMsg.title.edit);
     });
 
     it('should show title error when title is touched and invalid', () => {
@@ -489,7 +500,8 @@ describe('EventFormModalComponent', () => {
       title?.markAsTouched();
       fixture.detectChanges();
 
-      const error = fixture.nativeElement.querySelector('#titleError');
+      const error = getTitleError();
+
       expect(error.hidden).toBeFalse();
     });
 

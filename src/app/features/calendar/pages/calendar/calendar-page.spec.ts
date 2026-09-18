@@ -16,6 +16,8 @@ describe('CalendarPageComponent', () => {
   let component: CalendarPageComponent;
   let fixture: ComponentFixture<CalendarPageComponent>;
 
+  const getCalendarView = (): HTMLElement => fixture.nativeElement.querySelector('app-calendar-view');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -40,7 +42,7 @@ describe('CalendarPageComponent', () => {
   });
 
   it('should render app-calendar-view', () => {
-    const calendarView = fixture.nativeElement.querySelector('app-calendar-view');
+    const calendarView = getCalendarView();
     expect(calendarView).toBeTruthy();
   });
 
