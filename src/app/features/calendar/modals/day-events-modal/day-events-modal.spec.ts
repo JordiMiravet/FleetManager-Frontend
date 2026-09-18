@@ -61,7 +61,7 @@ const getModalTitle = (): HTMLElement => fixture.nativeElement.querySelector('.m
 const getCreateButton = (): HTMLElement => fixture.nativeElement.querySelector('.modal__header app-create-button')!;
 const getEventsList = (): HTMLElement => fixture.nativeElement.querySelector('#eventsListDesc')!;
 const getListItems = (): NodeListOf<HTMLLIElement> => fixture.nativeElement.querySelectorAll('li');
-const getEventCards = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card');
+const getEventCards = (): NodeListOf<HTMLDetailsElement> => fixture.nativeElement.querySelectorAll('.event-card');
 const getEventSummary = (): HTMLElement => fixture.nativeElement.querySelector('.event-card__summary')!;
 const getVehicle = (): HTMLElement => fixture.nativeElement.querySelector('.event-card__vehicle')!;
 const getEventTitles = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__title');
@@ -157,7 +157,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
-      const items = fixture.nativeElement.querySelectorAll('li');
+      const items = getListItems();
       expect(items).toHaveSize(mockEvents.length);
     });
 
@@ -165,7 +165,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
-      const title = fixture.nativeElement.querySelectorAll('.event-card__title');
+      const title = getEventTitles();
       expect(title).toHaveSize(mockEvents.length);
       expect(title[0].textContent).toContain(mockEvents[0].title);
     });
@@ -174,7 +174,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
-      const time = fixture.nativeElement.querySelectorAll('.event-card__time-value');
+      const time = getEventTimes();
       expect(time).toHaveSize(mockEvents.length);
       expect(time[0].textContent).toContain(`${mockEvents[0].hourStart} - ${mockEvents[0].hourEnd}`);
     });
@@ -183,7 +183,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
-      const comment = fixture.nativeElement.querySelectorAll('.event-card__comment');
+      const comment = getComments();
       expect(comment.length).toBeGreaterThan(0);
       expect(comment[0].textContent).toContain('Revisión general y cambio de filtro');
     });
@@ -192,7 +192,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
-      const comments = fixture.nativeElement.querySelectorAll('.event-card__comment');
+      const comments = getComments();
       expect(comments).toHaveSize(1);
       expect(comments[0].textContent).toContain(mockEvents[0].comment);
     });
@@ -201,7 +201,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', [mockSingleEvent]);
       fixture.detectChanges();
 
-      const vehicle = fixture.nativeElement.querySelector('.event-card__vehicle');
+      const vehicle = getVehicle();
 
       expect(vehicle.textContent).toContain('Ferrari Roma');
     });
@@ -211,7 +211,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const title = fixture.nativeElement.querySelector('.modal__title');
+      const title = getModalTitle();
 
       expect(title.textContent).toContain('2026-03-26');
     });
@@ -224,7 +224,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const message = fixture.nativeElement.querySelector('.modal__empty');
+      const message = getEmptyState();
       expect(message).toBeTruthy();
     });
 
@@ -240,7 +240,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const cards = fixture.nativeElement.querySelectorAll('.event-card');
+      const cards = getEventCards();
       expect(cards).toHaveSize(0);
     });
 
@@ -296,7 +296,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.detectChanges();
 
       const openDetailsSpy = spyOn(component, 'openDetails');
-      const summary = fixture.nativeElement.querySelector('.event-card__summary');
+      const summary = getEventSummary();
       summary.click();
 
       expect(openDetailsSpy).toHaveBeenCalledWith(0);
@@ -307,7 +307,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.detectChanges();
 
       const createEvent = spyOn(component.createEvent, 'emit');
-      const button = fixture.nativeElement.querySelector('.modal__header app-create-button');
+      const button = getCreateButton();
       button.click();
       fixture.detectChanges();
 
@@ -349,8 +349,8 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.detectChanges();
 
       const closeModal = spyOn(component.closeModal, 'emit');
-      const section = fixture.nativeElement.querySelector('.modal');
-      section.click();
+      const modal = getModal();
+      modal.click();
       fixture.detectChanges();
 
       expect(closeModal).not.toHaveBeenCalled();
@@ -364,7 +364,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
-      const details = fixture.nativeElement.querySelectorAll('.event-card');
+      const details = getEventCards();
       details[0].open = true;
       details[1].open = true;
 
@@ -379,7 +379,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
-      const details = fixture.nativeElement.querySelectorAll('.event-card');
+      const details = getEventCards();
       details[1].open = true;
       component.openDetails(1);
       fixture.detectChanges();
@@ -413,7 +413,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const title = fixture.nativeElement.querySelector('.modal__title');
+      const title = getModalTitle();
       expect(title.getAttribute('aria-label')).toContain(component.date());
     });
 
@@ -421,10 +421,10 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', [mockSingleEvent]);
       fixture.detectChanges();
 
-      const container = getBackdrop()
-      const list = fixture.nativeElement.querySelector('#eventsListDesc');
+      const backdrop = getBackdrop()
+      const list = getEventsList();
 
-      expect(container.getAttribute('aria-describedby')).toBe(list.getAttribute('id'));
+      expect(backdrop.getAttribute('aria-describedby')).toBe(list.getAttribute('id'));
     });
 
     it('should generate aria-controls correctly for details', () => {
@@ -432,7 +432,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.detectChanges();
 
       const summaries = fixture.nativeElement.querySelectorAll('.event-card__summary');
-      const details = fixture.nativeElement.querySelectorAll('.event-card');
+      const details = getEventCards();
 
       summaries.forEach((summary: HTMLElement, index: number) => {
         expect(summary.getAttribute('aria-controls')).toBe(details[index].getAttribute('id'));
@@ -443,7 +443,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', [mockSingleEvent]);
       fixture.detectChanges();
 
-      const actions = fixture.nativeElement.querySelector('.event-card__actions');
+      const actions = getActions();
       expect(actions.getAttribute('role')).toBe('group');
     });
 
@@ -451,7 +451,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const empty = fixture.nativeElement.querySelector('.modal__empty');
+      const empty = getEmptyState();
       expect(empty.getAttribute('role')).toBe('status');
     });
 
@@ -459,7 +459,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const empty = fixture.nativeElement.querySelector('.modal__empty');
+      const empty = getEmptyState();
       expect(empty.getAttribute('aria-live')).toBe('polite');
     });
 
