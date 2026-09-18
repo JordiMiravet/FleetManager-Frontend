@@ -47,6 +47,11 @@ describe('EventFormModalComponent', () => {
   let eventService: EventService;
   let vehicleService: VehicleService;
 
+  const getModal = (): HTMLDialogElement => fixture.nativeElement.querySelector('dialog')!;
+  const getForm = (): HTMLFormElement => fixture.nativeElement.querySelector('.event-form')!;
+  const getSaveButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.event-form__button--Save')!;
+  const getTitleError = (): HTMLElement => fixture.nativeElement.querySelector('#titleError')!;
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [EventFormModalComponent],
