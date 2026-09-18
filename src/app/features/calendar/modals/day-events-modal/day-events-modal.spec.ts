@@ -235,7 +235,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const list = fixture.nativeElement.querySelector('.events-list');
+      const list = getEventsListElement();
       expect(list).toBeFalsy();
     });
 
@@ -407,7 +407,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.detectChanges();
 
       const container = getBackdrop()
-      const title = fixture.nativeElement.querySelector('#dayEventsTitle');
+      const title = getDayEventsTitle();
       expect(container.getAttribute('aria-labelledby')).toBe(title.getAttribute('id'));
     });
 
@@ -434,7 +434,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
-      const summaries = fixture.nativeElement.querySelectorAll('.event-card__summary');
+      const summaries = getEventSummaries();
       const details = getEventCards();
 
       summaries.forEach((summary: HTMLElement, index: number) => {
