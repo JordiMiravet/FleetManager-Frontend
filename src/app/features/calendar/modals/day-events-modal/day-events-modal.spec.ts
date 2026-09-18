@@ -55,6 +55,21 @@ describe('DayEventsModalComponent', () => {
     vehicleId: '123'
   };
 
+  const getBackdrop = (): HTMLElement | null => fixture.nativeElement.querySelector('.backdrop');
+  const getModal = (): HTMLElement | null => fixture.nativeElement.querySelector('.modal');
+  const getModalTitle = (): HTMLElement | null => fixture.nativeElement.querySelector('.modal__title');
+  const getCreateButton = (): HTMLElement | null => fixture.nativeElement.querySelector('.modal__header app-create-button');
+  const getEventsList = (): HTMLElement | null => fixture.nativeElement.querySelector('#eventsListDesc');
+  const getListItems = (): NodeListOf<HTMLLIElement> => fixture.nativeElement.querySelectorAll('li');
+  const getEventCards = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card');
+  const getEventSummary = (): HTMLElement | null => fixture.nativeElement.querySelector('.event-card__summary');
+  const getVehicle = (): HTMLElement | null => fixture.nativeElement.querySelector('.event-card__vehicle');
+  const getEventTitles = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__title');
+  const getEventTimes = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__time-value');
+  const getComments = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__comment');
+  const getActions = (): HTMLElement | null => fixture.nativeElement.querySelector('.event-card__actions');
+  const getEmptyState = (): HTMLElement | null => fixture.nativeElement.querySelector('.modal__empty');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DayEventsModalComponent],
