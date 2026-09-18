@@ -42,7 +42,7 @@ describe('CalendarPageComponent', () => {
   });
 
   it('should render app-calendar-view', () => {
-    const calendarView = fixture.nativeElement.querySelector('app-calendar-view');
+    const calendarView = getCalendarView();
     expect(calendarView).toBeTruthy();
   });
 
