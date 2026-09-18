@@ -15,6 +15,10 @@ describe('CalendarViewComponent', () => {
   let component: CalendarViewComponent;
   let fixture: ComponentFixture<CalendarViewComponent>;
 
+  const getEventFormModal = (): HTMLElement | null => fixture.nativeElement.querySelector('app-event-form-modal');
+  const getDayEventsModal = (): HTMLElement | null => fixture.nativeElement.querySelector('app-day-events-modal');
+  const getConfirmModal = (): HTMLElement | null => fixture.nativeElement.querySelector('app-confirm-modal');
+
   const mockEventService = {
     calendarEvents: jasmine.createSpy('calendarEvents').and.returnValue([]),
     getEventsByDate: jasmine.createSpy('getEventsByDate').and.returnValue([]),
