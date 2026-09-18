@@ -12,7 +12,7 @@ describe('DayEventsModalComponent', () => {
   let fixture: ComponentFixture<DayEventsModalComponent>;
 
   const mockAuth = {
-    currentUser: { uid: 'JordiTheBest' }
+    currentUser: { uid: 'test-user' }
   };
 
   const createMockVehicleService = () => ({
