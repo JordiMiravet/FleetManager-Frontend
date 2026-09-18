@@ -11,8 +11,8 @@ import { EventInterface } from '../../models/event';
 
 const authMock = {
   currentUser: {
-    uid: 'JordiTheBest',
-    getIdToken: () => Promise.resolve('Mytoken')
+    uid: 'test-user',
+    getIdToken: () => Promise.resolve('test-token')
   }
 };
 
