@@ -168,18 +168,18 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
-      const title = getEventTitles();
-      expect(title).toHaveSize(mockEvents.length);
-      expect(title[0].textContent).toContain(mockEvents[0].title);
+      const eventTitles = getEventTitles();
+      expect(eventTitles).toHaveSize(mockEvents.length);
+      expect(eventTitles[0].textContent).toContain(mockEvents[0].title);
     });
 
     it('should render event time correctly', () => {
       fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
-      const time = getEventTimes();
-      expect(time).toHaveSize(mockEvents.length);
-      expect(time[0].textContent).toContain(`${mockEvents[0].hourStart} - ${mockEvents[0].hourEnd}`);
+      const eventTimes = getEventTimes();
+      expect(eventTimes).toHaveSize(mockEvents.length);
+      expect(eventTimes[0].textContent).toContain(`${mockEvents[0].hourStart} - ${mockEvents[0].hourEnd}`);
     });
 
     it('should render comment when comment exists', () => {
@@ -288,8 +288,8 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.detectChanges();
 
       const closeModal = spyOn(component.closeModal, 'emit');
-      const backdrop = getBackdrop()
-      backdrop.click();
+      const container = getBackdrop();
+      container.click();
 
       expect(closeModal).toHaveBeenCalled();
     });
@@ -398,7 +398,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const container = getBackdrop()
+      const container = getBackdrop();
       expect(container.getAttribute('role')).toBe('dialog');
     });
 
@@ -406,7 +406,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const container = getBackdrop()
+      const container = getBackdrop();
       const title = getDayEventsTitle();
       expect(container.getAttribute('aria-labelledby')).toBe(title.getAttribute('id'));
     });
@@ -424,10 +424,10 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', [mockSingleEvent]);
       fixture.detectChanges();
 
-      const backdrop = getBackdrop()
+      const container = getBackdrop();
       const list = getEventsList();
 
-      expect(backdrop.getAttribute('aria-describedby')).toBe(list.getAttribute('id'));
+      expect(container.getAttribute('aria-describedby')).toBe(list.getAttribute('id'));
     });
 
     it('should generate aria-controls correctly for details', () => {
