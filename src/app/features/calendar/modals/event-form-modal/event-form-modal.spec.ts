@@ -451,7 +451,8 @@ describe('EventFormModalComponent', () => {
       patchForm({ title: 'Quedada JDM', hourStart: '17:00', hourEnd: '22:00', vehicleId: 'R34-123456', comment: 'Wrap wraaap!' });
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('.event-form__button--Save');
+      const button = getSaveButton();
+
       expect(button.disabled).toBe(false);
     });
 
@@ -459,7 +460,7 @@ describe('EventFormModalComponent', () => {
       const close = spyOn(component, 'handleClose');
       fixture.detectChanges();
 
-      const overlay = fixture.nativeElement.querySelector('dialog');
+      const overlay = getModal();
       overlay.click();
 
       expect(close).toHaveBeenCalled();
@@ -469,7 +470,7 @@ describe('EventFormModalComponent', () => {
       const close = spyOn(component, 'handleClose');
       fixture.detectChanges();
 
-      const form = fixture.nativeElement.querySelector('.event-form');
+      const form = getForm();
       form.click();
 
       expect(close).not.toHaveBeenCalled();
@@ -494,7 +495,8 @@ describe('EventFormModalComponent', () => {
       title?.markAsTouched();
       fixture.detectChanges();
 
-      const error = fixture.nativeElement.querySelector('#titleError');
+      const error = getTitleError();
+
       expect(error.hidden).toBeFalse();
     });
 
