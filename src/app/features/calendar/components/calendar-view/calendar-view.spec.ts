@@ -241,7 +241,7 @@ describe('CalendarViewComponent', () => {
       component.handleDeleteEvent('123');
       fixture.detectChanges();
 
-      const confirmModal = getConfirmModal()
+      const confirmModal = getConfirmModal();
       expect(confirmModal).toBeTruthy();
     });
 
