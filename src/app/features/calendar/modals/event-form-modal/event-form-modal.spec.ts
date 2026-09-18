@@ -48,6 +48,7 @@ describe('EventFormModalComponent', () => {
   let vehicleService: VehicleService;
 
   const getModal = (): HTMLDialogElement => fixture.nativeElement.querySelector('dialog')!;
+  const getModalText = (): string => fixture.nativeElement.textContent;
   const getForm = (): HTMLFormElement => fixture.nativeElement.querySelector('.event-form')!;
   const getSaveButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.event-form__button--Save')!;
   const getTitleError = (): HTMLElement => fixture.nativeElement.querySelector('#titleError')!;
@@ -480,14 +481,18 @@ describe('EventFormModalComponent', () => {
       fixture.componentRef.setInput('mode', 'create');
       fixture.detectChanges();
 
-      expect(fixture.nativeElement.textContent).toContain(component.formMsg.title.create);
+      const modalText = getModalText();
+
+      expect(modalText).toContain(component.formMsg.title.create);
     });
 
     it('should show edit title when mode is edit', () => {
       fixture.componentRef.setInput('mode', 'edit');
       fixture.detectChanges();
 
-      expect(fixture.nativeElement.textContent).toContain(component.formMsg.title.edit);
+      const modalText = getModalText();
+
+      expect(modalText).toContain(component.formMsg.title.edit);
     });
 
     it('should show title error when title is touched and invalid', () => {
