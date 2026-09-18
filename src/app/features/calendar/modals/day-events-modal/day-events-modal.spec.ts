@@ -58,19 +58,22 @@ describe('DayEventsModalComponent', () => {
 const getBackdrop = (): HTMLElement => fixture.nativeElement.querySelector('.backdrop')!;
 const getModal = (): HTMLElement => fixture.nativeElement.querySelector('.modal')!;
 const getModalTitle = (): HTMLElement => fixture.nativeElement.querySelector('.modal__title')!;
+const getDayEventsTitle = (): HTMLElement => fixture.nativeElement.querySelector('#dayEventsTitle')!;
 const getCreateButton = (): HTMLElement => fixture.nativeElement.querySelector('.modal__header app-create-button')!;
+
 const getEventsList = (): HTMLElement => fixture.nativeElement.querySelector('#eventsListDesc')!;
 const getEventsListElement = (): HTMLElement => fixture.nativeElement.querySelector('.events-list')!;
 const getListItems = (): NodeListOf<HTMLLIElement> => fixture.nativeElement.querySelectorAll('li');
-const getDayEventsTitle = (): HTMLElement => fixture.nativeElement.querySelector('#dayEventsTitle')!;
+
 const getEventCards = (): NodeListOf<HTMLDetailsElement> => fixture.nativeElement.querySelectorAll('.event-card');
 const getEventSummary = (): HTMLElement => fixture.nativeElement.querySelector('.event-card__summary')!;
 const getEventAllSummaries = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__summary');
-const getVehicle = (): HTMLElement => fixture.nativeElement.querySelector('.event-card__vehicle')!;
 const getEventTitles = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__title');
 const getEventTimes = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__time-value');
+const getVehicle = (): HTMLElement => fixture.nativeElement.querySelector('.event-card__vehicle')!;
 const getComments = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__comment');
 const getActions = (): HTMLElement => fixture.nativeElement.querySelector('.event-card__actions')!;
+
 const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.modal__empty')!;
 
   beforeEach(async () => {
