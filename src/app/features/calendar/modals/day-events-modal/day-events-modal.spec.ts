@@ -186,9 +186,9 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
-      const comment = getComments();
-      expect(comment.length).toBeGreaterThan(0);
-      expect(comment[0].textContent).toContain('Revisión general y cambio de filtro');
+      const comments = getComments();
+      expect(comments.length).toBeGreaterThan(0);
+      expect(comments[0].textContent).toContain('Revisión general y cambio de filtro');
     });
 
     it('should not render comment when comment is empty', () => {
@@ -227,8 +227,8 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const message = getEmptyState();
-      expect(message).toBeTruthy();
+      const emptyStateMessage = getEmptyState();
+      expect(emptyStateMessage).toBeTruthy();
     });
 
     it('should not render events list when no events exist', () => {
@@ -454,16 +454,16 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const empty = getEmptyState();
-      expect(empty.getAttribute('role')).toBe('status');
+      const emptyStateMessage = getEmptyState();
+      expect(emptyStateMessage.getAttribute('role')).toBe('status');
     });
 
     it('should render empty state with aria-live polite', () => {
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const empty = getEmptyState();
-      expect(empty.getAttribute('aria-live')).toBe('polite');
+      const emptyStateMessage = getEmptyState();
+      expect(emptyStateMessage.getAttribute('aria-live')).toBe('polite');
     });
 
   });
