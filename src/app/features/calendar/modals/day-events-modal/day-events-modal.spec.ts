@@ -65,7 +65,7 @@ const getListItems = (): NodeListOf<HTMLLIElement> => fixture.nativeElement.quer
 const getDayEventsTitle = (): HTMLElement => fixture.nativeElement.querySelector('#dayEventsTitle')!;
 const getEventCards = (): NodeListOf<HTMLDetailsElement> => fixture.nativeElement.querySelectorAll('.event-card');
 const getEventSummary = (): HTMLElement => fixture.nativeElement.querySelector('.event-card__summary')!;
-const getEventSummaries = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__summary');
+const getEventAllSummaries = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__summary');
 const getVehicle = (): HTMLElement => fixture.nativeElement.querySelector('.event-card__vehicle')!;
 const getEventTitles = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__title');
 const getEventTimes = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__time-value');
@@ -434,7 +434,7 @@ const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.m
       fixture.componentRef.setInput('events', mockEvents);
       fixture.detectChanges();
 
-      const summaries = getEventSummaries();
+      const summaries = getEventAllSummaries();
       const details = getEventCards();
 
       summaries.forEach((summary: HTMLElement, index: number) => {
