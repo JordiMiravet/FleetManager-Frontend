@@ -55,20 +55,20 @@ describe('DayEventsModalComponent', () => {
     vehicleId: '123'
   };
 
-  const getBackdrop = (): HTMLElement | null => fixture.nativeElement.querySelector('.backdrop');
-  const getModal = (): HTMLElement | null => fixture.nativeElement.querySelector('.modal');
-  const getModalTitle = (): HTMLElement | null => fixture.nativeElement.querySelector('.modal__title');
-  const getCreateButton = (): HTMLElement | null => fixture.nativeElement.querySelector('.modal__header app-create-button');
-  const getEventsList = (): HTMLElement | null => fixture.nativeElement.querySelector('#eventsListDesc');
-  const getListItems = (): NodeListOf<HTMLLIElement> => fixture.nativeElement.querySelectorAll('li');
-  const getEventCards = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card');
-  const getEventSummary = (): HTMLElement | null => fixture.nativeElement.querySelector('.event-card__summary');
-  const getVehicle = (): HTMLElement | null => fixture.nativeElement.querySelector('.event-card__vehicle');
-  const getEventTitles = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__title');
-  const getEventTimes = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__time-value');
-  const getComments = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__comment');
-  const getActions = (): HTMLElement | null => fixture.nativeElement.querySelector('.event-card__actions');
-  const getEmptyState = (): HTMLElement | null => fixture.nativeElement.querySelector('.modal__empty');
+const getBackdrop = (): HTMLElement => fixture.nativeElement.querySelector('.backdrop')!;
+const getModal = (): HTMLElement => fixture.nativeElement.querySelector('.modal')!;
+const getModalTitle = (): HTMLElement => fixture.nativeElement.querySelector('.modal__title')!;
+const getCreateButton = (): HTMLElement => fixture.nativeElement.querySelector('.modal__header app-create-button')!;
+const getEventsList = (): HTMLElement => fixture.nativeElement.querySelector('#eventsListDesc')!;
+const getListItems = (): NodeListOf<HTMLLIElement> => fixture.nativeElement.querySelectorAll('li');
+const getEventCards = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card');
+const getEventSummary = (): HTMLElement => fixture.nativeElement.querySelector('.event-card__summary')!;
+const getVehicle = (): HTMLElement => fixture.nativeElement.querySelector('.event-card__vehicle')!;
+const getEventTitles = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__title');
+const getEventTimes = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__time-value');
+const getComments = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.event-card__comment');
+const getActions = (): HTMLElement => fixture.nativeElement.querySelector('.event-card__actions')!;
+const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('.modal__empty')!;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -285,7 +285,7 @@ describe('DayEventsModalComponent', () => {
       fixture.detectChanges();
 
       const closeModal = spyOn(component.closeModal, 'emit');
-      const backdrop = fixture.nativeElement.querySelector('.backdrop');
+      const backdrop = getBackdrop()
       backdrop.click();
 
       expect(closeModal).toHaveBeenCalled();
@@ -395,7 +395,7 @@ describe('DayEventsModalComponent', () => {
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const container = fixture.nativeElement.querySelector('.backdrop');
+      const container = getBackdrop()
       expect(container.getAttribute('role')).toBe('dialog');
     });
 
@@ -403,7 +403,7 @@ describe('DayEventsModalComponent', () => {
       fixture.componentRef.setInput('events', []);
       fixture.detectChanges();
 
-      const container = fixture.nativeElement.querySelector('.backdrop');
+      const container = getBackdrop()
       const title = fixture.nativeElement.querySelector('#dayEventsTitle');
       expect(container.getAttribute('aria-labelledby')).toBe(title.getAttribute('id'));
     });
@@ -421,7 +421,7 @@ describe('DayEventsModalComponent', () => {
       fixture.componentRef.setInput('events', [mockSingleEvent]);
       fixture.detectChanges();
 
-      const container = fixture.nativeElement.querySelector('.backdrop');
+      const container = getBackdrop()
       const list = fixture.nativeElement.querySelector('#eventsListDesc');
 
       expect(container.getAttribute('aria-describedby')).toBe(list.getAttribute('id'));
