@@ -45,6 +45,10 @@ describe('InvitationCardComponent', () => {
 
   describe('rendering', () => {
 
+    it('should render the card as a list item', () => {
+      expect(getCard()?.getAttribute('role')).toBe('listitem');
+    });
+
     it('should display the vehicle name', () => {
       expect(getVehicleName()?.textContent.trim()).toBe('Ferrari LaFerrari');
     });
