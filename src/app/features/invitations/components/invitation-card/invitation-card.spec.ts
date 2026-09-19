@@ -19,10 +19,12 @@ describe('InvitationCardComponent', () => {
     invitedAt: '2026-08-10',
   };
 
+  const getCard = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card');
+
   const getButtonAccept = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--accept');
   const getButtonDecline = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--decline');
 
-  const getVehicleName = (): HTMLElement | null =>  fixture.nativeElement.querySelector('.invitation-card__vehicle-name');
+  const getVehicleName = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__vehicle-name');
   const getOwnerEmail = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__owner span');
   const getInvitationDate = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__date');
 
