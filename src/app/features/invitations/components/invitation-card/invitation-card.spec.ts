@@ -67,9 +67,17 @@ describe('InvitationCardComponent', () => {
       expect(getButtonAccept()?.textContent).toContain('Accept');
     });
 
+    it('should render Accept as a button', () => {
+      expect(getButtonAccept()?.getAttribute('type')).toBe('button');
+    });
+
     it('should render a Decline button', () => {
       expect(getButtonDecline()).not.toBeNull();
       expect(getButtonDecline()?.textContent).toContain('Decline');
+    });
+
+    it('should render Decline as a button', () => {
+      expect(getButtonDecline()?.getAttribute('type')).toBe('button');
     });
 
   });
