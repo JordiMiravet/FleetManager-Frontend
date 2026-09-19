@@ -23,7 +23,7 @@ describe('InvitationCardComponent', () => {
 
   const getButtonAccept = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--accept');
   const getAcceptIcon = (): HTMLElement | null => getButtonAccept()?.querySelector('.pi-check') ?? null;
-  
+
   const getButtonDecline = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--decline');
   const getDeclineIcon = (): HTMLElement | null => getButtonDecline()?.querySelector('.pi-times') ?? null;
 
@@ -119,8 +119,16 @@ describe('InvitationCardComponent', () => {
       expect(getButtonAccept()?.getAttribute('aria-label')).toContain('Ferrari LaFerrari');
     });
 
+    it('should hide the Accept icon from assistive technologies', () => {
+      expect(getAcceptIcon()?.getAttribute('aria-hidden')).toBe('true');
+    });
+
     it('should have an aria-label on Decline mentioning the vehicle name', () => {
       expect(getButtonDecline()?.getAttribute('aria-label')).toContain('Ferrari LaFerrari');
+    });
+
+    it('should hide the Decline icon from assistive technologies', () => {
+      expect(getDeclineIcon()?.getAttribute('aria-hidden')).toBe('true');
     });
 
   });
