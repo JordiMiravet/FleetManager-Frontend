@@ -42,6 +42,7 @@ describe('App', () => {
     });
 
     it('should render the app content container', () => {
+      expect(getAppContent()).toBeTruthy();
       expect(getAppContent()?.classList.contains('app-content')).toBeTrue();
     });
 
