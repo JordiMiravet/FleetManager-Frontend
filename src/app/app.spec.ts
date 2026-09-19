@@ -42,7 +42,7 @@ describe('App', () => {
     });
 
     it('should render the app content container', () => {
-      expect(getAppContent()).toBeTruthy();
+      expect(getAppContent()?.classList.contains('app-content')).toBeTrue();
     });
 
     it('should render the router outlet inside the app content container', () => {
