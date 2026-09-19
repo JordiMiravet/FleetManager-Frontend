@@ -19,10 +19,15 @@ describe('InvitationCardComponent', () => {
     invitedAt: '2026-08-10',
   };
 
-  const getButtonAccept = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--accept');
-  const getButtonDecline = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--decline');
+  const getCard = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card');
 
-  const getVehicleName = (): HTMLElement | null =>  fixture.nativeElement.querySelector('.invitation-card__vehicle-name');
+  const getButtonAccept = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--accept');
+  const getAcceptIcon = (): HTMLElement | null => getButtonAccept()?.querySelector('.pi-check') ?? null;
+
+  const getButtonDecline = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--decline');
+  const getDeclineIcon = (): HTMLElement | null => getButtonDecline()?.querySelector('.pi-times') ?? null;
+
+  const getVehicleName = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__vehicle-name');
   const getOwnerEmail = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__owner span');
   const getInvitationDate = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__date');
 
@@ -43,6 +48,10 @@ describe('InvitationCardComponent', () => {
 
   describe('rendering', () => {
 
+    it('should render the card as a list item', () => {
+      expect(getCard()?.getAttribute('role')).toBe('listitem');
+    });
+
     it('should display the vehicle name', () => {
       expect(getVehicleName()?.textContent.trim()).toBe('Ferrari LaFerrari');
     });
@@ -61,9 +70,17 @@ describe('InvitationCardComponent', () => {
       expect(getButtonAccept()?.textContent).toContain('Accept');
     });
 
+    it('should render Accept as a button', () => {
+      expect(getButtonAccept()?.getAttribute('type')).toBe('button');
+    });
+
     it('should render a Decline button', () => {
       expect(getButtonDecline()).not.toBeNull();
       expect(getButtonDecline()?.textContent).toContain('Decline');
+    });
+
+    it('should render Decline as a button', () => {
+      expect(getButtonDecline()?.getAttribute('type')).toBe('button');
     });
 
   });
@@ -102,8 +119,16 @@ describe('InvitationCardComponent', () => {
       expect(getButtonAccept()?.getAttribute('aria-label')).toContain('Ferrari LaFerrari');
     });
 
+    it('should hide the Accept icon from assistive technologies', () => {
+      expect(getAcceptIcon()?.getAttribute('aria-hidden')).toBe('true');
+    });
+
     it('should have an aria-label on Decline mentioning the vehicle name', () => {
       expect(getButtonDecline()?.getAttribute('aria-label')).toContain('Ferrari LaFerrari');
+    });
+
+    it('should hide the Decline icon from assistive technologies', () => {
+      expect(getDeclineIcon()?.getAttribute('aria-hidden')).toBe('true');
     });
 
   });
