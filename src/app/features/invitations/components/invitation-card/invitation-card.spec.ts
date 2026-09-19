@@ -22,7 +22,10 @@ describe('InvitationCardComponent', () => {
   const getCard = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card');
 
   const getButtonAccept = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--accept');
+  const getAcceptIcon = (): HTMLElement | null => getButtonAccept()?.querySelector('.pi-check') ?? null;
+  
   const getButtonDecline = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__button--decline');
+  const getDeclineIcon = (): HTMLElement | null => getButtonDecline()?.querySelector('.pi-times') ?? null;
 
   const getVehicleName = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__vehicle-name');
   const getOwnerEmail = (): HTMLElement | null => fixture.nativeElement.querySelector('.invitation-card__owner span');
