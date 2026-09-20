@@ -5,9 +5,7 @@ import { ThemeService } from '../../../../core/services/theme/theme-service';
 @Component({
   selector: 'app-dark-mode-toggle',
   standalone: true,
-  imports: [ 
-    CommonModule 
-  ],
+  imports: [ CommonModule ],
   templateUrl: './dark-mode-toggle.html',
   styleUrl: './dark-mode-toggle.scss',
 })
