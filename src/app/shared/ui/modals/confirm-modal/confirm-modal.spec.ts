@@ -31,9 +31,7 @@ describe('ConfirmModalComponent', () => {
 
     it('should have default title and message', () => {
       expect(component.title()).toBe('Are you sure?');
-      expect(component.message()).toBe(
-        'Do you really want to proceed? This action cannot be undone'
-      );
+      expect(component.message()).toBe('Do you really want to proceed? This action cannot be undone');
     });
 
   });
