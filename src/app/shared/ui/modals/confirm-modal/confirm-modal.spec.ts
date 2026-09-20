@@ -7,6 +7,8 @@ describe('ConfirmModalComponent', () => {
 
   const getModal = (): HTMLDialogElement => fixture.nativeElement.querySelector('.modal__backdrop');
   const getForm = (): HTMLFormElement => fixture.nativeElement.querySelector('.modal__form');
+  const getTitle = (): HTMLElement => fixture.nativeElement.querySelector('#confirm-modal__modal-title');
+  const getMessage = (): HTMLElement => fixture.nativeElement.querySelector('#confirm-modal__modal-message');
 
   const getConfirmButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--confirm');
   const getCancelButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--cancel');
