@@ -129,6 +129,15 @@ describe('ConfirmModalComponent', () => {
       expect(spyCancel).toHaveBeenCalled();
     });
 
+    it('should emit cancel event when Cancel button is clicked', () => {
+      const spyCancel = spyOn(component.cancel, 'emit');
+
+      const cancelButton = getCancelButton();
+      cancelButton.click();
+
+      expect(spyCancel).toHaveBeenCalled();
+    });
+
   });
 
   describe('Accessibility attributes', () => {
