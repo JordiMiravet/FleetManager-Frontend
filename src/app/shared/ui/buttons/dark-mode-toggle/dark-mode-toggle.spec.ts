@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { DarkModeToggleComponent } from './dark-mode-toggle';
 import { ThemeService } from '../../../../core/services/theme/theme-service';
 
