@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { ConfirmModalComponent } from './confirm-modal';
 
 describe('ConfirmModalComponent', () => {
