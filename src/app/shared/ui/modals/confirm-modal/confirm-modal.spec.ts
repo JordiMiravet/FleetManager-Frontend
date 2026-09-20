@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { ConfirmModalComponent } from './confirm-modal';
 
 describe('ConfirmModalComponent', () => {
@@ -7,6 +8,8 @@ describe('ConfirmModalComponent', () => {
 
   const getModal = (): HTMLDialogElement => fixture.nativeElement.querySelector('.modal__backdrop');
   const getForm = (): HTMLFormElement => fixture.nativeElement.querySelector('.modal__form');
+  const getTitle = (): HTMLElement => fixture.nativeElement.querySelector('#confirm-modal__modal-title');
+  const getMessage = (): HTMLElement => fixture.nativeElement.querySelector('#confirm-modal__modal-message');
 
   const getConfirmButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--confirm');
   const getCancelButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--cancel');
@@ -29,9 +32,7 @@ describe('ConfirmModalComponent', () => {
 
     it('should have default title and message', () => {
       expect(component.title()).toBe('Are you sure?');
-      expect(component.message()).toBe(
-        'Do you really want to proceed? This action cannot be undone'
-      );
+      expect(component.message()).toBe('Do you really want to proceed? This action cannot be undone');
     });
 
   });
@@ -39,13 +40,13 @@ describe('ConfirmModalComponent', () => {
   describe('Template rendering', () => {
 
     it('should render the title input in the modal', () => {
-      const title: HTMLElement = fixture.nativeElement.querySelector('#confirm-modal__modal-title');
+      const title = getTitle();
 
       expect(title.textContent?.trim()).toBe(component.title());
     });
 
     it('should render the message input in the modal', () => {
-      const message: HTMLElement = fixture.nativeElement.querySelector('#confirm-modal__modal-message');
+      const message = getMessage();
 
       expect(message.textContent?.trim()).toBe(component.message());
     });
@@ -128,6 +129,15 @@ describe('ConfirmModalComponent', () => {
       expect(spyCancel).toHaveBeenCalled();
     });
 
+    it('should emit cancel event when Cancel button is clicked', () => {
+      const spyCancel = spyOn(component.cancel, 'emit');
+
+      const cancelButton = getCancelButton();
+      cancelButton.click();
+
+      expect(spyCancel).toHaveBeenCalled();
+    });
+
   });
 
   describe('Accessibility attributes', () => {
@@ -148,7 +158,7 @@ describe('ConfirmModalComponent', () => {
       fixture.componentRef.setInput('title', 'Delete vehicle?');
       fixture.detectChanges();
 
-      const title: HTMLElement = fixture.nativeElement.querySelector('#confirm-modal__modal-title');
+      const title = getTitle();
 
       expect(title.textContent?.trim()).toBe('Delete vehicle?');
     });
@@ -157,7 +167,7 @@ describe('ConfirmModalComponent', () => {
       fixture.componentRef.setInput('message', 'This vehicle will be permanently removed');
       fixture.detectChanges();
 
-      const message: HTMLElement = fixture.nativeElement.querySelector('#confirm-modal__modal-message');
+      const message = getMessage();
 
       expect(message.textContent?.trim()).toBe('This vehicle will be permanently removed');
     });

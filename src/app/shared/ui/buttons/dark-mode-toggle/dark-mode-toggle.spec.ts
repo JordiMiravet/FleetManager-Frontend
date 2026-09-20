@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { DarkModeToggleComponent } from './dark-mode-toggle';
 import { ThemeService } from '../../../../core/services/theme/theme-service';
 
@@ -58,11 +59,18 @@ describe('DarkModeToggleComponent', () => {
       expect(toggle.classList.contains('toggle--active')).toBeTrue();
     });
 
-    it('should set correct aria-checked attribute', () => {
+    it('should set correct aria-checked attribute when dark mode is enabled', () => {
       setDarkMode(true);
       const toggle = getToggle();
 
       expect(toggle.getAttribute('aria-checked')).toBe('true');
+    });
+
+    it('should set correct aria-checked attribute when dark mode is disabled', () => {
+      setDarkMode(false);
+      const toggle = getToggle();
+
+      expect(toggle.getAttribute('aria-checked')).toBe('false');
     });
 
     it('should set correct aria-label when dark mode is enabled', () => {
