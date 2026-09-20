@@ -41,13 +41,13 @@ describe('ConfirmModalComponent', () => {
   describe('Template rendering', () => {
 
     it('should render the title input in the modal', () => {
-      const title: HTMLElement = fixture.nativeElement.querySelector('#confirm-modal__modal-title');
+      const title = getTitle();
 
       expect(title.textContent?.trim()).toBe(component.title());
     });
 
     it('should render the message input in the modal', () => {
-      const message: HTMLElement = fixture.nativeElement.querySelector('#confirm-modal__modal-message');
+      const message = getMessage();
 
       expect(message.textContent?.trim()).toBe(component.message());
     });
@@ -150,7 +150,7 @@ describe('ConfirmModalComponent', () => {
       fixture.componentRef.setInput('title', 'Delete vehicle?');
       fixture.detectChanges();
 
-      const title: HTMLElement = fixture.nativeElement.querySelector('#confirm-modal__modal-title');
+      const title = getTitle();
 
       expect(title.textContent?.trim()).toBe('Delete vehicle?');
     });
@@ -159,7 +159,7 @@ describe('ConfirmModalComponent', () => {
       fixture.componentRef.setInput('message', 'This vehicle will be permanently removed');
       fixture.detectChanges();
 
-      const message: HTMLElement = fixture.nativeElement.querySelector('#confirm-modal__modal-message');
+      const message = getMessage();
 
       expect(message.textContent?.trim()).toBe('This vehicle will be permanently removed');
     });
