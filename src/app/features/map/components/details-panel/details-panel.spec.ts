@@ -62,12 +62,8 @@ describe('DetailsPanelComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('Component creation', () => {
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   describe('Button functionality', () => {
