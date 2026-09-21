@@ -18,6 +18,8 @@ describe('MapPageComponent', () => {
   let component: MapPageComponent;
   let fixture: ComponentFixture<MapPageComponent>;
 
+  const getMapContainer = (): MapContainerComponent => fixture.debugElement.query(By.directive(MapContainerComponent)).componentInstance;
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
