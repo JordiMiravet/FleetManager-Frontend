@@ -22,9 +22,7 @@ describe('MapPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        MapPageComponent, 
-      ],
+      imports: [ MapPageComponent ],
       providers: [
         { provide: Auth, useValue: authMock },
         provideHttpClient(),
@@ -37,12 +35,8 @@ describe('MapPageComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('Component creation', () => {
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   describe('child components rendering', () => {
