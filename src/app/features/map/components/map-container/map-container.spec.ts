@@ -60,6 +60,10 @@ describe('MapContainerComponent', () => {
   let component: MapContainerComponent;
   let fixture: ComponentFixture<MapContainerComponent>;
 
+  const getMapView = (): HTMLElement => fixture.nativeElement.querySelector('app-map-view');
+  const getVehicleFormModal = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-form-modal');
+  const getVehicleEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-empty-state');
+
   beforeEach(async () => {
     vehicleServiceMock.loadVehicles.calls.reset();
     vehicleServiceMock.addVehicle.calls.reset();
