@@ -38,7 +38,7 @@ describe('DetailsPanelComponent', () => {
   let component: DetailsPanelComponent;
   let fixture: ComponentFixture<DetailsPanelComponent>;
 
-  const getArticle = (): HTMLElement => fixture.nativeElement.querySelector('.map-card');
+  const getMapCard = (): HTMLElement => fixture.nativeElement.querySelector('.map-card');
 
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.map-card__button');
   const getIcon = (): HTMLElement => fixture.nativeElement.querySelector('.map-card__icon');
@@ -132,7 +132,7 @@ describe('DetailsPanelComponent', () => {
     });
 
     it('should set aria-label on article using region message', () => {
-      const article = getArticle();
+      const article = getMapCard();
       expect(article.getAttribute('aria-label')).toBe(MockDetailsPanel.detailsPanel.aria.region);
     });
 
