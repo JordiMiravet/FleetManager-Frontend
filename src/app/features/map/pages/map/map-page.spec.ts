@@ -19,7 +19,7 @@ describe('MapPageComponent', () => {
   let fixture: ComponentFixture<MapPageComponent>;
 
   const getMapContainer = (): MapContainerComponent => fixture.debugElement.query(By.directive(MapContainerComponent)).componentInstance;
-  
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -48,9 +48,7 @@ describe('MapPageComponent', () => {
   describe('child components rendering', () => {
 
     it('should render GraphicsViewComponent', () => {
-      const child = fixture.debugElement.query(
-        By.directive(MapContainerComponent)
-      );
+      const child = getMapContainer();
 
       expect(child).toBeTruthy();
     });
