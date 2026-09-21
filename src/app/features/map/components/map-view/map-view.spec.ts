@@ -260,6 +260,16 @@ describe('MapViewComponent', () => {
       expect(removeLayerSpy).toHaveBeenCalledWith(previousMarker);
     });
 
+    
+    it('should not show all vehicles when vehicle list is empty', () => {
+      const showAllVehiclesSpy = spyOn<any>(component, 'showAllVehicles');
+
+      vehicleAccessServiceMock.visibleVehicles.set([]);
+      fixture.detectChanges();
+
+      expect(showAllVehiclesSpy).not.toHaveBeenCalled();
+    });
+
   });
 
   describe('vehicle marker drag behaviour', () => {
