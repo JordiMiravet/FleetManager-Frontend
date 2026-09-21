@@ -118,26 +118,31 @@ describe('DetailsPanelComponent', () => {
 
     it('should render a button element', () => {
       const button = getButton();
+
       expect(button).not.toBeNull();
     });
 
     it('should have correct aria-label', () => {
       const button = getButton();
+
       expect(button.getAttribute('aria-label')).toBe(MockDetailsPanel.detailsPanel.aria.button);
     });
 
     it('should set title attribute from messages service', () => {
       const button = getButton();
+
       expect(button.getAttribute('title')).toBe(MockDetailsPanel.detailsPanel.aria.buttonTitle);
     });
 
     it('should set aria-label on article using region message', () => {
-      const article = getMapCard();
-      expect(article.getAttribute('aria-label')).toBe(MockDetailsPanel.detailsPanel.aria.region);
+      const mapCard = getMapCard();
+
+      expect(mapCard.getAttribute('aria-label')).toBe(MockDetailsPanel.detailsPanel.aria.region);
     });
 
     it('should render the icon element', () => {
       const icon = getIcon();
+
       expect(icon).toBeTruthy();
     });
 
@@ -152,11 +157,13 @@ describe('DetailsPanelComponent', () => {
 
     it('should have aria-hidden true on icon', () => {
       const icon = getIcon();
+
       expect(icon.getAttribute('aria-hidden')).toBe('true');
     });
 
     it('should render button text from messages service', () => {
       const button = getButton();
+
       expect(button.textContent).toContain(MockDetailsPanel.detailsPanel.button);
     });
 
