@@ -38,6 +38,13 @@ describe('DetailsPanelComponent', () => {
   let component: DetailsPanelComponent;
   let fixture: ComponentFixture<DetailsPanelComponent>;
 
+  const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button');
+  const getIcon = (): HTMLElement => fixture.nativeElement.querySelector('i');
+
+  const getName = (): HTMLElement => fixture.nativeElement.querySelector('#map-card-title');
+  const getPlate = (): HTMLElement => fixture.nativeElement.querySelector('#vehicle-plate');
+  const getArticle = (): HTMLElement => fixture.nativeElement.querySelector('article');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DetailsPanelComponent],
