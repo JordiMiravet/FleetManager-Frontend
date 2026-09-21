@@ -77,9 +77,7 @@ describe('MapContainerComponent', () => {
     vehicleModalServiceMock.selectedVehicle.set(null);
 
     await TestBed.configureTestingModule({
-      imports: [
-        MapContainerComponent, 
-      ],
+      imports: [ MapContainerComponent ],
       providers: [
         { provide: VehicleService, useValue: vehicleServiceMock },
         { provide: VehicleModalService, useValue: vehicleModalServiceMock },
