@@ -14,9 +14,11 @@ describe('VehicleMarkerComponent', () => {
   let component: VehicleMarkerComponent;
   let fixture: ComponentFixture<VehicleMarkerComponent>;
 
+  const getVehicleImage = (): HTMLImageElement => fixture.nativeElement.querySelector('img');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleMarkerComponent],
+      imports: [ VehicleMarkerComponent ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(VehicleMarkerComponent);
