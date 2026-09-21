@@ -221,7 +221,7 @@ describe('MapContainerComponent', () => {
       vehicleServiceMock.vehicles.set([vehicleMock]);
       fixture.detectChanges();
 
-      const mapViewComponent = fixture.nativeElement.querySelector('app-map-view');
+      const mapViewComponent = getMapView();
       expect(mapViewComponent).toBeTruthy();
     });
 
@@ -231,7 +231,7 @@ describe('MapContainerComponent', () => {
 
       expect(vehicleServiceMock.vehicles()).toHaveSize(0);
 
-      const vehicleEmptyStateComponent = fixture.nativeElement.querySelector('app-vehicle-empty-state');
+      const vehicleEmptyStateComponent = getVehicleEmptyState();
       expect(vehicleEmptyStateComponent).toBeTruthy();
     });
 
@@ -252,7 +252,7 @@ describe('MapContainerComponent', () => {
       vehicleModalServiceMock.activeModal.set(VehicleModalState.VehicleForm);
       fixture.detectChanges();
 
-      const vehicleFormModalComponent = fixture.nativeElement.querySelector('app-vehicle-form-modal');
+      const vehicleFormModalComponent = getVehicleFormModal()
       expect(vehicleFormModalComponent).toBeTruthy();
     });
 
