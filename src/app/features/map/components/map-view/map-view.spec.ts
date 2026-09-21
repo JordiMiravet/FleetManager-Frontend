@@ -90,7 +90,7 @@ describe('MapViewComponent', () => {
     vehicleServiceMock.updateVehicleLocation.calls.reset();
 
     await TestBed.configureTestingModule({
-      imports: [MapViewComponent],
+      imports: [ MapViewComponent ],
       providers: [
         { provide: Auth, useValue: authMock },
         { provide: VehicleService, useValue: vehicleServiceMock },
