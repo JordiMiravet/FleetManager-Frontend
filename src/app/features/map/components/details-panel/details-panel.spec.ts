@@ -38,7 +38,7 @@ describe('DetailsPanelComponent', () => {
   let component: DetailsPanelComponent;
   let fixture: ComponentFixture<DetailsPanelComponent>;
 
-  const getMapCard = (): HTMLElement => fixture.nativeElement.querySelector('.map-card');
+  const getArticle = (): HTMLElement => fixture.nativeElement.querySelector('.map-card');
 
   const getButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.map-card__button');
   const getIcon = (): HTMLElement => fixture.nativeElement.querySelector('.map-card__icon');
@@ -71,14 +71,14 @@ describe('DetailsPanelComponent', () => {
     it('should emit locationRequest event when button is clicked', () => {
       spyOn(component.locationRequest, 'emit');
 
-      const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
+      const button = getButton();
       button.click();
 
       expect(component.locationRequest.emit).toHaveBeenCalledTimes(1);
     });
 
     it('should not be disabled by default', () => {
-      const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
+      const button = getButton();
       expect(button.disabled).toBeFalse();
     });
 
@@ -94,8 +94,8 @@ describe('DetailsPanelComponent', () => {
       fixture.componentRef.setInput('vehicle', MockVehicle);
       fixture.detectChanges();
 
-      const name = fixture.nativeElement.querySelector('#map-card-title');
-      const plate = fixture.nativeElement.querySelector('#vehicle-plate');
+      const name = getName();
+      const plate = getPlate();
 
       expect(name.textContent).toContain('Ferrari');
       expect(plate.textContent).toContain('F123');
@@ -105,8 +105,8 @@ describe('DetailsPanelComponent', () => {
       fixture.componentRef.setInput('vehicle', null);
       fixture.detectChanges();
 
-      const name = fixture.nativeElement.querySelector('#map-card-title');
-      const plate = fixture.nativeElement.querySelector('#vehicle-plate');
+      const name = getName();
+      const plate = getPlate();
 
       expect(name.textContent.trim()).toBe('');
       expect(plate.textContent.trim()).toBe('');
@@ -117,33 +117,33 @@ describe('DetailsPanelComponent', () => {
   describe('Accessibility and template', () => {
 
     it('should render a button element', () => {
-      const button = fixture.nativeElement.querySelector('button');
+      const button = getButton();
       expect(button).not.toBeNull();
     });
 
     it('should have correct aria-label', () => {
-      const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
+      const button = getButton();
       expect(button.getAttribute('aria-label')).toBe(MockDetailsPanel.detailsPanel.aria.button);
     });
 
     it('should set title attribute from messages service', () => {
-      const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
+      const button = getButton();
       expect(button.getAttribute('title')).toBe(MockDetailsPanel.detailsPanel.aria.buttonTitle);
     });
 
     it('should set aria-label on article using region message', () => {
-      const article: HTMLElement = fixture.nativeElement.querySelector('article');
+      const article = getArticle();
       expect(article.getAttribute('aria-label')).toBe(MockDetailsPanel.detailsPanel.aria.region);
     });
 
     it('should render the icon element', () => {
-      const icon: HTMLElement = fixture.nativeElement.querySelector('i');
+      const icon = getIcon();
       expect(icon).toBeTruthy();
     });
 
     it('should have correct css classes', () => {
-      const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
-      const icon: HTMLElement = fixture.nativeElement.querySelector('i');
+      const button = getButton();
+      const icon = getIcon();
 
       expect(button.classList.contains('map-card__button')).toBeTrue();
       expect(icon.classList.contains('pi')).toBeTrue();
@@ -151,12 +151,12 @@ describe('DetailsPanelComponent', () => {
     });
 
     it('should have aria-hidden true on icon', () => {
-      const icon: HTMLElement = fixture.nativeElement.querySelector('i');
+      const icon = getIcon();
       expect(icon.getAttribute('aria-hidden')).toBe('true');
     });
 
     it('should render button text from messages service', () => {
-      const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
+      const button = getButton();
       expect(button.textContent).toContain(MockDetailsPanel.detailsPanel.button);
     });
 
