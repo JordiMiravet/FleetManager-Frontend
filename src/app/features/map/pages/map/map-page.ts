@@ -4,9 +4,10 @@ import { MapContainerComponent } from '../../components/map-container/map-contai
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [MapContainerComponent],
+  imports: [ MapContainerComponent ],
   templateUrl: './map-page.html',
   styleUrl: './map-page.scss',
 })
 export class MapPageComponent {
+
 }

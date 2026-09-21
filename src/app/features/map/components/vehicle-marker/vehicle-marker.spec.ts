@@ -14,9 +14,11 @@ describe('VehicleMarkerComponent', () => {
   let component: VehicleMarkerComponent;
   let fixture: ComponentFixture<VehicleMarkerComponent>;
 
+  const getVehicleImage = (): HTMLImageElement => fixture.nativeElement.querySelector('img');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleMarkerComponent],
+      imports: [ VehicleMarkerComponent ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(VehicleMarkerComponent);
@@ -33,7 +35,7 @@ describe('VehicleMarkerComponent', () => {
   describe('image rendering', () => {
 
     it('should render the vehicle image when imageUrl is available', () => {
-      const vehicleImage: HTMLImageElement = fixture.nativeElement.querySelector('img');
+      const vehicleImage = getVehicleImage();
 
       expect(vehicleImage.src).toContain('test-image.jpg');
     });
@@ -45,7 +47,7 @@ describe('VehicleMarkerComponent', () => {
       });
       fixture.detectChanges();
 
-      const vehicleImage: HTMLImageElement = fixture.nativeElement.querySelector('img');
+      const vehicleImage = getVehicleImage();
       expect(vehicleImage.src).toContain(component.fallbackImage);
     });
 
@@ -54,7 +56,7 @@ describe('VehicleMarkerComponent', () => {
   describe('alt attribute', () => {
 
     it('should use the vehicle name as image alt text', () => {
-      const vehicleImage: HTMLImageElement = fixture.nativeElement.querySelector('img');
+      const vehicleImage = getVehicleImage();
 
       expect(vehicleImage.alt).toBe(component.vehicle().name);
     });

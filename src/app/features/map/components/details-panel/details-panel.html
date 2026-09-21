@@ -1,21 +1,21 @@
-<article 
-    class="map-card" 
-    role="region" 
-    aria-labelledby="map-card-title" 
-    [attr.aria-label]="detailsPanelMsg.aria.region"
+<article
+  role="region"
+  class="map-card"
+  aria-labelledby="map-card-title"
+  [attr.aria-label]="detailsPanelMsg.aria.region"
 >
-    <div class="map-card__info">
-        <h2 id="map-card-title" class="map-card__name">{{ vehicle()?.name }}</h2>
-        <h3 class="map-card__plate" id="vehicle-plate">{{ vehicle()?.plate }}</h3>
-    </div>
-    <button 
-        type="button"
-        class="map-card__button" 
-        (click)="locationRequest.emit()" 
-        [aria-label]="detailsPanelMsg.aria.button" 
-        [title]="detailsPanelMsg.aria.buttonTitle" 
-    >
-        <i class="map-card__icon pi pi-compass" aria-hidden="true"></i>
-        {{ detailsPanelMsg.button }}
-    </button>
+  <div class="map-card__info">
+    <h2 id="map-card-title" class="map-card__name">{{ vehicle()?.name }}</h2>
+    <h3 id="vehicle-plate" class="map-card__plate">{{ vehicle()?.plate }}</h3>
+  </div>
+  <button
+    type="button"
+    class="map-card__button"
+    (click)="locationRequest.emit()"
+    [aria-label]="detailsPanelMsg.aria.button"
+    [title]="detailsPanelMsg.aria.buttonTitle"
+  >
+    <i class="map-card__icon pi pi-compass" aria-hidden="true"></i>
+    {{ detailsPanelMsg.button }}
+  </button>
 </article>

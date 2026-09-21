@@ -90,7 +90,7 @@ describe('MapViewComponent', () => {
     vehicleServiceMock.updateVehicleLocation.calls.reset();
 
     await TestBed.configureTestingModule({
-      imports: [MapViewComponent],
+      imports: [ MapViewComponent ],
       providers: [
         { provide: Auth, useValue: authMock },
         { provide: VehicleService, useValue: vehicleServiceMock },
@@ -258,6 +258,16 @@ describe('MapViewComponent', () => {
       component.showVehicle(mockVehicle1);
 
       expect(removeLayerSpy).toHaveBeenCalledWith(previousMarker);
+    });
+
+    
+    it('should not show all vehicles when vehicle list is empty', () => {
+      const showAllVehiclesSpy = spyOn<any>(component, 'showAllVehicles');
+
+      vehicleAccessServiceMock.visibleVehicles.set([]);
+      fixture.detectChanges();
+
+      expect(showAllVehiclesSpy).not.toHaveBeenCalled();
     });
 
   });
