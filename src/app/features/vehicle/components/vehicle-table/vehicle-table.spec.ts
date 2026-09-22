@@ -48,7 +48,7 @@ describe('VehicleTableComponent', () => {
     mockVehicleModal.openEdit.calls.reset();
 
     await TestBed.configureTestingModule({
-      imports: [VehicleTableComponent],
+      imports: [ VehicleTableComponent ],
       providers: [
         { provide: Auth, useValue: authMock },
         { provide: AuthorizationService, useValue: permissionServiceMock }
@@ -93,21 +93,25 @@ describe('VehicleTableComponent', () => {
 
     it('should render the table element', () => {
       const table = getTable();
+
       expect(table).toBeTruthy();
     });
 
     it('should render the table header', () => {
       const thead = getTableHead();
+
       expect(thead).toBeTruthy();
     });
 
     it('should render the table body', () => {
       const tbody = getTableBody();
+
       expect(tbody).toBeTruthy();
     });
 
     it('should render one table row per vehicle', () => {
       const rows = getRows();
+
       expect(rows).toHaveSize(mockVehicles.length);
     });
 
@@ -169,6 +173,7 @@ describe('VehicleTableComponent', () => {
       fixture.detectChanges();
 
       const rowsAfter = getRows();
+      
       expect(rowsAfter).toHaveSize(rowsBefore.length);
     });
     
