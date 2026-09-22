@@ -140,7 +140,9 @@ describe('VehicleTableComponent', () => {
     });
 
     it('should render user buttons for each vehicle', () => {
+      const userButtons = getUserButtons();
 
+      expect(userButtons).toHaveSize(mockVehicles.length);
     });
 
   });
