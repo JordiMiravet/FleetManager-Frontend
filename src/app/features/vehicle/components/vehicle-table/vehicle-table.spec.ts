@@ -169,6 +169,10 @@ describe('VehicleTableComponent', () => {
       expect(component.deleteVehicle.emit).toHaveBeenCalledWith(mockVehicles[0]);
     });
 
+    it('should emit addUserToVehicle when user button emits user', () => {
+
+    });
+
   });
 
   describe('@for tracking', () => {
@@ -299,6 +303,10 @@ describe('VehicleTableComponent', () => {
 
         expect(plateSpan?.getAttribute('aria-hidden')).toBe('true');
       });
+    });
+
+    it('should render the correct aria-label for each user button', () => {
+
     });
 
   });
