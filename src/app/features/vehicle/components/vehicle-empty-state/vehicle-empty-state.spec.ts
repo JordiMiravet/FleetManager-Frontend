@@ -1,11 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 import { VehicleEmptyStateComponent } from './vehicle-empty-state';
 
 describe('VehicleEmptyStateComponent', () => {
   let component: VehicleEmptyStateComponent;
   let fixture: ComponentFixture<VehicleEmptyStateComponent>;
+
+  const getContainer = (): HTMLElement => fixture.nativeElement.querySelector('.vehicle-empty__container');
+  const getMessage = (): HTMLElement => fixture.nativeElement.querySelector('.vehicle-empty__text');
+  const getCreateButton = (): DebugElement => fixture.debugElement.query(By.css('app-create-button'));
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
