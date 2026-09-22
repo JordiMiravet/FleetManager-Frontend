@@ -39,6 +39,7 @@ describe('VehicleTableComponent', () => {
 
   const getEditButtons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('app-edit-button');
   const getDeleteButtons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('app-delete-button');
+  const getUserButtons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('app-user-button');
 
   const getImages = (): NodeListOf<HTMLImageElement> => fixture.nativeElement.querySelectorAll('.vehicle-table__image');
   const getNameCells = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.vehicle-table__cell--name');
