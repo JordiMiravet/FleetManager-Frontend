@@ -33,16 +33,18 @@ describe('VehicleTableComponent', () => {
   const getTable = (): HTMLTableElement => fixture.nativeElement.querySelector('table');
   const getTableHead = (): HTMLTableSectionElement => fixture.nativeElement.querySelector('thead');
   const getTableBody = (): HTMLTableSectionElement => fixture.nativeElement.querySelector('tbody');
+
+  const getHeaders = (): NodeListOf<HTMLTableCellElement> => fixture.nativeElement.querySelectorAll('thead th');
   const getRows = (): NodeListOf<HTMLTableRowElement> => fixture.nativeElement.querySelectorAll('tbody tr');
 
   const getEditButtons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('app-edit-button');
   const getDeleteButtons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('app-delete-button');
 
-  const getHeaders = (): NodeListOf<HTMLTableCellElement> => fixture.nativeElement.querySelectorAll('thead th');
   const getImages = (): NodeListOf<HTMLImageElement> => fixture.nativeElement.querySelectorAll('.vehicle-table__image');
-  const getCaption = (): HTMLTableCaptionElement => fixture.nativeElement.querySelector('caption');
   const getNameCells = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.vehicle-table__cell--name');
   const getPlate = (cell: HTMLElement): HTMLElement | null => cell.querySelector('.vehicle-table__plate');
+
+  const getCaption = (): HTMLTableCaptionElement => fixture.nativeElement.querySelector('caption');
 
   beforeEach(async () => {
     permissionServiceMock.isOwner.calls.reset();
