@@ -154,6 +154,7 @@ describe('VehicleTableComponent', () => {
   describe('actions', () => {
 
     beforeEach(() => {
+      permissionServiceMock.isOwner.and.returnValue(true);
       fixture.componentRef.setInput('vehicles', mockVehicles);
       fixture.componentRef.setInput('vehicleModal', mockVehicleModal);
       fixture.detectChanges();
@@ -260,6 +261,7 @@ describe('VehicleTableComponent', () => {
   describe('template: image', () => {
 
     beforeEach(() => {
+      permissionServiceMock.isOwner.and.returnValue(true);
       fixture.componentRef.setInput('vehicles', mockVehicles);
       fixture.componentRef.setInput('vehicleModal', mockVehicleModal);
       fixture.detectChanges();
@@ -284,6 +286,7 @@ describe('VehicleTableComponent', () => {
   describe('accessibility', () => {
 
     beforeEach(() => {
+      permissionServiceMock.isOwner.and.returnValue(true);
       fixture.componentRef.setInput('vehicles', mockVehicles);
       fixture.componentRef.setInput('vehicleModal', mockVehicleModal);
       fixture.detectChanges();
