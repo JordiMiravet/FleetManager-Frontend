@@ -6,8 +6,9 @@ import { VehicleTableComponent } from './vehicle-table';
 
 import { AuthorizationService } from '../../../../core/services/authorization/authorization-service';
 import { VehicleInterface } from '../../models/vehicle';
-import { UserButtonComponent } from '../../../../shared/ui/buttons/user-button/user-button';
+
 import { DeleteButtonComponent } from '../../../../shared/ui/buttons/delete-button/delete-button';
+import { UserButtonComponent } from '../../../../shared/ui/buttons/user-button/user-button';
 
 const authMock = {
   currentUser: {
