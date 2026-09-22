@@ -332,6 +332,20 @@ describe('VehicleTableComponent', () => {
       expect(userButtons[1].getAttribute('aria-label')).toBe(`Assign driver to ${mockVehicles[1].name}`);
     });
 
+    it('should render the correct aria-label for each edit button', () => {
+      const editButtons = getEditButtons();
+
+      expect(editButtons[0].getAttribute('aria-label')).toBe(`Edit ${mockVehicles[0].name}`);
+      expect(editButtons[1].getAttribute('aria-label')).toBe(`Edit ${mockVehicles[1].name}`);
+    });
+
+    it('should render the correct aria-label for each delete button', () => {
+      const deleteButtons = getDeleteButtons();
+
+      expect(deleteButtons[0].getAttribute('aria-label')).toBe(`Delete ${mockVehicles[0].name}`);
+      expect(deleteButtons[1].getAttribute('aria-label')).toBe(`Delete ${mockVehicles[1].name}`);
+    });
+
   });
 
 });
