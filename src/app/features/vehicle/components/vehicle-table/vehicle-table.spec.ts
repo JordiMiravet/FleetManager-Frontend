@@ -139,6 +139,10 @@ describe('VehicleTableComponent', () => {
       expect(deleteButtons).toHaveSize(mockVehicles.length);
     });
 
+    it('should render user buttons for each vehicle', () => {
+
+    });
+
   });
 
   describe('actions', () => {
