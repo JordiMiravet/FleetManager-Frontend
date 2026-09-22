@@ -56,7 +56,7 @@ describe('VehicleSelectorComponent', () => {
   describe('template rendering', () => {
 
     it('should render the select element', () => {
-      const select: HTMLSelectElement = getSelect()
+      const select = getSelect()
       expect(select).toBeTruthy();
     });
 
@@ -128,7 +128,7 @@ describe('VehicleSelectorComponent', () => {
 
       fixture.detectChanges();
 
-      const select: HTMLSelectElement = getSelect();
+      const select = getSelect();
 
       expect(select.value).toBe('');
     });
@@ -142,7 +142,7 @@ describe('VehicleSelectorComponent', () => {
       fixture.detectChanges();
       spyOn(component.vehicleSelected, 'emit');
 
-      const select: HTMLSelectElement = getSelect();
+      const select = getSelect();
       select.value = 'P456';
       select.dispatchEvent(new Event('change'));
 
@@ -154,7 +154,7 @@ describe('VehicleSelectorComponent', () => {
       fixture.detectChanges();
       spyOn(component.vehicleSelected, 'emit');
 
-      const select: HTMLSelectElement = getSelect();
+      const select = getSelect();
       select.value = '';
       select.dispatchEvent(new Event('change'));
 
