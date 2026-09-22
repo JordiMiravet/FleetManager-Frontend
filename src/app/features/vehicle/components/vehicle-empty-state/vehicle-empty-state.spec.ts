@@ -38,30 +38,30 @@ describe('VehicleEmptyStateComponent', () => {
   describe('template rendering', () => {
 
     it('should render the container', () => {
-      const container = fixture.nativeElement.querySelector('.vehicle-empty__container');
+      const container = getContainer();
       expect(container).toBeTruthy();
     });
 
     it('should render the empty state message', () => {
-      const message = fixture.nativeElement.querySelector('.vehicle-empty__text');
+      const message = getMessage();
 
       expect(message.textContent?.trim().length).toBeGreaterThan(0);
     });
 
     it('should render the create button', () => {
-      const button = fixture.debugElement.query(By.css('app-create-button'));
+      const button = getCreateButton();
       
       expect(button).toBeTruthy();
     });
 
     it('should set aria-label on container', () => {
-      const container: HTMLElement = fixture.nativeElement.querySelector('.vehicle-empty__container');
+      const container = getContainer();
 
       expect(container.getAttribute('aria-label')).toBeTruthy();
     });
 
     it('should pass create text to create button', () => {
-      const button = fixture.debugElement.query(By.css('app-create-button'));
+      const button = getCreateButton();
 
       expect(button.componentInstance.createText()).toBe(component.emptyStateMsg.button);
     });
@@ -73,7 +73,7 @@ describe('VehicleEmptyStateComponent', () => {
     it('should call onClick method', () => {
       spyOn(component, 'onClick');
 
-      const button = fixture.debugElement.query(By.css('app-create-button'));
+      const button = getCreateButton();
       button.triggerEventHandler('click', null);
 
       expect(component.onClick).toHaveBeenCalled();
@@ -93,7 +93,7 @@ describe('VehicleEmptyStateComponent', () => {
     it('should emit createVehicle when button is clicked', () => {
       spyOn(component.createVehicle, 'emit');
 
-      const button = fixture.debugElement.query(By.css('app-create-button'));
+      const button = getCreateButton();
       button.triggerEventHandler('click', null);
 
       expect(component.createVehicle.emit).toHaveBeenCalled();
