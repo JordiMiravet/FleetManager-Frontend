@@ -1,7 +1,7 @@
 <section class="vehicle-actions">
 
   <div class="vehicle-actions__search">
-    <i class="pi pi-search vehicle-actions__search-icon" aria-hidden="true"></i>
+    <i class="vehicle-actions__search-icon pi pi-search" aria-hidden="true"></i>
     <input
       type="text"
       class="vehicle-actions__search-input"
@@ -19,7 +19,7 @@
       (click)="toggleSortDir()"
     >
       <i
-        class="pi"
+        class="vehicle-actions__sort-icon pi"
         [class.pi-sort-amount-down]="sortDir() === 'asc'"
         [class.pi-sort-amount-up]="sortDir() === 'desc'"
       ></i>
