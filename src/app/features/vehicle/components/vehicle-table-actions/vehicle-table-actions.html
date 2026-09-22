@@ -30,9 +30,9 @@
       [attr.aria-label]="actionsMsg.aria.sortFieldSelect"
       (change)="onSortFieldChange($event)"
     >
-      <option value="name">{{ actionsMsg.sortOptions.name }}</option>
-      <option value="model">{{ actionsMsg.sortOptions.model }}</option>
-      <option value="plate">{{ actionsMsg.sortOptions.plate }}</option>
+      <option value="name" class="vehicle-actions__sort-option">{{ actionsMsg.sortOptions.name }}</option>
+      <option value="model" class="vehicle-actions__sort-option">{{ actionsMsg.sortOptions.model }}</option>
+      <option value="plate" class="vehicle-actions__sort-option">{{ actionsMsg.sortOptions.plate }}</option>
     </select>
   </div>
 
