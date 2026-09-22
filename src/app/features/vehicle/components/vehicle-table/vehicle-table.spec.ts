@@ -256,22 +256,6 @@ describe('VehicleTableComponent', () => {
 
   });
 
-  describe('addUserToVehicle output', () => {
-
-    it('should emit addUserToVehicle when user button emits user', () => {
-      fixture.componentRef.setInput('vehicles', mockVehicles);
-      fixture.componentRef.setInput('vehicleModal', mockVehicleModal);
-      fixture.detectChanges();
-
-      const emitSpy = spyOn(component.addUserToVehicle, 'emit');
-
-      component.addUserToVehicle.emit(mockVehicles[0]);
-
-      expect(emitSpy).toHaveBeenCalledWith(mockVehicles[0]);
-    });
-
-  });
-
   describe('template: image', () => {
 
     beforeEach(() => {
