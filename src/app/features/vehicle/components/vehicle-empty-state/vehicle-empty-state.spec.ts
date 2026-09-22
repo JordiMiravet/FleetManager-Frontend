@@ -14,7 +14,7 @@ describe('VehicleEmptyStateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ VehicleEmptyStateComponent ]
+      imports: [ VehicleEmptyStateComponent ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(VehicleEmptyStateComponent);
@@ -39,6 +39,7 @@ describe('VehicleEmptyStateComponent', () => {
 
     it('should render the container', () => {
       const container = getContainer();
+
       expect(container).toBeTruthy();
     });
 
