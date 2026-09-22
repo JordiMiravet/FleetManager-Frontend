@@ -52,7 +52,7 @@ describe('VehicleTablePaginationComponent', () => {
   describe('template rendering', () => {
 
     it('should render the nav with correct role and aria-label', () => {
-      const nav = fixture.nativeElement.querySelector('nav');
+      const nav = fixture.nativeElement.querySelector('.vehicle-pagination');
 
       expect(nav).toBeTruthy();
       expect(nav.getAttribute('role')).toBe('navigation');
