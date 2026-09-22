@@ -22,12 +22,8 @@ describe('VehicleEmptyStateComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('component creation', () => {
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   describe('initial state', () => {
