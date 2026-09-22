@@ -16,6 +16,15 @@ describe('VehicleTableActionsComponent', () => {
   let component: VehicleTableActionsComponent;
   let fixture: ComponentFixture<VehicleTableActionsComponent>;
 
+  const getSearchInput = (): HTMLInputElement => fixture.nativeElement.querySelector('.vehicle-actions__search-input');
+  const getSearchIcon = (): HTMLElement => fixture.nativeElement.querySelector('.vehicle-actions__search-icon');
+
+  const getSortButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.vehicle-actions__sort-button');
+  const getSortIcon = (): HTMLElement => fixture.nativeElement.querySelector('.vehicle-actions__sort-button i');
+
+  const getSortSelect = (): HTMLSelectElement => fixture.nativeElement.querySelector('.vehicle-actions__sort-select');
+  const getSortOptions = (): NodeListOf<HTMLOptionElement> => fixture.nativeElement.querySelectorAll('.vehicle-actions__sort-select option');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [VehicleTableActionsComponent]
