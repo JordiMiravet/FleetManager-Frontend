@@ -5,6 +5,8 @@ import { VehicleTableComponent } from './vehicle-table';
 
 import { AuthorizationService } from '../../../../core/services/authorization/authorization-service';
 import { VehicleInterface } from '../../models/vehicle';
+import { By } from '@angular/platform-browser';
+import { UserButtonComponent } from '../../../../shared/ui/buttons/user-button/user-button';
 
 const authMock = {
   currentUser: {
@@ -156,7 +158,11 @@ describe('VehicleTableComponent', () => {
     });
 
     it('should call vehicleModal.openEdit when edit button emits edit', () => {
-      component.vehicleModal().openEdit(mockVehicles[0]);
+      const editButton = fixture.debugElement.query(
+        By.css('app-edit-button')
+      );
+
+      editButton.triggerEventHandler('edit', mockVehicles[0]);
 
       expect(mockVehicleModal.openEdit).toHaveBeenCalledWith(mockVehicles[0]);
     });
@@ -170,7 +176,15 @@ describe('VehicleTableComponent', () => {
     });
 
     it('should emit addUserToVehicle when user button emits user', () => {
+      spyOn(component.addUserToVehicle, 'emit');
 
+      const userButton = fixture.debugElement.query(
+        By.directive(UserButtonComponent)
+      );
+
+      userButton.triggerEventHandler('user', mockVehicles[0]);
+
+      expect(component.addUserToVehicle.emit).toHaveBeenCalledWith(mockVehicles[0]);
     });
 
   });
@@ -306,7 +320,10 @@ describe('VehicleTableComponent', () => {
     });
 
     it('should render the correct aria-label for each user button', () => {
+      const userButtons = getUserButtons();
 
+      expect(userButtons[0].getAttribute('aria-label')).toBe(`Assign driver to ${mockVehicles[0].name}`);
+      expect(userButtons[1].getAttribute('aria-label')).toBe(`Assign driver to ${mockVehicles[1].name}`);
     });
 
   });
