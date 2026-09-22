@@ -42,6 +42,7 @@ describe('VehicleTableComponent', () => {
   const getImages = (): NodeListOf<HTMLImageElement> => fixture.nativeElement.querySelectorAll('.vehicle-table__image');
   const getCaption = (): HTMLTableCaptionElement => fixture.nativeElement.querySelector('caption');
   const getNameCells = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.vehicle-table__cell--name');
+  const getPlate = (cell: HTMLElement): HTMLElement | null => cell.querySelector('.vehicle-table__plate');
 
   beforeEach(async () => {
     permissionServiceMock.isOwner.calls.reset();
@@ -173,7 +174,7 @@ describe('VehicleTableComponent', () => {
       fixture.detectChanges();
 
       const rowsAfter = getRows();
-      
+
       expect(rowsAfter).toHaveSize(rowsBefore.length);
     });
     
