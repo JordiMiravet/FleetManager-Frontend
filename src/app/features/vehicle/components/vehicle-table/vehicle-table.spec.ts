@@ -92,22 +92,22 @@ describe('VehicleTableComponent', () => {
     });
 
     it('should render the table element', () => {
-      const table = fixture.nativeElement.querySelector('table');
+      const table = getTable();
       expect(table).toBeTruthy();
     });
 
     it('should render the table header', () => {
-      const thead = fixture.nativeElement.querySelector('thead');
+      const thead = getTableHead();
       expect(thead).toBeTruthy();
     });
 
     it('should render the table body', () => {
-      const tbody = fixture.nativeElement.querySelector('tbody');
+      const tbody = getTableBody();
       expect(tbody).toBeTruthy();
     });
 
     it('should render one table row per vehicle', () => {
-      const rows = fixture.nativeElement.querySelectorAll('tbody tr');
+      const rows = getRows();
       expect(rows).toHaveSize(mockVehicles.length);
     });
 
@@ -124,8 +124,8 @@ describe('VehicleTableComponent', () => {
     });
 
     it('should render edit and delete buttons for owner vehicles', () => {
-      const editButtons = fixture.nativeElement.querySelectorAll('app-edit-button');
-      const deleteButtons = fixture.nativeElement.querySelectorAll('app-delete-button');
+      const editButtons = getEditButtons();
+      const deleteButtons = getDeleteButtons();
 
       expect(editButtons).toHaveSize(mockVehicles.length);
       expect(deleteButtons).toHaveSize(mockVehicles.length);
@@ -163,12 +163,12 @@ describe('VehicleTableComponent', () => {
       fixture.componentRef.setInput('vehicles', mockVehicles);
       fixture.detectChanges();
 
-      const rowsBefore = fixture.nativeElement.querySelectorAll('tbody tr');
+      const rowsBefore = getRows();
 
       fixture.componentRef.setInput('vehicles', [mockVehicles[1], mockVehicles[0]]);
       fixture.detectChanges();
 
-      const rowsAfter = fixture.nativeElement.querySelectorAll('tbody tr');
+      const rowsAfter = getRows();
       expect(rowsAfter).toHaveSize(rowsBefore.length);
     });
     
@@ -196,8 +196,8 @@ describe('VehicleTableComponent', () => {
       fixture.componentRef.setInput('vehicleModal', mockVehicleModal);
       fixture.detectChanges();
 
-      const editButtons = fixture.nativeElement.querySelectorAll('app-edit-button');
-      const deleteButtons = fixture.nativeElement.querySelectorAll('app-delete-button');
+      const editButtons = getEditButtons();
+      const deleteButtons = getDeleteButtons();
 
       expect(editButtons).toHaveSize(0);
       expect(deleteButtons).toHaveSize(0);
@@ -230,14 +230,14 @@ describe('VehicleTableComponent', () => {
     });
 
     it('should render vehicle image with correct alt text', () => {
-      const images = fixture.nativeElement.querySelectorAll('.vehicle-table__image');
+      const images = getImages();
 
       expect(images[0].getAttribute('alt')).toBe(`Image of ${mockVehicles[0].name}`);
       expect(images[1].getAttribute('alt')).toBe(`Image of ${mockVehicles[1].name}`);
     });
 
     it('should use fallback image when vehicle has no imageUrl', () => {
-      const images = fixture.nativeElement.querySelectorAll('.vehicle-table__image');
+      const images = getImages();
 
       expect(images).toHaveSize(mockVehicles.length);
       expect(images[0].src).toContain(component.vehicleImage);
@@ -254,14 +254,14 @@ describe('VehicleTableComponent', () => {
     });
 
     it('should have a caption for the table', () => {
-      const caption = fixture.nativeElement.querySelector('caption');
+      const caption = getCaption();
 
       expect(caption).toBeTruthy();
       expect(caption.textContent).toContain(component.tableMsg.captionText);
     });
 
     it('should have scope col on header cells', () => {
-      const headers = fixture.nativeElement.querySelectorAll('thead th');
+      const headers = getHeaders();
 
       headers.forEach((th: HTMLElement) => {
         expect(th.getAttribute('scope')).toBe('col');
@@ -269,7 +269,7 @@ describe('VehicleTableComponent', () => {
     });
 
     it('should have scope row on name cell', () => {
-      const nameHeaders = fixture.nativeElement.querySelectorAll('.vehicle-table__cell--name');
+      const nameHeaders = getNameCells();
 
       nameHeaders.forEach((th: HTMLElement) => {
         expect(th.getAttribute('scope')).toBe('row');
@@ -277,7 +277,7 @@ describe('VehicleTableComponent', () => {
     });
 
     it('should have aria-hidden on plate span inside name cell', () => {
-      const nameCells = fixture.nativeElement.querySelectorAll('.vehicle-table__cell--name');
+      const nameCells = getNameCells();
 
       nameCells.forEach((cell: HTMLElement) => {
         const plateSpan = cell.querySelector('.vehicle-table__plate');
