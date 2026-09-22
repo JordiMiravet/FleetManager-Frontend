@@ -140,7 +140,7 @@ describe('VehicleTableActionsComponent', () => {
       component.sortDir.set('asc');
       fixture.detectChanges();
 
-      const icon = getSearchIcon();
+      const icon = getSortIcon();
 
       expect(icon.classList).toContain('pi-sort-amount-down');
     });
@@ -149,7 +149,7 @@ describe('VehicleTableActionsComponent', () => {
       component.sortDir.set('desc');
       fixture.detectChanges();
 
-      const icon = getSearchIcon();
+      const icon = getSortIcon();
 
       expect(icon.classList).toContain('pi-sort-amount-up');
     });
