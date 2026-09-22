@@ -207,9 +207,10 @@ describe('VehicleTableComponent', () => {
 
       const rowsAfter = getRows();
 
-      expect(rowsAfter).toHaveSize(rowsBefore.length);
+      expect(rowsAfter[0]).toBe(rowsBefore[1]);
+      expect(rowsAfter[1]).toBe(rowsBefore[0]);
     });
-    
+
   });
 
   describe('isOwner', () => {
