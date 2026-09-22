@@ -64,8 +64,8 @@ describe('VehicleSelectorComponent', () => {
       (component.vehicles as any) = () => mockVehicles;
       fixture.detectChanges();
 
-      const allOptions = getOptions();
-      expect(allOptions).toHaveSize(mockVehicles.length + 1)
+      const options = getOptions();
+      expect(options).toHaveSize(mockVehicles.length + 1)
     });
 
     it('should render the option matching selectedPlate', () => {
