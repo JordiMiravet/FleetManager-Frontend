@@ -1,12 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Auth } from '@angular/fire/auth';
+import { By } from '@angular/platform-browser';
 
 import { VehicleTableComponent } from './vehicle-table';
 
 import { AuthorizationService } from '../../../../core/services/authorization/authorization-service';
 import { VehicleInterface } from '../../models/vehicle';
-import { By } from '@angular/platform-browser';
 import { UserButtonComponent } from '../../../../shared/ui/buttons/user-button/user-button';
+import { DeleteButtonComponent } from '../../../../shared/ui/buttons/delete-button/delete-button';
 
 const authMock = {
   currentUser: {
@@ -170,7 +171,11 @@ describe('VehicleTableComponent', () => {
     it('should emit deleteVehicle when delete button emits delete', () => {
       spyOn(component.deleteVehicle, 'emit');
 
-      component.deleteVehicle.emit(mockVehicles[0]);
+      const deleteButton = fixture.debugElement.query(
+        By.directive(DeleteButtonComponent)
+      );
+
+      deleteButton.triggerEventHandler('delete', mockVehicles[0]);
 
       expect(component.deleteVehicle.emit).toHaveBeenCalledWith(mockVehicles[0]);
     });
