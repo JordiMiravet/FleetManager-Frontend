@@ -242,6 +242,18 @@ describe('VehicleTableComponent', () => {
       expect(deleteButtons).toHaveSize(0);
     });
 
+    it('should render user buttons when user is not owner', () => {
+      permissionServiceMock.isOwner.and.returnValue(false);
+
+      fixture.componentRef.setInput('vehicles', mockVehicles);
+      fixture.componentRef.setInput('vehicleModal', mockVehicleModal);
+      fixture.detectChanges();
+
+      const userButtons = getUserButtons();
+
+      expect(userButtons).toHaveSize(mockVehicles.length);
+    });
+
   });
 
   describe('addUserToVehicle output', () => {
