@@ -286,8 +286,8 @@ describe('VehicleTableComponent', () => {
       const nameCells = getNameCells();
 
       nameCells.forEach((cell: HTMLElement) => {
-        const plateSpan = getPlate(cell)
-        
+        const plateSpan = getPlate(cell);
+
         expect(plateSpan?.getAttribute('aria-hidden')).toBe('true');
       });
     });
