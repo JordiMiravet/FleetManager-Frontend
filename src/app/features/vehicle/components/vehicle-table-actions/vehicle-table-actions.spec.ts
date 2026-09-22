@@ -20,10 +20,10 @@ describe('VehicleTableActionsComponent', () => {
   const getSearchIcon = (): HTMLElement => fixture.nativeElement.querySelector('.vehicle-actions__search-icon');
 
   const getSortButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.vehicle-actions__sort-button');
-  const getSortIcon = (): HTMLElement => fixture.nativeElement.querySelector('.vehicle-actions__sort-button i');
+  const getSortIcon = (): HTMLElement => fixture.nativeElement.querySelector('.vehicle-actions__sort-icon');
 
   const getSortSelect = (): HTMLSelectElement => fixture.nativeElement.querySelector('.vehicle-actions__sort-select');
-  const getSortOptions = (): NodeListOf<HTMLOptionElement> => fixture.nativeElement.querySelectorAll('.vehicle-actions__sort-select option');
+  const getSortOptions = (): NodeListOf<HTMLOptionElement> => fixture.nativeElement.querySelectorAll('.vehicle-actions__sort-option');
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
