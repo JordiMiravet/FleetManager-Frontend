@@ -8,6 +8,10 @@ describe('VehicleSelectorComponent', () => {
   let component: VehicleSelectorComponent;
   let fixture: ComponentFixture<VehicleSelectorComponent>;
 
+  const getSelect = (): HTMLSelectElement => fixture.nativeElement.querySelector('#vehicle-select');
+  const getOptions = (): NodeListOf<HTMLOptionElement> => fixture.nativeElement.querySelectorAll('option');
+  const getLabel = (): HTMLLabelElement => fixture.nativeElement.querySelector('label');
+
   const mockVehicles: VehicleInterface[] = [
     { name: 'Ferrari', model: 'F8 Tributo', plate: 'F123', location: { lat: 41, lng: 2 } },
     { name: 'Pagani', model: 'Huayra', plate: 'P456', location: { lat: 42, lng: 3 } },
