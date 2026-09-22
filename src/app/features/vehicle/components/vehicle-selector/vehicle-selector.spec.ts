@@ -56,7 +56,7 @@ describe('VehicleSelectorComponent', () => {
   describe('template rendering', () => {
 
     it('should render the select element', () => {
-      const select = fixture.nativeElement.querySelector('#vehicle-select');
+      const select: HTMLSelectElement = getSelect()
       expect(select).toBeTruthy();
     });
 
@@ -64,7 +64,7 @@ describe('VehicleSelectorComponent', () => {
       (component.vehicles as any) = () => mockVehicles;
       fixture.detectChanges();
 
-      const allOptions = fixture.nativeElement.querySelectorAll('option');
+      const allOptions = getOptions();
       expect(allOptions).toHaveSize(mockVehicles.length + 1)
     });
 
@@ -74,10 +74,7 @@ describe('VehicleSelectorComponent', () => {
 
       fixture.detectChanges();
 
-      const options = Array.from(
-        fixture.nativeElement.querySelectorAll('option')
-      ) as HTMLOptionElement[];
-
+      const options = Array.from(getOptions()) as HTMLOptionElement[];
       const selectedOption = options.find(
         option => option.value === 'F123'
       );
@@ -91,10 +88,7 @@ describe('VehicleSelectorComponent', () => {
 
       fixture.detectChanges();
 
-      const options = Array.from(
-        fixture.nativeElement.querySelectorAll('option')
-      ) as HTMLOptionElement[];
-
+      const options = Array.from(getOptions()) as HTMLOptionElement[];
       const selectedOption = options.find(
         option => option.value === 'P456'
       );
@@ -106,7 +100,7 @@ describe('VehicleSelectorComponent', () => {
       (component.vehicles as any) = () => [];
       fixture.detectChanges();
 
-      const options = fixture.nativeElement.querySelectorAll('option');
+      const options = getOptions();
 
       expect(options).toHaveSize(1);
     });
@@ -115,14 +109,14 @@ describe('VehicleSelectorComponent', () => {
       (component.vehicles as any) = () => mockVehicles;
       fixture.detectChanges();
 
-      const options = fixture.nativeElement.querySelectorAll('option');
+      const options = getOptions();
 
       expect(options[1].textContent.trim()).toBe('Ferrari');
       expect(options[2].textContent.trim()).toBe('Pagani');
     });
 
     it('should render the accessibility label', () => {
-      const label = fixture.nativeElement.querySelector('label');
+      const label = getLabel();
 
       expect(label).toBeTruthy();
       expect(label.getAttribute('for')).toBe('vehicle-select');
@@ -134,7 +128,7 @@ describe('VehicleSelectorComponent', () => {
 
       fixture.detectChanges();
 
-      const select: HTMLSelectElement = fixture.nativeElement.querySelector('select');
+      const select: HTMLSelectElement = getSelect();
 
       expect(select.value).toBe('');
     });
@@ -148,7 +142,7 @@ describe('VehicleSelectorComponent', () => {
       fixture.detectChanges();
       spyOn(component.vehicleSelected, 'emit');
 
-      const select: HTMLSelectElement = fixture.nativeElement.querySelector('#vehicle-select');
+      const select: HTMLSelectElement = getSelect();
       select.value = 'P456';
       select.dispatchEvent(new Event('change'));
 
@@ -160,7 +154,7 @@ describe('VehicleSelectorComponent', () => {
       fixture.detectChanges();
       spyOn(component.vehicleSelected, 'emit');
 
-      const select: HTMLSelectElement = fixture.nativeElement.querySelector('#vehicle-select');
+      const select: HTMLSelectElement = getSelect();
       select.value = '';
       select.dispatchEvent(new Event('change'));
 
