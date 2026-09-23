@@ -99,7 +99,7 @@ describe('VehicleViewComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [VehicleViewComponent],
+      imports: [ VehicleViewComponent ],
       providers: [
         { provide: Auth, useValue: authMock } ,
         { provide: VehicleService, useValue: vehicleServiceMock },
