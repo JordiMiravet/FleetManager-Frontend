@@ -4,6 +4,7 @@ import { Auth } from '@angular/fire/auth';
 import { signal } from '@angular/core';
 
 import { VehicleTablePaginationComponent } from './vehicle-table-pagination';
+
 import { VehicleService } from '../../data-access/vehicle-service';
 import { VehicleInterface } from '../../models/vehicle';
 
@@ -30,7 +31,7 @@ describe('VehicleTablePaginationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleTablePaginationComponent],
+      imports: [ VehicleTablePaginationComponent ],
       providers: [
         { provide: Auth, useValue: authMock },
         { provide: VehicleService, useValue: vehicleServiceMock },
