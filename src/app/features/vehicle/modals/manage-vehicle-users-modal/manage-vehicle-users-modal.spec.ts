@@ -145,7 +145,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       component.loading.set(true);
       fixture.detectChanges();
 
-      const submitButton = fixture.nativeElement.querySelector('.modal__button--submit');
+      const submitButton = getSubmitButton();
 
       expect(submitButton.disabled).toBeTrue();
     });
@@ -154,7 +154,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       component.loading.set(true);
       fixture.detectChanges();
 
-      const spinner = fixture.nativeElement.querySelector('.pi-spinner');
+      const spinner = getSpinner();
 
       expect(spinner).toBeTruthy();
     });
@@ -163,7 +163,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       component.loading.set(true);
       fixture.detectChanges();
 
-      const cancelButton = fixture.nativeElement.querySelector('.modal__button--cancel');
+      const cancelButton = getCancelButton();
 
       expect(cancelButton.disabled).toBeTrue();
     });
@@ -184,7 +184,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       component.error.set('User already exists');
       fixture.detectChanges();
 
-      const errorText = fixture.nativeElement.querySelector('.modal__error-text');
+      const errorText = getErrorText();
 
       expect(errorText).toBeTruthy();
       expect(errorText.textContent).toContain('User already exists');
@@ -194,7 +194,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       component.error.set('');
       fixture.detectChanges();
 
-      const errorText = fixture.nativeElement.querySelector('.modal__error-text');
+      const errorText = getErrorText();
 
       expect(errorText).toBeFalsy();
     });
@@ -203,7 +203,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       component.error.set('User already exists');
       fixture.detectChanges();
 
-      const input = fixture.nativeElement.querySelector('#userEmail');
+      const input = getEmailInput();
       
       expect(input.getAttribute('aria-invalid')).toBe('true');
     });
@@ -271,7 +271,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       fixture.componentRef.setInput('vehicle', vehicleWithoutUsersMock);
       fixture.detectChanges();
 
-      const emptyMessage = fixture.nativeElement.querySelector('.modal__empty');
+      const emptyMessage = getEmptyMessage();
 
       expect(emptyMessage).toBeTruthy();
       expect(emptyMessage?.textContent).toContain(component.usersMsg.status.noUsers);
@@ -281,7 +281,7 @@ describe('ManageVehicleUsersModalComponent', () => {
       fixture.componentRef.setInput('vehicle', vehicleMock);
       fixture.detectChanges();
 
-      const users = fixture.nativeElement.querySelectorAll('.modal__user');
+      const users = getUsers();
 
       expect(users).toHaveSize(1);
       expect(users[0].textContent).toContain('test@gmail.com');
@@ -296,7 +296,7 @@ describe('ManageVehicleUsersModalComponent', () => {
 
       const submitSpy = spyOn(component, 'onSubmit');
 
-      const input: HTMLInputElement = fixture.nativeElement.querySelector('#userEmail');
+      const input = getEmailInput();
       input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
       fixture.detectChanges();
 
@@ -306,7 +306,7 @@ describe('ManageVehicleUsersModalComponent', () => {
     it('should call onCancel when clicking overlay', () => {
       const cancelSpy = spyOn(component, 'onCancel');
 
-      const overlay: HTMLElement = fixture.nativeElement.querySelector('dialog');
+      const overlay = getOverlay();
       overlay.click();
       fixture.detectChanges();
 
@@ -316,7 +316,7 @@ describe('ManageVehicleUsersModalComponent', () => {
     it('should not call onCancel when clicking inside modal container', () => {
       const cancelSpy = spyOn(component, 'onCancel');
 
-      const modal: HTMLElement = fixture.nativeElement.querySelector('.modal');
+      const modal = getModal();
       modal.click();
       fixture.detectChanges();
 
