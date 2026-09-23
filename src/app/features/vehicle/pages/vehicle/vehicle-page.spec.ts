@@ -42,7 +42,7 @@ describe('VehiclePageComponent', () => {
   describe('Child components rendering', () => {
 
     it('should render app-vehicle-view element', () => {
-      const vehicleViewComponent = fixture.nativeElement.querySelector('app-vehicle-view');
+      const vehicleViewComponent = getVehicleViewComponent();
 
       expect(vehicleViewComponent).toBeTruthy();
     });
