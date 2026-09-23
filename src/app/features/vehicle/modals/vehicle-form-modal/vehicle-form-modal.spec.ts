@@ -26,7 +26,9 @@ describe('VehicleFormModalComponent', () => {
   const getLegend = (): HTMLElement => fixture.nativeElement.querySelector('.modal__legend');
 
   const getNameInput = (): HTMLInputElement => fixture.nativeElement.querySelector('#createVehicleName');
+  
   const getSaveButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--save');
+  const getCancelButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--cancel');
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
