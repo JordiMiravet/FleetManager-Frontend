@@ -49,6 +49,11 @@ describe('VehicleFormModalComponent', () => {
 
   describe('form initialization', () => {
 
+    const vehicleWithImageMock: VehicleInterface = {
+      ...vehicleMock,
+      imageUrl: 'https://example.com/car.jpg'
+    };
+
     it('should create the form with correct controls', () => {
       const formControl = component.form.controls;
 
@@ -66,6 +71,10 @@ describe('VehicleFormModalComponent', () => {
       expect(component.form.get('name')?.value).toBe(vehicleMock.name);
       expect(component.form.get('model')?.value).toBe(vehicleMock.model);
       expect(component.form.get('plate')?.value).toBe(vehicleMock.plate);
+    });
+
+    it('should patch imageUrl when mode is edit', () => {
+
     });
 
     it('should reset form when mode is create', () => {
@@ -123,6 +132,10 @@ describe('VehicleFormModalComponent', () => {
       component.form.get('imageUrl')?.markAsTouched();
 
       expect(component.getFieldError('imageUrl')).toBeNull();
+    });
+
+    it('should return null error when field has not been touched', () => {
+
     });
 
     it('should return null when field does not exist', () => {
@@ -201,6 +214,18 @@ describe('VehicleFormModalComponent', () => {
 
       const input = getNameInput();
       expect(input.getAttribute('aria-invalid')).toBe('true');
+    });
+
+    it('should set create aria-label on save button when mode is create', () => {
+
+    });
+
+    it('should set update aria-label on save button when mode is edit', () => {
+
+    });
+
+    it('should set aria-label on cancel button', () => {
+
     });
 
   });
