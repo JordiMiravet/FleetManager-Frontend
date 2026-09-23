@@ -114,12 +114,8 @@ describe('VehicleViewComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('Component creation', () => {
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   describe('Initial state', () => {
