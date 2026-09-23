@@ -33,7 +33,6 @@ const vehicleForPermissionMock: VehicleInterface = {
 };
 
 describe('ManageVehicleUsersModalComponent', () => {
-
   let component: ManageVehicleUsersModalComponent;
   let fixture: ComponentFixture<ManageVehicleUsersModalComponent>;
 
@@ -41,6 +40,19 @@ describe('ManageVehicleUsersModalComponent', () => {
     isOwner: jasmine.createSpy(),
     canRemove: jasmine.createSpy()
   };
+
+  const getOverlay = (): HTMLElement => fixture.nativeElement.querySelector('dialog');
+  const getModal = (): HTMLElement => fixture.nativeElement.querySelector('.modal');
+
+  const getEmptyMessage = (): HTMLElement => fixture.nativeElement.querySelector('.modal__empty');
+  const getUsers = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.modal__user');
+
+  const getEmailInput = (): HTMLInputElement => fixture.nativeElement.querySelector('#userEmail');
+  const getErrorText = (): HTMLElement => fixture.nativeElement.querySelector('.modal__error-text');
+  const getSpinner = (): HTMLElement => fixture.nativeElement.querySelector('.pi-spinner');
+
+  const getSubmitButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--submit');
+  const getCancelButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--cancel');
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
