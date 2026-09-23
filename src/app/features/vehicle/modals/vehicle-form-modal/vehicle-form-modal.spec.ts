@@ -74,7 +74,11 @@ describe('VehicleFormModalComponent', () => {
     });
 
     it('should patch imageUrl when mode is edit', () => {
+      fixture.componentRef.setInput('vehicle', vehicleWithImageMock);
+      fixture.componentRef.setInput('mode', 'edit');
+      fixture.detectChanges();
 
+      expect(component.form.get('imageUrl')?.value).toBe(vehicleWithImageMock.imageUrl);
     });
 
     it('should reset form when mode is create', () => {
@@ -135,7 +139,9 @@ describe('VehicleFormModalComponent', () => {
     });
 
     it('should return null error when field has not been touched', () => {
+      component.form.get('name')?.setValue('');
 
+      expect(component.getFieldError('name')).toBeNull();
     });
 
     it('should return null when field does not exist', () => {
@@ -217,15 +223,27 @@ describe('VehicleFormModalComponent', () => {
     });
 
     it('should set create aria-label on save button when mode is create', () => {
+      fixture.componentRef.setInput('mode', 'create');
+      fixture.detectChanges();
 
+      const saveButton = getSaveButton();
+
+      expect(saveButton.getAttribute('aria-label')).toBe(component.formMsg.aria.createButton);
     });
 
     it('should set update aria-label on save button when mode is edit', () => {
+      fixture.componentRef.setInput('mode', 'edit');
+      fixture.detectChanges();
 
+      const saveButton = getSaveButton();
+
+      expect(saveButton.getAttribute('aria-label')).toBe(component.formMsg.aria.updateButton);
     });
 
     it('should set aria-label on cancel button', () => {
+      const cancelButton = getCancelButton();
 
+      expect(cancelButton.getAttribute('aria-label')).toBe(component.formMsg.aria.cancelButton);
     });
 
   });
