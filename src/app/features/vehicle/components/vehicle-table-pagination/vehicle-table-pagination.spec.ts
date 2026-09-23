@@ -4,6 +4,7 @@ import { Auth } from '@angular/fire/auth';
 import { signal } from '@angular/core';
 
 import { VehicleTablePaginationComponent } from './vehicle-table-pagination';
+
 import { VehicleService } from '../../data-access/vehicle-service';
 import { VehicleInterface } from '../../models/vehicle';
 
@@ -22,9 +23,18 @@ describe('VehicleTablePaginationComponent', () => {
   let component: VehicleTablePaginationComponent;
   let fixture: ComponentFixture<VehicleTablePaginationComponent>;
 
+  const getPagination = (): HTMLElement | null => fixture.nativeElement.querySelector('.vehicle-pagination');
+  const getPaginationValues = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.vehicle-pagination__value');
+
+  const getPaginationButtons = (): NodeListOf<HTMLButtonElement> => fixture.nativeElement.querySelectorAll('.vehicle-pagination__button');
+  const getPreviousPageButton = (): HTMLButtonElement | null => fixture.nativeElement.querySelector('.vehicle-pagination__button--previous');
+  const getNextPageButton = (): HTMLButtonElement | null => fixture.nativeElement.querySelector('.vehicle-pagination__button--next');
+
+  const getPaginationIcons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.vehicle-pagination__button i');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleTablePaginationComponent],
+      imports: [ VehicleTablePaginationComponent ],
       providers: [
         { provide: Auth, useValue: authMock },
         { provide: VehicleService, useValue: vehicleServiceMock },
@@ -52,11 +62,11 @@ describe('VehicleTablePaginationComponent', () => {
   describe('template rendering', () => {
 
     it('should render the nav with correct role and aria-label', () => {
-      const nav = fixture.nativeElement.querySelector('nav');
+      const nav = getPagination();
 
       expect(nav).toBeTruthy();
-      expect(nav.getAttribute('role')).toBe('navigation');
-      expect(nav.getAttribute('aria-label')).toBe(component.paginationMsg.aria.navigation);
+      expect(nav?.getAttribute('role')).toBe('navigation');
+      expect(nav?.getAttribute('aria-label')).toBe(component.paginationMsg.aria.navigation);
     });
 
     it('should render vehicle count from vehicles signal', () => {
@@ -66,22 +76,22 @@ describe('VehicleTablePaginationComponent', () => {
       ]);
       fixture.detectChanges();
 
-      const values = fixture.nativeElement.querySelectorAll('.vehicle-pagination__value');
+      const values = getPaginationValues();
 
       expect(values[0].textContent.trim()).toBe('2');
       expect(values[1].textContent.trim()).toBe('2');
     });
 
     it('should render previous page button', () => {
-      const button = fixture.nativeElement.querySelector('.vehicle-pagination__button:first-of-type');
+      const previousPageButton = getPreviousPageButton();
 
-      expect(button).toBeTruthy();
+      expect(previousPageButton).toBeTruthy();
     });
 
     it('should render next page button', () => {
-      const buttons = fixture.nativeElement.querySelectorAll('.vehicle-pagination__button');
+      const paginationButtons = getPaginationButtons();
 
-      expect(buttons).toHaveSize(2);
+      expect(paginationButtons).toHaveSize(2);
     });
 
   });
@@ -89,19 +99,21 @@ describe('VehicleTablePaginationComponent', () => {
   describe('accessibility', () => {
 
     it('should have aria-label on previous page button', () => {
-      const button = fixture.nativeElement.querySelector('.vehicle-pagination__button:first-of-type');
+      const previousPageButton = getPreviousPageButton();
 
-      expect(button.getAttribute('aria-label')).toBe(component.paginationMsg.aria.previousPage);
+      expect(previousPageButton).toBeTruthy();
+      expect(previousPageButton?.getAttribute('aria-label')).toBe(component.paginationMsg.aria.previousPage);
     });
 
     it('should have aria-label on next page button', () => {
-      const buttons = fixture.nativeElement.querySelectorAll('.vehicle-pagination__button');
+      const nextPageButton = getNextPageButton();
       
-      expect(buttons[1].getAttribute('aria-label')).toBe(component.paginationMsg.aria.nextPage);
+      expect(nextPageButton).toBeTruthy();
+      expect(nextPageButton?.getAttribute('aria-label')).toBe(component.paginationMsg.aria.nextPage);
     });
 
     it('should have aria-live on vehicle count spans', () => {
-      const values = fixture.nativeElement.querySelectorAll('.vehicle-pagination__value');
+      const values = getPaginationValues();
 
       values.forEach((value: HTMLElement) => {
         expect(value.getAttribute('aria-live')).toBe('polite');
@@ -109,8 +121,8 @@ describe('VehicleTablePaginationComponent', () => {
     });
 
     it('should have aria-hidden on pagination icons', () => {
-      const icons = fixture.nativeElement.querySelectorAll('.vehicle-pagination__button i');
-      
+      const icons = getPaginationIcons();
+
       icons.forEach((icon: HTMLElement) => {
         expect(icon.getAttribute('aria-hidden')).toBe('true');
       });

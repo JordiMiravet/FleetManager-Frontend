@@ -1,7 +1,7 @@
 <section class="vehicle-actions">
 
   <div class="vehicle-actions__search">
-    <i class="pi pi-search vehicle-actions__search-icon" aria-hidden="true"></i>
+    <i class="vehicle-actions__search-icon pi pi-search" aria-hidden="true"></i>
     <input
       type="text"
       class="vehicle-actions__search-input"
@@ -19,7 +19,7 @@
       (click)="toggleSortDir()"
     >
       <i
-        class="pi"
+        class="vehicle-actions__sort-icon pi"
         [class.pi-sort-amount-down]="sortDir() === 'asc'"
         [class.pi-sort-amount-up]="sortDir() === 'desc'"
       ></i>
@@ -30,9 +30,9 @@
       [attr.aria-label]="actionsMsg.aria.sortFieldSelect"
       (change)="onSortFieldChange($event)"
     >
-      <option value="name">{{ actionsMsg.sortOptions.name }}</option>
-      <option value="model">{{ actionsMsg.sortOptions.model }}</option>
-      <option value="plate">{{ actionsMsg.sortOptions.plate }}</option>
+      <option value="name" class="vehicle-actions__sort-option">{{ actionsMsg.sortOptions.name }}</option>
+      <option value="model" class="vehicle-actions__sort-option">{{ actionsMsg.sortOptions.model }}</option>
+      <option value="plate" class="vehicle-actions__sort-option">{{ actionsMsg.sortOptions.plate }}</option>
     </select>
   </div>
 

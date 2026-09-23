@@ -66,6 +66,18 @@ describe('VehicleViewComponent', () => {
   let component: VehicleViewComponent;
   let fixture: ComponentFixture<VehicleViewComponent>;
 
+  const getCreateButton = (): HTMLElement => fixture.nativeElement.querySelector('app-create-button');
+
+  const getTable = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-table');
+  const getTableActions = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-table-actions');
+  const getTablePagination = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-table-pagination');
+
+  const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-empty-state');
+
+  const getVehicleFormModal = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-form-modal');
+  const getUserManagementModal = (): HTMLElement => fixture.nativeElement.querySelector('app-manage-vehicle-users-modal');
+  const getConfirmModal = (): HTMLElement => fixture.nativeElement.querySelector('app-confirm-modal');
+
   beforeEach(async () => {
     vehicleServiceMock.loadVehicles.calls.reset();
     vehicleServiceMock.addVehicle.calls.reset();
@@ -87,7 +99,7 @@ describe('VehicleViewComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [VehicleViewComponent],
+      imports: [ VehicleViewComponent ],
       providers: [
         { provide: Auth, useValue: authMock } ,
         { provide: VehicleService, useValue: vehicleServiceMock },
@@ -102,12 +114,8 @@ describe('VehicleViewComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('Component creation', () => {
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   describe('Initial state', () => {
@@ -266,7 +274,7 @@ describe('VehicleViewComponent', () => {
 
       fixture.detectChanges();
 
-      const tableElement = fixture.nativeElement.querySelector('app-vehicle-table');
+      const tableElement = getTable();
       expect(tableElement).toBeTruthy();
     });
 
@@ -274,12 +282,12 @@ describe('VehicleViewComponent', () => {
       vehicleAccessServiceMock.visibleVehicles.set([]);
       fixture.detectChanges();
 
-      const emptyStateElement = fixture.nativeElement.querySelector('app-vehicle-empty-state');
+      const emptyStateElement = getEmptyState();
       expect(emptyStateElement).toBeTruthy();
     });
 
     it('should open create modal when create button emits event', () => {
-      const createButton: HTMLElement = fixture.nativeElement.querySelector('app-create-button');
+      const createButton = getCreateButton();
       createButton.dispatchEvent(new Event('create'));
 
       expect(VehicleModalServiceMock.openCreate).toHaveBeenCalled();
@@ -291,8 +299,30 @@ describe('VehicleViewComponent', () => {
 
       fixture.detectChanges();
 
-      const formModalElement = fixture.nativeElement.querySelector('app-vehicle-form-modal');
+      const formModalElement = getVehicleFormModal();
       expect(formModalElement).toBeTruthy();
+    });
+
+    it('should render vehicle table actions when vehicle list is not empty', () => {
+      vehicleAccessServiceMock.visibleVehicles.set([
+        { name: 'Lamborghini', model: 'Aventador', plate: 'LMB2026' }
+      ]);
+
+      fixture.detectChanges();
+
+      const tableActionsElement = getTableActions();
+      expect(tableActionsElement).toBeTruthy();
+    });
+
+    it('should render vehicle table pagination when vehicle list is not empty', () => {
+      vehicleAccessServiceMock.visibleVehicles.set([
+        { name: 'Lamborghini', model: 'Aventador', plate: 'LMB2026' }
+      ]);
+
+      fixture.detectChanges();
+
+      const paginationElement = getTablePagination();
+      expect(paginationElement).toBeTruthy();
     });
 
     it('should render confirm delete modal when delete modal is open', () => {
@@ -300,7 +330,7 @@ describe('VehicleViewComponent', () => {
 
       fixture.detectChanges();
 
-      const confirmModalElement = fixture.nativeElement.querySelector('app-confirm-modal');
+      const confirmModalElement = getConfirmModal();
       expect(confirmModalElement).toBeTruthy();
     });
 
@@ -308,7 +338,7 @@ describe('VehicleViewComponent', () => {
       VehicleModalServiceMock.activeModal.set(VehicleModalState.UserManagement);
       fixture.detectChanges();
 
-      const userModalElement = fixture.nativeElement.querySelector('app-manage-vehicle-users-modal');
+      const userModalElement = getUserManagementModal();
       expect(userModalElement).toBeTruthy();
     });
 

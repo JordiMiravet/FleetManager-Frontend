@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 import { VehicleEmptyStateComponent } from './vehicle-empty-state';
 
@@ -7,9 +8,13 @@ describe('VehicleEmptyStateComponent', () => {
   let component: VehicleEmptyStateComponent;
   let fixture: ComponentFixture<VehicleEmptyStateComponent>;
 
+  const getContainer = (): HTMLElement => fixture.nativeElement.querySelector('.vehicle-empty__container');
+  const getMessage = (): HTMLElement => fixture.nativeElement.querySelector('.vehicle-empty__text');
+  const getCreateButton = (): DebugElement => fixture.debugElement.query(By.css('app-create-button'));
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ VehicleEmptyStateComponent ]
+      imports: [ VehicleEmptyStateComponent ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(VehicleEmptyStateComponent);
@@ -17,12 +22,8 @@ describe('VehicleEmptyStateComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('component creation', () => {
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   describe('initial state', () => {
@@ -37,30 +38,31 @@ describe('VehicleEmptyStateComponent', () => {
   describe('template rendering', () => {
 
     it('should render the container', () => {
-      const container = fixture.nativeElement.querySelector('.vehicle-empty__container');
+      const container = getContainer();
+
       expect(container).toBeTruthy();
     });
 
     it('should render the empty state message', () => {
-      const message = fixture.nativeElement.querySelector('.vehicle-empty__text');
+      const message = getMessage();
 
       expect(message.textContent?.trim().length).toBeGreaterThan(0);
     });
 
     it('should render the create button', () => {
-      const button = fixture.debugElement.query(By.css('app-create-button'));
+      const button = getCreateButton();
       
       expect(button).toBeTruthy();
     });
 
     it('should set aria-label on container', () => {
-      const container: HTMLElement = fixture.nativeElement.querySelector('.vehicle-empty__container');
+      const container = getContainer();
 
       expect(container.getAttribute('aria-label')).toBeTruthy();
     });
 
     it('should pass create text to create button', () => {
-      const button = fixture.debugElement.query(By.css('app-create-button'));
+      const button = getCreateButton();
 
       expect(button.componentInstance.createText()).toBe(component.emptyStateMsg.button);
     });
@@ -72,7 +74,7 @@ describe('VehicleEmptyStateComponent', () => {
     it('should call onClick method', () => {
       spyOn(component, 'onClick');
 
-      const button = fixture.debugElement.query(By.css('app-create-button'));
+      const button = getCreateButton();
       button.triggerEventHandler('click', null);
 
       expect(component.onClick).toHaveBeenCalled();
@@ -92,7 +94,7 @@ describe('VehicleEmptyStateComponent', () => {
     it('should emit createVehicle when button is clicked', () => {
       spyOn(component.createVehicle, 'emit');
 
-      const button = fixture.debugElement.query(By.css('app-create-button'));
+      const button = getCreateButton();
       button.triggerEventHandler('click', null);
 
       expect(component.createVehicle.emit).toHaveBeenCalled();

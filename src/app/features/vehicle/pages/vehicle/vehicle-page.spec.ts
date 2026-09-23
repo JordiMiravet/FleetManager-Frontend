@@ -18,9 +18,11 @@ describe('VehiclePageComponent', () => {
     }
   };
 
+  const getVehicleViewComponent = (): HTMLElement | null => fixture.nativeElement.querySelector('app-vehicle-view');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehiclePageComponent],
+      imports: [ VehiclePageComponent ],
       providers: [
         { provide: Auth, useValue: authMock },
         provideHttpClient(),
@@ -33,18 +35,14 @@ describe('VehiclePageComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('Component creation', () => {
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   describe('Child components rendering', () => {
 
     it('should render app-vehicle-view element', () => {
-      const vehicleViewComponent = fixture.nativeElement.querySelector('app-vehicle-view');
+      const vehicleViewComponent = getVehicleViewComponent();
 
       expect(vehicleViewComponent).toBeTruthy();
     });

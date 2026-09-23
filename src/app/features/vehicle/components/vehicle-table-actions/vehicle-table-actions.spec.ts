@@ -16,9 +16,18 @@ describe('VehicleTableActionsComponent', () => {
   let component: VehicleTableActionsComponent;
   let fixture: ComponentFixture<VehicleTableActionsComponent>;
 
+  const getSearchInput = (): HTMLInputElement => fixture.nativeElement.querySelector('.vehicle-actions__search-input');
+  const getSearchIcon = (): HTMLElement => fixture.nativeElement.querySelector('.vehicle-actions__search-icon');
+
+  const getSortButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.vehicle-actions__sort-button');
+  const getSortIcon = (): HTMLElement => fixture.nativeElement.querySelector('.vehicle-actions__sort-icon');
+
+  const getSortSelect = (): HTMLSelectElement => fixture.nativeElement.querySelector('.vehicle-actions__sort-select');
+  const getSortOptions = (): NodeListOf<HTMLOptionElement> => fixture.nativeElement.querySelectorAll('.vehicle-actions__sort-option');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleTableActionsComponent]
+      imports: [ VehicleTableActionsComponent ],
     })
     .compileComponents();
 
@@ -108,20 +117,20 @@ describe('VehicleTableActionsComponent', () => {
   describe('template rendering', () => {
 
     it('should render search input', () => {
-      const input = fixture.nativeElement.querySelector('.vehicle-actions__search-input');
+      const input = getSearchInput();
 
       expect(input).toBeTruthy();
     });
 
     it('should render sort direction button', () => {
-      const button = fixture.nativeElement.querySelector('.vehicle-actions__sort-button');
+      const button = getSortButton();
 
       expect(button).toBeTruthy();
     });
 
     it('should render sort field select with options', () => {
-      const select = fixture.nativeElement.querySelector('.vehicle-actions__sort-select');
-      const options = select.querySelectorAll('option');
+      const select = getSortSelect();
+      const options = getSortOptions();
 
       expect(select).toBeTruthy();
       expect(options).toHaveSize(3);
@@ -131,7 +140,7 @@ describe('VehicleTableActionsComponent', () => {
       component.sortDir.set('asc');
       fixture.detectChanges();
 
-      const icon = fixture.nativeElement.querySelector('.vehicle-actions__sort-button i');
+      const icon = getSortIcon();
 
       expect(icon.classList).toContain('pi-sort-amount-down');
     });
@@ -140,7 +149,7 @@ describe('VehicleTableActionsComponent', () => {
       component.sortDir.set('desc');
       fixture.detectChanges();
 
-      const icon = fixture.nativeElement.querySelector('.vehicle-actions__sort-button i');
+      const icon = getSortIcon();
 
       expect(icon.classList).toContain('pi-sort-amount-up');
     });
@@ -152,7 +161,7 @@ describe('VehicleTableActionsComponent', () => {
     it('should call onQueryChange when typing in search input', () => {
       const spy = spyOn(component, 'onQueryChange');
 
-      const input: HTMLInputElement = fixture.nativeElement.querySelector('.vehicle-actions__search-input');
+      const input = getSearchInput();
       input.dispatchEvent(new Event('input'));
 
       expect(spy).toHaveBeenCalled();
@@ -161,7 +170,7 @@ describe('VehicleTableActionsComponent', () => {
     it('should call onSortFieldChange when selecting sort field', () => {
       const spy = spyOn(component, 'onSortFieldChange');
 
-      const select: HTMLSelectElement = fixture.nativeElement.querySelector('.vehicle-actions__sort-select');
+      const select = getSortSelect();
       select.dispatchEvent(new Event('change'));
 
       expect(spy).toHaveBeenCalled();
@@ -170,7 +179,7 @@ describe('VehicleTableActionsComponent', () => {
     it('should call toggleSortDir when clicking sort button', () => {
       const spy = spyOn(component, 'toggleSortDir');
 
-      const button: HTMLButtonElement = fixture.nativeElement.querySelector('.vehicle-actions__sort-button');
+      const button = getSortButton();
       button.click();
 
       expect(spy).toHaveBeenCalled();
@@ -181,25 +190,25 @@ describe('VehicleTableActionsComponent', () => {
   describe('accessibility', () => {
 
     it('should have aria-label on search input', () => {
-      const input = fixture.nativeElement.querySelector('.vehicle-actions__search-input');
+      const input = getSearchInput();
 
       expect(input.getAttribute('aria-label')).toBe(component.actionsMsg.aria.searchInput);
     });
 
     it('should have aria-label on sort direction button', () => {
-      const button = fixture.nativeElement.querySelector('.vehicle-actions__sort-button');
+      const button = getSortButton();
 
       expect(button.getAttribute('aria-label')).toBe(component.actionsMsg.aria.sortDirButton);
     });
 
     it('should have aria-label on sort field select', () => {
-      const select = fixture.nativeElement.querySelector('.vehicle-actions__sort-select');
+      const select = getSortSelect();
 
       expect(select.getAttribute('aria-label')).toBe(component.actionsMsg.aria.sortFieldSelect);
     });
 
     it('should have aria-hidden on search icon', () => {
-      const icon = fixture.nativeElement.querySelector('.vehicle-actions__search-icon');
+      const icon = getSearchIcon();
       
       expect(icon.getAttribute('aria-hidden')).toBe('true');
     });
