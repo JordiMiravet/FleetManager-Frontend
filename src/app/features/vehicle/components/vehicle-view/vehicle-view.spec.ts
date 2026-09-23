@@ -66,15 +66,17 @@ describe('VehicleViewComponent', () => {
   let component: VehicleViewComponent;
   let fixture: ComponentFixture<VehicleViewComponent>;
 
+  const getCreateButton = (): HTMLElement => fixture.nativeElement.querySelector('app-create-button');
+
   const getTable = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-table');
   const getTableActions = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-table-actions');
   const getTablePagination = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-table-pagination');
 
   const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-empty-state');
-  const getCreateButton = (): HTMLElement => fixture.nativeElement.querySelector('app-create-button');
+
   const getVehicleFormModal = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-form-modal');
-  const getConfirmModal = (): HTMLElement => fixture.nativeElement.querySelector('app-confirm-modal');
   const getUserManagementModal = (): HTMLElement => fixture.nativeElement.querySelector('app-manage-vehicle-users-modal');
+  const getConfirmModal = (): HTMLElement => fixture.nativeElement.querySelector('app-confirm-modal');
 
   beforeEach(async () => {
     vehicleServiceMock.loadVehicles.calls.reset();
