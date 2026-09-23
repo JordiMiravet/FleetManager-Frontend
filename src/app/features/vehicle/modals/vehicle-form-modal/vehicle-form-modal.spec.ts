@@ -32,7 +32,7 @@ describe('VehicleFormModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleFormModalComponent],
+      imports: [ VehicleFormModalComponent ],
       providers: [
         { provide: Auth, useValue: authMock }
       ]
