@@ -67,6 +67,9 @@ describe('VehicleViewComponent', () => {
   let fixture: ComponentFixture<VehicleViewComponent>;
 
   const getTable = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-table');
+  const getTableActions = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-table-actions');
+  const getTablePagination = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-table-pagination');
+
   const getEmptyState = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-empty-state');
   const getCreateButton = (): HTMLElement => fixture.nativeElement.querySelector('app-create-button');
   const getVehicleFormModal = (): HTMLElement => fixture.nativeElement.querySelector('app-vehicle-form-modal');
