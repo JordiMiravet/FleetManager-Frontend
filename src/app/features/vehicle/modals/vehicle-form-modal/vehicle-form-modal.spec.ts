@@ -232,11 +232,23 @@ describe('VehicleFormModalComponent', () => {
     });
 
     it('should call onSubmit when clicking save button', () => {
+      spyOn(component, 'onSubmit');
 
+      const saveButton = getSaveButton();
+      saveButton.click();
+      fixture.detectChanges();
+
+      expect(component.onSubmit).toHaveBeenCalled();
     });
 
     it('should call onCancel when clicking cancel button', () => {
+      spyOn(component, 'onCancel');
 
+      const cancelButton = getCancelButton();
+      cancelButton.click();
+      fixture.detectChanges();
+
+      expect(component.onCancel).toHaveBeenCalled();
     });
 
     it('should call onCancel when clicking outside form', () => {
