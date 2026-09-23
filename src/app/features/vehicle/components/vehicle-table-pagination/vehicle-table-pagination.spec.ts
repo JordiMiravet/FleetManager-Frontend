@@ -25,8 +25,11 @@ describe('VehicleTablePaginationComponent', () => {
 
   const getPagination = (): HTMLElement | null => fixture.nativeElement.querySelector('.vehicle-pagination');
   const getPaginationValues = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.vehicle-pagination__value');
-  const getPreviousPageButton = (): HTMLButtonElement | null => fixture.nativeElement.querySelector('.vehicle-pagination__button:first-of-type');
+
   const getPaginationButtons = (): NodeListOf<HTMLButtonElement> => fixture.nativeElement.querySelectorAll('.vehicle-pagination__button');
+  const getPreviousPageButton = (): HTMLButtonElement | null => fixture.nativeElement.querySelector('.vehicle-pagination__button--previous');
+  const getNextPageButton = (): HTMLButtonElement | null => fixture.nativeElement.querySelector('.vehicle-pagination__button--next');
+
   const getPaginationIcons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.vehicle-pagination__button i');
 
   beforeEach(async () => {
