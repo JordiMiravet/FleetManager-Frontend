@@ -56,7 +56,7 @@ describe('ManageVehicleUsersModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ManageVehicleUsersModalComponent],
+      imports: [ ManageVehicleUsersModalComponent ],
       providers: [
         { provide: AuthorizationService, useValue: permissionMock },
         VehicleMessagesService
