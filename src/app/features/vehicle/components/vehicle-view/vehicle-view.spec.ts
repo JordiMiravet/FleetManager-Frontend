@@ -305,6 +305,14 @@ describe('VehicleViewComponent', () => {
       expect(formModalElement).toBeTruthy();
     });
 
+    it('should render vehicle table actions when vehicle list is not empty', () => {
+
+    });
+
+    it('should render vehicle table pagination when vehicle list is not empty', () => {
+
+    });
+
     it('should render confirm delete modal when delete modal is open', () => {
       VehicleModalServiceMock.activeModal.set(VehicleModalState.ConfirmDelete);
 
