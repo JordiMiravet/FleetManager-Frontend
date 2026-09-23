@@ -22,6 +22,12 @@ describe('VehicleTablePaginationComponent', () => {
   let component: VehicleTablePaginationComponent;
   let fixture: ComponentFixture<VehicleTablePaginationComponent>;
 
+  const getPagination = (): HTMLElement | null => fixture.nativeElement.querySelector('.vehicle-pagination');
+  const getPaginationValues = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.vehicle-pagination__value');
+  const getPreviousPageButton = (): HTMLButtonElement | null => fixture.nativeElement.querySelector('.vehicle-pagination__button:first-of-type');
+  const getPaginationButtons = (): NodeListOf<HTMLButtonElement> => fixture.nativeElement.querySelectorAll('.vehicle-pagination__button');
+  const getPaginationIcons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.vehicle-pagination__button i');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [VehicleTablePaginationComponent],
