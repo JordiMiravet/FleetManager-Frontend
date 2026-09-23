@@ -26,7 +26,7 @@ describe('VehicleFormModalComponent', () => {
   const getLegend = (): HTMLElement => fixture.nativeElement.querySelector('.modal__legend');
 
   const getNameInput = (): HTMLInputElement => fixture.nativeElement.querySelector('#createVehicleName');
-  
+
   const getSaveButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--save');
   const getCancelButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--cancel');
 
@@ -229,6 +229,14 @@ describe('VehicleFormModalComponent', () => {
       fixture.detectChanges();
 
       expect(component.onCancel).not.toHaveBeenCalled();
+    });
+
+    it('should call onSubmit when clicking save button', () => {
+
+    });
+
+    it('should call onCancel when clicking cancel button', () => {
+
     });
 
     it('should call onCancel when clicking outside form', () => {
