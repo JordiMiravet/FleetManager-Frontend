@@ -203,9 +203,9 @@ describe('ManageVehicleUsersModalComponent', () => {
       component.error.set('User already exists');
       fixture.detectChanges();
 
-      const input = getEmailInput();
+      const emailInput = getEmailInput();
       
-      expect(input.getAttribute('aria-invalid')).toBe('true');
+      expect(emailInput.getAttribute('aria-invalid')).toBe('true');
     });
 
   });
@@ -296,8 +296,8 @@ describe('ManageVehicleUsersModalComponent', () => {
 
       const submitSpy = spyOn(component, 'onSubmit');
 
-      const input = getEmailInput();
-      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+      const emailInput = getEmailInput();
+      emailInput.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
       fixture.detectChanges();
 
       expect(submitSpy).toHaveBeenCalled();
