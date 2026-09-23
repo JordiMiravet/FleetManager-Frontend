@@ -18,6 +18,8 @@ describe('VehiclePageComponent', () => {
     }
   };
 
+  const getVehicleViewComponent = (): HTMLElement | null => fixture.nativeElement.querySelector('app-vehicle-view');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ VehiclePageComponent ],
