@@ -83,15 +83,15 @@ describe('VehicleTablePaginationComponent', () => {
     });
 
     it('should render previous page button', () => {
-      const button = getPreviousPageButton();
+      const previousPageButton = getPreviousPageButton();
 
-      expect(button).toBeTruthy();
+      expect(previousPageButton).toBeTruthy();
     });
 
     it('should render next page button', () => {
-      const buttons = getPaginationButtons();
+      const paginationButtons = getPaginationButtons();
 
-      expect(buttons).toHaveSize(2);
+      expect(paginationButtons).toHaveSize(2);
     });
 
   });
@@ -99,16 +99,17 @@ describe('VehicleTablePaginationComponent', () => {
   describe('accessibility', () => {
 
     it('should have aria-label on previous page button', () => {
-      const button = getPreviousPageButton();
+      const previousPageButton = getPreviousPageButton();
 
-      expect(button).toBeTruthy();
-      expect(button?.getAttribute('aria-label')).toBe(component.paginationMsg.aria.previousPage);
+      expect(previousPageButton).toBeTruthy();
+      expect(previousPageButton?.getAttribute('aria-label')).toBe(component.paginationMsg.aria.previousPage);
     });
 
     it('should have aria-label on next page button', () => {
-      const buttons = getPaginationButtons();
+      const nextPageButton = getNextPageButton();
       
-      expect(buttons[1].getAttribute('aria-label')).toBe(component.paginationMsg.aria.nextPage);
+      expect(nextPageButton).toBeTruthy();
+      expect(nextPageButton?.getAttribute('aria-label')).toBe(component.paginationMsg.aria.nextPage);
     });
 
     it('should have aria-live on vehicle count spans', () => {
@@ -121,7 +122,7 @@ describe('VehicleTablePaginationComponent', () => {
 
     it('should have aria-hidden on pagination icons', () => {
       const icons = getPaginationIcons();
-      
+
       icons.forEach((icon: HTMLElement) => {
         expect(icon.getAttribute('aria-hidden')).toBe('true');
       });
