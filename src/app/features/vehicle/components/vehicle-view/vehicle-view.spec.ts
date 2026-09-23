@@ -306,11 +306,25 @@ describe('VehicleViewComponent', () => {
     });
 
     it('should render vehicle table actions when vehicle list is not empty', () => {
+      vehicleAccessServiceMock.visibleVehicles.set([
+        { name: 'Lamborghini', model: 'Aventador', plate: 'LMB2026' }
+      ]);
 
+      fixture.detectChanges();
+
+      const tableActionsElement = getTableActions();
+      expect(tableActionsElement).toBeTruthy();
     });
 
     it('should render vehicle table pagination when vehicle list is not empty', () => {
+      vehicleAccessServiceMock.visibleVehicles.set([
+        { name: 'Lamborghini', model: 'Aventador', plate: 'LMB2026' }
+      ]);
 
+      fixture.detectChanges();
+
+      const paginationElement = getTablePagination();
+      expect(paginationElement).toBeTruthy();
     });
 
     it('should render confirm delete modal when delete modal is open', () => {
