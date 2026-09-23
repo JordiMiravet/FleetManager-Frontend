@@ -59,7 +59,7 @@ describe('VehicleTablePaginationComponent', () => {
   describe('template rendering', () => {
 
     it('should render the nav with correct role and aria-label', () => {
-      const nav = fixture.nativeElement.querySelector('.vehicle-pagination');
+      const nav = getPagination();
 
       expect(nav).toBeTruthy();
       expect(nav.getAttribute('role')).toBe('navigation');
@@ -73,20 +73,20 @@ describe('VehicleTablePaginationComponent', () => {
       ]);
       fixture.detectChanges();
 
-      const values = fixture.nativeElement.querySelectorAll('.vehicle-pagination__value');
+      const values = getPaginationValues();
 
       expect(values[0].textContent.trim()).toBe('2');
       expect(values[1].textContent.trim()).toBe('2');
     });
 
     it('should render previous page button', () => {
-      const button = fixture.nativeElement.querySelector('.vehicle-pagination__button:first-of-type');
+      const button = getPreviousPageButton();
 
       expect(button).toBeTruthy();
     });
 
     it('should render next page button', () => {
-      const buttons = fixture.nativeElement.querySelectorAll('.vehicle-pagination__button');
+      const buttons = getPaginationButtons();
 
       expect(buttons).toHaveSize(2);
     });
@@ -96,19 +96,19 @@ describe('VehicleTablePaginationComponent', () => {
   describe('accessibility', () => {
 
     it('should have aria-label on previous page button', () => {
-      const button = fixture.nativeElement.querySelector('.vehicle-pagination__button:first-of-type');
+      const button = getPreviousPageButton();
 
       expect(button.getAttribute('aria-label')).toBe(component.paginationMsg.aria.previousPage);
     });
 
     it('should have aria-label on next page button', () => {
-      const buttons = fixture.nativeElement.querySelectorAll('.vehicle-pagination__button');
+      const buttons = getPaginationButtons();
       
       expect(buttons[1].getAttribute('aria-label')).toBe(component.paginationMsg.aria.nextPage);
     });
 
     it('should have aria-live on vehicle count spans', () => {
-      const values = fixture.nativeElement.querySelectorAll('.vehicle-pagination__value');
+      const values = getPaginationValues();
 
       values.forEach((value: HTMLElement) => {
         expect(value.getAttribute('aria-live')).toBe('polite');
@@ -116,7 +116,7 @@ describe('VehicleTablePaginationComponent', () => {
     });
 
     it('should have aria-hidden on pagination icons', () => {
-      const icons = fixture.nativeElement.querySelectorAll('.vehicle-pagination__button i');
+      const icons = getPaginationIcons();
       
       icons.forEach((icon: HTMLElement) => {
         expect(icon.getAttribute('aria-hidden')).toBe('true');
