@@ -176,18 +176,18 @@ describe('VehicleFormModalComponent', () => {
   describe('accessibility', () => {
 
     it('should have role dialog on the backdrop', () => {
-      const dialog = fixture.nativeElement.querySelector('dialog');
+      const dialog = getBackdrop();
       expect(dialog.getAttribute('role')).toBe('dialog');
     });
 
     it('should have aria-modal on the backdrop', () => {
-      const dialog = fixture.nativeElement.querySelector('dialog');
+      const dialog = getBackdrop();
       expect(dialog.getAttribute('aria-modal')).toBe('true');
     });
 
     it('should have aria-labelledby pointing to the legend', () => {
-      const dialog = fixture.nativeElement.querySelector('dialog');
-      const legend = fixture.nativeElement.querySelector('#modal-title');
+      const dialog = getBackdrop();
+      const legend = getLegend();
 
       expect(dialog.getAttribute('aria-labelledby')).toBe(legend.getAttribute('id'));
     });
@@ -197,7 +197,7 @@ describe('VehicleFormModalComponent', () => {
       component.form.get('name')?.markAsTouched();
       fixture.detectChanges();
 
-      const input = fixture.nativeElement.querySelector('#createVehicleName');
+      const input = getNameInput();
       expect(input.getAttribute('aria-invalid')).toBe('true');
     });
 
@@ -208,10 +208,10 @@ describe('VehicleFormModalComponent', () => {
     it('should call onSubmit on Enter key press', () => {
       spyOn(component, 'onSubmit');
 
-      const formEl = fixture.nativeElement.querySelector('form');
+      const form = getForm();
       const event = new KeyboardEvent('keydown', { key: 'Enter' });
 
-      formEl.dispatchEvent(event);
+      form.dispatchEvent(event);
       fixture.detectChanges();
 
       expect(component.onSubmit).toHaveBeenCalled();
@@ -220,10 +220,10 @@ describe('VehicleFormModalComponent', () => {
     it('should prevent modal click from closing form', () => {
       spyOn(component, 'onCancel');
 
-      const formEl = fixture.nativeElement.querySelector('form');
+      const form = getForm();
       const clickEvent = new MouseEvent('click', { bubbles: true });
 
-      formEl.dispatchEvent(clickEvent);
+      form.dispatchEvent(clickEvent);
       fixture.detectChanges();
 
       expect(component.onCancel).not.toHaveBeenCalled();
@@ -232,10 +232,10 @@ describe('VehicleFormModalComponent', () => {
     it('should call onCancel when clicking outside form', () => {
       spyOn(component, 'onCancel');
 
-      const dialogEl = fixture.nativeElement.querySelector('dialog');
+      const dialog = getBackdrop();
       const clickEvent = new MouseEvent('click', { bubbles: true });
 
-      dialogEl.dispatchEvent(clickEvent);
+      dialog.dispatchEvent(clickEvent);
       fixture.detectChanges();
 
       expect(component.onCancel).toHaveBeenCalled();
@@ -249,7 +249,7 @@ describe('VehicleFormModalComponent', () => {
       fixture.componentRef.setInput('mode', 'create');
       fixture.detectChanges();
 
-      const legend = fixture.nativeElement.querySelector('.modal__legend');
+      const legend = getLegend();
       expect(legend.textContent).toContain(component.formMsg.title.create);
     });
 
@@ -257,7 +257,7 @@ describe('VehicleFormModalComponent', () => {
       fixture.componentRef.setInput('mode', 'edit');
       fixture.detectChanges();
 
-      const legend = fixture.nativeElement.querySelector('.modal__legend');
+      const legend = getLegend();
       expect(legend.textContent).toContain(component.formMsg.title.edit);
     });
 
@@ -265,16 +265,16 @@ describe('VehicleFormModalComponent', () => {
       fixture.componentRef.setInput('mode', 'create');
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('.modal__button--save');
-      expect(button.textContent).toContain(component.formMsg.buttons.create);
+      const saveButton = getSaveButton();
+      expect(saveButton.textContent).toContain(component.formMsg.buttons.create);
     });
 
     it('should show update button label when mode is edit', () => {
       fixture.componentRef.setInput('mode', 'edit');
       fixture.detectChanges();
 
-      const button = fixture.nativeElement.querySelector('.modal__button--save');
-      expect(button.textContent).toContain(component.formMsg.buttons.update);
+      const saveButton = getSaveButton();
+      expect(saveButton.textContent).toContain(component.formMsg.buttons.update);
     });
 
   });
