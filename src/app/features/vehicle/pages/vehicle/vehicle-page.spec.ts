@@ -20,7 +20,7 @@ describe('VehiclePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehiclePageComponent],
+      imports: [ VehiclePageComponent ],
       providers: [
         { provide: Auth, useValue: authMock },
         provideHttpClient(),
@@ -33,12 +33,8 @@ describe('VehiclePageComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('Component creation', () => {
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   describe('Child components rendering', () => {
