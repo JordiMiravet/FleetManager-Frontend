@@ -23,9 +23,9 @@ describe('VehicleTablePaginationComponent', () => {
   let component: VehicleTablePaginationComponent;
   let fixture: ComponentFixture<VehicleTablePaginationComponent>;
 
-  const getPagination = (): HTMLElement => fixture.nativeElement.querySelector('.vehicle-pagination');
+  const getPagination = (): HTMLElement | null => fixture.nativeElement.querySelector('.vehicle-pagination');
   const getPaginationValues = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.vehicle-pagination__value');
-  const getPreviousPageButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.vehicle-pagination__button:first-of-type');
+  const getPreviousPageButton = (): HTMLButtonElement | null => fixture.nativeElement.querySelector('.vehicle-pagination__button:first-of-type');
   const getPaginationButtons = (): NodeListOf<HTMLButtonElement> => fixture.nativeElement.querySelectorAll('.vehicle-pagination__button');
   const getPaginationIcons = (): NodeListOf<HTMLElement> => fixture.nativeElement.querySelectorAll('.vehicle-pagination__button i');
 
@@ -62,8 +62,8 @@ describe('VehicleTablePaginationComponent', () => {
       const nav = getPagination();
 
       expect(nav).toBeTruthy();
-      expect(nav.getAttribute('role')).toBe('navigation');
-      expect(nav.getAttribute('aria-label')).toBe(component.paginationMsg.aria.navigation);
+      expect(nav?.getAttribute('role')).toBe('navigation');
+      expect(nav?.getAttribute('aria-label')).toBe(component.paginationMsg.aria.navigation);
     });
 
     it('should render vehicle count from vehicles signal', () => {
@@ -98,7 +98,8 @@ describe('VehicleTablePaginationComponent', () => {
     it('should have aria-label on previous page button', () => {
       const button = getPreviousPageButton();
 
-      expect(button.getAttribute('aria-label')).toBe(component.paginationMsg.aria.previousPage);
+      expect(button).toBeTruthy();
+      expect(button?.getAttribute('aria-label')).toBe(component.paginationMsg.aria.previousPage);
     });
 
     it('should have aria-label on next page button', () => {
