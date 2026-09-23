@@ -21,6 +21,13 @@ describe('VehicleFormModalComponent', () => {
     plate: '123456',
   };
 
+  const getBackdrop = (): HTMLDialogElement => fixture.nativeElement.querySelector('dialog');
+  const getForm = (): HTMLFormElement => fixture.nativeElement.querySelector('form');
+  const getLegend = (): HTMLElement => fixture.nativeElement.querySelector('.modal__legend');
+
+  const getNameInput = (): HTMLInputElement => fixture.nativeElement.querySelector('#createVehicleName');
+  const getSaveButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('.modal__button--save');
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [VehicleFormModalComponent],
