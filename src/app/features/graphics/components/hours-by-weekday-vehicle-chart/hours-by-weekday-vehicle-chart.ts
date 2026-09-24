@@ -1,7 +1,7 @@
 import { Component, effect, ElementRef, inject, input, OnDestroy, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { TimePeriod } from '../../enums/time-period.enum';
 
+import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsService } from '../../data-access/graphics-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 
@@ -12,7 +12,6 @@ import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
   templateUrl: './hours-by-weekday-vehicle-chart.html',
   styleUrl: './hours-by-weekday-vehicle-chart.scss',
 })
-
 export class HoursByWeekdayVehicleChartComponent implements OnDestroy {
 
   @ViewChild('hoursByWeekday') hoursByWeekday!: ElementRef<HTMLCanvasElement>;

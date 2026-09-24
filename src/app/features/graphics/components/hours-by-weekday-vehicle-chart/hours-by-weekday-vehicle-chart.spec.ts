@@ -4,9 +4,9 @@ import { Auth } from '@angular/fire/auth';
 
 import { HoursByWeekdayVehicleChartComponent } from './hours-by-weekday-vehicle-chart';
 
+import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsService } from '../../data-access/graphics-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
-import { TimePeriod } from '../../enums/time-period.enum';
 
 export const authMock = {
   currentUser: {
