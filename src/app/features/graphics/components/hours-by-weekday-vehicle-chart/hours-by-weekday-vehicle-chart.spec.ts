@@ -36,7 +36,7 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HoursByWeekdayVehicleChartComponent],
+      imports: [ HoursByWeekdayVehicleChartComponent ],
       providers: [
         provideHttpClient(),
         { provide: Auth, useValue: authMock },
