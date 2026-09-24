@@ -18,7 +18,7 @@ export class HoursByWeekdayVehicleChartComponent implements OnDestroy {
   @ViewChild('hoursByWeekday') hoursByWeekday!: ElementRef<HTMLCanvasElement>;
 
   public period = input<TimePeriod>(TimePeriod.Month);
-  
+
   private readonly graphicsService = inject(GraphicsService);
   private readonly vehicleService = inject(VehicleService);
   
@@ -38,6 +38,19 @@ export class HoursByWeekdayVehicleChartComponent implements OnDestroy {
   ngOnDestroy(): void {
     if (this.chart) {
       this.chart.destroy();
+    }
+  }
+
+  private getPeriodDescription(): string {
+    switch (this.period()) {
+      case TimePeriod.Month:
+        return 'current month';
+      case TimePeriod.Year:
+        return 'current year';
+      case TimePeriod.AllTime:
+        return 'all time';
+      default:
+        return 'selected period';
     }
   }
 
