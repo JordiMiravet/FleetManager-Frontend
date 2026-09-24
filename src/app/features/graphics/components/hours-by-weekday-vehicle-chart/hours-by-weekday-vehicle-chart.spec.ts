@@ -180,6 +180,14 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
       expect(getTitle().textContent).toContain('Vehicle usage by day of week chart');
     });
 
+    it('should render the current month description by default', () => {
+
+    });
+
+    it('should render the all time description', () => {
+
+    });
+
   });
 
 });
