@@ -29,14 +29,14 @@ export class HoursByWeekdayVehicleChartComponent implements OnDestroy {
       this.vehicleService.vehicles();
       this.period();
 
-      if(this.hoursByWeekday) {
-        this.createHoursByWeekdayByVehicle()
+      if (this.hoursByWeekday) {
+        this.createHoursByWeekdayByVehicle();
       }
-    })
+    });
   }
 
   ngOnDestroy(): void {
-    if(this.chart) {
+    if (this.chart) {
       this.chart.destroy();
     }
   }
@@ -48,7 +48,7 @@ export class HoursByWeekdayVehicleChartComponent implements OnDestroy {
     const data = this.graphicsService.getHoursByWeekdayPerVehicle(this.period());
     if (!data) return;
 
-    if(this.chart) {
+    if (this.chart) {
       this.chart.destroy();
     }
 
@@ -84,5 +84,5 @@ export class HoursByWeekdayVehicleChartComponent implements OnDestroy {
       }
     });
   }
-  
+
 }
