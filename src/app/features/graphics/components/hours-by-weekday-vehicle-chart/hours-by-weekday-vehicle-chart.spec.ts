@@ -176,6 +176,10 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
       expect(getDescription().textContent).toContain('current year');
     });
 
+    it('should render the accessible chart title', () => {
+      expect(getTitle().textContent).toContain('Vehicle usage by day of week chart');
+    });
+
   });
 
 });
