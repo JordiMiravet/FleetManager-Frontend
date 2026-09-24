@@ -149,6 +149,12 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
       expect(canvas).not.toBeNull();
     });
 
+    it('should have aria-hidden="true" on the canvas', () => {
+      const canvas = getCanvas();
+
+      expect(canvas.getAttribute('aria-hidden')).toBe('true');
+    });
+
     it('should have role="img" on the figure', () => {
       const figure = getFigure();
 
