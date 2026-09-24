@@ -4,9 +4,9 @@ import { Auth } from '@angular/fire/auth';
 
 import { HoursByWeekdayVehicleChartComponent } from './hours-by-weekday-vehicle-chart';
 
+import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsService } from '../../data-access/graphics-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
-import { TimePeriod } from '../../enums/time-period.enum';
 
 export const authMock = {
   currentUser: {
@@ -36,7 +36,7 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HoursByWeekdayVehicleChartComponent],
+      imports: [ HoursByWeekdayVehicleChartComponent ],
       providers: [
         provideHttpClient(),
         { provide: Auth, useValue: authMock },
@@ -69,6 +69,28 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
       fixture.detectChanges();
 
       expect(component.period()).toBe(TimePeriod.Year);
+    });
+
+  });
+
+  describe('period description', () => {
+
+    it('should return current month for TimePeriod.Month', () => {
+      expect(component.getPeriodDescription()).toBe('current month');
+    });
+
+    it('should return current year for TimePeriod.Year', () => {
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
+
+      expect(component.getPeriodDescription()).toBe('current year');
+    });
+
+    it('should return all time for TimePeriod.AllTime', () => {
+      fixture.componentRef.setInput('period', TimePeriod.AllTime);
+      fixture.detectChanges();
+
+      expect(component.getPeriodDescription()).toBe('all time');
     });
 
   });
@@ -127,6 +149,12 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
       expect(canvas).not.toBeNull();
     });
 
+    it('should have aria-hidden="true" on the canvas', () => {
+      const canvas = getCanvas();
+
+      expect(canvas.getAttribute('aria-hidden')).toBe('true');
+    });
+
     it('should have role="img" on the figure', () => {
       const figure = getFigure();
 
@@ -145,6 +173,28 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
       const description = getDescription();
 
       expect(figure.getAttribute('aria-describedby')).toBe(description.getAttribute('id'));
+    });
+
+    it('should update the description when the period changes', () => {
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
+
+      expect(getDescription().textContent).toContain('current year');
+    });
+
+    it('should render the accessible chart title', () => {
+      expect(getTitle().textContent).toContain('Vehicle usage by day of week chart');
+    });
+
+    it('should render the current month description by default', () => {
+      expect(getDescription().textContent).toContain('current month');
+    });
+
+    it('should render the all time description', () => {
+      fixture.componentRef.setInput('period', TimePeriod.AllTime);
+      fixture.detectChanges();
+
+      expect(getDescription().textContent).toContain('all time');
     });
 
   });
