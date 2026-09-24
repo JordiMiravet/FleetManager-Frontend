@@ -169,6 +169,13 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
       expect(figure.getAttribute('aria-describedby')).toBe(description.getAttribute('id'));
     });
 
+    it('should update the description when the period changes', () => {
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
+
+      expect(getDescription().textContent).toContain('current year');
+    });
+
   });
 
 });
