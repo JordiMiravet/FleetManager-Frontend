@@ -73,6 +73,22 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
 
   });
 
+    describe('period description', () => {
+
+    it('should return current month for TimePeriod.Month', () => {
+
+    });
+
+    it('should return current year for TimePeriod.Year', () => {
+
+    });
+
+    it('should return all time for TimePeriod.AllTime', () => {
+
+    });
+
+  });
+
   describe('chart creation', () => {
 
     it('should call getHoursByWeekdayPerVehicle when canvas is available', () => {
