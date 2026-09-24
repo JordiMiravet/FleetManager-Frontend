@@ -181,11 +181,14 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
     });
 
     it('should render the current month description by default', () => {
-
+      expect(getDescription().textContent).toContain('current month');
     });
 
     it('should render the all time description', () => {
+      fixture.componentRef.setInput('period', TimePeriod.AllTime);
+      fixture.detectChanges();
 
+      expect(getDescription().textContent).toContain('all time');
     });
 
   });
