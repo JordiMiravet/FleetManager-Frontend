@@ -41,7 +41,7 @@ export class HoursByWeekdayVehicleChartComponent implements OnDestroy {
     }
   }
 
-  private getPeriodDescription(): string {
+  public getPeriodDescription(): string {
     switch (this.period()) {
       case TimePeriod.Month:
         return 'current month';
