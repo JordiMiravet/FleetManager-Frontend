@@ -20,6 +20,22 @@ describe('MostUsedVehicleChartComponent', () => {
   let fixture: ComponentFixture<MostUsedVehicleChartComponent>;
   let graphicsService: GraphicsService;
 
+  const createChart = (): void => {
+    spyOn(graphicsService, 'getMostUsedVehicle').and.returnValue([
+      {
+        vehicleId: 'ferrari-1',
+        vehicleName: 'Ferrari Roma',
+        totalHours: 4
+      }
+    ]);
+
+    component['mostUsedVehicle'] = {
+      nativeElement: document.createElement('canvas')
+    } as any;
+
+    component['createMostUsedVehicleChart']();
+  };
+
   const getCanvas = (): HTMLCanvasElement => fixture.nativeElement.querySelector('canvas');
   const getFigure = (): HTMLElement => fixture.nativeElement.querySelector('figure');
   const getTitle = (): HTMLElement => fixture.nativeElement.querySelector('#most-used-vehicle-title');
