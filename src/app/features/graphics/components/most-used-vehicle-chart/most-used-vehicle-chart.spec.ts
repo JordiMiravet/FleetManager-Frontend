@@ -83,6 +83,22 @@ describe('MostUsedVehicleChartComponent', () => {
 
   });
 
+  describe('chart label', () => {
+
+    it('should use current month by default', () => {
+
+    });
+
+    it('should use current year when the period is Year', () => {
+
+    });
+
+    it('should use all time when the period is AllTime', () => {
+
+    });
+    
+  });
+
   describe('chart creation', () => {
 
     it('should call getMostUsedVehicle when canvas is available', () => {
