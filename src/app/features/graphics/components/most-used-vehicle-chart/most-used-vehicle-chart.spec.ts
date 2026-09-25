@@ -80,7 +80,7 @@ describe('MostUsedVehicleChartComponent', () => {
 
       expect(component.getPeriodDescription()).toBe('all time');
     });
-    
+
   });
 
   describe('chart creation', () => {
@@ -182,6 +182,18 @@ describe('MostUsedVehicleChartComponent', () => {
       const description = getDescription();
 
       expect(figure.getAttribute('aria-describedby')).toBe(description.getAttribute('id'));
+    });
+
+    it('should display the current month in the description by default', () => {
+
+    });
+
+    it('should update the description when the period changes', () => {
+
+    });
+
+    it('should display all time in the description', () => {
+
     });
 
   });
