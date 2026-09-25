@@ -4,9 +4,9 @@ import { Auth } from '@angular/fire/auth';
 
 import { MostUsedVehicleChartComponent } from './most-used-vehicle-chart';
 
+import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsService } from '../../data-access/graphics-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
-import { TimePeriod } from '../../enums/time-period.enum';
 
 export const authMock = {
   currentUser: {
@@ -27,7 +27,7 @@ describe('MostUsedVehicleChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MostUsedVehicleChartComponent],
+      imports: [ MostUsedVehicleChartComponent ],
       providers: [
         provideHttpClient(),
         { provide: Auth, useValue: authMock },
@@ -193,13 +193,13 @@ describe('MostUsedVehicleChartComponent', () => {
     it('should update the description when the period changes', () => {
       fixture.componentRef.setInput('period', TimePeriod.Year);
       fixture.detectChanges();
-
+      
       const description = getDescription();
 
       expect(description.textContent).toContain('current year');
       expect(description.textContent).not.toContain('current month');
     });
-    
+
     it('should display all time in the description', () => {
       fixture.componentRef.setInput('period', TimePeriod.AllTime);
       fixture.detectChanges();
