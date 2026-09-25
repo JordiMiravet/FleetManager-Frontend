@@ -18,7 +18,7 @@ export class MostUsedVehicleChartComponent implements OnDestroy {
   @ViewChild('mostUsedVehicle') mostUsedVehicle!: ElementRef<HTMLCanvasElement>;
 
   public period = input<TimePeriod>(TimePeriod.Month);
-  
+
   private readonly graphicsService = inject(GraphicsService);
   private readonly vehicleService = inject(VehicleService);
 
@@ -36,8 +36,21 @@ export class MostUsedVehicleChartComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.chart){
+    if (this.chart) {
       this.chart.destroy();
+    }
+  }
+
+  public getPeriodDescription(): string {
+    switch (this.period()) {
+      case TimePeriod.Month:
+        return 'current month';
+      case TimePeriod.Year:
+        return 'current year';
+      case TimePeriod.AllTime:
+        return 'all time';
+      default:
+        return 'selected period';
     }
   }
  
@@ -46,9 +59,9 @@ export class MostUsedVehicleChartComponent implements OnDestroy {
     if (!this.mostUsedVehicle) return;
 
     const data = this.graphicsService.getMostUsedVehicle(this.period());
-    if(!data.length) return;
+    if (!data.length) return;
 
-    if(this.chart){
+    if (this.chart) {
       this.chart.destroy();
     }
 
@@ -59,7 +72,7 @@ export class MostUsedVehicleChartComponent implements OnDestroy {
       data: {
         labels: data.map(v => v.vehicleName),
         datasets: [{
-          label: 'Top 3 Most Used (Current Month)',
+          label: `Top 3 Most Used (${this.getPeriodDescription()})`,
           data: data.map(v => v.totalHours),
           backgroundColor: [
             'rgba(255, 99, 132, 0.75)',

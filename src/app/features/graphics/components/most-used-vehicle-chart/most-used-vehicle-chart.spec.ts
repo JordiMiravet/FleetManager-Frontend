@@ -4,9 +4,9 @@ import { Auth } from '@angular/fire/auth';
 
 import { MostUsedVehicleChartComponent } from './most-used-vehicle-chart';
 
+import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsService } from '../../data-access/graphics-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
-import { TimePeriod } from '../../enums/time-period.enum';
 
 export const authMock = {
   currentUser: {
@@ -20,6 +20,22 @@ describe('MostUsedVehicleChartComponent', () => {
   let fixture: ComponentFixture<MostUsedVehicleChartComponent>;
   let graphicsService: GraphicsService;
 
+  const createChart = (): void => {
+    spyOn(graphicsService, 'getMostUsedVehicle').and.returnValue([
+      {
+        vehicleId: 'ferrari-1',
+        vehicleName: 'Ferrari Roma',
+        totalHours: 4
+      }
+    ]);
+
+    component['mostUsedVehicle'] = {
+      nativeElement: document.createElement('canvas')
+    } as any;
+
+    component['createMostUsedVehicleChart']();
+  };
+
   const getCanvas = (): HTMLCanvasElement => fixture.nativeElement.querySelector('canvas');
   const getFigure = (): HTMLElement => fixture.nativeElement.querySelector('figure');
   const getTitle = (): HTMLElement => fixture.nativeElement.querySelector('#most-used-vehicle-title');
@@ -27,7 +43,7 @@ describe('MostUsedVehicleChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MostUsedVehicleChartComponent],
+      imports: [ MostUsedVehicleChartComponent ],
       providers: [
         provideHttpClient(),
         { provide: Auth, useValue: authMock },
@@ -61,6 +77,56 @@ describe('MostUsedVehicleChartComponent', () => {
 
   });
 
+  describe('period description', () => {
+
+    it('should return current month for TimePeriod.Month', () => {
+      expect(component.getPeriodDescription()).toBe('current month');
+    });
+
+    it('should return current year for TimePeriod.Year', () => {
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
+
+      expect(component.getPeriodDescription()).toBe('current year');
+    });
+
+    it('should return all time for TimePeriod.AllTime', () => {
+      fixture.componentRef.setInput('period', TimePeriod.AllTime);
+      fixture.detectChanges();
+
+      expect(component.getPeriodDescription()).toBe('all time');
+    });
+
+  });
+
+  describe('chart label', () => {
+
+    it('should use current month by default', () => {
+      createChart();
+
+      expect(component['chart'].data.datasets[0].label).toBe('Top 3 Most Used (current month)');
+    });
+
+    it('should use current year when the period is Year', () => {
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
+
+      createChart();
+
+      expect(component['chart'].data.datasets[0].label).toBe('Top 3 Most Used (current year)');
+    });
+
+    it('should use all time when the period is AllTime', () => {
+      fixture.componentRef.setInput('period', TimePeriod.AllTime);
+      fixture.detectChanges();
+
+      createChart();
+
+      expect(component['chart'].data.datasets[0].label).toBe('Top 3 Most Used (all time)');
+    });
+
+  });
+  
   describe('chart creation', () => {
 
     it('should call getMostUsedVehicle when canvas is available', () => {
@@ -142,6 +208,12 @@ describe('MostUsedVehicleChartComponent', () => {
       expect(canvas).not.toBeNull();
     });
 
+    it('should have aria-hidden="true" on the canvas', () => {
+      const canvas = getCanvas();
+
+      expect(canvas.getAttribute('aria-hidden')).toBe('true');
+    });
+
     it('should have role="img" on the figure', () => {
       const figure = getFigure();
 
@@ -155,11 +227,42 @@ describe('MostUsedVehicleChartComponent', () => {
       expect(figure.getAttribute('aria-labelledby')).toBe(title.getAttribute('id'));
     });
 
+    it('should render the accessible chart title', () => {
+      const title = getTitle();
+
+      expect(title.textContent).toContain('Top 3 most used vehicles chart');
+    });
+
     it('should have aria-describedby pointing to the description', () => {
       const figure = getFigure();
       const description = getDescription();
 
       expect(figure.getAttribute('aria-describedby')).toBe(description.getAttribute('id'));
+    });
+
+    it('should display the current month in the description by default', () => {
+      const description = getDescription();
+
+      expect(description.textContent).toContain('current month');
+    });
+
+    it('should update the description when the period changes', () => {
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
+
+      const description = getDescription();
+
+      expect(description.textContent).toContain('current year');
+      expect(description.textContent).not.toContain('current month');
+    });
+
+    it('should display all time in the description', () => {
+      fixture.componentRef.setInput('period', TimePeriod.AllTime);
+      fixture.detectChanges();
+
+      const description = getDescription();
+
+      expect(description.textContent).toContain('all time');
     });
 
   });
