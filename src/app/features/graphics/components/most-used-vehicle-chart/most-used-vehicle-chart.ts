@@ -72,7 +72,7 @@ export class MostUsedVehicleChartComponent implements OnDestroy {
       data: {
         labels: data.map(v => v.vehicleName),
         datasets: [{
-          label: 'Top 3 Most Used (${this.getPeriodDescription()})',
+          label: `Top 3 Most Used (${this.getPeriodDescription()})`,
           data: data.map(v => v.totalHours),
           backgroundColor: [
             'rgba(255, 99, 132, 0.75)',
