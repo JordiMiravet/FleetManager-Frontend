@@ -208,6 +208,10 @@ describe('MostUsedVehicleChartComponent', () => {
       expect(canvas).not.toBeNull();
     });
 
+    it('should have aria-hidden="true" on the canvas', () => {
+
+    });
+
     it('should have role="img" on the figure', () => {
       const figure = getFigure();
 
@@ -219,6 +223,10 @@ describe('MostUsedVehicleChartComponent', () => {
       const title = getTitle();
 
       expect(figure.getAttribute('aria-labelledby')).toBe(title.getAttribute('id'));
+    });
+
+    it('should render the accessible chart title', () => {
+
     });
 
     it('should have aria-describedby pointing to the description', () => {
