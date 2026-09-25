@@ -185,17 +185,30 @@ describe('MostUsedVehicleChartComponent', () => {
     });
 
     it('should display the current month in the description by default', () => {
+      const description = getDescription();
 
+      expect(description.textContent).toContain('current month');
     });
 
     it('should update the description when the period changes', () => {
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
 
+      const description = getDescription();
+
+      expect(description.textContent).toContain('current year');
+      expect(description.textContent).not.toContain('current month');
     });
-
+    
     it('should display all time in the description', () => {
+      fixture.componentRef.setInput('period', TimePeriod.AllTime);
+      fixture.detectChanges();
 
+      const description = getDescription();
+
+      expect(description.textContent).toContain('all time');
     });
-
+    
   });
 
 });
