@@ -40,6 +40,19 @@ export class MostUsedVehicleChartComponent implements OnDestroy {
       this.chart.destroy();
     }
   }
+
+  public getPeriodDescription(): string {
+    switch (this.period()) {
+      case TimePeriod.Month:
+        return 'current month';
+      case TimePeriod.Year:
+        return 'current year';
+      case TimePeriod.AllTime:
+        return 'all time';
+      default:
+        return 'selected period';
+    }
+  }
  
   private createMostUsedVehicleChart(): void {
 
