@@ -163,15 +163,28 @@ describe('VehicleUsageHoursChartComponent', () => {
     });
 
     it('should render the accessible description for the current month', () => {
+      const description = getDescription();
 
+      expect(description.textContent).toContain(
+        'A doughnut chart showing the distribution of vehicle usage hours for the current month.'
+      );
     });
 
     it('should update the accessible description when the period changes', () => {
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
 
+      const description = getDescription();
+
+      expect(description.textContent).toContain(
+        'A doughnut chart showing the distribution of vehicle usage hours for the current year.'
+      );
     });
 
     it('should have aria-hidden="true" on the canvas', () => {
-      
+      const canvas = getCanvas();
+
+      expect(canvas.getAttribute('aria-hidden')).toBe('true');
     });
 
   });
