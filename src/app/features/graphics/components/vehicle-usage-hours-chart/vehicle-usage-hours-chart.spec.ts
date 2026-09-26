@@ -162,6 +162,18 @@ describe('VehicleUsageHoursChartComponent', () => {
       expect(figure.getAttribute('aria-describedby')).toBe(description.getAttribute('id'));
     });
 
+    it('should render the accessible description for the current month', () => {
+
+    });
+
+    it('should update the accessible description when the period changes', () => {
+
+    });
+
+    it('should have aria-hidden="true" on the canvas', () => {
+      
+    });
+
   });
 
 });
