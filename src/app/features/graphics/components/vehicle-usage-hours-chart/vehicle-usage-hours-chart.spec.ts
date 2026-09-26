@@ -143,6 +143,26 @@ describe('VehicleUsageHoursChartComponent', () => {
       expect(spy).not.toHaveBeenCalled();
     });
 
+    it('should use the current period in the chart label', () => {
+      spyOn(graphicsService, 'getVehicleUsageHours').and.returnValue([
+        {
+          vehicleId: 'ferrari-1',
+          vehicleName: 'Ferrari Roma',
+          totalHours: 4
+        }
+      ]);
+
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
+
+      component['vehicleUsageHours'] = {
+        nativeElement: document.createElement('canvas')
+      } as any;
+      component['createVehicleUsageHours']();
+
+      expect(component['chart'].data.datasets[0].label).toBe('Hours of Use (current year)');
+    });
+
   });
 
   describe('ngOnDestroy', () => {
