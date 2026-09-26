@@ -41,6 +41,19 @@ export class VehicleUsageHoursChartComponent implements OnDestroy {
     }
   }
   
+  public getPeriodDescription(): string {
+    switch (this.period()) {
+      case TimePeriod.Month:
+        return 'current month';
+      case TimePeriod.Year:
+        return 'current year';
+      case TimePeriod.AllTime:
+        return 'all time';
+      default:
+        return 'selected period';
+    }
+  }
+
   private createVehicleUsageHours(): void {
 
     if (!this.vehicleUsageHours) return;
