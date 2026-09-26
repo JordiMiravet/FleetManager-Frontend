@@ -12,7 +12,6 @@ import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
   templateUrl: './vehicle-usage-hours-chart.html',
   styleUrl: './vehicle-usage-hours-chart.scss',
 })
-
 export class VehicleUsageHoursChartComponent implements OnDestroy {
 
   @ViewChild('vehicleUsageHours') vehicleUsageHours!: ElementRef<HTMLCanvasElement>;
@@ -36,7 +35,7 @@ export class VehicleUsageHoursChartComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.chart) {
+    if (this.chart) {
       this.chart.destroy();
     }
   }
