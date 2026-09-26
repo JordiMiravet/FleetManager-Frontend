@@ -75,7 +75,7 @@ export class VehicleUsageHoursChartComponent implements OnDestroy {
       data: {
         labels: labels,
         datasets: [{
-          label: 'Hours of Use (Current Month)',
+          label: `Hours of Use (${this.getPeriodDescription()})`,
           data: values,
           
           borderWidth: 2,
