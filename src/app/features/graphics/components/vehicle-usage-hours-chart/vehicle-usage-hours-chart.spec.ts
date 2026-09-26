@@ -61,6 +61,22 @@ describe('VehicleUsageHoursChartComponent', () => {
 
   });
 
+  describe('period description', () => {
+
+    it('should return current month for TimePeriod.Month', () => {
+    });
+
+    it('should return current year for TimePeriod.Year', () => {
+    });
+
+    it('should return all time for TimePeriod.AllTime', () => {
+    });
+
+    it('should return selected period for an unknown period', () => {
+    });
+
+  });
+
   describe('chart creation', () => {
 
     it('should call getVehicleUsageHours when canvas is available', () => {
