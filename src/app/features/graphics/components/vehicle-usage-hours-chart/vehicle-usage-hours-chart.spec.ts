@@ -4,9 +4,9 @@ import { Auth } from '@angular/fire/auth';
 
 import { VehicleUsageHoursChartComponent } from './vehicle-usage-hours-chart';
 
+import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsService } from '../../data-access/graphics-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
-import { TimePeriod } from '../../enums/time-period.enum';
 
 export const authMock = {
   currentUser: {
@@ -27,7 +27,7 @@ describe('VehicleUsageHoursChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleUsageHoursChartComponent],
+      imports: [ VehicleUsageHoursChartComponent ],
       providers: [
         provideHttpClient(),
         { provide: Auth, useValue: authMock },
