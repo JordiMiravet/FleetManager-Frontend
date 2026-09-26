@@ -107,6 +107,26 @@ describe('VehicleUsageHoursChartComponent', () => {
       expect(graphicsService.getVehicleUsageHours).toHaveBeenCalledWith(TimePeriod.Month);
     });
 
+    it('should use the current period in the chart label', () => {
+      spyOn(graphicsService, 'getVehicleUsageHours').and.returnValue([
+        {
+          vehicleId: 'ferrari-1',
+          vehicleName: 'Ferrari Roma',
+          totalHours: 4
+        }
+      ]);
+
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
+
+      component['vehicleUsageHours'] = {
+        nativeElement: document.createElement('canvas')
+      } as any;
+      component['createVehicleUsageHours']();
+
+      expect(component['chart'].data.datasets[0].label).toBe('Hours of Use (current year)');
+    });
+
     it('should not create chart if data is empty', () => {
       spyOn(graphicsService, 'getVehicleUsageHours').and.returnValue([]);
 
@@ -141,26 +161,6 @@ describe('VehicleUsageHoursChartComponent', () => {
       component['createVehicleUsageHours']();
 
       expect(spy).not.toHaveBeenCalled();
-    });
-
-    it('should use the current period in the chart label', () => {
-      spyOn(graphicsService, 'getVehicleUsageHours').and.returnValue([
-        {
-          vehicleId: 'ferrari-1',
-          vehicleName: 'Ferrari Roma',
-          totalHours: 4
-        }
-      ]);
-
-      fixture.componentRef.setInput('period', TimePeriod.Year);
-      fixture.detectChanges();
-
-      component['vehicleUsageHours'] = {
-        nativeElement: document.createElement('canvas')
-      } as any;
-      component['createVehicleUsageHours']();
-
-      expect(component['chart'].data.datasets[0].label).toBe('Hours of Use (current year)');
     });
 
   });
