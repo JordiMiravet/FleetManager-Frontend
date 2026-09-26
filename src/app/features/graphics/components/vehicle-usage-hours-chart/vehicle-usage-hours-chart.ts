@@ -1,7 +1,7 @@
 import { Component, effect, ElementRef, inject, input, OnDestroy, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { TimePeriod } from '../../enums/time-period.enum';
 
+import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsService } from '../../data-access/graphics-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 
@@ -12,7 +12,6 @@ import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
   templateUrl: './vehicle-usage-hours-chart.html',
   styleUrl: './vehicle-usage-hours-chart.scss',
 })
-
 export class VehicleUsageHoursChartComponent implements OnDestroy {
 
   @ViewChild('vehicleUsageHours') vehicleUsageHours!: ElementRef<HTMLCanvasElement>;
@@ -36,11 +35,24 @@ export class VehicleUsageHoursChartComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.chart) {
+    if (this.chart) {
       this.chart.destroy();
     }
   }
   
+  public getPeriodDescription(): string {
+    switch (this.period()) {
+      case TimePeriod.Month:
+        return 'current month';
+      case TimePeriod.Year:
+        return 'current year';
+      case TimePeriod.AllTime:
+        return 'all time';
+      default:
+        return 'selected period';
+    }
+  }
+
   private createVehicleUsageHours(): void {
 
     if (!this.vehicleUsageHours) return;
@@ -62,7 +74,7 @@ export class VehicleUsageHoursChartComponent implements OnDestroy {
       data: {
         labels: labels,
         datasets: [{
-          label: 'Hours of Use (Current Month)',
+          label: `Hours of Use (${this.getPeriodDescription()})`,
           data: values,
           
           borderWidth: 2,

@@ -2,7 +2,6 @@ import { Component, effect, ElementRef, inject, input, OnDestroy, ViewChild } fr
 import Chart from 'chart.js/auto';
 
 import { TimePeriod } from '../../enums/time-period.enum';
-
 import { GraphicsService } from '../../data-access/graphics-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 @Component({
@@ -12,7 +11,6 @@ import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
   templateUrl: './most-used-vehicle-chart.html',
   styleUrl: './most-used-vehicle-chart.scss',
 })
-
 export class MostUsedVehicleChartComponent implements OnDestroy {
 
   @ViewChild('mostUsedVehicle') mostUsedVehicle!: ElementRef<HTMLCanvasElement>;

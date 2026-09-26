@@ -4,9 +4,9 @@ import { Auth } from '@angular/fire/auth';
 
 import { VehicleUsageHoursChartComponent } from './vehicle-usage-hours-chart';
 
+import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsService } from '../../data-access/graphics-service';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
-import { TimePeriod } from '../../enums/time-period.enum';
 
 export const authMock = {
   currentUser: {
@@ -27,7 +27,7 @@ describe('VehicleUsageHoursChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VehicleUsageHoursChartComponent],
+      imports: [ VehicleUsageHoursChartComponent ],
       providers: [
         provideHttpClient(),
         { provide: Auth, useValue: authMock },
@@ -61,6 +61,35 @@ describe('VehicleUsageHoursChartComponent', () => {
 
   });
 
+  describe('period description', () => {
+
+    it('should return current month for TimePeriod.Month', () => {
+      expect(component.getPeriodDescription()).toBe('current month');
+    });
+
+    it('should return current year for TimePeriod.Year', () => {
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
+
+      expect(component.getPeriodDescription()).toBe('current year');
+    });
+
+    it('should return all time for TimePeriod.AllTime', () => {
+      fixture.componentRef.setInput('period', TimePeriod.AllTime);
+      fixture.detectChanges();
+
+      expect(component.getPeriodDescription()).toBe('all time');
+    });
+
+    it('should return selected period for an unknown period', () => {
+      fixture.componentRef.setInput('period', 'unknown' as TimePeriod);
+      fixture.detectChanges();
+
+      expect(component.getPeriodDescription()).toBe('selected period');
+    });
+
+  });
+
   describe('chart creation', () => {
 
     it('should call getVehicleUsageHours when canvas is available', () => {
@@ -76,6 +105,26 @@ describe('VehicleUsageHoursChartComponent', () => {
       component['createVehicleUsageHours']();
 
       expect(graphicsService.getVehicleUsageHours).toHaveBeenCalledWith(TimePeriod.Month);
+    });
+
+    it('should use the current period in the chart label', () => {
+      spyOn(graphicsService, 'getVehicleUsageHours').and.returnValue([
+        {
+          vehicleId: 'ferrari-1',
+          vehicleName: 'Ferrari Roma',
+          totalHours: 4
+        }
+      ]);
+
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
+
+      component['vehicleUsageHours'] = {
+        nativeElement: document.createElement('canvas')
+      } as any;
+      component['createVehicleUsageHours']();
+
+      expect(component['chart'].data.datasets[0].label).toBe('Hours of Use (current year)');
     });
 
     it('should not create chart if data is empty', () => {
@@ -160,6 +209,31 @@ describe('VehicleUsageHoursChartComponent', () => {
       const description = getDescription();
 
       expect(figure.getAttribute('aria-describedby')).toBe(description.getAttribute('id'));
+    });
+
+    it('should render the accessible description for the current month', () => {
+      const description = getDescription();
+
+      expect(description.textContent).toContain(
+        'A doughnut chart showing the distribution of vehicle usage hours for the current month.'
+      );
+    });
+
+    it('should update the accessible description when the period changes', () => {
+      fixture.componentRef.setInput('period', TimePeriod.Year);
+      fixture.detectChanges();
+
+      const description = getDescription();
+
+      expect(description.textContent).toContain(
+        'A doughnut chart showing the distribution of vehicle usage hours for the current year.'
+      );
+    });
+
+    it('should have aria-hidden="true" on the canvas', () => {
+      const canvas = getCanvas();
+
+      expect(canvas.getAttribute('aria-hidden')).toBe('true');
     });
 
   });
