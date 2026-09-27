@@ -6,6 +6,7 @@ import { MostUsedVehicleChartComponent } from './most-used-vehicle-chart';
 
 import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsService } from '../../data-access/graphics-service';
+import { GraphicsMessagesService } from '../../i18n/graphics-messages';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 
 export const authMock = {
@@ -19,6 +20,7 @@ describe('MostUsedVehicleChartComponent', () => {
   let component: MostUsedVehicleChartComponent;
   let fixture: ComponentFixture<MostUsedVehicleChartComponent>;
   let graphicsService: GraphicsService;
+  let graphicsMessagesService: GraphicsMessagesService;
 
   const createChart = (): void => {
     spyOn(graphicsService, 'getMostUsedVehicle').and.returnValue([
@@ -48,13 +50,16 @@ describe('MostUsedVehicleChartComponent', () => {
         provideHttpClient(),
         { provide: Auth, useValue: authMock },
         GraphicsService,
-        VehicleService
+        VehicleService,
+        GraphicsMessagesService
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MostUsedVehicleChartComponent);
     component = fixture.componentInstance;
     graphicsService = TestBed.inject(GraphicsService);
+    graphicsMessagesService = TestBed.inject(GraphicsMessagesService);
+
     fixture.detectChanges();
   });
 
@@ -77,34 +82,12 @@ describe('MostUsedVehicleChartComponent', () => {
 
   });
 
-  describe('period description', () => {
-
-    it('should return current month for TimePeriod.Month', () => {
-      expect(component.getPeriodDescription()).toBe('current month');
-    });
-
-    it('should return current year for TimePeriod.Year', () => {
-      fixture.componentRef.setInput('period', TimePeriod.Year);
-      fixture.detectChanges();
-
-      expect(component.getPeriodDescription()).toBe('current year');
-    });
-
-    it('should return all time for TimePeriod.AllTime', () => {
-      fixture.componentRef.setInput('period', TimePeriod.AllTime);
-      fixture.detectChanges();
-
-      expect(component.getPeriodDescription()).toBe('all time');
-    });
-
-  });
-
   describe('chart label', () => {
 
     it('should use current month by default', () => {
       createChart();
 
-      expect(component['chart'].data.datasets[0].label).toBe('Top 3 Most Used (current month)');
+      expect(component['chart'].data.datasets[0].label).toBe(graphicsMessagesService.mostUsedVehicle.datasetLabel(TimePeriod.Month));
     });
 
     it('should use current year when the period is Year', () => {
@@ -113,7 +96,7 @@ describe('MostUsedVehicleChartComponent', () => {
 
       createChart();
 
-      expect(component['chart'].data.datasets[0].label).toBe('Top 3 Most Used (current year)');
+      expect(component['chart'].data.datasets[0].label).toBe(graphicsMessagesService.mostUsedVehicle.datasetLabel(TimePeriod.Year));
     });
 
     it('should use all time when the period is AllTime', () => {
@@ -122,7 +105,7 @@ describe('MostUsedVehicleChartComponent', () => {
 
       createChart();
 
-      expect(component['chart'].data.datasets[0].label).toBe('Top 3 Most Used (all time)');
+      expect(component['chart'].data.datasets[0].label).toBe(graphicsMessagesService.mostUsedVehicle.datasetLabel(TimePeriod.AllTime));
     });
 
   });
@@ -227,12 +210,6 @@ describe('MostUsedVehicleChartComponent', () => {
       expect(figure.getAttribute('aria-labelledby')).toBe(title.getAttribute('id'));
     });
 
-    it('should render the accessible chart title', () => {
-      const title = getTitle();
-
-      expect(title.textContent).toContain('Top 3 most used vehicles chart');
-    });
-
     it('should have aria-describedby pointing to the description', () => {
       const figure = getFigure();
       const description = getDescription();
@@ -240,10 +217,16 @@ describe('MostUsedVehicleChartComponent', () => {
       expect(figure.getAttribute('aria-describedby')).toBe(description.getAttribute('id'));
     });
 
-    it('should display the current month in the description by default', () => {
+    it('should render the accessible chart title from graphics messages', () => {
+      const title = getTitle();
+
+      expect(title.textContent).toContain(graphicsMessagesService.mostUsedVehicle.title);
+    });
+
+    it('should render the current month description by default', () => {
       const description = getDescription();
 
-      expect(description.textContent).toContain('current month');
+      expect(description.textContent).toContain(graphicsMessagesService.mostUsedVehicle.description(TimePeriod.Month));
     });
 
     it('should update the description when the period changes', () => {
@@ -252,17 +235,16 @@ describe('MostUsedVehicleChartComponent', () => {
 
       const description = getDescription();
 
-      expect(description.textContent).toContain('current year');
-      expect(description.textContent).not.toContain('current month');
+      expect(description.textContent).toContain(graphicsMessagesService.mostUsedVehicle.description(TimePeriod.Year));
     });
 
-    it('should display all time in the description', () => {
+    it('should render the all time description', () => {
       fixture.componentRef.setInput('period', TimePeriod.AllTime);
       fixture.detectChanges();
 
       const description = getDescription();
 
-      expect(description.textContent).toContain('all time');
+      expect(description.textContent).toContain(graphicsMessagesService.mostUsedVehicle.description(TimePeriod.AllTime));
     });
 
   });

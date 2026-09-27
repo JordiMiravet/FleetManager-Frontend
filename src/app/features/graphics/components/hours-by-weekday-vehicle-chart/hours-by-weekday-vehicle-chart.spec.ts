@@ -6,6 +6,7 @@ import { HoursByWeekdayVehicleChartComponent } from './hours-by-weekday-vehicle-
 
 import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsService } from '../../data-access/graphics-service';
+import { GraphicsMessagesService } from '../../i18n/graphics-messages';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 
 export const authMock = {
@@ -28,6 +29,7 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
   let component: HoursByWeekdayVehicleChartComponent;
   let fixture: ComponentFixture<HoursByWeekdayVehicleChartComponent>;
   let graphicsService: GraphicsService;
+  let graphicsMessagesService: GraphicsMessagesService;
 
   const getCanvas = (): HTMLCanvasElement => fixture.nativeElement.querySelector('canvas');
   const getFigure = (): HTMLElement => fixture.nativeElement.querySelector('figure');
@@ -41,13 +43,15 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
         provideHttpClient(),
         { provide: Auth, useValue: authMock },
         GraphicsService,
-        VehicleService
+        VehicleService,
+        GraphicsMessagesService
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HoursByWeekdayVehicleChartComponent);
     component = fixture.componentInstance;
     graphicsService = TestBed.inject(GraphicsService);
+    graphicsMessagesService = TestBed.inject(GraphicsMessagesService);
 
     spyOn(graphicsService, 'getHoursByWeekdayPerVehicle').and.returnValue(mockChartData);
 
@@ -69,28 +73,6 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
       fixture.detectChanges();
 
       expect(component.period()).toBe(TimePeriod.Year);
-    });
-
-  });
-
-  describe('period description', () => {
-
-    it('should return current month for TimePeriod.Month', () => {
-      expect(component.getPeriodDescription()).toBe('current month');
-    });
-
-    it('should return current year for TimePeriod.Year', () => {
-      fixture.componentRef.setInput('period', TimePeriod.Year);
-      fixture.detectChanges();
-
-      expect(component.getPeriodDescription()).toBe('current year');
-    });
-
-    it('should return all time for TimePeriod.AllTime', () => {
-      fixture.componentRef.setInput('period', TimePeriod.AllTime);
-      fixture.detectChanges();
-
-      expect(component.getPeriodDescription()).toBe('all time');
     });
 
   });
@@ -175,26 +157,26 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
       expect(figure.getAttribute('aria-describedby')).toBe(description.getAttribute('id'));
     });
 
+    it('should render the accessible chart title from graphics messages', () => {
+      expect(getTitle().textContent).toContain(graphicsMessagesService.hoursByWeekday.title);
+    });
+
+    it('should render the current month description by default', () => {
+      expect(getDescription().textContent).toContain(graphicsMessagesService.hoursByWeekday.description(TimePeriod.Month));
+    });
+
     it('should update the description when the period changes', () => {
       fixture.componentRef.setInput('period', TimePeriod.Year);
       fixture.detectChanges();
 
-      expect(getDescription().textContent).toContain('current year');
-    });
-
-    it('should render the accessible chart title', () => {
-      expect(getTitle().textContent).toContain('Vehicle usage by day of week chart');
-    });
-
-    it('should render the current month description by default', () => {
-      expect(getDescription().textContent).toContain('current month');
+      expect(getDescription().textContent).toContain(graphicsMessagesService.hoursByWeekday.description(TimePeriod.Year));
     });
 
     it('should render the all time description', () => {
       fixture.componentRef.setInput('period', TimePeriod.AllTime);
       fixture.detectChanges();
 
-      expect(getDescription().textContent).toContain('all time');
+      expect(getDescription().textContent).toContain(graphicsMessagesService.hoursByWeekday.description(TimePeriod.AllTime));
     });
 
   });
