@@ -6,6 +6,7 @@ import { VehicleUsageHoursChartComponent } from './vehicle-usage-hours-chart';
 
 import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsService } from '../../data-access/graphics-service';
+import { GraphicsMessagesService } from '../../i18n/graphics-messages';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 
 export const authMock = {
@@ -19,6 +20,7 @@ describe('VehicleUsageHoursChartComponent', () => {
   let component: VehicleUsageHoursChartComponent;
   let fixture: ComponentFixture<VehicleUsageHoursChartComponent>;
   let graphicsService: GraphicsService;
+  let graphicsMessagesService: GraphicsMessagesService;
 
   const getCanvas = (): HTMLCanvasElement => fixture.nativeElement.querySelector('canvas');
   const getFigure = (): HTMLElement => fixture.nativeElement.querySelector('figure');
@@ -32,13 +34,15 @@ describe('VehicleUsageHoursChartComponent', () => {
         provideHttpClient(),
         { provide: Auth, useValue: authMock },
         GraphicsService,
-        VehicleService
+        VehicleService,
+        GraphicsMessagesService,
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(VehicleUsageHoursChartComponent);
     component = fixture.componentInstance;
     graphicsService = TestBed.inject(GraphicsService);
+    graphicsMessagesService = TestBed.inject(GraphicsMessagesService);
     fixture.detectChanges();
   });
 
