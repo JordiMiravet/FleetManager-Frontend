@@ -86,7 +86,7 @@ describe('MostUsedVehicleChartComponent', () => {
     it('should use current month by default', () => {
       createChart();
 
-      expect(component['chart'].data.datasets[0].label).toBe('Top 3 Most Used (current month)');
+      expect(component['chart'].data.datasets[0].label).toBe(graphicsMessagesService.mostUsedVehicle.datasetLabel(TimePeriod.Month));
     });
 
     it('should use current year when the period is Year', () => {
@@ -95,7 +95,7 @@ describe('MostUsedVehicleChartComponent', () => {
 
       createChart();
 
-      expect(component['chart'].data.datasets[0].label).toBe('Top 3 Most Used (current year)');
+      expect(component['chart'].data.datasets[0].label).toBe(graphicsMessagesService.mostUsedVehicle.datasetLabel(TimePeriod.Year));
     });
 
     it('should use all time when the period is AllTime', () => {
@@ -104,7 +104,7 @@ describe('MostUsedVehicleChartComponent', () => {
 
       createChart();
 
-      expect(component['chart'].data.datasets[0].label).toBe('Top 3 Most Used (all time)');
+      expect(component['chart'].data.datasets[0].label).toBe(graphicsMessagesService.mostUsedVehicle.datasetLabel(TimePeriod.AllTime));
     });
 
   });
