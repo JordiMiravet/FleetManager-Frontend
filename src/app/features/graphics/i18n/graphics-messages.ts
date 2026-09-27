@@ -38,4 +38,14 @@ export class GraphicsMessagesService {
       `Top 3 Most Used (${this.periodDescription(period)})`
   };
 
+  /* vehicle-usage-hours-chart */
+
+  readonly vehicleUsageHours = {
+    title: 'Vehicle usage hours distribution chart',
+    description: (period: TimePeriod): string =>
+      `A doughnut chart showing the distribution of vehicle usage hours for the ${this.periodDescription(period)}. Visual representation only. Hover over chart segments to see individual vehicle data.`,
+    datasetLabel: (period: TimePeriod): string =>
+      `Hours of Use (${this.periodDescription(period)})`
+  };
+
 }
