@@ -43,6 +43,7 @@ describe('VehicleUsageHoursChartComponent', () => {
     component = fixture.componentInstance;
     graphicsService = TestBed.inject(GraphicsService);
     graphicsMessagesService = TestBed.inject(GraphicsMessagesService);
+    
     fixture.detectChanges();
   });
 
