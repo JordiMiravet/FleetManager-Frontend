@@ -3,6 +3,7 @@ import Chart from 'chart.js/auto';
 
 import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsService } from '../../data-access/graphics-service';
+import { GraphicsMessagesService } from '../../i18n/graphics-messages';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 @Component({
   selector: 'app-most-used-vehicle-chart',
@@ -16,6 +17,8 @@ export class MostUsedVehicleChartComponent implements OnDestroy {
   @ViewChild('mostUsedVehicle') mostUsedVehicle!: ElementRef<HTMLCanvasElement>;
 
   public period = input<TimePeriod>(TimePeriod.Month);
+
+  public readonly messages = inject(GraphicsMessagesService);
 
   private readonly graphicsService = inject(GraphicsService);
   private readonly vehicleService = inject(VehicleService);
@@ -38,19 +41,6 @@ export class MostUsedVehicleChartComponent implements OnDestroy {
       this.chart.destroy();
     }
   }
-
-  public getPeriodDescription(): string {
-    switch (this.period()) {
-      case TimePeriod.Month:
-        return 'current month';
-      case TimePeriod.Year:
-        return 'current year';
-      case TimePeriod.AllTime:
-        return 'all time';
-      default:
-        return 'selected period';
-    }
-  }
  
   private createMostUsedVehicleChart(): void {
 
@@ -70,7 +60,7 @@ export class MostUsedVehicleChartComponent implements OnDestroy {
       data: {
         labels: data.map(v => v.vehicleName),
         datasets: [{
-          label: `Top 3 Most Used (${this.getPeriodDescription()})`,
+          label: this.messages.mostUsedVehicle.datasetLabel(this.period()),
           data: data.map(v => v.totalHours),
           backgroundColor: [
             'rgba(255, 99, 132, 0.75)',
