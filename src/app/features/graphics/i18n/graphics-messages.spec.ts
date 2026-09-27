@@ -77,5 +77,36 @@ describe('GraphicsMessagesService', () => {
 
   });
 
+  describe('vehicleUsageHours', () => {
+
+    it('should expose the accessible title', () => {
+
+    });
+
+    it('should describe the current month', () => {
+
+    });
+
+    it('should describe the current year', () => {
+
+    });
+
+    it('should describe all time', () => {
+
+    });
+
+    it('should build the dataset label for the current month', () => {
+
+    });
+
+    it('should build the dataset label for the current year', () => {
+
+    });
+
+    it('should build the dataset label for all time', () => {
+
+    });
+
+  });
 
 });
