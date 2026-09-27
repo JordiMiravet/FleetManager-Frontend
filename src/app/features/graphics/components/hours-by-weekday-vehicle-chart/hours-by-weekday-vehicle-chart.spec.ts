@@ -158,25 +158,25 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
     });
 
     it('should render the accessible chart title from graphics messages', () => {
-      expect(getTitle().textContent).toContain(component.messages.hoursByWeekday.title);
+      expect(getTitle().textContent).toContain(graphicsMessagesService.hoursByWeekday.title);
     });
 
     it('should render the current month description by default', () => {
-      expect(getDescription().textContent).toContain(component.messages.hoursByWeekday.description(TimePeriod.Month));
+      expect(getDescription().textContent).toContain(graphicsMessagesService.hoursByWeekday.description(TimePeriod.Month));
     });
 
     it('should update the description when the period changes', () => {
       fixture.componentRef.setInput('period', TimePeriod.Year);
       fixture.detectChanges();
 
-      expect(getDescription().textContent).toContain(component.messages.hoursByWeekday.description(TimePeriod.Year));
+      expect(getDescription().textContent).toContain(graphicsMessagesService.hoursByWeekday.description(TimePeriod.Year));
     });
 
     it('should render the all time description', () => {
       fixture.componentRef.setInput('period', TimePeriod.AllTime);
       fixture.detectChanges();
 
-      expect(getDescription().textContent).toContain(component.messages.hoursByWeekday.description(TimePeriod.AllTime));
+      expect(getDescription().textContent).toContain(graphicsMessagesService.hoursByWeekday.description(TimePeriod.AllTime));
     });
 
   });
