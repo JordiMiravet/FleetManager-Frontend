@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GraphicsMessages } from './graphics-messages';
+import { GraphicsMessagesService } from './graphics-messages';
 
-describe('GraphicsMessages', () => {
-  let service: GraphicsMessages;
+describe('GraphicsMessagesService', () => {
+  let service: GraphicsMessagesService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GraphicsMessages);
+    service = TestBed.inject(GraphicsMessagesService);
   });
 
   it('should be created', () => {
