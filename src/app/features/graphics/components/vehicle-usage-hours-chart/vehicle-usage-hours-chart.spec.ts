@@ -99,7 +99,7 @@ describe('VehicleUsageHoursChartComponent', () => {
       } as any;
       component['createVehicleUsageHours']();
 
-      expect(component['chart'].data.datasets[0].label).toBe('Hours of Use (current year)');
+      expect(component['chart'].data.datasets[0].label).toBe(graphicsMessagesService.vehicleUsageHours.datasetLabel(TimePeriod.Year));
     });
 
     it('should not create chart if data is empty', () => {
