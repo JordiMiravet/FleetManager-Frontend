@@ -179,6 +179,12 @@ describe('VehicleUsageHoursChartComponent', () => {
       expect(figure.getAttribute('aria-labelledby')).toBe(title.getAttribute('id'));
     });
 
+    it('should render the accessible chart title from graphics messages', () => {
+      const title = getTitle();
+
+      expect(title.textContent).toContain(graphicsMessagesService.vehicleUsageHours.title);
+    });
+
     it('should have aria-describedby pointing to the description', () => {
       const figure = getFigure();
       const description = getDescription();
@@ -189,9 +195,7 @@ describe('VehicleUsageHoursChartComponent', () => {
     it('should render the accessible description for the current month', () => {
       const description = getDescription();
 
-      expect(description.textContent).toContain(
-        'A doughnut chart showing the distribution of vehicle usage hours for the current month.'
-      );
+      expect(description.textContent).toContain(graphicsMessagesService.vehicleUsageHours.description(TimePeriod.Month));
     });
 
     it('should update the accessible description when the period changes', () => {
@@ -200,9 +204,7 @@ describe('VehicleUsageHoursChartComponent', () => {
 
       const description = getDescription();
 
-      expect(description.textContent).toContain(
-        'A doughnut chart showing the distribution of vehicle usage hours for the current year.'
-      );
+      expect(description.textContent).toContain(graphicsMessagesService.vehicleUsageHours.description(TimePeriod.Year));
     });
 
     it('should have aria-hidden="true" on the canvas', () => {
