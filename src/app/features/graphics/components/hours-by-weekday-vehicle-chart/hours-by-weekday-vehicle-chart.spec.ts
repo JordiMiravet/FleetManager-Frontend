@@ -29,6 +29,7 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
   let component: HoursByWeekdayVehicleChartComponent;
   let fixture: ComponentFixture<HoursByWeekdayVehicleChartComponent>;
   let graphicsService: GraphicsService;
+  let graphicsMessagesService: GraphicsMessagesService;
 
   const getCanvas = (): HTMLCanvasElement => fixture.nativeElement.querySelector('canvas');
   const getFigure = (): HTMLElement => fixture.nativeElement.querySelector('figure');
@@ -50,6 +51,7 @@ describe('HoursByWeekdayVehicleChartComponent', () => {
     fixture = TestBed.createComponent(HoursByWeekdayVehicleChartComponent);
     component = fixture.componentInstance;
     graphicsService = TestBed.inject(GraphicsService);
+    graphicsMessagesService = TestBed.inject(GraphicsMessagesService);
 
     spyOn(graphicsService, 'getHoursByWeekdayPerVehicle').and.returnValue(mockChartData);
 
