@@ -6,6 +6,7 @@ import { MostUsedVehicleChartComponent } from './most-used-vehicle-chart';
 
 import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsService } from '../../data-access/graphics-service';
+import { GraphicsMessagesService } from '../../i18n/graphics-messages';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 
 export const authMock = {
@@ -19,6 +20,7 @@ describe('MostUsedVehicleChartComponent', () => {
   let component: MostUsedVehicleChartComponent;
   let fixture: ComponentFixture<MostUsedVehicleChartComponent>;
   let graphicsService: GraphicsService;
+  let graphicsMessagesService: GraphicsMessagesService;
 
   const createChart = (): void => {
     spyOn(graphicsService, 'getMostUsedVehicle').and.returnValue([
@@ -48,7 +50,8 @@ describe('MostUsedVehicleChartComponent', () => {
         provideHttpClient(),
         { provide: Auth, useValue: authMock },
         GraphicsService,
-        VehicleService
+        VehicleService,
+        GraphicsMessagesService
       ]
     }).compileComponents();
 
