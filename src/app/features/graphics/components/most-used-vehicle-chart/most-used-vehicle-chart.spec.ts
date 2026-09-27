@@ -209,12 +209,6 @@ describe('MostUsedVehicleChartComponent', () => {
       expect(figure.getAttribute('aria-labelledby')).toBe(title.getAttribute('id'));
     });
 
-    it('should render the accessible chart title', () => {
-      const title = getTitle();
-
-      expect(title.textContent).toContain('Top 3 most used vehicles chart');
-    });
-
     it('should have aria-describedby pointing to the description', () => {
       const figure = getFigure();
       const description = getDescription();
@@ -222,10 +216,16 @@ describe('MostUsedVehicleChartComponent', () => {
       expect(figure.getAttribute('aria-describedby')).toBe(description.getAttribute('id'));
     });
 
-    it('should display the current month in the description by default', () => {
+    it('should render the accessible chart title from graphics messages', () => {
+      const title = getTitle();
+
+      expect(title.textContent).toContain(graphicsMessagesService.mostUsedVehicle.title);
+    });
+
+    it('should render the current month description by default', () => {
       const description = getDescription();
 
-      expect(description.textContent).toContain('current month');
+      expect(description.textContent).toContain(graphicsMessagesService.mostUsedVehicle.description(TimePeriod.Month));
     });
 
     it('should update the description when the period changes', () => {
@@ -234,17 +234,16 @@ describe('MostUsedVehicleChartComponent', () => {
 
       const description = getDescription();
 
-      expect(description.textContent).toContain('current year');
-      expect(description.textContent).not.toContain('current month');
+      expect(description.textContent).toContain(graphicsMessagesService.mostUsedVehicle.description(TimePeriod.Year));
     });
 
-    it('should display all time in the description', () => {
+    it('should render the all time description', () => {
       fixture.componentRef.setInput('period', TimePeriod.AllTime);
       fixture.detectChanges();
 
       const description = getDescription();
 
-      expect(description.textContent).toContain('all time');
+      expect(description.textContent).toContain(graphicsMessagesService.mostUsedVehicle.description(TimePeriod.AllTime));
     });
 
   });
