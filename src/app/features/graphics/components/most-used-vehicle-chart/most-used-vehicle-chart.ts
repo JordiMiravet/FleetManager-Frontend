@@ -5,6 +5,7 @@ import { TimePeriod } from '../../enums/time-period.enum';
 import { GraphicsService } from '../../data-access/graphics-service';
 import { GraphicsMessagesService } from '../../i18n/graphics-messages';
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
+
 @Component({
   selector: 'app-most-used-vehicle-chart',
   standalone: true,
