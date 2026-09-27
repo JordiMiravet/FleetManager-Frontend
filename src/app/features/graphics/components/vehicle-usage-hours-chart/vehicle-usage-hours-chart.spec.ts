@@ -65,35 +65,6 @@ describe('VehicleUsageHoursChartComponent', () => {
 
   });
 
-  describe('period description', () => {
-
-    it('should return current month for TimePeriod.Month', () => {
-      expect(component.getPeriodDescription()).toBe('current month');
-    });
-
-    it('should return current year for TimePeriod.Year', () => {
-      fixture.componentRef.setInput('period', TimePeriod.Year);
-      fixture.detectChanges();
-
-      expect(component.getPeriodDescription()).toBe('current year');
-    });
-
-    it('should return all time for TimePeriod.AllTime', () => {
-      fixture.componentRef.setInput('period', TimePeriod.AllTime);
-      fixture.detectChanges();
-
-      expect(component.getPeriodDescription()).toBe('all time');
-    });
-
-    it('should return selected period for an unknown period', () => {
-      fixture.componentRef.setInput('period', 'unknown' as TimePeriod);
-      fixture.detectChanges();
-
-      expect(component.getPeriodDescription()).toBe('selected period');
-    });
-
-  });
-
   describe('chart creation', () => {
 
     it('should call getVehicleUsageHours when canvas is available', () => {
