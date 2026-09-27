@@ -20,4 +20,12 @@ export class GraphicsMessagesService {
     }
   };
 
+  /* hours-by-weekday-vehicle-chart */
+
+  readonly hoursByWeekday = {
+    title: 'Vehicle usage by day of week chart',
+    description: (period: TimePeriod): string =>
+      `A line chart showing the number of hours each vehicle was used on each day of the week for the ${this.periodDescription(period)}. Visual representation only.`
+  };
+
 }
