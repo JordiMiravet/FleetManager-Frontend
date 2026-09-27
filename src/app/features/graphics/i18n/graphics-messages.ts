@@ -28,4 +28,14 @@ export class GraphicsMessagesService {
       `A line chart showing the number of hours each vehicle was used on each day of the week for the ${this.periodDescription(period)}. Visual representation only.`
   };
 
+  /* most-used-vehicle-chart */
+
+  readonly mostUsedVehicle = {
+    title: 'Top 3 most used vehicles chart',
+    description: (period: TimePeriod): string =>
+      `A bar chart showing the top three vehicles by total hours of usage during ${this.periodDescription(period)}. Visual representation only.`,
+    datasetLabel: (period: TimePeriod): string =>
+      `Top 3 Most Used (${this.periodDescription(period)})`
+  };
+
 }
