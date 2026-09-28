@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { Auth } from '@angular/fire/auth';
+import { signal } from '@angular/core';
 
 import { GraphicsService } from './graphics-service';
 
@@ -46,8 +47,10 @@ describe('GraphicsServices', () => {
     spyOn(vehicleService, 'vehicles').and.returnValue(vehicles as any);
   }
 
+  const eventsSignal = signal<any[]>([]);
+
   function mockEvents(events: any[]) {
-    service['eventService']['_allEvents'].set(events);
+    eventsSignal.set(events);
   }
 
   it('should be created', () => {
