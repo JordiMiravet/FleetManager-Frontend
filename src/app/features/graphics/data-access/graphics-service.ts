@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 
-import { VehicleMetrics } from '../models/VehicleMetrics';
 import { TimePeriod } from '../enums/time-period.enum';
+import { VehicleMetrics } from '../models/VehicleMetrics';
 
 import { EventService } from '../../calendar/data-access/event-service';
 import { VehicleService } from '../../vehicle/data-access/vehicle-service';
@@ -16,7 +16,7 @@ export class GraphicsService {
 
   public getVehicleUsageHours(period: TimePeriod = TimePeriod.Month): VehicleMetrics[] {
 
-    const events = this.eventService['_allEvents']();
+    const events = this.eventService.allEvents();
     const vehicles = this.vehicleService.vehicles();
 
     const result: VehicleMetrics[] = [];
@@ -58,7 +58,7 @@ export class GraphicsService {
   
   public getHoursByWeekdayPerVehicle(period: TimePeriod = TimePeriod.Month) {
   
-    const events = this.eventService['_allEvents']();
+    const events = this.eventService.allEvents();
     const vehicles = this.vehicleService.vehicles();
 
     const weekdayNames = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];

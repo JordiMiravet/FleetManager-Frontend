@@ -2,10 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { Auth } from '@angular/fire/auth';
+import { signal } from '@angular/core';
 
 import { GraphicsService } from './graphics-service';
 
 import { VehicleService } from '../../vehicle/data-access/vehicle-service';
+import { EventService } from '../../calendar/data-access/event-service';
 import { TimePeriod } from '../enums/time-period.enum';
 
 export const authMock = {
@@ -25,13 +27,24 @@ describe('GraphicsServices', () => {
   const thisMonth = `${currentYear}-${currentMonth}-15`;
   const lastYear = `${currentYear - 1}-${currentMonth}-15`;
 
+  const eventsSignal = signal<any[]>([]);
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],
       providers: [
-        { provide: Auth, useValue: authMock },
         provideHttpClient(),
         provideHttpClientTesting(),
+        { 
+          provide: Auth, 
+          useValue: authMock 
+        },
+        {
+          provide: EventService,
+          useValue: {
+            allEvents: eventsSignal.asReadonly()
+          }
+        },
       ]
     });
 
@@ -47,7 +60,7 @@ describe('GraphicsServices', () => {
   }
 
   function mockEvents(events: any[]) {
-    service['eventService']['_allEvents'].set(events);
+    eventsSignal.set(events);
   }
 
   it('should be created', () => {

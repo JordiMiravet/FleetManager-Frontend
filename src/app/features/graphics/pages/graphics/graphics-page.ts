@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { GraphicsViewComponent } from "../../components/graphics-view/graphics-view";
 
 @Component({

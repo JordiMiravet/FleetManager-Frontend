@@ -27,7 +27,7 @@ const vehicleServiceMock = {
 
 const eventServiceMock = {
   loadEvents: jasmine.createSpy('loadEvents'),
-  _allEvents: jasmine.createSpy('_allEvents').and.returnValue([])
+  allEvents: jasmine.createSpy('allEvents').and.returnValue([])
 };
 
 describe('GraphicsViewComponent', () => {

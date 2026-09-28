@@ -65,7 +65,7 @@ describe('EventService', () => {
       req.flush(mockEvents);
     });
 
-    it('should update _allEvents signal with received events', () => {
+    it('should update events with received events', () => {
       loadMockEvents();
 
       expect(service.calendarEvents()).toEqual(mockEvents);
@@ -230,7 +230,7 @@ describe('EventService', () => {
       req.flush(createdEvent);
     });
 
-    it('should add returned event to _allEvents', () => {
+    it('should add returned event to events', () => {
       service.addEvent(newEvent);
 
       httpMock.expectOne(API_URL).flush(createdEvent);
@@ -283,7 +283,7 @@ describe('EventService', () => {
       req.flush(updatedEvent);
     });
 
-    it('should replace updated event in _allEvents', () => {
+    it('should replace updated event', () => {
       const updatedEvent: EventInterface = { ...mockEvents[0], title: 'Updated Event' };
 
       service.updateEvent(updatedEvent);
@@ -330,7 +330,7 @@ describe('EventService', () => {
       req.flush(null);
     });
 
-    it('should remove deleted event from _allEvents', () => {
+    it('should remove deleted event', () => {
       service.deleteEvent('1');
 
       httpMock.expectOne(`${API_URL}/1`).flush(null);
