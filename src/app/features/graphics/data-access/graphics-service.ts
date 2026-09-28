@@ -58,7 +58,7 @@ export class GraphicsService {
   
   public getHoursByWeekdayPerVehicle(period: TimePeriod = TimePeriod.Month) {
   
-    const events = this.eventService['_allEvents']();
+    const events = this.eventService.allEvents();
     const vehicles = this.vehicleService.vehicles();
 
     const weekdayNames = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
