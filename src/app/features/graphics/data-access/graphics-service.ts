@@ -16,7 +16,7 @@ export class GraphicsService {
 
   public getVehicleUsageHours(period: TimePeriod = TimePeriod.Month): VehicleMetrics[] {
 
-    const events = this.eventService['_allEvents']();
+    const events = this.eventService.allEvents();
     const vehicles = this.vehicleService.vehicles();
 
     const result: VehicleMetrics[] = [];
