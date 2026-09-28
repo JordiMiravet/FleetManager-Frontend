@@ -7,6 +7,7 @@ import { signal } from '@angular/core';
 import { GraphicsService } from './graphics-service';
 
 import { VehicleService } from '../../vehicle/data-access/vehicle-service';
+import { EventService } from '../../calendar/data-access/event-service';
 import { TimePeriod } from '../enums/time-period.enum';
 
 export const authMock = {
@@ -26,6 +27,8 @@ describe('GraphicsServices', () => {
   const thisMonth = `${currentYear}-${currentMonth}-15`;
   const lastYear = `${currentYear - 1}-${currentMonth}-15`;
 
+  const eventsSignal = signal<any[]>([]);
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],
@@ -33,6 +36,12 @@ describe('GraphicsServices', () => {
         { provide: Auth, useValue: authMock },
         provideHttpClient(),
         provideHttpClientTesting(),
+        {
+          provide: EventService,
+          useValue: {
+            allEvents: eventsSignal.asReadonly()
+          }
+        }
       ]
     });
 
@@ -46,8 +55,6 @@ describe('GraphicsServices', () => {
   ]) {
     spyOn(vehicleService, 'vehicles').and.returnValue(vehicles as any);
   }
-
-  const eventsSignal = signal<any[]>([]);
 
   function mockEvents(events: any[]) {
     eventsSignal.set(events);
