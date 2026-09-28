@@ -17,6 +17,7 @@ export class EventService {
   private readonly apiUrl = `${environment.apiUrl}/events`;
 
   private readonly _allEvents = signal<EventInterface[]>([]);
+  public readonly allEvents = this._allEvents.asReadonly();
   public selectedVehicleId = signal<string | null>(null);
 
   public calendarEvents = computed(() => {
