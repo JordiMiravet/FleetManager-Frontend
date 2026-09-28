@@ -33,15 +33,18 @@ describe('GraphicsServices', () => {
     TestBed.configureTestingModule({
       imports: [],
       providers: [
-        { provide: Auth, useValue: authMock },
         provideHttpClient(),
         provideHttpClientTesting(),
+        { 
+          provide: Auth, 
+          useValue: authMock 
+        },
         {
           provide: EventService,
           useValue: {
             allEvents: eventsSignal.asReadonly()
           }
-        }
+        },
       ]
     });
 

@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { TimePeriod } from '../../enums/time-period.enum';
 
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
+import { EventService } from '../../../calendar/data-access/event-service';
+
 import { VehicleUsageHoursChartComponent } from "../vehicle-usage-hours-chart/vehicle-usage-hours-chart";
 import { MostUsedVehicleChartComponent } from "../most-used-vehicle-chart/most-used-vehicle-chart";
 import { HoursByWeekdayVehicleChartComponent } from "../hours-by-weekday-vehicle-chart/hours-by-weekday-vehicle-chart";
-import { EventService } from '../../../calendar/data-access/event-service';
 
 @Component({
   selector: 'app-graphics-view',
@@ -21,7 +22,6 @@ import { EventService } from '../../../calendar/data-access/event-service';
   templateUrl: './graphics-view.html',
   styleUrl: './graphics-view.scss',
 })
-
 export class GraphicsViewComponent implements AfterViewInit {
 
   private readonly vehicleService = inject(VehicleService);
@@ -38,4 +38,5 @@ export class GraphicsViewComponent implements AfterViewInit {
   changePeriod(period: TimePeriod): void {
     this.selectedPeriod.set(period);
   }
+
 }
