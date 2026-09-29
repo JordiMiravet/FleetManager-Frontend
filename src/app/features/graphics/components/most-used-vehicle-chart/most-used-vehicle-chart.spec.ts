@@ -217,6 +217,12 @@ describe('MostUsedVehicleChartComponent', () => {
       expect(figure.getAttribute('aria-describedby')).toBe(description.getAttribute('id'));
     });
 
+    it('should have aria-live="polite" on the description', () => {
+      const description = getDescription();
+
+      expect(description.getAttribute('aria-live')).toBe('polite');
+    });
+
     it('should render the accessible chart title from graphics messages', () => {
       const title = getTitle();
 

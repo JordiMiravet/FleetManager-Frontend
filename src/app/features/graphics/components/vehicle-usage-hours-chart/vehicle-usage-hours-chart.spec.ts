@@ -193,6 +193,12 @@ describe('VehicleUsageHoursChartComponent', () => {
       expect(figure.getAttribute('aria-describedby')).toBe(description.getAttribute('id'));
     });
 
+    it('should have aria-live="polite" on the description', () => {
+      const description = getDescription();
+
+      expect(description.getAttribute('aria-live')).toBe('polite');
+    });
+
     it('should render the accessible description for the current month', () => {
       const description = getDescription();
 
