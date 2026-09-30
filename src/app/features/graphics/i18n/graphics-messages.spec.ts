@@ -19,31 +19,31 @@ describe('GraphicsMessagesService', () => {
   describe('graphicsView', () => {
 
     it('should expose the controls label', () => {
-
+      expect(service.graphicsView.controlsLabel).toBe('Vehicle metrics controls');
     });
 
     it('should expose the title', () => {
-
+      expect(service.graphicsView.title).toBe('Metrics:');
     });
 
     it('should expose the period filter label', () => {
-
+      expect(service.graphicsView.periodFilterLabel).toBe('Time period filter');
     });
 
     it('should expose the charts label', () => {
-
+      expect(service.graphicsView.chartsLabel).toBe('Vehicle metrics charts');
     });
 
     it('should expose the month period label', () => {
-
+      expect(service.graphicsView.periods.month).toBe('This Month');
     });
 
     it('should expose the year period label', () => {
-
+      expect(service.graphicsView.periods.year).toBe('This Year');
     });
 
     it('should expose the all time period label', () => {
-
+      expect(service.graphicsView.periods.allTime).toBe('All Time');
     });
 
   });
