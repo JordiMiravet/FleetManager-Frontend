@@ -7,6 +7,20 @@ import { TimePeriod } from '../enums/time-period.enum';
 })
 export class GraphicsMessagesService {
 
+    /* graphics-view */
+
+  readonly graphicsView = {
+    controlsLabel: 'Vehicle metrics controls',
+    title: 'Metrics:',
+    periodFilterLabel: 'Time period filter',
+    chartsLabel: 'Vehicle metrics charts',
+    periods: {
+      month: 'This Month',
+      year: 'This Year',
+      allTime: 'All Time',
+    },
+  };
+  
   private readonly periodDescription = (period: TimePeriod): string => {
     switch (period) {
       case TimePeriod.Month:
