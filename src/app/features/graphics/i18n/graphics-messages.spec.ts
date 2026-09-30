@@ -16,6 +16,38 @@ describe('GraphicsMessagesService', () => {
     expect(service).toBeTruthy();
   });
 
+  describe('graphicsView', () => {
+
+    it('should expose the controls label', () => {
+
+    });
+
+    it('should expose the title', () => {
+
+    });
+
+    it('should expose the period filter label', () => {
+
+    });
+
+    it('should expose the charts label', () => {
+
+    });
+
+    it('should expose the month period label', () => {
+
+    });
+
+    it('should expose the year period label', () => {
+
+    });
+
+    it('should expose the all time period label', () => {
+
+    });
+
+  });
+
   describe('hoursByWeekday', () => {
 
     it('should expose the accessible title', () => {
