@@ -5,10 +5,11 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { GraphicsViewComponent } from './graphics-view';
 
+import { TimePeriod } from '../../enums/time-period.enum';
+import { VehicleInterface } from '../../../vehicle/models/vehicle';
+
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { EventService } from '../../../calendar/data-access/event-service';
-import { VehicleInterface } from '../../../vehicle/models/vehicle';
-import { TimePeriod } from '../../enums/time-period.enum';
 
 export const authMock = {
   currentUser: {
