@@ -40,16 +40,19 @@
     </div>
 </section>
 
-<section class="vehicle-metrics" aria-label="Vehicle metrics charts">
+<section 
+    class="vehicle-metrics" 
+    aria-label="Vehicle metrics charts"
+>
     <div class="vehicle-metrics__chart">
-        <app-vehicle-usage-hours-chart [period]="selectedPeriod()" />
+        <app-vehicle-usage-hours-chart [period]="selectedPeriod()"/>
     </div>
 
     <div class="vehicle-metrics__chart">
-        <app-most-used-vehicle-chart [period]="selectedPeriod()" />
+        <app-most-used-vehicle-chart [period]="selectedPeriod()"/>
     </div>
 
     <div class="vehicle-metrics__chart">
-        <app-hours-by-weekday-vehicle-chart [period]="selectedPeriod()" />
+        <app-hours-by-weekday-vehicle-chart [period]="selectedPeriod()"/>
     </div>
 </section>
