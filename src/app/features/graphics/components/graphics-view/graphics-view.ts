@@ -9,6 +9,7 @@ import { EventService } from '../../../calendar/data-access/event-service';
 import { VehicleUsageHoursChartComponent } from "../vehicle-usage-hours-chart/vehicle-usage-hours-chart";
 import { MostUsedVehicleChartComponent } from "../most-used-vehicle-chart/most-used-vehicle-chart";
 import { HoursByWeekdayVehicleChartComponent } from "../hours-by-weekday-vehicle-chart/hours-by-weekday-vehicle-chart";
+import { GraphicsMessagesService } from '../../i18n/graphics-messages';
 
 @Component({
   selector: 'app-graphics-view',
@@ -26,6 +27,9 @@ export class GraphicsViewComponent implements AfterViewInit {
 
   private readonly vehicleService = inject(VehicleService);
   private readonly eventService = inject(EventService);
+  private readonly messagesService = inject(GraphicsMessagesService);
+
+  public readonly messages = this.messagesService.graphicsView;
 
   public selectedPeriod = signal<TimePeriod>(TimePeriod.Month);
   public TimePeriod = TimePeriod;
