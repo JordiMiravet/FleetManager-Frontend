@@ -1,49 +1,58 @@
-<section class="vehicle-metrics-toolbar" aria-label="Vehicle metrics controls">
-    <h2 class="vehicle-metrics-toolbar__title">
-        <i class="pi pi-chart-bar" aria-hidden="true"></i>
-        Metrics:
-    </h2>
+<section
+  class="vehicle-metrics-toolbar"
+  [attr.aria-label]="messages.controlsLabel"
+>
+  <h2 class="vehicle-metrics-toolbar__title">
+    <i class="pi pi-chart-bar" aria-hidden="true"></i>
+    {{ messages.title }}
+  </h2>
 
-    <div class="vehicle-metrics-toolbar__period" aria-label="Time period filter">
-        <button
-            class="vehicle-metrics-toolbar__period-button"
-            [class.vehicle-metrics-toolbar__period-button--active]="selectedPeriod() === TimePeriod.Month"
-            [attr.aria-pressed]="selectedPeriod() === TimePeriod.Month"
-            (click)="changePeriod(TimePeriod.Month)"
-        >
-            This Month
-        </button>
+  <div
+    class="vehicle-metrics-toolbar__period"
+    [attr.aria-label]="messages.periodFilterLabel"
+  >
+    <button
+      class="vehicle-metrics-toolbar__period-button"
+      [class.vehicle-metrics-toolbar__period-button--active]="selectedPeriod() === TimePeriod.Month"
+      [attr.aria-pressed]="selectedPeriod() === TimePeriod.Month"
+      (click)="changePeriod(TimePeriod.Month)"
+    >
+      {{ messages.periods.month }}
+    </button>
 
-        <button
-            class="vehicle-metrics-toolbar__period-button"
-            [class.vehicle-metrics-toolbar__period-button--active]="selectedPeriod() === TimePeriod.Year"
-            [attr.aria-pressed]="selectedPeriod() === TimePeriod.Year"
-            (click)="changePeriod(TimePeriod.Year)"
-        >
-            This Year
-        </button>
+    <button
+      class="vehicle-metrics-toolbar__period-button"
+      [class.vehicle-metrics-toolbar__period-button--active]="selectedPeriod() === TimePeriod.Year"
+      [attr.aria-pressed]="selectedPeriod() === TimePeriod.Year"
+      (click)="changePeriod(TimePeriod.Year)"
+    >
+      {{ messages.periods.year }}
+    </button>
 
-        <button
-            class="vehicle-metrics-toolbar__period-button"
-            [class.vehicle-metrics-toolbar__period-button--active]="selectedPeriod() === TimePeriod.AllTime"
-            [attr.aria-pressed]="selectedPeriod() === TimePeriod.AllTime"
-            (click)="changePeriod(TimePeriod.AllTime)"
-        >
-            All Time
-        </button>
-    </div>
+    <button
+      class="vehicle-metrics-toolbar__period-button"
+      [class.vehicle-metrics-toolbar__period-button--active]="selectedPeriod() === TimePeriod.AllTime"
+      [attr.aria-pressed]="selectedPeriod() === TimePeriod.AllTime"
+      (click)="changePeriod(TimePeriod.AllTime)"
+    >
+      {{ messages.periods.allTime }}
+    </button>
+  </div>
 </section>
 
-<section class="vehicle-metrics" aria-label="Vehicle metrics charts">
-    <div class="vehicle-metrics__chart">
-        <app-vehicle-usage-hours-chart [period]="selectedPeriod()" />
-    </div>
+<section 
+  class="vehicle-metrics" 
+  aria-label="Vehicle metrics charts"
+>
+  <div class="vehicle-metrics__chart">
+    <app-vehicle-usage-hours-chart [period]="selectedPeriod()"/>
+  </div>
 
-    <div class="vehicle-metrics__chart">
-        <app-most-used-vehicle-chart [period]="selectedPeriod()" />
-    </div>
+  <div class="vehicle-metrics__chart">
+    <app-most-used-vehicle-chart [period]="selectedPeriod()"/>
+  </div>
 
-    <div class="vehicle-metrics__chart">
-        <app-hours-by-weekday-vehicle-chart [period]="selectedPeriod()" />
-    </div>
+  <div class="vehicle-metrics__chart">
+    <app-hours-by-weekday-vehicle-chart [period]="selectedPeriod()"/>
+  </div>
 </section>

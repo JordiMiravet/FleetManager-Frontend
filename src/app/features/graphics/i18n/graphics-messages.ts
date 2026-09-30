@@ -20,7 +20,21 @@ export class GraphicsMessagesService {
     }
   };
 
-  /* hours-by-weekday-vehicle-chart */
+  // graphics-view 
+
+  readonly graphicsView = {
+    controlsLabel: 'Vehicle metrics controls',
+    title: 'Metrics:',
+    periodFilterLabel: 'Time period filter',
+    chartsLabel: 'Vehicle metrics charts',
+    periods: {
+      month: 'This Month',
+      year: 'This Year',
+      allTime: 'All Time',
+    },
+  };
+
+  // hours-by-weekday-vehicle-chart
 
   readonly hoursByWeekday = {
     title: 'Vehicle usage by day of week chart',
@@ -28,7 +42,7 @@ export class GraphicsMessagesService {
       `A line chart showing the number of hours each vehicle was used on each day of the week for the ${this.periodDescription(period)}. Visual representation only.`
   };
 
-  /* most-used-vehicle-chart */
+  // most-used-vehicle-chart
 
   readonly mostUsedVehicle = {
     title: 'Top 3 most used vehicles chart',
@@ -38,7 +52,7 @@ export class GraphicsMessagesService {
       `Top 3 Most Used (${this.periodDescription(period)})`
   };
 
-  /* vehicle-usage-hours-chart */
+  // vehicle-usage-hours-chart
 
   readonly vehicleUsageHours = {
     title: 'Vehicle usage hours distribution chart',
