@@ -5,11 +5,11 @@ import { TimePeriod } from '../../enums/time-period.enum';
 
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 import { EventService } from '../../../calendar/data-access/event-service';
+import { GraphicsMessagesService } from '../../i18n/graphics-messages';
 
 import { VehicleUsageHoursChartComponent } from "../vehicle-usage-hours-chart/vehicle-usage-hours-chart";
 import { MostUsedVehicleChartComponent } from "../most-used-vehicle-chart/most-used-vehicle-chart";
 import { HoursByWeekdayVehicleChartComponent } from "../hours-by-weekday-vehicle-chart/hours-by-weekday-vehicle-chart";
-import { GraphicsMessagesService } from '../../i18n/graphics-messages';
 
 @Component({
   selector: 'app-graphics-view',
