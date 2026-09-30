@@ -1,17 +1,23 @@
-<section class="vehicle-metrics-toolbar" aria-label="Vehicle metrics controls">
+<section
+    class="vehicle-metrics-toolbar"
+    [attr.aria-label]="messages.controlsLabel"
+>
     <h2 class="vehicle-metrics-toolbar__title">
         <i class="pi pi-chart-bar" aria-hidden="true"></i>
-        Metrics:
+        {{ messages.title }}
     </h2>
 
-    <div class="vehicle-metrics-toolbar__period" aria-label="Time period filter">
+    <div
+        class="vehicle-metrics-toolbar__period"
+        [attr.aria-label]="messages.periodFilterLabel"
+    >
         <button
             class="vehicle-metrics-toolbar__period-button"
             [class.vehicle-metrics-toolbar__period-button--active]="selectedPeriod() === TimePeriod.Month"
             [attr.aria-pressed]="selectedPeriod() === TimePeriod.Month"
             (click)="changePeriod(TimePeriod.Month)"
         >
-            This Month
+            {{ messages.periods.month }}
         </button>
 
         <button
@@ -20,7 +26,7 @@
             [attr.aria-pressed]="selectedPeriod() === TimePeriod.Year"
             (click)="changePeriod(TimePeriod.Year)"
         >
-            This Year
+            {{ messages.periods.year }}
         </button>
 
         <button
@@ -29,7 +35,7 @@
             [attr.aria-pressed]="selectedPeriod() === TimePeriod.AllTime"
             (click)="changePeriod(TimePeriod.AllTime)"
         >
-            All Time
+            {{ messages.periods.allTime }}
         </button>
     </div>
 </section>
