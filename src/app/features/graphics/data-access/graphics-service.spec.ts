@@ -204,6 +204,10 @@ describe('GraphicsServices', () => {
       expect(vehicles[0].hours[1]).toBe(2);
     });
 
+    it('should map Sunday to the last weekday index', () => {
+
+    });
+
     it('should ignore events outside selected period', () => {
       mockEvents([{ _id: '1', vehicleId: 'ferrari-1', date: lastYear, hourStart: '09:00', hourEnd: '11:00' }]);
       const { vehicles } = service.getHoursByWeekdayPerVehicle(TimePeriod.Month);
