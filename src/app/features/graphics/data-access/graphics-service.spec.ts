@@ -127,6 +127,10 @@ describe('GraphicsServices', () => {
       expect(result[0].totalHours).toBe(4);
     });
 
+    it('should calculate hours correctly when minutes are involved', () => {
+
+    });
+
   });
 
   describe('getMostUsedVehicle', () => {
