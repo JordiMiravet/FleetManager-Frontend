@@ -128,7 +128,19 @@ describe('GraphicsServices', () => {
     });
 
     it('should calculate hours correctly when minutes are involved', () => {
+      mockEvents([
+        {
+          _id: '1',
+          vehicleId: 'ferrari-1',
+          date: thisMonth,
+          hourStart: '09:30',
+          hourEnd: '11:00'
+        }
+      ]);
 
+      const result = service.getVehicleUsageHours(TimePeriod.Month);
+
+      expect(result[0].totalHours).toBe(1.5);
     });
 
   });
