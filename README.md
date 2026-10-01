@@ -544,7 +544,7 @@ Current test coverage:
 
 ```markdown
 =============================== Coverage summary ===============================
-Statements   : 98.29% ( 980/997 )
+Statements   : 98.28% ( 1086/1105 )
 Branches     : 91.95% ( 183/199 )
 Functions    : 97.52% ( 276/283 )
 Lines        : 98.55% ( 886/899 )
