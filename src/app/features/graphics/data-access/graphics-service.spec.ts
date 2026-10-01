@@ -205,7 +205,27 @@ describe('GraphicsServices', () => {
     });
 
     it('should map Sunday to the last weekday index', () => {
+      const sunday = new Date(currentYear, currentDate.getMonth(), 1);
 
+      while (sunday.getDay() !== 0) {
+        sunday.setDate(sunday.getDate() + 1);
+      }
+
+      const sundayDate = `${currentYear}-${currentMonth}-${String(sunday.getDate()).padStart(2, '0')}`;
+
+      mockEvents([
+        {
+          _id: '1',
+          vehicleId: 'ferrari-1',
+          date: sundayDate,
+          hourStart: '09:00',
+          hourEnd: '11:00'
+        }
+      ]);
+
+      const { vehicles } = service.getHoursByWeekdayPerVehicle(TimePeriod.Month);
+
+      expect(vehicles[0].hours[6]).toBe(2);
     });
 
     it('should ignore events outside selected period', () => {
