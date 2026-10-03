@@ -77,5 +77,10 @@ describe('AuthMessagesService', () => {
     });
   });
 
+  describe('form.note', () => {
+    it('should return the required fields note', () => {
+
+    });
+  });
 
 });
