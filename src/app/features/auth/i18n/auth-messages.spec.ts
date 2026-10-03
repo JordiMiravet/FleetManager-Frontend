@@ -15,11 +15,11 @@ describe('AuthMessagesService', () => {
 
   describe('form.title', () => {
     it('should return the login title', () => {
-
+      expect(service.form.title.login).toBe('Login');
     });
 
     it('should return the register title', () => {
-
+      expect(service.form.title.register).toBe('Register');
     });
   });
 });
