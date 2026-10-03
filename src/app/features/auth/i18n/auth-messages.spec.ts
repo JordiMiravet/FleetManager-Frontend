@@ -58,23 +58,24 @@ describe('AuthMessagesService', () => {
   describe('form.switch', () => {
     describe('toRegister', () => {
       it('should return the registration prompt', () => {
-
+        expect(service.form.switch.toRegister.prompt).toBe("Don't have an account?");
       });
 
       it('should return the registration action', () => {
-
+        expect(service.form.switch.toRegister.action).toBe('Sign up');
       });
     });
 
     describe('toLogin', () => {
       it('should return the login prompt', () => {
-
+        expect(service.form.switch.toLogin.prompt).toBe('Already have an account?');
       });
 
       it('should return the login action', () => {
-
+        expect(service.form.switch.toLogin.action).toBe('Log in');
       });
     });
   });
+
 
 });
