@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+
 import { AuthMessagesService } from './auth-messages';
 
 describe('AuthMessagesService', () => {
@@ -162,7 +163,7 @@ describe('AuthMessagesService', () => {
       });
 
     });
-    
+
   });
 
 });
