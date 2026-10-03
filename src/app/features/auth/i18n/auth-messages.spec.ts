@@ -79,7 +79,7 @@ describe('AuthMessagesService', () => {
 
   describe('form.note', () => {
     it('should return the required fields note', () => {
-
+      expect(service.form.note).toBe('Fields marked with * are required');
     });
   });
 
