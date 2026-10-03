@@ -112,4 +112,27 @@ describe('AuthMessagesService', () => {
     });
   });
 
+  describe('form.aria', () => {
+    describe('buttons', () => {
+      it('should return the login button aria label', () => {
+
+      });
+
+      it('should return the register button aria label', () => {
+
+      });
+    });
+
+    describe('switch', () => {
+      it('should return the login switch aria label', () => {
+
+      });
+
+      it('should return the register switch aria label', () => {
+
+      });
+    });
+  });
+
+
 });
