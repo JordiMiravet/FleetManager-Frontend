@@ -22,4 +22,27 @@ describe('AuthMessagesService', () => {
       expect(service.form.title.register).toBe('Register');
     });
   });
+
+  describe('form.fields', () => {
+    describe('email', () => {
+      it('should return the email label', () => {
+
+      });
+
+      it('should return the email placeholder', () => {
+
+      });
+    });
+
+    describe('password', () => {
+      it('should return the password label', () => {
+
+      });
+
+      it('should return the password placeholder', () => {
+
+      });
+    });
+  });
+
 });
