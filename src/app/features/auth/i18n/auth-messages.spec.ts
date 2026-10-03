@@ -47,11 +47,11 @@ describe('AuthMessagesService', () => {
 
   describe('form.buttons', () => {
     it('should return the login button label', () => {
-
+      expect(service.form.buttons.login).toBe('Login');
     });
 
     it('should return the register button label', () => {
-
+      expect(service.form.buttons.register).toBe('Register');
     });
   });
 
