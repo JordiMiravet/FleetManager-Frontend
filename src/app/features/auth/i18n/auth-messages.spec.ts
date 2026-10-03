@@ -55,4 +55,26 @@ describe('AuthMessagesService', () => {
     });
   });
 
+  describe('form.switch', () => {
+    describe('toRegister', () => {
+      it('should return the registration prompt', () => {
+
+      });
+
+      it('should return the registration action', () => {
+
+      });
+    });
+
+    describe('toLogin', () => {
+      it('should return the login prompt', () => {
+
+      });
+
+      it('should return the login action', () => {
+
+      });
+    });
+  });
+
 });
