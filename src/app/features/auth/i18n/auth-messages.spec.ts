@@ -92,22 +92,19 @@ describe('AuthMessagesService', () => {
 
     describe('invalidPassword', () => {
       it('should return the invalid password message for the provided length', () => {
-        expect(service.form.errors.invalidPassword(8))
-          .toBe('Password must be at least 8 characters');
+        expect(service.form.errors.invalidPassword(8)).toBe('Password must be at least 8 characters');
       });
     });
 
     describe('invalidCredentials', () => {
       it('should return the invalid credentials message', () => {
-        expect(service.form.errors.invalidCredentials)
-          .toBe('This email or password is invalid');
+        expect(service.form.errors.invalidCredentials).toBe('This email or password is invalid');
       });
     });
 
     describe('emailAlreadyExists', () => {
       it('should return the email already exists message', () => {
-        expect(service.form.errors.emailAlreadyExists)
-          .toBe('This email already exists');
+        expect(service.form.errors.emailAlreadyExists).toBe('This email already exists');
       });
     });
   });
