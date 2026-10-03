@@ -12,4 +12,14 @@ describe('AuthMessagesService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  describe('form.title', () => {
+    it('should return the login title', () => {
+
+    });
+
+    it('should return the register title', () => {
+
+    });
+  });
 });
