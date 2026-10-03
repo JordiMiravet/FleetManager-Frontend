@@ -115,24 +115,23 @@ describe('AuthMessagesService', () => {
   describe('form.aria', () => {
     describe('buttons', () => {
       it('should return the login button aria label', () => {
-
+        expect(service.form.aria.buttons.login).toBe('Press to log in using your email and password');
       });
 
       it('should return the register button aria label', () => {
-
+        expect(service.form.aria.buttons.register).toBe('Press to register a new account using your email and password');
       });
     });
 
     describe('switch', () => {
       it('should return the login switch aria label', () => {
-
+        expect(service.form.aria.switch.toLogin).toBe('Navigate to the login page');
       });
 
       it('should return the register switch aria label', () => {
-
+        expect(service.form.aria.switch.toRegister).toBe('Navigate to the registration page');
       });
     });
   });
-
 
 });
