@@ -45,4 +45,14 @@ describe('AuthMessagesService', () => {
     });
   });
 
+  describe('form.buttons', () => {
+    it('should return the login button label', () => {
+
+    });
+
+    it('should return the register button label', () => {
+
+    });
+  });
+
 });
