@@ -83,4 +83,31 @@ describe('AuthMessagesService', () => {
     });
   });
 
+  describe('form.errors', () => {
+    describe('invalidEmail', () => {
+      it('should return the invalid email message', () => {
+
+      });
+    });
+
+    describe('invalidPassword', () => {
+      it('should return the invalid password message for the provided length', () => {
+
+      });
+    });
+
+    describe('invalidCredentials', () => {
+      it('should return the invalid credentials message', () => {
+
+      });
+    });
+
+    describe('emailAlreadyExists', () => {
+      it('should return the email already exists message', () => {
+
+      });
+    });
+  });
+
+
 });
