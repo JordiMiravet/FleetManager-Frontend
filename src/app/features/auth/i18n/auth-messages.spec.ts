@@ -65,15 +65,15 @@ describe('AuthMessagesService', () => {
     describe('errors', () => {
 
       it('should expose the invalid email message', () => {
-
+        expect(service.form.errors.invalidEmail).toBe('Please enter a valid email');
       });
 
       it('should expose the invalid credentials message', () => {
-
+        expect(service.form.errors.invalidCredentials).toBe('This email or password is invalid');
       });
 
       it('should expose the email already exists message', () => {
-
+        expect(service.form.errors.emailAlreadyExists).toBe('This email already exists');
       });
 
       describe('invalidPassword', () => {
