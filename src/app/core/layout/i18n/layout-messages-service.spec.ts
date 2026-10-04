@@ -55,6 +55,19 @@ describe('LayoutMessagesService', () => {
       });
     });
 
+    describe('aria', () => {
+      it('should expose the logout message', () => {
+
+      });
+
+      it('should expose the register message', () => {
+
+      });
+
+      it('should expose the login message', () => {
+
+      });
+    });
   });
 
 });
