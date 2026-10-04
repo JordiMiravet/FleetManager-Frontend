@@ -23,19 +23,19 @@ describe('LayoutMessagesService', () => {
 
     describe('links', () => {
       it('should expose the home link', () => {
-
+        expect(service.navigation.links.home).toBe('Home');
       });
 
       it('should expose the map link', () => {
-
+        expect(service.navigation.links.map).toBe('Map');
       });
 
       it('should expose the calendar link', () => {
-
+        expect(service.navigation.links.calendar).toBe('Calendar');
       });
 
       it('should expose the graphics link', () => {
-
+        expect(service.navigation.links.graphics).toBe('Graphics');
       });
     });
   });
