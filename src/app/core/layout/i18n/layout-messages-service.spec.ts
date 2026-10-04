@@ -43,15 +43,15 @@ describe('LayoutMessagesService', () => {
   describe('authActions', () => {
     describe('buttons', () => {
       it('should expose the logout button', () => {
-
+        expect(service.authActions.buttons.logout).toBe('Logout');
       });
 
       it('should expose the register button', () => {
-
+        expect(service.authActions.buttons.register).toBe('Register');
       });
 
       it('should expose the login button', () => {
-
+        expect(service.authActions.buttons.login).toBe('Login');
       });
     });
 
