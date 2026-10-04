@@ -91,19 +91,19 @@ describe('LayoutMessagesService', () => {
 
     describe('items', () => {
       it('should expose the edit profile item', () => {
-
+        expect(service.drawer.items.editProfile).toBe('Edit Profile');
       });
 
       it('should expose the settings item', () => {
-
+        expect(service.drawer.items.settings).toBe('Settings');
       });
 
       it('should expose the language item', () => {
-
+        expect(service.drawer.items.language).toBe('Language');
       });
 
       it('should expose the dark mode item', () => {
-
+        expect(service.drawer.items.darkMode).toBe('Dark Mode');
       });
     });
   });
