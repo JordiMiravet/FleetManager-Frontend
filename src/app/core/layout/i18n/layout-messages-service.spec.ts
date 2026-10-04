@@ -89,6 +89,23 @@ describe('LayoutMessagesService', () => {
       });
     });
 
+    describe('items', () => {
+      it('should expose the edit profile item', () => {
+
+      });
+
+      it('should expose the settings item', () => {
+
+      });
+
+      it('should expose the language item', () => {
+
+      });
+
+      it('should expose the dark mode item', () => {
+
+      });
+    });
   });
 
 });
