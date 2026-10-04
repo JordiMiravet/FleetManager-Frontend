@@ -126,4 +126,17 @@ describe('LayoutMessagesService', () => {
     });
   });
 
+  describe('notificationBell', () => {
+    describe('aria', () => {
+      describe('button', () => {
+        it('should return the default message when there are no pending notifications', () => {
+
+        });
+
+        it('should return the message with the pending count', () => {
+
+        });
+      });
+    });
+  });
 });
