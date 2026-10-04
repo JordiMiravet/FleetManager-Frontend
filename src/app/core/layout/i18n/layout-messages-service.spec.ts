@@ -15,35 +15,22 @@ describe('LayoutMessagesService', () => {
   });
 
   describe('navigation', () => {
+
+    it('should expose the navigation aria message', () => {
+      expect(service.navigation.aria).toEqual({
+        nav: 'Main navigation menu'
+      });
+    });
+
+    it('should expose the navigation links', () => {
+      expect(service.navigation.links).toEqual({
+        home: 'Home',
+        map: 'Map',
+        calendar: 'Calendar',
+        graphics: 'Graphics'
+      });
+    });
     
-    describe('aria', () => {
-
-      it('should expose the nav message', () => {
-        expect(service.navigation.aria.nav).toBe('Main navigation menu');
-      });
-
-    });
-
-    describe('links', () => {
-
-      it('should expose the home link', () => {
-        expect(service.navigation.links.home).toBe('Home');
-      });
-
-      it('should expose the map link', () => {
-        expect(service.navigation.links.map).toBe('Map');
-      });
-
-      it('should expose the calendar link', () => {
-        expect(service.navigation.links.calendar).toBe('Calendar');
-      });
-
-      it('should expose the graphics link', () => {
-        expect(service.navigation.links.graphics).toBe('Graphics');
-      });
-
-    });
-
   });
 
   describe('authActions', () => {
