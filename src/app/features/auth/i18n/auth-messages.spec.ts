@@ -14,152 +14,96 @@ describe('AuthMessagesService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('form.title', () => {
+  describe('form', () => {
 
-    it('should return the login title', () => {
-      expect(service.form.title.login).toBe('Login');
+    it('should expose the form titles', () => {
+      expect(service.form.title).toEqual({
+        login: 'Login',
+        register: 'Register'
+      });
     });
 
-    it('should return the register title', () => {
-      expect(service.form.title.register).toBe('Register');
+    it('should expose the email field messages', () => {
+      expect(service.form.fields.email).toEqual({
+        label: 'Email *',
+        placeholder: 'Enter your email'
+      });
     });
 
-  });
-
-  describe('form.fields', () => {
-
-    describe('email', () => {
-
-      it('should return the email label', () => {
-        expect(service.form.fields.email.label).toBe('Email *');
+    it('should expose the password field messages', () => {
+      expect(service.form.fields.password).toEqual({
+        label: 'Password *',
+        placeholder: 'Enter your password'
       });
-
-      it('should return the email placeholder', () => {
-        expect(service.form.fields.email.placeholder).toBe('Enter your email');
-      });
-
     });
 
-    describe('password', () => {
-
-      it('should return the password label', () => {
-        expect(service.form.fields.password.label).toBe('Password *');
+    it('should expose the form buttons', () => {
+      expect(service.form.buttons).toEqual({
+        login: 'Login',
+        register: 'Register'
       });
-
-      it('should return the password placeholder', () => {
-        expect(service.form.fields.password.placeholder).toBe('Enter your password');
-      });
-
     });
 
-  });
-
-  describe('form.buttons', () => {
-
-    it('should return the login button label', () => {
-      expect(service.form.buttons.login).toBe('Login');
+    it('should expose the switch to register messages', () => {
+      expect(service.form.switch.toRegister).toEqual({
+        prompt: "Don't have an account?",
+        action: 'Sign up'
+      });
     });
 
-    it('should return the register button label', () => {
-      expect(service.form.buttons.register).toBe('Register');
+    it('should expose the switch to login messages', () => {
+      expect(service.form.switch.toLogin).toEqual({
+        prompt: 'Already have an account?',
+        action: 'Log in'
+      });
     });
 
-  });
-
-  describe('form.switch', () => {
-
-    describe('toRegister', () => {
-
-      it('should return the registration prompt', () => {
-        expect(service.form.switch.toRegister.prompt).toBe("Don't have an account?");
-      });
-
-      it('should return the registration action', () => {
-        expect(service.form.switch.toRegister.action).toBe('Sign up');
-      });
-
-    });
-
-    describe('toLogin', () => {
-
-      it('should return the login prompt', () => {
-        expect(service.form.switch.toLogin.prompt).toBe('Already have an account?');
-      });
-
-      it('should return the login action', () => {
-        expect(service.form.switch.toLogin.action).toBe('Log in');
-      });
-
-    });
-
-  });
-
-  describe('form.note', () => {
-
-    it('should return the required fields note', () => {
+    it('should expose the required fields note', () => {
       expect(service.form.note).toBe('Fields marked with * are required');
     });
 
-  });
+    describe('errors', () => {
 
-  describe('form.errors', () => {
-
-    describe('invalidEmail', () => {
-
-      it('should return the invalid email message', () => {
+      it('should expose the invalid email message', () => {
         expect(service.form.errors.invalidEmail).toBe('Please enter a valid email');
       });
 
-    });
-
-    describe('invalidPassword', () => {
-
-      it('should return the invalid password message for the provided length', () => {
-        expect(service.form.errors.invalidPassword(8)).toBe('Password must be at least 8 characters');
-      });
-
-    });
-
-    describe('invalidCredentials', () => {
-
-      it('should return the invalid credentials message', () => {
+      it('should expose the invalid credentials message', () => {
         expect(service.form.errors.invalidCredentials).toBe('This email or password is invalid');
       });
 
-    });
-
-    describe('emailAlreadyExists', () => {
-
-      it('should return the email already exists message', () => {
+      it('should expose the email already exists message', () => {
         expect(service.form.errors.emailAlreadyExists).toBe('This email already exists');
       });
 
-    });
+      describe('invalidPassword', () => {
 
-  });
+        it('should return the message with the provided length', () => {
+          expect(service.form.errors.invalidPassword(8)).toBe('Password must be at least 8 characters');
+        });
 
-  describe('form.aria', () => {
+        it('should return the message with a different length', () => {
+          expect(service.form.errors.invalidPassword(12)).toBe('Password must be at least 12 characters');
+        });
 
-    describe('buttons', () => {
-
-      it('should return the login button aria label', () => {
-        expect(service.form.aria.buttons.login).toBe('Press to log in using your email and password');
-      });
-
-      it('should return the register button aria label', () => {
-        expect(service.form.aria.buttons.register).toBe('Press to register a new account using your email and password');
       });
 
     });
 
-    describe('switch', () => {
+    describe('aria', () => {
 
-      it('should return the login switch aria label', () => {
-        expect(service.form.aria.switch.toLogin).toBe('Navigate to the login page');
+      it('should expose the button aria messages', () => {
+        expect(service.form.aria.buttons).toEqual({
+          login: 'Press to log in using your email and password',
+          register: 'Press to register a new account using your email and password'
+        });
       });
 
-      it('should return the register switch aria label', () => {
-        expect(service.form.aria.switch.toRegister).toBe('Navigate to the registration page');
+      it('should expose the switch aria messages', () => {
+        expect(service.form.aria.switch).toEqual({
+          toLogin: 'Navigate to the login page',
+          toRegister: 'Navigate to the registration page'
+        });
       });
 
     });
