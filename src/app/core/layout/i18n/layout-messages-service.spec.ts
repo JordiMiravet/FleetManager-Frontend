@@ -109,15 +109,19 @@ describe('LayoutMessagesService', () => {
 
     describe('aria', () => {
       it('should expose the open button message', () => {
-
+        expect(service.drawer.aria.openButton).toBe(
+          'Open account menu'
+        );
       });
 
       it('should expose the close button message', () => {
-
+        expect(service.drawer.aria.closeButton).toBe(
+          'Close account menu'
+        );
       });
 
       it('should expose the drawer message', () => {
-
+        expect(service.drawer.aria.drawer).toBe('Account menu');
       });
     });
   });
