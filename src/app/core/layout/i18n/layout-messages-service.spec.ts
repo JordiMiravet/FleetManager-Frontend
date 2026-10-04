@@ -21,6 +21,23 @@ describe('LayoutMessagesService', () => {
       });
     });
 
+    describe('links', () => {
+      it('should expose the home link', () => {
+
+      });
+
+      it('should expose the map link', () => {
+
+      });
+
+      it('should expose the calendar link', () => {
+
+      });
+
+      it('should expose the graphics link', () => {
+
+      });
+    });
   });
 
 });
