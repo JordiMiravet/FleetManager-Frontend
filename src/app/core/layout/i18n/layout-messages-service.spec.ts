@@ -86,30 +86,28 @@ describe('LayoutMessagesService', () => {
 
   describe('notificationBell', () => {
 
-    describe('aria', () => {
+    it('should expose the empty state message', () => {
+      expect(service.notificationBell.emptyState).toBe(
+        'No pending invitations'
+      );
+    });
 
-      describe('button', () => {
+    describe('aria.button', () => {
 
-        it('should return the default message when there are no pending notifications', () => {
-          expect(service.notificationBell.aria.button(0)).toBe('View notifications');
-        });
+      it('should return the message without pending count when there are no pending notifications', () => {
+        expect(service.notificationBell.aria.button(0)).toBe(
+          'View notifications'
+        );
+      });
 
-        it('should return the message with the pending count', () => {
-          expect(service.notificationBell.aria.button(3)).toBe('View notifications, 3 pending');
-        });
-
+      it('should return the message with the pending count', () => {
+        expect(service.notificationBell.aria.button(3)).toBe(
+          'View notifications, 3 pending'
+        );
       });
 
     });
-
-    describe('emptyState', () => {
-
-      it('should expose the empty state message', () => {
-        expect(service.notificationBell.emptyState).toBe('No pending invitations');
-      });
-
-    });
-
+    
   });
 
 });
