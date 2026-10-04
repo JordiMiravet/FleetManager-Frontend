@@ -17,7 +17,7 @@ describe('LayoutMessagesService', () => {
   describe('navigation', () => {
     describe('aria', () => {
       it('should expose the nav message', () => {
-
+        expect(service.navigation.aria.nav).toBe('Main navigation menu');
       });
     });
 
