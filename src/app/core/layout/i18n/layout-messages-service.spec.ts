@@ -145,7 +145,9 @@ describe('LayoutMessagesService', () => {
 
     describe('emptyState', () => {
       it('should expose the empty state message', () => {
-
+        expect(service.notificationBell.emptyState).toBe(
+          'No pending invitations'
+        );
       });
     });
   });
