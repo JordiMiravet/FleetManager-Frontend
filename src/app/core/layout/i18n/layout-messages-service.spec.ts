@@ -40,4 +40,21 @@ describe('LayoutMessagesService', () => {
     });
   });
 
+  describe('authActions', () => {
+    describe('buttons', () => {
+      it('should expose the logout button', () => {
+
+      });
+
+      it('should expose the register button', () => {
+
+      });
+
+      it('should expose the login button', () => {
+
+      });
+    });
+
+  });
+
 });
