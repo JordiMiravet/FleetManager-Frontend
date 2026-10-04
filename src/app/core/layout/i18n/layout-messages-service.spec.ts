@@ -83,6 +83,12 @@ describe('LayoutMessagesService', () => {
       });
     });
 
+    describe('buttons', () => {
+      it('should expose the logout button', () => {
+
+      });
+    });
+
   });
 
 });
