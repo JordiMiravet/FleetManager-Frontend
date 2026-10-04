@@ -106,6 +106,20 @@ describe('LayoutMessagesService', () => {
         expect(service.drawer.items.darkMode).toBe('Dark Mode');
       });
     });
+
+    describe('aria', () => {
+      it('should expose the open button message', () => {
+
+      });
+
+      it('should expose the close button message', () => {
+
+      });
+
+      it('should expose the drawer message', () => {
+
+      });
+    });
   });
 
 });
