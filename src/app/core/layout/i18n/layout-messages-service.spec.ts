@@ -30,43 +30,27 @@ describe('LayoutMessagesService', () => {
         graphics: 'Graphics'
       });
     });
-    
+
   });
 
   describe('authActions', () => {
 
-    describe('buttons', () => {
-
-      it('should expose the logout button', () => {
-        expect(service.authActions.buttons.logout).toBe('Logout');
+    it('should expose the auth action buttons', () => {
+      expect(service.authActions.buttons).toEqual({
+        logout: 'Logout',
+        register: 'Register',
+        login: 'Login'
       });
-
-      it('should expose the register button', () => {
-        expect(service.authActions.buttons.register).toBe('Register');
-      });
-
-      it('should expose the login button', () => {
-        expect(service.authActions.buttons.login).toBe('Login');
-      });
-
     });
 
-    describe('aria', () => {
-
-      it('should expose the logout message', () => {
-        expect(service.authActions.aria.logout).toBe('Log out of your account');
+    it('should expose the auth action aria messages', () => {
+      expect(service.authActions.aria).toEqual({
+        logout: 'Log out of your account',
+        register: 'Navigate to register page',
+        login: 'Navigate to login page'
       });
-
-      it('should expose the register message', () => {
-        expect(service.authActions.aria.register).toBe('Navigate to register page');
-      });
-
-      it('should expose the login message', () => {
-        expect(service.authActions.aria.login).toBe('Navigate to login page');
-      });
-
     });
-
+    
   });
 
   describe('drawer', () => {
