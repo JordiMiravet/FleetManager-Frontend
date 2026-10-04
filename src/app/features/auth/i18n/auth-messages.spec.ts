@@ -93,11 +93,17 @@ describe('AuthMessagesService', () => {
     describe('aria', () => {
 
       it('should expose the button aria messages', () => {
-
+        expect(service.form.aria.buttons).toEqual({
+          login: 'Press to log in using your email and password',
+          register: 'Press to register a new account using your email and password'
+        });
       });
 
       it('should expose the switch aria messages', () => {
-
+        expect(service.form.aria.switch).toEqual({
+          toLogin: 'Navigate to the login page',
+          toRegister: 'Navigate to the registration page'
+        });
       });
 
     });
