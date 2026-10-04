@@ -57,15 +57,21 @@ describe('LayoutMessagesService', () => {
 
     describe('aria', () => {
       it('should expose the logout message', () => {
-
+        expect(service.authActions.aria.logout).toBe(
+          'Log out of your account'
+        );
       });
 
       it('should expose the register message', () => {
-
+        expect(service.authActions.aria.register).toBe(
+          'Navigate to register page'
+        );
       });
 
       it('should expose the login message', () => {
-
+        expect(service.authActions.aria.login).toBe(
+          'Navigate to login page'
+        );
       });
     });
   });
