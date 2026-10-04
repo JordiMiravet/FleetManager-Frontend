@@ -143,6 +143,10 @@ describe('LayoutMessagesService', () => {
       });
     });
 
+    describe('emptyState', () => {
+      it('should expose the empty state message', () => {
 
+      });
+    });
   });
 });
