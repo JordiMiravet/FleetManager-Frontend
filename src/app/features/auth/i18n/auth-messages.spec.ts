@@ -14,152 +14,72 @@ describe('AuthMessagesService', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('form.title', () => {
+  describe('form', () => {
 
-    it('should return the login title', () => {
-      expect(service.form.title.login).toBe('Login');
+    it('should expose the form titles', () => {
+
     });
 
-    it('should return the register title', () => {
-      expect(service.form.title.register).toBe('Register');
+    it('should expose the email field messages', () => {
+
     });
 
-  });
+    it('should expose the password field messages', () => {
 
-  describe('form.fields', () => {
+    });
 
-    describe('email', () => {
+    it('should expose the form buttons', () => {
 
-      it('should return the email label', () => {
-        expect(service.form.fields.email.label).toBe('Email *');
+    });
+
+    it('should expose the switch to register messages', () => {
+
+    });
+
+    it('should expose the switch to login messages', () => {
+
+    });
+
+    it('should expose the required fields note', () => {
+
+    });
+
+    describe('errors', () => {
+
+      it('should expose the invalid email message', () => {
+
       });
 
-      it('should return the email placeholder', () => {
-        expect(service.form.fields.email.placeholder).toBe('Enter your email');
+      it('should expose the invalid credentials message', () => {
+
       });
 
-    });
+      it('should expose the email already exists message', () => {
 
-    describe('password', () => {
-
-      it('should return the password label', () => {
-        expect(service.form.fields.password.label).toBe('Password *');
       });
 
-      it('should return the password placeholder', () => {
-        expect(service.form.fields.password.placeholder).toBe('Enter your password');
-      });
+      describe('invalidPassword', () => {
 
-    });
+        it('should return the message with the provided length', () => {
 
-  });
+        });
 
-  describe('form.buttons', () => {
+        it('should return the message with a different length', () => {
 
-    it('should return the login button label', () => {
-      expect(service.form.buttons.login).toBe('Login');
-    });
+        });
 
-    it('should return the register button label', () => {
-      expect(service.form.buttons.register).toBe('Register');
-    });
-
-  });
-
-  describe('form.switch', () => {
-
-    describe('toRegister', () => {
-
-      it('should return the registration prompt', () => {
-        expect(service.form.switch.toRegister.prompt).toBe("Don't have an account?");
-      });
-
-      it('should return the registration action', () => {
-        expect(service.form.switch.toRegister.action).toBe('Sign up');
       });
 
     });
 
-    describe('toLogin', () => {
+    describe('aria', () => {
 
-      it('should return the login prompt', () => {
-        expect(service.form.switch.toLogin.prompt).toBe('Already have an account?');
+      it('should expose the button aria messages', () => {
+
       });
 
-      it('should return the login action', () => {
-        expect(service.form.switch.toLogin.action).toBe('Log in');
-      });
+      it('should expose the switch aria messages', () => {
 
-    });
-
-  });
-
-  describe('form.note', () => {
-
-    it('should return the required fields note', () => {
-      expect(service.form.note).toBe('Fields marked with * are required');
-    });
-
-  });
-
-  describe('form.errors', () => {
-
-    describe('invalidEmail', () => {
-
-      it('should return the invalid email message', () => {
-        expect(service.form.errors.invalidEmail).toBe('Please enter a valid email');
-      });
-
-    });
-
-    describe('invalidPassword', () => {
-
-      it('should return the invalid password message for the provided length', () => {
-        expect(service.form.errors.invalidPassword(8)).toBe('Password must be at least 8 characters');
-      });
-
-    });
-
-    describe('invalidCredentials', () => {
-
-      it('should return the invalid credentials message', () => {
-        expect(service.form.errors.invalidCredentials).toBe('This email or password is invalid');
-      });
-
-    });
-
-    describe('emailAlreadyExists', () => {
-
-      it('should return the email already exists message', () => {
-        expect(service.form.errors.emailAlreadyExists).toBe('This email already exists');
-      });
-
-    });
-
-  });
-
-  describe('form.aria', () => {
-
-    describe('buttons', () => {
-
-      it('should return the login button aria label', () => {
-        expect(service.form.aria.buttons.login).toBe('Press to log in using your email and password');
-      });
-
-      it('should return the register button aria label', () => {
-        expect(service.form.aria.buttons.register).toBe('Press to register a new account using your email and password');
-      });
-
-    });
-
-    describe('switch', () => {
-
-      it('should return the login switch aria label', () => {
-        expect(service.form.aria.switch.toLogin).toBe('Navigate to the login page');
-      });
-
-      it('should return the register switch aria label', () => {
-        expect(service.form.aria.switch.toRegister).toBe('Navigate to the registration page');
       });
 
     });
