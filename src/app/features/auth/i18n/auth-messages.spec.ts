@@ -79,11 +79,11 @@ describe('AuthMessagesService', () => {
       describe('invalidPassword', () => {
 
         it('should return the message with the provided length', () => {
-
+          expect(service.form.errors.invalidPassword(8)).toBe('Password must be at least 8 characters');
         });
 
         it('should return the message with a different length', () => {
-
+          expect(service.form.errors.invalidPassword(12)).toBe('Password must be at least 12 characters');
         });
 
       });
