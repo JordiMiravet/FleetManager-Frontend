@@ -15,13 +15,17 @@ describe('LayoutMessagesService', () => {
   });
 
   describe('navigation', () => {
+    
     describe('aria', () => {
+
       it('should expose the nav message', () => {
         expect(service.navigation.aria.nav).toBe('Main navigation menu');
       });
+
     });
 
     describe('links', () => {
+
       it('should expose the home link', () => {
         expect(service.navigation.links.home).toBe('Home');
       });
@@ -37,11 +41,15 @@ describe('LayoutMessagesService', () => {
       it('should expose the graphics link', () => {
         expect(service.navigation.links.graphics).toBe('Graphics');
       });
+
     });
+
   });
 
   describe('authActions', () => {
+
     describe('buttons', () => {
+
       it('should expose the logout button', () => {
         expect(service.authActions.buttons.logout).toBe('Logout');
       });
@@ -53,43 +61,47 @@ describe('LayoutMessagesService', () => {
       it('should expose the login button', () => {
         expect(service.authActions.buttons.login).toBe('Login');
       });
+
     });
 
     describe('aria', () => {
+
       it('should expose the logout message', () => {
-        expect(service.authActions.aria.logout).toBe(
-          'Log out of your account'
-        );
+        expect(service.authActions.aria.logout).toBe('Log out of your account');
       });
 
       it('should expose the register message', () => {
-        expect(service.authActions.aria.register).toBe(
-          'Navigate to register page'
-        );
+        expect(service.authActions.aria.register).toBe('Navigate to register page');
       });
 
       it('should expose the login message', () => {
-        expect(service.authActions.aria.login).toBe(
-          'Navigate to login page'
-        );
+        expect(service.authActions.aria.login).toBe('Navigate to login page');
       });
+
     });
+
   });
 
   describe('drawer', () => {
+
     describe('title', () => {
+
       it('should expose the title message', () => {
         expect(service.drawer.title).toBe('My Account');
       });
+
     });
 
     describe('buttons', () => {
+
       it('should expose the logout button', () => {
         expect(service.drawer.buttons.logout).toBe('Log out');
       });
+
     });
 
     describe('items', () => {
+
       it('should expose the edit profile item', () => {
         expect(service.drawer.items.editProfile).toBe('Edit Profile');
       });
@@ -105,9 +117,11 @@ describe('LayoutMessagesService', () => {
       it('should expose the dark mode item', () => {
         expect(service.drawer.items.darkMode).toBe('Dark Mode');
       });
+
     });
 
     describe('aria', () => {
+
       it('should expose the open button message', () => {
         expect(service.drawer.aria.openButton).toBe(
           'Open account menu'
@@ -123,32 +137,37 @@ describe('LayoutMessagesService', () => {
       it('should expose the drawer message', () => {
         expect(service.drawer.aria.drawer).toBe('Account menu');
       });
+
     });
+
   });
 
   describe('notificationBell', () => {
+
     describe('aria', () => {
+
       describe('button', () => {
+
         it('should return the default message when there are no pending notifications', () => {
-          expect(service.notificationBell.aria.button(0)).toBe(
-            'View notifications'
-          );
+          expect(service.notificationBell.aria.button(0)).toBe('View notifications');
         });
 
         it('should return the message with the pending count', () => {
-          expect(service.notificationBell.aria.button(3)).toBe(
-            'View notifications, 3 pending'
-          );
+          expect(service.notificationBell.aria.button(3)).toBe('View notifications, 3 pending');
         });
+
       });
+
     });
 
     describe('emptyState', () => {
+
       it('should expose the empty state message', () => {
-        expect(service.notificationBell.emptyState).toBe(
-          'No pending invitations'
-        );
+        expect(service.notificationBell.emptyState).toBe('No pending invitations');
       });
+
     });
+
   });
+
 });
