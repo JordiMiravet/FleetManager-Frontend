@@ -17,31 +17,49 @@ describe('AuthMessagesService', () => {
   describe('form', () => {
 
     it('should expose the form titles', () => {
-
+      expect(service.form.title).toEqual({
+        login: 'Login',
+        register: 'Register'
+      });
     });
 
     it('should expose the email field messages', () => {
-
+      expect(service.form.fields.email).toEqual({
+        label: 'Email *',
+        placeholder: 'Enter your email'
+      });
     });
 
     it('should expose the password field messages', () => {
-
+      expect(service.form.fields.password).toEqual({
+        label: 'Password *',
+        placeholder: 'Enter your password'
+      });
     });
 
     it('should expose the form buttons', () => {
-
+      expect(service.form.buttons).toEqual({
+        login: 'Login',
+        register: 'Register'
+      });
     });
 
     it('should expose the switch to register messages', () => {
-
+      expect(service.form.switch.toRegister).toEqual({
+        prompt: "Don't have an account?",
+        action: 'Sign up'
+      });
     });
 
     it('should expose the switch to login messages', () => {
-
+      expect(service.form.switch.toLogin).toEqual({
+        prompt: 'Already have an account?',
+        action: 'Log in'
+      });
     });
 
     it('should expose the required fields note', () => {
-
+      expect(service.form.note).toBe('Fields marked with * are required');
     });
 
     describe('errors', () => {
