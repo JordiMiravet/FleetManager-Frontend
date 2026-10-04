@@ -85,7 +85,7 @@ describe('LayoutMessagesService', () => {
 
     describe('buttons', () => {
       it('should expose the logout button', () => {
-
+        expect(service.drawer.buttons.logout).toBe('Log out');
       });
     });
 
