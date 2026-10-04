@@ -76,4 +76,13 @@ describe('LayoutMessagesService', () => {
     });
   });
 
+  describe('drawer', () => {
+    describe('title', () => {
+      it('should expose the title message', () => {
+
+      });
+    });
+
+  });
+
 });
