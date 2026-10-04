@@ -50,65 +50,36 @@ describe('LayoutMessagesService', () => {
         login: 'Navigate to login page'
       });
     });
-    
+
   });
 
   describe('drawer', () => {
 
-    describe('title', () => {
-
-      it('should expose the title message', () => {
-        expect(service.drawer.title).toBe('My Account');
-      });
-
+    it('should expose the drawer title', () => {
+      expect(service.drawer.title).toBe('My Account');
     });
 
-    describe('buttons', () => {
-
-      it('should expose the logout button', () => {
-        expect(service.drawer.buttons.logout).toBe('Log out');
+    it('should expose the drawer buttons', () => {
+      expect(service.drawer.buttons).toEqual({
+        logout: 'Log out'
       });
-
     });
 
-    describe('items', () => {
-
-      it('should expose the edit profile item', () => {
-        expect(service.drawer.items.editProfile).toBe('Edit Profile');
+    it('should expose the drawer items', () => {
+      expect(service.drawer.items).toEqual({
+        editProfile: 'Edit Profile',
+        settings: 'Settings',
+        language: 'Language',
+        darkMode: 'Dark Mode'
       });
-
-      it('should expose the settings item', () => {
-        expect(service.drawer.items.settings).toBe('Settings');
-      });
-
-      it('should expose the language item', () => {
-        expect(service.drawer.items.language).toBe('Language');
-      });
-
-      it('should expose the dark mode item', () => {
-        expect(service.drawer.items.darkMode).toBe('Dark Mode');
-      });
-
     });
 
-    describe('aria', () => {
-
-      it('should expose the open button message', () => {
-        expect(service.drawer.aria.openButton).toBe(
-          'Open account menu'
-        );
+    it('should expose the drawer aria messages', () => {
+      expect(service.drawer.aria).toEqual({
+        openButton: 'Open account menu',
+        closeButton: 'Close account menu',
+        drawer: 'Account menu'
       });
-
-      it('should expose the close button message', () => {
-        expect(service.drawer.aria.closeButton).toBe(
-          'Close account menu'
-        );
-      });
-
-      it('should expose the drawer message', () => {
-        expect(service.drawer.aria.drawer).toBe('Account menu');
-      });
-
     });
 
   });
