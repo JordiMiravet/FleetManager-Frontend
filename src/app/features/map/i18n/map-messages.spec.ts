@@ -43,26 +43,19 @@ describe('MapMessagesService', () => {
 
   describe('detailsPanel', () => {
 
-    describe('button', () => {
-
-      it('should have the correct label', () => {
-        expect(service.detailsPanel.button).toBe('Center on Me');
-      });
-
+    it('should expose the button label', () => {
+      expect(service.detailsPanel.button).toBe('Center on Me');
     });
 
     describe('aria', () => {
 
-      it('should have the correct region message', () => {
-        expect(service.detailsPanel.aria.region).toBe('Selected vehicle details');
-      });
-
-      it('should have the correct button message', () => {
-        expect(service.detailsPanel.aria.button).toBe('Center map on current location',);
-      });
-
-      it('should have the correct button title', () => {
-        expect(service.detailsPanel.aria.buttonTitle).toBe("Click to center the map on the vehicle's location",);
+      it('should expose the aria messages', () => {
+        expect(service.detailsPanel.aria).toEqual({
+          region: 'Selected vehicle details',
+          button: 'Center map on current location',
+          buttonTitle:
+            "Click to center the map on the vehicle's location",
+        });
       });
 
     });
