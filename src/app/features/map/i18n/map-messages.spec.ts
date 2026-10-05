@@ -28,5 +28,15 @@ describe('MapMessagesService', () => {
         );
       });
     });
+
+    describe('confirmModal', () => {
+      it('should have the correct title', () => {
+
+      });
+
+      it('should have the correct message', () => {
+
+      });
+    });
   });
 });
