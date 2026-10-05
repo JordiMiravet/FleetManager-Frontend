@@ -31,12 +31,11 @@ describe('MapMessagesService', () => {
 
     describe('confirmModal', () => {
 
-      it('should have the correct title', () => {
-        expect(service.mapView.confirmModal.title).toBe('Change vehicle position');
-      });
-
-      it('should have the correct message', () => {
-        expect(service.mapView.confirmModal.message).toBe('Are you sure about changing the position of the vehicle?');
+      it('should expose the confirm modal messages', () => {
+        expect(service.mapView.confirmModal).toEqual({
+          title: 'Change vehicle position',
+          message: 'Are you sure about changing the position of the vehicle?',
+        });
       });
 
     });
