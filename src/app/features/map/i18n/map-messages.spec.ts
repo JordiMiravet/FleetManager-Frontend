@@ -43,4 +43,10 @@ describe('MapMessagesService', () => {
       });
     });
   });
+
+  describe('detailsPanel', () => {
+    describe('button', () => {
+
+    });
+  });
 });
