@@ -46,7 +46,23 @@ describe('MapMessagesService', () => {
 
   describe('detailsPanel', () => {
     describe('button', () => {
+      it('should have the correct label', () => {
+        expect(service.detailsPanel.button).toBe('Center on Me');
+      });
+    });
 
+    describe('aria', () => {
+      it('should have the correct region message', () => {
+
+      });
+
+      it('should have the correct button message', () => {
+
+      });
+
+      it('should have the correct button title', () => {
+
+      });
     });
   });
 });
