@@ -53,15 +53,21 @@ describe('MapMessagesService', () => {
 
     describe('aria', () => {
       it('should have the correct region message', () => {
-
+        expect(service.detailsPanel.aria.region).toBe(
+          'Selected vehicle details',
+        );
       });
 
       it('should have the correct button message', () => {
-
+        expect(service.detailsPanel.aria.button).toBe(
+          'Center map on current location',
+        );
       });
 
       it('should have the correct button title', () => {
-
+        expect(service.detailsPanel.aria.buttonTitle).toBe(
+          "Click to center the map on the vehicle's location",
+        );
       });
     });
   });
