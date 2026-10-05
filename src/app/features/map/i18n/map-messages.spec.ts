@@ -18,12 +18,13 @@ describe('MapMessagesService', () => {
 
     describe('aria', () => {
 
-      it('should have the correct map region message', () => {
-        expect(service.mapView.aria.mapRegion).toBe('Interactive map showing vehicle positions. Visual only, drag points to move vehicles with mouse or touch');
-      });
-
-      it('should have the correct map description message', () => {
-        expect(service.mapView.aria.mapDescription).toBe('This map displays all vehicle positions. Users can select a vehicle from the selector or use the center button on each vehicle card to focus on its location.');
+      it('should expose the map aria messages', () => {
+        expect(service.mapView.aria).toEqual({
+          mapRegion:
+            'Interactive map showing vehicle positions. Visual only, drag points to move vehicles with mouse or touch',
+          mapDescription:
+            'This map displays all vehicle positions. Users can select a vehicle from the selector or use the center button on each vehicle card to focus on its location.',
+        });
       });
 
     });
@@ -68,5 +69,5 @@ describe('MapMessagesService', () => {
     });
 
   });
-  
+
 });
