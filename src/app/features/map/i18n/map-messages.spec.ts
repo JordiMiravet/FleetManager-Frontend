@@ -31,11 +31,15 @@ describe('MapMessagesService', () => {
 
     describe('confirmModal', () => {
       it('should have the correct title', () => {
-
+        expect(service.mapView.confirmModal.title).toBe(
+          'Change vehicle position',
+        );
       });
 
       it('should have the correct message', () => {
-
+        expect(service.mapView.confirmModal.message).toBe(
+          'Are you sure about changing the position of the vehicle?',
+        );
       });
     });
   });
