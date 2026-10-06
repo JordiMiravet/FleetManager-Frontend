@@ -52,27 +52,19 @@ describe('GraphicsMessagesService', () => {
     });
 
     it('should describe the current month', () => {
-      expect(service.hoursByWeekday.description(TimePeriod.Month)).toBe(
-        hoursByWeekdayDescription('current month')
-      );
+      expect(service.hoursByWeekday.description(TimePeriod.Month)).toBe(hoursByWeekdayDescription('current month'));
     });
 
     it('should describe the current year', () => {
-      expect(service.hoursByWeekday.description(TimePeriod.Year)).toBe(
-        hoursByWeekdayDescription('current year')
-      );
+      expect(service.hoursByWeekday.description(TimePeriod.Year)).toBe(hoursByWeekdayDescription('current year'));
     });
 
     it('should describe all time', () => {
-      expect(service.hoursByWeekday.description(TimePeriod.AllTime)).toBe(
-        hoursByWeekdayDescription('all time')
-      );
+      expect(service.hoursByWeekday.description(TimePeriod.AllTime)).toBe(hoursByWeekdayDescription('all time'));
     });
 
     it('should describe the selected period for an unsupported period', () => {
-      expect(service.hoursByWeekday.description('unknown' as TimePeriod)).toBe(
-        hoursByWeekdayDescription('selected period')
-      );
+      expect(service.hoursByWeekday.description('unknown' as TimePeriod)).toBe(hoursByWeekdayDescription('selected period'));
     });
 
   });
@@ -84,39 +76,27 @@ describe('GraphicsMessagesService', () => {
     });
 
     it('should describe the current month', () => {
-      expect(service.mostUsedVehicle.description(TimePeriod.Month)).toBe(
-        mostUsedVehicleDescription('current month')
-      );
+      expect(service.mostUsedVehicle.description(TimePeriod.Month)).toBe(mostUsedVehicleDescription('current month'));
     });
 
     it('should describe the current year', () => {
-      expect(service.mostUsedVehicle.description(TimePeriod.Year)).toBe(
-        mostUsedVehicleDescription('current year')
-      );
+      expect(service.mostUsedVehicle.description(TimePeriod.Year)).toBe(mostUsedVehicleDescription('current year'));
     });
 
     it('should describe all time', () => {
-      expect(service.mostUsedVehicle.description(TimePeriod.AllTime)).toBe(
-        mostUsedVehicleDescription('all time')
-      );
+      expect(service.mostUsedVehicle.description(TimePeriod.AllTime)).toBe(mostUsedVehicleDescription('all time'));
     });
 
     it('should build the dataset label for the current month', () => {
-      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.Month)).toBe(
-        mostUsedVehicleDatasetLabel('current month')
-      );
+      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.Month)).toBe(mostUsedVehicleDatasetLabel('current month'));
     });
 
     it('should build the dataset label for the current year', () => {
-      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.Year)).toBe(
-        mostUsedVehicleDatasetLabel('current year')
-      );
+      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.Year)).toBe(mostUsedVehicleDatasetLabel('current year'));
     });
 
     it('should build the dataset label for all time', () => {
-      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.AllTime)).toBe(
-        mostUsedVehicleDatasetLabel('all time')
-      );
+      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.AllTime)).toBe(mostUsedVehicleDatasetLabel('all time'));
     });
 
   });
@@ -128,39 +108,27 @@ describe('GraphicsMessagesService', () => {
     });
 
     it('should describe the current month', () => {
-      expect(service.vehicleUsageHours.description(TimePeriod.Month)).toBe(
-        vehicleUsageHoursDescription('current month')
-      );
+      expect(service.vehicleUsageHours.description(TimePeriod.Month)).toBe(vehicleUsageHoursDescription('current month'));
     });
 
     it('should describe the current year', () => {
-      expect(service.vehicleUsageHours.description(TimePeriod.Year)).toBe(
-        vehicleUsageHoursDescription('current year')
-      );
+      expect(service.vehicleUsageHours.description(TimePeriod.Year)).toBe(vehicleUsageHoursDescription('current year'));
     });
 
     it('should describe all time', () => {
-      expect(service.vehicleUsageHours.description(TimePeriod.AllTime)).toBe(
-        vehicleUsageHoursDescription('all time')
-      );
+      expect(service.vehicleUsageHours.description(TimePeriod.AllTime)).toBe(vehicleUsageHoursDescription('all time'));
     });
 
     it('should build the dataset label for the current month', () => {
-      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.Month)).toBe(
-        vehicleUsageHoursDatasetLabel('current month')
-      );
+      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.Month)).toBe(vehicleUsageHoursDatasetLabel('current month'));
     });
 
     it('should build the dataset label for the current year', () => {
-      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.Year)).toBe(
-        vehicleUsageHoursDatasetLabel('current year')
-      );
+      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.Year)).toBe(vehicleUsageHoursDatasetLabel('current year'));
     });
 
     it('should build the dataset label for all time', () => {
-      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.AllTime)).toBe(
-        vehicleUsageHoursDatasetLabel('all time')
-      );
+      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.AllTime)).toBe(vehicleUsageHoursDatasetLabel('all time'));
     });
 
   });
