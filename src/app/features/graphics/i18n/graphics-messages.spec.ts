@@ -69,24 +69,37 @@ describe('GraphicsMessagesService', () => {
   describe('mostUsedVehicle', () => {
 
     it('should expose the title', () => {
+      expect(service.mostUsedVehicle.title).toBe('Top 3 most used vehicles chart');
     });
 
     it('should describe the current month', () => {
+      expect(service.mostUsedVehicle.description(TimePeriod.Month)).toBe(
+        'A bar chart showing the top three vehicles by total hours of usage during current month. Visual representation only.'
+      );
     });
 
     it('should describe the current year', () => {
+      expect(service.mostUsedVehicle.description(TimePeriod.Year)).toBe(
+        'A bar chart showing the top three vehicles by total hours of usage during current year. Visual representation only.'
+      );
     });
 
     it('should describe all time', () => {
+      expect(service.mostUsedVehicle.description(TimePeriod.AllTime)).toBe(
+        'A bar chart showing the top three vehicles by total hours of usage during all time. Visual representation only.'
+      );
     });
 
     it('should build the dataset label for the current month', () => {
+      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.Month)).toBe('Top 3 Most Used (current month)');
     });
 
     it('should build the dataset label for the current year', () => {
+      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.Year)).toBe('Top 3 Most Used (current year)');
     });
 
     it('should build the dataset label for all time', () => {
+      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.AllTime)).toBe('Top 3 Most Used (all time)');
     });
 
   });
