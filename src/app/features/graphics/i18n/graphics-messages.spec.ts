@@ -66,6 +66,10 @@ describe('GraphicsMessagesService', () => {
       expect(service.hoursByWeekday.description(TimePeriod.AllTime)).toContain('all time');
     });
 
+    it('should describe the selected period for an unsupported period', () => {
+      expect(service.hoursByWeekday.description('unknown' as TimePeriod)).toContain('selected period');
+    });
+
   });
 
   describe('mostUsedVehicle', () => {
