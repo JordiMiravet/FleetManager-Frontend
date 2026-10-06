@@ -7,6 +7,17 @@ import { TimePeriod } from '../enums/time-period.enum';
 describe('GraphicsMessagesService', () => {
   let service: GraphicsMessagesService;
 
+  const hoursByWeekdayDescription = (period: string): string =>
+    `A line chart showing the number of hours each vehicle was used on each day of the week for the ${period}. Visual representation only.`;
+  const mostUsedVehicleDescription = (period: string): string =>
+    `A bar chart showing the top three vehicles by total hours of usage during ${period}. Visual representation only.`;
+  const mostUsedVehicleDatasetLabel = (period: string): string =>
+    `Top 3 Most Used (${period})`;
+  const vehicleUsageHoursDescription = (period: string): string =>
+    `A doughnut chart showing the distribution of vehicle usage hours for the ${period}. Visual representation only. Hover over chart segments to see individual vehicle data.`;
+  const vehicleUsageHoursDatasetLabel = (period: string): string =>
+    `Hours of Use (${period})`;
+
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(GraphicsMessagesService);
@@ -18,116 +29,106 @@ describe('GraphicsMessagesService', () => {
 
   describe('graphicsView', () => {
 
-    it('should expose the controls label', () => {
-      expect(service.graphicsView.controlsLabel).toBe('Vehicle metrics controls');
-    });
-
-    it('should expose the title', () => {
-      expect(service.graphicsView.title).toBe('Metrics:');
-    });
-
-    it('should expose the period filter label', () => {
-      expect(service.graphicsView.periodFilterLabel).toBe('Time period filter');
-    });
-
-    it('should expose the charts label', () => {
-      expect(service.graphicsView.chartsLabel).toBe('Vehicle metrics charts');
-    });
-
-    it('should expose the month period label', () => {
-      expect(service.graphicsView.periods.month).toBe('This Month');
-    });
-
-    it('should expose the year period label', () => {
-      expect(service.graphicsView.periods.year).toBe('This Year');
-    });
-
-    it('should expose the all time period label', () => {
-      expect(service.graphicsView.periods.allTime).toBe('All Time');
+    it('should expose the view messages', () => {
+      expect(service.graphicsView).toEqual({
+        controlsLabel: 'Vehicle metrics controls',
+        title: 'Metrics:',
+        periodFilterLabel: 'Time period filter',
+        chartsLabel: 'Vehicle metrics charts',
+        periods: {
+          month: 'This Month',
+          year: 'This Year',
+          allTime: 'All Time',
+        },
+      });
     });
 
   });
 
   describe('hoursByWeekday', () => {
 
-    it('should expose the accessible title', () => {
+    it('should expose the title', () => {
       expect(service.hoursByWeekday.title).toBe('Vehicle usage by day of week chart');
     });
 
     it('should describe the current month', () => {
-      expect(service.hoursByWeekday.description(TimePeriod.Month)).toContain('current month');
+      expect(service.hoursByWeekday.description(TimePeriod.Month)).toBe(hoursByWeekdayDescription('current month'));
     });
 
     it('should describe the current year', () => {
-      expect(service.hoursByWeekday.description(TimePeriod.Year)).toContain('current year');
+      expect(service.hoursByWeekday.description(TimePeriod.Year)).toBe(hoursByWeekdayDescription('current year'));
     });
 
     it('should describe all time', () => {
-      expect(service.hoursByWeekday.description(TimePeriod.AllTime)).toContain('all time');
+      expect(service.hoursByWeekday.description(TimePeriod.AllTime)).toBe(hoursByWeekdayDescription('all time'));
+    });
+
+    it('should describe the selected period for an unsupported period', () => {
+      expect(service.hoursByWeekday.description('unknown' as TimePeriod)).toBe(hoursByWeekdayDescription('selected period'));
     });
 
   });
 
   describe('mostUsedVehicle', () => {
 
-    it('should expose the accessible title', () => {
+    it('should expose the title', () => {
       expect(service.mostUsedVehicle.title).toBe('Top 3 most used vehicles chart');
     });
 
     it('should describe the current month', () => {
-      expect(service.mostUsedVehicle.description(TimePeriod.Month)).toContain('current month');
+      expect(service.mostUsedVehicle.description(TimePeriod.Month)).toBe(mostUsedVehicleDescription('current month'));
     });
 
     it('should describe the current year', () => {
-      expect(service.mostUsedVehicle.description(TimePeriod.Year)).toContain('current year');
+      expect(service.mostUsedVehicle.description(TimePeriod.Year)).toBe(mostUsedVehicleDescription('current year'));
     });
 
     it('should describe all time', () => {
-      expect(service.mostUsedVehicle.description(TimePeriod.AllTime)).toContain('all time');
+      expect(service.mostUsedVehicle.description(TimePeriod.AllTime)).toBe(mostUsedVehicleDescription('all time'));
     });
 
     it('should build the dataset label for the current month', () => {
-      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.Month)).toBe('Top 3 Most Used (current month)');
+      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.Month)).toBe(mostUsedVehicleDatasetLabel('current month'));
     });
 
     it('should build the dataset label for the current year', () => {
-      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.Year)).toBe('Top 3 Most Used (current year)');
+      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.Year)).toBe(mostUsedVehicleDatasetLabel('current year'));
     });
 
     it('should build the dataset label for all time', () => {
-      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.AllTime)).toBe('Top 3 Most Used (all time)');
+      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.AllTime)).toBe(mostUsedVehicleDatasetLabel('all time'));
     });
 
   });
 
   describe('vehicleUsageHours', () => {
 
-    it('should expose the accessible title', () => {
+    it('should expose the title', () => {
       expect(service.vehicleUsageHours.title).toBe('Vehicle usage hours distribution chart');
     });
 
     it('should describe the current month', () => {
-      expect(service.vehicleUsageHours.description(TimePeriod.Month)).toContain('current month');
+      expect(service.vehicleUsageHours.description(TimePeriod.Month)).toBe(vehicleUsageHoursDescription('current month'));
     });
 
     it('should describe the current year', () => {
-      expect(service.vehicleUsageHours.description(TimePeriod.Year)).toContain('current year');
+      expect(service.vehicleUsageHours.description(TimePeriod.Year)).toBe(vehicleUsageHoursDescription('current year'));
     });
 
     it('should describe all time', () => {
-      expect(service.vehicleUsageHours.description(TimePeriod.AllTime)).toContain('all time');
+      expect(service.vehicleUsageHours.description(TimePeriod.AllTime)).toBe(vehicleUsageHoursDescription('all time'));
     });
 
     it('should build the dataset label for the current month', () => {
-      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.Month)).toBe('Hours of Use (current month)');
+      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.Month)).toBe(vehicleUsageHoursDatasetLabel('current month'));
     });
 
     it('should build the dataset label for the current year', () => {
-      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.Year)).toBe('Hours of Use (current year)');
+      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.Year)).toBe(vehicleUsageHoursDatasetLabel('current year'));
     });
 
     it('should build the dataset label for all time', () => {
-      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.AllTime)).toBe('Hours of Use (all time)');
+      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.AllTime)).toBe(vehicleUsageHoursDatasetLabel('all time'));
     });
 
   });
