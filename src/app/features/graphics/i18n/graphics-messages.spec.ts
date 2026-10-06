@@ -53,25 +53,25 @@ describe('GraphicsMessagesService', () => {
 
     it('should describe the current month', () => {
       expect(service.hoursByWeekday.description(TimePeriod.Month)).toBe(
-        'A line chart showing the number of hours each vehicle was used on each day of the week for the current month. Visual representation only.'
+        hoursByWeekdayDescription('current month')
       );
     });
 
     it('should describe the current year', () => {
       expect(service.hoursByWeekday.description(TimePeriod.Year)).toBe(
-        'A line chart showing the number of hours each vehicle was used on each day of the week for the current year. Visual representation only.'
+        hoursByWeekdayDescription('current year')
       );
     });
 
     it('should describe all time', () => {
       expect(service.hoursByWeekday.description(TimePeriod.AllTime)).toBe(
-        'A line chart showing the number of hours each vehicle was used on each day of the week for the all time. Visual representation only.'
+        hoursByWeekdayDescription('all time')
       );
     });
 
     it('should describe the selected period for an unsupported period', () => {
       expect(service.hoursByWeekday.description('unknown' as TimePeriod)).toBe(
-        'A line chart showing the number of hours each vehicle was used on each day of the week for the selected period. Visual representation only.'
+        hoursByWeekdayDescription('selected period')
       );
     });
 
@@ -85,32 +85,38 @@ describe('GraphicsMessagesService', () => {
 
     it('should describe the current month', () => {
       expect(service.mostUsedVehicle.description(TimePeriod.Month)).toBe(
-        'A bar chart showing the top three vehicles by total hours of usage during current month. Visual representation only.'
+        mostUsedVehicleDescription('current month')
       );
     });
 
     it('should describe the current year', () => {
       expect(service.mostUsedVehicle.description(TimePeriod.Year)).toBe(
-        'A bar chart showing the top three vehicles by total hours of usage during current year. Visual representation only.'
+        mostUsedVehicleDescription('current year')
       );
     });
 
     it('should describe all time', () => {
       expect(service.mostUsedVehicle.description(TimePeriod.AllTime)).toBe(
-        'A bar chart showing the top three vehicles by total hours of usage during all time. Visual representation only.'
+        mostUsedVehicleDescription('all time')
       );
     });
 
     it('should build the dataset label for the current month', () => {
-      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.Month)).toBe('Top 3 Most Used (current month)');
+      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.Month)).toBe(
+        mostUsedVehicleDatasetLabel('current month')
+      );
     });
 
     it('should build the dataset label for the current year', () => {
-      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.Year)).toBe('Top 3 Most Used (current year)');
+      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.Year)).toBe(
+        mostUsedVehicleDatasetLabel('current year')
+      );
     });
 
     it('should build the dataset label for all time', () => {
-      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.AllTime)).toBe('Top 3 Most Used (all time)');
+      expect(service.mostUsedVehicle.datasetLabel(TimePeriod.AllTime)).toBe(
+        mostUsedVehicleDatasetLabel('all time')
+      );
     });
 
   });
@@ -123,32 +129,38 @@ describe('GraphicsMessagesService', () => {
 
     it('should describe the current month', () => {
       expect(service.vehicleUsageHours.description(TimePeriod.Month)).toBe(
-        'A doughnut chart showing the distribution of vehicle usage hours for the current month. Visual representation only. Hover over chart segments to see individual vehicle data.'
+        vehicleUsageHoursDescription('current month')
       );
     });
 
     it('should describe the current year', () => {
       expect(service.vehicleUsageHours.description(TimePeriod.Year)).toBe(
-        'A doughnut chart showing the distribution of vehicle usage hours for the current year. Visual representation only. Hover over chart segments to see individual vehicle data.'
+        vehicleUsageHoursDescription('current year')
       );
     });
 
     it('should describe all time', () => {
       expect(service.vehicleUsageHours.description(TimePeriod.AllTime)).toBe(
-        'A doughnut chart showing the distribution of vehicle usage hours for the all time. Visual representation only. Hover over chart segments to see individual vehicle data.'
+        vehicleUsageHoursDescription('all time')
       );
     });
 
     it('should build the dataset label for the current month', () => {
-      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.Month)).toBe('Hours of Use (current month)');
+      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.Month)).toBe(
+        vehicleUsageHoursDatasetLabel('current month')
+      );
     });
 
     it('should build the dataset label for the current year', () => {
-      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.Year)).toBe('Hours of Use (current year)');
+      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.Year)).toBe(
+        vehicleUsageHoursDatasetLabel('current year')
+      );
     });
 
     it('should build the dataset label for all time', () => {
-      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.AllTime)).toBe('Hours of Use (all time)');
+      expect(service.vehicleUsageHours.datasetLabel(TimePeriod.AllTime)).toBe(
+        vehicleUsageHoursDatasetLabel('all time')
+      );
     });
 
   });
