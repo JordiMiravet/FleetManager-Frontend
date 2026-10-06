@@ -37,18 +37,31 @@ describe('GraphicsMessagesService', () => {
   describe('hoursByWeekday', () => {
 
     it('should expose the title', () => {
+      expect(service.hoursByWeekday.title).toBe('Vehicle usage by day of week chart');
     });
 
     it('should describe the current month', () => {
+      expect(service.hoursByWeekday.description(TimePeriod.Month)).toBe(
+        'A line chart showing the number of hours each vehicle was used on each day of the week for the current month. Visual representation only.'
+      );
     });
 
     it('should describe the current year', () => {
+      expect(service.hoursByWeekday.description(TimePeriod.Year)).toBe(
+        'A line chart showing the number of hours each vehicle was used on each day of the week for the current year. Visual representation only.'
+      );
     });
 
     it('should describe all time', () => {
+      expect(service.hoursByWeekday.description(TimePeriod.AllTime)).toBe(
+        'A line chart showing the number of hours each vehicle was used on each day of the week for the all time. Visual representation only.'
+      );
     });
 
     it('should describe the selected period for an unsupported period', () => {
+      expect(service.hoursByWeekday.description('unknown' as TimePeriod)).toBe(
+        'A line chart showing the number of hours each vehicle was used on each day of the week for the selected period. Visual representation only.'
+      );
     });
 
   });
