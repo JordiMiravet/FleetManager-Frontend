@@ -7,6 +7,17 @@ import { TimePeriod } from '../enums/time-period.enum';
 describe('GraphicsMessagesService', () => {
   let service: GraphicsMessagesService;
 
+  const hoursByWeekdayDescription = (period: string): string =>
+    `A line chart showing the number of hours each vehicle was used on each day of the week for the ${period}. Visual representation only.`;
+  const mostUsedVehicleDescription = (period: string): string =>
+    `A bar chart showing the top three vehicles by total hours of usage during ${period}. Visual representation only.`;
+  const mostUsedVehicleDatasetLabel = (period: string): string =>
+    `Top 3 Most Used (${period})`;
+  const vehicleUsageHoursDescription = (period: string): string =>
+    `A doughnut chart showing the distribution of vehicle usage hours for the ${period}. Visual representation only. Hover over chart segments to see individual vehicle data.`;
+  const vehicleUsageHoursDatasetLabel = (period: string): string =>
+    `Hours of Use (${period})`;
+
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(GraphicsMessagesService);
