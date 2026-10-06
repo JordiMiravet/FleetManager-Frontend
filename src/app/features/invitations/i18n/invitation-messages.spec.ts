@@ -13,4 +13,17 @@ describe('InvitationMessagesService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  describe('card', () => {
+
+    it('should expose the labels', () => {
+
+    });
+
+    it('should expose the buttons', () => {
+
+    });
+
+  });
+
 });
