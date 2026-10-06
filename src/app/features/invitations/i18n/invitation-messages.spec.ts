@@ -17,11 +17,16 @@ describe('InvitationMessagesService', () => {
   describe('card', () => {
 
     it('should expose the labels', () => {
-
+      expect(service.card.labels).toEqual({
+        owner: 'Shared by'
+      });
     });
 
     it('should expose the buttons', () => {
-
+      expect(service.card.buttons).toEqual({
+        accept: 'Accept',
+        decline: 'Decline'
+      });
     });
 
   });
