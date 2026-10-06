@@ -29,6 +29,18 @@ describe('InvitationMessagesService', () => {
       });
     });
 
+    describe('aria', () => {
+
+      it('should return the accept message with the provided vehicle name', () => {
+
+      });
+
+      it('should return the decline message with the provided vehicle name', () => {
+
+      });
+
+    });
+
   });
 
 });
