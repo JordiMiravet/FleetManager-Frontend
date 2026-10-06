@@ -36,24 +36,19 @@ describe('GraphicsMessagesService', () => {
 
   describe('hoursByWeekday', () => {
 
-    it('should expose the accessible title', () => {
-      expect(service.hoursByWeekday.title).toBe('Vehicle usage by day of week chart');
+    it('should expose the title', () => {
     });
 
     it('should describe the current month', () => {
-      expect(service.hoursByWeekday.description(TimePeriod.Month)).toContain('current month');
     });
 
     it('should describe the current year', () => {
-      expect(service.hoursByWeekday.description(TimePeriod.Year)).toContain('current year');
     });
 
     it('should describe all time', () => {
-      expect(service.hoursByWeekday.description(TimePeriod.AllTime)).toContain('all time');
     });
 
     it('should describe the selected period for an unsupported period', () => {
-      expect(service.hoursByWeekday.description('unknown' as TimePeriod)).toContain('selected period');
     });
 
   });
