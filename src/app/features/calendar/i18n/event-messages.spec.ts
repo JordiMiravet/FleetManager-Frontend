@@ -14,6 +14,7 @@ describe('EventMessagesService', () => {
   });
 
   describe('calendar', () => {
+
     it('should expose the create event action message', () => {
       expect(service.calendar.actions.createEvent).toBe('Add Event');
     });
@@ -24,9 +25,11 @@ describe('EventMessagesService', () => {
         actions: 'Calendar actions',
       });
     });
+
   });
 
   describe('confirmModal', () => {
+
     it('should expose the delete event title', () => {
       expect(service.confirmModal.deleteEvent.title).toBe('Delete this event');
     });
@@ -36,9 +39,11 @@ describe('EventMessagesService', () => {
         'Are you sure you want to delete this event? This action cannot be undone',
       );
     });
+
   });
 
   describe('dayEvents', () => {
+
     it('should return the expected title for a given date', () => {
       const date = '2026-10-07';
 
@@ -54,6 +59,7 @@ describe('EventMessagesService', () => {
     });
 
     describe('actions', () => {
+
       it('should expose the create event action message', () => {
         expect(service.dayEvents.actions.create).toBe('Add Event');
       });
@@ -65,6 +71,7 @@ describe('EventMessagesService', () => {
       it('should expose the delete event action message', () => {
         expect(service.dayEvents.actions.delete).toBe('Delete Event');
       });
+
     });
 
     it('should expose the vehicle fallback message', () => {
@@ -72,6 +79,7 @@ describe('EventMessagesService', () => {
     });
 
     describe('aria', () => {
+
       it('should return the expected title for a given date', () => {
         const date = '2026-10-07';
 
@@ -89,11 +97,15 @@ describe('EventMessagesService', () => {
           'There are no events for the selected day',
         );
       });
+
     });
+
   });
 
   describe('form', () => {
+
     describe('title', () => {
+
       it('should expose the create title', () => {
         expect(service.form.title.create).toBe('Add new Event');
       });
@@ -101,10 +113,13 @@ describe('EventMessagesService', () => {
       it('should expose the edit title', () => {
         expect(service.form.title.edit).toBe('Update Event');
       });
+
     });
 
     describe('fields', () => {
+
       describe('title', () => {
+
         it('should expose the title field label', () => {
           expect(service.form.fields.title.label).toBe('Title *');
         });
@@ -115,24 +130,31 @@ describe('EventMessagesService', () => {
       });
 
       describe('date', () => {
+
         it('should expose the date field label', () => {
           expect(service.form.fields.date.label).toBe('Date *');
         });
+
       });
 
       describe('hourStart', () => {
+
         it('should expose the start time field label', () => {
           expect(service.form.fields.hourStart.label).toBe('Start Time *');
         });
+
       });
 
       describe('hourEnd', () => {
+
         it('should expose the end time field label', () => {
           expect(service.form.fields.hourEnd.label).toBe('End Time *');
         });
+
       });
 
       describe('vehicle', () => {
+
         it('should expose the vehicle field label', () => {
           expect(service.form.fields.vehicle.label).toBe('Vehicle *');
         });
@@ -148,9 +170,11 @@ describe('EventMessagesService', () => {
             'Please select a vehicle',
           );
         });
+
       });
 
       describe('comment', () => {
+
         it('should expose the comment field label', () => {
           expect(service.form.fields.comment.label).toBe('Comment');
         });
@@ -160,10 +184,13 @@ describe('EventMessagesService', () => {
             'Type the note here...',
           );
         });
+
       });
+
     });
 
     describe('buttons', () => {
+
       it('should expose the cancel button message', () => {
         expect(service.form.buttons.cancel).toBe('Cancel');
       });
@@ -171,6 +198,7 @@ describe('EventMessagesService', () => {
       it('should expose the save button message', () => {
         expect(service.form.buttons.save).toBe('Save');
       });
+
     });
 
     it('should expose the required fields note', () => {
@@ -178,6 +206,7 @@ describe('EventMessagesService', () => {
     });
 
     describe('aria', () => {
+
       it('should expose the cancel accessibility message', () => {
         expect(service.form.aria.cancel).toBe('Cancel adding event');
       });
@@ -185,9 +214,11 @@ describe('EventMessagesService', () => {
       it('should expose the save accessibility message', () => {
         expect(service.form.aria.save).toBe('Save event');
       });
+
     });
 
     describe('errors', () => {
+
       it('should expose the required error message', () => {
         expect(service.form.errors.required).toBe('This field is required');
       });
@@ -203,6 +234,7 @@ describe('EventMessagesService', () => {
           'This vehicle is already booked at this time',
         );
       });
+      
     });
 
   });
