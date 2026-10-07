@@ -94,4 +94,16 @@ describe('EventMessagesService', () => {
     });
   });
 
+  describe('form', () => {
+    describe('title', () => {
+      it('should expose the create title', () => {
+      
+      });
+
+      it('should expose the edit title', () => {
+
+      });
+    });
+  });
+
 });
