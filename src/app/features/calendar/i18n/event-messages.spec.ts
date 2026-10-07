@@ -28,11 +28,13 @@ describe('EventMessagesService', () => {
 
   describe('confirmModal', () => {
     it('should expose the delete event title', () => {
-      
+      expect(service.confirmModal.deleteEvent.title).toBe('Delete this event');
     });
 
     it('should expose the delete event message', () => {
-
+      expect(service.confirmModal.deleteEvent.message).toBe(
+        'Are you sure you want to delete this event? This action cannot be undone',
+      );
     });
   });
 
