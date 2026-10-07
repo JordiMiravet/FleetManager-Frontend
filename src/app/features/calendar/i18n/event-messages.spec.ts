@@ -68,6 +68,11 @@ describe('EventMessagesService', () => {
         expect(service.dayEvents.actions.delete).toBe('Delete Event');
       });
     });
+    describe('dayEvents', () => {
+      it('should expose the vehicle fallback message', () => {
+        expect(service.dayEvents.vehicleFallback).toBe('Unknown Vehicle');
+      });
+    });
   });
 
 });
