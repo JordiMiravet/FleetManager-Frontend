@@ -165,11 +165,11 @@ describe('EventMessagesService', () => {
 
     describe('buttons', () => {
       it('should expose the cancel button message', () => {
-
+        expect(service.form.buttons.cancel).toBe('Cancel');
       });
 
       it('should expose the save button message', () => {
-
+        expect(service.form.buttons.save).toBe('Save');
       });
     });
   });
