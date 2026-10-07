@@ -162,6 +162,16 @@ describe('EventMessagesService', () => {
         });
       });
     });
+
+    describe('buttons', () => {
+      it('should expose the cancel button message', () => {
+
+      });
+
+      it('should expose the save button message', () => {
+
+      });
+    });
   });
 
 });
