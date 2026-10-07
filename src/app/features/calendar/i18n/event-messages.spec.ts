@@ -54,4 +54,20 @@ describe('EventMessagesService', () => {
     });
   });
 
+  describe('dayEvents', () => {
+    describe('actions', () => {
+      it('should expose the create event action message', () => {
+
+      });
+
+      it('should expose the edit event action message', () => {
+
+      });
+
+      it('should expose the delete event action message', () => {
+        
+      });
+    });
+  });
+
 });
