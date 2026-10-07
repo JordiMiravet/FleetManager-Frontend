@@ -108,9 +108,11 @@ describe('EventMessagesService', () => {
     describe('fields', () => {
       describe('title', () => {
         it('should expose the title field label', () => {
+          expect(service.form.fields.title.label).toBe('Title *');
         });
 
         it('should expose the title field placeholder', () => {
+          expect(service.form.fields.title.placeholder).toBe('Event Name*');
         });
       });
     });
