@@ -75,15 +75,21 @@ describe('EventMessagesService', () => {
     });
     describe('aria', () => {
       it('should return the expected title for a given date', () => {
+        const date = '2026-10-07';
 
+        expect(service.dayEvents.aria.title(date)).toBe(
+          'Events of the Day 2026-10-07',
+        );
       });
 
       it('should expose the events list message', () => {
-
+        expect(service.dayEvents.aria.list).toBe('Events list');
       });
 
       it('should expose the empty message', () => {
-
+        expect(service.dayEvents.aria.empty).toBe(
+          'There are no events for the selected day',
+        );
       });
     });
   });
