@@ -97,11 +97,11 @@ describe('EventMessagesService', () => {
   describe('form', () => {
     describe('title', () => {
       it('should expose the create title', () => {
-      
+        expect(service.form.title.create).toBe('Add new Event');
       });
 
       it('should expose the edit title', () => {
-
+        expect(service.form.title.edit).toBe('Update Event');
       });
     });
   });
