@@ -45,6 +45,24 @@ describe('EventMessagesService', () => {
 
   describe('dayEvents', () => {
 
+    it('should expose the day events messages', () => {
+      expect(service.dayEvents).toEqual({
+        title: expect.any(Function),
+        empty: 'There are no events for the selected day',
+        actions: {
+          create: 'Add Event',
+          edit: 'Update Event',
+          delete: 'Delete Event',
+        },
+        vehicleFallback: 'Unknown Vehicle',
+        aria: {
+          title: expect.any(Function),
+          list: 'Events list',
+          empty: 'There are no events for the selected day',
+        },
+      });
+    });
+
     it('should return the expected title for a given date', () => {
       const date = '2026-10-07';
 
@@ -53,52 +71,12 @@ describe('EventMessagesService', () => {
       );
     });
 
-    it('should expose the empty message', () => {
-      expect(service.dayEvents.empty).toBe(
-        'There are no events for the selected day',
+    it('should return the expected aria title for a given date', () => {
+      const date = '2026-10-07';
+
+      expect(service.dayEvents.aria.title(date)).toBe(
+        'Events of the Day 2026-10-07',
       );
-    });
-
-    describe('actions', () => {
-
-      it('should expose the create event action message', () => {
-        expect(service.dayEvents.actions.create).toBe('Add Event');
-      });
-
-      it('should expose the edit event action message', () => {
-        expect(service.dayEvents.actions.edit).toBe('Update Event');
-      });
-
-      it('should expose the delete event action message', () => {
-        expect(service.dayEvents.actions.delete).toBe('Delete Event');
-      });
-
-    });
-
-    it('should expose the vehicle fallback message', () => {
-      expect(service.dayEvents.vehicleFallback).toBe('Unknown Vehicle');
-    });
-
-    describe('aria', () => {
-
-      it('should return the expected title for a given date', () => {
-        const date = '2026-10-07';
-
-        expect(service.dayEvents.aria.title(date)).toBe(
-          'Events of the Day 2026-10-07',
-        );
-      });
-
-      it('should expose the events list message', () => {
-        expect(service.dayEvents.aria.list).toBe('Events list');
-      });
-
-      it('should expose the empty message', () => {
-        expect(service.dayEvents.aria.empty).toBe(
-          'There are no events for the selected day',
-        );
-      });
-
     });
 
   });
