@@ -73,6 +73,19 @@ describe('EventMessagesService', () => {
         expect(service.dayEvents.vehicleFallback).toBe('Unknown Vehicle');
       });
     });
+    describe('aria', () => {
+      it('should return the expected title for a given date', () => {
+
+      });
+
+      it('should expose the events list message', () => {
+
+      });
+
+      it('should expose the empty message', () => {
+
+      });
+    });
   });
 
 });
