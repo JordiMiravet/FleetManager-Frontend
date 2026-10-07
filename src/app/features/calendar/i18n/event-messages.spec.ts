@@ -174,7 +174,7 @@ describe('EventMessagesService', () => {
     });
 
     it('should expose the required fields note', () => {
-
+      expect(service.form.note).toBe('Fields marked with * are required');
     });
 
   });
