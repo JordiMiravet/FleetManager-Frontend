@@ -152,11 +152,13 @@ describe('EventMessagesService', () => {
       });
       describe('comment', () => {
         it('should expose the comment field label', () => {
-
+          expect(service.form.fields.comment.label).toBe('Comment');
         });
 
         it('should expose the comment field placeholder', () => {
-          
+          expect(service.form.fields.comment.placeholder).toBe(
+            'Type the note here...',
+          );
         });
       });
     });
