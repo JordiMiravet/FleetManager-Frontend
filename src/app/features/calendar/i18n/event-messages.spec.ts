@@ -179,11 +179,11 @@ describe('EventMessagesService', () => {
 
     describe('aria', () => {
       it('should expose the cancel accessibility message', () => {
-
+        expect(service.form.aria.cancel).toBe('Cancel adding event');
       });
 
       it('should expose the save accessibility message', () => {
-
+        expect(service.form.aria.save).toBe('Save event');
       });
     });
 
