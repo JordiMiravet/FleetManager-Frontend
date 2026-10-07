@@ -186,6 +186,19 @@ describe('EventMessagesService', () => {
         expect(service.form.aria.save).toBe('Save event');
       });
     });
+    describe('errors', () => {
+      it('should expose the required error message', () => {
+
+      });
+
+      it('should expose the invalid range error message', () => {
+
+      });
+
+      it('should expose the overlap error message', () => {
+
+      });
+    });
 
   });
 
