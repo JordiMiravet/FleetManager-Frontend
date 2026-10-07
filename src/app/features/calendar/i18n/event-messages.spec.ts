@@ -40,11 +40,17 @@ describe('EventMessagesService', () => {
 
   describe('dayEvents', () => {
     it('should return the expected title for a given date', () => {
+      const date = '2026-10-07';
 
+      expect(service.dayEvents.title(date)).toBe(
+        'Events of the Day: 2026-10-07',
+      );
     });
 
     it('should expose the empty message', () => {
-
+      expect(service.dayEvents.empty).toBe(
+        'There are no events for the selected day',
+      );
     });
   });
 
