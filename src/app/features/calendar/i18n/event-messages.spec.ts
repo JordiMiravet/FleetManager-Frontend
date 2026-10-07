@@ -132,6 +132,19 @@ describe('EventMessagesService', () => {
           expect(service.form.fields.hourEnd.label).toBe('End Time *');
         });
       });
+
+      describe('vehicle', () => {
+        it('should expose the vehicle field label', () => {
+        });
+
+        it('should expose the vehicle field placeholder', () => {
+          
+        });
+
+        it('should expose the vehicle field error', () => {
+          
+        });
+      });
     });
   });
 
