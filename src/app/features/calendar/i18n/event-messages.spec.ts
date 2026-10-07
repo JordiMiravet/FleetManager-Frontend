@@ -83,137 +83,52 @@ describe('EventMessagesService', () => {
 
   describe('form', () => {
 
-    describe('title', () => {
-
-      it('should expose the create title', () => {
-        expect(service.form.title.create).toBe('Add new Event');
+    it('should expose the form messages', () => {
+      expect(service.form).toEqual({
+        title: {
+          create: 'Add new Event',
+          edit: 'Update Event',
+        },
+        fields: {
+          title: {
+            label: 'Title *',
+            placeholder: 'Event Name*',
+          },
+          date: {
+            label: 'Date *',
+          },
+          hourStart: {
+            label: 'Start Time *',
+          },
+          hourEnd: {
+            label: 'End Time *',
+          },
+          vehicle: {
+            label: 'Vehicle *',
+            placeholder: 'Select vehicle*',
+            error: 'Please select a vehicle',
+          },
+          comment: {
+            label: 'Comment',
+            placeholder: 'Type the note here...',
+          },
+        },
+        buttons: {
+          cancel: 'Cancel',
+          save: 'Save',
+        },
+        note: 'Fields marked with * are required',
+        aria: {
+          cancel: 'Cancel adding event',
+          save: 'Save event',
+        },
+        errors: {
+          required: 'This field is required',
+          invalidRange:
+            'Are you going back to the future, McFly? End time must be after start time',
+          overlap: 'This vehicle is already booked at this time',
+        },
       });
-
-      it('should expose the edit title', () => {
-        expect(service.form.title.edit).toBe('Update Event');
-      });
-
-    });
-
-    describe('fields', () => {
-
-      describe('title', () => {
-
-        it('should expose the title field label', () => {
-          expect(service.form.fields.title.label).toBe('Title *');
-        });
-
-        it('should expose the title field placeholder', () => {
-          expect(service.form.fields.title.placeholder).toBe('Event Name*');
-        });
-      });
-
-      describe('date', () => {
-
-        it('should expose the date field label', () => {
-          expect(service.form.fields.date.label).toBe('Date *');
-        });
-
-      });
-
-      describe('hourStart', () => {
-
-        it('should expose the start time field label', () => {
-          expect(service.form.fields.hourStart.label).toBe('Start Time *');
-        });
-
-      });
-
-      describe('hourEnd', () => {
-
-        it('should expose the end time field label', () => {
-          expect(service.form.fields.hourEnd.label).toBe('End Time *');
-        });
-
-      });
-
-      describe('vehicle', () => {
-
-        it('should expose the vehicle field label', () => {
-          expect(service.form.fields.vehicle.label).toBe('Vehicle *');
-        });
-
-        it('should expose the vehicle field placeholder', () => {
-          expect(service.form.fields.vehicle.placeholder).toBe(
-            'Select vehicle*',
-          );
-        });
-
-        it('should expose the vehicle field error', () => {
-          expect(service.form.fields.vehicle.error).toBe(
-            'Please select a vehicle',
-          );
-        });
-
-      });
-
-      describe('comment', () => {
-
-        it('should expose the comment field label', () => {
-          expect(service.form.fields.comment.label).toBe('Comment');
-        });
-
-        it('should expose the comment field placeholder', () => {
-          expect(service.form.fields.comment.placeholder).toBe(
-            'Type the note here...',
-          );
-        });
-
-      });
-
-    });
-
-    describe('buttons', () => {
-
-      it('should expose the cancel button message', () => {
-        expect(service.form.buttons.cancel).toBe('Cancel');
-      });
-
-      it('should expose the save button message', () => {
-        expect(service.form.buttons.save).toBe('Save');
-      });
-
-    });
-
-    it('should expose the required fields note', () => {
-      expect(service.form.note).toBe('Fields marked with * are required');
-    });
-
-    describe('aria', () => {
-
-      it('should expose the cancel accessibility message', () => {
-        expect(service.form.aria.cancel).toBe('Cancel adding event');
-      });
-
-      it('should expose the save accessibility message', () => {
-        expect(service.form.aria.save).toBe('Save event');
-      });
-
-    });
-
-    describe('errors', () => {
-
-      it('should expose the required error message', () => {
-        expect(service.form.errors.required).toBe('This field is required');
-      });
-
-      it('should expose the invalid range error message', () => {
-        expect(service.form.errors.invalidRange).toBe(
-          'Are you going back to the future, McFly? End time must be after start time',
-        );
-      });
-
-      it('should expose the overlap error message', () => {
-        expect(service.form.errors.overlap).toBe(
-          'This vehicle is already booked at this time',
-        );
-      });
-
     });
 
   });
