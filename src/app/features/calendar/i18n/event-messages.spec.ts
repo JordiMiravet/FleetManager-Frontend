@@ -104,6 +104,16 @@ describe('EventMessagesService', () => {
         expect(service.form.title.edit).toBe('Update Event');
       });
     });
+
+    describe('fields', () => {
+      describe('title', () => {
+        it('should expose the title field label', () => {
+        });
+
+        it('should expose the title field placeholder', () => {
+        });
+      });
+    });
   });
 
 });
