@@ -15,10 +15,14 @@ describe('EventMessagesService', () => {
 
   describe('calendar', () => {
     it('should expose the create event action message', () => {
+      expect(service.calendar.actions.createEvent).toBe('Add Event');
     });
 
     it('should expose the calendar accessibility messages', () => {
-
+      expect(service.calendar.aria).toEqual({
+        section: 'Vehicle events calendar',
+        actions: 'Calendar actions',
+      });
     });
   });
 
