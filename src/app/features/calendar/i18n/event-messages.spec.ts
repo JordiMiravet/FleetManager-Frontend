@@ -121,6 +121,12 @@ describe('EventMessagesService', () => {
           expect(service.form.fields.date.label).toBe('Date *');
         });
       });
+
+      describe('hourStart', () => {
+        it('should expose the start time field label', () => {
+
+        });
+      });
     });
   });
 
