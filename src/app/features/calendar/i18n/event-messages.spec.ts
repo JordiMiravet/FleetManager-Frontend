@@ -12,4 +12,14 @@ describe('EventMessagesService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  describe('calendar', () => {
+    it('should expose the create event action message', () => {
+    });
+
+    it('should expose the calendar accessibility messages', () => {
+
+    });
+  });
+
 });
