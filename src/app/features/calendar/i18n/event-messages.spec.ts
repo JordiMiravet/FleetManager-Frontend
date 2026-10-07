@@ -52,9 +52,7 @@ describe('EventMessagesService', () => {
         'There are no events for the selected day',
       );
     });
-  });
 
-  describe('dayEvents', () => {
     describe('actions', () => {
       it('should expose the create event action message', () => {
         expect(service.dayEvents.actions.create).toBe('Add Event');
@@ -68,11 +66,11 @@ describe('EventMessagesService', () => {
         expect(service.dayEvents.actions.delete).toBe('Delete Event');
       });
     });
-    describe('dayEvents', () => {
-      it('should expose the vehicle fallback message', () => {
-        expect(service.dayEvents.vehicleFallback).toBe('Unknown Vehicle');
-      });
+
+    it('should expose the vehicle fallback message', () => {
+      expect(service.dayEvents.vehicleFallback).toBe('Unknown Vehicle');
     });
+
     describe('aria', () => {
       it('should return the expected title for a given date', () => {
         const date = '2026-10-07';
@@ -127,6 +125,7 @@ describe('EventMessagesService', () => {
           expect(service.form.fields.hourStart.label).toBe('Start Time *');
         });
       });
+
       describe('hourEnd', () => {
         it('should expose the end time field label', () => {
           expect(service.form.fields.hourEnd.label).toBe('End Time *');
@@ -150,6 +149,7 @@ describe('EventMessagesService', () => {
           );
         });
       });
+
       describe('comment', () => {
         it('should expose the comment field label', () => {
           expect(service.form.fields.comment.label).toBe('Comment');
@@ -186,6 +186,7 @@ describe('EventMessagesService', () => {
         expect(service.form.aria.save).toBe('Save event');
       });
     });
+
     describe('errors', () => {
       it('should expose the required error message', () => {
         expect(service.form.errors.required).toBe('This field is required');
