@@ -15,14 +15,15 @@ describe('EventMessagesService', () => {
 
   describe('calendar', () => {
 
-    it('should expose the create event action message', () => {
-      expect(service.calendar.actions.createEvent).toBe('Add Event');
-    });
-
-    it('should expose the calendar accessibility messages', () => {
-      expect(service.calendar.aria).toEqual({
-        section: 'Vehicle events calendar',
-        actions: 'Calendar actions',
+    it('should expose the calendar messages', () => {
+      expect(service.calendar).toEqual({
+        actions: {
+          createEvent: 'Add Event',
+        },
+        aria: {
+          section: 'Vehicle events calendar',
+          actions: 'Calendar actions',
+        },
       });
     });
 
@@ -234,7 +235,7 @@ describe('EventMessagesService', () => {
           'This vehicle is already booked at this time',
         );
       });
-      
+
     });
 
   });
