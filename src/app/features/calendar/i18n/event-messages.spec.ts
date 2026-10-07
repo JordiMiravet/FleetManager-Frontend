@@ -57,15 +57,15 @@ describe('EventMessagesService', () => {
   describe('dayEvents', () => {
     describe('actions', () => {
       it('should expose the create event action message', () => {
-
+        expect(service.dayEvents.actions.create).toBe('Add Event');
       });
 
       it('should expose the edit event action message', () => {
-
+        expect(service.dayEvents.actions.edit).toBe('Update Event');
       });
 
       it('should expose the delete event action message', () => {
-        
+        expect(service.dayEvents.actions.delete).toBe('Delete Event');
       });
     });
   });
