@@ -150,6 +150,15 @@ describe('EventMessagesService', () => {
           );
         });
       });
+      describe('comment', () => {
+        it('should expose the comment field label', () => {
+
+        });
+
+        it('should expose the comment field placeholder', () => {
+          
+        });
+      });
     });
   });
 
