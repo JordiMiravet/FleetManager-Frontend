@@ -135,14 +135,19 @@ describe('EventMessagesService', () => {
 
       describe('vehicle', () => {
         it('should expose the vehicle field label', () => {
+          expect(service.form.fields.vehicle.label).toBe('Vehicle *');
         });
 
         it('should expose the vehicle field placeholder', () => {
-          
+          expect(service.form.fields.vehicle.placeholder).toBe(
+            'Select vehicle*',
+          );
         });
 
         it('should expose the vehicle field error', () => {
-          
+          expect(service.form.fields.vehicle.error).toBe(
+            'Please select a vehicle',
+          );
         });
       });
     });
