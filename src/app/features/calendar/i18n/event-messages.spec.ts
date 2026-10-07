@@ -124,7 +124,7 @@ describe('EventMessagesService', () => {
 
       describe('hourStart', () => {
         it('should expose the start time field label', () => {
-
+          expect(service.form.fields.hourStart.label).toBe('Start Time *');
         });
       });
     });
