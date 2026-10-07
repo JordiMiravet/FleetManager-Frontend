@@ -46,21 +46,28 @@ describe('EventMessagesService', () => {
   describe('dayEvents', () => {
 
     it('should expose the day events messages', () => {
-      expect(service.dayEvents).toEqual({
-        title: expect.any(Function),
-        empty: 'There are no events for the selected day',
-        actions: {
-          create: 'Add Event',
-          edit: 'Update Event',
-          delete: 'Delete Event',
-        },
-        vehicleFallback: 'Unknown Vehicle',
-        aria: {
-          title: expect.any(Function),
-          list: 'Events list',
-          empty: 'There are no events for the selected day',
-        },
+      expect(typeof service.dayEvents.title).toBe('function');
+
+      expect(service.dayEvents.empty).toBe(
+        'There are no events for the selected day',
+      );
+
+      expect(service.dayEvents.actions).toEqual({
+        create: 'Add Event',
+        edit: 'Update Event',
+        delete: 'Delete Event',
       });
+
+      expect(service.dayEvents.vehicleFallback).toBe('Unknown Vehicle');
+
+      expect(typeof service.dayEvents.aria.title).toBe('function');
+
+      expect(service.dayEvents.aria.list).toBe('Events list');
+
+      expect(service.dayEvents.aria.empty).toBe(
+        'There are no events for the selected day',
+      );
+    });
     });
 
     it('should return the expected title for a given date', () => {
