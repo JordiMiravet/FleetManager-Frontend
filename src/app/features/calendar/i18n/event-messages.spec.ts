@@ -129,6 +129,7 @@ describe('EventMessagesService', () => {
       });
       describe('hourEnd', () => {
         it('should expose the end time field label', () => {
+          expect(service.form.fields.hourEnd.label).toBe('End Time *');
         });
       });
     });
