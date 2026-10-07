@@ -26,4 +26,14 @@ describe('EventMessagesService', () => {
     });
   });
 
+  describe('confirmModal', () => {
+    it('should expose the delete event title', () => {
+      
+    });
+
+    it('should expose the delete event message', () => {
+
+    });
+  });
+
 });
