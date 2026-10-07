@@ -118,7 +118,7 @@ describe('EventMessagesService', () => {
 
       describe('date', () => {
         it('should expose the date field label', () => {
-
+          expect(service.form.fields.date.label).toBe('Date *');
         });
       });
     });
