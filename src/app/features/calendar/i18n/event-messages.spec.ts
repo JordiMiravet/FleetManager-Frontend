@@ -38,4 +38,14 @@ describe('EventMessagesService', () => {
     });
   });
 
+  describe('dayEvents', () => {
+    it('should return the expected title for a given date', () => {
+
+    });
+
+    it('should expose the empty message', () => {
+
+    });
+  });
+
 });
