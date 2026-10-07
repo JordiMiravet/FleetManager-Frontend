@@ -188,15 +188,19 @@ describe('EventMessagesService', () => {
     });
     describe('errors', () => {
       it('should expose the required error message', () => {
-
+        expect(service.form.errors.required).toBe('This field is required');
       });
 
       it('should expose the invalid range error message', () => {
-
+        expect(service.form.errors.invalidRange).toBe(
+          'Are you going back to the future, McFly? End time must be after start time',
+        );
       });
 
       it('should expose the overlap error message', () => {
-
+        expect(service.form.errors.overlap).toBe(
+          'This vehicle is already booked at this time',
+        );
       });
     });
 
