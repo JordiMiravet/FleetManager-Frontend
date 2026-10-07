@@ -115,6 +115,12 @@ describe('EventMessagesService', () => {
           expect(service.form.fields.title.placeholder).toBe('Event Name*');
         });
       });
+
+      describe('date', () => {
+        it('should expose the date field label', () => {
+
+        });
+      });
     });
   });
 
