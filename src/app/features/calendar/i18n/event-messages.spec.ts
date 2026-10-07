@@ -177,6 +177,16 @@ describe('EventMessagesService', () => {
       expect(service.form.note).toBe('Fields marked with * are required');
     });
 
+    describe('aria', () => {
+      it('should expose the cancel accessibility message', () => {
+
+      });
+
+      it('should expose the save accessibility message', () => {
+
+      });
+    });
+
   });
 
 });
