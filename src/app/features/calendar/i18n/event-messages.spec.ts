@@ -172,6 +172,11 @@ describe('EventMessagesService', () => {
         expect(service.form.buttons.save).toBe('Save');
       });
     });
+
+    it('should expose the required fields note', () => {
+
+    });
+
   });
 
 });
