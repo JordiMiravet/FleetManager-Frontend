@@ -15,7 +15,14 @@ describe('VehicleMessagesService', () => {
   });
 
   describe('header', () => {
-    it('should expose the expected messages', () => {});
+    it('should expose the expected messages', () => {
+      expect(service.header).toEqual({
+        title: 'My Garage',
+        actions: {
+          create: 'Add Vehicle',
+        },
+      });
+    });
   });
 
 });
