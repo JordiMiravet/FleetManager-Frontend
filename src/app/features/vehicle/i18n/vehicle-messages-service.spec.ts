@@ -25,4 +25,8 @@ describe('VehicleMessagesService', () => {
     });
   });
 
+  describe('actions', () => {
+    it('should expose the expected vehicle action messages', () => {});
+  });
+
 });
