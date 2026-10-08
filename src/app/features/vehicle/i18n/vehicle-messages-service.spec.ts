@@ -15,6 +15,7 @@ describe('VehicleMessagesService', () => {
   });
 
   describe('header', () => {
+
     it('should expose the expected messages', () => {
       expect(service.header).toEqual({
         title: 'My Garage',
@@ -23,9 +24,11 @@ describe('VehicleMessagesService', () => {
         },
       });
     });
+
   });
 
   describe('actions', () => {
+
     it('should expose the expected vehicle action messages', () => {
       expect(service.actions).toEqual({
         vehicle: {
@@ -33,9 +36,11 @@ describe('VehicleMessagesService', () => {
         },
       });
     });
+
   });
 
   describe('form', () => {
+
     it('should expose the expected messages', () => {
       expect(service.form.title).toEqual({
         create: 'Create Vehicle',
@@ -67,32 +72,25 @@ describe('VehicleMessagesService', () => {
         cancel: 'Cancel',
       });
 
-      expect(service.form.note).toBe(
-        'Fields marked with * are required',
-      );
+      expect(service.form.note).toBe('Fields marked with * are required');
     });
 
     describe('errors', () => {
+
       it('should expose the expected error messages', () => {
-        expect(service.form.errors.required('Name')).toBe(
-          'Name is required',
-        );
+        expect(service.form.errors.required('Name')).toBe('Name is required');
 
-        expect(service.form.errors.minLength('Name', 3)).toBe(
-          'Name must be at least 3 characters',
-        );
+        expect(service.form.errors.minLength('Name', 3)).toBe('Name must be at least 3 characters');
 
-        expect(service.form.errors.maxLength('Name', 50)).toBe(
-          'Name cannot exceed 50 characters',
-        );
+        expect(service.form.errors.maxLength('Name', 50)).toBe('Name cannot exceed 50 characters');
 
-        expect(service.form.errors.invalidUrl).toBe(
-          'Please enter a valid URL',
-        );
+        expect(service.form.errors.invalidUrl).toBe('Please enter a valid URL');
       });
+
     });
 
     describe('aria', () => {
+
       it('should expose the expected accessibility messages', () => {
         expect(service.form.aria).toEqual({
           nameInput: 'Vehicle Name input field',
@@ -104,16 +102,17 @@ describe('VehicleMessagesService', () => {
           cancelButton: 'Cancel and close modal',
         });
       });
+
     });
+
   });
 
   describe('users', () => {
+    
     it('should expose the expected messages', () => {
       expect(service.users.title).toBe('Manage Vehicle Users');
 
-      expect(service.users.description).toBe(
-        'Manage users assigned to this vehicle. You can remove existing users or add a new one by email.',
-      );
+      expect(service.users.description).toBe('Manage users assigned to this vehicle. You can remove existing users or add a new one by email.');
 
       expect(service.users.fields).toEqual({
         addUser: {
@@ -133,9 +132,7 @@ describe('VehicleMessagesService', () => {
         currentUsers: 'Current Users',
       });
 
-      expect(service.users.note).toBe(
-        'Fields marked with * are required',
-      );
+      expect(service.users.note).toBe('Fields marked with * are required');
 
       expect(service.users.errors).toEqual({
         emailRequired: 'Email is required',
@@ -144,27 +141,23 @@ describe('VehicleMessagesService', () => {
     });
 
     describe('aria', () => {
+
       it('should expose the expected accessibility messages', () => {
-        expect(service.users.aria.addUserButton).toBe(
-          'Add user to vehicle',
-        );
+        expect(service.users.aria.addUserButton).toBe('Add user to vehicle');
 
-        expect(service.users.aria.removeUser('user@example.com')).toBe(
-          'Remove user user@example.com',
-        );
+        expect(service.users.aria.removeUser('user@example.com')).toBe('Remove user user@example.com');
 
-        expect(service.users.aria.cancelButton).toBe(
-          'Cancel and close modal',
-        );
+        expect(service.users.aria.cancelButton).toBe('Cancel and close modal');
       });
+
     });
+
   });
 
   describe('tableActions', () => {
+
     it('should expose the expected messages', () => {
-      expect(service.tableActions.searchPlaceholder).toBe(
-        'Search by name, model or plate',
-      );
+      expect(service.tableActions.searchPlaceholder).toBe('Search by name, model or plate');
 
       expect(service.tableActions.sortLabel).toBe('Sort by');
 
@@ -185,9 +178,11 @@ describe('VehicleMessagesService', () => {
         sortDirButton: 'Toggle sort direction',
       });
     });
+
   });
 
   describe('table', () => {
+
     it('should expose the expected messages', () => {
       expect(service.table).toEqual({
         captionText: 'Vehicles list',
@@ -199,9 +194,11 @@ describe('VehicleMessagesService', () => {
         },
       });
     });
+
   });
 
   describe('pagination', () => {
+
     it('should expose the expected messages', () => {
       expect(service.pagination).toEqual({
         showingLabel: 'Showing',
@@ -214,9 +211,11 @@ describe('VehicleMessagesService', () => {
         },
       });
     });
+
   });
 
   describe('selectors', () => {
+
     it('should expose the expected messages', () => {
       expect(service.selectors).toEqual({
         vehicle: {
@@ -225,21 +224,24 @@ describe('VehicleMessagesService', () => {
         },
       });
     });
+
   });
 
   describe('confirm', () => {
+
     it('should expose the expected messages', () => {
       expect(service.confirm).toEqual({
         deleteVehicle: {
           title: 'Delete vehicle?',
-          message:
-            'Are you sure you want to delete this vehicle? This action cannot be undone.',
+          message: 'Are you sure you want to delete this vehicle? This action cannot be undone.',
         },
       });
     });
+
   });
 
   describe('emptyState', () => {
+
     it('should expose the expected messages', () => {
       expect(service.emptyState).toEqual({
         text: 'There are no registered vehicles',
@@ -249,6 +251,7 @@ describe('VehicleMessagesService', () => {
         },
       });
     });
+    
   });
 
 });
