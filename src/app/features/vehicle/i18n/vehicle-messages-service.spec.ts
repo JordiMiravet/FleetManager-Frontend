@@ -202,7 +202,18 @@ describe('VehicleMessagesService', () => {
   });
 
   describe('pagination', () => {
-    it('should expose the expected messages', () => {});
+    it('should expose the expected messages', () => {
+      expect(service.pagination).toEqual({
+        showingLabel: 'Showing',
+        ofLabel: 'of',
+        vehiclesLabel: 'vehicles',
+        aria: {
+          navigation: 'Vehicle table pagination',
+          previousPage: 'Previous page',
+          nextPage: 'Next page',
+        },
+      });
+    });
   });
 
 });
