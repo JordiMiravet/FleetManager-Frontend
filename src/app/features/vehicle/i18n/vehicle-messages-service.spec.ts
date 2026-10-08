@@ -73,7 +73,23 @@ describe('VehicleMessagesService', () => {
     });
 
     describe('errors', () => {
-      it('should expose the expected error messages', () => {});
+      it('should expose the expected error messages', () => {
+        expect(service.form.errors.required('Name')).toBe(
+          'Name is required',
+        );
+
+        expect(service.form.errors.minLength('Name', 3)).toBe(
+          'Name must be at least 3 characters',
+        );
+
+        expect(service.form.errors.maxLength('Name', 50)).toBe(
+          'Name cannot exceed 50 characters',
+        );
+
+        expect(service.form.errors.invalidUrl).toBe(
+          'Please enter a valid URL',
+        );
+      });
     });
   });
 
