@@ -188,7 +188,17 @@ describe('VehicleMessagesService', () => {
   });
 
   describe('table', () => {
-    it('should expose the expected messages', () => {});
+    it('should expose the expected messages', () => {
+      expect(service.table).toEqual({
+        captionText: 'Vehicles list',
+        headerText: {
+          imgText: 'Img',
+          nameText: 'Vehicle Name',
+          plateText: 'License Plate',
+          actionsText: 'Actions',
+        },
+      });
+    });
   });
 
 });
