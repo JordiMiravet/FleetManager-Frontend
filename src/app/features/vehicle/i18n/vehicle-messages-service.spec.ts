@@ -91,6 +91,10 @@ describe('VehicleMessagesService', () => {
         );
       });
     });
+
+    describe('aria', () => {
+      it('should expose the expected accessibility messages', () => {});
+    });
   });
 
 });
