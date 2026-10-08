@@ -108,7 +108,40 @@ describe('VehicleMessagesService', () => {
   });
 
   describe('users', () => {
-    it('should expose the expected messages', () => {});
+    it('should expose the expected messages', () => {
+      expect(service.users.title).toBe('Manage Vehicle Users');
+
+      expect(service.users.description).toBe(
+        'Manage users assigned to this vehicle. You can remove existing users or add a new one by email.',
+      );
+
+      expect(service.users.fields).toEqual({
+        addUser: {
+          label: 'Add User *',
+          placeholder: 'user@example.com',
+        },
+      });
+
+      expect(service.users.buttons).toEqual({
+        addUser: 'Add User',
+        adding: 'Adding...',
+        cancel: 'Cancel',
+      });
+
+      expect(service.users.status).toEqual({
+        noUsers: 'No users assigned',
+        currentUsers: 'Current Users',
+      });
+
+      expect(service.users.note).toBe(
+        'Fields marked with * are required',
+      );
+
+      expect(service.users.errors).toEqual({
+        emailRequired: 'Email is required',
+        invalidEmail: 'Please enter a valid email',
+      });
+    });
   });
 
 });
