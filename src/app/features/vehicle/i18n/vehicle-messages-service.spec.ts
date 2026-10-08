@@ -239,4 +239,8 @@ describe('VehicleMessagesService', () => {
     });
   });
 
+  describe('emptyState', () => {
+    it('should expose the expected messages', () => {});
+  });
+
 });
