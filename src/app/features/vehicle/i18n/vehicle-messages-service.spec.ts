@@ -144,7 +144,19 @@ describe('VehicleMessagesService', () => {
     });
 
     describe('aria', () => {
-      it('should expose the expected accessibility messages', () => {});
+      it('should expose the expected accessibility messages', () => {
+        expect(service.users.aria.addUserButton).toBe(
+          'Add user to vehicle',
+        );
+
+        expect(service.users.aria.removeUser('user@example.com')).toBe(
+          'Remove user user@example.com',
+        );
+
+        expect(service.users.aria.cancelButton).toBe(
+          'Cancel and close modal',
+        );
+      });
     });
   });
 
