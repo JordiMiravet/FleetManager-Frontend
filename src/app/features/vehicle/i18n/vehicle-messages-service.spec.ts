@@ -142,6 +142,10 @@ describe('VehicleMessagesService', () => {
         invalidEmail: 'Please enter a valid email',
       });
     });
+
+    describe('aria', () => {
+      it('should expose the expected accessibility messages', () => {});
+    });
   });
 
 });
