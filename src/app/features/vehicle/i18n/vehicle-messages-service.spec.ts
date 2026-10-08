@@ -183,22 +183,30 @@ describe('VehicleMessagesService', () => {
 
   describe('tableActions', () => {
 
-    it('should expose the expected messages', () => {
+    it('should expose the expected search placeholder message', () => {
       expect(service.tableActions.searchPlaceholder).toBe('Search by name, model or plate');
+    });
 
+    it('should expose the expected sort label message', () => {
       expect(service.tableActions.sortLabel).toBe('Sort by');
+    });
 
+    it('should expose the expected sort option messages', () => {
       expect(service.tableActions.sortOptions).toEqual({
         name: 'Vehicle Name',
         plate: 'License Plate',
         model: 'Model',
       });
+    });
 
+    it('should expose the expected sort direction messages', () => {
       expect(service.tableActions.sortDir).toEqual({
         asc: 'Ascending',
         desc: 'Descending',
       });
+    });
 
+    it('should expose the expected accessibility messages', () => {
       expect(service.tableActions.aria).toEqual({
         searchInput: 'Search vehicles',
         sortFieldSelect: 'Sort vehicles by field',
