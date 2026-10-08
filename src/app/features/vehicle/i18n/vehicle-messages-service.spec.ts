@@ -36,7 +36,41 @@ describe('VehicleMessagesService', () => {
   });
 
   describe('form', () => {
-    it('should expose the expected messages', () => {});
+    it('should expose the expected messages', () => {
+      expect(service.form.title).toEqual({
+        create: 'Create Vehicle',
+        edit: 'Edit Vehicle',
+      });
+
+      expect(service.form.fields).toEqual({
+        name: {
+          label: 'Name *',
+          placeholder: 'Vehicle Name',
+        },
+        model: {
+          label: 'Model *',
+          placeholder: 'Vehicle Model',
+        },
+        plate: {
+          label: 'Plate *',
+          placeholder: 'Vehicle Plate',
+        },
+        imageUrl: {
+          label: 'Image URL',
+          placeholder: 'https://example.com/car.jpg',
+        },
+      });
+
+      expect(service.form.buttons).toEqual({
+        create: 'Create',
+        update: 'Update',
+        cancel: 'Cancel',
+      });
+
+      expect(service.form.note).toBe(
+        'Fields marked with * are required',
+      );
+    });
   });
 
 });
