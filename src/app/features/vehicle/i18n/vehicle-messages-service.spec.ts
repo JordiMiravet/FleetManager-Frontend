@@ -187,4 +187,8 @@ describe('VehicleMessagesService', () => {
     });
   });
 
+  describe('table', () => {
+    it('should expose the expected messages', () => {});
+  });
+
 });
