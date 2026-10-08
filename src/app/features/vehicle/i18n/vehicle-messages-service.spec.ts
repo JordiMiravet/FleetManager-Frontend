@@ -93,7 +93,17 @@ describe('VehicleMessagesService', () => {
     });
 
     describe('aria', () => {
-      it('should expose the expected accessibility messages', () => {});
+      it('should expose the expected accessibility messages', () => {
+        expect(service.form.aria).toEqual({
+          nameInput: 'Vehicle Name input field',
+          modelInput: 'Vehicle Model input field',
+          plateInput: 'Vehicle Plate input field',
+          imageUrlInput: 'Vehicle Image URL input field',
+          createButton: 'Create vehicle',
+          updateButton: 'Update vehicle',
+          cancelButton: 'Cancel and close modal',
+        });
+      });
     });
   });
 
