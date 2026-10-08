@@ -240,7 +240,15 @@ describe('VehicleMessagesService', () => {
   });
 
   describe('emptyState', () => {
-    it('should expose the expected messages', () => {});
+    it('should expose the expected messages', () => {
+      expect(service.emptyState).toEqual({
+        text: 'There are no registered vehicles',
+        button: 'Add Your First Vehicle',
+        aria: {
+          section: 'No vehicles registered',
+        },
+      });
+    });
   });
 
 });
