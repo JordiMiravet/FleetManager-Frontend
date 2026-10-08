@@ -227,4 +227,8 @@ describe('VehicleMessagesService', () => {
     });
   });
 
+  describe('confirm', () => {
+    it('should expose the expected messages', () => {});
+  });
+
 });
