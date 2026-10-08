@@ -107,4 +107,8 @@ describe('VehicleMessagesService', () => {
     });
   });
 
+  describe('users', () => {
+    it('should expose the expected messages', () => {});
+  });
+
 });
