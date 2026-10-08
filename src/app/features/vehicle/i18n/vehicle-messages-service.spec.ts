@@ -71,6 +71,10 @@ describe('VehicleMessagesService', () => {
         'Fields marked with * are required',
       );
     });
+
+    describe('errors', () => {
+      it('should expose the expected error messages', () => {});
+    });
   });
 
 });
