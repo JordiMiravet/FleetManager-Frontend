@@ -124,31 +124,43 @@ describe('VehicleMessagesService', () => {
 
   describe('users', () => {
     
-    it('should expose the expected messages', () => {
+    it('should expose the expected title message', () => {
       expect(service.users.title).toBe('Manage Vehicle Users');
+    });
 
+    it('should expose the expected description message', () => {
       expect(service.users.description).toBe('Manage users assigned to this vehicle. You can remove existing users or add a new one by email.');
+    });
 
+    it('should expose the expected field messages', () => {
       expect(service.users.fields).toEqual({
         addUser: {
           label: 'Add User *',
           placeholder: 'user@example.com',
         },
       });
+    });
 
+    it('should expose the expected button messages', () => {
       expect(service.users.buttons).toEqual({
         addUser: 'Add User',
         adding: 'Adding...',
         cancel: 'Cancel',
       });
+    });
 
+    it('should expose the expected status messages', () => {
       expect(service.users.status).toEqual({
         noUsers: 'No users assigned',
         currentUsers: 'Current Users',
       });
+    });
 
+    it('should expose the expected note message', () => {
       expect(service.users.note).toBe('Fields marked with * are required');
+    });
 
+    it('should expose the expected error messages', () => {
       expect(service.users.errors).toEqual({
         emailRequired: 'Email is required',
         invalidEmail: 'Please enter a valid email',
