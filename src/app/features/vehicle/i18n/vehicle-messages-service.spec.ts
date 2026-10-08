@@ -41,12 +41,14 @@ describe('VehicleMessagesService', () => {
 
   describe('form', () => {
 
-    it('should expose the expected messages', () => {
+    it('should expose the expected title messages', () => {
       expect(service.form.title).toEqual({
         create: 'Create Vehicle',
         edit: 'Edit Vehicle',
       });
+    });
 
+    it('should expose the expected field messages', () => {
       expect(service.form.fields).toEqual({
         name: {
           label: 'Name *',
@@ -65,13 +67,17 @@ describe('VehicleMessagesService', () => {
           placeholder: 'https://example.com/car.jpg',
         },
       });
+    });
 
+    it('should expose the expected button messages', () => {
       expect(service.form.buttons).toEqual({
         create: 'Create',
         update: 'Update',
         cancel: 'Cancel',
       });
+    });
 
+    it('should expose the expected note message', () => {
       expect(service.form.note).toBe('Fields marked with * are required');
     });
 
