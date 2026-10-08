@@ -216,4 +216,8 @@ describe('VehicleMessagesService', () => {
     });
   });
 
+  describe('selectors', () => {
+    it('should expose the expected messages', () => {});
+  });
+
 });
