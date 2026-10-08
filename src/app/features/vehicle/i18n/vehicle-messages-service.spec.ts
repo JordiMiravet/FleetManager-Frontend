@@ -160,4 +160,8 @@ describe('VehicleMessagesService', () => {
     });
   });
 
+  describe('tableActions', () => {
+    it('should expose the expected messages', () => {});
+  });
+
 });
