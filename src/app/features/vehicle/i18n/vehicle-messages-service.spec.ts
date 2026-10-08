@@ -13,4 +13,9 @@ describe('VehicleMessagesService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  describe('header', () => {
+    it('should expose the expected messages', () => {});
+  });
+
 });
