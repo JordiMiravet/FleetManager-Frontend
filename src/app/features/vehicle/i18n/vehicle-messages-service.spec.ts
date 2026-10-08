@@ -13,4 +13,280 @@ describe('VehicleMessagesService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  describe('header', () => {
+
+    it('should expose the expected messages', () => {
+      expect(service.header).toEqual({
+        title: 'My Garage',
+        actions: {
+          create: 'Add Vehicle',
+        },
+      });
+    });
+
+  });
+
+  describe('actions', () => {
+
+    it('should expose the expected vehicle action messages', () => {
+      expect(service.actions).toEqual({
+        vehicle: {
+          add: 'Add vehicle',
+        },
+      });
+    });
+
+  });
+
+  describe('form', () => {
+
+    it('should expose the expected title messages', () => {
+      expect(service.form.title).toEqual({
+        create: 'Create Vehicle',
+        edit: 'Edit Vehicle',
+      });
+    });
+
+    it('should expose the expected field messages', () => {
+      expect(service.form.fields).toEqual({
+        name: {
+          label: 'Name *',
+          placeholder: 'Vehicle Name',
+        },
+        model: {
+          label: 'Model *',
+          placeholder: 'Vehicle Model',
+        },
+        plate: {
+          label: 'Plate *',
+          placeholder: 'Vehicle Plate',
+        },
+        imageUrl: {
+          label: 'Image URL',
+          placeholder: 'https://example.com/car.jpg',
+        },
+      });
+    });
+
+    it('should expose the expected button messages', () => {
+      expect(service.form.buttons).toEqual({
+        create: 'Create',
+        update: 'Update',
+        cancel: 'Cancel',
+      });
+    });
+
+    it('should expose the expected note message', () => {
+      expect(service.form.note).toBe('Fields marked with * are required');
+    });
+
+    describe('errors', () => {
+
+      it('should expose the expected required error messages', () => {
+        expect(service.form.errors.required('Name')).toBe('Name is required');
+        expect(service.form.errors.required('Plate')).toBe('Plate is required');
+      });
+
+      it('should expose the expected minLength & maxLength error messages', () => {
+        expect(service.form.errors.minLength('Name', 3)).toBe('Name must be at least 3 characters');
+        expect(service.form.errors.minLength('Model', 5)).toBe('Model must be at least 5 characters');
+      });
+
+      it('should expose the expected maxLength error messages', () => {
+        expect(service.form.errors.maxLength('Name', 50)).toBe('Name cannot exceed 50 characters');
+        expect(service.form.errors.maxLength('Model', 100)).toBe('Model cannot exceed 100 characters');
+      });
+
+      it('should expose the expected invalidUrl error message', () => {
+        expect(service.form.errors.invalidUrl).toBe('Please enter a valid URL');
+      });
+
+    });
+
+    describe('aria', () => {
+
+      it('should expose the expected accessibility messages', () => {
+        expect(service.form.aria).toEqual({
+          nameInput: 'Vehicle Name input field',
+          modelInput: 'Vehicle Model input field',
+          plateInput: 'Vehicle Plate input field',
+          imageUrlInput: 'Vehicle Image URL input field',
+          createButton: 'Create vehicle',
+          updateButton: 'Update vehicle',
+          cancelButton: 'Cancel and close modal',
+        });
+      });
+
+    });
+
+  });
+
+  describe('users', () => {
+    
+    it('should expose the expected title message', () => {
+      expect(service.users.title).toBe('Manage Vehicle Users');
+    });
+
+    it('should expose the expected description message', () => {
+      expect(service.users.description).toBe('Manage users assigned to this vehicle. You can remove existing users or add a new one by email.');
+    });
+
+    it('should expose the expected field messages', () => {
+      expect(service.users.fields).toEqual({
+        addUser: {
+          label: 'Add User *',
+          placeholder: 'user@example.com',
+        },
+      });
+    });
+
+    it('should expose the expected button messages', () => {
+      expect(service.users.buttons).toEqual({
+        addUser: 'Add User',
+        adding: 'Adding...',
+        cancel: 'Cancel',
+      });
+    });
+
+    it('should expose the expected status messages', () => {
+      expect(service.users.status).toEqual({
+        noUsers: 'No users assigned',
+        currentUsers: 'Current Users',
+      });
+    });
+
+    it('should expose the expected note message', () => {
+      expect(service.users.note).toBe('Fields marked with * are required');
+    });
+
+    it('should expose the expected error messages', () => {
+      expect(service.users.errors).toEqual({
+        emailRequired: 'Email is required',
+        invalidEmail: 'Please enter a valid email',
+      });
+    });
+
+    describe('aria', () => {
+
+      it('should expose the expected accessibility messages', () => {
+        expect(service.users.aria.addUserButton).toBe('Add user to vehicle');
+
+        expect(service.users.aria.removeUser('user@example.com')).toBe('Remove user user@example.com');
+
+        expect(service.users.aria.cancelButton).toBe('Cancel and close modal');
+      });
+
+    });
+
+  });
+
+  describe('tableActions', () => {
+
+    it('should expose the expected search placeholder message', () => {
+      expect(service.tableActions.searchPlaceholder).toBe('Search by name, model or plate');
+    });
+
+    it('should expose the expected sort label message', () => {
+      expect(service.tableActions.sortLabel).toBe('Sort by');
+    });
+
+    it('should expose the expected sort option messages', () => {
+      expect(service.tableActions.sortOptions).toEqual({
+        name: 'Vehicle Name',
+        plate: 'License Plate',
+        model: 'Model',
+      });
+    });
+
+    it('should expose the expected sort direction messages', () => {
+      expect(service.tableActions.sortDir).toEqual({
+        asc: 'Ascending',
+        desc: 'Descending',
+      });
+    });
+
+    it('should expose the expected accessibility messages', () => {
+      expect(service.tableActions.aria).toEqual({
+        searchInput: 'Search vehicles',
+        sortFieldSelect: 'Sort vehicles by field',
+        sortDirButton: 'Toggle sort direction',
+      });
+    });
+
+  });
+
+  describe('table', () => {
+
+    it('should expose the expected messages', () => {
+      expect(service.table).toEqual({
+        captionText: 'Vehicles list',
+        headerText: {
+          imgText: 'Img',
+          nameText: 'Vehicle Name',
+          plateText: 'License Plate',
+          actionsText: 'Actions',
+        },
+      });
+    });
+
+  });
+
+  describe('pagination', () => {
+
+    it('should expose the expected messages', () => {
+      expect(service.pagination).toEqual({
+        showingLabel: 'Showing',
+        ofLabel: 'of',
+        vehiclesLabel: 'vehicles',
+        aria: {
+          navigation: 'Vehicle table pagination',
+          previousPage: 'Previous page',
+          nextPage: 'Next page',
+        },
+      });
+    });
+
+  });
+
+  describe('selectors', () => {
+
+    it('should expose the expected messages', () => {
+      expect(service.selectors).toEqual({
+        vehicle: {
+          label: 'Select Vehicle',
+          allVehiclesOption: '-- All Vehicles --',
+        },
+      });
+    });
+
+  });
+
+  describe('confirm', () => {
+
+    it('should expose the expected messages', () => {
+      expect(service.confirm).toEqual({
+        deleteVehicle: {
+          title: 'Delete vehicle?',
+          message: 'Are you sure you want to delete this vehicle? This action cannot be undone.',
+        },
+      });
+    });
+
+  });
+
+  describe('emptyState', () => {
+
+    it('should expose the expected messages', () => {
+      expect(service.emptyState).toEqual({
+        text: 'There are no registered vehicles',
+        button: 'Add Your First Vehicle',
+        aria: {
+          section: 'No vehicles registered',
+        },
+      });
+    });
+    
+  });
+
 });
