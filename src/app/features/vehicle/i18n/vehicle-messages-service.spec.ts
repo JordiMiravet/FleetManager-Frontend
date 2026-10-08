@@ -228,7 +228,15 @@ describe('VehicleMessagesService', () => {
   });
 
   describe('confirm', () => {
-    it('should expose the expected messages', () => {});
+    it('should expose the expected messages', () => {
+      expect(service.confirm).toEqual({
+        deleteVehicle: {
+          title: 'Delete vehicle?',
+          message:
+            'Are you sure you want to delete this vehicle? This action cannot be undone.',
+        },
+      });
+    });
   });
 
 });
