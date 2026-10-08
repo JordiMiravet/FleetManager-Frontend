@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class VehicleMessagesService {
   
-  /* Vehicle-view */
+  // Vehicle-view
 
   readonly header = {
     title: 'My Garage',
@@ -20,7 +20,7 @@ export class VehicleMessagesService {
     }
   };
 
-  /* Vehicle-form-modal */
+  // Vehicle-form-modal
 
   readonly form = {
     title: {
@@ -56,7 +56,7 @@ export class VehicleMessagesService {
     }
   };
 
-  /* manage-vehicle-users-modal */
+  // manage-vehicle-users-modal
 
   readonly users = {
     title: 'Manage Vehicle Users',
@@ -85,7 +85,7 @@ export class VehicleMessagesService {
     }
   };
 
-  /* vehicle-table-actions */
+  // vehicle-table-actions
 
   readonly tableActions = {
     searchPlaceholder: 'Search by name, model or plate',
@@ -106,7 +106,7 @@ export class VehicleMessagesService {
     }
   };
 
-  /* vehicle-table */
+  // vehicle-table
 
   readonly table = {
     captionText: 'Vehicles list',
@@ -118,7 +118,7 @@ export class VehicleMessagesService {
     }
   };
 
-  /* vehicle-table-pagination */
+  // vehicle-table-pagination
 
   readonly pagination = {
     showingLabel: 'Showing',
@@ -131,7 +131,7 @@ export class VehicleMessagesService {
     }
   };
 
-  /* vehicle-selector */
+  // vehicle-selector
 
   readonly selectors = {
     vehicle: {
@@ -140,7 +140,7 @@ export class VehicleMessagesService {
     }
   };
 
-  /* confirm-modal */
+  // confirm-modal
 
   readonly confirm = {
     deleteVehicle: {
@@ -149,7 +149,7 @@ export class VehicleMessagesService {
     }
   };
 
-  /* vehicle-empty-state */
+  // vehicle-empty-state
 
   readonly emptyState = {
     text: 'There are no registered vehicles',
