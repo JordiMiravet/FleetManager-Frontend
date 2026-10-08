@@ -161,7 +161,30 @@ describe('VehicleMessagesService', () => {
   });
 
   describe('tableActions', () => {
-    it('should expose the expected messages', () => {});
+    it('should expose the expected messages', () => {
+      expect(service.tableActions.searchPlaceholder).toBe(
+        'Search by name, model or plate',
+      );
+
+      expect(service.tableActions.sortLabel).toBe('Sort by');
+
+      expect(service.tableActions.sortOptions).toEqual({
+        name: 'Vehicle Name',
+        plate: 'License Plate',
+        model: 'Model',
+      });
+
+      expect(service.tableActions.sortDir).toEqual({
+        asc: 'Ascending',
+        desc: 'Descending',
+      });
+
+      expect(service.tableActions.aria).toEqual({
+        searchInput: 'Search vehicles',
+        sortFieldSelect: 'Sort vehicles by field',
+        sortDirButton: 'Toggle sort direction',
+      });
+    });
   });
 
 });
