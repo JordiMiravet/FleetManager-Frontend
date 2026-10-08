@@ -26,7 +26,13 @@ describe('VehicleMessagesService', () => {
   });
 
   describe('actions', () => {
-    it('should expose the expected vehicle action messages', () => {});
+    it('should expose the expected vehicle action messages', () => {
+      expect(service.actions).toEqual({
+        vehicle: {
+          add: 'Add vehicle',
+        },
+      });
+    });
   });
 
 });
