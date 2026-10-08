@@ -217,7 +217,14 @@ describe('VehicleMessagesService', () => {
   });
 
   describe('selectors', () => {
-    it('should expose the expected messages', () => {});
+    it('should expose the expected messages', () => {
+      expect(service.selectors).toEqual({
+        vehicle: {
+          label: 'Select Vehicle',
+          allVehiclesOption: '-- All Vehicles --',
+        },
+      });
+    });
   });
 
 });
