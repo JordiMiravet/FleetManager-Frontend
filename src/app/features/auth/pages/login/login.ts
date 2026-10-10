@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterModule } from '@angular/router';
 
 import { AuthService } from '../../data-access/auth-service';
-import { AuthMessagesService } from '../../i18n/auth-messages';
+import { AuthMessagesService } from '../../i18n/auth-messages-service';
 
 @Component({
   selector: 'app-login',
