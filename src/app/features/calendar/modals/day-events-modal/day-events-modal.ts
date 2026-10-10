@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
 
 import { EventInterface } from '../../models/event';
-import { EventMessagesService } from '../../i18n/event-messages';
+import { EventMessagesService } from '../../i18n/event-messages-service';
 
 import { VehicleService } from '../../../vehicle/data-access/vehicle-service';
 

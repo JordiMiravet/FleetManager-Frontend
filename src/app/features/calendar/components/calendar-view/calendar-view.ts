@@ -10,7 +10,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 
 import { EventService } from '../../data-access/event-service';
 import { EventInterface } from '../../models/event';
-import { EventMessagesService } from '../../i18n/event-messages';
+import { EventMessagesService } from '../../i18n/event-messages-service';
 import { DayEventsModalComponent } from '../../modals/day-events-modal/day-events-modal';
 import { EventFormModalComponent } from "../../modals/event-form-modal/event-form-modal";
 

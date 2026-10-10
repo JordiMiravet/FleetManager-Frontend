@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { EventMessagesService } from './event-messages';
+
+import { EventMessagesService } from './event-messages-service';
 
 describe('EventMessagesService', () => {
   let service: EventMessagesService;
